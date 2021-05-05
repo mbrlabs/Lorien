@@ -1,0 +1,51 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Main.gd" type="Script" id=1]
+
+[node name="Main" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Buttons" type="VBoxContainer" parent="."]
+margin_left = 33.0
+margin_top = 31.0
+margin_right = 145.0
+margin_bottom = 83.0
+custom_constants/separation = 12
+alignment = 1
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="SaveButton" type="Button" parent="Buttons"]
+margin_right = 112.0
+margin_bottom = 20.0
+text = "SAVE"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LoadButton" type="Button" parent="Buttons"]
+margin_top = 32.0
+margin_right = 112.0
+margin_bottom = 52.0
+text = "LOAD"
+
+[node name="ClearButton" type="Button" parent="Buttons"]
+margin_top = 64.0
+margin_right = 112.0
+margin_bottom = 84.0
+text = "CLEAR"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="Buttons/SaveButton" to="." method="_on_SaveButton_pressed"]
+[connection signal="pressed" from="Buttons/LoadButton" to="." method="_on_LoadButton_pressed"]
+[connection signal="pressed" from="Buttons/ClearButton" to="." method="_on_ClearButton_pressed"]
