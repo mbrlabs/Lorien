@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Reference",
+"class": "Config",
+"language": "GDScript",
+"path": "res://Config.gd"
+}, {
 "base": "Viewport",
 "class": "JabolCanvas",
 "language": "GDScript",
@@ -20,6 +25,7 @@ _global_script_classes=[ {
 "path": "res://LineData.gd"
 } ]
 _global_script_class_icons={
+"Config": "",
 "JabolCanvas": "",
 "LineData": ""
 }
@@ -28,7 +34,7 @@ _global_script_class_icons={
 
 config/name="Jabol"
 run/main_scene="res://Main.tscn"
-config/icon="res://icon.png"
+config/icon="res://Assets/icon.png"
 
 [autoload]
 
@@ -41,6 +47,7 @@ window/size/height=1080
 window/size/test_width=1440
 window/size/test_height=810
 window/dpi/allow_hidpi=true
+window/stretch/aspect="expand"
 
 [input]
 
@@ -57,4 +64,3 @@ common/enable_pause_aware_picking=true
 [rendering]
 
 environment/default_clear_color=Color( 0.184314, 0.184314, 0.184314, 1 )
-environment/default_environment="res://default_env.tres"

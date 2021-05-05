@@ -8,13 +8,15 @@ var lines := []
 var _last_mouse_motion: InputEventMouseMotion
 var _current_line: Line2D
 var _current_zoom_level = 1
+var _current_brush_color := Color.white
+var _current_brush_size := 4
 
 # -------------------------------------------------------------------------------------------------
-func _input(event: InputEvent) -> void:
+func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT:
 			if event.pressed:
-				start_new_line()
+				start_new_line(_current_brush_color, _current_brush_size)
 			else:
 				end_line()
 	elif event is InputEventMouseMotion:
@@ -33,11 +35,11 @@ func _process(delta: float) -> void:
 		undo_last_line()
 
 # -------------------------------------------------------------------------------------------------
-func start_new_line(color: Color = Color.white) -> void:
+func start_new_line(brush_color: Color, brush_size: float = 6) -> void:
 	_current_line = Line2D.new()
-	_current_line.width = 6
-	_current_line.antialiased = true
-	_current_line.default_color = color
+	#_current_line.antialiased = true
+	_current_line.default_color = brush_color
+	_current_line.width = brush_size
 	_current_line.begin_cap_mode = Line2D.LINE_CAP_ROUND
 	_current_line.end_cap_mode = Line2D.LINE_CAP_ROUND
 	_current_line.joint_mode = Line2D.LINE_JOINT_ROUND
@@ -60,6 +62,14 @@ func end_line() -> void:
 func undo_last_line() -> void:
 	if _current_line == null && !lines.empty():
 		remove_child(lines.pop_back())
+
+# -------------------------------------------------------------------------------------------------
+func set_brush_color(color: Color) -> void:
+	_current_brush_color = color
+
+# -------------------------------------------------------------------------------------------------
+func set_brush_size(size: float) -> void:
+	_current_brush_size = size
 
 # -------------------------------------------------------------------------------------------------
 func clear() -> void:
