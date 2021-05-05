@@ -9,12 +9,18 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Viewport",
+"class": "JabolCanvas",
+"language": "GDScript",
+"path": "res://JabolCanvas.gd"
+}, {
 "base": "Reference",
 "class": "LineData",
 "language": "GDScript",
 "path": "res://LineData.gd"
 } ]
 _global_script_class_icons={
+"JabolCanvas": "",
 "LineData": ""
 }
 
@@ -50,4 +56,5 @@ common/enable_pause_aware_picking=true
 
 [rendering]
 
+environment/default_clear_color=Color( 0.184314, 0.184314, 0.184314, 1 )
 environment/default_environment="res://default_env.tres"

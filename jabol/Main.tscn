@@ -1,15 +1,37 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
+[ext_resource path="res://EditorCamera.gd" type="Script" id=2]
+[ext_resource path="res://JabolCanvas.gd" type="Script" id=3]
 
 [node name="Main" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-mouse_filter = 2
+mouse_filter = 1
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="ViewportContainer" type="ViewportContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Viewport" type="Viewport" parent="ViewportContainer"]
+size = Vector2( 1920, 1080 )
+handle_input_locally = false
+usage = 0
+render_target_update_mode = 3
+script = ExtResource( 3 )
+
+[node name="Camera2D" type="Camera2D" parent="ViewportContainer/Viewport"]
+anchor_mode = 0
+current = true
+script = ExtResource( 2 )
 
 [node name="Buttons" type="VBoxContainer" parent="."]
 margin_left = 33.0
