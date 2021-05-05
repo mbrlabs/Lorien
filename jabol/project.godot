@@ -10,6 +10,11 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Reference",
+"class": "BrushStrokeData",
+"language": "GDScript",
+"path": "res://BrushStrokeData.gd"
+}, {
+"base": "Reference",
 "class": "Config",
 "language": "GDScript",
 "path": "res://Config.gd"
@@ -18,16 +23,11 @@ _global_script_classes=[ {
 "class": "JabolCanvas",
 "language": "GDScript",
 "path": "res://JabolCanvas.gd"
-}, {
-"base": "Reference",
-"class": "LineData",
-"language": "GDScript",
-"path": "res://LineData.gd"
 } ]
 _global_script_class_icons={
+"BrushStrokeData": "",
 "Config": "",
-"JabolCanvas": "",
-"LineData": ""
+"JabolCanvas": ""
 }
 
 [application]
@@ -39,6 +39,7 @@ config/icon="res://Assets/icon.png"
 [autoload]
 
 JabolIO="*res://JabolIO.gd"
+Utils="*res://Utils.gd"
 
 [display]
 

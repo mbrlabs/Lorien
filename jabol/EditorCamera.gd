@@ -1,7 +1,7 @@
 extends Camera2D
 
 const MAX_ZOOM_LEVEL = 10.0
-const MIN_ZOOM_LEVEL = 0.5
+const MIN_ZOOM_LEVEL = 0.1
 const ZOOM_INCREMENT = 0.1
 
 var _current_zoom_level := 1.0
