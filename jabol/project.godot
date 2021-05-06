@@ -55,7 +55,6 @@ window/size/always_on_top=true
 window/size/test_width=1440
 window/size/test_height=810
 window/dpi/allow_hidpi=true
-window/stretch/aspect="expand"
 
 [input]
 

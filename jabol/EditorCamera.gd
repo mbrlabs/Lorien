@@ -1,6 +1,6 @@
 extends Camera2D
 
-const MAX_ZOOM_LEVEL = 10.0
+const MAX_ZOOM_LEVEL = 100.0
 const MIN_ZOOM_LEVEL = 0.1
 const ZOOM_INCREMENT = 0.1
 
@@ -10,10 +10,12 @@ var _drag := false
 # -------------------------------------------------------------------------------------------------
 func _input(event):
 	if event is InputEventMouseButton:
+		var increment := max(ZOOM_INCREMENT + _current_zoom_level * ZOOM_INCREMENT, ZOOM_INCREMENT)
+		
 		if event.button_index == BUTTON_WHEEL_DOWN:
-			_do_zoom(ZOOM_INCREMENT, get_local_mouse_position())
+			_do_zoom(increment, get_local_mouse_position())
 		elif event.button_index == BUTTON_WHEEL_UP:
-			_do_zoom(-ZOOM_INCREMENT, get_local_mouse_position())
+			_do_zoom(-increment, get_local_mouse_position())
 		elif event.button_index == BUTTON_MIDDLE:
 			_drag = event.is_pressed()
 	

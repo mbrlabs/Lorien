@@ -2,12 +2,19 @@ extends Viewport
 class_name JabolCanvas
 
 # -------------------------------------------------------------------------------------------------
+class Info:
+	var point_count: int
+	var stroke_count: int
+	var current_pressure: float
+	var current_brush_position: Vector2
+
+# -------------------------------------------------------------------------------------------------
 onready var _camera: Camera2D = $Camera2D
 
 var lines := []
+var info := Info.new()
 var _last_mouse_motion: InputEventMouseMotion
 var _current_line: Line2D
-var _current_zoom_level = 1
 var _current_brush_color := Color.white
 var _current_brush_size := 4
 
@@ -21,17 +28,23 @@ func _unhandled_input(event: InputEvent) -> void:
 				end_line()
 	elif event is InputEventMouseMotion:
 		_last_mouse_motion = event
+		info.current_pressure = event.pressure
 
 # -------------------------------------------------------------------------------------------------
 func _process(delta: float) -> void:
+	var brush_position: Vector2
+	
+	if _last_mouse_motion != null:
+		brush_position = _camera.xform(_last_mouse_motion.global_position)
+		info.current_brush_position = brush_position
+	
 	if _current_line != null && _last_mouse_motion != null:
 		if _last_mouse_motion.relative.length_squared() > 0.0:
-			var pos = _last_mouse_motion.global_position
 			#var pressure = _last_mouse_motion.pressure
 			#var pressure_16 = int(round(65536*pressure))
 			#var pressure_8 = int(round(255*pressure))
 			#print("Pressure: %f (%d -> %f)" % [pressure, pressure_16, pressure_16/65536.0])
-			_current_line.add_point(_camera.xform(pos))
+			add_point(brush_position)
 			_last_mouse_motion = null
 	
 	if Input.is_action_just_pressed("jabol_undo"):
@@ -51,6 +64,7 @@ func start_new_line(brush_color: Color, brush_size: float = 6) -> void:
 # -------------------------------------------------------------------------------------------------
 func add_point(point: Vector2) -> void:
 	_current_line.add_point(point)
+	info.point_count += 1
 
 # -------------------------------------------------------------------------------------------------
 func end_line() -> void:
@@ -58,13 +72,17 @@ func end_line() -> void:
 		if _current_line.points.empty():
 			call_deferred("remove_child", _current_line)
 		else:
+			info.stroke_count += 1
 			lines.append(_current_line)
 		_current_line = null
 
 # -------------------------------------------------------------------------------------------------
 func undo_last_line() -> void:
 	if _current_line == null && !lines.empty():
-		remove_child(lines.pop_back())
+		var line = lines.pop_back()
+		info.stroke_count -= 1
+		info.point_count -= line.points.size()
+		remove_child(line)
 
 # -------------------------------------------------------------------------------------------------
 func set_brush_color(color: Color) -> void:
@@ -79,3 +97,5 @@ func clear() -> void:
 	for l in lines:
 		remove_child(l)
 	lines.clear()
+	info.point_count = 0
+	info.stroke_count = 0

@@ -3,6 +3,6 @@
 [ext_resource path="res://Assets/Fonts/Inter-Regular.ttf" type="DynamicFontData" id=1]
 
 [resource]
-size = 14
+size = 10
 use_filter = true
 font_data = ExtResource( 1 )

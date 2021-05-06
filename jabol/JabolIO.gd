@@ -182,4 +182,6 @@ func _read_from_binary_file(file: File) -> Array:
 
 # -------------------------------------------------------------------------------------------------
 func _is_binary(file_path: String) -> bool:
-	return file_path.ends_with(".jabolb")
+	if file_path.ends_with("text"):
+		return false
+	return true
