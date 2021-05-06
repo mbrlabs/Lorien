@@ -1,0 +1,99 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://UI/Themes/theme_dark.tres" type="Theme" id=1]
+[ext_resource path="res://UI/UITitlebar.gd" type="Script" id=2]
+
+[node name="UITitlebar" type="Panel"]
+anchor_right = 1.0
+rect_min_size = Vector2( 0, 30 )
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Left" type="HBoxContainer" parent="."]
+anchor_bottom = 1.0
+margin_right = 154.0
+custom_constants/separation = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Logo" type="ColorRect" parent="Left"]
+margin_right = 30.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 30, 30 )
+mouse_filter = 1
+size_flags_horizontal = 4
+size_flags_vertical = 4
+color = Color( 1, 0.537255, 0.168627, 1 )
+
+[node name="VSeparator2" type="VSeparator" parent="Left"]
+margin_left = 34.0
+margin_right = 46.0
+margin_bottom = 30.0
+mouse_filter = 1
+custom_constants/separation = 12
+
+[node name="PlaceholderTab1" type="Button" parent="Left"]
+margin_left = 50.0
+margin_right = 100.0
+margin_bottom = 30.0
+text = "TAB 1"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PlaceholderTab2" type="Button" parent="Left"]
+margin_left = 104.0
+margin_right = 155.0
+margin_bottom = 30.0
+mouse_filter = 1
+text = "TAB 2"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Right" type="HBoxContainer" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -115.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MinimizeButton" type="Button" parent="Right"]
+margin_right = 34.0
+margin_bottom = 30.0
+mouse_filter = 1
+text = "  -  "
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MaximizeButton" type="Button" parent="Right"]
+margin_left = 38.0
+margin_right = 75.0
+margin_bottom = 30.0
+mouse_filter = 1
+text = "  #  "
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CloseButton" type="Button" parent="Right"]
+margin_left = 79.0
+margin_right = 115.0
+margin_bottom = 30.0
+mouse_filter = 1
+text = "  x  "
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="gui_input" from="." to="." method="_on_UITitlebar_gui_input"]
+[connection signal="pressed" from="Right/MinimizeButton" to="." method="_on_MinimizeButton_pressed"]
+[connection signal="pressed" from="Right/MaximizeButton" to="." method="_on_MaximizeButton_pressed"]
+[connection signal="pressed" from="Right/CloseButton" to="." method="_on_CloseButton_pressed"]

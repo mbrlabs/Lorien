@@ -1,6 +1,8 @@
 extends Node
 
+# -------------------------------------------------------------------------------------------------
 const POINT_ELEM_SIZE = 3
+const MAX_PRESSURE_VALUE = 65535
 const COMPRESSION_METHOD = File.COMPRESSION_DEFLATE
 
 # -------------------------------------------------------------------------------------------------
@@ -137,9 +139,11 @@ func _write_to_binary_file(file: File, line_2d_array: Array) -> void:
 			# points
 			var p_idx := 0
 			for p in line.points:
+				print(line.width_curve.get_point_position(p_idx).y)
 				file.store_float(p.x)
 				file.store_float(p.y)
-				var pressure := int(round(line.width_curve.get_point_position(p_idx).y*65536))
+				var pressure := int(round(line.width_curve.get_point_position(p_idx).y*MAX_PRESSURE_VALUE))
+				pressure = min(MAX_PRESSURE_VALUE, pressure)
 				file.store_16(pressure)
 				p_idx += 1
 		else:
@@ -169,7 +173,7 @@ func _read_from_binary_file(file: File) -> Array:
 		for i in point_count:
 			var x := file.get_float()
 			var y := file.get_float()
-			var pressure := file.get_16() / 65536.0
+			var pressure := file.get_16() / float(MAX_PRESSURE_VALUE)
 			stroke_data.points.append(Vector2(x, y))
 			stroke_data.point_pressures.append(pressure)
 		result.append(stroke_data)

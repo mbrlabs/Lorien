@@ -7,7 +7,7 @@
 [node name="InfiniteCanvas" type="ViewportContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-mouse_filter = 1
+mouse_filter = 2
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -25,6 +25,3 @@ current = true
 script = ExtResource( 2 )
 
 [node name="BrushCursor" parent="Viewport" instance=ExtResource( 3 )]
-
-[connection signal="mouse_entered" from="." to="." method="_on_InfiniteCanvas_mouse_entered"]
-[connection signal="mouse_exited" from="." to="." method="_on_InfiniteCanvas_mouse_exited"]

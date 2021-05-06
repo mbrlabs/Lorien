@@ -23,11 +23,35 @@ _global_script_classes=[ {
 "class": "InfiniteCanvas",
 "language": "GDScript",
 "path": "res://InfiniteCanvas/InfiniteCanvas.gd"
+}, {
+"base": "Control",
+"class": "UI",
+"language": "GDScript",
+"path": "res://UI/UI.gd"
+}, {
+"base": "Panel",
+"class": "UIStatusbar",
+"language": "GDScript",
+"path": "res://UI/UIStatusbar.gd"
+}, {
+"base": "Panel",
+"class": "UITitlebar",
+"language": "GDScript",
+"path": "res://UI/UITitlebar.gd"
+}, {
+"base": "Control",
+"class": "UITools",
+"language": "GDScript",
+"path": "res://UI/UITools.gd"
 } ]
 _global_script_class_icons={
 "BrushStrokeData": "",
 "Config": "",
-"InfiniteCanvas": ""
+"InfiniteCanvas": "",
+"UI": "",
+"UIStatusbar": "",
+"UITitlebar": "",
+"UITools": ""
 }
 
 [application]
@@ -52,7 +76,6 @@ gdscript/warnings/return_value_discarded=false
 window/size/width=1920
 window/size/height=1080
 window/size/borderless=true
-window/size/always_on_top=true
 window/size/test_width=1440
 window/size/test_height=810
 window/dpi/allow_hidpi=true
@@ -62,6 +85,11 @@ window/dpi/allow_hidpi=true
 jabol_undo={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":true,"meta":false,"command":true,"pressed":false,"scancode":90,"unicode":0,"echo":false,"script":null)
+ ]
+}
+f1={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777244,"unicode":0,"echo":false,"script":null)
  ]
 }
 

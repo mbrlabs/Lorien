@@ -20,7 +20,7 @@ var _current_line: Line2D
 var _current_pressures := []
 var _current_brush_color := Color.white
 var _current_brush_size := 12
-var _is_mouse_inside := true
+var _is_enabled := false
 
 # -------------------------------------------------------------------------------------------------
 func _ready():
@@ -28,50 +28,51 @@ func _ready():
 
 # -------------------------------------------------------------------------------------------------
 func _input(event: InputEvent) -> void:
-	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT:
-			if event.pressed:
-				start_new_line(_current_brush_color, _current_brush_size)
-			else:
-				end_line()
-	
-	if event is InputEventMouseMotion:
-		_last_mouse_motion = event
-		_cursor.global_position = _camera.xform(event.global_position)
-		info.current_pressure = event.pressure
-
-# -------------------------------------------------------------------------------------------------
-func _on_InfiniteCanvas_mouse_entered():
-	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
-	_is_mouse_inside = true
-	
-# -------------------------------------------------------------------------------------------------
-func _on_InfiniteCanvas_mouse_exited():
-	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-	_is_mouse_inside = false
+	if _is_enabled:
+		if event is InputEventMouseButton:
+			if event.button_index == BUTTON_LEFT:
+				if event.pressed:
+					start_new_line(_current_brush_color, _current_brush_size)
+				else:
+					end_line()
+		
+		if event is InputEventMouseMotion:
+			_last_mouse_motion = event # TODO: set the cursor position also when disbaled to avoid jumping when enabled again!
+			_cursor.global_position = _camera.xform(event.global_position)
+			info.current_pressure = event.pressure
 
 # -------------------------------------------------------------------------------------------------
 func _process(delta: float) -> void:
-	if !_is_mouse_inside:
-		return
+	if _is_enabled:
+		var brush_position: Vector2
+		
+		if _last_mouse_motion != null:
+			brush_position = _camera.xform(_last_mouse_motion.global_position)
+			info.current_brush_position = brush_position
+		
+		if _current_line != null && _last_mouse_motion != null:
+			if _last_mouse_motion.relative.length_squared() > 0.0:
+				var pressure = _last_mouse_motion.pressure
+				#var pressure_16 = int(round(65536*pressure))
+				#var pressure_8 = int(round(255*pressure))
+				#print("Pressure: %f (%d -> %f)" % [pressure, pressure_16, pressure_16/65536.0])
+				add_point(brush_position, pressure)
+				_last_mouse_motion = null
+		
+		if Input.is_action_just_pressed("jabol_undo"):
+			undo_last_line()
+
+# -------------------------------------------------------------------------------------------------
+func enable() -> void:
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	_cursor.show()
+	_is_enabled = true
 	
-	var brush_position: Vector2
-	
-	if _last_mouse_motion != null:
-		brush_position = _camera.xform(_last_mouse_motion.global_position)
-		info.current_brush_position = brush_position
-	
-	if _current_line != null && _last_mouse_motion != null:
-		if _last_mouse_motion.relative.length_squared() > 0.0:
-			var pressure = _last_mouse_motion.pressure
-			#var pressure_16 = int(round(65536*pressure))
-			#var pressure_8 = int(round(255*pressure))
-			#print("Pressure: %f (%d -> %f)" % [pressure, pressure_16, pressure_16/65536.0])
-			add_point(brush_position, pressure)
-			_last_mouse_motion = null
-	
-	if Input.is_action_just_pressed("jabol_undo"):
-		undo_last_line()
+# -------------------------------------------------------------------------------------------------
+func disable() -> void:
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	_cursor.hide()
+	_is_enabled = false
 
 # -------------------------------------------------------------------------------------------------
 func start_new_line(brush_color: Color, brush_size: float = 6) -> void:

@@ -1,9 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://InfiniteCanvas/InfiniteCanvas.tscn" type="PackedScene" id=2]
 [ext_resource path="res://UI/UI.tscn" type="PackedScene" id=4]
-[ext_resource path="res://UI/UIStatusBar.tscn" type="PackedScene" id=5]
 
 [node name="Main" type="Control"]
 anchor_right = 1.0
@@ -18,21 +17,8 @@ canvas_color = Color( 0.12549, 0.129412, 0.141176, 1 )
 [node name="InfiniteCanvas" parent="." instance=ExtResource( 2 )]
 
 [node name="UI" parent="." instance=ExtResource( 4 )]
-margin_left = 7.0
-margin_top = 7.449
-margin_right = 257.0
-margin_bottom = 207.449
 
-[node name="UIStatusBar" parent="." instance=ExtResource( 5 )]
-anchor_top = 1.0
-anchor_bottom = 1.0
-margin_top = -24.0
-margin_bottom = 0.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[connection signal="brush_color_changed" from="UI" to="." method="_on_UI_brush_color_changed"]
-[connection signal="brush_size_changed" from="UI" to="." method="_on_UI_brush_size_changed"]
-[connection signal="clear_canvas" from="UI" to="." method="_on_UI_clear_canvas"]
-[connection signal="load_project" from="UI" to="." method="_on_UI_load_project"]
-[connection signal="save_project" from="UI" to="." method="_on_UI_save_project"]
+[connection signal="ui_entered" from="UI" to="." method="_on_UI_ui_entered"]
+[connection signal="ui_exited" from="UI" to="." method="_on_UI_ui_exited"]
+[connection signal="window_borders_entered" from="UI" to="." method="_on_UI_window_borders_entered"]
+[connection signal="window_borders_exited" from="UI" to="." method="_on_UI_window_borders_exited"]

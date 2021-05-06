@@ -1,125 +1,81 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://UI/Themes/theme_dark.tres" type="Theme" id=1]
-[ext_resource path="res://UI/Themes/theme_dark_color_picker.tres" type="Theme" id=2]
+[ext_resource path="res://UI/UITools.tscn" type="PackedScene" id=1]
+[ext_resource path="res://UI/UITitlebar.tscn" type="PackedScene" id=2]
 [ext_resource path="res://UI/UI.gd" type="Script" id=3]
-[ext_resource path="res://UI/Themes/theme_dark_file_dialog.tres" type="Theme" id=4]
+[ext_resource path="res://UI/UIStatusbar.tscn" type="PackedScene" id=5]
 
-[node name="UI" type="Panel"]
-margin_right = 250.0
-margin_bottom = 200.0
-rect_min_size = Vector2( 250, 200 )
-theme = ExtResource( 1 )
+[node name="UI" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
 script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="UITitlebar" parent="." instance=ExtResource( 2 )]
+
+[node name="UITools" parent="." instance=ExtResource( 1 )]
+margin_left = 14.9546
+margin_top = 48.2722
+margin_right = 264.955
+margin_bottom = 248.272
+
+[node name="UIStatusBar" parent="." instance=ExtResource( 5 )]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_top = -24.0
+margin_bottom = 0.0
+
+[node name="WindowBorders" type="Control" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_constants/margin_right = 12
-custom_constants/margin_top = 12
-custom_constants/margin_left = 12
-custom_constants/margin_bottom = 12
+mouse_filter = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
-margin_left = 12.0
-margin_top = 12.0
-margin_right = 238.0
-margin_bottom = 188.0
-mouse_filter = 0
+[node name="TopWindowBorder" type="Control" parent="WindowBorders"]
+anchor_right = 1.0
+margin_right = -117.0
+margin_bottom = 10.0
+rect_min_size = Vector2( 0, 10 )
+rect_pivot_offset = Vector2( 9.82043, 0.0910397 )
+mouse_default_cursor_shape = 9
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
-margin_right = 226.0
-margin_bottom = 30.0
-size_flags_horizontal = 3
-custom_constants/separation = 10
+[node name="BottomWindowBorder" type="Control" parent="WindowBorders"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -18.0
+margin_bottom = -2.0
+rect_min_size = Vector2( 0, 10 )
+rect_pivot_offset = Vector2( 9.82043, 0.0910397 )
+mouse_default_cursor_shape = 9
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="SaveButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
-margin_right = 68.0
-margin_bottom = 30.0
-size_flags_horizontal = 3
-text = "Save"
+[node name="RightWindowBorder" type="Control" parent="WindowBorders"]
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -10.0
+rect_min_size = Vector2( 10, 0 )
+rect_pivot_offset = Vector2( 9.82043, 0.0910397 )
+mouse_default_cursor_shape = 10
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="LoadButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
-margin_left = 78.0
-margin_right = 147.0
-margin_bottom = 30.0
-size_flags_horizontal = 3
-text = "Load"
-
-[node name="ClearButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
-margin_left = 157.0
-margin_right = 226.0
-margin_bottom = 30.0
-size_flags_horizontal = 3
-text = "Clear"
-
-[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer"]
-margin_top = 34.0
-margin_right = 226.0
-margin_bottom = 50.0
-custom_constants/separation = 16
-
-[node name="SizeLabel" type="Label" parent="MarginContainer/VBoxContainer"]
-margin_top = 54.0
-margin_right = 226.0
-margin_bottom = 69.0
-text = "Size: 4"
-
-[node name="SizeSlider" type="HSlider" parent="MarginContainer/VBoxContainer"]
-margin_top = 73.0
-margin_right = 226.0
-margin_bottom = 89.0
-min_value = 1.0
-max_value = 20.0
-value = 4.0
-
-[node name="HSeparator2" type="HSeparator" parent="MarginContainer/VBoxContainer"]
-margin_top = 93.0
-margin_right = 226.0
-margin_bottom = 101.0
-custom_constants/separation = 8
-
-[node name="ColorLabel" type="Label" parent="MarginContainer/VBoxContainer"]
-margin_top = 105.0
-margin_right = 226.0
-margin_bottom = 120.0
-text = "Color: ffffff"
-
-[node name="ColorPickerButton" type="ColorPickerButton" parent="MarginContainer/VBoxContainer"]
-margin_top = 124.0
-margin_right = 226.0
-margin_bottom = 176.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme = ExtResource( 2 )
-color = Color( 1, 1, 1, 1 )
-edit_alpha = false
-
-[node name="SaveFileDialog" type="FileDialog" parent="."]
-margin_right = 749.0
-margin_bottom = 421.0
-theme = ExtResource( 4 )
-resizable = true
-
-[node name="LoadFileDialog" type="FileDialog" parent="."]
-margin_right = 747.0
-margin_bottom = 422.0
-theme = ExtResource( 4 )
-resizable = true
-
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/SaveButton" to="." method="_on_SaveButton_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/LoadButton" to="." method="_on_LoadButton_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/ClearButton" to="." method="_on_ClearButton_pressed"]
-[connection signal="value_changed" from="MarginContainer/VBoxContainer/SizeSlider" to="." method="_on_SizeSlider_value_changed"]
-[connection signal="color_changed" from="MarginContainer/VBoxContainer/ColorPickerButton" to="." method="_on_ColorPickerButton_color_changed"]
-[connection signal="file_selected" from="SaveFileDialog" to="." method="_on_SaveFileDialog_file_selected"]
-[connection signal="file_selected" from="LoadFileDialog" to="." method="_on_LoadFileDialog_file_selected"]
+[node name="LeftWindowBorder" type="Control" parent="WindowBorders"]
+anchor_bottom = 1.0
+margin_right = 10.0
+rect_min_size = Vector2( 10, 0 )
+mouse_default_cursor_shape = 10
+__meta__ = {
+"_edit_use_anchors_": false
+}

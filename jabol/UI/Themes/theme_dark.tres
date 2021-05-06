@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=8 format=2]
+[gd_resource type="Theme" load_steps=9 format=2]
 
 [ext_resource path="res://Assets/Fonts/font_14.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Assets/Fonts/font_12.tres" type="DynamicFont" id=2]
@@ -44,6 +44,8 @@ border_color = Color( 1, 1, 1, 1 )
 [sub_resource type="StyleBoxFlat" id=5]
 bg_color = Color( 0.207843, 0.211765, 0.227451, 1 )
 
+[sub_resource type="StyleBoxEmpty" id=6]
+
 [resource]
 default_font = ExtResource( 1 )
 Button/colors/font_color = Color( 1, 1, 1, 1 )
@@ -85,3 +87,5 @@ Label/constants/shadow_offset_y = 1
 Label/fonts/font = ExtResource( 2 )
 Label/styles/normal = null
 Panel/styles/panel = SubResource( 5 )
+VSeparator/constants/separation = 4
+VSeparator/styles/separator = SubResource( 6 )
