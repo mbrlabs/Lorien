@@ -11,6 +11,7 @@ class Info:
 # -------------------------------------------------------------------------------------------------
 onready var _viewport: Viewport = $Viewport
 onready var _camera: Camera2D = $Viewport/Camera2D
+onready var _cursor: Node2D = $Viewport/BrushCursor
 
 var lines := []
 var info := Info.new()
@@ -18,21 +19,40 @@ var _last_mouse_motion: InputEventMouseMotion
 var _current_line: Line2D
 var _current_brush_color := Color.white
 var _current_brush_size := 4
+var _is_mouse_inside := true
+
+func _ready():
+	_cursor.change_size(_current_brush_size)
 
 # -------------------------------------------------------------------------------------------------
-func _unhandled_input(event: InputEvent) -> void:
+func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT:
 			if event.pressed:
 				start_new_line(_current_brush_color, _current_brush_size)
 			else:
 				end_line()
-	elif event is InputEventMouseMotion:
+	
+	if event is InputEventMouseMotion:
 		_last_mouse_motion = event
+		_cursor.global_position = _camera.xform(event.global_position)
 		info.current_pressure = event.pressure
 
 # -------------------------------------------------------------------------------------------------
+func _on_InfiniteCanvas_mouse_entered():
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	_is_mouse_inside = true
+	
+# -------------------------------------------------------------------------------------------------
+func _on_InfiniteCanvas_mouse_exited():
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	_is_mouse_inside = false
+
+# -------------------------------------------------------------------------------------------------
 func _process(delta: float) -> void:
+	if !_is_mouse_inside:
+		return
+	
 	var brush_position: Vector2
 	
 	if _last_mouse_motion != null:
@@ -92,6 +112,7 @@ func set_brush_color(color: Color) -> void:
 # -------------------------------------------------------------------------------------------------
 func set_brush_size(size: int) -> void:
 	_current_brush_size = size
+	_cursor.change_size(size)
 
 # -------------------------------------------------------------------------------------------------
 func get_camera_zoom() -> float:

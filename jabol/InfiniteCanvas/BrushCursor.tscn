@@ -2,12 +2,5 @@
 
 [ext_resource path="res://InfiniteCanvas/BrushCursor.gd" type="Script" id=1]
 
-[node name="BrushCursor" type="Control"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_right = -1820.0
-margin_bottom = -980.0
+[node name="BrushCursor" type="Node2D"]
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
