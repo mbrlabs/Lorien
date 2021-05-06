@@ -1,44 +1,74 @@
 extends Node
 
 const POINT_ELEM_SIZE = 3
+const COMPRESSION_METHOD = File.COMPRESSION_DEFLATE
 
 # -------------------------------------------------------------------------------------------------
-func save_file(file_path: String, lines: Array) -> void:
+func save_file(file_path: String, line_2d_array: Array) -> void:
+	var start_time := OS.get_ticks_msec()
+	
+	# open file
 	var file := File.new()
-	var err = file.open(file_path, File.WRITE)
+	var err
+	if _is_binary(file_path):
+		err = file.open_compressed(file_path, File.WRITE, COMPRESSION_METHOD)
+	else:
+		err = file.open(file_path, File.WRITE)
 	if err != OK:
 		printerr("Failed to open file for writing: %s" % file_path)
 		return
 	
-	var point_counter := 0
-	for line in lines:
+	# write
+	if _is_binary(file_path):
+		_write_to_binary_file(file, line_2d_array)
+	else:
+		_write_to_text_file(file, line_2d_array)
+	file.close()
+	
+	print("File saved in %d ms" % (OS.get_ticks_msec() - start_time))
+	
+# -------------------------------------------------------------------------------------------------
+func load_file(file_path: String) -> Array:
+	var start_time := OS.get_ticks_msec()
+		
+	# open file
+	var file := File.new()
+	var err
+	if _is_binary(file_path):
+		err = file.open_compressed(file_path, File.READ, COMPRESSION_METHOD)
+	else:
+		err = file.open(file_path, File.READ)
+	if err != OK:
+		printerr("Failed to load file: %s" % file_path)
+		return []
+	
+	# parse
+	var result: Array
+	if _is_binary(file_path):
+		result = _read_from_binary_file(file)
+	else:
+		result = _read_from_text_file(file)
+	file.close()
+	
+	print("Loaded %s in %d ms" % [file_path, (OS.get_ticks_msec() - start_time)])
+	return result
+
+# -------------------------------------------------------------------------------------------------
+func _write_to_text_file(file: File, line_2d_array: Array) -> void:
+	for line in line_2d_array:
 		if line is Line2D:
 			var s: String = line.default_color.to_html() # brush stroke color
 			s += ",%d" % line.width # brush stroke size 
 			for p in line.points:
 				s += ",%f,%f,%f" % [p.x, p.y, 1.0] # TODO: implement pressure value per point. right now it's just always a 1.0
 			file.store_line(s)
-			point_counter += line.points.size()
 		else:
 			printerr("wtf?!")
-	
-	file.close()
-	print("Saved %d points in %d lines" % [point_counter, lines.size()])
 
 # -------------------------------------------------------------------------------------------------
-func load_file(file_path: String) -> Array:
-	var result := []
-	
-	# Read file
-	var file := File.new()
-	var err = file.open(file_path, File.READ)
-	var content: String
-	if err == OK:
-		content = file.get_as_text()
-	else:
-		printerr("Failed to load file: %s" % file_path)
-		return []
-	file.close()
+func _read_from_text_file(file: File) -> Array:
+	var result = []
+	var content := file.get_as_text()
 	
 	# Parse line-by-line
 	for file_line in content.split("\n", false):
@@ -86,5 +116,70 @@ func load_file(file_path: String) -> Array:
 		
 		# brush stroke done
 		result.append(stroke_data)
+	
+	return result
+
+# -------------------------------------------------------------------------------------------------
+func _write_to_binary_file(file: File, line_2d_array: Array) -> void:
+	for line in line_2d_array:
+		if line is Line2D:
+			# color
+			file.store_8(line.default_color.r8)
+			file.store_8(line.default_color.g8)
+			file.store_8(line.default_color.b8)
+			
+			# brush size
+			file.store_16(line.width)
+			
+			# number of points
+			file.store_32(line.points.size())
+			
+			# points
+			var s: String = line.default_color.to_html() # brush stroke color
+			s += ",%d" % line.width # brush stroke size 
+			for p in line.points:
+				file.store_float(p.x)
+				file.store_float(p.y)
+				file.store_float(1.0) # TODO: implement pressure value per point. right now it's just always a 1.0
+		else:
+			printerr("wtf?!")
+
+# -------------------------------------------------------------------------------------------------
+# TODO: this needs some error handling!
+func _read_from_binary_file(file: File) -> Array:
+	var result := []
+	
+	while true:
+		var stroke_data := BrushStrokeData.new()
+		
+		# color
+		var r := file.get_8()
+		var g := file.get_8()
+		var b := file.get_8()
+		stroke_data.color = Color(r/255.0, g/255.0, b/255.0, 1.0)
+		
+		# brush size
+		stroke_data.size = file.get_16()
+		
+		# number of points
+		var point_count := file.get_32()
+
+		# points
+		for i in point_count:
+			var x := file.get_float()
+			var y := file.get_float()
+			var pressure := file.get_float()
+			stroke_data.points.append(Vector2(x, y))
+			stroke_data.point_pressures.append(pressure)
+		
+		result.append(stroke_data)
+		
+		# are we done yet?
+		if file.get_position() >= file.get_len()-1 || file.eof_reached():
+			break
 		
 	return result
+
+# -------------------------------------------------------------------------------------------------
+func _is_binary(file_path: String) -> bool:
+	return file_path.ends_with(".jabolb")
