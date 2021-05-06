@@ -51,6 +51,7 @@ gdscript/warnings/return_value_discarded=false
 
 window/size/width=1920
 window/size/height=1080
+window/size/borderless=true
 window/size/always_on_top=true
 window/size/test_width=1440
 window/size/test_height=810
@@ -67,7 +68,3 @@ jabol_undo={
 [physics]
 
 common/enable_pause_aware_picking=true
-
-[rendering]
-
-environment/default_clear_color=Color( 0.184314, 0.184314, 0.184314, 1 )

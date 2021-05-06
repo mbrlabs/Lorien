@@ -1,8 +1,14 @@
 extends Control
 
 # -------------------------------------------------------------------------------------------------
+export var canvas_color := Color.black
+
 onready var _jabol: InfiniteCanvas = $InfiniteCanvas
 onready var _ui_statusbar = $UIStatusBar
+
+# -------------------------------------------------------------------------------------------------
+func _ready():
+	VisualServer.set_default_clear_color(canvas_color)
 
 # -------------------------------------------------------------------------------------------------
 func _process(delta):

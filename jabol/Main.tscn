@@ -13,6 +13,7 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+canvas_color = Color( 0.12549, 0.129412, 0.141176, 1 )
 
 [node name="InfiniteCanvas" parent="." instance=ExtResource( 2 )]
 

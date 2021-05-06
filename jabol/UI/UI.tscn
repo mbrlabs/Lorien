@@ -71,31 +71,31 @@ custom_constants/separation = 16
 [node name="SizeLabel" type="Label" parent="MarginContainer/VBoxContainer"]
 margin_top = 54.0
 margin_right = 226.0
-margin_bottom = 72.0
+margin_bottom = 69.0
 text = "Size: 4"
 
 [node name="SizeSlider" type="HSlider" parent="MarginContainer/VBoxContainer"]
-margin_top = 76.0
+margin_top = 73.0
 margin_right = 226.0
-margin_bottom = 92.0
+margin_bottom = 89.0
 min_value = 1.0
 max_value = 20.0
 value = 4.0
 
 [node name="HSeparator2" type="HSeparator" parent="MarginContainer/VBoxContainer"]
-margin_top = 96.0
+margin_top = 93.0
 margin_right = 226.0
-margin_bottom = 104.0
+margin_bottom = 101.0
 custom_constants/separation = 8
 
 [node name="ColorLabel" type="Label" parent="MarginContainer/VBoxContainer"]
-margin_top = 108.0
+margin_top = 105.0
 margin_right = 226.0
-margin_bottom = 126.0
+margin_bottom = 120.0
 text = "Color: ffffff"
 
 [node name="ColorPickerButton" type="ColorPickerButton" parent="MarginContainer/VBoxContainer"]
-margin_top = 130.0
+margin_top = 124.0
 margin_right = 226.0
 margin_bottom = 176.0
 size_flags_horizontal = 3

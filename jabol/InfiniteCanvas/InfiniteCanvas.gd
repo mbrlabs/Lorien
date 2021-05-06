@@ -22,6 +22,7 @@ var _current_brush_color := Color.white
 var _current_brush_size := 12
 var _is_mouse_inside := true
 
+# -------------------------------------------------------------------------------------------------
 func _ready():
 	_cursor.change_size(_current_brush_size)
 
