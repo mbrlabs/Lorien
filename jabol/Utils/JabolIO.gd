@@ -135,13 +135,13 @@ func _write_to_binary_file(file: File, line_2d_array: Array) -> void:
 			file.store_32(line.points.size())
 			
 			# points
+			var p_idx := 0
 			for p in line.points:
 				file.store_float(p.x)
 				file.store_float(p.y)
-				
-				# TODO: implement pressure value per point. right now it's just a radom value
-				var pressure := int(round(randf()*65536))
+				var pressure := int(round(line.width_curve.get_point_position(p_idx).y*65536))
 				file.store_16(pressure)
+				p_idx += 1
 		else:
 			printerr("wtf?!")
 

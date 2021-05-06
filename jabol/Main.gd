@@ -29,11 +29,14 @@ func _on_UI_load_project(filepath: String) -> void:
 	var result: Array = JabolIO.load_file(filepath)
 	_set_window_title(filepath)
 	_jabol.clear()
-	for line in result:
-		_jabol.start_new_line(line.color, line.size)
-		for point in line.points:
-			_jabol.add_point(point)
-		_jabol.end_line()
+	_jabol.add_strokes(result)
+#	for line in result:
+#		_jabol.start_new_line(line.color, line.size)
+#		var p_idx := 0
+#		for point in line.points:
+#			_jabol.add_point(point, line.point_pressures[p_idx])
+#			p_idx += 1
+#		_jabol.end_line()
 
 # -------------------------------------------------------------------------------------------------
 func _on_UI_save_project(filepath: String) -> void:

@@ -17,8 +17,9 @@ var lines := []
 var info := Info.new()
 var _last_mouse_motion: InputEventMouseMotion
 var _current_line: Line2D
+var _current_pressures := []
 var _current_brush_color := Color.white
-var _current_brush_size := 4
+var _current_brush_size := 12
 var _is_mouse_inside := true
 
 func _ready():
@@ -61,11 +62,11 @@ func _process(delta: float) -> void:
 	
 	if _current_line != null && _last_mouse_motion != null:
 		if _last_mouse_motion.relative.length_squared() > 0.0:
-			#var pressure = _last_mouse_motion.pressure
+			var pressure = _last_mouse_motion.pressure
 			#var pressure_16 = int(round(65536*pressure))
 			#var pressure_8 = int(round(255*pressure))
 			#print("Pressure: %f (%d -> %f)" % [pressure, pressure_16, pressure_16/65536.0])
-			add_point(brush_position)
+			add_point(brush_position, pressure)
 			_last_mouse_motion = null
 	
 	if Input.is_action_just_pressed("jabol_undo"):
@@ -74,6 +75,7 @@ func _process(delta: float) -> void:
 # -------------------------------------------------------------------------------------------------
 func start_new_line(brush_color: Color, brush_size: float = 6) -> void:
 	_current_line = Line2D.new()
+	_current_line.width_curve = Curve.new()
 	#_current_line.antialiased = true
 	_current_line.default_color = brush_color
 	_current_line.width = brush_size
@@ -83,12 +85,22 @@ func start_new_line(brush_color: Color, brush_size: float = 6) -> void:
 	_viewport.call_deferred("add_child", _current_line)
 
 # -------------------------------------------------------------------------------------------------
-func add_point(point: Vector2) -> void:
+func add_point(point: Vector2, pressure: float = 1.0) -> void:
+	_current_pressures.append(pressure)
+	_current_line.width_curve.clear_points()
 	_current_line.add_point(point)
+	
+	var curve_step := 1.0 / _current_pressures.size()
+	var i := 0
+	for pressure in _current_pressures:
+		_current_line.width_curve.add_point(Vector2(curve_step*i, pressure))
+		i += 1
+	
 	info.point_count += 1
 
 # -------------------------------------------------------------------------------------------------
 func end_line() -> void:
+	_current_pressures.clear()
 	if _current_line != null:
 		if _current_line.points.empty():
 			_viewport.call_deferred("remove_child", _current_line)
@@ -96,6 +108,32 @@ func end_line() -> void:
 			info.stroke_count += 1
 			lines.append(_current_line)
 		_current_line = null
+
+# -------------------------------------------------------------------------------------------------
+func add_strokes(strokes: Array) -> void:
+	for stroke in strokes:
+		var line := Line2D.new()
+		line.width_curve = Curve.new()
+		line.width = stroke.size
+		line.default_color = stroke.color
+		line.begin_cap_mode = Line2D.LINE_CAP_ROUND
+		line.end_cap_mode = Line2D.LINE_CAP_ROUND
+		line.joint_mode = Line2D.LINE_JOINT_ROUND
+	
+		var p_idx := 0
+		var curve_step: float = 1.0 / stroke.point_pressures.size()
+		for point in stroke.points:
+			line.add_point(point)
+			var pressure: float = stroke.point_pressures[p_idx]
+			line.width_curve.add_point(Vector2(curve_step*p_idx, pressure))
+			p_idx += 1
+		line.width_curve.bake()
+		
+		lines.append(line)
+		_viewport.add_child(line)
+
+		info.stroke_count += 1
+		info.point_count += line.points.size()
 
 # -------------------------------------------------------------------------------------------------
 func undo_last_line() -> void:
