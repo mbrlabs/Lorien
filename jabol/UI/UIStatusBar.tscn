@@ -2,11 +2,12 @@
 
 [ext_resource path="res://UI/Themes/theme_dark.tres" type="Theme" id=1]
 [ext_resource path="res://UI/UIStatusBar.gd" type="Script" id=2]
-[ext_resource path="res://Assets/Fonts/font_12.tres" type="DynamicFont" id=3]
+[ext_resource path="res://Assets/Fonts/font_11.tres" type="DynamicFont" id=3]
 
 [node name="UIStatusBar" type="Panel"]
 anchor_right = 1.0
-rect_min_size = Vector2( 0, 26 )
+margin_bottom = 24.0
+rect_min_size = Vector2( 0, 24 )
 theme = ExtResource( 1 )
 script = ExtResource( 2 )
 __meta__ = {
@@ -17,28 +18,27 @@ __meta__ = {
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-rect_min_size = Vector2( 0, 26 )
-custom_constants/margin_right = 12
-custom_constants/margin_left = 12
+custom_constants/margin_right = 10
+custom_constants/margin_left = 10
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
-margin_left = 12.0
-margin_right = 1908.0
-margin_bottom = 26.0
+margin_left = 10.0
+margin_right = 1910.0
+margin_bottom = 24.0
 
 [node name="Left" type="HBoxContainer" parent="MarginContainer/HBoxContainer"]
-margin_right = 946.0
-margin_bottom = 26.0
+margin_right = 948.0
+margin_bottom = 24.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="PositionLabel" type="Label" parent="MarginContainer/HBoxContainer/Left"]
 margin_top = 5.0
-margin_right = 57.0
-margin_bottom = 20.0
+margin_right = 54.0
+margin_bottom = 19.0
 custom_fonts/font = ExtResource( 3 )
 text = "Position: -"
 __meta__ = {
@@ -46,10 +46,10 @@ __meta__ = {
 }
 
 [node name="Sep" type="Label" parent="MarginContainer/HBoxContainer/Left"]
-margin_left = 61.0
+margin_left = 58.0
 margin_top = 5.0
-margin_right = 65.0
-margin_bottom = 20.0
+margin_right = 62.0
+margin_bottom = 19.0
 custom_fonts/font = ExtResource( 3 )
 text = "|"
 __meta__ = {
@@ -57,10 +57,10 @@ __meta__ = {
 }
 
 [node name="ZoomLabel" type="Label" parent="MarginContainer/HBoxContainer/Left"]
-margin_left = 69.0
+margin_left = 66.0
 margin_top = 5.0
-margin_right = 113.0
-margin_bottom = 20.0
+margin_right = 108.0
+margin_bottom = 19.0
 custom_fonts/font = ExtResource( 3 )
 text = "Zoom: -"
 __meta__ = {
@@ -68,10 +68,10 @@ __meta__ = {
 }
 
 [node name="Sep2" type="Label" parent="MarginContainer/HBoxContainer/Left"]
-margin_left = 117.0
+margin_left = 112.0
 margin_top = 5.0
-margin_right = 121.0
-margin_bottom = 20.0
+margin_right = 116.0
+margin_bottom = 19.0
 custom_fonts/font = ExtResource( 3 )
 text = "|"
 __meta__ = {
@@ -79,10 +79,10 @@ __meta__ = {
 }
 
 [node name="PressureLabel" type="Label" parent="MarginContainer/HBoxContainer/Left"]
-margin_left = 125.0
+margin_left = 120.0
 margin_top = 5.0
-margin_right = 186.0
-margin_bottom = 20.0
+margin_right = 176.0
+margin_bottom = 19.0
 custom_fonts/font = ExtResource( 3 )
 text = "Pressure: -"
 __meta__ = {
@@ -90,10 +90,10 @@ __meta__ = {
 }
 
 [node name="Sep3" type="Label" parent="MarginContainer/HBoxContainer/Left"]
-margin_left = 190.0
+margin_left = 180.0
 margin_top = 5.0
-margin_right = 194.0
-margin_bottom = 20.0
+margin_right = 184.0
+margin_bottom = 19.0
 custom_fonts/font = ExtResource( 3 )
 text = "|"
 __meta__ = {
@@ -101,10 +101,10 @@ __meta__ = {
 }
 
 [node name="FpsLabel" type="Label" parent="MarginContainer/HBoxContainer/Left"]
-margin_left = 198.0
+margin_left = 188.0
 margin_top = 5.0
-margin_right = 233.0
-margin_bottom = 20.0
+margin_right = 219.0
+margin_bottom = 19.0
 custom_fonts/font = ExtResource( 3 )
 text = "FPS: -"
 __meta__ = {
@@ -112,18 +112,18 @@ __meta__ = {
 }
 
 [node name="Right" type="HBoxContainer" parent="MarginContainer/HBoxContainer"]
-margin_left = 950.0
-margin_right = 1896.0
-margin_bottom = 26.0
+margin_left = 952.0
+margin_right = 1900.0
+margin_bottom = 24.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 alignment = 2
 
 [node name="StrokesLabel" type="Label" parent="MarginContainer/HBoxContainer/Right"]
-margin_left = 828.0
+margin_left = 837.0
 margin_top = 5.0
-margin_right = 885.0
-margin_bottom = 20.0
+margin_right = 890.0
+margin_bottom = 19.0
 custom_fonts/font = ExtResource( 3 )
 text = "Strokes: 0"
 __meta__ = {
@@ -131,10 +131,10 @@ __meta__ = {
 }
 
 [node name="Sep" type="Label" parent="MarginContainer/HBoxContainer/Right"]
-margin_left = 889.0
+margin_left = 894.0
 margin_top = 5.0
-margin_right = 893.0
-margin_bottom = 20.0
+margin_right = 898.0
+margin_bottom = 19.0
 custom_fonts/font = ExtResource( 3 )
 text = "|"
 __meta__ = {
@@ -142,10 +142,10 @@ __meta__ = {
 }
 
 [node name="PointsLabel" type="Label" parent="MarginContainer/HBoxContainer/Right"]
-margin_left = 897.0
+margin_left = 902.0
 margin_top = 5.0
-margin_right = 946.0
-margin_bottom = 20.0
+margin_right = 948.0
+margin_bottom = 19.0
 custom_fonts/font = ExtResource( 3 )
 text = "Points: 0"
 __meta__ = {

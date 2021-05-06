@@ -5,7 +5,7 @@ const MIN_ZOOM_LEVEL = 0.1
 const ZOOM_INCREMENT = 0.1
 
 var _current_zoom_level := 1.0
-var _drag := false
+var _pan_active := false
 
 # -------------------------------------------------------------------------------------------------
 func _input(event):
@@ -17,15 +17,15 @@ func _input(event):
 		elif event.button_index == BUTTON_WHEEL_UP:
 			_do_zoom(-increment, get_local_mouse_position())
 		elif event.button_index == BUTTON_MIDDLE:
-			_drag = event.is_pressed()
+			_pan_active = event.is_pressed()
 	
 	if event is InputEventMouseMotion:
-		if _drag:
-			_do_drag(event.relative)
+		if _pan_active:
+			_do_pan(event.relative)
 
 # -------------------------------------------------------------------------------------------------
-func _do_drag(drag: Vector2) -> void:
-	offset -= drag * _current_zoom_level
+func _do_pan(pan: Vector2) -> void:
+	offset -= pan * _current_zoom_level
 
 # -------------------------------------------------------------------------------------------------
 func _do_zoom(incr: float, zoom_anchor: Vector2) -> void:

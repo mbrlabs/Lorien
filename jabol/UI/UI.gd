@@ -19,12 +19,12 @@ func _ready() -> void:
 	_save_file_dialog.access = FileDialog.ACCESS_FILESYSTEM
 	_save_file_dialog.mode = FileDialog.MODE_SAVE_FILE
 	_save_file_dialog.current_dir = Config.DEFAULT_FILE_DIALOG_FOLDER
-	_save_file_dialog.filters = ["*.jabol"]
+	_save_file_dialog.filters = ["*."+Config.FILE_EXTENSION]
 	
 	_load_file_dialog.access = FileDialog.ACCESS_FILESYSTEM
 	_load_file_dialog.mode = FileDialog.MODE_OPEN_FILE
 	_load_file_dialog.current_dir = Config.DEFAULT_FILE_DIALOG_FOLDER
-	_load_file_dialog.filters = ["*.jabol"]
+	_load_file_dialog.filters = ["*."+Config.FILE_EXTENSION]
 
 # -------------------------------------------------------------------------------------------------
 func _on_ColorPickerButton_color_changed(color: Color) -> void:

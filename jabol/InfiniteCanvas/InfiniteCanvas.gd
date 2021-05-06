@@ -1,5 +1,5 @@
-extends Viewport
-class_name JabolCanvas
+extends ViewportContainer
+class_name InfiniteCanvas
 
 # -------------------------------------------------------------------------------------------------
 class Info:
@@ -9,7 +9,8 @@ class Info:
 	var current_brush_position: Vector2
 
 # -------------------------------------------------------------------------------------------------
-onready var _camera: Camera2D = $Camera2D
+onready var _viewport: Viewport = $Viewport
+onready var _camera: Camera2D = $Viewport/Camera2D
 
 var lines := []
 var info := Info.new()
@@ -59,7 +60,7 @@ func start_new_line(brush_color: Color, brush_size: float = 6) -> void:
 	_current_line.begin_cap_mode = Line2D.LINE_CAP_ROUND
 	_current_line.end_cap_mode = Line2D.LINE_CAP_ROUND
 	_current_line.joint_mode = Line2D.LINE_JOINT_ROUND
-	call_deferred("add_child", _current_line)
+	_viewport.call_deferred("add_child", _current_line)
 
 # -------------------------------------------------------------------------------------------------
 func add_point(point: Vector2) -> void:
@@ -70,7 +71,7 @@ func add_point(point: Vector2) -> void:
 func end_line() -> void:
 	if _current_line != null:
 		if _current_line.points.empty():
-			call_deferred("remove_child", _current_line)
+			_viewport.call_deferred("remove_child", _current_line)
 		else:
 			info.stroke_count += 1
 			lines.append(_current_line)
@@ -82,7 +83,7 @@ func undo_last_line() -> void:
 		var line = lines.pop_back()
 		info.stroke_count -= 1
 		info.point_count -= line.points.size()
-		remove_child(line)
+		_viewport.remove_child(line)
 
 # -------------------------------------------------------------------------------------------------
 func set_brush_color(color: Color) -> void:
@@ -93,9 +94,13 @@ func set_brush_size(size: int) -> void:
 	_current_brush_size = size
 
 # -------------------------------------------------------------------------------------------------
+func get_camera_zoom() -> float:
+	return _camera.zoom.x
+
+# -------------------------------------------------------------------------------------------------
 func clear() -> void:
 	for l in lines:
-		remove_child(l)
+		_viewport.remove_child(l)
 	lines.clear()
 	info.point_count = 0
 	info.stroke_count = 0

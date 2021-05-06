@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
-[ext_resource path="res://EditorCamera.gd" type="Script" id=2]
-[ext_resource path="res://JabolCanvas.gd" type="Script" id=3]
+[ext_resource path="res://InfiniteCanvas/InfiniteCanvas.tscn" type="PackedScene" id=2]
 [ext_resource path="res://UI/UI.tscn" type="PackedScene" id=4]
 [ext_resource path="res://UI/UIStatusBar.tscn" type="PackedScene" id=5]
 
@@ -15,36 +14,19 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ViewportContainer" type="ViewportContainer" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-mouse_filter = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Viewport" type="Viewport" parent="ViewportContainer"]
-size = Vector2( 1920, 1080 )
-handle_input_locally = false
-usage = 0
-render_target_update_mode = 3
-script = ExtResource( 3 )
-
-[node name="Camera2D" type="Camera2D" parent="ViewportContainer/Viewport"]
-anchor_mode = 0
-current = true
-script = ExtResource( 2 )
+[node name="InfiniteCanvas" parent="." instance=ExtResource( 2 )]
 
 [node name="UI" parent="." instance=ExtResource( 4 )]
-margin_left = 16.449
-margin_top = 17.449
-margin_right = 266.449
-margin_bottom = 217.449
+margin_left = 7.0
+margin_top = 7.449
+margin_right = 257.0
+margin_bottom = 207.449
 
 [node name="UIStatusBar" parent="." instance=ExtResource( 5 )]
 anchor_top = 1.0
 anchor_bottom = 1.0
-margin_top = -26.0
+margin_top = -24.0
+margin_bottom = 0.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 

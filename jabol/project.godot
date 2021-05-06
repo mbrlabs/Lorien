@@ -17,17 +17,17 @@ _global_script_classes=[ {
 "base": "Reference",
 "class": "Config",
 "language": "GDScript",
-"path": "res://Config.gd"
+"path": "res://Utils/Config.gd"
 }, {
-"base": "Viewport",
-"class": "JabolCanvas",
+"base": "ViewportContainer",
+"class": "InfiniteCanvas",
 "language": "GDScript",
-"path": "res://JabolCanvas.gd"
+"path": "res://InfiniteCanvas/InfiniteCanvas.gd"
 } ]
 _global_script_class_icons={
 "BrushStrokeData": "",
 "Config": "",
-"JabolCanvas": ""
+"InfiniteCanvas": ""
 }
 
 [application]
@@ -38,8 +38,8 @@ config/icon="res://Assets/icon.png"
 
 [autoload]
 
-JabolIO="*res://JabolIO.gd"
-Utils="*res://Utils.gd"
+JabolIO="*res://Utils/JabolIO.gd"
+Utils="*res://Utils/Utils.gd"
 
 [debug]
 

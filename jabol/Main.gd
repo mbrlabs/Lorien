@@ -1,8 +1,7 @@
 extends Control
 
 # -------------------------------------------------------------------------------------------------
-onready var _jabol: JabolCanvas = $ViewportContainer/Viewport
-onready var _camera = $ViewportContainer/Viewport/Camera2D
+onready var _jabol: InfiniteCanvas = $InfiniteCanvas
 onready var _ui_statusbar = $UIStatusBar
 
 # -------------------------------------------------------------------------------------------------
@@ -11,7 +10,7 @@ func _process(delta):
 	_ui_statusbar.set_point_count(_jabol.info.point_count)
 	_ui_statusbar.set_pressure(_jabol.info.current_pressure)
 	_ui_statusbar.set_brush_position(_jabol.info.current_brush_position)
-	_ui_statusbar.set_camera_zoom(_camera.zoom.x)
+	_ui_statusbar.set_camera_zoom(_jabol.get_camera_zoom())
 
 # -------------------------------------------------------------------------------------------------
 func _on_UI_brush_color_changed(color: Color) -> void:
