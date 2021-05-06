@@ -8,7 +8,7 @@ func _on_UI_brush_color_changed(color: Color) -> void:
 	_jabol.set_brush_color(color)
 
 # -------------------------------------------------------------------------------------------------
-func _on_UI_brush_size_changed(size: float) -> void:
+func _on_UI_brush_size_changed(size: int) -> void:
 	_jabol.set_brush_size(size)
 
 # -------------------------------------------------------------------------------------------------

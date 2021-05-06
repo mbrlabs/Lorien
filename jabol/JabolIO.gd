@@ -135,12 +135,13 @@ func _write_to_binary_file(file: File, line_2d_array: Array) -> void:
 			file.store_32(line.points.size())
 			
 			# points
-			var s: String = line.default_color.to_html() # brush stroke color
-			s += ",%d" % line.width # brush stroke size 
 			for p in line.points:
 				file.store_float(p.x)
 				file.store_float(p.y)
-				file.store_float(1.0) # TODO: implement pressure value per point. right now it's just always a 1.0
+				
+				# TODO: implement pressure value per point. right now it's just a radom value
+				var pressure := int(round(randf()*65536))
+				file.store_16(pressure)
 		else:
 			printerr("wtf?!")
 
@@ -168,10 +169,9 @@ func _read_from_binary_file(file: File) -> Array:
 		for i in point_count:
 			var x := file.get_float()
 			var y := file.get_float()
-			var pressure := file.get_float()
+			var pressure := file.get_16() / 65536.0
 			stroke_data.points.append(Vector2(x, y))
 			stroke_data.point_pressures.append(pressure)
-		
 		result.append(stroke_data)
 		
 		# are we done yet?

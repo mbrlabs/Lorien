@@ -13,3 +13,18 @@ This is NOT supposed to be an Art Tool. While it can be used as such it's main f
 - Undo/redo
 - Save as text file line-by-line or as binary. Both have a *.jabol extension.
 - 
+
+
+## Binary file format
+Data is stored as a list of strokes. Strokes have a brush color, a brush size and a number points. Points have x and y value and a pressure value.
+Strokes look like this:
+
+0-8		color.r (8 bit)
+8-16	color.g (8 bit)
+16-24	color.b (8 bit)
+24-50 	brush size (16 bit)
+50-82   number of points (32 bit)
+82-..	points (80 bit each)
+	0-32	x position (32 bit)
+	32-64 	y position (32 bit)
+	64-80	pen pressure (16 bit)

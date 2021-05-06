@@ -28,6 +28,9 @@ func _process(delta: float) -> void:
 		if _last_mouse_motion.relative.length_squared() > 0.0:
 			var pos = _last_mouse_motion.global_position
 			#var pressure = _last_mouse_motion.pressure
+			#var pressure_16 = int(round(65536*pressure))
+			#var pressure_8 = int(round(255*pressure))
+			#print("Pressure: %f (%d -> %f)" % [pressure, pressure_16, pressure_16/65536.0])
 			_current_line.add_point(_camera.xform(pos))
 			_last_mouse_motion = null
 	
@@ -68,7 +71,7 @@ func set_brush_color(color: Color) -> void:
 	_current_brush_color = color
 
 # -------------------------------------------------------------------------------------------------
-func set_brush_size(size: float) -> void:
+func set_brush_size(size: int) -> void:
 	_current_brush_size = size
 
 # -------------------------------------------------------------------------------------------------

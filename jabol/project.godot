@@ -41,10 +41,17 @@ config/icon="res://Assets/icon.png"
 JabolIO="*res://JabolIO.gd"
 Utils="*res://Utils.gd"
 
+[debug]
+
+gdscript/warnings/unused_argument=false
+gdscript/warnings/unused_signal=false
+gdscript/warnings/return_value_discarded=false
+
 [display]
 
 window/size/width=1920
 window/size/height=1080
+window/size/always_on_top=true
 window/size/test_width=1440
 window/size/test_height=810
 window/dpi/allow_hidpi=true

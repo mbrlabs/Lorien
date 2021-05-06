@@ -34,7 +34,7 @@ func _on_ColorPickerButton_color_changed(color: Color) -> void:
 # -------------------------------------------------------------------------------------------------
 func _on_SizeSlider_value_changed(value: float) -> void:
 	_size_label.text = "Size: %d" % int(value)
-	emit_signal("brush_size_changed", value)
+	emit_signal("brush_size_changed", int(value))
 
 # -------------------------------------------------------------------------------------------------
 func _on_SaveButton_pressed() -> void:
