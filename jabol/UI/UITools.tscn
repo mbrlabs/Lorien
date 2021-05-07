@@ -18,7 +18,6 @@ __meta__ = {
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-mouse_filter = 1
 custom_constants/margin_right = 12
 custom_constants/margin_top = 12
 custom_constants/margin_left = 12
@@ -46,7 +45,6 @@ custom_constants/separation = 10
 [node name="SaveButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 margin_right = 68.0
 margin_bottom = 30.0
-mouse_filter = 1
 size_flags_horizontal = 3
 text = "Save"
 
@@ -54,7 +52,6 @@ text = "Save"
 margin_left = 78.0
 margin_right = 147.0
 margin_bottom = 30.0
-mouse_filter = 1
 size_flags_horizontal = 3
 text = "Load"
 
@@ -62,7 +59,6 @@ text = "Load"
 margin_left = 157.0
 margin_right = 226.0
 margin_bottom = 30.0
-mouse_filter = 1
 size_flags_horizontal = 3
 text = "Clear"
 
@@ -70,21 +66,18 @@ text = "Clear"
 margin_top = 34.0
 margin_right = 226.0
 margin_bottom = 50.0
-mouse_filter = 1
 custom_constants/separation = 16
 
 [node name="SizeLabel" type="Label" parent="MarginContainer/VBoxContainer"]
 margin_top = 54.0
 margin_right = 226.0
 margin_bottom = 69.0
-mouse_filter = 1
 text = "Size: 4"
 
 [node name="SizeSlider" type="HSlider" parent="MarginContainer/VBoxContainer"]
 margin_top = 73.0
 margin_right = 226.0
 margin_bottom = 89.0
-mouse_filter = 1
 min_value = 1.0
 max_value = 20.0
 value = 4.0
@@ -93,21 +86,18 @@ value = 4.0
 margin_top = 93.0
 margin_right = 226.0
 margin_bottom = 101.0
-mouse_filter = 1
 custom_constants/separation = 8
 
 [node name="ColorLabel" type="Label" parent="MarginContainer/VBoxContainer"]
 margin_top = 105.0
 margin_right = 226.0
 margin_bottom = 120.0
-mouse_filter = 1
 text = "Color: ffffff"
 
 [node name="ColorPickerButton" type="ColorPickerButton" parent="MarginContainer/VBoxContainer"]
 margin_top = 124.0
 margin_right = 226.0
 margin_bottom = 176.0
-mouse_filter = 1
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource( 1 )

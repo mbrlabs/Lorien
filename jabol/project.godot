@@ -24,11 +24,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://InfiniteCanvas/InfiniteCanvas.gd"
 }, {
-"base": "Control",
-"class": "UI",
-"language": "GDScript",
-"path": "res://UI/UI.gd"
-}, {
 "base": "Panel",
 "class": "UIStatusbar",
 "language": "GDScript",
@@ -48,7 +43,6 @@ _global_script_class_icons={
 "BrushStrokeData": "",
 "Config": "",
 "InfiniteCanvas": "",
-"UI": "",
 "UIStatusbar": "",
 "UITitlebar": "",
 "UITools": ""

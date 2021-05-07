@@ -4,27 +4,57 @@ extends Control
 export var canvas_color := Color.black
 
 onready var _canvas: InfiniteCanvas = $InfiniteCanvas
-onready var _ui: UI = $UI
+onready var _ui_statusbar: UIStatusbar = $UIStatusBar
+onready var _ui_tools: UITools = $UITools
+onready var _ui_titlebar: UITitlebar = $UITitlebar
+
+onready var _window_border_top: Control = $WindowBorderTop
+onready var _window_border_bottom: Control = $WindowBorderBottom
+onready var _window_border_left: Control = $WindowBorderLeft
+onready var _window_border_right: Control = $WindowBorderRight
 
 # -------------------------------------------------------------------------------------------------
 func _ready():
 	VisualServer.set_default_clear_color(canvas_color)
 	_canvas.enable()
 	
-	_ui.tools.connect("clear_canvas", self, "_on_clear_canvas")
-	_ui.tools.connect("brush_color_changed", self, "_on_brush_color_changed")
-	_ui.tools.connect("brush_size_changed", self, "_on_brush_size_changed")
-	_ui.tools.connect("load_project", self, "_on_load_project")
-	_ui.tools.connect("save_project", self, "_on_save_project")
-	_ui.titlebar.connect("close_requested", self, "_on_close_requested")
+	# Window borders: mouse enter/exit events
+	_window_border_top.connect("mouse_entered", self, "_on_mouse_entered_window_border")
+	#_window_border_top.connect("mouse_exited", self, "_on_mouse_exited_window_border")
+	_window_border_bottom.connect("mouse_entered", self, "_on_mouse_entered_window_border")
+	#_window_border_bottom.connect("mouse_exited", self, "_on_mouse_exited_window_border")
+	_window_border_left.connect("mouse_entered", self, "_on_mouse_entered_window_border")
+	_window_border_left.connect("mouse_exited", self, "_on_mouse_exited_window_border")
+	_window_border_right.connect("mouse_entered", self, "_on_mouse_entered_window_border")
+	_window_border_right.connect("mouse_exited", self, "_on_mouse_exited_window_border")
+	
+	# Window borders: gui events (like click and drag)
+	_window_border_top.connect("gui_input", self, "_on_top_window_border_gui_input")
+	_window_border_bottom.connect("gui_input", self, "_on_bottom_window_border_gui_input")
+	_window_border_left.connect("gui_input", self, "_on_left_window_border_gui_input")
+	_window_border_right.connect("gui_input", self, "_on_right_window_border_gui_input")
+	
+	# UI Signals
+	_ui_tools.connect("clear_canvas", self, "_on_clear_canvas")
+	_ui_tools.connect("brush_color_changed", self, "_on_brush_color_changed")
+	_ui_tools.connect("brush_size_changed", self, "_on_brush_size_changed")
+	_ui_tools.connect("load_project", self, "_on_load_project")
+	_ui_tools.connect("save_project", self, "_on_save_project")
+	_ui_titlebar.connect("close_requested", self, "_on_close_requested")
 
 # -------------------------------------------------------------------------------------------------
 func _process(delta):
-	_ui.statusbar.set_stroke_count(_canvas.info.stroke_count)
-	_ui.statusbar.set_point_count(_canvas.info.point_count)
-	_ui.statusbar.set_pressure(_canvas.info.current_pressure)
-	_ui.statusbar.set_brush_position(_canvas.info.current_brush_position)
-	_ui.statusbar.set_camera_zoom(_canvas.get_camera_zoom())
+	_ui_statusbar.set_stroke_count(_canvas.info.stroke_count)
+	_ui_statusbar.set_point_count(_canvas.info.point_count)
+	_ui_statusbar.set_pressure(_canvas.info.current_pressure)
+	_ui_statusbar.set_brush_position(_canvas.info.current_brush_position)
+	_ui_statusbar.set_camera_zoom(_canvas.get_camera_zoom())
+
+# -------------------------------------------------------------------------------------------------
+func _set_window_title(filepath: String) -> void:
+	var split := filepath.split("/")
+	var filename := split[split.size()-1]
+	OS.set_window_title("%s - Jabol" % filename)
 
 # -------------------------------------------------------------------------------------------------
 func _on_brush_color_changed(color: Color) -> void:
@@ -56,23 +86,39 @@ func _on_close_requested() -> void:
 	get_tree().quit()
 
 # -------------------------------------------------------------------------------------------------
-func _set_window_title(filepath: String) -> void:
-	var split := filepath.split("/")
-	var filename := split[split.size()-1]
-	OS.set_window_title("%s - Jabol" % filename)
+func _on_top_window_border_gui_input(event: InputEvent):
+	if Input.is_mouse_button_pressed(BUTTON_LEFT) && event is InputEventMouseMotion:
+		OS.window_position.y += event.relative.y
+		OS.window_size.y -= event.relative.y
 
 # -------------------------------------------------------------------------------------------------
-func _on_UI_window_borders_entered():
-	_canvas.disable()
-	
+func _on_bottom_window_border_gui_input(event: InputEvent):
+	if Input.is_mouse_button_pressed(BUTTON_LEFT) && event is InputEventMouseMotion:
+		OS.window_size.y += event.relative.y
+
 # -------------------------------------------------------------------------------------------------
-func _on_UI_window_borders_exited():
+func _on_left_window_border_gui_input(event: InputEvent):
+	if Input.is_mouse_button_pressed(BUTTON_LEFT) && event is InputEventMouseMotion:
+		OS.window_position.x += event.relative.x
+		OS.window_size.x -= event.relative.x
+
+# -------------------------------------------------------------------------------------------------
+func _on_right_window_border_gui_input(event: InputEvent):
+	if Input.is_mouse_button_pressed(BUTTON_LEFT) && event is InputEventMouseMotion:
+		OS.window_size.x += event.relative.x
+
+# -------------------------------------------------------------------------------------------------
+func _on_mouse_entered_window_border() -> void:
+	_canvas.disable()
+
+# -------------------------------------------------------------------------------------------------
+func _on_mouse_exited_window_border() -> void:
 	_canvas.enable()
 
 # -------------------------------------------------------------------------------------------------
-func _on_UI_ui_entered():
-	_canvas.disable()
+func _on_InfiniteCanvas_mouse_entered():
+	_canvas.enable()
 
 # -------------------------------------------------------------------------------------------------
-func _on_UI_ui_exited():
-	_canvas.enable()
+func _on_InfiniteCanvas_mouse_exited():
+	_canvas.disable()

@@ -24,7 +24,6 @@ __meta__ = {
 margin_right = 30.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 30, 30 )
-mouse_filter = 1
 size_flags_horizontal = 4
 size_flags_vertical = 4
 color = Color( 1, 0.537255, 0.168627, 1 )
@@ -49,7 +48,6 @@ __meta__ = {
 margin_left = 104.0
 margin_right = 155.0
 margin_bottom = 30.0
-mouse_filter = 1
 text = "TAB 2"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -67,7 +65,6 @@ __meta__ = {
 [node name="MinimizeButton" type="Button" parent="Right"]
 margin_right = 34.0
 margin_bottom = 30.0
-mouse_filter = 1
 text = "  -  "
 __meta__ = {
 "_edit_use_anchors_": false
@@ -77,7 +74,6 @@ __meta__ = {
 margin_left = 38.0
 margin_right = 75.0
 margin_bottom = 30.0
-mouse_filter = 1
 text = "  #  "
 __meta__ = {
 "_edit_use_anchors_": false
@@ -87,7 +83,6 @@ __meta__ = {
 margin_left = 79.0
 margin_right = 115.0
 margin_bottom = 30.0
-mouse_filter = 1
 text = "  x  "
 __meta__ = {
 "_edit_use_anchors_": false
