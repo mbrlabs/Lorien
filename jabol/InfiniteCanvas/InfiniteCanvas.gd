@@ -29,6 +29,7 @@ func _ready():
 # -------------------------------------------------------------------------------------------------
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
+		info.current_pressure = event.pressure
 		_last_mouse_motion = event
 		_cursor.global_position = _camera.xform(event.global_position)
 		
@@ -40,8 +41,6 @@ func _input(event: InputEvent) -> void:
 				else:
 					end_line()
 		
-		if event is InputEventMouseMotion:
-			info.current_pressure = event.pressure
 
 # -------------------------------------------------------------------------------------------------
 func _physics_process(delta: float) -> void:

@@ -23,8 +23,8 @@ func set_point_count(point_count: int) -> void:
 
 # -------------------------------------------------------------------------------------------------
 func set_pressure(pressure: float) -> void:
-	if pressure < 0:
-		_pressure_label.text = "Pressure: %.4f" % pressure
+	if pressure >= 0.01:
+		_pressure_label.text = "Pressure: %.3f" % pressure
 	else:
 		_pressure_label.text = "Pressure: -"
 
