@@ -28,6 +28,10 @@ func _ready():
 
 # -------------------------------------------------------------------------------------------------
 func _input(event: InputEvent) -> void:
+	if event is InputEventMouseMotion:
+		_last_mouse_motion = event
+		_cursor.global_position = _camera.xform(event.global_position)
+		
 	if _is_enabled:
 		if event is InputEventMouseButton:
 			if event.button_index == BUTTON_LEFT:
@@ -37,12 +41,10 @@ func _input(event: InputEvent) -> void:
 					end_line()
 		
 		if event is InputEventMouseMotion:
-			_last_mouse_motion = event # TODO: set the cursor position also when disbaled to avoid jumping when enabled again!
-			_cursor.global_position = _camera.xform(event.global_position)
 			info.current_pressure = event.pressure
 
 # -------------------------------------------------------------------------------------------------
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	if _is_enabled:
 		var brush_position: Vector2
 		
@@ -53,9 +55,6 @@ func _process(delta: float) -> void:
 		if _current_line != null && _last_mouse_motion != null:
 			if _last_mouse_motion.relative.length_squared() > 0.0:
 				var pressure = _last_mouse_motion.pressure
-				#var pressure_16 = int(round(65536*pressure))
-				#var pressure_8 = int(round(255*pressure))
-				#print("Pressure: %f (%d -> %f)" % [pressure, pressure_16, pressure_16/65536.0])
 				add_point(brush_position, pressure)
 				_last_mouse_motion = null
 		

@@ -62,6 +62,7 @@ Utils="*res://Utils/Utils.gd"
 [debug]
 
 gdscript/warnings/unused_argument=false
+gdscript/warnings/narrowing_conversion=false
 gdscript/warnings/unused_signal=false
 gdscript/warnings/return_value_discarded=false
 
@@ -73,6 +74,7 @@ window/size/borderless=true
 window/size/test_width=1440
 window/size/test_height=810
 window/dpi/allow_hidpi=true
+window/vsync/use_vsync=false
 
 [input]
 

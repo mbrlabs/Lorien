@@ -16,6 +16,7 @@ onready var _window_border_right: Control = $WindowBorderRight
 # -------------------------------------------------------------------------------------------------
 func _ready():
 	VisualServer.set_default_clear_color(canvas_color)
+	#Input.set_use_accumulated_input(false)
 	_canvas.enable()
 	
 	# Window borders: mouse enter/exit events
@@ -122,3 +123,17 @@ func _on_InfiniteCanvas_mouse_entered():
 # -------------------------------------------------------------------------------------------------
 func _on_InfiniteCanvas_mouse_exited():
 	_canvas.disable()
+
+# -------------------------------------------------------------------------------------------------
+func _on_UITitlebar_window_maximized():
+	_window_border_top.hide()
+	_window_border_bottom.hide()
+	_window_border_left.hide()
+	_window_border_right.hide()
+
+# -------------------------------------------------------------------------------------------------
+func _on_UITitlebar_window_demaximized():
+	_window_border_top.show()
+	_window_border_bottom.show()
+	_window_border_left.show()
+	_window_border_right.show()

@@ -36,8 +36,8 @@ margin_bottom = 0.0
 [node name="WindowBorderTop" type="Control" parent="."]
 anchor_right = 1.0
 margin_right = -117.0
-margin_bottom = 10.0
-rect_min_size = Vector2( 0, 10 )
+margin_bottom = 6.0
+rect_min_size = Vector2( 0, 6 )
 rect_pivot_offset = Vector2( 9.82043, 0.0910397 )
 mouse_default_cursor_shape = 9
 __meta__ = {
@@ -48,9 +48,11 @@ __meta__ = {
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = -18.0
-margin_bottom = -2.0
-rect_min_size = Vector2( 0, 10 )
+margin_left = 0.5
+margin_top = -6.75
+margin_right = 0.5
+margin_bottom = -0.75
+rect_min_size = Vector2( 0, 6 )
 rect_pivot_offset = Vector2( 9.82043, 0.0910397 )
 mouse_default_cursor_shape = 9
 __meta__ = {
@@ -61,9 +63,10 @@ __meta__ = {
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -10.0
+margin_left = -6.7937
 margin_top = 219.0
-rect_min_size = Vector2( 10, 0 )
+margin_right = -0.793701
+rect_min_size = Vector2( 6, 0 )
 rect_pivot_offset = Vector2( 9.82043, 0.0910397 )
 mouse_default_cursor_shape = 10
 __meta__ = {
@@ -72,8 +75,8 @@ __meta__ = {
 
 [node name="WindowBorderLeft" type="Control" parent="."]
 anchor_bottom = 1.0
-margin_right = 10.0
-rect_min_size = Vector2( 10, 0 )
+margin_right = 6.0
+rect_min_size = Vector2( 6, 0 )
 mouse_default_cursor_shape = 10
 __meta__ = {
 "_edit_use_anchors_": false
@@ -81,3 +84,5 @@ __meta__ = {
 
 [connection signal="mouse_entered" from="InfiniteCanvas" to="." method="_on_InfiniteCanvas_mouse_entered"]
 [connection signal="mouse_exited" from="InfiniteCanvas" to="." method="_on_InfiniteCanvas_mouse_exited"]
+[connection signal="window_demaximized" from="UITitlebar" to="." method="_on_UITitlebar_window_demaximized"]
+[connection signal="window_maximized" from="UITitlebar" to="." method="_on_UITitlebar_window_maximized"]
