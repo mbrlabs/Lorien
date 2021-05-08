@@ -18,7 +18,7 @@ func _ready() -> void:
 	$Left/Tabs.get_child(0).set_title("Tab 1")
 	$Left/Tabs.get_child(1).set_active(true)
 	$Left/Tabs.get_child(1).set_title("Very long tab title")
-	$Left/Tabs.get_child(2).set_title("Tab 3")
+	$Left/Tabs.get_child(2).set_title("* Tab 3") 
 	$Left/Tabs.get_child(3).set_title("Tab 4 with a long name as well")
 
 # -------------------------------------------------------------------------------------------------

@@ -169,16 +169,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ColorRect" type="ColorRect" parent="."]
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-rect_min_size = Vector2( 0, 4 )
-color = Color( 0.207843, 0.211765, 0.227451, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [connection signal="gui_input" from="." to="." method="_on_UITitlebar_gui_input"]
 [connection signal="pressed" from="Right/MinimizeButton" to="." method="_on_MinimizeButton_pressed"]
 [connection signal="pressed" from="Right/MaximizeButton" to="." method="_on_MaximizeButton_pressed"]

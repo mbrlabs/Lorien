@@ -7,6 +7,7 @@ onready var _canvas: InfiniteCanvas = $InfiniteCanvas
 onready var _ui_statusbar: UIStatusbar = $UIStatusBar
 onready var _ui_tools: UITools = $UITools
 onready var _ui_titlebar: UITitlebar = $UITitlebar
+onready var _ui_toolbar: UIToolbar = $UIToolbar
 
 onready var _window_border_top: Control = $WindowBorderTop
 onready var _window_border_bottom: Control = $WindowBorderBottom
@@ -36,6 +37,7 @@ func _ready():
 	_window_border_right.connect("gui_input", self, "_on_right_window_border_gui_input")
 	
 	# UI Signals
+	_ui_toolbar.connect("clear_canvas", self, "_on_clear_canvas")
 	_ui_tools.connect("clear_canvas", self, "_on_clear_canvas")
 	_ui_tools.connect("brush_color_changed", self, "_on_brush_color_changed")
 	_ui_tools.connect("brush_size_changed", self, "_on_brush_size_changed")

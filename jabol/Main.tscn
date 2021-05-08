@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://InfiniteCanvas/InfiniteCanvas.tscn" type="PackedScene" id=2]
 [ext_resource path="res://UI/UIStatusbar.tscn" type="PackedScene" id=3]
 [ext_resource path="res://UI/UITitlebar.tscn" type="PackedScene" id=4]
 [ext_resource path="res://UI/UITools.tscn" type="PackedScene" id=5]
+[ext_resource path="res://UI/UIToolbar.tscn" type="PackedScene" id=6]
 
 [node name="Main" type="Control"]
 anchor_right = 1.0
@@ -21,13 +22,16 @@ margin_left = -0.749146
 margin_right = -0.749146
 
 [node name="UITitlebar" parent="." instance=ExtResource( 4 )]
-margin_bottom = 30.0
+
+[node name="UIToolbar" parent="." instance=ExtResource( 6 )]
+margin_top = 38.0
+margin_bottom = 78.0
 
 [node name="UITools" parent="." instance=ExtResource( 5 )]
-margin_left = 14.9546
-margin_top = 47.523
-margin_right = 264.955
-margin_bottom = 247.523
+margin_left = 18.7004
+margin_top = 165.889
+margin_right = 268.701
+margin_bottom = 365.889
 
 [node name="UIStatusBar" parent="." instance=ExtResource( 3 )]
 anchor_top = 1.0
