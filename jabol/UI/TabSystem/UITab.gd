@@ -6,7 +6,7 @@ const STYLE_INACTIVE = preload("res://UI/Themes/style_tab_inactive_dark.tres")
 
 # -------------------------------------------------------------------------------------------------
 onready var _filename_button: Button = $HBoxContainer/FilenameButton
-onready var _close_button: Button = $HBoxContainer/CloseButton
+onready var _close_button: TextureButton = $HBoxContainer/CloseButton
 
 var _is_active := false
 

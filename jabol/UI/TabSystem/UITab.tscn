@@ -1,15 +1,16 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://UI/TabSystem/UITab.gd" type="Script" id=1]
-[ext_resource path="res://UI/Themes/style_tab_inactive_dark.tres" type="StyleBox" id=2]
+[ext_resource path="res://UI/Themes/style_tab_active_dark.tres" type="StyleBox" id=2]
 [ext_resource path="res://Assets/Fonts/font_12.tres" type="DynamicFont" id=3]
+[ext_resource path="res://Assets/Icons/close_file_white.png" type="Texture" id=4]
 
 [sub_resource type="Theme" id=1]
 default_font = ExtResource( 3 )
 HBoxContainer/constants/separation = 4
 
 [node name="UITab" type="PanelContainer"]
-margin_right = 128.0
+margin_right = 208.0
 margin_bottom = 28.0
 rect_min_size = Vector2( 0, 28 )
 size_flags_horizontal = 3
@@ -22,7 +23,7 @@ __meta__ = {
 }
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
-margin_right = 128.0
+margin_right = 208.0
 margin_bottom = 28.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -34,19 +35,21 @@ __meta__ = {
 }
 
 [node name="FilenameButton" type="Button" parent="HBoxContainer"]
-margin_right = 110.0
+margin_right = 184.0
 margin_bottom = 28.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-text = "very long fme...lol"
+text = "very long fme...lolasdasdsadad"
 flat = true
 
-[node name="CloseButton" type="Button" parent="HBoxContainer"]
-margin_left = 110.0
-margin_right = 128.0
+[node name="CloseButton" type="TextureButton" parent="HBoxContainer"]
+margin_left = 184.0
+margin_right = 208.0
 margin_bottom = 28.0
+rect_min_size = Vector2( 24, 0 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.2
-text = "x"
-flat = true
+texture_normal = ExtResource( 4 )
+expand = true
+stretch_mode = 3

@@ -1,40 +1,11 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://UI/Themes/theme_dark.tres" type="Theme" id=1]
 [ext_resource path="res://UI/UITitlebar.gd" type="Script" id=2]
 [ext_resource path="res://UI/TabSystem/UITab.tscn" type="PackedScene" id=3]
-
-[sub_resource type="StyleBoxFlat" id=9]
-bg_color = Color( 1, 1, 1, 0.0980392 )
-
-[sub_resource type="StyleBoxFlat" id=10]
-bg_color = Color( 0.690196, 0.690196, 0.690196, 0.117647 )
-
-[sub_resource type="StyleBoxEmpty" id=11]
-
-[sub_resource type="StyleBoxEmpty" id=12]
-
-[sub_resource type="StyleBoxEmpty" id=13]
-
-[sub_resource type="StyleBoxFlat" id=4]
-bg_color = Color( 1, 1, 1, 0.0980392 )
-
-[sub_resource type="StyleBoxFlat" id=5]
-bg_color = Color( 0.690196, 0.690196, 0.690196, 0.117647 )
-
-[sub_resource type="StyleBoxEmpty" id=6]
-
-[sub_resource type="StyleBoxEmpty" id=7]
-
-[sub_resource type="StyleBoxEmpty" id=8]
-
-[sub_resource type="StyleBoxFlat" id=1]
-bg_color = Color( 1, 0.321569, 0.321569, 1 )
-
-[sub_resource type="StyleBoxFlat" id=2]
-bg_color = Color( 1, 0.47451, 0.47451, 1 )
-
-[sub_resource type="StyleBoxEmpty" id=3]
+[ext_resource path="res://Assets/Icons/window_close_white.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Icons/window_maximize_white.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Icons/window_minimize_white.png" type="Texture" id=6]
 
 [node name="UITitlebar" type="Panel"]
 anchor_right = 1.0
@@ -81,7 +52,7 @@ custom_constants/separation = 12
 
 [node name="Tabs" type="HBoxContainer" parent="Left"]
 margin_left = 61.0
-margin_right = 585.0
+margin_right = 905.0
 margin_bottom = 38.0
 
 [node name="UITab" parent="Left/Tabs" instance=ExtResource( 3 )]
@@ -89,27 +60,27 @@ margin_top = 10.0
 margin_bottom = 38.0
 
 [node name="UITab2" parent="Left/Tabs" instance=ExtResource( 3 )]
-margin_left = 132.0
+margin_left = 212.0
 margin_top = 10.0
-margin_right = 260.0
+margin_right = 420.0
 margin_bottom = 38.0
 
 [node name="UITab3" parent="Left/Tabs" instance=ExtResource( 3 )]
-margin_left = 264.0
+margin_left = 424.0
 margin_top = 10.0
-margin_right = 392.0
+margin_right = 632.0
 margin_bottom = 38.0
 
 [node name="UITab4" parent="Left/Tabs" instance=ExtResource( 3 )]
-margin_left = 396.0
+margin_left = 636.0
 margin_top = 10.0
-margin_right = 524.0
+margin_right = 844.0
 margin_bottom = 38.0
 
 [node name="NewFileButton" type="Button" parent="Left"]
-margin_left = 589.0
+margin_left = 909.0
 margin_top = 8.0
-margin_right = 610.0
+margin_right = 930.0
 margin_bottom = 38.0
 size_flags_vertical = 8
 text = "+"
@@ -119,55 +90,43 @@ flat = true
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -163.0
+margin_left = -134.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+custom_constants/separation = 0
 alignment = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MinimizeButton" type="Button" parent="Right"]
-margin_left = 36.0
-margin_right = 74.0
+[node name="MinimizeButton" type="TextureButton" parent="Right"]
+margin_right = 44.0
 margin_bottom = 38.0
-custom_styles/hover = SubResource( 9 )
-custom_styles/pressed = SubResource( 10 )
-custom_styles/focus = SubResource( 11 )
-custom_styles/disabled = SubResource( 12 )
-custom_styles/normal = SubResource( 13 )
-text = "    -    "
-__meta__ = {
-"_edit_use_anchors_": false
-}
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture_normal = ExtResource( 6 )
+expand = true
+stretch_mode = 3
 
-[node name="MaximizeButton" type="Button" parent="Right"]
-margin_left = 78.0
-margin_right = 119.0
+[node name="MaximizeButton" type="TextureButton" parent="Right"]
+margin_left = 44.0
+margin_right = 89.0
 margin_bottom = 38.0
-custom_styles/hover = SubResource( 4 )
-custom_styles/pressed = SubResource( 5 )
-custom_styles/focus = SubResource( 6 )
-custom_styles/disabled = SubResource( 7 )
-custom_styles/normal = SubResource( 8 )
-text = "    #    "
-__meta__ = {
-"_edit_use_anchors_": false
-}
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture_normal = ExtResource( 5 )
+expand = true
+stretch_mode = 3
 
-[node name="CloseButton" type="Button" parent="Right"]
-margin_left = 123.0
-margin_right = 163.0
+[node name="CloseButton" type="TextureButton" parent="Right"]
+margin_left = 89.0
+margin_right = 134.0
 margin_bottom = 38.0
-custom_styles/hover = SubResource( 1 )
-custom_styles/pressed = SubResource( 2 )
-custom_styles/focus = SubResource( 3 )
-custom_styles/disabled = SubResource( 3 )
-custom_styles/normal = SubResource( 3 )
-text = "    x    "
-__meta__ = {
-"_edit_use_anchors_": false
-}
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture_normal = ExtResource( 4 )
+expand = true
+stretch_mode = 3
 
 [connection signal="gui_input" from="." to="." method="_on_UITitlebar_gui_input"]
 [connection signal="pressed" from="Right/MinimizeButton" to="." method="_on_MinimizeButton_pressed"]
