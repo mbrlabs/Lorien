@@ -27,31 +27,30 @@ __meta__ = {
 }
 
 [node name="VSeparator3" type="VSeparator" parent="Left"]
-margin_right = 12.0
+margin_right = 2.0
 margin_bottom = 38.0
 mouse_filter = 2
-custom_constants/separation = 12
+custom_constants/separation = 2
 
 [node name="Logo" type="ColorRect" parent="Left"]
-margin_left = 16.0
+margin_left = 6.0
 margin_top = 6.0
-margin_right = 41.0
+margin_right = 31.0
 margin_bottom = 31.0
 rect_min_size = Vector2( 25, 25 )
 size_flags_horizontal = 4
 size_flags_vertical = 4
-color = Color( 0.980392, 0.317647, 0.247059, 1 )
 
 [node name="VSeparator2" type="VSeparator" parent="Left"]
-margin_left = 45.0
-margin_right = 57.0
+margin_left = 35.0
+margin_right = 47.0
 margin_bottom = 38.0
 mouse_filter = 2
 custom_constants/separation = 12
 
 [node name="Tabs" type="HBoxContainer" parent="Left"]
-margin_left = 61.0
-margin_right = 111.0
+margin_left = 51.0
+margin_right = 101.0
 margin_bottom = 38.0
 rect_min_size = Vector2( 50, 38 )
 __meta__ = {
@@ -59,9 +58,9 @@ __meta__ = {
 }
 
 [node name="NewFileButton" type="Button" parent="Left"]
-margin_left = 115.0
+margin_left = 105.0
 margin_top = 8.0
-margin_right = 136.0
+margin_right = 126.0
 margin_bottom = 38.0
 size_flags_vertical = 8
 text = "+"

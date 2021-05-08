@@ -5,7 +5,6 @@ export var canvas_color := Color.black
 
 onready var _canvas: InfiniteCanvas = $InfiniteCanvas
 onready var _ui_statusbar: UIStatusbar = $UIStatusBar
-onready var _ui_tools: UITools = $UITools
 onready var _ui_titlebar: UITitlebar = $UITitlebar
 onready var _ui_toolbar: UIToolbar = $UIToolbar
 
@@ -41,9 +40,8 @@ func _ready():
 	_ui_toolbar.connect("clear_canvas", self, "_on_clear_canvas")
 	_ui_toolbar.connect("open_file", self, "_on_load_file")
 	_ui_toolbar.connect("save_file", self, "_on_save_file")
-	
-	_ui_tools.connect("brush_color_changed", self, "_on_brush_color_changed")
-	_ui_tools.connect("brush_size_changed", self, "_on_brush_size_changed")
+	_ui_toolbar.connect("brush_color_changed", self, "_on_brush_color_changed")
+	_ui_toolbar.connect("brush_size_changed", self, "_on_brush_size_changed")
 
 # -------------------------------------------------------------------------------------------------
 func _physics_process(delta):

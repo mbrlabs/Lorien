@@ -43,11 +43,6 @@ _global_script_classes=[ {
 "class": "UIToolbar",
 "language": "GDScript",
 "path": "res://UI/UIToolbar.gd"
-}, {
-"base": "Control",
-"class": "UITools",
-"language": "GDScript",
-"path": "res://UI/UITools.gd"
 } ]
 _global_script_class_icons={
 "BrushStrokeData": "",
@@ -56,8 +51,7 @@ _global_script_class_icons={
 "UIStatusbar": "",
 "UITab": "",
 "UITitlebar": "",
-"UIToolbar": "",
-"UITools": ""
+"UIToolbar": ""
 }
 
 [application]

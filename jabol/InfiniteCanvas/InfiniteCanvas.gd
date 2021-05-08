@@ -18,8 +18,8 @@ var info := Info.new()
 var _last_mouse_motion: InputEventMouseMotion
 var _current_line: Line2D
 var _current_pressures := []
-var _current_brush_color := Color.white
-var _current_brush_size := 12
+var _current_brush_color := Config.DEFAULT_BRUSH_COLOR
+var _current_brush_size := Config.DEFAULT_BRUSH_SIZE
 var _is_enabled := false
 
 # -------------------------------------------------------------------------------------------------

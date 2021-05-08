@@ -4,8 +4,15 @@
 [ext_resource path="res://InfiniteCanvas/InfiniteCanvas.tscn" type="PackedScene" id=2]
 [ext_resource path="res://UI/UIStatusbar.tscn" type="PackedScene" id=3]
 [ext_resource path="res://UI/UITitlebar.tscn" type="PackedScene" id=4]
-[ext_resource path="res://UI/UITools.tscn" type="PackedScene" id=5]
 [ext_resource path="res://UI/UIToolbar.tscn" type="PackedScene" id=6]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.207843, 0.211765, 0.227451, 1 )
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color( 0.207843, 0.211765, 0.227451, 1 )
 
 [node name="Main" type="Control"]
 anchor_right = 1.0
@@ -15,7 +22,7 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-canvas_color = Color( 0.572549, 0.572549, 0.572549, 1 )
+canvas_color = Color( 0.309804, 0.309804, 0.309804, 1 )
 
 [node name="InfiniteCanvas" parent="." instance=ExtResource( 2 )]
 margin_left = -0.749146
@@ -27,12 +34,7 @@ margin_right = -0.749146
 margin_top = 38.0
 margin_bottom = 78.0
 _file_dialog_path = NodePath("../FileDialog")
-
-[node name="UITools" parent="." instance=ExtResource( 5 )]
-margin_left = -0.749146
-margin_top = 87.0
-margin_right = 249.251
-margin_bottom = 237.0
+_color_picker_path = NodePath("../ColorpickerPopup/PanelContainer/ColorPicker")
 
 [node name="UIStatusBar" parent="." instance=ExtResource( 3 )]
 anchor_top = 1.0
@@ -54,8 +56,37 @@ filters = PoolStringArray( "*.jabol" )
 current_dir = "/Users/mbrla/Desktop/JabolFiles"
 current_path = "/Users/mbrla/Desktop/JabolFiles/"
 
+[node name="ColorpickerPopup" type="Popup" parent="."]
+margin_left = 364.0
+margin_top = 77.0
+margin_right = 666.0
+margin_bottom = 504.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PanelContainer" type="PanelContainer" parent="ColorpickerPopup"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_styles/panel = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorPicker" type="ColorPicker" parent="ColorpickerPopup/PanelContainer"]
+margin_left = 12.0
+margin_top = 12.0
+margin_right = 320.0
+margin_bottom = 450.0
+edit_alpha = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="WindowBorderTop" type="Control" parent="."]
 anchor_right = 1.0
+margin_left = 67.0
+margin_bottom = 4.0
 rect_min_size = Vector2( 0, 4 )
 rect_pivot_offset = Vector2( 9.82043, 0.0910397 )
 mouse_default_cursor_shape = 9
@@ -94,8 +125,9 @@ __meta__ = {
 
 [node name="WindowBorderLeft" type="Control" parent="."]
 anchor_bottom = 1.0
-margin_right = 6.0
-rect_min_size = Vector2( 6, 0 )
+margin_top = 38.0
+margin_right = 4.0
+rect_min_size = Vector2( 4, 0 )
 mouse_default_cursor_shape = 10
 __meta__ = {
 "_edit_use_anchors_": false
