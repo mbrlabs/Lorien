@@ -139,7 +139,6 @@ func _write_to_binary_file(file: File, line_2d_array: Array) -> void:
 			# points
 			var p_idx := 0
 			for p in line.points:
-				print(line.width_curve.get_point_position(p_idx).y)
 				file.store_float(p.x)
 				file.store_float(p.y)
 				var pressure := int(round(line.width_curve.get_point_position(p_idx).y*MAX_PRESSURE_VALUE))

@@ -42,7 +42,7 @@ border_color = Color( 1, 1, 1, 1 )
 [sub_resource type="StyleBoxEmpty" id=4]
 
 [sub_resource type="StyleBoxFlat" id=5]
-bg_color = Color( 0.207843, 0.211765, 0.227451, 1 )
+bg_color = Color( 0.12549, 0.129412, 0.141176, 1 )
 
 [sub_resource type="StyleBoxEmpty" id=6]
 

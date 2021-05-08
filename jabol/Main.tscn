@@ -14,18 +14,20 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-canvas_color = Color( 0.12549, 0.129412, 0.141176, 1 )
+canvas_color = Color( 0.572549, 0.572549, 0.572549, 1 )
 
 [node name="InfiniteCanvas" parent="." instance=ExtResource( 2 )]
+margin_left = -0.749146
+margin_right = -0.749146
 
 [node name="UITitlebar" parent="." instance=ExtResource( 4 )]
 margin_bottom = 30.0
 
 [node name="UITools" parent="." instance=ExtResource( 5 )]
 margin_left = 14.9546
-margin_top = 48.2722
+margin_top = 47.523
 margin_right = 264.955
-margin_bottom = 248.272
+margin_bottom = 247.523
 
 [node name="UIStatusBar" parent="." instance=ExtResource( 3 )]
 anchor_top = 1.0
@@ -35,9 +37,7 @@ margin_bottom = 0.0
 
 [node name="WindowBorderTop" type="Control" parent="."]
 anchor_right = 1.0
-margin_right = -117.0
-margin_bottom = 6.0
-rect_min_size = Vector2( 0, 6 )
+rect_min_size = Vector2( 0, 4 )
 rect_pivot_offset = Vector2( 9.82043, 0.0910397 )
 mouse_default_cursor_shape = 9
 __meta__ = {

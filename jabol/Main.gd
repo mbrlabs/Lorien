@@ -44,7 +44,7 @@ func _ready():
 	_ui_titlebar.connect("close_requested", self, "_on_close_requested")
 
 # -------------------------------------------------------------------------------------------------
-func _process(delta):
+func _physics_process(delta):
 	_ui_statusbar.set_stroke_count(_canvas.info.stroke_count)
 	_ui_statusbar.set_point_count(_canvas.info.point_count)
 	_ui_statusbar.set_pressure(_canvas.info.current_pressure)
