@@ -14,6 +14,8 @@ const BUTTON_CLICK_COLOR = Color.magenta
 const BUTTON_NORMAL_COLOR = Color.white
 
 # -------------------------------------------------------------------------------------------------
+export var _file_dialog_path: NodePath
+
 onready var _new_button: TextureButton = $HBoxContainer/NewFileButton
 onready var _save_button: TextureButton = $HBoxContainer/SaveFileButton
 onready var _open_button: TextureButton = $HBoxContainer/OpenFileButton
@@ -33,13 +35,35 @@ func _on_ClearCanvasButton_pressed(): emit_signal("clear_canvas")
 func _on_UndoButton_pressed(): emit_signal("undo_action")
 func _on_RedoButton_pressed(): emit_signal("redo_action")
 
+
 func _on_OpenFileButton_pressed():
-	# TODO: open file dialog etc
-	pass
+	var file_dialog: FileDialog = get_node(_file_dialog_path)
+	file_dialog.mode = FileDialog.MODE_OPEN_FILE
+	file_dialog.connect("file_selected", self, "_on_file_selected_to_open")
+	file_dialog.connect("popup_hide", self, "_on_file_dialog_closed")
+	file_dialog.popup_centered()
+
+
+func _on_file_selected_to_open(filepath: String) -> void:
+	emit_signal("open_file", filepath)
+
 
 func _on_SaveFileButton_pressed():
-	# TODO: open file dialog etc
-	pass
+	var file_dialog: FileDialog = get_node(_file_dialog_path)
+	file_dialog.mode = FileDialog.MODE_SAVE_FILE
+	file_dialog.connect("file_selected", self, "_on_file_selected_to_save")
+	file_dialog.connect("popup_hide", self, "_on_file_dialog_closed")
+	file_dialog.popup_centered()
+
+
+func _on_file_selected_to_save(filepath: String) -> void:
+	emit_signal("save_file", filepath)
+
+
+func _on_file_dialog_closed() -> void:
+	var file_dialog: FileDialog = get_node(_file_dialog_path)
+	Utils.remove_signal_connections(file_dialog, "file_selected")
+	Utils.remove_signal_connections(file_dialog, "popup_hide")
 
 
 # Custom hover highlighting

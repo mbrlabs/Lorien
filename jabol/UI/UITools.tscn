@@ -6,8 +6,8 @@
 
 [node name="UITools" type="Panel"]
 margin_right = 250.0
-margin_bottom = 200.0
-rect_min_size = Vector2( 250, 200 )
+margin_bottom = 150.0
+rect_min_size = Vector2( 250, 150 )
 theme = ExtResource( 2 )
 script = ExtResource( 3 )
 __meta__ = {
@@ -31,73 +31,40 @@ __meta__ = {
 margin_left = 12.0
 margin_top = 12.0
 margin_right = 238.0
-margin_bottom = 188.0
+margin_bottom = 138.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
-margin_right = 226.0
-margin_bottom = 30.0
-size_flags_horizontal = 3
-custom_constants/separation = 10
-
-[node name="SaveButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
-margin_right = 68.0
-margin_bottom = 30.0
-size_flags_horizontal = 3
-text = "Save"
-
-[node name="LoadButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
-margin_left = 78.0
-margin_right = 147.0
-margin_bottom = 30.0
-size_flags_horizontal = 3
-text = "Load"
-
-[node name="ClearButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
-margin_left = 157.0
-margin_right = 226.0
-margin_bottom = 30.0
-size_flags_horizontal = 3
-text = "Clear"
-
-[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer"]
-margin_top = 34.0
-margin_right = 226.0
-margin_bottom = 50.0
-custom_constants/separation = 16
-
 [node name="SizeLabel" type="Label" parent="MarginContainer/VBoxContainer"]
-margin_top = 54.0
 margin_right = 226.0
-margin_bottom = 69.0
+margin_bottom = 15.0
 text = "Size: 4"
 
 [node name="SizeSlider" type="HSlider" parent="MarginContainer/VBoxContainer"]
-margin_top = 73.0
+margin_top = 19.0
 margin_right = 226.0
-margin_bottom = 89.0
+margin_bottom = 35.0
 min_value = 1.0
 max_value = 20.0
 value = 4.0
 
 [node name="HSeparator2" type="HSeparator" parent="MarginContainer/VBoxContainer"]
-margin_top = 93.0
+margin_top = 39.0
 margin_right = 226.0
-margin_bottom = 101.0
+margin_bottom = 47.0
 custom_constants/separation = 8
 
 [node name="ColorLabel" type="Label" parent="MarginContainer/VBoxContainer"]
-margin_top = 105.0
+margin_top = 51.0
 margin_right = 226.0
-margin_bottom = 120.0
+margin_bottom = 66.0
 text = "Color: ffffff"
 
 [node name="ColorPickerButton" type="ColorPickerButton" parent="MarginContainer/VBoxContainer"]
-margin_top = 124.0
+margin_top = 70.0
 margin_right = 226.0
-margin_bottom = 176.0
+margin_bottom = 126.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource( 1 )
@@ -114,9 +81,6 @@ margin_right = 838.0
 margin_bottom = 473.0
 mouse_filter = 1
 
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/SaveButton" to="." method="_on_SaveButton_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/LoadButton" to="." method="_on_LoadButton_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/ClearButton" to="." method="_on_ClearButton_pressed"]
 [connection signal="value_changed" from="MarginContainer/VBoxContainer/SizeSlider" to="." method="_on_SizeSlider_value_changed"]
 [connection signal="color_changed" from="MarginContainer/VBoxContainer/ColorPickerButton" to="." method="_on_ColorPickerButton_color_changed"]
 [connection signal="file_selected" from="SaveFileDialog" to="." method="_on_SaveFileDialog_file_selected"]

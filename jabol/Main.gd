@@ -37,13 +37,13 @@ func _ready():
 	_window_border_right.connect("gui_input", self, "_on_right_window_border_gui_input")
 	
 	# UI Signals
+	_ui_titlebar.connect("close_requested", self, "_on_close_requested")
 	_ui_toolbar.connect("clear_canvas", self, "_on_clear_canvas")
-	_ui_tools.connect("clear_canvas", self, "_on_clear_canvas")
+	_ui_toolbar.connect("open_file", self, "_on_load_file")
+	_ui_toolbar.connect("save_file", self, "_on_save_file")
+	
 	_ui_tools.connect("brush_color_changed", self, "_on_brush_color_changed")
 	_ui_tools.connect("brush_size_changed", self, "_on_brush_size_changed")
-	_ui_tools.connect("load_project", self, "_on_load_project")
-	_ui_tools.connect("save_project", self, "_on_save_project")
-	_ui_titlebar.connect("close_requested", self, "_on_close_requested")
 
 # -------------------------------------------------------------------------------------------------
 func _physics_process(delta):
@@ -72,14 +72,14 @@ func _on_clear_canvas() -> void:
 	_canvas.clear() 
 
 # -------------------------------------------------------------------------------------------------
-func _on_load_project(filepath: String) -> void:
+func _on_load_file(filepath: String) -> void:
 	var result: Array = JabolIO.load_file(filepath)
 	_set_window_title(filepath)
 	_canvas.clear()
 	_canvas.add_strokes(result)
 
 # -------------------------------------------------------------------------------------------------
-func _on_save_project(filepath: String) -> void:
+func _on_save_file(filepath: String) -> void:
 	JabolIO.save_file(filepath, _canvas.lines)
 	_set_window_title(filepath)
 

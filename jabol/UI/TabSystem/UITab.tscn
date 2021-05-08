@@ -1,11 +1,11 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://Assets/Fonts/font_12.tres" type="DynamicFont" id=1]
+[ext_resource path="res://UI/TabSystem/UITab.gd" type="Script" id=1]
 [ext_resource path="res://UI/Themes/style_tab_inactive_dark.tres" type="StyleBox" id=2]
-[ext_resource path="res://UI/Components/UITab.gd" type="Script" id=3]
+[ext_resource path="res://Assets/Fonts/font_12.tres" type="DynamicFont" id=3]
 
 [sub_resource type="Theme" id=1]
-default_font = ExtResource( 1 )
+default_font = ExtResource( 3 )
 HBoxContainer/constants/separation = 4
 
 [node name="UITab" type="PanelContainer"]
@@ -15,7 +15,7 @@ rect_min_size = Vector2( 0, 28 )
 size_flags_horizontal = 3
 size_flags_vertical = 8
 custom_styles/panel = ExtResource( 2 )
-script = ExtResource( 3 )
+script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true,
 "_edit_use_anchors_": false

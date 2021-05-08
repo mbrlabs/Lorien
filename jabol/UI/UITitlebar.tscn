@@ -2,7 +2,7 @@
 
 [ext_resource path="res://UI/Themes/theme_dark.tres" type="Theme" id=1]
 [ext_resource path="res://UI/UITitlebar.gd" type="Script" id=2]
-[ext_resource path="res://UI/Components/UITab.tscn" type="PackedScene" id=3]
+[ext_resource path="res://UI/TabSystem/UITab.tscn" type="PackedScene" id=3]
 
 [sub_resource type="StyleBoxFlat" id=9]
 bg_color = Color( 1, 1, 1, 0.0980392 )

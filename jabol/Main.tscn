@@ -26,18 +26,33 @@ margin_right = -0.749146
 [node name="UIToolbar" parent="." instance=ExtResource( 6 )]
 margin_top = 38.0
 margin_bottom = 78.0
+_file_dialog_path = NodePath("../FileDialog")
 
 [node name="UITools" parent="." instance=ExtResource( 5 )]
-margin_left = 18.7004
-margin_top = 165.889
-margin_right = 268.701
-margin_bottom = 365.889
+margin_left = -0.749146
+margin_top = 87.0
+margin_right = 249.251
+margin_bottom = 237.0
 
 [node name="UIStatusBar" parent="." instance=ExtResource( 3 )]
 anchor_top = 1.0
 anchor_bottom = 1.0
 margin_top = -24.0
 margin_bottom = 0.0
+
+[node name="FileDialog" type="FileDialog" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -385.0
+margin_top = -216.5
+margin_right = 385.0
+margin_bottom = 216.5
+access = 2
+filters = PoolStringArray( "*.jabol" )
+current_dir = "/Users/mbrla/Desktop/JabolFiles"
+current_path = "/Users/mbrla/Desktop/JabolFiles/"
 
 [node name="WindowBorderTop" type="Control" parent="."]
 anchor_right = 1.0
