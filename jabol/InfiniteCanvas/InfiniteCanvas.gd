@@ -63,12 +63,14 @@ func _physics_process(delta: float) -> void:
 # -------------------------------------------------------------------------------------------------
 func enable() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	_camera.enable_intput()
 	_cursor.show()
 	_is_enabled = true
 	
 # -------------------------------------------------------------------------------------------------
 func disable() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	_camera.disable_intput()
 	_cursor.hide()
 	_is_enabled = false
 
