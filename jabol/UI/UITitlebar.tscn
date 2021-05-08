@@ -1,8 +1,7 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://UI/Themes/theme_dark.tres" type="Theme" id=1]
 [ext_resource path="res://UI/UITitlebar.gd" type="Script" id=2]
-[ext_resource path="res://UI/TabSystem/UITab.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Assets/Icons/window_close_white.png" type="Texture" id=4]
 [ext_resource path="res://Assets/Icons/window_maximize_white.png" type="Texture" id=5]
 [ext_resource path="res://Assets/Icons/window_minimize_white.png" type="Texture" id=6]
@@ -52,35 +51,17 @@ custom_constants/separation = 12
 
 [node name="Tabs" type="HBoxContainer" parent="Left"]
 margin_left = 61.0
-margin_right = 905.0
+margin_right = 111.0
 margin_bottom = 38.0
-
-[node name="UITab" parent="Left/Tabs" instance=ExtResource( 3 )]
-margin_top = 10.0
-margin_bottom = 38.0
-
-[node name="UITab2" parent="Left/Tabs" instance=ExtResource( 3 )]
-margin_left = 212.0
-margin_top = 10.0
-margin_right = 420.0
-margin_bottom = 38.0
-
-[node name="UITab3" parent="Left/Tabs" instance=ExtResource( 3 )]
-margin_left = 424.0
-margin_top = 10.0
-margin_right = 632.0
-margin_bottom = 38.0
-
-[node name="UITab4" parent="Left/Tabs" instance=ExtResource( 3 )]
-margin_left = 636.0
-margin_top = 10.0
-margin_right = 844.0
-margin_bottom = 38.0
+rect_min_size = Vector2( 50, 38 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="NewFileButton" type="Button" parent="Left"]
-margin_left = 909.0
+margin_left = 115.0
 margin_top = 8.0
-margin_right = 930.0
+margin_right = 136.0
 margin_bottom = 38.0
 size_flags_vertical = 8
 text = "+"
@@ -129,6 +110,7 @@ expand = true
 stretch_mode = 3
 
 [connection signal="gui_input" from="." to="." method="_on_UITitlebar_gui_input"]
+[connection signal="pressed" from="Left/NewFileButton" to="." method="_on_NewFileButton_pressed"]
 [connection signal="pressed" from="Right/MinimizeButton" to="." method="_on_MinimizeButton_pressed"]
 [connection signal="pressed" from="Right/MaximizeButton" to="." method="_on_MaximizeButton_pressed"]
 [connection signal="pressed" from="Right/CloseButton" to="." method="_on_CloseButton_pressed"]

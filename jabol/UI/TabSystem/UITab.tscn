@@ -10,7 +10,7 @@ default_font = ExtResource( 3 )
 HBoxContainer/constants/separation = 4
 
 [node name="UITab" type="PanelContainer"]
-margin_right = 208.0
+margin_right = 80.0
 margin_bottom = 28.0
 rect_min_size = Vector2( 0, 28 )
 size_flags_horizontal = 3
@@ -23,7 +23,7 @@ __meta__ = {
 }
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
-margin_right = 208.0
+margin_right = 80.0
 margin_bottom = 28.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -35,16 +35,16 @@ __meta__ = {
 }
 
 [node name="FilenameButton" type="Button" parent="HBoxContainer"]
-margin_right = 184.0
+margin_right = 56.0
 margin_bottom = 28.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-text = "very long fme...lolasdasdsadad"
+text = "Untitled"
 flat = true
 
 [node name="CloseButton" type="TextureButton" parent="HBoxContainer"]
-margin_left = 184.0
-margin_right = 208.0
+margin_left = 56.0
+margin_right = 80.0
 margin_bottom = 28.0
 rect_min_size = Vector2( 24, 0 )
 size_flags_horizontal = 3
@@ -53,3 +53,6 @@ size_flags_stretch_ratio = 0.2
 texture_normal = ExtResource( 4 )
 expand = true
 stretch_mode = 3
+
+[connection signal="pressed" from="HBoxContainer/FilenameButton" to="." method="_on_FilenameButton_pressed"]
+[connection signal="pressed" from="HBoxContainer/CloseButton" to="." method="_on_CloseButton_pressed"]

@@ -1,29 +1,40 @@
 extends PanelContainer
+class_name UITab
 
 # -------------------------------------------------------------------------------------------------
 const STYLE_ACTIVE = preload("res://UI/Themes/style_tab_active_dark.tres")
 const STYLE_INACTIVE = preload("res://UI/Themes/style_tab_inactive_dark.tres")
 
 # -------------------------------------------------------------------------------------------------
+signal selected
+signal close_requested
+
+# -------------------------------------------------------------------------------------------------
 onready var _filename_button: Button = $HBoxContainer/FilenameButton
 onready var _close_button: TextureButton = $HBoxContainer/CloseButton
 
-var _is_active := false
+var is_active := false
+var title := "Untitled"
+var filepath := ""
 
 # -------------------------------------------------------------------------------------------------
 func _ready():
 	set_active(false)
-
-# -------------------------------------------------------------------------------------------------
-func set_title(title: String) -> void:
 	_filename_button.text = title
 
 # -------------------------------------------------------------------------------------------------
+func _on_FilenameButton_pressed():
+	emit_signal("selected", self)
+
+# -------------------------------------------------------------------------------------------------
+func _on_CloseButton_pressed():
+	emit_signal("close_requested", self)
+
+# -------------------------------------------------------------------------------------------------
 func set_active(active: bool) -> void:
-	_is_active = active
-	
+	is_active = active
 	var new_style = STYLE_INACTIVE
-	if _is_active:
+	if is_active:
 		new_style = STYLE_ACTIVE
 	set("custom_styles/panel", new_style)
 
