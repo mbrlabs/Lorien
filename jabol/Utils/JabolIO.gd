@@ -131,16 +131,18 @@ func _write_to_binary_file(file: File, line_2d_array: Array) -> void:
 			file.store_8(line.default_color.b8)
 			
 			# brush size
-			file.store_16(line.width)
+			file.store_8(int(line.width))
 			
 			# number of points
-			file.store_32(line.points.size())
+			file.store_16(line.points.size())
 			
 			# points
 			var p_idx := 0
 			for p in line.points:
 				file.store_float(p.x)
 				file.store_float(p.y)
+				
+				# TODO: to avoid rounding errors i should always keep the raw data in memory; seperate from Line2D nodes... 
 				var pressure := int(round(line.width_curve.get_point_position(p_idx).y*MAX_PRESSURE_VALUE))
 				pressure = min(MAX_PRESSURE_VALUE, pressure)
 				file.store_16(pressure)
@@ -163,10 +165,10 @@ func _read_from_binary_file(file: File) -> Array:
 		stroke_data.color = Color(r/255.0, g/255.0, b/255.0, 1.0)
 		
 		# brush size
-		stroke_data.size = file.get_16()
+		stroke_data.size = file.get_8()
 		
 		# number of points
-		var point_count := file.get_32()
+		var point_count := file.get_16()
 
 		# points
 		for i in point_count:
