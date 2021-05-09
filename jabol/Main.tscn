@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://InfiniteCanvas/InfiniteCanvas.tscn" type="PackedScene" id=2]
 [ext_resource path="res://UI/UIStatusbar.tscn" type="PackedScene" id=3]
 [ext_resource path="res://UI/UITitlebar.tscn" type="PackedScene" id=4]
+[ext_resource path="res://UI/UIMenuPopup.tscn" type="PackedScene" id=5]
 [ext_resource path="res://UI/UIToolbar.tscn" type="PackedScene" id=6]
 
 [sub_resource type="StyleBoxFlat" id=1]
@@ -29,6 +30,7 @@ margin_left = -0.749146
 margin_right = -0.749146
 
 [node name="UITitlebar" parent="." instance=ExtResource( 4 )]
+_menu_popup_path = NodePath("../UIMenuPopup")
 
 [node name="UIToolbar" parent="." instance=ExtResource( 6 )]
 margin_top = 38.0
@@ -74,14 +76,19 @@ __meta__ = {
 }
 
 [node name="ColorPicker" type="ColorPicker" parent="ColorpickerPopup/PanelContainer"]
-margin_left = 16.0
-margin_top = 16.0
-margin_right = 324.0
-margin_bottom = 454.0
+margin_left = 52.0
+margin_top = 52.0
+margin_right = 360.0
+margin_bottom = 490.0
 edit_alpha = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="UIMenuPopup" parent="." instance=ExtResource( 5 )]
+visible = false
+margin_top = 38.0
+margin_bottom = 238.0
 
 [node name="WindowBorderTop" type="Control" parent="."]
 anchor_right = 1.0

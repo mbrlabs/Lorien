@@ -14,6 +14,7 @@ signal file_tab_close_requested
 
 # -------------------------------------------------------------------------------------------------
 onready var _file_tabs: HBoxContainer = $Left/Tabs
+export var _menu_popup_path: NodePath
 var _mouse_pressed := false
 var _mouse_draging := false
 var _drag_offset: Vector2
@@ -105,3 +106,8 @@ func _on_UITitlebar_gui_input(event: InputEvent) -> void:
 	elif event is InputEventMouseMotion:
 		if _mouse_pressed:
 			_mouse_draging = true
+
+# -------------------------------------------------------------------------------------------------
+func _on_Logo_pressed():
+	var popup_panel: PopupMenu = get_node(_menu_popup_path)
+	popup_panel.popup()
