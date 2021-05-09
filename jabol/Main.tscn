@@ -74,10 +74,10 @@ __meta__ = {
 }
 
 [node name="ColorPicker" type="ColorPicker" parent="ColorpickerPopup/PanelContainer"]
-margin_left = 12.0
-margin_top = 12.0
-margin_right = 320.0
-margin_bottom = 450.0
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 324.0
+margin_bottom = 454.0
 edit_alpha = false
 __meta__ = {
 "_edit_use_anchors_": false

@@ -10,10 +10,6 @@ onready var _zoom_label: Label = $MarginContainer/HBoxContainer/Left/ZoomLabel
 onready var _fps_label: Label = $MarginContainer/HBoxContainer/Left/FpsLabel
 
 # -------------------------------------------------------------------------------------------------
-func _physics_process(delta):
-	_fps_label.text = "FPS: %d" % Engine.get_frames_per_second()
-
-# -------------------------------------------------------------------------------------------------
 func set_stroke_count(brush_stroke_count: int) -> void:
 	_strokes_label.text = "Strokes: %d" % brush_stroke_count
 
@@ -27,6 +23,10 @@ func set_pressure(pressure: float) -> void:
 		_pressure_label.text = "Pressure: %.3f" % pressure
 	else:
 		_pressure_label.text = "Pressure: -"
+
+# -------------------------------------------------------------------------------------------------
+func set_fps(fps: int) -> void:
+	_fps_label.text = "FPS: %d" % Engine.get_frames_per_second()
 
 # -------------------------------------------------------------------------------------------------
 func set_brush_position(pos: Vector2) -> void:

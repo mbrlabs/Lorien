@@ -16,8 +16,6 @@ onready var _window_border_right: Control = $WindowBorderRight
 # -------------------------------------------------------------------------------------------------
 func _ready():
 	VisualServer.set_default_clear_color(canvas_color)
-	#Input.set_use_accumulated_input(false)
-	_canvas.enable()
 	
 	# Window borders: mouse enter/exit events
 	_window_border_top.connect("mouse_entered", self, "_on_mouse_entered_window_border")
@@ -50,6 +48,7 @@ func _physics_process(delta):
 	_ui_statusbar.set_pressure(_canvas.info.current_pressure)
 	_ui_statusbar.set_brush_position(_canvas.info.current_brush_position)
 	_ui_statusbar.set_camera_zoom(_canvas.get_camera_zoom())
+	_ui_statusbar.set_fps(Engine.get_frames_per_second())
 
 # -------------------------------------------------------------------------------------------------
 func _set_window_title(filepath: String) -> void:
