@@ -74,7 +74,7 @@ func _read_from_text_file(file: File) -> Array:
 	
 	# Parse line-by-line
 	for file_line in content.split("\n", false):
-		var stroke_data := BrushStrokeData.new()
+		var stroke_data := BrushStroke.new()
 		
 		var elems: PoolStringArray = file_line.split(",", false)
 		
@@ -111,7 +111,7 @@ func _read_from_text_file(file: File) -> Array:
 			var pressure: String = elems[i+2].trim_prefix(" ").trim_suffix(" ")
 			if pos_x.is_valid_float() && pos_y.is_valid_float() && pressure.is_valid_float():
 				stroke_data.points.append(Vector2(pos_x.to_float(), pos_y.to_float()))
-				stroke_data.point_pressures.append(pressure.to_float())
+				stroke_data.pressures.append(pressure.to_float())
 			else:
 				printerr("Invalid point data")
 				return []
@@ -122,33 +122,26 @@ func _read_from_text_file(file: File) -> Array:
 	return result
 
 # -------------------------------------------------------------------------------------------------
-func _write_to_binary_file(file: File, line_2d_array: Array) -> void:
-	for line in line_2d_array:
-		if line is Line2D:
-			# color
-			file.store_8(line.default_color.r8)
-			file.store_8(line.default_color.g8)
-			file.store_8(line.default_color.b8)
-			
-			# brush size
-			file.store_8(int(line.width))
-			
-			# number of points
-			file.store_16(line.points.size())
-			
-			# points
-			var p_idx := 0
-			for p in line.points:
-				file.store_float(p.x)
-				file.store_float(p.y)
-				
-				# TODO: to avoid rounding errors i should always keep the raw data in memory; seperate from Line2D nodes... 
-				var pressure := int(round(line.width_curve.get_point_position(p_idx).y*MAX_PRESSURE_VALUE))
-				pressure = min(MAX_PRESSURE_VALUE, pressure)
-				file.store_16(pressure)
-				p_idx += 1
-		else:
-			printerr("wtf?!")
+func _write_to_binary_file(file: File, strokes: Array) -> void:
+	for stroke in strokes:
+		# color
+		file.store_8(stroke.color.r8)
+		file.store_8(stroke.color.g8)
+		file.store_8(stroke.color.b8)
+		
+		# brush size
+		file.store_8(int(stroke.size))
+		
+		# number of points
+		file.store_16(stroke.points.size())
+		
+		# points
+		var p_idx := 0
+		for p in stroke.points:
+			file.store_float(p.x)
+			file.store_float(p.y)
+			file.store_16(stroke.pressures[p_idx])
+			p_idx += 1
 
 # -------------------------------------------------------------------------------------------------
 # TODO: this needs some error handling!
@@ -156,16 +149,16 @@ func _read_from_binary_file(file: File) -> Array:
 	var result := []
 	
 	while true:
-		var stroke_data := BrushStrokeData.new()
+		var brush_stroke := BrushStroke.new()
 		
 		# color
 		var r := file.get_8()
 		var g := file.get_8()
 		var b := file.get_8()
-		stroke_data.color = Color(r/255.0, g/255.0, b/255.0, 1.0)
+		brush_stroke.color = Color(r/255.0, g/255.0, b/255.0, 1.0)
 		
 		# brush size
-		stroke_data.size = file.get_8()
+		brush_stroke.size = file.get_8()
 		
 		# number of points
 		var point_count := file.get_16()
@@ -174,10 +167,10 @@ func _read_from_binary_file(file: File) -> Array:
 		for i in point_count:
 			var x := file.get_float()
 			var y := file.get_float()
-			var pressure := file.get_16() / float(MAX_PRESSURE_VALUE)
-			stroke_data.points.append(Vector2(x, y))
-			stroke_data.point_pressures.append(pressure)
-		result.append(stroke_data)
+			var pressure := file.get_16()
+			brush_stroke.points.append(Vector2(x, y))
+			brush_stroke.pressures.append(pressure)
+		result.append(brush_stroke)
 		
 		# are we done yet?
 		if file.get_position() >= file.get_len()-1 || file.eof_reached():

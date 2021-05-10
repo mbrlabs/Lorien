@@ -12,10 +12,12 @@ onready var _window_border_top: Control = $WindowBorderTop
 onready var _window_border_bottom: Control = $WindowBorderBottom
 onready var _window_border_left: Control = $WindowBorderLeft
 onready var _window_border_right: Control = $WindowBorderRight
+onready var _file_dialog: FileDialog = $FileDialog
 
 # -------------------------------------------------------------------------------------------------
 func _ready():
 	VisualServer.set_default_clear_color(canvas_color)
+	_file_dialog.current_dir = Config.DEFAULT_FILE_DIALOG_PATH
 	
 	# Window borders: mouse enter/exit events
 	_window_border_top.connect("mouse_entered", self, "_on_mouse_entered_window_border")
@@ -70,7 +72,7 @@ func _on_load_file(filepath: String) -> void:
 
 # -------------------------------------------------------------------------------------------------
 func _on_save_file(filepath: String) -> void:
-	LorienIO.save_file(filepath, _canvas.lines)
+	LorienIO.save_file(filepath, _canvas._brush_strokes)
 
 # -------------------------------------------------------------------------------------------------
 func _on_close_requested() -> void:

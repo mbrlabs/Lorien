@@ -10,9 +10,9 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Reference",
-"class": "BrushStrokeData",
+"class": "BrushStroke",
 "language": "GDScript",
-"path": "res://BrushStrokeData.gd"
+"path": "res://BrushStroke.gd"
 }, {
 "base": "Reference",
 "class": "Config",
@@ -50,7 +50,7 @@ _global_script_classes=[ {
 "path": "res://UI/Components/UIWindowButton.gd"
 } ]
 _global_script_class_icons={
-"BrushStrokeData": "",
+"BrushStroke": "",
 "Config": "",
 "InfiniteCanvas": "",
 "UIStatusbar": "",
@@ -104,3 +104,7 @@ f1={
 [physics]
 
 common/enable_pause_aware_picking=true
+
+[rendering]
+
+quality/depth/hdr=false
