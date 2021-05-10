@@ -39,7 +39,7 @@ func _input(event: InputEvent) -> void:
 				if event.pressed:
 					start_new_line(_current_brush_color, _current_brush_size)
 				else:
-					end_line()
+					end_line(true)
 		
 
 # -------------------------------------------------------------------------------------------------
@@ -97,17 +97,19 @@ func add_point(point: Vector2, pressure: float = 1.0) -> void:
 	for pressure in _current_pressures:
 		_current_line.width_curve.add_point(Vector2(curve_step*i, pressure))
 		i += 1
-	
-	info.point_count += 1
 
 # -------------------------------------------------------------------------------------------------
-func end_line() -> void:
+func end_line(optimize: bool = false) -> void:
+	if optimize:
+		_optimize_stroke(_current_line)
+	
 	_current_pressures.clear()
 	if _current_line != null:
 		if _current_line.points.empty():
 			_viewport.call_deferred("remove_child", _current_line)
 		else:
 			info.stroke_count += 1
+			info.point_count += _current_line.points.size()
 			lines.append(_current_line)
 		_current_line = null
 
@@ -165,3 +167,21 @@ func clear() -> void:
 	lines.clear()
 	info.point_count = 0
 	info.stroke_count = 0
+
+# TODO: take the point inpuit speed into account. The higher the speed the higher the higher the discard distance can be
+# -------------------------------------------------------------------------------------------------
+func _optimize_stroke(line: Line2D, min_squared_distance_between_points: float = 4) -> void:
+	if line.points.empty():
+		return
+	
+	var total_filtered_points_count := 0
+	var filtered_points := []
+	filtered_points.append(line.points[0])
+	for i in range(1, line.points.size()):
+		var p: Vector2 = line.points[i]
+		var last_valid_point: Vector2 = filtered_points[filtered_points.size()-1]
+		if last_valid_point.distance_squared_to(p) >= min_squared_distance_between_points:
+			filtered_points.append(p)
+	print("Raw point count: %d, Filtered points: %d, Difference %d" % [line.points.size(), filtered_points.size(), line.points.size() - filtered_points.size()])
+	
+	line.points = filtered_points
