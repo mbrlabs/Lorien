@@ -51,12 +51,6 @@ func _physics_process(delta):
 	_ui_statusbar.set_fps(Engine.get_frames_per_second())
 
 # -------------------------------------------------------------------------------------------------
-func _set_window_title(filepath: String) -> void:
-	var split := filepath.split("/")
-	var filename := split[split.size()-1]
-	OS.set_window_title("%s - Jabol" % filename)
-
-# -------------------------------------------------------------------------------------------------
 func _on_brush_color_changed(color: Color) -> void:
 	_canvas.set_brush_color(color)
 
@@ -70,15 +64,13 @@ func _on_clear_canvas() -> void:
 
 # -------------------------------------------------------------------------------------------------
 func _on_load_file(filepath: String) -> void:
-	var result: Array = JabolIO.load_file(filepath)
-	_set_window_title(filepath)
+	var result: Array = LorienIO.load_file(filepath)
 	_canvas.clear()
 	_canvas.add_strokes(result)
 
 # -------------------------------------------------------------------------------------------------
 func _on_save_file(filepath: String) -> void:
-	JabolIO.save_file(filepath, _canvas.lines)
-	_set_window_title(filepath)
+	LorienIO.save_file(filepath, _canvas.lines)
 
 # -------------------------------------------------------------------------------------------------
 func _on_close_requested() -> void:

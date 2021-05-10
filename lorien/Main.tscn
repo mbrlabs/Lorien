@@ -54,9 +54,9 @@ margin_top = -216.5
 margin_right = 385.0
 margin_bottom = 216.5
 access = 2
-filters = PoolStringArray( "*.jabol" )
-current_dir = "/Users/mbrla/Desktop/JabolFiles"
-current_path = "/Users/mbrla/Desktop/JabolFiles/"
+filters = PoolStringArray( "*.lorien" )
+current_dir = "/Users/mbrla/Desktop/LorienFiles"
+current_path = "/Users/mbrla/Desktop/LorienFiles/"
 
 [node name="ColorpickerPopup" type="Popup" parent="."]
 margin_left = 364.0
@@ -76,17 +76,16 @@ __meta__ = {
 }
 
 [node name="ColorPicker" type="ColorPicker" parent="ColorpickerPopup/PanelContainer"]
-margin_left = 52.0
-margin_top = 52.0
-margin_right = 360.0
-margin_bottom = 490.0
+margin_left = 64.0
+margin_top = 64.0
+margin_right = 372.0
+margin_bottom = 502.0
 edit_alpha = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="UIMenuPopup" parent="." instance=ExtResource( 5 )]
-visible = false
 margin_top = 38.0
 margin_bottom = 238.0
 

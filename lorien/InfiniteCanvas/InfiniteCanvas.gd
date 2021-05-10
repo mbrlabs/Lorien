@@ -57,7 +57,7 @@ func _physics_process(delta: float) -> void:
 				add_point(brush_position, pressure)
 				_last_mouse_motion = null
 		
-		if Input.is_action_just_pressed("jabol_undo"):
+		if Input.is_action_just_pressed("lorien_undo"):
 			undo_last_line()
 
 # -------------------------------------------------------------------------------------------------
