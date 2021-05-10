@@ -55,8 +55,8 @@ margin_right = 385.0
 margin_bottom = 216.5
 access = 2
 filters = PoolStringArray( "*.lorien" )
-current_dir = "/Users/mbrla/Desktop/LorienFiles"
-current_path = "/Users/mbrla/Desktop/LorienFiles/"
+current_dir = "/Projects/Other/lorien/lorien"
+current_path = "/Projects/Other/lorien/lorien/"
 
 [node name="ColorpickerPopup" type="Popup" parent="."]
 margin_left = 364.0
@@ -76,10 +76,10 @@ __meta__ = {
 }
 
 [node name="ColorPicker" type="ColorPicker" parent="ColorpickerPopup/PanelContainer"]
-margin_left = 68.0
-margin_top = 68.0
-margin_right = 376.0
-margin_bottom = 506.0
+margin_left = 96.0
+margin_top = 96.0
+margin_right = 404.0
+margin_bottom = 534.0
 edit_alpha = false
 __meta__ = {
 "_edit_use_anchors_": false

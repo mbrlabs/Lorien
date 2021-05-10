@@ -100,11 +100,11 @@ func add_point(point: Vector2, pressure: float = 1.0) -> void:
 
 # -------------------------------------------------------------------------------------------------
 func end_line(optimize: bool = false) -> void:
-	if optimize:
-		_optimize_stroke(_current_line)
-	
 	_current_pressures.clear()
 	if _current_line != null:
+		if optimize:
+			_optimize_stroke(_current_line)
+		
 		if _current_line.points.empty():
 			_viewport.call_deferred("remove_child", _current_line)
 		else:
@@ -174,7 +174,6 @@ func _optimize_stroke(line: Line2D, min_squared_distance_between_points: float =
 	if line.points.empty():
 		return
 	
-	var total_filtered_points_count := 0
 	var filtered_points := []
 	filtered_points.append(line.points[0])
 	for i in range(1, line.points.size()):

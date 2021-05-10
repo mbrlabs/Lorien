@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://UI/Themes/theme_dark.tres" type="Theme" id=1]
 [ext_resource path="res://UI/UITitlebar.gd" type="Script" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Assets/Icons/window_close_white.png" type="Texture" id=4]
 [ext_resource path="res://Assets/Icons/window_maximize_white.png" type="Texture" id=5]
 [ext_resource path="res://Assets/Icons/window_minimize_white.png" type="Texture" id=6]
+[ext_resource path="res://UI/Components/UIWindowButton.tscn" type="PackedScene" id=7]
 
 [node name="UITitlebar" type="Panel"]
 anchor_right = 1.0
@@ -76,7 +77,7 @@ flat = true
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -134.0
+margin_left = -114.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 0
@@ -85,34 +86,24 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MinimizeButton" type="TextureButton" parent="Right"]
-margin_right = 44.0
-margin_bottom = 38.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-texture_normal = ExtResource( 6 )
-expand = true
-stretch_mode = 3
+[node name="MinimizeButton" parent="Right" instance=ExtResource( 7 )]
+hover_background = Color( 1, 1, 1, 0.0980392 )
+hover_texture = Color( 1, 1, 1, 1 )
+texture = ExtResource( 6 )
 
-[node name="MaximizeButton" type="TextureButton" parent="Right"]
-margin_left = 44.0
-margin_right = 89.0
-margin_bottom = 38.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-texture_normal = ExtResource( 5 )
-expand = true
-stretch_mode = 3
+[node name="MaximizeButton" parent="Right" instance=ExtResource( 7 )]
+margin_left = 38.0
+margin_right = 76.0
+hover_background = Color( 1, 1, 1, 0.0980392 )
+hover_texture = Color( 1, 1, 1, 1 )
+texture = ExtResource( 5 )
 
-[node name="CloseButton" type="TextureButton" parent="Right"]
-margin_left = 89.0
-margin_right = 134.0
-margin_bottom = 38.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-texture_normal = ExtResource( 4 )
-expand = true
-stretch_mode = 3
+[node name="CloseButton" parent="Right" instance=ExtResource( 7 )]
+margin_left = 76.0
+margin_right = 114.0
+hover_background = Color( 1, 0.368627, 0.368627, 1 )
+hover_texture = Color( 1, 1, 1, 1 )
+texture = ExtResource( 4 )
 
 [connection signal="gui_input" from="." to="." method="_on_UITitlebar_gui_input"]
 [connection signal="pressed" from="Left/Logo" to="." method="_on_Logo_pressed"]

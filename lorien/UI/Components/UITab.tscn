@@ -1,12 +1,12 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://UI/TabSystem/UITab.gd" type="Script" id=1]
-[ext_resource path="res://UI/Themes/style_tab_active_dark.tres" type="StyleBox" id=2]
-[ext_resource path="res://Assets/Fonts/font_12.tres" type="DynamicFont" id=3]
-[ext_resource path="res://Assets/Icons/close_file_white.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Fonts/font_12.tres" type="DynamicFont" id=1]
+[ext_resource path="res://UI/Components/UITab.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Icons/close_file_white.png" type="Texture" id=3]
+[ext_resource path="res://UI/Themes/style_tab_active_dark.tres" type="StyleBox" id=4]
 
 [sub_resource type="Theme" id=1]
-default_font = ExtResource( 3 )
+default_font = ExtResource( 1 )
 HBoxContainer/constants/separation = 4
 
 [sub_resource type="StyleBoxEmpty" id=2]
@@ -19,8 +19,8 @@ margin_bottom = 28.0
 rect_min_size = Vector2( 0, 28 )
 size_flags_horizontal = 3
 size_flags_vertical = 8
-custom_styles/panel = ExtResource( 2 )
-script = ExtResource( 1 )
+custom_styles/panel = ExtResource( 4 )
+script = ExtResource( 2 )
 __meta__ = {
 "_edit_group_": true,
 "_edit_use_anchors_": false
@@ -59,7 +59,7 @@ rect_min_size = Vector2( 24, 0 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.2
-texture_normal = ExtResource( 4 )
+texture_normal = ExtResource( 3 )
 expand = true
 stretch_mode = 3
 

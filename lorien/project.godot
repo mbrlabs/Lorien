@@ -32,7 +32,7 @@ _global_script_classes=[ {
 "base": "PanelContainer",
 "class": "UITab",
 "language": "GDScript",
-"path": "res://UI/TabSystem/UITab.gd"
+"path": "res://UI/Components/UITab.gd"
 }, {
 "base": "Panel",
 "class": "UITitlebar",
@@ -43,6 +43,11 @@ _global_script_classes=[ {
 "class": "UIToolbar",
 "language": "GDScript",
 "path": "res://UI/UIToolbar.gd"
+}, {
+"base": "Control",
+"class": "UIWindowButton",
+"language": "GDScript",
+"path": "res://UI/Components/UIWindowButton.gd"
 } ]
 _global_script_class_icons={
 "BrushStrokeData": "",
@@ -51,7 +56,8 @@ _global_script_class_icons={
 "UIStatusbar": "",
 "UITab": "",
 "UITitlebar": "",
-"UIToolbar": ""
+"UIToolbar": "",
+"UIWindowButton": ""
 }
 
 [application]

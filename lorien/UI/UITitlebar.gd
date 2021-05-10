@@ -2,7 +2,7 @@ extends Panel
 class_name UITitlebar
 
 # -------------------------------------------------------------------------------------------------
-const UI_TAB = preload("res://UI/TabSystem/UITab.tscn")
+const UI_TAB = preload("res://UI/Components/UITab.tscn")
 
 # -------------------------------------------------------------------------------------------------
 signal close_requested
