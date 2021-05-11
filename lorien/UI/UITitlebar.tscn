@@ -1,12 +1,7 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://UI/Themes/theme_dark.tres" type="Theme" id=1]
 [ext_resource path="res://UI/UITitlebar.gd" type="Script" id=2]
-[ext_resource path="res://Assets/logo.png" type="Texture" id=3]
-[ext_resource path="res://Assets/Icons/window_close_white.png" type="Texture" id=4]
-[ext_resource path="res://Assets/Icons/window_maximize_white.png" type="Texture" id=5]
-[ext_resource path="res://Assets/Icons/window_minimize_white.png" type="Texture" id=6]
-[ext_resource path="res://UI/Components/UIWindowButton.tscn" type="PackedScene" id=7]
 
 [node name="UITitlebar" type="Panel"]
 anchor_right = 1.0
@@ -28,36 +23,15 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VSeparator3" type="VSeparator" parent="Left"]
-margin_right = 2.0
-margin_bottom = 38.0
-mouse_filter = 2
-custom_constants/separation = 2
-
-[node name="Logo" type="TextureButton" parent="Left"]
-margin_left = 6.0
-margin_top = 6.0
-margin_right = 31.0
-margin_bottom = 31.0
-rect_min_size = Vector2( 25, 25 )
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture_normal = ExtResource( 3 )
-texture_pressed = ExtResource( 3 )
-texture_hover = ExtResource( 3 )
-texture_disabled = ExtResource( 3 )
-texture_focused = ExtResource( 3 )
-
 [node name="VSeparator2" type="VSeparator" parent="Left"]
-margin_left = 35.0
-margin_right = 47.0
+margin_right = 12.0
 margin_bottom = 38.0
 mouse_filter = 2
 custom_constants/separation = 12
 
 [node name="Tabs" type="HBoxContainer" parent="Left"]
-margin_left = 51.0
-margin_right = 101.0
+margin_left = 16.0
+margin_right = 66.0
 margin_bottom = 38.0
 rect_min_size = Vector2( 50, 38 )
 __meta__ = {
@@ -65,49 +39,12 @@ __meta__ = {
 }
 
 [node name="NewFileButton" type="Button" parent="Left"]
-margin_left = 105.0
+margin_left = 70.0
 margin_top = 8.0
-margin_right = 126.0
+margin_right = 91.0
 margin_bottom = 38.0
 size_flags_vertical = 8
 text = "+"
 flat = true
 
-[node name="Right" type="HBoxContainer" parent="."]
-anchor_left = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = -114.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-custom_constants/separation = 0
-alignment = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="MinimizeButton" parent="Right" instance=ExtResource( 7 )]
-hover_background = Color( 1, 1, 1, 0.0980392 )
-hover_texture = Color( 1, 1, 1, 1 )
-texture = ExtResource( 6 )
-
-[node name="MaximizeButton" parent="Right" instance=ExtResource( 7 )]
-margin_left = 38.0
-margin_right = 76.0
-hover_background = Color( 1, 1, 1, 0.0980392 )
-hover_texture = Color( 1, 1, 1, 1 )
-texture = ExtResource( 5 )
-
-[node name="CloseButton" parent="Right" instance=ExtResource( 7 )]
-margin_left = 76.0
-margin_right = 114.0
-hover_background = Color( 1, 0.368627, 0.368627, 1 )
-hover_texture = Color( 1, 1, 1, 1 )
-texture = ExtResource( 4 )
-
-[connection signal="gui_input" from="." to="." method="_on_UITitlebar_gui_input"]
-[connection signal="pressed" from="Left/Logo" to="." method="_on_Logo_pressed"]
 [connection signal="pressed" from="Left/NewFileButton" to="." method="_on_NewFileButton_pressed"]
-[connection signal="pressed" from="Right/MinimizeButton" to="." method="_on_MinimizeButton_pressed"]
-[connection signal="pressed" from="Right/MaximizeButton" to="." method="_on_MaximizeButton_pressed"]
-[connection signal="pressed" from="Right/CloseButton" to="." method="_on_CloseButton_pressed"]
