@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://InfiniteCanvas/InfiniteCanvas.gd" type="Script" id=1]
 [ext_resource path="res://InfiniteCanvas/PanZoomCamera.gd" type="Script" id=2]
 [ext_resource path="res://InfiniteCanvas/BrushCursor.tscn" type="PackedScene" id=3]
+[ext_resource path="res://InfiniteCanvas/pressure_curve.tres" type="Curve" id=4]
 
 [node name="InfiniteCanvas" type="ViewportContainer"]
 anchor_right = 1.0
@@ -11,6 +12,7 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+pressure_curve = ExtResource( 4 )
 
 [node name="Viewport" type="Viewport" parent="."]
 size = Vector2( 1920, 1080 )

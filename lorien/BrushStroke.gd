@@ -1,7 +1,6 @@
 class_name BrushStroke
 
 const MAX_PRESSURE_VALUE = 65535
-const MIN_PRESSURE_VALUE = int(MAX_PRESSURE_VALUE * 0.25)
 
 # -------------------------------------------------------------------------------------------------
 var color: Color
@@ -18,7 +17,6 @@ func _to_string() -> String:
 # -------------------------------------------------------------------------------------------------
 func add_point(point: Vector2, pressure: float) -> void:
 	pressure = int(floor(pressure * MAX_PRESSURE_VALUE))
-	pressure = max(MIN_PRESSURE_VALUE, pressure)
 	
 	points.append(point)
 	pressures.append(pressure)
@@ -42,7 +40,7 @@ func optimize() -> void:
 		
 		# Distance between 2 points must be greater than x
 		var distance = prev_point.distance_to(point)
-		var distance_cond = distance > 2.0
+		var distance_cond = distance > 1.0
 	
 		# Angle between points must be beigger than x deg
 		var angle := rad2deg(prev_point.angle_to_point(point))
@@ -50,7 +48,9 @@ func optimize() -> void:
 		var angle_cond = angle_diff >= 1.0
 		previous_angle = angle
 		
-		if distance_cond && angle_cond:
+		var point_too_far_away = distance > 100
+		
+		if point_too_far_away || (distance_cond && angle_cond):
 			filtered_points.append(point)
 			filtered_pressures.append(pressure)
 		else:
@@ -68,6 +68,7 @@ func optimize() -> void:
 func apply(line2d: Line2D) -> void:
 	line2d.clear_points()
 	line2d.width_curve.clear_points()
+	line2d.width_curve.bake_resolution = pressures.size()
 	
 	line2d.default_color = color
 	line2d.width = size

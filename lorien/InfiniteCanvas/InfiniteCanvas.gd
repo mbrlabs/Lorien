@@ -2,6 +2,7 @@ extends ViewportContainer
 class_name InfiniteCanvas
 
 const DEBUG_POINT_TEXTURE = preload("res://Assets/icon.png")
+const STROKE_TEXTURE = preload("res://Assets/stroke_texture.png")
 
 # -------------------------------------------------------------------------------------------------
 class Info:
@@ -16,6 +17,7 @@ onready var _line2d_container: Node2D = $Viewport/Strokes
 onready var _camera: Camera2D = $Viewport/Camera2D
 onready var _cursor: Node2D = $Viewport/BrushCursor
 
+export var pressure_curve: Curve
 var _current_line_2d: Line2D
 var _brush_strokes := []
 var _current_brush_stroke: BrushStroke
@@ -54,6 +56,7 @@ func _physics_process(delta: float) -> void:
 		
 		if _current_line_2d != null && _last_mouse_motion != null:
 			var pressure = _last_mouse_motion.pressure
+			pressure = pressure_curve.interpolate(pressure)
 			add_point(brush_position, pressure)
 			_last_mouse_motion = null
 		
@@ -66,8 +69,10 @@ func _make_empty_line2d() -> Line2D:
 	line.width_curve = Curve.new()
 	#line.begin_cap_mode = Line2D.LINE_CAP_ROUND
 	#line.end_cap_mode = Line2D.LINE_CAP_ROUND
-	line.joint_mode = Line2D.LINE_JOINT_ROUND
-	#line.antialiased = true
+	line.joint_mode = Line2D.LINE_CAP_ROUND
+	line.antialiased = false 
+	line.texture = STROKE_TEXTURE
+	line.texture_mode = Line2D.LINE_TEXTURE_STRETCH
 	return line
 
 # -------------------------------------------------------------------------------------------------
@@ -107,6 +112,8 @@ func end_line(draw_debug_points: bool = true) -> void:
 			_line2d_container.call_deferred("remove_child", _current_line_2d)
 		else:
 			print("%d; removed: %d" % [_current_brush_stroke.points.size(), _current_brush_stroke.points_removed_during_optimize])
+			#_current_brush_stroke.pressures[_current_brush_stroke.pressures.size()-1] *= 0.85
+			
 			_current_brush_stroke.apply(_current_line_2d)
 			info.stroke_count += 1
 			info.point_count += _current_line_2d.points.size()
@@ -123,7 +130,7 @@ func _add_debug_points(line2d: Line2D) -> void:
 		var s = Sprite.new()
 		line2d.add_child(s)
 		s.texture = DEBUG_POINT_TEXTURE
-		s.scale = Vector2.ONE * (line2d.width * .005)
+		s.scale = Vector2.ONE * (line2d.width * .004)
 		s.global_position = p
 
 # -------------------------------------------------------------------------------------------------

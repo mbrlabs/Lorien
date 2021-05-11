@@ -17,7 +17,7 @@ _global_script_classes=[ {
 "base": "Reference",
 "class": "Config",
 "language": "GDScript",
-"path": "res://Utils/Config.gd"
+"path": "res://Config.gd"
 }, {
 "base": "ViewportContainer",
 "class": "InfiniteCanvas",
@@ -82,7 +82,6 @@ gdscript/warnings/return_value_discarded=false
 
 window/size/width=1920
 window/size/height=1080
-window/size/borderless=true
 window/size/test_width=1440
 window/size/test_height=810
 window/dpi/allow_hidpi=true
