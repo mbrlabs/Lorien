@@ -39,14 +39,18 @@ func optimize() -> void:
 		var prev_point: Vector2 = points[i-1]
 		var point: Vector2 = points[i]
 		var pressure = pressures[i]
+		
+		# Distance between 2 points must be greater than x
+		var distance = prev_point.distance_to(point)
+		var distance_cond = distance > 2.0
 	
-		# Angle between points must be beigger than 1 deg
+		# Angle between points must be beigger than x deg
 		var angle := rad2deg(prev_point.angle_to_point(point))
 		var angle_diff = abs(abs(angle) - abs(previous_angle))
 		var angle_cond = angle_diff >= 1.0
 		previous_angle = angle
 		
-		if angle_cond:
+		if distance_cond && angle_cond:
 			filtered_points.append(point)
 			filtered_pressures.append(pressure)
 		else:

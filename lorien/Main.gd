@@ -68,7 +68,7 @@ func _on_clear_canvas() -> void:
 func _on_load_file(filepath: String) -> void:
 	var result: Array = LorienIO.load_file(filepath)
 	_canvas.clear()
-	_canvas.add_strokes(result)
+	_canvas.add_strokes(result, Config.DRAW_DEBUG_POINTS)
 
 # -------------------------------------------------------------------------------------------------
 func _on_save_file(filepath: String) -> void:

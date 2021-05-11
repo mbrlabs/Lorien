@@ -15,6 +15,7 @@ __meta__ = {
 [node name="Viewport" type="Viewport" parent="."]
 size = Vector2( 1920, 1080 )
 handle_input_locally = false
+hdr = false
 usage = 0
 render_target_update_mode = 3
 
@@ -22,5 +23,7 @@ render_target_update_mode = 3
 anchor_mode = 0
 current = true
 script = ExtResource( 2 )
+
+[node name="Strokes" type="Node2D" parent="Viewport"]
 
 [node name="BrushCursor" parent="Viewport" instance=ExtResource( 3 )]
