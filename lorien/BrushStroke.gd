@@ -33,16 +33,20 @@ func optimize() -> void:
 	
 	filtered_points.append(points.front())
 	filtered_pressures.append(pressures.front())
-
+	
+	var previous_angle := 0.0
 	for i in range(1, points.size()):
+		var prev_point: Vector2 = points[i-1]
 		var point: Vector2 = points[i]
 		var pressure = pressures[i]
-
-		var last_valid_point: Vector2 = filtered_points.back()
-
-		var dist_cond := last_valid_point.distance_squared_to(point) >= 25.0
-
-		if dist_cond:
+	
+		# Angle between points must be beigger than 1 deg
+		var angle := rad2deg(prev_point.angle_to_point(point))
+		var angle_diff = abs(abs(angle) - abs(previous_angle))
+		var angle_cond = angle_diff >= 1.0
+		previous_angle = angle
+		
+		if angle_cond:
 			filtered_points.append(point)
 			filtered_pressures.append(pressure)
 		else:
