@@ -2,8 +2,17 @@ extends Node
 
 # -------------------------------------------------------------------------------------------------
 const POINT_ELEM_SIZE = 3
-const VERSION_NUMBER = 0
 const COMPRESSION_METHOD = File.COMPRESSION_DEFLATE
+
+const VERSION_NUMBER = 0
+const METADATA_CAMERA_ZOOM = "camera_zoom"
+const METADATA_CAMERA_OFFSET_X = "camera_offset_x"
+const METADATA_CAMERA_OFFSET_Y = "camera_offset_y"
+
+# -------------------------------------------------------------------------------------------------
+class Savefile:
+	var meta_data: Dictionary 
+	var strokes: Array
 
 # -------------------------------------------------------------------------------------------------
 func save_file(file_path: String, line_2d_array: Array, meta_data: Dictionary) -> void:
@@ -22,18 +31,18 @@ func save_file(file_path: String, line_2d_array: Array, meta_data: Dictionary) -
 	print("File saved in %d ms" % (OS.get_ticks_msec() - start_time))
 	
 # -------------------------------------------------------------------------------------------------
-func load_file(file_path: String) -> Array:
+func load_file(file_path: String) -> Savefile:
 	var start_time := OS.get_ticks_msec()
-		
+
 	# open file
 	var file := File.new()
 	var err = file.open_compressed(file_path, File.READ, COMPRESSION_METHOD)
 	if err != OK:
 		printerr("Failed to load file: %s" % file_path)
-		return []
+		return null
 	
 	# parse
-	var result: Array = _read_from_binary_file(file)
+	var result: Savefile = _read_from_binary_file(file)
 	file.close()
 	
 	print("Loaded %s in %d ms" % [file_path, (OS.get_ticks_msec() - start_time)])
@@ -70,15 +79,14 @@ func _write_to_binary_file(file: File, strokes: Array, meta_data: Dictionary) ->
 
 # -------------------------------------------------------------------------------------------------
 # TODO: this needs some error handling!
-func _read_from_binary_file(file: File) -> Array:
+func _read_from_binary_file(file: File) -> Savefile:
 	# Meta data
 	var version_number := file.get_32()
 	var meta_data_str = file.get_pascal_string()
 	var meta_data := _metadata_str_to_dict(meta_data_str)
-	print(meta_data)
 	
 	# Strokes
-	var result := []
+	var strokes := []
 	while true:
 		var brush_stroke := BrushStroke.new()
 		
@@ -101,13 +109,17 @@ func _read_from_binary_file(file: File) -> Array:
 			var pressure := file.get_16()
 			brush_stroke.points.append(Vector2(x, y))
 			brush_stroke.pressures.append(pressure)
-		result.append(brush_stroke)
+		strokes.append(brush_stroke)
 		
 		# are we done yet?
 		if file.get_position() >= file.get_len()-1 || file.eof_reached():
 			break
 		
-	return result
+	var savefile := Savefile.new()
+	savefile.strokes = strokes
+	savefile.meta_data = meta_data
+	
+	return savefile
 
 # -------------------------------------------------------------------------------------------------
 func _dict_to_metadata_str(d: Dictionary) -> String:

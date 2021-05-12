@@ -9,6 +9,11 @@ var _pan_active := false
 var _is_input_enabled := true
 
 # -------------------------------------------------------------------------------------------------
+func set_zoom_level(zoom_level: float) -> void:
+	_current_zoom_level = zoom_level
+	zoom = Vector2(_current_zoom_level, _current_zoom_level)
+
+# -------------------------------------------------------------------------------------------------
 func _input(event):
 	if _is_input_enabled:
 		if event is InputEventMouseButton:

@@ -45,14 +45,32 @@ func _on_clear_canvas() -> void:
 
 # -------------------------------------------------------------------------------------------------
 func _on_load_file(filepath: String) -> void:
-	var result: Array = LorienIO.load_file(filepath)
+	var savefile: LorienIO.Savefile = LorienIO.load_file(filepath)
+	
+	# read metadata
+	var zoom_str: String = savefile.meta_data[LorienIO.METADATA_CAMERA_ZOOM]
+	var offset_x_str: String = savefile.meta_data[LorienIO.METADATA_CAMERA_OFFSET_X]
+	var offset_y_str: String = savefile.meta_data[LorienIO.METADATA_CAMERA_OFFSET_Y]
+	
+	# apply metadata
+	var cam: Camera2D = _canvas.get_camera()
+	cam.set_zoom_level(float(zoom_str))
+	cam.offset = Vector2(float(offset_x_str), float(offset_y_str))
+	
+	# add strokes to canvas
 	_canvas.clear()
-	_canvas.add_strokes(result, Config.DRAW_DEBUG_POINTS)
+	_canvas.add_strokes(savefile.strokes, Config.DRAW_DEBUG_POINTS)
 
 # -------------------------------------------------------------------------------------------------
 func _on_save_file(filepath: String) -> void:
-	var test_meta_data = {"Lorien": "is nice", "Mordor": "is shit"}
-	LorienIO.save_file(filepath, _canvas._brush_strokes, test_meta_data)
+	var cam: Camera2D = _canvas.get_camera()
+	var meta_data = {
+		LorienIO.METADATA_CAMERA_OFFSET_X: str(cam.offset.x),
+		LorienIO.METADATA_CAMERA_OFFSET_Y: str(cam.offset.y),
+		LorienIO.METADATA_CAMERA_ZOOM: str(cam.zoom.x),
+	}
+	
+	LorienIO.save_file(filepath, _canvas._brush_strokes, meta_data)
 
 # -------------------------------------------------------------------------------------------------
 func _on_InfiniteCanvas_mouse_entered():

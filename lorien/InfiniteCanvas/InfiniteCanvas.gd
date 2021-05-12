@@ -76,6 +76,10 @@ func _make_empty_line2d() -> Line2D:
 	return line
 
 # -------------------------------------------------------------------------------------------------
+func get_camera() -> Camera2D:
+	return _camera
+
+# -------------------------------------------------------------------------------------------------
 func enable() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	_camera.enable_intput()
