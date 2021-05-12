@@ -77,7 +77,16 @@ func apply(line2d: Line2D) -> void:
 	for point in points:
 		line2d.add_point(point)
 		var pressure: float = pressures[p_idx]
-		line2d.width_curve.add_point(Vector2(curve_step*p_idx, pressure / MAX_PRESSURE_VALUE))
+		line2d.width_curve.add_point(Vector2(curve_step*p_idx, pressure / float(MAX_PRESSURE_VALUE)))
 		p_idx += 1
+	
+	
+	# taper out end smoothly
+#	if pressures.size() >= 3:
+#		var point_count = line2d.width_curve.get_point_count()
+#		var p3 = pressures[pressures.size()-3] / float(MAX_PRESSURE_VALUE)
+#		line2d.width_curve.set_point_value(point_count-2, p3*0.5)
+#		line2d.width_curve.set_point_value(point_count-1, p3*0.25)
+	
 	line2d.width_curve.add_point(Vector2(1.0, pressures.back() / MAX_PRESSURE_VALUE))
 	line2d.width_curve.bake()

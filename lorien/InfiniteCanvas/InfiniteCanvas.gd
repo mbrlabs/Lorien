@@ -112,7 +112,6 @@ func end_line(draw_debug_points: bool = true) -> void:
 			_line2d_container.call_deferred("remove_child", _current_line_2d)
 		else:
 			print("%d; removed: %d" % [_current_brush_stroke.points.size(), _current_brush_stroke.points_removed_during_optimize])
-			#_current_brush_stroke.pressures[_current_brush_stroke.pressures.size()-1] *= 0.85
 			
 			_current_brush_stroke.apply(_current_line_2d)
 			info.stroke_count += 1
