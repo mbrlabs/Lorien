@@ -12,24 +12,24 @@ class Info:
 	var current_brush_position: Vector2
 
 # -------------------------------------------------------------------------------------------------
-#onready var _viewport: Viewport = $Viewport
 onready var _line2d_container: Node2D = $Viewport/Strokes
 onready var _camera: Camera2D = $Viewport/Camera2D
 onready var _cursor: Node2D = $Viewport/BrushCursor
 
 export var pressure_curve: Curve
+export var brush_color := Color("50ffd6")
+export var brush_size := 16 setget set_brush_size
+export var draw_debug_points := false
 var _current_line_2d: Line2D
 var _brush_strokes := []
 var _current_brush_stroke: BrushStroke
 var info := Info.new()
 var _last_mouse_motion: InputEventMouseMotion
-var _current_brush_color := Config.DEFAULT_BRUSH_COLOR
-var _current_brush_size := Config.DEFAULT_BRUSH_SIZE
 var _is_enabled := false
 
 # -------------------------------------------------------------------------------------------------
 func _ready():
-	_cursor.change_size(_current_brush_size)
+	_cursor.change_size(brush_size)
 
 # -------------------------------------------------------------------------------------------------
 func _input(event: InputEvent) -> void:
@@ -41,9 +41,9 @@ func _input(event: InputEvent) -> void:
 		if event is InputEventMouseButton:
 			if event.button_index == BUTTON_LEFT:
 				if event.pressed:
-					start_new_line(_current_brush_color, _current_brush_size)
+					start_new_line()
 				else:
-					end_line(Config.DRAW_DEBUG_POINTS)
+					end_line()
 
 # -------------------------------------------------------------------------------------------------
 func _physics_process(delta: float) -> void:
@@ -94,7 +94,7 @@ func disable() -> void:
 	_is_enabled = false
 
 # -------------------------------------------------------------------------------------------------
-func start_new_line(brush_color: Color, brush_size: float = 6) -> void:
+func start_new_line() -> void:
 	_current_line_2d = _make_empty_line2d()
 	_current_line_2d.width = brush_size
 	_current_line_2d.default_color = brush_color
@@ -110,7 +110,7 @@ func add_point(point: Vector2, pressure: float = 1.0) -> void:
 	_current_brush_stroke.apply(_current_line_2d)
 
 # -------------------------------------------------------------------------------------------------
-func end_line(draw_debug_points: bool = true) -> void:
+func end_line() -> void:
 	if _current_line_2d != null:
 		if _current_line_2d.points.empty():
 			_line2d_container.call_deferred("remove_child", _current_line_2d)
@@ -137,7 +137,7 @@ func _add_debug_points(line2d: Line2D) -> void:
 		s.global_position = p
 
 # -------------------------------------------------------------------------------------------------
-func add_strokes(strokes: Array, draw_debug_points: bool = true) -> void:
+func add_strokes(strokes: Array) -> void:
 	_brush_strokes.append_array(strokes)
 	for stroke in strokes:
 		var line := _make_empty_line2d()
@@ -159,13 +159,10 @@ func undo_last_line() -> void:
 		_line2d_container.remove_child(line)
 		_brush_strokes.pop_back()
 
-# -------------------------------------------------------------------------------------------------
-func set_brush_color(color: Color) -> void:
-	_current_brush_color = color
 
 # -------------------------------------------------------------------------------------------------
 func set_brush_size(size: int) -> void:
-	_current_brush_size = size
+	brush_size = size
 	_cursor.change_size(size)
 
 # -------------------------------------------------------------------------------------------------

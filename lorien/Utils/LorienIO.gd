@@ -81,7 +81,7 @@ func _write_to_binary_file(file: File, strokes: Array, meta_data: Dictionary) ->
 # TODO: this needs some error handling!
 func _read_from_binary_file(file: File) -> Savefile:
 	# Meta data
-	var version_number := file.get_32()
+	var _version_number := file.get_32()
 	var meta_data_str = file.get_pascal_string()
 	var meta_data := _metadata_str_to_dict(meta_data_str)
 	

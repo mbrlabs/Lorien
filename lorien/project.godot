@@ -43,11 +43,6 @@ _global_script_classes=[ {
 "class": "UIToolbar",
 "language": "GDScript",
 "path": "res://UI/UIToolbar.gd"
-}, {
-"base": "Control",
-"class": "UIWindowButton",
-"language": "GDScript",
-"path": "res://UI/Components/UIWindowButton.gd"
 } ]
 _global_script_class_icons={
 "BrushStroke": "",
@@ -56,8 +51,7 @@ _global_script_class_icons={
 "UIStatusbar": "",
 "UITab": "",
 "UITitlebar": "",
-"UIToolbar": "",
-"UIWindowButton": ""
+"UIToolbar": ""
 }
 
 [application]

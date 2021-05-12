@@ -33,7 +33,7 @@ func _physics_process(delta):
 
 # -------------------------------------------------------------------------------------------------
 func _on_brush_color_changed(color: Color) -> void:
-	_canvas.set_brush_color(color)
+	_canvas.brush_color = color
 
 # -------------------------------------------------------------------------------------------------
 func _on_brush_size_changed(size: int) -> void:
@@ -59,7 +59,7 @@ func _on_load_file(filepath: String) -> void:
 	
 	# add strokes to canvas
 	_canvas.clear()
-	_canvas.add_strokes(savefile.strokes, Config.DRAW_DEBUG_POINTS)
+	_canvas.add_strokes(savefile.strokes)
 
 # -------------------------------------------------------------------------------------------------
 func _on_save_file(filepath: String) -> void:

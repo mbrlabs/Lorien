@@ -55,3 +55,6 @@ func _on_NewFileButton_pressed():
 	var tab := add_tab("Untitled %s" % _file_tabs.get_child_count(), "")
 	set_tab_active(tab)
 
+# -------------------------------------------------------------------------------------------------
+func _on_MenuButton_pressed():
+	get_node(_menu_popup_path).popup()
