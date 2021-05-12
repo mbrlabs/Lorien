@@ -51,7 +51,8 @@ func _on_load_file(filepath: String) -> void:
 
 # -------------------------------------------------------------------------------------------------
 func _on_save_file(filepath: String) -> void:
-	LorienIO.save_file(filepath, _canvas._brush_strokes)
+	var test_meta_data = {"Lorien": "is nice", "Mordor": "is shit"}
+	LorienIO.save_file(filepath, _canvas._brush_strokes, test_meta_data)
 
 # -------------------------------------------------------------------------------------------------
 func _on_InfiniteCanvas_mouse_entered():

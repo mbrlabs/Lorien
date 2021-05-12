@@ -2,10 +2,11 @@ extends Node
 
 # -------------------------------------------------------------------------------------------------
 const POINT_ELEM_SIZE = 3
+const VERSION_NUMBER = 0
 const COMPRESSION_METHOD = File.COMPRESSION_DEFLATE
 
 # -------------------------------------------------------------------------------------------------
-func save_file(file_path: String, line_2d_array: Array) -> void:
+func save_file(file_path: String, line_2d_array: Array, meta_data: Dictionary) -> void:
 	var start_time := OS.get_ticks_msec()
 	
 	# open file
@@ -15,7 +16,7 @@ func save_file(file_path: String, line_2d_array: Array) -> void:
 		printerr("Failed to open file for writing: %s" % file_path)
 		return
 	
-	_write_to_binary_file(file, line_2d_array)
+	_write_to_binary_file(file, line_2d_array, meta_data)
 	file.close()
 	
 	print("File saved in %d ms" % (OS.get_ticks_msec() - start_time))
@@ -39,7 +40,14 @@ func load_file(file_path: String) -> Array:
 	return result
 
 # -------------------------------------------------------------------------------------------------
-func _write_to_binary_file(file: File, strokes: Array) -> void:
+func _write_to_binary_file(file: File, strokes: Array, meta_data: Dictionary) -> void:
+	var meta_data_str := _dict_to_metadata_str(meta_data)
+	
+	# Meta data
+	file.store_32(VERSION_NUMBER)
+	file.store_pascal_string(meta_data_str)
+	
+	# Stroke data
 	for stroke in strokes:
 		# color
 		file.store_8(stroke.color.r8)
@@ -63,8 +71,14 @@ func _write_to_binary_file(file: File, strokes: Array) -> void:
 # -------------------------------------------------------------------------------------------------
 # TODO: this needs some error handling!
 func _read_from_binary_file(file: File) -> Array:
-	var result := []
+	# Meta data
+	var version_number := file.get_32()
+	var meta_data_str = file.get_pascal_string()
+	var meta_data := _metadata_str_to_dict(meta_data_str)
+	print(meta_data)
 	
+	# Strokes
+	var result := []
 	while true:
 		var brush_stroke := BrushStroke.new()
 		
@@ -94,3 +108,25 @@ func _read_from_binary_file(file: File) -> Array:
 			break
 		
 	return result
+
+# -------------------------------------------------------------------------------------------------
+func _dict_to_metadata_str(d: Dictionary) -> String:
+	var meta_str := ""
+	for k in d.keys():
+		var v = d[k]
+		if k is String && v is String:
+			meta_str += "%s=%s," % [k, v]
+		else:
+			printerr("Metadata should be String key-value pairs only!")
+	return meta_str
+
+# -------------------------------------------------------------------------------------------------
+func _metadata_str_to_dict(s: String) -> Dictionary:
+	var meta_dict := {}
+	for kv in s.split(",", false):
+		var kv_split: PoolStringArray = kv.split("=", false)
+		if kv_split.size() != 2:
+			printerr("Invalid metadata key-value pair: %s" % kv)
+		else:
+			meta_dict[kv_split[0]] = kv_split[1]
+	return meta_dict

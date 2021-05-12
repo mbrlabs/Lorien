@@ -11,8 +11,8 @@ signal brush_color_changed(color)
 signal brush_size_changed(size)
 
 # -------------------------------------------------------------------------------------------------
-const BUTTON_HOVER_COLOR = Color.maroon
-const BUTTON_CLICK_COLOR = Color.magenta
+const BUTTON_HOVER_COLOR = Color("50ffd6")
+const BUTTON_CLICK_COLOR = Color("50ffd6")
 const BUTTON_NORMAL_COLOR = Color.white
 
 # -------------------------------------------------------------------------------------------------
