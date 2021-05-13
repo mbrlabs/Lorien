@@ -35,8 +35,9 @@ _menu_popup_path = NodePath("../UIMenuPopup")
 [node name="UIToolbar" parent="." instance=ExtResource( 6 )]
 margin_top = 38.0
 margin_bottom = 78.0
-_file_dialog_path = NodePath("../FileDialog")
-_color_picker_path = NodePath("../ColorpickerPopup/PanelContainer/ColorPicker")
+file_dialog_path = NodePath("../FileDialog")
+brush_color_picker_path = NodePath("../BrushColorPickerPopup/PanelContainer/ColorPicker")
+background_color_picker_path = NodePath("../BackgroundColorPickerPopup/PanelContainer/ColorPicker")
 
 [node name="UIStatusBar" parent="." instance=ExtResource( 3 )]
 anchor_top = 1.0
@@ -59,16 +60,17 @@ current_dir = "/Projects/Other/lorien/lorien"
 current_file = "Lorien"
 current_path = "/Projects/Other/lorien/lorien/Lorien"
 
-[node name="ColorpickerPopup" type="Popup" parent="."]
+[node name="BrushColorPickerPopup" type="Popup" parent="."]
 margin_left = 364.0
 margin_top = 77.0
 margin_right = 666.0
 margin_bottom = 504.0
 __meta__ = {
+"_edit_group_": true,
 "_edit_use_anchors_": false
 }
 
-[node name="PanelContainer" type="PanelContainer" parent="ColorpickerPopup"]
+[node name="PanelContainer" type="PanelContainer" parent="BrushColorPickerPopup"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_styles/panel = SubResource( 1 )
@@ -76,11 +78,41 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ColorPicker" type="ColorPicker" parent="ColorpickerPopup/PanelContainer"]
-margin_left = 220.0
-margin_top = 220.0
-margin_right = 528.0
-margin_bottom = 658.0
+[node name="ColorPicker" type="ColorPicker" parent="BrushColorPickerPopup/PanelContainer"]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 328.0
+margin_bottom = 458.0
+edit_alpha = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BackgroundColorPickerPopup" type="Popup" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -364.613
+margin_top = 77.0
+margin_right = -46.6128
+margin_bottom = 501.0
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="PanelContainer" type="PanelContainer" parent="BackgroundColorPickerPopup"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_styles/panel = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorPicker" type="ColorPicker" parent="BackgroundColorPickerPopup/PanelContainer"]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 330.0
+margin_bottom = 458.0
 edit_alpha = false
 __meta__ = {
 "_edit_use_anchors_": false

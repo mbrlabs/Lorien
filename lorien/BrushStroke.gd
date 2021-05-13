@@ -68,6 +68,10 @@ func optimize() -> void:
 func apply(line2d: Line2D) -> void:
 	line2d.clear_points()
 	line2d.width_curve.clear_points()
+	
+	if points.empty():
+		return
+
 	line2d.width_curve.bake_resolution = pressures.size()
 	
 	line2d.default_color = color

@@ -39,7 +39,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://UI/UITitlebar.gd"
 }, {
-"base": "PanelContainer",
+"base": "Panel",
 "class": "UIToolbar",
 "language": "GDScript",
 "path": "res://UI/UIToolbar.gd"
@@ -79,7 +79,6 @@ window/size/height=1080
 window/size/test_width=1440
 window/size/test_height=810
 window/dpi/allow_hidpi=true
-window/vsync/use_vsync=false
 
 [input]
 

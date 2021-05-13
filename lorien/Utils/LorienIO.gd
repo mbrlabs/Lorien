@@ -1,13 +1,14 @@
 extends Node
 
 # -------------------------------------------------------------------------------------------------
-const POINT_ELEM_SIZE = 3
+const POINT_ELEM_SIZE := 3
 const COMPRESSION_METHOD = File.COMPRESSION_DEFLATE
 
-const VERSION_NUMBER = 0
+const VERSION_NUMBER := 0
 const METADATA_CAMERA_ZOOM = "camera_zoom"
-const METADATA_CAMERA_OFFSET_X = "camera_offset_x"
-const METADATA_CAMERA_OFFSET_Y = "camera_offset_y"
+const METADATA_CAMERA_OFFSET_X := "camera_offset_x"
+const METADATA_CAMERA_OFFSET_Y := "camera_offset_y"
+const CANVAS_COLOR := "canvas_color"
 
 # -------------------------------------------------------------------------------------------------
 class Savefile:

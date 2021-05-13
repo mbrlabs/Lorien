@@ -26,6 +26,7 @@ var _current_brush_stroke: BrushStroke
 var info := Info.new()
 var _last_mouse_motion: InputEventMouseMotion
 var _is_enabled := false
+var _background_color: Color
 
 # -------------------------------------------------------------------------------------------------
 func _ready():
@@ -74,6 +75,15 @@ func _make_empty_line2d() -> Line2D:
 	line.texture = STROKE_TEXTURE
 	line.texture_mode = Line2D.LINE_TEXTURE_STRETCH
 	return line
+
+# -------------------------------------------------------------------------------------------------
+func set_background_color(color: Color) -> void:
+	_background_color = color
+	VisualServer.set_default_clear_color(color)
+
+# -------------------------------------------------------------------------------------------------
+func get_background_color() -> Color:
+	return _background_color
 
 # -------------------------------------------------------------------------------------------------
 func get_camera() -> Camera2D:

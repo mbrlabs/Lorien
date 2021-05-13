@@ -16,8 +16,8 @@ __meta__ = {
 }
 
 [node name="Left" type="HBoxContainer" parent="."]
+anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = 50.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 4
@@ -29,6 +29,7 @@ __meta__ = {
 margin_right = 12.0
 margin_bottom = 38.0
 mouse_filter = 2
+size_flags_horizontal = 4
 custom_constants/separation = 12
 
 [node name="MenuButton" type="TextureButton" parent="Left"]
@@ -37,7 +38,7 @@ margin_left = 16.0
 margin_top = 10.0
 margin_right = 34.0
 margin_bottom = 28.0
-size_flags_horizontal = 6
+size_flags_horizontal = 4
 size_flags_vertical = 6
 texture_normal = ExtResource( 3 )
 stretch_mode = 3
@@ -49,6 +50,7 @@ margin_left = 38.0
 margin_right = 50.0
 margin_bottom = 38.0
 mouse_filter = 2
+size_flags_horizontal = 4
 custom_constants/separation = 12
 
 [node name="Tabs" type="HBoxContainer" parent="Left"]
@@ -56,6 +58,7 @@ margin_left = 54.0
 margin_right = 104.0
 margin_bottom = 38.0
 rect_min_size = Vector2( 50, 38 )
+size_flags_horizontal = 4
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -65,6 +68,7 @@ margin_left = 108.0
 margin_top = 8.0
 margin_right = 129.0
 margin_bottom = 38.0
+size_flags_horizontal = 4
 size_flags_vertical = 8
 text = "+"
 flat = true

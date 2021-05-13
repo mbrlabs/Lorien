@@ -12,7 +12,7 @@ onready var _file_dialog: FileDialog = $FileDialog
 
 # -------------------------------------------------------------------------------------------------
 func _ready():
-	VisualServer.set_default_clear_color(canvas_color)
+	_canvas.set_background_color(canvas_color)
 	_file_dialog.current_dir = Config.DEFAULT_FILE_DIALOG_PATH
 	
 	# UI Signals
@@ -21,6 +21,7 @@ func _ready():
 	_ui_toolbar.connect("save_file", self, "_on_save_file")
 	_ui_toolbar.connect("brush_color_changed", self, "_on_brush_color_changed")
 	_ui_toolbar.connect("brush_size_changed", self, "_on_brush_size_changed")
+	_ui_toolbar.connect("canvas_background_changed", self, "_on_canvas_background_changed")
 
 # -------------------------------------------------------------------------------------------------
 func _physics_process(delta):
@@ -51,11 +52,13 @@ func _on_load_file(filepath: String) -> void:
 	var zoom_str: String = savefile.meta_data[LorienIO.METADATA_CAMERA_ZOOM]
 	var offset_x_str: String = savefile.meta_data[LorienIO.METADATA_CAMERA_OFFSET_X]
 	var offset_y_str: String = savefile.meta_data[LorienIO.METADATA_CAMERA_OFFSET_Y]
+	var canvas_color: String = savefile.meta_data[LorienIO.CANVAS_COLOR]
 	
 	# apply metadata
 	var cam: Camera2D = _canvas.get_camera()
 	cam.set_zoom_level(float(zoom_str))
 	cam.offset = Vector2(float(offset_x_str), float(offset_y_str))
+	_canvas.set_background_color(Color(canvas_color))
 	
 	# add strokes to canvas
 	_canvas.clear()
@@ -68,10 +71,15 @@ func _on_save_file(filepath: String) -> void:
 		LorienIO.METADATA_CAMERA_OFFSET_X: str(cam.offset.x),
 		LorienIO.METADATA_CAMERA_OFFSET_Y: str(cam.offset.y),
 		LorienIO.METADATA_CAMERA_ZOOM: str(cam.zoom.x),
+		LorienIO.CANVAS_COLOR: _canvas.get_background_color().to_html(false),
 	}
 	
 	LorienIO.save_file(filepath, _canvas._brush_strokes, meta_data)
 
+# -------------------------------------------------------------------------------------------------
+func _on_canvas_background_changed(color: Color) -> void:
+	_canvas.set_background_color(color)
+	 
 # -------------------------------------------------------------------------------------------------
 func _on_InfiniteCanvas_mouse_entered():
 	_canvas.enable()
