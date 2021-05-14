@@ -19,6 +19,17 @@ func get_active_project() -> Project:
 	return _active_project
 
 # -------------------------------------------------------------------------------------------------
+func remove_project(project: Project) -> void:
+	if project == _active_project:
+		_active_project = null
+	
+	project.strokes.clear()
+		
+	var index := _open_projects.find(project)
+	if index >= 0:
+		_open_projects.remove(index)
+
+# -------------------------------------------------------------------------------------------------
 func add_project(filepath: String = "") -> Project:
 	# Check if already open
 	if !filepath.empty():
@@ -60,3 +71,11 @@ func get_project_by_id(id: int) -> Project:
 		if p.id == id:
 			return p
 	return null
+
+# -------------------------------------------------------------------------------------------------
+func get_project_count() -> int:
+	return _open_projects.size()
+
+# -------------------------------------------------------------------------------------------------
+func is_active_project(project: Project) -> bool:
+	return _active_project == project

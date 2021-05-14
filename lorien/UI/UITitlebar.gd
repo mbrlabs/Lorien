@@ -33,6 +33,14 @@ func remove_tab(project: Project) -> void:
 		_tabs_map.erase(project.id)
 
 # ------------------------------------------------------------------------------------------------
+func update_tab_title(project: Project) -> void:
+	if _tabs_map.has(project.id):
+		var name = project.get_filename()
+		if project.dirty:
+			name += " (*)"
+		_tabs_map[project.id].title = name
+
+# ------------------------------------------------------------------------------------------------
 func set_tab_active(project: Project) -> void:
 	if _tabs_map.has(project.id):
 		var tab: UITab = _tabs_map[project.id]
@@ -58,3 +66,9 @@ func _on_NewFileButton_pressed():
 # -------------------------------------------------------------------------------------------------
 func _on_MenuButton_pressed():
 	get_node(_menu_popup_path).popup()
+
+# -------------------------------------------------------------------------------------------------
+func get_first_project_id() -> int:
+	if _file_tabs_container.get_child_count() == 0:
+		return -1
+	return _file_tabs_container.get_child(0).project_id

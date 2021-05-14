@@ -28,11 +28,7 @@ func _ready():
 	
 	# Create the default project
 	# TODO: once project managament is fully implemented, this should be replaced with last open (at exit) files
-	var default_project: Project = ProjectManager.add_project()
-	ProjectManager.make_project_active(default_project)
-	_canvas.use_project(default_project)
-	_ui_titlebar.make_tab(default_project)
-	_ui_titlebar.set_tab_active(default_project)
+	_create_default_project()
 
 # -------------------------------------------------------------------------------------------------
 func _physics_process(delta):
@@ -42,6 +38,32 @@ func _physics_process(delta):
 	_ui_statusbar.set_brush_position(_canvas.info.current_brush_position)
 	_ui_statusbar.set_camera_zoom(_canvas.get_camera_zoom())
 	_ui_statusbar.set_fps(Engine.get_frames_per_second())
+	
+	# FIXME: i put this here to update dirty tabs; shuld only be called once
+	var active_project: Project = ProjectManager.get_active_project()
+	if active_project != null:
+		_ui_titlebar.update_tab_title(active_project)
+
+# -------------------------------------------------------------------------------------------------
+func _create_default_project() -> void:
+	var default_project: Project = ProjectManager.add_project()
+	ProjectManager.make_project_active(default_project)
+	_canvas.use_project(default_project)
+	_ui_titlebar.make_tab(default_project)
+	_ui_titlebar.set_tab_active(default_project)
+
+# -------------------------------------------------------------------------------------------------
+func _save_project(project: Project) -> void:
+	var cam: Camera2D = _canvas.get_camera()
+	var meta_data = { # FIXME: the parsing code is done in InfiniteCanvas. Not pretty...need to rework this eventually
+		Serializer.METADATA_CAMERA_OFFSET_X: str(cam.offset.x),
+		Serializer.METADATA_CAMERA_OFFSET_Y: str(cam.offset.y),
+		Serializer.METADATA_CAMERA_ZOOM: str(cam.zoom.x),
+		Serializer.CANVAS_COLOR: _canvas.get_background_color().to_html(false),
+	}
+	project.meta_data = meta_data
+	ProjectManager.save_project(project)
+	_ui_titlebar.update_tab_title(project)
 
 # -------------------------------------------------------------------------------------------------
 func _on_create_new_project() -> void:
@@ -60,7 +82,31 @@ func _on_project_selected(project_id: int) -> void:
 
 # -------------------------------------------------------------------------------------------------
 func _on_project_closed(project_id: int) -> void:
-	print_debug("Not implemented yet")
+	var project: Project = ProjectManager.get_project_by_id(project_id)
+	
+	if project.dirty:
+		printerr("Trying close project with unsaved changes. Not possible right now")
+		return
+	
+	# don't remove the default project
+	if ProjectManager.get_project_count() == 1 && project.filepath.empty():
+		return
+	
+	# Remove project
+	ProjectManager.remove_project(project)
+	_ui_titlebar.remove_tab(project)
+	
+	# choose new project
+	if ProjectManager.get_project_count() == 0:
+		_create_default_project()
+	else:
+		# TODO: i should choose the tab closest to the one closed; not just the first/last
+		var new_project_id: int = _ui_titlebar.get_first_project_id()
+		var new_project: Project = ProjectManager.get_project_by_id(new_project_id)
+		
+		ProjectManager.make_project_active(new_project)
+		_ui_titlebar.set_tab_active(new_project)
+		_canvas.use_project(new_project)
 
 # -------------------------------------------------------------------------------------------------
 func _on_brush_color_changed(color: Color) -> void:
@@ -81,6 +127,12 @@ func _on_open_project(filepath: String) -> void:
 		print_debug("Project already open. TODO: redirect to open tab + make that project active.")
 		return
 	
+	# Remove/Replace active project if not changed and unsaved
+	var active_project: Project = ProjectManager.get_active_project()
+	if active_project.filepath.empty() && !active_project.dirty:
+		ProjectManager.remove_project(active_project)
+		_ui_titlebar.remove_tab(active_project)
+	
 	project = ProjectManager.add_project(filepath)
 	ProjectManager.make_project_active(project)
 	_ui_titlebar.make_tab(project)
@@ -91,17 +143,23 @@ func _on_open_project(filepath: String) -> void:
 func _on_save_project() -> void:
 	var active_project: Project = ProjectManager.get_active_project()
 	if active_project.filepath.empty():
-		print_debug("Can't save fresh-new projects right now")
+		_file_dialog.mode = FileDialog.MODE_SAVE_FILE
+		_file_dialog.connect("file_selected", self, "_on_file_selected_to_save_project")
+		_file_dialog.connect("popup_hide", self, "_on_file_dialog_closed")
+		_file_dialog.popup_centered()
 	else:
-		var cam: Camera2D = _canvas.get_camera()
-		var meta_data = { # FIXME: the parsing code is done in InfiniteCanvas. Not pretty...need to rework this eventually
-			Serializer.METADATA_CAMERA_OFFSET_X: str(cam.offset.x),
-			Serializer.METADATA_CAMERA_OFFSET_Y: str(cam.offset.y),
-			Serializer.METADATA_CAMERA_ZOOM: str(cam.zoom.x),
-			Serializer.CANVAS_COLOR: _canvas.get_background_color().to_html(false),
-		}
-		active_project.meta_data = meta_data
-		ProjectManager.save_project(active_project)
+		_save_project(active_project)
+
+# -------------------------------------------------------------------------------------------------
+func _on_file_dialog_closed() -> void:
+	_file_dialog.disconnect("file_selected", self, "_on_file_selected_to_save_project")
+	_file_dialog.disconnect("popup_hide", self, "_on_file_dialog_closed")
+
+# -------------------------------------------------------------------------------------------------
+func _on_file_selected_to_save_project(filepath: String) -> void:
+	var active_project: Project = ProjectManager.get_active_project()
+	active_project.filepath = filepath
+	_save_project(active_project)
 
 # -------------------------------------------------------------------------------------------------
 func _on_canvas_background_changed(color: Color) -> void:

@@ -8,7 +8,12 @@ var strokes: Array # Array<BrushStroke>
 var dirty := false
 var loaded := false
 
+# -------------------------------------------------------------------------------------------------
 func get_filename() -> String:
 	if filepath.empty():
 		return "Untitled"
 	return filepath.get_file()
+
+# -------------------------------------------------------------------------------------------------
+func _to_string() -> String:
+	return "%s: id: %d, loaded: %s, dirty: %s" % [filepath, id, loaded, dirty]

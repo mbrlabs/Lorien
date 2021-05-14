@@ -14,13 +14,19 @@ onready var _filename_button: Button = $HBoxContainer/FilenameButton
 onready var _close_button: TextureButton = $HBoxContainer/CloseButton
 
 var is_active := false
-var title: String
+var title: String setget set_title
 var project_id: int
 
 # -------------------------------------------------------------------------------------------------
 func _ready():
 	set_active(false)
 	_filename_button.text = title
+
+# -------------------------------------------------------------------------------------------------
+func set_title(t: String) -> void:
+	title = t
+	if _filename_button != null:
+		_filename_button.text = title
 
 # -------------------------------------------------------------------------------------------------
 func _on_FilenameButton_pressed():

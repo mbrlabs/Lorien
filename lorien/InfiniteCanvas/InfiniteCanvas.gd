@@ -131,6 +131,7 @@ func end_line() -> void:
 			info.stroke_count += 1
 			info.point_count += _current_line_2d.points.size()
 			_current_project.strokes.append(_current_brush_stroke)
+			_current_project.dirty = true
 			
 			if draw_debug_points:
 				_add_debug_points(_current_line_2d)
