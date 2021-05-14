@@ -1,9 +1,9 @@
 extends Panel
 class_name UIToolbar
 
-signal new_file
-signal open_file(filepath)
-signal save_file(filepath)
+signal new_project
+signal open_project(filepath)
+signal save_project
 signal clear_canvas
 signal undo_action
 signal redo_action
@@ -54,25 +54,17 @@ func _on_RedoButton_pressed(): emit_signal("redo_action")
 func _on_OpenFileButton_pressed():
 	var file_dialog: FileDialog = get_node(file_dialog_path)
 	file_dialog.mode = FileDialog.MODE_OPEN_FILE
-	file_dialog.connect("file_selected", self, "_on_file_selected_to_open")
+	file_dialog.connect("file_selected", self, "_on_project_selected_to_open")
 	file_dialog.connect("popup_hide", self, "_on_file_dialog_closed")
 	file_dialog.popup_centered()
 
 # -------------------------------------------------------------------------------------------------
-func _on_file_selected_to_open(filepath: String) -> void:
-	emit_signal("open_file", filepath)
+func _on_project_selected_to_open(filepath: String) -> void:
+	emit_signal("open_project", filepath)
 
 # -------------------------------------------------------------------------------------------------
 func _on_SaveFileButton_pressed():
-	var file_dialog: FileDialog = get_node(file_dialog_path)
-	file_dialog.mode = FileDialog.MODE_SAVE_FILE
-	file_dialog.connect("file_selected", self, "_on_file_selected_to_save")
-	file_dialog.connect("popup_hide", self, "_on_file_dialog_closed")
-	file_dialog.popup_centered()
-
-# -------------------------------------------------------------------------------------------------
-func _on_file_selected_to_save(filepath: String) -> void:
-	emit_signal("save_file", filepath)
+	emit_signal("save_project")
 
 # -------------------------------------------------------------------------------------------------
 func _on_file_dialog_closed() -> void:

@@ -14,8 +14,8 @@ onready var _filename_button: Button = $HBoxContainer/FilenameButton
 onready var _close_button: TextureButton = $HBoxContainer/CloseButton
 
 var is_active := false
-var title := "Untitled"
-var filepath := ""
+var title: String
+var project_id: int
 
 # -------------------------------------------------------------------------------------------------
 func _ready():

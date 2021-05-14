@@ -24,6 +24,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://InfiniteCanvas/InfiniteCanvas.gd"
 }, {
+"base": "Reference",
+"class": "Project",
+"language": "GDScript",
+"path": "res://ProjectManager/Project.gd"
+}, {
+"base": "Reference",
+"class": "Serializer",
+"language": "GDScript",
+"path": "res://ProjectManager/Serializer.gd"
+}, {
 "base": "Panel",
 "class": "UIStatusbar",
 "language": "GDScript",
@@ -48,6 +58,8 @@ _global_script_class_icons={
 "BrushStroke": "",
 "Config": "",
 "InfiniteCanvas": "",
+"Project": "",
+"Serializer": "",
 "UIStatusbar": "",
 "UITab": "",
 "UITitlebar": "",
@@ -62,8 +74,8 @@ config/icon="res://Assets/icon.png"
 
 [autoload]
 
-LorienIO="*res://Utils/LorienIO.gd"
 Utils="*res://Utils/Utils.gd"
+ProjectManager="*res://ProjectManager/ProjectManager.gd"
 
 [debug]
 

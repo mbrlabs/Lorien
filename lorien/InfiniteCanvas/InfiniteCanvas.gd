@@ -20,8 +20,8 @@ export var pressure_curve: Curve
 export var brush_color := Color("50ffd6")
 export var brush_size := 16 setget set_brush_size
 export var draw_debug_points := false
+var _current_project: Project
 var _current_line_2d: Line2D
-var _brush_strokes := []
 var _current_brush_stroke: BrushStroke
 var info := Info.new()
 var _last_mouse_motion: InputEventMouseMotion
@@ -130,7 +130,7 @@ func end_line() -> void:
 			_current_brush_stroke.apply(_current_line_2d)
 			info.stroke_count += 1
 			info.point_count += _current_line_2d.points.size()
-			_brush_strokes.append(_current_brush_stroke)
+			_current_project.strokes.append(_current_brush_stroke)
 			
 			if draw_debug_points:
 				_add_debug_points(_current_line_2d)
@@ -147,9 +147,16 @@ func _add_debug_points(line2d: Line2D) -> void:
 		s.global_position = p
 
 # -------------------------------------------------------------------------------------------------
-func add_strokes(strokes: Array) -> void:
-	_brush_strokes.append_array(strokes)
-	for stroke in strokes:
+func use_project(project: Project) -> void:
+	# Cleanup old data
+	for l in _line2d_container.get_children():
+		_line2d_container.remove_child(l)
+	info.point_count = 0
+	info.stroke_count = 0
+	
+	# Add new data
+	_current_project = project
+	for stroke in _current_project.strokes:
 		var line := _make_empty_line2d()
 		stroke.apply(line)
 		
@@ -159,21 +166,31 @@ func add_strokes(strokes: Array) -> void:
 
 		info.stroke_count += 1
 		info.point_count += line.points.size()
-
+	
+	# Apply metda data
+	var new_cam_zoom_str: String = project.meta_data.get(Serializer.METADATA_CAMERA_ZOOM, "1.0")
+	var new_cam_offset_x_str: String = project.meta_data.get(Serializer.METADATA_CAMERA_OFFSET_X, "0.0")
+	var new_cam_offset_y_str: String = project.meta_data.get(Serializer.METADATA_CAMERA_OFFSET_Y, "0.0")
+	var new_canvas_color: String = project.meta_data.get(Serializer.CANVAS_COLOR, "575757")
+	
+	_camera.set_zoom_level(float(new_cam_zoom_str))
+	_camera.offset = Vector2(float(new_cam_offset_x_str), float(new_cam_offset_y_str))
+	set_background_color(Color(new_canvas_color))
+	
 # -------------------------------------------------------------------------------------------------
 func undo_last_line() -> void:
-	if _current_line_2d == null && !_brush_strokes.empty():
+	if _current_line_2d == null && !_current_project.strokes.empty():
 		var line = _line2d_container.get_child(_line2d_container.get_child_count()-1)
 		info.stroke_count -= 1
 		info.point_count -= line.points.size()
 		_line2d_container.remove_child(line)
-		_brush_strokes.pop_back()
-
+		_current_project.strokes.pop_back()
 
 # -------------------------------------------------------------------------------------------------
 func set_brush_size(size: int) -> void:
 	brush_size = size
-	_cursor.change_size(size)
+	if _cursor != null:
+		_cursor.change_size(size)
 
 # -------------------------------------------------------------------------------------------------
 func get_camera_zoom() -> float:
@@ -185,5 +202,4 @@ func clear() -> void:
 		_line2d_container.remove_child(l)
 	info.point_count = 0
 	info.stroke_count = 0
-	_brush_strokes.clear()
-
+	_current_project.strokes.clear()

@@ -23,11 +23,12 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-canvas_color = Color( 0.309804, 0.309804, 0.309804, 1 )
+default_canvas_color = Color( 0.341176, 0.341176, 0.341176, 1 )
 
 [node name="InfiniteCanvas" parent="." instance=ExtResource( 2 )]
 margin_left = -0.749146
 margin_right = -0.749146
+brush_size = 10
 
 [node name="UITitlebar" parent="." instance=ExtResource( 4 )]
 _menu_popup_path = NodePath("../UIMenuPopup")
@@ -79,10 +80,10 @@ __meta__ = {
 }
 
 [node name="ColorPicker" type="ColorPicker" parent="BrushColorPickerPopup/PanelContainer"]
-margin_left = 20.0
-margin_top = 20.0
-margin_right = 328.0
-margin_bottom = 458.0
+margin_left = 52.0
+margin_top = 52.0
+margin_right = 360.0
+margin_bottom = 490.0
 edit_alpha = false
 __meta__ = {
 "_edit_use_anchors_": false
@@ -109,10 +110,10 @@ __meta__ = {
 }
 
 [node name="ColorPicker" type="ColorPicker" parent="BackgroundColorPickerPopup/PanelContainer"]
-margin_left = 20.0
-margin_top = 20.0
-margin_right = 330.0
-margin_bottom = 458.0
+margin_left = 52.0
+margin_top = 52.0
+margin_right = 362.0
+margin_bottom = 490.0
 edit_alpha = false
 __meta__ = {
 "_edit_use_anchors_": false
