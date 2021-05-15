@@ -60,9 +60,6 @@ func _physics_process(delta: float) -> void:
 			pressure = pressure_curve.interpolate(pressure)
 			add_point(brush_position, pressure)
 			_last_mouse_motion = null
-		
-#		if Input.is_action_just_pressed("lorien_undo"):
-#			undo_last_line()
 
 # -------------------------------------------------------------------------------------------------
 func _make_empty_line2d() -> Line2D:

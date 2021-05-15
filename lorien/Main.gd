@@ -20,6 +20,7 @@ func _ready():
 	_ui_toolbar.connect("redo_action", self, "_on_redo_action")
 	_ui_toolbar.connect("clear_canvas", self, "_on_clear_canvas")
 	_ui_toolbar.connect("open_project", self, "_on_open_project")
+	_ui_toolbar.connect("new_project", self, "_on_create_new_project")
 	_ui_toolbar.connect("save_project", self, "_on_save_project")
 	_ui_toolbar.connect("brush_color_changed", self, "_on_brush_color_changed")
 	_ui_toolbar.connect("brush_size_changed", self, "_on_brush_size_changed")
@@ -35,6 +36,7 @@ func _ready():
 
 # -------------------------------------------------------------------------------------------------
 func _physics_process(delta):
+	_handle_shortcut_actions()
 	_ui_statusbar.set_stroke_count(_canvas.info.stroke_count)
 	_ui_statusbar.set_point_count(_canvas.info.point_count)
 	_ui_statusbar.set_pressure(_canvas.info.current_pressure)
@@ -46,6 +48,25 @@ func _physics_process(delta):
 	var active_project: Project = ProjectManager.get_active_project()
 	if active_project != null:
 		_ui_titlebar.update_tab_title(active_project)
+
+# -------------------------------------------------------------------------------------------------
+func _handle_shortcut_actions() -> void:
+	if Input.is_action_just_pressed("shortcut_new_project"):
+		_on_create_new_project()
+	if Input.is_action_just_pressed("shortcut_open_project"):
+		_ui_toolbar._on_OpenFileButton_pressed() # FIXME
+	if Input.is_action_just_pressed("shortcut_save_project"):
+		_on_save_project()
+	if Input.is_action_just_pressed("shortcut_undo"):
+		_on_undo_action()
+	if Input.is_action_just_pressed("shortcut_redo"):
+		_on_redo_action()
+	if Input.is_action_just_pressed("shortcut_brush_tool"):
+		print("Brush Tool") # TODO
+	if Input.is_action_just_pressed("shortcut_line_tool"):
+		print("Line Tool!") # TODO
+	if Input.is_action_just_pressed("shortcut_eraser_tool"):
+		print("Eraser Tool!") # TODO
 
 # -------------------------------------------------------------------------------------------------
 func _create_default_project() -> void:
@@ -88,6 +109,7 @@ func _on_project_closed(project_id: int) -> void:
 	var project: Project = ProjectManager.get_project_by_id(project_id)
 	
 	if project.dirty:
+		# TODO
 		printerr("Trying close project with unsaved changes. Not possible right now")
 		return
 	

@@ -45,7 +45,7 @@ func _ready():
 
 # Button clicked callbacks
 # -------------------------------------------------------------------------------------------------
-func _on_NewFileButton_pressed(): emit_signal("new_file")
+func _on_NewFileButton_pressed(): emit_signal("new_project")
 func _on_ClearCanvasButton_pressed(): emit_signal("clear_canvas")
 func _on_UndoButton_pressed(): emit_signal("undo_action")
 func _on_RedoButton_pressed(): emit_signal("redo_action")

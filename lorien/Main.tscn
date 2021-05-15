@@ -45,6 +45,7 @@ anchor_top = 1.0
 anchor_bottom = 1.0
 margin_top = -24.0
 margin_bottom = 0.0
+rect_scale = Vector2( 1, 1.00112 )
 
 [node name="FileDialog" type="FileDialog" parent="."]
 anchor_left = 0.5
@@ -80,10 +81,10 @@ __meta__ = {
 }
 
 [node name="ColorPicker" type="ColorPicker" parent="BrushColorPickerPopup/PanelContainer"]
-margin_left = 64.0
-margin_top = 64.0
-margin_right = 372.0
-margin_bottom = 502.0
+margin_left = 80.0
+margin_top = 80.0
+margin_right = 388.0
+margin_bottom = 518.0
 edit_alpha = false
 __meta__ = {
 "_edit_use_anchors_": false
@@ -110,10 +111,10 @@ __meta__ = {
 }
 
 [node name="ColorPicker" type="ColorPicker" parent="BackgroundColorPickerPopup/PanelContainer"]
-margin_left = 64.0
-margin_top = 64.0
-margin_right = 374.0
-margin_bottom = 502.0
+margin_left = 80.0
+margin_top = 80.0
+margin_right = 390.0
+margin_bottom = 518.0
 edit_alpha = false
 __meta__ = {
 "_edit_use_anchors_": false
