@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://InfiniteCanvas/InfiniteCanvas.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://UI/UITitlebar.tscn" type="PackedScene" id=4]
 [ext_resource path="res://UI/UIMenuPopup.tscn" type="PackedScene" id=5]
 [ext_resource path="res://UI/UIToolbar.tscn" type="PackedScene" id=6]
+[ext_resource path="res://UI/Dialogs/UIDialogUnsavedChanges.tscn" type="PackedScene" id=7]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.207843, 0.211765, 0.227451, 1 )
@@ -62,6 +63,16 @@ current_dir = "/Projects/Other/lorien/lorien"
 current_file = "Lorien"
 current_path = "/Projects/Other/lorien/lorien/Lorien"
 
+[node name="UIDialogUnsavedChanges" parent="." instance=ExtResource( 7 )]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -203.0
+margin_top = -55.0
+margin_right = 203.0
+margin_bottom = 55.0
+
 [node name="BrushColorPickerPopup" type="Popup" parent="."]
 margin_left = 364.0
 margin_top = 77.0
@@ -81,10 +92,10 @@ __meta__ = {
 }
 
 [node name="ColorPicker" type="ColorPicker" parent="BrushColorPickerPopup/PanelContainer"]
-margin_left = 80.0
-margin_top = 80.0
-margin_right = 388.0
-margin_bottom = 518.0
+margin_left = 104.0
+margin_top = 104.0
+margin_right = 412.0
+margin_bottom = 542.0
 edit_alpha = false
 __meta__ = {
 "_edit_use_anchors_": false
@@ -111,10 +122,10 @@ __meta__ = {
 }
 
 [node name="ColorPicker" type="ColorPicker" parent="BackgroundColorPickerPopup/PanelContainer"]
-margin_left = 80.0
-margin_top = 80.0
-margin_right = 390.0
-margin_bottom = 518.0
+margin_left = 104.0
+margin_top = 104.0
+margin_right = 414.0
+margin_bottom = 542.0
 edit_alpha = false
 __meta__ = {
 "_edit_use_anchors_": false
@@ -123,6 +134,17 @@ __meta__ = {
 [node name="UIMenuPopup" parent="." instance=ExtResource( 5 )]
 margin_top = 38.0
 margin_bottom = 238.0
+
+[node name="GenericAlertDialog" type="AcceptDialog" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -41.5
+margin_top = -29.0
+margin_right = 41.5
+margin_bottom = 29.0
+dialog_text = "Generic message. "
 
 [connection signal="mouse_entered" from="InfiniteCanvas" to="." method="_on_InfiniteCanvas_mouse_entered"]
 [connection signal="mouse_exited" from="InfiniteCanvas" to="." method="_on_InfiniteCanvas_mouse_exited"]

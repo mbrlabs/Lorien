@@ -29,7 +29,7 @@ func set_fps(fps: int) -> void:
 	_fps_label.text = "FPS: %d" % Engine.get_frames_per_second()
 
 # -------------------------------------------------------------------------------------------------
-func set_brush_position(pos: Vector2) -> void:
+func set_camera_position(pos: Vector2) -> void:
 	_position_label.text = "Position: %d, %d" % [pos.x, pos.y]
 
 # -------------------------------------------------------------------------------------------------

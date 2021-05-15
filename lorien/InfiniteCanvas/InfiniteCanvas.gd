@@ -9,7 +9,6 @@ class Info:
 	var point_count: int
 	var stroke_count: int
 	var current_pressure: float
-	var current_brush_position: Vector2
 
 # -------------------------------------------------------------------------------------------------
 onready var _line2d_container: Node2D = $Viewport/Strokes
@@ -49,13 +48,8 @@ func _input(event: InputEvent) -> void:
 # -------------------------------------------------------------------------------------------------
 func _physics_process(delta: float) -> void:
 	if _is_enabled:
-		var brush_position: Vector2
-		
-		if _last_mouse_motion != null:
-			brush_position = _camera.xform(_last_mouse_motion.global_position)
-			info.current_brush_position = brush_position
-		
 		if _current_line_2d != null && _last_mouse_motion != null:
+			var brush_position: Vector2 = _camera.xform(_last_mouse_motion.global_position)
 			var pressure = _last_mouse_motion.pressure
 			pressure = pressure_curve.interpolate(pressure)
 			add_point(brush_position, pressure)
@@ -203,6 +197,10 @@ func set_brush_size(size: int) -> void:
 # -------------------------------------------------------------------------------------------------
 func get_camera_zoom() -> float:
 	return _camera.zoom.x
+
+# -------------------------------------------------------------------------------------------------
+func get_camera_offset() -> Vector2:
+	return _camera.offset
 
 # -------------------------------------------------------------------------------------------------
 func clear() -> void:

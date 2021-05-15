@@ -51,6 +51,12 @@ func save_project(project: Project) -> void:
 	project.dirty = false
 
 # -------------------------------------------------------------------------------------------------
+func save_all_projects() -> void:
+	for p in _open_projects:
+		if !p.filepath.empty() && p.loaded && p.dirty:
+			save_project(p)
+
+# -------------------------------------------------------------------------------------------------
 func _load_project(project: Project) -> void:
 	if !project.loaded:
 		Serializer.deserialize(project)
@@ -71,6 +77,20 @@ func get_project_by_id(id: int) -> Project:
 		if p.id == id:
 			return p
 	return null
+
+# -------------------------------------------------------------------------------------------------
+func has_unsaved_changes() -> bool:
+	for p in _open_projects:
+		if p.dirty:
+			return true 
+	return false
+
+# -------------------------------------------------------------------------------------------------
+func has_unsaved_projects() -> bool:
+	for p in _open_projects:
+		if p.dirty && p.filepath.empty():
+			return true
+	return false
 
 # -------------------------------------------------------------------------------------------------
 func get_project_count() -> int:

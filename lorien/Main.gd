@@ -9,9 +9,12 @@ onready var _ui_titlebar: UITitlebar = $UITitlebar
 onready var _ui_toolbar: UIToolbar = $UIToolbar
 
 onready var _file_dialog: FileDialog = $FileDialog
+onready var _ui_dialog_generic_alert: AcceptDialog = $GenericAlertDialog
+onready var _ui_dialog_unsaved_changes: WindowDialog = $UIDialogUnsavedChanges
 
 # -------------------------------------------------------------------------------------------------
 func _ready():
+	get_tree().set_auto_accept_quit(false)
 	_canvas.set_background_color(default_canvas_color)
 	_file_dialog.current_dir = Config.DEFAULT_FILE_DIALOG_PATH
 	
@@ -30,9 +33,22 @@ func _ready():
 	_ui_titlebar.connect("project_selected", self, "_on_project_selected")
 	_ui_titlebar.connect("project_closed", self, "_on_project_closed")
 	
+	_ui_dialog_unsaved_changes.connect("save_changes", self, "_on_exit_with_changes_saved")
+	_ui_dialog_unsaved_changes.connect("discard_changes", self, "_on_exit_with_changes_discarded")
+	_ui_dialog_unsaved_changes.connect("cancel_exit", self, "_on_exit_cancled")
+	
 	# Create the default project
 	# TODO: once project managament is fully implemented, this should be replaced with last open (at exit) files
 	_create_default_project()
+
+# -------------------------------------------------------------------------------------------------
+func _notification(what):
+	if NOTIFICATION_WM_QUIT_REQUEST == what:
+		if !_ui_dialog_unsaved_changes.visible:
+			if ProjectManager.has_unsaved_changes():
+				_ui_dialog_unsaved_changes.popup()
+			else:
+				get_tree().quit()
 
 # -------------------------------------------------------------------------------------------------
 func _physics_process(delta):
@@ -40,7 +56,7 @@ func _physics_process(delta):
 	_ui_statusbar.set_stroke_count(_canvas.info.stroke_count)
 	_ui_statusbar.set_point_count(_canvas.info.point_count)
 	_ui_statusbar.set_pressure(_canvas.info.current_pressure)
-	_ui_statusbar.set_brush_position(_canvas.info.current_brush_position)
+	_ui_statusbar.set_camera_position(_canvas.get_camera_offset())
 	_ui_statusbar.set_camera_zoom(_canvas.get_camera_zoom())
 	_ui_statusbar.set_fps(Engine.get_frames_per_second())
 	
@@ -207,6 +223,23 @@ func _on_redo_action() -> void:
 	var project: Project = ProjectManager.get_active_project()
 	if project.undo_redo.has_redo():
 		project.undo_redo.redo()
+
+# -------------------------------------------------------------------------------------------------
+func _on_exit_with_changes_saved() -> void:
+	if ProjectManager.has_unsaved_projects():
+		_ui_dialog_generic_alert.dialog_text = "Auto-saving not possible for file \"Untitled\".\nPlease save it manually."
+		_ui_dialog_generic_alert.popup_centered()
+	else:
+		ProjectManager.save_all_projects()
+		get_tree().quit()
+
+# -------------------------------------------------------------------------------------------------
+func _on_exit_with_changes_discarded() -> void:
+	get_tree().quit()
+	
+# -------------------------------------------------------------------------------------------------
+func _on_exit_cancled() -> void:
+	_ui_dialog_unsaved_changes.hide()
 
 # -------------------------------------------------------------------------------------------------
 func _on_InfiniteCanvas_mouse_entered():

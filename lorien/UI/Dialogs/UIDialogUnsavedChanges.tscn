@@ -1,0 +1,68 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Assets/Fonts/font_12.tres" type="DynamicFont" id=1]
+[ext_resource path="res://UI/Dialogs/UIDialogUnsavedChanges.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Fonts/font_14b.tres" type="DynamicFont" id=3]
+
+[node name="UIDialogUnsavedChanges" type="WindowDialog"]
+margin_right = 406.0
+margin_bottom = 110.0
+custom_fonts/title_font = ExtResource( 3 )
+window_title = "Save changes?"
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -41.4898
+margin_bottom = -11.4898
+custom_constants/separation = 20
+alignment = 1
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="SaveButton" type="Button" parent="HBoxContainer"]
+margin_left = 109.0
+margin_right = 150.0
+margin_bottom = 30.0
+custom_fonts/font = ExtResource( 1 )
+text = "Save"
+
+[node name="DiscardButton" type="Button" parent="HBoxContainer"]
+margin_left = 170.0
+margin_right = 225.0
+margin_bottom = 30.0
+custom_fonts/font = ExtResource( 1 )
+text = "Discard"
+
+[node name="CancelButton" type="Button" parent="HBoxContainer"]
+margin_left = 245.0
+margin_right = 297.0
+margin_bottom = 30.0
+custom_fonts/font = ExtResource( 1 )
+text = "Cancel"
+
+[node name="Label" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -186.5
+margin_right = 186.5
+margin_bottom = 70.0
+custom_fonts/font = ExtResource( 1 )
+text = "There are unsaved changes. Do you want to keep them before exiting Lorien?"
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="HBoxContainer/SaveButton" to="." method="_on_SaveButton_pressed"]
+[connection signal="pressed" from="HBoxContainer/DiscardButton" to="." method="_on_DiscardButton_pressed"]
+[connection signal="pressed" from="HBoxContainer/CancelButton" to="." method="_on_CancelButton_pressed"]
