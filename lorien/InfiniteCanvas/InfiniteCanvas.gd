@@ -61,8 +61,8 @@ func _physics_process(delta: float) -> void:
 			add_point(brush_position, pressure)
 			_last_mouse_motion = null
 		
-		if Input.is_action_just_pressed("lorien_undo"):
-			undo_last_line()
+#		if Input.is_action_just_pressed("lorien_undo"):
+#			undo_last_line()
 
 # -------------------------------------------------------------------------------------------------
 func _make_empty_line2d() -> Line2D:
@@ -104,7 +104,7 @@ func disable() -> void:
 	_is_enabled = false
 
 # -------------------------------------------------------------------------------------------------
-func start_new_line() -> void:
+func start_new_line() -> void:	
 	_current_line_2d = _make_empty_line2d()
 	_current_line_2d.width = brush_size
 	_current_line_2d.default_color = brush_color
@@ -125,16 +125,26 @@ func end_line() -> void:
 		if _current_line_2d.points.empty():
 			_line2d_container.call_deferred("remove_child", _current_line_2d)
 		else:
-			print("%d; removed: %d" % [_current_brush_stroke.points.size(), _current_brush_stroke.points_removed_during_optimize])
+			print("Stroke points: %d (%d removed by optimizer)" % [
+				_current_brush_stroke.points.size(), 
+				_current_brush_stroke.points_removed_during_optimize
+			])
 			
-			_current_brush_stroke.apply(_current_line_2d)
-			info.stroke_count += 1
-			info.point_count += _current_line_2d.points.size()
-			_current_project.strokes.append(_current_brush_stroke)
-			_current_project.dirty = true
+			# Remove the line temporallaly from the node tree, so the adding is registered in the undo-redo histrory below
+			_line2d_container.remove_child(_current_line_2d)
 			
+			_current_project.undo_redo.create_action("Stroke")
+			_current_project.undo_redo.add_undo_method(self, "undo_last_stroke")
+			_current_project.undo_redo.add_undo_reference(_current_line_2d) # TODO: not sure about that...
+			_current_project.undo_redo.add_do_method(_line2d_container, "add_child", _current_line_2d)
+			_current_project.undo_redo.add_do_method(_current_brush_stroke, "apply", _current_line_2d)
+			_current_project.undo_redo.add_do_property(info, "stroke_count", info.stroke_count + 1)
+			_current_project.undo_redo.add_do_property(info, "point_count", info.point_count + _current_line_2d.points.size())
+			_current_project.undo_redo.add_do_method(_current_project, "add_stroke", _current_brush_stroke)
 			if draw_debug_points:
-				_add_debug_points(_current_line_2d)
+				_current_project.undo_redo.add_do_method(self, "_add_debug_points", _current_line_2d)
+			_current_project.undo_redo.commit_action()
+			
 		_current_line_2d = null
 		_current_brush_stroke = null
 
@@ -179,7 +189,7 @@ func use_project(project: Project) -> void:
 	set_background_color(Color(new_canvas_color))
 	
 # -------------------------------------------------------------------------------------------------
-func undo_last_line() -> void:
+func undo_last_stroke() -> void:
 	if _current_line_2d == null && !_current_project.strokes.empty():
 		var line = _line2d_container.get_child(_line2d_container.get_child_count()-1)
 		info.stroke_count -= 1

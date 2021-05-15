@@ -20,14 +20,14 @@ func get_active_project() -> Project:
 
 # -------------------------------------------------------------------------------------------------
 func remove_project(project: Project) -> void:
-	if project == _active_project:
-		_active_project = null
-	
-	project.strokes.clear()
-		
 	var index := _open_projects.find(project)
 	if index >= 0:
 		_open_projects.remove(index)
+	
+	if project == _active_project:
+		_active_project = null
+	
+	project.clear()
 
 # -------------------------------------------------------------------------------------------------
 func add_project(filepath: String = "") -> Project:

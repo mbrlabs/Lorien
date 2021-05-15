@@ -16,12 +16,15 @@ func _ready():
 	_file_dialog.current_dir = Config.DEFAULT_FILE_DIALOG_PATH
 	
 	# UI Signals
+	_ui_toolbar.connect("undo_action", self, "_on_undo_action")
+	_ui_toolbar.connect("redo_action", self, "_on_redo_action")
 	_ui_toolbar.connect("clear_canvas", self, "_on_clear_canvas")
 	_ui_toolbar.connect("open_project", self, "_on_open_project")
 	_ui_toolbar.connect("save_project", self, "_on_save_project")
 	_ui_toolbar.connect("brush_color_changed", self, "_on_brush_color_changed")
 	_ui_toolbar.connect("brush_size_changed", self, "_on_brush_size_changed")
 	_ui_toolbar.connect("canvas_background_changed", self, "_on_canvas_background_changed")
+	
 	_ui_titlebar.connect("create_new_project", self, "_on_create_new_project")
 	_ui_titlebar.connect("project_selected", self, "_on_project_selected")
 	_ui_titlebar.connect("project_closed", self, "_on_project_closed")
@@ -170,7 +173,19 @@ func _on_file_selected_to_save_project(filepath: String) -> void:
 # -------------------------------------------------------------------------------------------------
 func _on_canvas_background_changed(color: Color) -> void:
 	_canvas.set_background_color(color)
-	 
+
+# -------------------------------------------------------------------------------------------------
+func _on_undo_action() -> void:
+	var project: Project = ProjectManager.get_active_project()
+	if project.undo_redo.has_undo():
+		project.undo_redo.undo()
+		
+# -------------------------------------------------------------------------------------------------
+func _on_redo_action() -> void:
+	var project: Project = ProjectManager.get_active_project()
+	if project.undo_redo.has_redo():
+		project.undo_redo.redo()
+
 # -------------------------------------------------------------------------------------------------
 func _on_InfiniteCanvas_mouse_entered():
 	_canvas.enable()
