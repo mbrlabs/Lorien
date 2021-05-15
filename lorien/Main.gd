@@ -123,16 +123,22 @@ func _on_clear_canvas() -> void:
 # -------------------------------------------------------------------------------------------------
 func _on_open_project(filepath: String) -> void:
 	var project: Project = ProjectManager.get_open_project_by_filepath(filepath)
+	var active_project: Project = ProjectManager.get_active_project()
+	
+	# Project already open. Just switch to tab
 	if project != null:
-		print_debug("Project already open. TODO: redirect to open tab + make that project active.")
+		if project != active_project:
+			ProjectManager.make_project_active(project)
+			_ui_titlebar.set_tab_active(project)
+			_canvas.use_project(project)
 		return
 	
-	# Remove/Replace active project if not changed and unsaved
-	var active_project: Project = ProjectManager.get_active_project()
+	# Remove/Replace active project if not changed and unsaved (default project)
 	if active_project.filepath.empty() && !active_project.dirty:
 		ProjectManager.remove_project(active_project)
 		_ui_titlebar.remove_tab(active_project)
 	
+	# Create and open it
 	project = ProjectManager.add_project(filepath)
 	ProjectManager.make_project_active(project)
 	_ui_titlebar.make_tab(project)
