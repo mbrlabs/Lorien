@@ -92,10 +92,10 @@ __meta__ = {
 }
 
 [node name="ColorPicker" type="ColorPicker" parent="BrushColorPickerPopup/PanelContainer"]
-margin_left = 104.0
-margin_top = 104.0
-margin_right = 412.0
-margin_bottom = 542.0
+margin_left = 108.0
+margin_top = 108.0
+margin_right = 416.0
+margin_bottom = 546.0
 edit_alpha = false
 __meta__ = {
 "_edit_use_anchors_": false
@@ -122,10 +122,10 @@ __meta__ = {
 }
 
 [node name="ColorPicker" type="ColorPicker" parent="BackgroundColorPickerPopup/PanelContainer"]
-margin_left = 104.0
-margin_top = 104.0
-margin_right = 414.0
-margin_bottom = 542.0
+margin_left = 108.0
+margin_top = 108.0
+margin_right = 418.0
+margin_bottom = 546.0
 edit_alpha = false
 __meta__ = {
 "_edit_use_anchors_": false

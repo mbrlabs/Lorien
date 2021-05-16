@@ -1,30 +1,29 @@
-# jabol
-Just a bunch of lines
+# Lorien
 
-## What this is
+<p align="center">
+   <img src="https://drive.google.com/uc?export=view&id=1AVoLY9TvRsh80JYYIPMBSwAMQua8L1qG" width="300" alt="Lorien Logo">
+</p>
 
-This is NOT supposed to be an Art Tool. While it can be used as such it's main focus is digital note taking. It's designed to be fast and easy to use while also keeping the savefiles VERY small. To do this Jabol is not saving individual pixels (like Photoshop, Gimp, Krita, etc.) but lines represened by points in 2D space. Think of it like a lightweight SVG editor. These points form lines wich can then be rendered at runtime. Every stroke you make is one line. Lines will can be saved as text in a text file (good for Git etc. but bigger files) or as binary. Every point has additionally a width associated with it, so we can have pressure sensitive input from drawing tablets. Every line has additionally a color associated with it. 
+## Infinite canvas "drawing" app
+
+Lorien is an **infinite canvas drawing/note-taking app that is focused on performance, small savefiles and simplicity**. It's not based on bitmap images like Krita, Gimp or Photoshop; it rather saves brush strokes as a collection of points and renders the image at runtime (kind of like SVG). It's primarily desinged to be used as a digital notebook and as brainstorming tool. While it can totally be used to make small sketches, it is not meant to replace traditional art programs that operate on bitmap images. It is entirely written in the [Godot Game Engine](https://godotengine.org/). For an overview on how to use Lorien have a look [here](docs/manual.md). 
+
+**This is very much a WIP and still a bit rough around the edges**. The savefile format *might* also change in the future (see [Roadmap](docs/roadmap.md)). Contributions (be it bug reports, code or art) are very welcome; have a look at the [Contributing guide](docs/contributing.md).
+
+![Lorien demo](https://drive.google.com/uc?export=view&id=18m6AY4cgUUWbiGm7mdg6a71oNTvLi2df)
 
 ## Features
 - Infinite canvas
-- Color chooser
-- Color picker
-- Zoom/Pan
-- Undo/redo
-- Save as text file line-by-line or as binary. Both have a *.jabol extension.
-- 
+- Infinite undo/redo
+- (Almost) Infinite zoom
+- High performance
+- Extremly small savefiles ([File format specs](docs/file_format.md))
+- Work on multiple documents simultaneously
+- Tools: Freehand brush, line brush, eraser, color picker
+- Support for pressure sensitivity & drawing tablets (Wacom, etc.)
+- Runs on Windows, Linux & Mac
 
-
-## Binary file format
-Data is stored as a list of strokes. Strokes have a brush color, a brush size and a number points. Points have x and y value and a pressure value.
-Strokes look like this:
-
-0-8		color.r (8 bit)
-8-16	color.g (8 bit)
-16-24	color.b (8 bit)
-24-50 	brush size (16 bit)
-50-82   number of points (32 bit)
-82-..	points (80 bit each)
-	0-32	x position (32 bit)
-	32-64 	y position (32 bit)
-	64-80	pen pressure (16 bit)
+## Non-Features
+- Opacity
+- Layers (can maybe be added later)
+- Multiple brushes
