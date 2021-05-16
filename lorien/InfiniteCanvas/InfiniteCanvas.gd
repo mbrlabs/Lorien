@@ -17,7 +17,7 @@ onready var _cursor: Node2D = $Viewport/BrushCursor
 
 export var pressure_curve: Curve
 export var brush_color := Color("50ffd6")
-export var brush_size := 16 setget set_brush_size
+export var brush_size := Config.DEFAULT_BRUSH_SIZE setget set_brush_size
 export var draw_debug_points := false
 var _current_project: Project
 var _current_line_2d: Line2D
