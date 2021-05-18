@@ -12,3 +12,5 @@ script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[connection signal="index_pressed" from="." to="." method="_on_UIMenuPopup_index_pressed"]

@@ -28,6 +28,7 @@ func _ready():
 	_ui_toolbar.connect("brush_color_changed", self, "_on_brush_color_changed")
 	_ui_toolbar.connect("brush_size_changed", self, "_on_brush_size_changed")
 	_ui_toolbar.connect("canvas_background_changed", self, "_on_canvas_background_changed")
+	_ui_toolbar.connect("tool_changed", self, "_on_tool_changed")
 	
 	_ui_titlebar.connect("create_new_project", self, "_on_create_new_project")
 	_ui_titlebar.connect("project_selected", self, "_on_project_selected")
@@ -223,6 +224,10 @@ func _on_redo_action() -> void:
 	var project: Project = ProjectManager.get_active_project()
 	if project.undo_redo.has_redo():
 		project.undo_redo.redo()
+
+# -------------------------------------------------------------------------------------------------
+func _on_tool_changed(t: int) -> void:
+	printerr("Tool changing not implemented yet")
 
 # -------------------------------------------------------------------------------------------------
 func _on_exit_with_changes_saved() -> void:

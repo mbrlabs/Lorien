@@ -69,7 +69,8 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 texture_normal = ExtResource( 4 )
 script = ExtResource( 13 )
-hover_tint = Color( 0.313726, 1, 0.839216, 1 )
+hover_tint = Color( 0.615686, 1, 0.913725, 1 )
+pressed_tint = Color( 0.313726, 1, 0.839216, 1 )
 
 [node name="OpenFileButton" type="TextureButton" parent="Left"]
 margin_left = 46.0
@@ -81,7 +82,8 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 texture_normal = ExtResource( 2 )
 script = ExtResource( 13 )
-hover_tint = Color( 0.313726, 1, 0.839216, 1 )
+hover_tint = Color( 0.615686, 1, 0.913725, 1 )
+pressed_tint = Color( 0.313726, 1, 0.839216, 1 )
 
 [node name="SaveFileButton" type="TextureButton" parent="Left"]
 margin_left = 76.0
@@ -93,7 +95,8 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 texture_normal = ExtResource( 1 )
 script = ExtResource( 13 )
-hover_tint = Color( 0.313726, 1, 0.839216, 1 )
+hover_tint = Color( 0.615686, 1, 0.913725, 1 )
+pressed_tint = Color( 0.313726, 1, 0.839216, 1 )
 
 [node name="ClearCanvasButton" type="TextureButton" parent="Left"]
 margin_left = 106.0
@@ -105,7 +108,8 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 texture_normal = ExtResource( 5 )
 script = ExtResource( 13 )
-hover_tint = Color( 0.313726, 1, 0.839216, 1 )
+hover_tint = Color( 0.615686, 1, 0.913725, 1 )
+pressed_tint = Color( 0.313726, 1, 0.839216, 1 )
 
 [node name="VSeparator2" type="VSeparator" parent="Left"]
 margin_left = 136.0
@@ -126,7 +130,8 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 texture_normal = ExtResource( 7 )
 script = ExtResource( 13 )
-hover_tint = Color( 0.313726, 1, 0.839216, 1 )
+hover_tint = Color( 0.615686, 1, 0.913725, 1 )
+pressed_tint = Color( 0.313726, 1, 0.839216, 1 )
 
 [node name="RedoButton" type="TextureButton" parent="Left"]
 margin_left = 182.0
@@ -138,7 +143,8 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 texture_normal = ExtResource( 6 )
 script = ExtResource( 13 )
-hover_tint = Color( 0.313726, 1, 0.839216, 1 )
+hover_tint = Color( 0.615686, 1, 0.913725, 1 )
+pressed_tint = Color( 0.313726, 1, 0.839216, 1 )
 
 [node name="VSeparator3" type="VSeparator" parent="Left"]
 margin_left = 212.0
@@ -149,7 +155,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="BrushButton" type="TextureButton" parent="Left"]
+[node name="BrushToolButton" type="TextureButton" parent="Left"]
 margin_left = 228.0
 margin_top = 11.0
 margin_right = 246.0
@@ -157,11 +163,14 @@ margin_bottom = 29.0
 hint_tooltip = "Brush Tool (B)"
 size_flags_horizontal = 4
 size_flags_vertical = 4
+toggle_mode = true
+pressed = true
 texture_normal = ExtResource( 8 )
 script = ExtResource( 13 )
-hover_tint = Color( 0.313726, 1, 0.839216, 1 )
+hover_tint = Color( 0.615686, 1, 0.913725, 1 )
+pressed_tint = Color( 0.313726, 1, 0.839216, 1 )
 
-[node name="LineButton" type="TextureButton" parent="Left"]
+[node name="LineToolButton" type="TextureButton" parent="Left"]
 margin_left = 258.0
 margin_top = 12.0
 margin_right = 274.0
@@ -169,11 +178,13 @@ margin_bottom = 28.0
 hint_tooltip = "Line Tool (L)"
 size_flags_horizontal = 4
 size_flags_vertical = 4
+toggle_mode = true
 texture_normal = ExtResource( 11 )
 script = ExtResource( 13 )
-hover_tint = Color( 0.313726, 1, 0.839216, 1 )
+hover_tint = Color( 0.615686, 1, 0.913725, 1 )
+pressed_tint = Color( 0.313726, 1, 0.839216, 1 )
 
-[node name="EraserButton" type="TextureButton" parent="Left"]
+[node name="EraserToolButton" type="TextureButton" parent="Left"]
 margin_left = 286.0
 margin_top = 11.0
 margin_right = 304.0
@@ -181,11 +192,13 @@ margin_bottom = 29.0
 hint_tooltip = "Eraser (E)"
 size_flags_horizontal = 4
 size_flags_vertical = 4
+toggle_mode = true
 texture_normal = ExtResource( 9 )
 script = ExtResource( 13 )
-hover_tint = Color( 0.313726, 1, 0.839216, 1 )
+hover_tint = Color( 0.615686, 1, 0.913725, 1 )
+pressed_tint = Color( 0.313726, 1, 0.839216, 1 )
 
-[node name="ColorPickerButton" type="TextureButton" parent="Left"]
+[node name="ColorPickerToolButton" type="TextureButton" parent="Left"]
 margin_left = 316.0
 margin_top = 11.0
 margin_right = 334.0
@@ -193,9 +206,11 @@ margin_bottom = 29.0
 hint_tooltip = "Color Picker"
 size_flags_horizontal = 4
 size_flags_vertical = 4
+toggle_mode = true
 texture_normal = ExtResource( 10 )
 script = ExtResource( 13 )
-hover_tint = Color( 0.313726, 1, 0.839216, 1 )
+hover_tint = Color( 0.615686, 1, 0.913725, 1 )
+pressed_tint = Color( 0.313726, 1, 0.839216, 1 )
 
 [node name="VSeparator4" type="VSeparator" parent="Left"]
 margin_left = 346.0
@@ -270,7 +285,8 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 texture_normal = ExtResource( 12 )
 script = ExtResource( 13 )
-hover_tint = Color( 0.313726, 1, 0.839216, 1 )
+hover_tint = Color( 0.615686, 1, 0.913725, 1 )
+pressed_tint = Color( 0.313726, 1, 0.839216, 1 )
 
 [node name="GridButton" type="TextureButton" parent="Right"]
 margin_left = 28.0
@@ -280,9 +296,11 @@ margin_bottom = 28.0
 hint_tooltip = "Toogle Grid"
 size_flags_horizontal = 4
 size_flags_vertical = 4
+toggle_mode = true
 texture_normal = ExtResource( 15 )
 script = ExtResource( 13 )
-hover_tint = Color( 0.313726, 1, 0.839216, 1 )
+hover_tint = Color( 0.615686, 1, 0.913725, 1 )
+pressed_tint = Color( 0.313726, 1, 0.839216, 1 )
 
 [node name="VSeparator" type="VSeparator" parent="Right"]
 margin_left = 56.0
@@ -296,6 +314,10 @@ custom_styles/separator = SubResource( 2 )
 [connection signal="pressed" from="Left/ClearCanvasButton" to="." method="_on_ClearCanvasButton_pressed"]
 [connection signal="pressed" from="Left/UndoButton" to="." method="_on_UndoButton_pressed"]
 [connection signal="pressed" from="Left/RedoButton" to="." method="_on_RedoButton_pressed"]
+[connection signal="pressed" from="Left/BrushToolButton" to="." method="_on_BrushToolButton_pressed"]
+[connection signal="pressed" from="Left/LineToolButton" to="." method="_on_LineToolButton_pressed"]
+[connection signal="pressed" from="Left/EraserToolButton" to="." method="_on_EraserToolButton_pressed"]
+[connection signal="pressed" from="Left/ColorPickerToolButton" to="." method="_on_ColorPickerToolButton_pressed"]
 [connection signal="pressed" from="Left/ColorButton" to="." method="_on_ColorButton_pressed"]
 [connection signal="value_changed" from="Left/BrushSizeSlider" to="." method="_on_BrushSizeSlider_value_changed"]
 [connection signal="pressed" from="Right/BackgroundColorButton" to="." method="_on_BackgroundColorButton_pressed"]

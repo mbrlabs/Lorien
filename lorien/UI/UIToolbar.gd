@@ -10,11 +10,19 @@ signal redo_action
 signal brush_color_changed(color)
 signal brush_size_changed(size)
 signal canvas_background_changed(color)
+signal tool_changed(t)
 
 # -------------------------------------------------------------------------------------------------
 const BUTTON_HOVER_COLOR = Color("50ffd6")
 const BUTTON_CLICK_COLOR = Color("50ffd6")
 const BUTTON_NORMAL_COLOR = Color.white
+
+enum Tool {
+	BRUSH,
+	LINE,
+	ERASER,
+	COLOR_PICKER
+}
 
 # -------------------------------------------------------------------------------------------------
 export var file_dialog_path: NodePath
@@ -34,6 +42,12 @@ onready var _brush_color_picker: ColorPicker = get_node(brush_color_picker_path)
 onready var _brush_color_picker_popup: Popup = get_node(brush_color_picker_path).get_parent().get_parent() # meh...
 onready var _background_color_picker: ColorPicker = get_node(background_color_picker_path)
 onready var _background_color_picker_popup: Popup = get_node(background_color_picker_path).get_parent().get_parent() # meh...
+onready var _tool_btn_brush: TextureButton = $Left/BrushToolButton
+onready var _tool_btn_line: TextureButton = $Left/LineToolButton
+onready var _tool_btn_eraser: TextureButton = $Left/EraserToolButton
+onready var _tool_btn_colorpicker: TextureButton = $Left/ColorPickerToolButton
+
+var _last_active_tool_button: TextureButton
 
 # -------------------------------------------------------------------------------------------------
 func _ready():
@@ -41,6 +55,7 @@ func _ready():
 	_background_color_picker.connect("color_changed", self, "_on_background_color_changed")
 	_brush_size_label.text = str(Config.DEFAULT_BRUSH_SIZE)
 	_brush_size_slider.value = Config.DEFAULT_BRUSH_SIZE
+	_last_active_tool_button = _tool_btn_brush
 	_on_brush_color_changed(Config.DEFAULT_BRUSH_COLOR)
 
 # Button clicked callbacks
@@ -102,4 +117,31 @@ func _on_BackgroundColorButton_pressed():
 
 # -------------------------------------------------------------------------------------------------
 func _on_GridButton_pressed():
-	pass # Replace with function body.
+	printerr("Grid view not implemented yet")
+
+# -------------------------------------------------------------------------------------------------
+func _on_BrushToolButton_pressed():
+	_change_active_tool_button(_tool_btn_brush)
+	emit_signal("tool_changed", Tool.BRUSH)
+
+# -------------------------------------------------------------------------------------------------
+func _on_LineToolButton_pressed():
+	_change_active_tool_button(_tool_btn_line)
+	emit_signal("tool_changed", Tool.LINE)
+
+# -------------------------------------------------------------------------------------------------
+func _on_EraserToolButton_pressed():
+	_change_active_tool_button(_tool_btn_eraser)
+	emit_signal("tool_changed", Tool.ERASER)
+
+# -------------------------------------------------------------------------------------------------
+func _on_ColorPickerToolButton_pressed():
+	_change_active_tool_button(_tool_btn_colorpicker)
+	emit_signal("tool_changed", Tool.COLOR_PICKER)
+
+# -------------------------------------------------------------------------------------------------
+func _change_active_tool_button(btn: TextureButton) -> void:
+	if _last_active_tool_button != null:
+		_last_active_tool_button.untoggle()
+	_last_active_tool_button = btn
+	

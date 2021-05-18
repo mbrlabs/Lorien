@@ -40,7 +40,7 @@ func optimize() -> void:
 		
 		# Distance between 2 points must be greater than x
 		var distance = prev_point.distance_to(point)
-		var distance_cond = distance > 1.0
+		var distance_cond = distance > 1.0 # TODO: make dependent on zoom level
 	
 		# Angle between points must be beigger than x deg
 		var angle := rad2deg(prev_point.angle_to_point(point))
