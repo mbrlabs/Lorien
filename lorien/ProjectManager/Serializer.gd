@@ -4,7 +4,7 @@ class_name Serializer
 const COMPRESSION_METHOD = File.COMPRESSION_DEFLATE
 const POINT_ELEM_SIZE := 3
 
-const VERSION_NUMBER := 1
+const VERSION_NUMBER := 0
 const METADATA_CAMERA_ZOOM = "camera_zoom"
 const METADATA_CAMERA_OFFSET_X := "camera_offset_x"
 const METADATA_CAMERA_OFFSET_Y := "camera_offset_y"
@@ -81,10 +81,7 @@ static func deserialize(project: Project) -> void:
 		brush_stroke.color = Color(r/255.0, g/255.0, b/255.0, 1.0)
 		
 		# brush size
-		if version_number == 0:
-			brush_stroke.size = file.get_8()
-		else:
-			brush_stroke.size = file.get_16()
+		brush_stroke.size = file.get_16()
 			
 		# number of points
 		var point_count := file.get_16()

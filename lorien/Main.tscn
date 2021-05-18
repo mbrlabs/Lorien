@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://InfiniteCanvas/InfiniteCanvas.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://UI/UIMenuPopup.tscn" type="PackedScene" id=5]
 [ext_resource path="res://UI/UIToolbar.tscn" type="PackedScene" id=6]
 [ext_resource path="res://UI/Dialogs/UIDialogUnsavedChanges.tscn" type="PackedScene" id=7]
+[ext_resource path="res://UI/Themes/theme_dark.tres" type="Theme" id=8]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.207843, 0.211765, 0.227451, 1 )
@@ -27,8 +28,10 @@ __meta__ = {
 default_canvas_color = Color( 0.341176, 0.341176, 0.341176, 1 )
 
 [node name="InfiniteCanvas" parent="." instance=ExtResource( 2 )]
-margin_left = -0.749146
-margin_right = -0.749146
+margin_left = -1.19458
+margin_top = -0.667419
+margin_right = -1.19458
+margin_bottom = -0.66748
 
 [node name="UITitlebar" parent="." instance=ExtResource( 4 )]
 _menu_popup_path = NodePath("../UIMenuPopup")
@@ -56,6 +59,7 @@ margin_left = -385.0
 margin_top = -216.5
 margin_right = 385.0
 margin_bottom = 216.5
+theme = ExtResource( 8 )
 access = 2
 filters = PoolStringArray( "*.lorien" )
 current_dir = "/Projects/Other/lorien/lorien"
@@ -71,6 +75,7 @@ margin_left = -203.0
 margin_top = -55.0
 margin_right = 203.0
 margin_bottom = 55.0
+theme = ExtResource( 8 )
 
 [node name="BrushColorPickerPopup" type="Popup" parent="."]
 margin_left = 364.0
@@ -91,10 +96,10 @@ __meta__ = {
 }
 
 [node name="ColorPicker" type="ColorPicker" parent="BrushColorPickerPopup/PanelContainer"]
-margin_left = 124.0
-margin_top = 124.0
-margin_right = 432.0
-margin_bottom = 562.0
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 316.0
+margin_bottom = 446.0
 edit_alpha = false
 __meta__ = {
 "_edit_use_anchors_": false
@@ -121,10 +126,10 @@ __meta__ = {
 }
 
 [node name="ColorPicker" type="ColorPicker" parent="BackgroundColorPickerPopup/PanelContainer"]
-margin_left = 124.0
-margin_top = 124.0
-margin_right = 434.0
-margin_bottom = 562.0
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 318.0
+margin_bottom = 446.0
 edit_alpha = false
 __meta__ = {
 "_edit_use_anchors_": false
@@ -143,6 +148,7 @@ margin_left = -41.5
 margin_top = -29.0
 margin_right = 41.5
 margin_bottom = 29.0
+theme = ExtResource( 8 )
 dialog_text = "Generic message. "
 
 [connection signal="mouse_entered" from="InfiniteCanvas" to="." method="_on_InfiniteCanvas_mouse_entered"]

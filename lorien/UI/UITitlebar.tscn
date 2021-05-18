@@ -1,9 +1,14 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://UI/Themes/theme_dark.tres" type="Theme" id=1]
 [ext_resource path="res://UI/UITitlebar.gd" type="Script" id=2]
 [ext_resource path="res://Assets/Icons/menu_white.png" type="Texture" id=3]
 [ext_resource path="res://UI/Components/UIFlatTextureButton.gd" type="Script" id=4]
+[ext_resource path="res://Assets/Fonts/font_14.tres" type="DynamicFont" id=5]
+
+[sub_resource type="StyleBoxEmpty" id=2]
+
+[sub_resource type="StyleBoxEmpty" id=1]
 
 [node name="UITitlebar" type="Panel"]
 anchor_right = 1.0
@@ -30,6 +35,7 @@ margin_right = 12.0
 margin_bottom = 38.0
 mouse_filter = 2
 size_flags_horizontal = 4
+custom_styles/separator = SubResource( 2 )
 custom_constants/separation = 12
 
 [node name="MenuButton" type="TextureButton" parent="Left"]
@@ -51,6 +57,7 @@ margin_right = 50.0
 margin_bottom = 38.0
 mouse_filter = 2
 size_flags_horizontal = 4
+custom_styles/separator = SubResource( 1 )
 custom_constants/separation = 12
 
 [node name="Tabs" type="HBoxContainer" parent="Left"]
@@ -65,11 +72,12 @@ __meta__ = {
 
 [node name="NewFileButton" type="Button" parent="Left"]
 margin_left = 108.0
-margin_top = 8.0
+margin_top = 12.0
 margin_right = 129.0
 margin_bottom = 38.0
 size_flags_horizontal = 4
 size_flags_vertical = 8
+custom_fonts/font = ExtResource( 5 )
 text = "+"
 flat = true
 
