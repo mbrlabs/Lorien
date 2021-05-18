@@ -238,6 +238,7 @@ custom_fonts/font = ExtResource( 14 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
 custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
+action_mode = 0
 text = "ff0000"
 __meta__ = {
 "_edit_group_": true
@@ -283,6 +284,7 @@ margin_bottom = 28.0
 hint_tooltip = "Canvas color"
 size_flags_horizontal = 4
 size_flags_vertical = 4
+action_mode = 0
 texture_normal = ExtResource( 12 )
 script = ExtResource( 13 )
 hover_tint = Color( 0.615686, 1, 0.913725, 1 )

@@ -47,7 +47,7 @@ func _notification(what):
 	if NOTIFICATION_WM_QUIT_REQUEST == what:
 		if !_ui_dialog_unsaved_changes.visible:
 			if ProjectManager.has_unsaved_changes():
-				_ui_dialog_unsaved_changes.popup()
+				_ui_dialog_unsaved_changes.call_deferred("popup")
 			else:
 				get_tree().quit()
 
@@ -71,7 +71,7 @@ func _handle_shortcut_actions() -> void:
 	if Input.is_action_just_pressed("shortcut_new_project"):
 		_on_create_new_project()
 	if Input.is_action_just_pressed("shortcut_open_project"):
-		_ui_toolbar._on_OpenFileButton_pressed() # FIXME
+		_ui_toolbar._on_OpenFileButton_pressed() # FIXME that's pretty ugly
 	if Input.is_action_just_pressed("shortcut_save_project"):
 		_on_save_project()
 	if Input.is_action_just_pressed("shortcut_undo"):
@@ -79,11 +79,13 @@ func _handle_shortcut_actions() -> void:
 	if Input.is_action_just_pressed("shortcut_redo"):
 		_on_redo_action()
 	if Input.is_action_just_pressed("shortcut_brush_tool"):
-		print("Brush Tool") # TODO
+		_ui_toolbar.enable_tool(UIToolbar.Tool.BRUSH)
 	if Input.is_action_just_pressed("shortcut_line_tool"):
-		print("Line Tool!") # TODO
+		_ui_toolbar.enable_tool(UIToolbar.Tool.LINE)
 	if Input.is_action_just_pressed("shortcut_eraser_tool"):
-		print("Eraser Tool!") # TODO
+		_ui_toolbar.enable_tool(UIToolbar.Tool.ERASER)
+	if Input.is_action_just_pressed("shortcut_colorpicker"):
+		_ui_toolbar.enable_tool(UIToolbar.Tool.COLOR_PICKER)
 
 # -------------------------------------------------------------------------------------------------
 func _create_default_project() -> void:

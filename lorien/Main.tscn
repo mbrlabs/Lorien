@@ -67,14 +67,15 @@ current_file = "Lorien"
 current_path = "/Projects/Other/lorien/lorien/Lorien"
 
 [node name="UIDialogUnsavedChanges" parent="." instance=ExtResource( 7 )]
+visible = false
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -203.0
-margin_top = -55.0
-margin_right = 203.0
-margin_bottom = 55.0
+margin_left = -170.0
+margin_top = -45.0
+margin_right = 170.0
+margin_bottom = 45.0
 theme = ExtResource( 8 )
 
 [node name="BrushColorPickerPopup" type="Popup" parent="."]
@@ -144,10 +145,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -41.5
-margin_top = -29.0
-margin_right = 41.5
-margin_bottom = 29.0
+margin_left = -63.5
+margin_top = -35.0
+margin_right = 63.5
+margin_bottom = 35.0
 theme = ExtResource( 8 )
 dialog_text = "Generic message. "
 

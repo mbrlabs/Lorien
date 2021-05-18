@@ -32,9 +32,12 @@ func _on_mouse_exited() -> void:
 		self_modulate = _normal_tint
 
 # -------------------------------------------------------------------------------------------------
-func untoggle() -> void:
-	pressed = false
-	self_modulate = _normal_tint
+func toggle() -> void:
+	if pressed:
+		self_modulate = _normal_tint
+	else:
+		self_modulate = pressed_tint
+	pressed = !pressed
 
 # -------------------------------------------------------------------------------------------------
 func _on_pressed() -> void:

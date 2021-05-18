@@ -4,8 +4,10 @@
 [ext_resource path="res://UI/Dialogs/UIDialogUnsavedChanges.gd" type="Script" id=2]
 
 [node name="UIDialogUnsavedChanges" type="WindowDialog"]
-margin_right = 406.0
-margin_bottom = 110.0
+visible = true
+margin_right = 340.0
+margin_bottom = 90.0
+rect_min_size = Vector2( 340, 90 )
 window_title = "Save changes?"
 script = ExtResource( 2 )
 __meta__ = {
@@ -16,8 +18,8 @@ __meta__ = {
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = -41.4898
-margin_bottom = -11.4898
+margin_top = -30.8979
+margin_bottom = -9.89786
 custom_constants/separation = 20
 alignment = 1
 __meta__ = {
@@ -26,35 +28,34 @@ __meta__ = {
 }
 
 [node name="SaveButton" type="Button" parent="HBoxContainer"]
-margin_left = 109.0
-margin_right = 150.0
-margin_bottom = 30.0
+margin_left = 76.0
+margin_right = 117.0
+margin_bottom = 21.0
 custom_fonts/font = ExtResource( 1 )
 text = "Save"
 
 [node name="DiscardButton" type="Button" parent="HBoxContainer"]
-margin_left = 170.0
-margin_right = 225.0
-margin_bottom = 30.0
+margin_left = 137.0
+margin_right = 192.0
+margin_bottom = 21.0
 custom_fonts/font = ExtResource( 1 )
 text = "Discard"
 
 [node name="CancelButton" type="Button" parent="HBoxContainer"]
-margin_left = 245.0
-margin_right = 297.0
-margin_bottom = 30.0
+margin_left = 212.0
+margin_right = 264.0
+margin_bottom = 21.0
 custom_fonts/font = ExtResource( 1 )
 text = "Cancel"
 
 [node name="Label" type="Label" parent="."]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -186.5
-margin_right = 186.5
-margin_bottom = 70.0
+margin_left = -145.5
+margin_right = 145.5
+margin_bottom = 51.0
 custom_fonts/font = ExtResource( 1 )
 text = "There are unsaved changes. Do you want to keep them before exiting Lorien?"
-align = 1
 valign = 1
 autowrap = true
 __meta__ = {

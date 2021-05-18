@@ -6,9 +6,9 @@
 [ext_resource path="res://UI/Components/UIFlatTextureButton.gd" type="Script" id=4]
 [ext_resource path="res://Assets/Fonts/font_14.tres" type="DynamicFont" id=5]
 
-[sub_resource type="StyleBoxEmpty" id=2]
-
 [sub_resource type="StyleBoxEmpty" id=1]
+
+[sub_resource type="StyleBoxEmpty" id=2]
 
 [node name="UITitlebar" type="Panel"]
 anchor_right = 1.0
@@ -35,7 +35,7 @@ margin_right = 12.0
 margin_bottom = 38.0
 mouse_filter = 2
 size_flags_horizontal = 4
-custom_styles/separator = SubResource( 2 )
+custom_styles/separator = SubResource( 1 )
 custom_constants/separation = 12
 
 [node name="MenuButton" type="TextureButton" parent="Left"]
@@ -46,6 +46,7 @@ margin_right = 34.0
 margin_bottom = 28.0
 size_flags_horizontal = 4
 size_flags_vertical = 6
+action_mode = 0
 texture_normal = ExtResource( 3 )
 stretch_mode = 3
 script = ExtResource( 4 )
@@ -57,7 +58,7 @@ margin_right = 50.0
 margin_bottom = 38.0
 mouse_filter = 2
 size_flags_horizontal = 4
-custom_styles/separator = SubResource( 1 )
+custom_styles/separator = SubResource( 2 )
 custom_constants/separation = 12
 
 [node name="Tabs" type="HBoxContainer" parent="Left"]

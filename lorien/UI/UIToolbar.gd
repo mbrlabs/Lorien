@@ -66,6 +66,22 @@ func _on_UndoButton_pressed(): emit_signal("undo_action")
 func _on_RedoButton_pressed(): emit_signal("redo_action")
 
 # -------------------------------------------------------------------------------------------------
+func enable_tool(t: int) -> void:
+	var btn: TextureButton
+	if t == Tool.BRUSH:
+		btn = _tool_btn_brush
+	elif t == Tool.LINE:
+		btn = _tool_btn_line
+	elif t == Tool.ERASER:
+		btn = _tool_btn_eraser
+	elif t == Tool.COLOR_PICKER:
+		btn = _tool_btn_colorpicker
+	
+	btn.toggle()
+	_change_active_tool_button(btn)
+	emit_signal("tool_changed", t)
+	
+# -------------------------------------------------------------------------------------------------
 func _on_OpenFileButton_pressed():
 	var file_dialog: FileDialog = get_node(file_dialog_path)
 	file_dialog.mode = FileDialog.MODE_OPEN_FILE
@@ -142,6 +158,6 @@ func _on_ColorPickerToolButton_pressed():
 # -------------------------------------------------------------------------------------------------
 func _change_active_tool_button(btn: TextureButton) -> void:
 	if _last_active_tool_button != null:
-		_last_active_tool_button.untoggle()
+		_last_active_tool_button.toggle()
 	_last_active_tool_button = btn
 	

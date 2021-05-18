@@ -66,7 +66,7 @@ static func deserialize(project: Project) -> void:
 	project.meta_data.clear()
 	
 	# Deserialize meta data
-	var version_number := file.get_32()
+	var _version_number := file.get_32()
 	var meta_data_str = file.get_pascal_string()
 	project.meta_data = _metadata_str_to_dict(meta_data_str)
 	
