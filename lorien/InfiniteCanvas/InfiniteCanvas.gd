@@ -1,6 +1,7 @@
 extends ViewportContainer
 class_name InfiniteCanvas
 
+# -------------------------------------------------------------------------------------------------
 const DEBUG_POINT_TEXTURE = preload("res://Assets/icon.png")
 const STROKE_TEXTURE = preload("res://Assets/stroke_texture.png")
 
@@ -37,7 +38,8 @@ func _input(event: InputEvent) -> void:
 		info.current_pressure = event.pressure
 		_last_mouse_motion = event
 		_cursor.global_position = _camera.xform(event.global_position)
-		#print("motion")
+		if _current_line_2d != null:
+			_cursor.set_pressure(event.pressure)
 	if _is_enabled:
 		if event is InputEventMouseButton:
 			if event.button_index == BUTTON_LEFT:
@@ -47,6 +49,7 @@ func _input(event: InputEvent) -> void:
 					start_new_line()
 				else:
 					end_line()
+					_cursor.set_pressure(1.0)
 
 # -------------------------------------------------------------------------------------------------
 func _physics_process(delta: float) -> void:

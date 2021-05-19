@@ -28,10 +28,6 @@ __meta__ = {
 default_canvas_color = Color( 0.341176, 0.341176, 0.341176, 1 )
 
 [node name="InfiniteCanvas" parent="." instance=ExtResource( 2 )]
-margin_left = -4.55811
-margin_top = -2.34918
-margin_right = -4.55811
-margin_bottom = -2.34912
 
 [node name="UITitlebar" parent="." instance=ExtResource( 4 )]
 _menu_popup_path = NodePath("../UIMenuPopup")
@@ -79,10 +75,10 @@ margin_bottom = 45.0
 theme = ExtResource( 8 )
 
 [node name="BrushColorPickerPopup" type="Popup" parent="."]
-margin_left = 364.0
-margin_top = 77.0
-margin_right = 666.0
-margin_bottom = 504.0
+margin_left = 362.0
+margin_top = 78.0
+margin_right = 664.0
+margin_bottom = 505.0
 __meta__ = {
 "_edit_group_": true,
 "_edit_use_anchors_": false
