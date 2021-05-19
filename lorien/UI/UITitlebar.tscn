@@ -73,7 +73,7 @@ __meta__ = {
 
 [node name="NewFileButton" type="Button" parent="Left"]
 margin_left = 108.0
-margin_top = 12.0
+margin_top = 14.0
 margin_right = 129.0
 margin_bottom = 38.0
 size_flags_horizontal = 4

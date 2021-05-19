@@ -16,7 +16,7 @@ onready var _camera: Camera2D = $Viewport/Camera2D
 onready var _cursor: Node2D = $Viewport/BrushCursor
 
 export var pressure_curve: Curve
-export var brush_color := Color("50ffd6")
+export var brush_color := Config.DEFAULT_BRUSH_COLOR
 export var brush_size := Config.DEFAULT_BRUSH_SIZE setget set_brush_size
 export var draw_debug_points := false
 var _current_project: Project
@@ -37,10 +37,13 @@ func _input(event: InputEvent) -> void:
 		info.current_pressure = event.pressure
 		_last_mouse_motion = event
 		_cursor.global_position = _camera.xform(event.global_position)
+		#print("motion")
 	if _is_enabled:
 		if event is InputEventMouseButton:
 			if event.button_index == BUTTON_LEFT:
 				if event.pressed:
+					_last_mouse_motion.global_position = event.global_position
+					_last_mouse_motion.position = event.position
 					start_new_line()
 				else:
 					end_line()
@@ -95,7 +98,7 @@ func disable() -> void:
 	_is_enabled = false
 
 # -------------------------------------------------------------------------------------------------
-func start_new_line() -> void:	
+func start_new_line() -> void:
 	_current_line_2d = _make_empty_line2d()
 	_current_line_2d.width = brush_size
 	_current_line_2d.default_color = brush_color
