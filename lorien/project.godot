@@ -29,6 +29,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://InfiniteCanvas/InfiniteCanvas.gd"
 }, {
+"base": "PopupMenu",
+"class": "MainMenu",
+"language": "GDScript",
+"path": "res://UI/MainMenu.gd"
+}, {
 "base": "Panel",
 "class": "Menubar",
 "language": "GDScript",
@@ -69,6 +74,7 @@ _global_script_class_icons={
 "BrushStrokeOptimizer": "",
 "Config": "",
 "InfiniteCanvas": "",
+"MainMenu": "",
 "Menubar": "",
 "Project": "",
 "ProjectTab": "",
@@ -82,6 +88,10 @@ _global_script_class_icons={
 
 config/name="Lorien"
 run/main_scene="res://Main.tscn"
+boot_splash/image="res://Assets/boot.png"
+boot_splash/fullsize=false
+boot_splash/use_filter=false
+boot_splash/bg_color=Color( 0.12549, 0.129412, 0.141176, 1 )
 config/icon="res://Assets/icon.png"
 
 [autoload]

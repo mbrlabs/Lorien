@@ -6,6 +6,9 @@ onready var _statusbar: Statusbar = $Statusbar
 onready var _menubar: Menubar = $Menubar
 onready var _toolbar: Toolbar = $Toolbar
 onready var _file_dialog: FileDialog = $FileDialog
+onready var _about_dialog: WindowDialog = $AboutDialog
+onready var _settings_dialog: WindowDialog = $SettingsDialog
+onready var _main_menu: MainMenu = $MainMenu
 onready var _generic_alert_dialog: AcceptDialog = $GenericAlertDialog
 onready var _unsaved_changes_on_exit_dialog: WindowDialog = $UnsavedChangesOnExitDialog
 onready var _background_color_picker: ColorPicker = $BackgroundColorPickerPopup/PanelContainer/ColorPicker
@@ -31,6 +34,9 @@ func _ready():
 	_menubar.connect("create_new_project", self, "_on_create_new_project")
 	_menubar.connect("project_selected", self, "_on_project_selected")
 	_menubar.connect("project_closed", self, "_on_project_closed")
+	
+	_main_menu.connect("open_about_dialog", self, "_on_open_about_dialog")
+	_main_menu.connect("open_settings_dialog", self, "_on_open_settings_dialog")
 	
 	_unsaved_changes_on_exit_dialog.connect("save_changes", self, "_on_exit_with_changes_saved")
 	_unsaved_changes_on_exit_dialog.connect("discard_changes", self, "_on_exit_with_changes_discarded")
@@ -244,6 +250,14 @@ func _on_exit_with_changes_discarded() -> void:
 # -------------------------------------------------------------------------------------------------
 func _on_exit_cancled() -> void:
 	_unsaved_changes_on_exit_dialog.hide()
+
+# -------------------------------------------------------------------------------------------------
+func _on_open_about_dialog() -> void:
+	_about_dialog.popup()
+
+# -------------------------------------------------------------------------------------------------
+func _on_open_settings_dialog() -> void:
+	_settings_dialog.popup()
 
 # -------------------------------------------------------------------------------------------------
 func _on_InfiniteCanvas_mouse_entered():

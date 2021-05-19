@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://InfiniteCanvas/InfiniteCanvas.tscn" type="PackedScene" id=2]
@@ -8,6 +8,8 @@
 [ext_resource path="res://UI/Toolbar.tscn" type="PackedScene" id=6]
 [ext_resource path="res://UI/Dialogs/UnsavedChangesOnExitDialog.tscn" type="PackedScene" id=7]
 [ext_resource path="res://UI/Themes/theme_dark.tres" type="Theme" id=8]
+[ext_resource path="res://UI/Dialogs/AboutDialog.tscn" type="PackedScene" id=9]
+[ext_resource path="res://UI/Dialogs/SettingsDialog.tscn" type="PackedScene" id=10]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.207843, 0.211765, 0.227451, 1 )
@@ -48,10 +50,6 @@ margin_top = -24.0
 margin_bottom = 0.0
 rect_scale = Vector2( 1, 1.00112 )
 
-[node name="MainMenu" parent="." instance=ExtResource( 5 )]
-margin_top = 38.0
-margin_bottom = 238.0
-
 [node name="BrushColorPickerPopup" type="Popup" parent="."]
 margin_left = 362.0
 margin_top = 78.0
@@ -72,10 +70,10 @@ __meta__ = {
 }
 
 [node name="ColorPicker" type="ColorPicker" parent="BrushColorPickerPopup/PanelContainer"]
-margin_left = 4.0
-margin_top = 4.0
-margin_right = 298.0
-margin_bottom = 441.0
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 310.0
+margin_bottom = 453.0
 edit_alpha = false
 __meta__ = {
 "_edit_use_anchors_": false
@@ -103,14 +101,20 @@ __meta__ = {
 }
 
 [node name="ColorPicker" type="ColorPicker" parent="BackgroundColorPickerPopup/PanelContainer"]
-margin_left = 4.0
-margin_top = 4.0
-margin_right = 314.0
-margin_bottom = 420.0
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 326.0
+margin_bottom = 432.0
 edit_alpha = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="MainMenu" parent="." instance=ExtResource( 5 )]
+margin_left = 1.0
+margin_top = 38.0
+margin_right = 151.0
+margin_bottom = 238.0
 
 [node name="FileDialog" type="FileDialog" parent="."]
 anchor_left = 0.5
@@ -138,6 +142,27 @@ margin_left = -155.0
 margin_top = -45.0
 margin_right = 155.0
 margin_bottom = 45.0
+
+[node name="AboutDialog" parent="." instance=ExtResource( 9 )]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -225.0
+margin_top = -100.0
+margin_right = 225.0
+margin_bottom = 100.0
+
+[node name="SettingsDialog" parent="." instance=ExtResource( 10 )]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -225.0
+margin_top = -100.0
+margin_right = 225.0
+margin_bottom = 100.0
 
 [node name="GenericAlertDialog" type="AcceptDialog" parent="."]
 anchor_left = 0.5
