@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Assets/Fonts/font_12.tres" type="DynamicFont" id=1]
-[ext_resource path="res://UI/Components/UITab.gd" type="Script" id=2]
+[ext_resource path="res://UI/Components/ProjectTab.gd" type="Script" id=2]
 [ext_resource path="res://Assets/Icons/close_white.png" type="Texture" id=3]
 [ext_resource path="res://UI/Themes/style_tab_active_dark.tres" type="StyleBox" id=4]
 
@@ -13,7 +13,7 @@ HBoxContainer/constants/separation = 4
 content_margin_left = 8.0
 content_margin_right = 2.0
 
-[node name="UITab" type="PanelContainer"]
+[node name="ProjectTab" type="PanelContainer"]
 margin_right = 78.0
 margin_bottom = 28.0
 rect_min_size = Vector2( 0, 28 )

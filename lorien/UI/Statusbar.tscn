@@ -1,10 +1,10 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://UI/Themes/theme_dark.tres" type="Theme" id=1]
-[ext_resource path="res://UI/UIStatusbar.gd" type="Script" id=2]
+[ext_resource path="res://UI/Statusbar.gd" type="Script" id=2]
 [ext_resource path="res://Assets/Fonts/font_11.tres" type="DynamicFont" id=3]
 
-[node name="UIStatusbar" type="Panel"]
+[node name="Statusbar" type="Panel"]
 anchor_right = 1.0
 margin_bottom = 24.0
 rect_min_size = Vector2( 0, 24 )

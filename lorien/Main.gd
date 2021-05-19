@@ -1,77 +1,75 @@
 extends Control
 
 # -------------------------------------------------------------------------------------------------
-export var default_canvas_color := Color.black
-
 onready var _canvas: InfiniteCanvas = $InfiniteCanvas
-onready var _ui_statusbar: UIStatusbar = $UIStatusBar
-onready var _ui_titlebar: UITitlebar = $UITitlebar
-onready var _ui_toolbar: UIToolbar = $UIToolbar
-
+onready var _statusbar: Statusbar = $Statusbar
+onready var _menubar: Menubar = $Menubar
+onready var _toolbar: Toolbar = $Toolbar
 onready var _file_dialog: FileDialog = $FileDialog
-onready var _ui_dialog_generic_alert: AcceptDialog = $GenericAlertDialog
-onready var _ui_dialog_unsaved_changes: WindowDialog = $UIDialogUnsavedChanges
+onready var _generic_alert_dialog: AcceptDialog = $GenericAlertDialog
+onready var _unsaved_changes_on_exit_dialog: WindowDialog = $UnsavedChangesOnExitDialog
+onready var _background_color_picker: ColorPicker = $BackgroundColorPickerPopup/PanelContainer/ColorPicker
 
 # -------------------------------------------------------------------------------------------------
 func _ready():
 	get_tree().set_auto_accept_quit(false)
-	_canvas.set_background_color(default_canvas_color)
+	_canvas.set_background_color(Config.DEFAULT_CANVAS_COLOR)
 	_file_dialog.current_dir = Config.DEFAULT_FILE_DIALOG_PATH
 	
 	# UI Signals
-	_ui_toolbar.connect("undo_action", self, "_on_undo_action")
-	_ui_toolbar.connect("redo_action", self, "_on_redo_action")
-	_ui_toolbar.connect("clear_canvas", self, "_on_clear_canvas")
-	_ui_toolbar.connect("open_project", self, "_on_open_project")
-	_ui_toolbar.connect("new_project", self, "_on_create_new_project")
-	_ui_toolbar.connect("save_project", self, "_on_save_project")
-	_ui_toolbar.connect("brush_color_changed", self, "_on_brush_color_changed")
-	_ui_toolbar.connect("brush_size_changed", self, "_on_brush_size_changed")
-	_ui_toolbar.connect("canvas_background_changed", self, "_on_canvas_background_changed")
-	_ui_toolbar.connect("tool_changed", self, "_on_tool_changed")
+	_toolbar.connect("undo_action", self, "_on_undo_action")
+	_toolbar.connect("redo_action", self, "_on_redo_action")
+	_toolbar.connect("clear_canvas", self, "_on_clear_canvas")
+	_toolbar.connect("open_project", self, "_on_open_project")
+	_toolbar.connect("new_project", self, "_on_create_new_project")
+	_toolbar.connect("save_project", self, "_on_save_project")
+	_toolbar.connect("brush_color_changed", self, "_on_brush_color_changed")
+	_toolbar.connect("brush_size_changed", self, "_on_brush_size_changed")
+	_toolbar.connect("canvas_background_changed", self, "_on_canvas_background_changed")
+	_toolbar.connect("tool_changed", self, "_on_tool_changed")
 	
-	_ui_titlebar.connect("create_new_project", self, "_on_create_new_project")
-	_ui_titlebar.connect("project_selected", self, "_on_project_selected")
-	_ui_titlebar.connect("project_closed", self, "_on_project_closed")
+	_menubar.connect("create_new_project", self, "_on_create_new_project")
+	_menubar.connect("project_selected", self, "_on_project_selected")
+	_menubar.connect("project_closed", self, "_on_project_closed")
 	
-	_ui_dialog_unsaved_changes.connect("save_changes", self, "_on_exit_with_changes_saved")
-	_ui_dialog_unsaved_changes.connect("discard_changes", self, "_on_exit_with_changes_discarded")
-	_ui_dialog_unsaved_changes.connect("cancel_exit", self, "_on_exit_cancled")
+	_unsaved_changes_on_exit_dialog.connect("save_changes", self, "_on_exit_with_changes_saved")
+	_unsaved_changes_on_exit_dialog.connect("discard_changes", self, "_on_exit_with_changes_discarded")
+	_unsaved_changes_on_exit_dialog.connect("cancel_exit", self, "_on_exit_cancled")
 	
 	# Create the default project
 	# TODO: once project managament is fully implemented, this should be replaced with last open (at exit) files
-	_create_default_project()
+	_create_active_default_project()
 
 # -------------------------------------------------------------------------------------------------
 func _notification(what):
 	if NOTIFICATION_WM_QUIT_REQUEST == what:
-		if !_ui_dialog_unsaved_changes.visible:
+		if !_unsaved_changes_on_exit_dialog.visible:
 			if ProjectManager.has_unsaved_changes():
-				_ui_dialog_unsaved_changes.call_deferred("popup")
+				_unsaved_changes_on_exit_dialog.call_deferred("popup")
 			else:
 				get_tree().quit()
 
 # -------------------------------------------------------------------------------------------------
 func _physics_process(delta):
 	_handle_shortcut_actions()
-	_ui_statusbar.set_stroke_count(_canvas.info.stroke_count)
-	_ui_statusbar.set_point_count(_canvas.info.point_count)
-	_ui_statusbar.set_pressure(_canvas.info.current_pressure)
-	_ui_statusbar.set_camera_position(_canvas.get_camera_offset())
-	_ui_statusbar.set_camera_zoom(_canvas.get_camera_zoom())
-	_ui_statusbar.set_fps(Engine.get_frames_per_second())
+	_statusbar.set_stroke_count(_canvas.info.stroke_count)
+	_statusbar.set_point_count(_canvas.info.point_count)
+	_statusbar.set_pressure(_canvas.info.current_pressure)
+	_statusbar.set_camera_position(_canvas.get_camera_offset())
+	_statusbar.set_camera_zoom(_canvas.get_camera_zoom())
+	_statusbar.set_fps(Engine.get_frames_per_second())
 	
 	# FIXME: i put this here to update dirty tabs; shuld only be called once
 	var active_project: Project = ProjectManager.get_active_project()
 	if active_project != null:
-		_ui_titlebar.update_tab_title(active_project)
+		_menubar.update_tab_title(active_project)
 
 # -------------------------------------------------------------------------------------------------
 func _handle_shortcut_actions() -> void:
 	if Input.is_action_just_pressed("shortcut_new_project"):
 		_on_create_new_project()
 	if Input.is_action_just_pressed("shortcut_open_project"):
-		_ui_toolbar._on_OpenFileButton_pressed() # FIXME that's pretty ugly
+		_toolbar._on_OpenFileButton_pressed() # FIXME that's pretty ugly
 	if Input.is_action_just_pressed("shortcut_save_project"):
 		_on_save_project()
 	if Input.is_action_just_pressed("shortcut_undo"):
@@ -79,21 +77,30 @@ func _handle_shortcut_actions() -> void:
 	if Input.is_action_just_pressed("shortcut_redo"):
 		_on_redo_action()
 	if Input.is_action_just_pressed("shortcut_brush_tool"):
-		_ui_toolbar.enable_tool(UIToolbar.Tool.BRUSH)
+		_toolbar.enable_tool(Toolbar.Tool.BRUSH)
 	if Input.is_action_just_pressed("shortcut_line_tool"):
-		_ui_toolbar.enable_tool(UIToolbar.Tool.LINE)
+		_toolbar.enable_tool(Toolbar.Tool.LINE)
 	if Input.is_action_just_pressed("shortcut_eraser_tool"):
-		_ui_toolbar.enable_tool(UIToolbar.Tool.ERASER)
+		_toolbar.enable_tool(Toolbar.Tool.ERASER)
 	if Input.is_action_just_pressed("shortcut_colorpicker"):
-		_ui_toolbar.enable_tool(UIToolbar.Tool.COLOR_PICKER)
+		_toolbar.enable_tool(Toolbar.Tool.COLOR_PICKER)
 
 # -------------------------------------------------------------------------------------------------
-func _create_default_project() -> void:
+func _make_project_active(project: Project) -> void:
+	ProjectManager.make_project_active(project)
+	_canvas.use_project(project)
+	
+	if !_menubar.has_tab(project):
+		_menubar.make_tab(project)
+	_menubar.set_tab_active(project)
+	
+	var default_canvas_color = Config.DEFAULT_CANVAS_COLOR.to_html()
+	_background_color_picker.color = Color(project.meta_data.get(Serializer.CANVAS_COLOR, default_canvas_color))
+
+# -------------------------------------------------------------------------------------------------
+func _create_active_default_project() -> void:
 	var default_project: Project = ProjectManager.add_project()
-	ProjectManager.make_project_active(default_project)
-	_canvas.use_project(default_project)
-	_ui_titlebar.make_tab(default_project)
-	_ui_titlebar.set_tab_active(default_project)
+	_make_project_active(default_project)
 
 # -------------------------------------------------------------------------------------------------
 func _save_project(project: Project) -> void:
@@ -106,22 +113,16 @@ func _save_project(project: Project) -> void:
 	}
 	project.meta_data = meta_data
 	ProjectManager.save_project(project)
-	_ui_titlebar.update_tab_title(project)
+	_menubar.update_tab_title(project)
 
 # -------------------------------------------------------------------------------------------------
 func _on_create_new_project() -> void:
-	var project: Project = ProjectManager.add_project()
-	ProjectManager.make_project_active(project)
-	_canvas.use_project(project)
-	_ui_titlebar.make_tab(project)
-	_ui_titlebar.set_tab_active(project)
+	_create_active_default_project()
 
 # -------------------------------------------------------------------------------------------------
 func _on_project_selected(project_id: int) -> void:
 	var project: Project = ProjectManager.get_project_by_id(project_id)
-	ProjectManager.make_project_active(project)
-	_ui_titlebar.set_tab_active(project)
-	_canvas.use_project(project)
+	_make_project_active(project)
 
 # -------------------------------------------------------------------------------------------------
 func _on_project_closed(project_id: int) -> void:
@@ -138,19 +139,16 @@ func _on_project_closed(project_id: int) -> void:
 	
 	# Remove project
 	ProjectManager.remove_project(project)
-	_ui_titlebar.remove_tab(project)
+	_menubar.remove_tab(project)
 	
 	# choose new project
 	if ProjectManager.get_project_count() == 0:
-		_create_default_project()
+		_create_active_default_project()
 	else:
 		# TODO: i should choose the tab closest to the one closed; not just the first/last
-		var new_project_id: int = _ui_titlebar.get_first_project_id()
+		var new_project_id: int = _menubar.get_first_project_id()
 		var new_project: Project = ProjectManager.get_project_by_id(new_project_id)
-		
-		ProjectManager.make_project_active(new_project)
-		_ui_titlebar.set_tab_active(new_project)
-		_canvas.use_project(new_project)
+		_make_project_active(new_project)
 
 # -------------------------------------------------------------------------------------------------
 func _on_brush_color_changed(color: Color) -> void:
@@ -172,22 +170,17 @@ func _on_open_project(filepath: String) -> void:
 	# Project already open. Just switch to tab
 	if project != null:
 		if project != active_project:
-			ProjectManager.make_project_active(project)
-			_ui_titlebar.set_tab_active(project)
-			_canvas.use_project(project)
+			_make_project_active(project)
 		return
 	
 	# Remove/Replace active project if not changed and unsaved (default project)
 	if active_project.filepath.empty() && !active_project.dirty:
 		ProjectManager.remove_project(active_project)
-		_ui_titlebar.remove_tab(active_project)
+		_menubar.remove_tab(active_project)
 	
 	# Create and open it
 	project = ProjectManager.add_project(filepath)
-	ProjectManager.make_project_active(project)
-	_ui_titlebar.make_tab(project)
-	_ui_titlebar.set_tab_active(project)
-	_canvas.use_project(project)
+	_make_project_active(project)
 
 # -------------------------------------------------------------------------------------------------
 func _on_save_project() -> void:
@@ -234,8 +227,8 @@ func _on_tool_changed(t: int) -> void:
 # -------------------------------------------------------------------------------------------------
 func _on_exit_with_changes_saved() -> void:
 	if ProjectManager.has_unsaved_projects():
-		_ui_dialog_generic_alert.dialog_text = "Auto-saving not possible for file \"Untitled\".\nPlease save it manually."
-		_ui_dialog_generic_alert.popup_centered()
+		_generic_alert_dialog.dialog_text = "Auto-saving not possible for file \"Untitled\".\nPlease save it manually."
+		_generic_alert_dialog.popup_centered()
 	else:
 		ProjectManager.save_all_projects()
 		get_tree().quit()
@@ -246,7 +239,7 @@ func _on_exit_with_changes_discarded() -> void:
 	
 # -------------------------------------------------------------------------------------------------
 func _on_exit_cancled() -> void:
-	_ui_dialog_unsaved_changes.hide()
+	_unsaved_changes_on_exit_dialog.hide()
 
 # -------------------------------------------------------------------------------------------------
 func _on_InfiniteCanvas_mouse_entered():

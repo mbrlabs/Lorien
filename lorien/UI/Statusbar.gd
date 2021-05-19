@@ -1,5 +1,5 @@
 extends Panel
-class_name UIStatusbar
+class_name Statusbar
 
 # -------------------------------------------------------------------------------------------------
 onready var _strokes_label: Label = $MarginContainer/HBoxContainer/Right/StrokesLabel

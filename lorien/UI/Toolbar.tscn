@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Assets/Icons/save_file_white.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Icons/open_file_white.png" type="Texture" id=2]
-[ext_resource path="res://UI/UIToolbar.gd" type="Script" id=3]
+[ext_resource path="res://UI/Toolbar.gd" type="Script" id=3]
 [ext_resource path="res://Assets/Icons/new_file_white.png" type="Texture" id=4]
 [ext_resource path="res://Assets/Icons/clear_canvas_white.png" type="Texture" id=5]
 [ext_resource path="res://Assets/Icons/redo_white.png" type="Texture" id=6]
@@ -12,7 +12,7 @@
 [ext_resource path="res://Assets/Icons/color_picker.png" type="Texture" id=10]
 [ext_resource path="res://Assets/Icons/line_tool_white.png" type="Texture" id=11]
 [ext_resource path="res://Assets/Icons/background_tool_white.png" type="Texture" id=12]
-[ext_resource path="res://UI/Components/UIFlatTextureButton.gd" type="Script" id=13]
+[ext_resource path="res://UI/Components/FlatTextureButton.gd" type="Script" id=13]
 [ext_resource path="res://Assets/Fonts/font_11.tres" type="DynamicFont" id=14]
 [ext_resource path="res://Assets/Icons/grid_white.png" type="Texture" id=15]
 
@@ -28,13 +28,13 @@ grow_end = -10.0
 vertical = true
 
 [sub_resource type="StyleBoxFlat" id=4]
-bg_color = Color( 1, 0.298039, 0.298039, 1 )
+bg_color = Color( 1, 1, 1, 1 )
 corner_radius_top_left = 4
 corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
-[node name="UIToolbar" type="Panel"]
+[node name="Toolbar" type="Panel"]
 anchor_right = 1.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 0, 40 )
@@ -235,9 +235,10 @@ custom_styles/focus = SubResource( 4 )
 custom_styles/disabled = SubResource( 4 )
 custom_styles/normal = SubResource( 4 )
 custom_fonts/font = ExtResource( 14 )
-custom_colors/font_color = Color( 1, 1, 1, 1 )
-custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
-custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
+custom_colors/font_color_disabled = Color( 0, 0, 0, 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color_hover = Color( 0, 0, 0, 1 )
+custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
 action_mode = 0
 text = "ff0000"
 __meta__ = {

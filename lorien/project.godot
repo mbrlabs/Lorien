@@ -15,6 +15,11 @@ _global_script_classes=[ {
 "path": "res://BrushStroke.gd"
 }, {
 "base": "Reference",
+"class": "BrushStrokeOptimizer",
+"language": "GDScript",
+"path": "res://BrushStrokeOptimizer.gd"
+}, {
+"base": "Reference",
 "class": "Config",
 "language": "GDScript",
 "path": "res://Config.gd"
@@ -24,10 +29,20 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://InfiniteCanvas/InfiniteCanvas.gd"
 }, {
+"base": "Panel",
+"class": "Menubar",
+"language": "GDScript",
+"path": "res://UI/Menubar.gd"
+}, {
 "base": "Reference",
 "class": "Project",
 "language": "GDScript",
 "path": "res://ProjectManager/Project.gd"
+}, {
+"base": "PanelContainer",
+"class": "ProjectTab",
+"language": "GDScript",
+"path": "res://UI/Components/ProjectTab.gd"
 }, {
 "base": "Reference",
 "class": "Serializer",
@@ -35,35 +50,26 @@ _global_script_classes=[ {
 "path": "res://ProjectManager/Serializer.gd"
 }, {
 "base": "Panel",
-"class": "UIStatusbar",
+"class": "Statusbar",
 "language": "GDScript",
-"path": "res://UI/UIStatusbar.gd"
-}, {
-"base": "PanelContainer",
-"class": "UITab",
-"language": "GDScript",
-"path": "res://UI/Components/UITab.gd"
+"path": "res://UI/Statusbar.gd"
 }, {
 "base": "Panel",
-"class": "UITitlebar",
+"class": "Toolbar",
 "language": "GDScript",
-"path": "res://UI/UITitlebar.gd"
-}, {
-"base": "Panel",
-"class": "UIToolbar",
-"language": "GDScript",
-"path": "res://UI/UIToolbar.gd"
+"path": "res://UI/Toolbar.gd"
 } ]
 _global_script_class_icons={
 "BrushStroke": "",
+"BrushStrokeOptimizer": "",
 "Config": "",
 "InfiniteCanvas": "",
+"Menubar": "",
 "Project": "",
+"ProjectTab": "",
 "Serializer": "",
-"UIStatusbar": "",
-"UITab": "",
-"UITitlebar": "",
-"UIToolbar": ""
+"Statusbar": "",
+"Toolbar": ""
 }
 
 [application]

@@ -12,14 +12,14 @@ class Info:
 	var current_pressure: float
 
 # -------------------------------------------------------------------------------------------------
-onready var _line2d_container: Node2D = $Viewport/Strokes
-onready var _camera: Camera2D = $Viewport/Camera2D
-onready var _cursor: Node2D = $Viewport/BrushCursor
-
 export var pressure_curve: Curve
 export var brush_color := Config.DEFAULT_BRUSH_COLOR
 export var brush_size := Config.DEFAULT_BRUSH_SIZE setget set_brush_size
 export var draw_debug_points := false
+onready var _line2d_container: Node2D = $Viewport/Strokes
+onready var _camera: Camera2D = $Viewport/Camera2D
+onready var _cursor: Node2D = $Viewport/BrushCursor
+onready var _optimizer: BrushStrokeOptimizer = BrushStrokeOptimizer.new()
 var _current_project: Project
 var _current_line_2d: Line2D
 var _current_brush_stroke: BrushStroke
@@ -109,11 +109,12 @@ func start_new_line() -> void:
 	_current_brush_stroke = BrushStroke.new()
 	_current_brush_stroke.color = brush_color
 	_current_brush_stroke.size = brush_size
+	_optimizer.reset()
 
 # -------------------------------------------------------------------------------------------------
 func add_point(point: Vector2, pressure: float = 1.0) -> void:
 	_current_brush_stroke.add_point(point, pressure)
-	_current_brush_stroke.optimize()
+	_optimizer.optimize(_current_brush_stroke)
 	_current_brush_stroke.apply(_current_line_2d)
 
 # -------------------------------------------------------------------------------------------------
@@ -124,7 +125,7 @@ func end_line() -> void:
 		else:
 			print("Stroke points: %d (%d removed by optimizer)" % [
 				_current_brush_stroke.points.size(), 
-				_current_brush_stroke.points_removed_during_optimize
+				_optimizer.points_removed,
 			])
 			
 			# Remove the line temporallaly from the node tree, so the adding is registered in the undo-redo histrory below
@@ -179,7 +180,7 @@ func use_project(project: Project) -> void:
 	var new_cam_zoom_str: String = project.meta_data.get(Serializer.METADATA_CAMERA_ZOOM, "1.0")
 	var new_cam_offset_x_str: String = project.meta_data.get(Serializer.METADATA_CAMERA_OFFSET_X, "0.0")
 	var new_cam_offset_y_str: String = project.meta_data.get(Serializer.METADATA_CAMERA_OFFSET_Y, "0.0")
-	var new_canvas_color: String = project.meta_data.get(Serializer.CANVAS_COLOR, "575757")
+	var new_canvas_color: String = project.meta_data.get(Serializer.CANVAS_COLOR, Config.DEFAULT_CANVAS_COLOR.to_html())
 	
 	_camera.set_zoom_level(float(new_cam_zoom_str))
 	_camera.offset = Vector2(float(new_cam_offset_x_str), float(new_cam_offset_y_str))

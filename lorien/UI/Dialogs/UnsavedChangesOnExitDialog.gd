@@ -1,9 +1,6 @@
 extends WindowDialog
 
 # -------------------------------------------------------------------------------------------------
-const ACTION_DISCARD := "discard_changes"
-
-# -------------------------------------------------------------------------------------------------
 signal cancel_exit
 signal save_changes
 signal discard_changes

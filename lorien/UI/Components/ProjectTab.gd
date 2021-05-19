@@ -1,5 +1,5 @@
 extends PanelContainer
-class_name UITab
+class_name ProjectTab
 
 # -------------------------------------------------------------------------------------------------
 const STYLE_ACTIVE = preload("res://UI/Themes/style_tab_active_dark.tres")

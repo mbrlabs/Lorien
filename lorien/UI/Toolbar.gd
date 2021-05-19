@@ -1,5 +1,5 @@
 extends Panel
-class_name UIToolbar
+class_name Toolbar
 
 signal new_project
 signal open_project(filepath)
@@ -80,7 +80,7 @@ func enable_tool(t: int) -> void:
 	btn.toggle()
 	_change_active_tool_button(btn)
 	emit_signal("tool_changed", t)
-	
+
 # -------------------------------------------------------------------------------------------------
 func _on_OpenFileButton_pressed():
 	var file_dialog: FileDialog = get_node(file_dialog_path)

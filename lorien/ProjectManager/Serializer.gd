@@ -43,7 +43,7 @@ static func serialize(project: Project) -> void:
 		for p in stroke.points:
 			file.store_float(p.x)
 			file.store_float(p.y)
-			file.store_16(stroke.pressures[p_idx])
+			file.store_8(stroke.pressures[p_idx])
 			p_idx += 1
 
 	# Done
@@ -90,7 +90,7 @@ static func deserialize(project: Project) -> void:
 		for i in point_count:
 			var x := file.get_float()
 			var y := file.get_float()
-			var pressure := file.get_16()
+			var pressure := file.get_8()
 			brush_stroke.points.append(Vector2(x, y))
 			brush_stroke.pressures.append(pressure)
 		project.strokes.append(brush_stroke)

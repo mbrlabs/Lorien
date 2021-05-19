@@ -1,9 +1,9 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://UI/Themes/theme_dark.tres" type="Theme" id=1]
-[ext_resource path="res://UI/UIMenuPopup.gd" type="Script" id=2]
+[ext_resource path="res://UI/MainMenu.gd" type="Script" id=2]
 
-[node name="UIMenuPopup" type="PopupMenu"]
+[node name="MainMenu" type="PopupMenu"]
 margin_right = 150.0
 margin_bottom = 200.0
 rect_min_size = Vector2( 150, 200 )
