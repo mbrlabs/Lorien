@@ -54,7 +54,7 @@ func _input(event: InputEvent) -> void:
 				else:
 					end_line()
 					_cursor.set_pressure(1.0)
-
+	
 # -------------------------------------------------------------------------------------------------
 func _physics_process(delta: float) -> void:
 	if _is_enabled:

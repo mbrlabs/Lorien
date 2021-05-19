@@ -5,12 +5,16 @@
 
 [node name="MainMenu" type="PopupMenu"]
 margin_right = 150.0
-margin_bottom = 200.0
-rect_min_size = Vector2( 150, 200 )
+margin_bottom = 100.0
+rect_min_size = Vector2( 150, 100 )
 theme = ExtResource( 1 )
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[connection signal="index_pressed" from="." to="." method="_on_UIMenuPopup_index_pressed"]
+[node name="ToolsMenu" type="PopupMenu" parent="."]
+margin_right = 16.0
+margin_bottom = 16.0
+
+[connection signal="id_pressed" from="." to="." method="_on_MainMenu_id_pressed"]

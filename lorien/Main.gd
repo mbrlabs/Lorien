@@ -37,6 +37,7 @@ func _ready():
 	
 	_main_menu.connect("open_about_dialog", self, "_on_open_about_dialog")
 	_main_menu.connect("open_settings_dialog", self, "_on_open_settings_dialog")
+	_main_menu.connect("open_url", self, "_on_open_url")
 	
 	_unsaved_changes_on_exit_dialog.connect("save_changes", self, "_on_exit_with_changes_saved")
 	_unsaved_changes_on_exit_dialog.connect("discard_changes", self, "_on_exit_with_changes_discarded")
@@ -55,6 +56,13 @@ func _notification(what):
 			else:
 				get_tree().quit()
 
+	elif NOTIFICATION_WM_FOCUS_IN == what && _canvas != null:
+		if !_is_mouse_on_ui():
+			yield(get_tree().create_timer(0.12), "timeout")
+			_canvas.enable()
+	elif NOTIFICATION_WM_FOCUS_OUT == what && _canvas != null:
+		_canvas.disable()
+		
 # -------------------------------------------------------------------------------------------------
 func _physics_process(delta):
 	_handle_shortcut_actions()
@@ -102,6 +110,10 @@ func _make_project_active(project: Project) -> void:
 	
 	var default_canvas_color = Config.DEFAULT_CANVAS_COLOR.to_html()
 	_background_color_picker.color = Color(project.meta_data.get(Serializer.CANVAS_COLOR, default_canvas_color))
+
+# -------------------------------------------------------------------------------------------------
+func _is_mouse_on_ui() -> bool:
+	return Utils.is_mouse_in_control(_menubar) || Utils.is_mouse_in_control(_toolbar) || Utils.is_mouse_in_control(_statusbar)
 
 # -------------------------------------------------------------------------------------------------
 func _create_active_default_project() -> void:
@@ -258,6 +270,12 @@ func _on_open_about_dialog() -> void:
 # -------------------------------------------------------------------------------------------------
 func _on_open_settings_dialog() -> void:
 	_settings_dialog.popup()
+
+# -------------------------------------------------------------------------------------------------
+func _on_open_url(url: String) -> void:
+	OS.shell_open(url)
+	yield(get_tree().create_timer(0.1), "timeout")
+	_canvas.disable()
 
 # -------------------------------------------------------------------------------------------------
 func _on_InfiniteCanvas_mouse_entered():
