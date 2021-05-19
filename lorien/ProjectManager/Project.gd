@@ -9,6 +9,7 @@ var loaded := false
 var filepath: String
 var meta_data: Dictionary
 var strokes: Array # Array<BrushStroke>
+var eraser_stroke_indices: Array # Array<int>
 
 # -------------------------------------------------------------------------------------------------
 func _init():
@@ -20,11 +21,21 @@ func clear() -> void:
 	undo_redo = null
 	meta_data.clear()
 	strokes.clear()
+	eraser_stroke_indices.clear()
 
 # -------------------------------------------------------------------------------------------------
 func add_stroke(stroke: BrushStroke) -> void:
+	if stroke.eraser:
+		eraser_stroke_indices.append(strokes.size())
 	strokes.append(stroke)
 	dirty = true
+
+# -------------------------------------------------------------------------------------------------
+func remove_last_stroke() -> void:
+	if !strokes.empty():
+		var s: BrushStroke = strokes.pop_back()
+		if s.eraser:
+			eraser_stroke_indices.pop_back()
 
 # -------------------------------------------------------------------------------------------------
 func get_filename() -> String:

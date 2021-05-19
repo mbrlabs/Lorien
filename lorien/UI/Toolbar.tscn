@@ -240,7 +240,7 @@ custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_colors/font_color_hover = Color( 0, 0, 0, 1 )
 custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
 action_mode = 0
-text = "ff0000"
+text = "#ffffff"
 __meta__ = {
 "_edit_group_": true
 }

@@ -17,13 +17,6 @@ const BUTTON_HOVER_COLOR = Color("50ffd6")
 const BUTTON_CLICK_COLOR = Color("50ffd6")
 const BUTTON_NORMAL_COLOR = Color.white
 
-enum Tool {
-	BRUSH,
-	LINE,
-	ERASER,
-	COLOR_PICKER
-}
-
 # -------------------------------------------------------------------------------------------------
 export var file_dialog_path: NodePath
 export var brush_color_picker_path: NodePath
@@ -66,20 +59,17 @@ func _on_UndoButton_pressed(): emit_signal("undo_action")
 func _on_RedoButton_pressed(): emit_signal("redo_action")
 
 # -------------------------------------------------------------------------------------------------
-func enable_tool(t: int) -> void:
+func enable_tool(tool_type: int) -> void:
 	var btn: TextureButton
-	if t == Tool.BRUSH:
-		btn = _tool_btn_brush
-	elif t == Tool.LINE:
-		btn = _tool_btn_line
-	elif t == Tool.ERASER:
-		btn = _tool_btn_eraser
-	elif t == Tool.COLOR_PICKER:
-		btn = _tool_btn_colorpicker
+	match tool_type:
+		Types.Tool.BRUSH: btn = _tool_btn_brush
+		Types.Tool.LINE: btn = _tool_btn_line
+		Types.Tool.ERASER: btn = _tool_btn_eraser
+		Types.Tool.COLOR_PICKER: btn = _tool_btn_colorpicker
 	
 	btn.toggle()
 	_change_active_tool_button(btn)
-	emit_signal("tool_changed", t)
+	emit_signal("tool_changed", tool_type)
 
 # -------------------------------------------------------------------------------------------------
 func _on_OpenFileButton_pressed():
@@ -114,7 +104,7 @@ func _on_brush_color_changed(color: Color) -> void:
 	_color_button.set("custom_colors/font_color", text_color)
 	_color_button.set("custom_colors/font_color_hover", text_color)
 	_color_button.set("custom_colors/font_color_pressed", text_color)
-	_color_button.text = color.to_html(false)
+	_color_button.text = "#" + color.to_html(false)
 	emit_signal("brush_color_changed", color)
 
 # -------------------------------------------------------------------------------------------------
@@ -138,22 +128,22 @@ func _on_GridButton_pressed():
 # -------------------------------------------------------------------------------------------------
 func _on_BrushToolButton_pressed():
 	_change_active_tool_button(_tool_btn_brush)
-	emit_signal("tool_changed", Tool.BRUSH)
+	emit_signal("tool_changed", Types.Tool.BRUSH)
 
 # -------------------------------------------------------------------------------------------------
 func _on_LineToolButton_pressed():
 	_change_active_tool_button(_tool_btn_line)
-	emit_signal("tool_changed", Tool.LINE)
+	emit_signal("tool_changed", Types.Tool.LINE)
 
 # -------------------------------------------------------------------------------------------------
 func _on_EraserToolButton_pressed():
 	_change_active_tool_button(_tool_btn_eraser)
-	emit_signal("tool_changed", Tool.ERASER)
+	emit_signal("tool_changed", Types.Tool.ERASER)
 
 # -------------------------------------------------------------------------------------------------
 func _on_ColorPickerToolButton_pressed():
 	_change_active_tool_button(_tool_btn_colorpicker)
-	emit_signal("tool_changed", Tool.COLOR_PICKER)
+	emit_signal("tool_changed", Types.Tool.COLOR_PICKER)
 
 # -------------------------------------------------------------------------------------------------
 func _change_active_tool_button(btn: TextureButton) -> void:

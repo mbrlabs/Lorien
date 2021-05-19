@@ -8,6 +8,9 @@ func reset() -> void:
 
 # -------------------------------------------------------------------------------------------------
 func optimize(s: BrushStroke) -> void:
+	var max_angle_diff = 4.0 if s.eraser else 1.0
+	var max_distance = 8.0 if s.eraser else 1.0
+	
 	if s.points.size() < 3:
 		return
 	
@@ -25,12 +28,12 @@ func optimize(s: BrushStroke) -> void:
 		
 		# Distance between 2 points must be greater than x
 		var distance = prev_point.distance_to(point)
-		var distance_cond = distance > 1.0 # TODO: make dependent on zoom level
+		var distance_cond = distance > max_distance # TODO: make dependent on zoom level
 	
 		# Angle between points must be beigger than x deg
 		var angle := rad2deg(prev_point.angle_to_point(point))
 		var angle_diff = abs(abs(angle) - abs(previous_angle))
-		var angle_cond = angle_diff >= 1.0
+		var angle_cond = angle_diff >= max_angle_diff
 		previous_angle = angle
 		
 		var point_too_far_away = distance > 100

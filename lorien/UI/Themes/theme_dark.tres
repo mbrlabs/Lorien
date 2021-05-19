@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=19 format=2]
+[gd_resource type="Theme" load_steps=17 format=2]
 
 [ext_resource path="res://Assets/Fonts/font_12.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Assets/Fonts/font_14b.tres" type="DynamicFont" id=2]
@@ -16,39 +16,19 @@ content_margin_left = 6.0
 content_margin_right = 6.0
 content_margin_top = 4.0
 content_margin_bottom = 4.0
-bg_color = Color( 0.207843, 0.211765, 0.227451, 1 )
+bg_color = Color( 0.12549, 0.129412, 0.141176, 1 )
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
 border_color = Color( 0.454902, 0.643137, 0.6, 1 )
 
-[sub_resource type="StyleBoxFlat" id=3]
-content_margin_left = 6.0
-content_margin_right = 6.0
-content_margin_top = 4.0
-content_margin_bottom = 4.0
-bg_color = Color( 0.188843, 0.191699, 0.203125, 1 )
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color( 0.4, 0.4225, 0.4825, 1 )
-
 [sub_resource type="StyleBoxFlat" id=4]
 content_margin_left = 6.0
 content_margin_right = 6.0
 content_margin_top = 4.0
 content_margin_bottom = 4.0
-bg_color = Color( 0.207843, 0.211765, 0.227451, 1 )
-
-[sub_resource type="StyleBoxFlat" id=5]
-content_margin_left = 6.0
-content_margin_right = 6.0
-content_margin_top = 4.0
-content_margin_bottom = 4.0
-bg_color = Color( 0.15, 0.1725, 0.2325, 1 )
-border_color = Color( 0.41, 0.61, 0.91, 1 )
+bg_color = Color( 0.12549, 0.129412, 0.141176, 1 )
 
 [sub_resource type="StyleBoxEmpty" id=6]
 content_margin_left = 2.0
@@ -57,7 +37,7 @@ content_margin_right = 2.0
 [sub_resource type="StyleBoxFlat" id=7]
 content_margin_left = 4.0
 content_margin_right = 4.0
-bg_color = Color( 0.207843, 0.211765, 0.227451, 1 )
+bg_color = Color( 0.12549, 0.129412, 0.141176, 1 )
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
@@ -67,7 +47,7 @@ border_color = Color( 0.454902, 0.643137, 0.6, 1 )
 [sub_resource type="StyleBoxFlat" id=8]
 content_margin_left = 4.0
 content_margin_right = 4.0
-bg_color = Color( 0.207843, 0.211765, 0.227451, 1 )
+bg_color = Color( 0.12549, 0.129412, 0.141176, 1 )
 
 [sub_resource type="StyleBoxFlat" id=9]
 bg_color = Color( 0.12549, 0.129412, 0.141176, 1 )
@@ -100,7 +80,7 @@ grow_begin = 7.0
 grow_end = 7.0
 
 [sub_resource type="StyleBoxFlat" id=13]
-bg_color = Color( 0.172549, 0.176471, 0.196078, 1 )
+bg_color = Color( 0.12549, 0.129412, 0.141176, 1 )
 
 [sub_resource type="StyleBoxFlat" id=14]
 content_margin_left = 4.0
@@ -114,12 +94,12 @@ content_margin_left = 8.0
 content_margin_right = 8.0
 content_margin_top = 8.0
 content_margin_bottom = 8.0
-bg_color = Color( 0.12549, 0.129412, 0.141176, 1 )
+bg_color = Color( 0.207843, 0.211765, 0.227451, 1 )
 border_width_left = 1
 border_width_top = 24
 border_width_right = 1
 border_width_bottom = 1
-border_color = Color( 0.12549, 0.129412, 0.141176, 1 )
+border_color = Color( 0.207843, 0.211765, 0.227451, 1 )
 expand_margin_top = 24.0
 shadow_color = Color( 0, 0, 0, 0.3 )
 shadow_size = 4
@@ -134,9 +114,9 @@ Button/constants/hseparation = 2
 Button/fonts/font = null
 Button/styles/disabled = SubResource( 1 )
 Button/styles/focus = SubResource( 2 )
-Button/styles/hover = SubResource( 3 )
+Button/styles/hover = SubResource( 2 )
 Button/styles/normal = SubResource( 4 )
-Button/styles/pressed = SubResource( 5 )
+Button/styles/pressed = SubResource( 4 )
 Label/colors/font_color = Color( 1, 1, 1, 1 )
 Label/colors/font_color_shadow = Color( 0, 0, 0, 0 )
 Label/colors/font_outline_modulate = Color( 1, 1, 1, 1 )

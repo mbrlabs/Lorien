@@ -21,6 +21,7 @@ border_color = Color( 0.207843, 0.211765, 0.227451, 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
+theme = ExtResource( 8 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -56,6 +57,7 @@ margin_left = 362.0
 margin_top = 78.0
 margin_right = 664.0
 margin_bottom = 505.0
+theme = ExtResource( 8 )
 __meta__ = {
 "_edit_group_": true,
 "_edit_use_anchors_": false
@@ -70,10 +72,10 @@ __meta__ = {
 }
 
 [node name="ColorPicker" type="ColorPicker" parent="BrushColorPickerPopup/PanelContainer"]
-margin_left = 76.0
-margin_top = 76.0
-margin_right = 384.0
-margin_bottom = 514.0
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 298.0
+margin_bottom = 441.0
 edit_alpha = false
 __meta__ = {
 "_edit_use_anchors_": false
@@ -86,6 +88,7 @@ margin_left = -364.613
 margin_top = 77.0
 margin_right = -46.6128
 margin_bottom = 501.0
+theme = ExtResource( 8 )
 __meta__ = {
 "_edit_group_": true,
 "_edit_use_anchors_": false
@@ -100,10 +103,10 @@ __meta__ = {
 }
 
 [node name="ColorPicker" type="ColorPicker" parent="BackgroundColorPickerPopup/PanelContainer"]
-margin_left = 76.0
-margin_top = 76.0
-margin_right = 386.0
-margin_bottom = 514.0
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 314.0
+margin_bottom = 420.0
 edit_alpha = false
 __meta__ = {
 "_edit_use_anchors_": false

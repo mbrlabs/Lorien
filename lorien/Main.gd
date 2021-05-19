@@ -77,13 +77,13 @@ func _handle_shortcut_actions() -> void:
 	if Input.is_action_just_pressed("shortcut_redo"):
 		_on_redo_action()
 	if Input.is_action_just_pressed("shortcut_brush_tool"):
-		_toolbar.enable_tool(Toolbar.Tool.BRUSH)
+		_toolbar.enable_tool(Types.Tool.BRUSH)
 	if Input.is_action_just_pressed("shortcut_line_tool"):
-		_toolbar.enable_tool(Toolbar.Tool.LINE)
+		_toolbar.enable_tool(Types.Tool.LINE)
 	if Input.is_action_just_pressed("shortcut_eraser_tool"):
-		_toolbar.enable_tool(Toolbar.Tool.ERASER)
+		_toolbar.enable_tool(Types.Tool.ERASER)
 	if Input.is_action_just_pressed("shortcut_colorpicker"):
-		_toolbar.enable_tool(Toolbar.Tool.COLOR_PICKER)
+		_toolbar.enable_tool(Types.Tool.COLOR_PICKER)
 
 # -------------------------------------------------------------------------------------------------
 func _make_project_active(project: Project) -> void:
@@ -218,11 +218,15 @@ func _on_undo_action() -> void:
 func _on_redo_action() -> void:
 	var project: Project = ProjectManager.get_active_project()
 	if project.undo_redo.has_redo():
-		project.undo_redo.redo()
+		project.undo_redo.redo() 
 
 # -------------------------------------------------------------------------------------------------
-func _on_tool_changed(t: int) -> void:
-	printerr("Tool changing not implemented yet")
+func _on_tool_changed(tool_type: int) -> void:
+	match tool_type:
+		Types.Tool.BRUSH, Types.Tool.ERASER: _canvas.use_tool(tool_type)
+		_:
+			_generic_alert_dialog.dialog_text = "Not implemented yet."
+			_generic_alert_dialog.popup_centered()
 
 # -------------------------------------------------------------------------------------------------
 func _on_exit_with_changes_saved() -> void:

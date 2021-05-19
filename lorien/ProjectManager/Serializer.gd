@@ -1,5 +1,7 @@
 class_name Serializer
 
+# TODO: all of this needs validation 
+
 # -------------------------------------------------------------------------------------------------
 const COMPRESSION_METHOD = File.COMPRESSION_DEFLATE
 const POINT_ELEM_SIZE := 3
@@ -24,6 +26,11 @@ static func serialize(project: Project) -> void:
 	# Serialize meta data
 	file.store_32(VERSION_NUMBER)
 	file.store_pascal_string(_dict_to_metadata_str(project.meta_data))
+	
+	# Serialize eraser stroke indices
+	file.store_32(project.eraser_stroke_indices.size())
+	for stroke_index in project.eraser_stroke_indices:
+		file.store_32(stroke_index)
 	
 	# Serialize stroke data
 	for stroke in project.strokes:
@@ -70,6 +77,11 @@ static func deserialize(project: Project) -> void:
 	var meta_data_str = file.get_pascal_string()
 	project.meta_data = _metadata_str_to_dict(meta_data_str)
 	
+	# Deserialize eraser stroke indices
+	var eraser_stroke_count := file.get_32()
+	for i in eraser_stroke_count:
+		project.eraser_stroke_indices.append(file.get_32())
+	
 	# Deserialize strokes
 	while true:
 		var brush_stroke := BrushStroke.new()
@@ -98,6 +110,9 @@ static func deserialize(project: Project) -> void:
 		# are we done yet?
 		if file.get_position() >= file.get_len()-1 || file.eof_reached():
 			break
+	
+	for eraser_index in project.eraser_stroke_indices:
+		project.strokes[eraser_index].eraser = true
 	
 	# Done
 	file.close()
