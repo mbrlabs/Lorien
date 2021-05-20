@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/fixed_line_tool.png-2ef76db01398dce8a06445e714a8f48a.stex"
+path="res://.import/arrow_right.png-e25e5dd0d307b4b344da18a1acdb173d.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Icons/fixed_line_tool.png"
-dest_files=[ "res://.import/fixed_line_tool.png-2ef76db01398dce8a06445e714a8f48a.stex" ]
+source_file="res://Assets/Icons/arrow_right.png"
+dest_files=[ "res://.import/arrow_right.png-e25e5dd0d307b4b344da18a1acdb173d.stex" ]
 
 [params]
 

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/color_picker.png-a70b82c0caa965b9d941049c337ec552.stex"
+path="res://.import/undo.png-b391b6f2827b70101f94b911ec554a50.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Icons/color_picker.png"
-dest_files=[ "res://.import/color_picker.png-a70b82c0caa965b9d941049c337ec552.stex" ]
+source_file="res://Assets/Icons/undo.png"
+dest_files=[ "res://.import/undo.png-b391b6f2827b70101f94b911ec554a50.stex" ]
 
 [params]
 

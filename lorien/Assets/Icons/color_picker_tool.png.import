@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/grid_white.png-8f7a518f1a37614bf269ae4eaf19544c.stex"
+path="res://.import/color_picker_tool.png-f87784aa0241ea727ae6d52402871c14.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Icons/grid_white.png"
-dest_files=[ "res://.import/grid_white.png-8f7a518f1a37614bf269ae4eaf19544c.stex" ]
+source_file="res://Assets/Icons/color_picker_tool.png"
+dest_files=[ "res://.import/color_picker_tool.png-f87784aa0241ea727ae6d52402871c14.stex" ]
 
 [params]
 

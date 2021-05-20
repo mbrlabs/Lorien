@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/background_tool_white.png-9362f041de3d72df71258e9d2a7dfff7.stex"
+path="res://.import/redo.png-9fc31f44732cd3d5afb37980266dc473.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Icons/background_tool_white.png"
-dest_files=[ "res://.import/background_tool_white.png-9362f041de3d72df71258e9d2a7dfff7.stex" ]
+source_file="res://Assets/Icons/redo.png"
+dest_files=[ "res://.import/redo.png-9fc31f44732cd3d5afb37980266dc473.stex" ]
 
 [params]
 

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/new_file_white.png-0a3572cc58ad88c30d626be5633e1670.stex"
+path="res://.import/line_tool.png-978e848631c8b06d1f4ac691060d1cfa.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Icons/new_file_white.png"
-dest_files=[ "res://.import/new_file_white.png-0a3572cc58ad88c30d626be5633e1670.stex" ]
+source_file="res://Assets/Icons/line_tool.png"
+dest_files=[ "res://.import/line_tool.png-978e848631c8b06d1f4ac691060d1cfa.stex" ]
 
 [params]
 

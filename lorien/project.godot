@@ -12,17 +12,17 @@ _global_script_classes=[ {
 "base": "Reference",
 "class": "BrushStroke",
 "language": "GDScript",
-"path": "res://BrushStroke.gd"
+"path": "res://BrushStroke/BrushStroke.gd"
 }, {
 "base": "Reference",
 "class": "BrushStrokeOptimizer",
 "language": "GDScript",
-"path": "res://BrushStrokeOptimizer.gd"
+"path": "res://BrushStroke/BrushStrokeOptimizer.gd"
 }, {
 "base": "Reference",
 "class": "Config",
 "language": "GDScript",
-"path": "res://Config.gd"
+"path": "res://Misc/Config.gd"
 }, {
 "base": "ViewportContainer",
 "class": "InfiniteCanvas",
@@ -67,7 +67,7 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "Types",
 "language": "GDScript",
-"path": "res://Types.gd"
+"path": "res://Misc/Types.gd"
 } ]
 _global_script_class_icons={
 "BrushStroke": "",
@@ -88,16 +88,17 @@ _global_script_class_icons={
 
 config/name="Lorien"
 run/main_scene="res://Main.tscn"
-boot_splash/image="res://Assets/boot.png"
+boot_splash/image="res://Assets/Textures/boot.png"
 boot_splash/fullsize=false
 boot_splash/use_filter=false
 boot_splash/bg_color=Color( 0.12549, 0.129412, 0.141176, 1 )
-config/icon="res://Assets/icon.png"
+config/icon="res://Assets/Logo/logo.png"
 
 [autoload]
 
-Utils="*res://Utils/Utils.gd"
+Utils="*res://Misc/Utils.gd"
 ProjectManager="*res://ProjectManager/ProjectManager.gd"
+Settings="*res://Misc/Settings.gd"
 
 [debug]
 

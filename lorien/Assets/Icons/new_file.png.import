@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/stroke_texture.png-9b32d0cc9de49a2f54c9b88b23a208d4.stex"
+path="res://.import/new_file.png-0d6707e486bc6975c117bb30bfd5c390.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/stroke_texture.png"
-dest_files=[ "res://.import/stroke_texture.png-9b32d0cc9de49a2f54c9b88b23a208d4.stex" ]
+source_file="res://Assets/Icons/new_file.png"
+dest_files=[ "res://.import/new_file.png-0d6707e486bc6975c117bb30bfd5c390.stex" ]
 
 [params]
 

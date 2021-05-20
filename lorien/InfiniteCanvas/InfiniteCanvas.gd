@@ -2,8 +2,8 @@ extends ViewportContainer
 class_name InfiniteCanvas
 
 # -------------------------------------------------------------------------------------------------
-const DEBUG_POINT_TEXTURE = preload("res://Assets/icon.png")
-const STROKE_TEXTURE = preload("res://Assets/stroke_texture.png")
+const DEBUG_POINT_TEXTURE = preload("res://Assets/Logo/logo.png")
+const STROKE_TEXTURE = preload("res://Assets/Textures/stroke_texture.png")
 
 const ERASER_SIZE_FACTOR = 3.5
 
@@ -73,7 +73,7 @@ func _make_empty_line2d() -> Line2D:
 	#line.end_cap_mode = Line2D.LINE_CAP_ROUND
 	line.joint_mode = Line2D.LINE_CAP_ROUND
 	line.antialiased = false 
-	line.texture = STROKE_TEXTURE
+	#line.texture = STROKE_TEXTURE
 	line.texture_mode = Line2D.LINE_TEXTURE_STRETCH
 	return line
 

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/undo_white.png-c3dfaa750e2f1bc85c627d1046329292.stex"
+path="res://.import/grid.png-8bfff87b3cd26042e7eaa81bab15f4d5.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Icons/undo_white.png"
-dest_files=[ "res://.import/undo_white.png-c3dfaa750e2f1bc85c627d1046329292.stex" ]
+source_file="res://Assets/Icons/grid.png"
+dest_files=[ "res://.import/grid.png-8bfff87b3cd26042e7eaa81bab15f4d5.stex" ]
 
 [params]
 

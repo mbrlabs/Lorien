@@ -5,7 +5,6 @@
 [ext_resource path="res://UI/Themes/theme_dark.tres" type="Theme" id=3]
 
 [node name="UnsavedChangesOnExitDialog" type="WindowDialog"]
-visible = true
 margin_right = 310.0
 margin_bottom = 90.0
 rect_min_size = Vector2( 310, 90 )
@@ -57,7 +56,7 @@ margin_left = -145.5
 margin_right = 145.5
 margin_bottom = 51.0
 custom_fonts/font = ExtResource( 1 )
-text = "There are unsaved changes. Do you want to keep them before exiting Lorien?"
+text = "There are unsaved changes. Do you want to save  before exiting Lorien?"
 valign = 1
 autowrap = true
 __meta__ = {

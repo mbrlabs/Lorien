@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/brush_white.png-9b9927e521758f90deb740f090b03ed1.stex"
+path="res://.import/save_file.png-9cd5cd8db86ab83f81b7066aab1c2cbb.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Icons/brush_white.png"
-dest_files=[ "res://.import/brush_white.png-9b9927e521758f90deb740f090b03ed1.stex" ]
+source_file="res://Assets/Icons/save_file.png"
+dest_files=[ "res://.import/save_file.png-9cd5cd8db86ab83f81b7066aab1c2cbb.stex" ]
 
 [params]
 

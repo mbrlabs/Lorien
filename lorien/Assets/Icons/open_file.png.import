@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/eraser_white.png-a6693790c18240c947175fe7832e497f.stex"
+path="res://.import/open_file.png-c88db8352e7590761a7dba8acd66f21e.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Icons/eraser_white.png"
-dest_files=[ "res://.import/eraser_white.png-a6693790c18240c947175fe7832e497f.stex" ]
+source_file="res://Assets/Icons/open_file.png"
+dest_files=[ "res://.import/open_file.png-c88db8352e7590761a7dba8acd66f21e.stex" ]
 
 [params]
 

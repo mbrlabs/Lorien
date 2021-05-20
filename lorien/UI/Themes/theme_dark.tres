@@ -1,8 +1,9 @@
-[gd_resource type="Theme" load_steps=17 format=2]
+[gd_resource type="Theme" load_steps=18 format=2]
 
 [ext_resource path="res://Assets/Fonts/font_12.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Assets/Fonts/font_14b.tres" type="DynamicFont" id=2]
-[ext_resource path="res://Assets/Icons/close_white.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Icons/close.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Icons/arrow_right.png" type="Texture" id=4]
 
 [sub_resource type="StyleBoxFlat" id=1]
 content_margin_left = 6.0
@@ -151,7 +152,7 @@ PopupMenu/fonts/font = null
 PopupMenu/icons/checked = null
 PopupMenu/icons/radio_checked = null
 PopupMenu/icons/radio_unchecked = null
-PopupMenu/icons/submenu = null
+PopupMenu/icons/submenu = ExtResource( 4 )
 PopupMenu/icons/unchecked = null
 PopupMenu/styles/hover = SubResource( 8 )
 PopupMenu/styles/labeled_separator_left = null
