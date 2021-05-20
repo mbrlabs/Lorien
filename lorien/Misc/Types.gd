@@ -8,3 +8,13 @@ enum Tool {
 	COLOR_PICKER
 }
 
+enum AAMode {
+	NONE,
+	OPENGL_HINT,
+	TEXTURE_FILL
+}
+
+enum UITheme {
+	DARK,
+	LIGHT
+}

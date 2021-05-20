@@ -70,10 +70,10 @@ __meta__ = {
 }
 
 [node name="ColorPicker" type="ColorPicker" parent="BrushColorPickerPopup/PanelContainer"]
-margin_left = 44.0
-margin_top = 44.0
-margin_right = 338.0
-margin_bottom = 481.0
+margin_left = 92.0
+margin_top = 92.0
+margin_right = 386.0
+margin_bottom = 529.0
 edit_alpha = false
 __meta__ = {
 "_edit_use_anchors_": false
@@ -101,10 +101,10 @@ __meta__ = {
 }
 
 [node name="ColorPicker" type="ColorPicker" parent="BackgroundColorPickerPopup/PanelContainer"]
-margin_left = 44.0
-margin_top = 44.0
-margin_right = 354.0
-margin_bottom = 460.0
+margin_left = 92.0
+margin_top = 92.0
+margin_right = 402.0
+margin_bottom = 508.0
 edit_alpha = false
 __meta__ = {
 "_edit_use_anchors_": false
@@ -133,7 +133,6 @@ current_file = "Lorien"
 current_path = "/Projects/Other/lorien/lorien/Lorien"
 
 [node name="UnsavedChangesOnExitDialog" parent="." instance=ExtResource( 7 )]
-visible = false
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -144,7 +143,6 @@ margin_right = 155.0
 margin_bottom = 45.0
 
 [node name="AboutDialog" parent="." instance=ExtResource( 9 )]
-visible = false
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -155,14 +153,15 @@ margin_right = 225.0
 margin_bottom = 100.0
 
 [node name="SettingsDialog" parent="." instance=ExtResource( 10 )]
+visible = false
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -225.0
-margin_top = -100.0
-margin_right = 225.0
-margin_bottom = 100.0
+margin_left = -250.0
+margin_top = -175.0
+margin_right = 250.0
+margin_bottom = 175.0
 
 [node name="GenericAlertDialog" type="AcceptDialog" parent="."]
 anchor_left = 0.5

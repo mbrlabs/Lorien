@@ -1,2 +1,80 @@
 extends WindowDialog
 
+# -------------------------------------------------------------------------------------------------
+const THEME_DARK_INDEX 	:= 0
+const THEME_LIGHT_INDEX := 1
+
+const AA_NONE_INDEX 		:= 0
+const AA_OPENGL_HINT_INDEX 	:= 1
+const AA_TEXTURE_FILL_INDEX := 2
+
+# -------------------------------------------------------------------------------------------------
+onready var _brush_size: SpinBox = $MarginContainer/TabContainer/General/VBoxContainer/DefaultBrushSize/DefaultBrushSize
+onready var _brush_color: ColorPickerButton = $MarginContainer/TabContainer/General/VBoxContainer/DefaultBrushColor/DefaultBrushColor
+onready var _canvas_color: ColorPickerButton = $MarginContainer/TabContainer/General/VBoxContainer/DefaultCanvasColor/DefaultCanvasColor
+onready var _project_dir: LineEdit = $MarginContainer/TabContainer/General/VBoxContainer/DefaultSaveDir/DefaultSaveDir
+onready var _theme: OptionButton = $MarginContainer/TabContainer/Appearance/VBoxContainer/Theme/Theme
+onready var _aa_mode: OptionButton = $MarginContainer/TabContainer/Rendering/VBoxContainer/AntiAliasing/AntiAliasing
+
+# -------------------------------------------------------------------------------------------------
+func _ready():
+	var brush_size = Settings.get_value(Settings.GENERAL_DEFAULT_BRUSH_SIZE, Config.DEFAULT_BRUSH_SIZE)
+	var brush_color = Settings.get_value(Settings.GENERAL_DEFAULT_BRUSH_COLOR, Config.DEFAULT_BRUSH_COLOR)
+	var canvas_color = Settings.get_value(Settings.GENERAL_DEFAULT_CANVAS_COLOR, Config.DEFAULT_CANVAS_COLOR)
+	var project_dir = Settings.get_value(Settings.GENERAL_DEFAULT_PROJECT_DIR, "")
+	var theme = Settings.get_value(Settings.APPEARANCE_THEME, Types.UITheme.DARK)
+	var aa_mode = Settings.get_value(Settings.RENDERING_AA_MODE, Config.DEFAULT_AA_MODE)
+	
+	match theme:
+		Types.UITheme.DARK: _theme.selected = THEME_DARK_INDEX
+		Types.UITheme.LIGHT: _theme.selected = THEME_LIGHT_INDEX
+	match aa_mode:
+		Types.AAMode.NONE: _aa_mode.selected = AA_NONE_INDEX
+		Types.AAMode.OPENGL_HINT: _aa_mode.selected = AA_OPENGL_HINT_INDEX
+		Types.AAMode.TEXTURE_FILL: _aa_mode.selected = AA_TEXTURE_FILL_INDEX
+	_brush_size.value = brush_size
+	_brush_color.color = brush_color
+	_canvas_color.color = canvas_color
+	_project_dir.text = project_dir
+
+# -------------------------------------------------------------------------------------------------
+func _on_DefaultBrushSize_value_changed(value: int) -> void:
+	Settings.set_value(Settings.GENERAL_DEFAULT_BRUSH_SIZE, int(value))
+
+# -------------------------------------------------------------------------------------------------
+func _on_DefaultBrushColor_color_changed(color: Color) -> void:
+	Settings.set_value(Settings.GENERAL_DEFAULT_BRUSH_COLOR, color)
+
+# -------------------------------------------------------------------------------------------------
+func _on_DefaultCanvasColor_color_changed(color: Color) -> void:
+	Settings.set_value(Settings.GENERAL_DEFAULT_CANVAS_COLOR, color)
+
+# -------------------------------------------------------------------------------------------------
+func _on_DefaultSaveDir_text_changed(text: String) -> void:
+	text = text.replace("\\", "/")
+	
+	var dir = Directory.new()
+	if dir.dir_exists(text):
+		Settings.set_value(Settings.GENERAL_DEFAULT_PROJECT_DIR, text)
+
+# -------------------------------------------------------------------------------------------------
+func _on_Theme_item_selected(index: int):
+	var theme: int
+	match index:
+		THEME_DARK_INDEX: theme = Types.UITheme.DARK
+		THEME_LIGHT_INDEX: theme = Types.UITheme.LIGHT
+	
+	Settings.set_value(Settings.APPEARANCE_THEME, theme)
+	# TODO: actually change theme or require user to restart
+
+# -------------------------------------------------------------------------------------------------
+func _on_AntiAliasing_item_selected(index: int):
+	var aa_mode: int
+	match index:
+		AA_NONE_INDEX: aa_mode = Types.AAMode.NONE
+		AA_OPENGL_HINT_INDEX: aa_mode = Types.AAMode.OPENGL_HINT
+		AA_TEXTURE_FILL_INDEX: aa_mode = Types.AAMode.TEXTURE_FILL
+	
+	Settings.set_value(Settings.RENDERING_AA_MODE, aa_mode)
+	# TODO: actually change the AA or require user to restart
+	

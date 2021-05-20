@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://Assets/Fonts/font_12.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Assets/Fonts/font_13.tres" type="DynamicFont" id=1]
 [ext_resource path="res://UI/Components/ProjectTab.gd" type="Script" id=2]
 [ext_resource path="res://Assets/Icons/close.png" type="Texture" id=3]
 [ext_resource path="res://UI/Themes/style_tab_active_dark.tres" type="StyleBox" id=4]

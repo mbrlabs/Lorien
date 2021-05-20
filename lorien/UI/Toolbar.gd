@@ -44,12 +44,15 @@ var _last_active_tool_button: TextureButton
 
 # -------------------------------------------------------------------------------------------------
 func _ready():
+	var brush_size: int = Settings.get_value(Settings.GENERAL_DEFAULT_BRUSH_SIZE, Config.DEFAULT_BRUSH_SIZE)
+	var brush_color: Color = Settings.get_value(Settings.GENERAL_DEFAULT_BRUSH_COLOR, Config.DEFAULT_BRUSH_COLOR)
+	
 	_brush_color_picker.connect("color_changed", self, "_on_brush_color_changed")
 	_background_color_picker.connect("color_changed", self, "_on_background_color_changed")
-	_brush_size_label.text = str(Config.DEFAULT_BRUSH_SIZE)
-	_brush_size_slider.value = Config.DEFAULT_BRUSH_SIZE
+	_brush_size_label.text = str(brush_size)
+	_brush_size_slider.value = brush_size
 	_last_active_tool_button = _tool_btn_brush
-	_on_brush_color_changed(Config.DEFAULT_BRUSH_COLOR)
+	_on_brush_color_changed(brush_color)
 
 # Button clicked callbacks
 # -------------------------------------------------------------------------------------------------

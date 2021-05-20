@@ -17,7 +17,8 @@ onready var _background_color_picker: ColorPicker = $BackgroundColorPickerPopup/
 func _ready():
 	get_tree().set_auto_accept_quit(false)
 	_canvas.set_background_color(Config.DEFAULT_CANVAS_COLOR)
-	_file_dialog.current_dir = Config.DEFAULT_FILE_DIALOG_PATH
+	var docs_folder = OS.get_system_dir(OS.SYSTEM_DIR_DOCUMENTS)
+	_file_dialog.current_dir = Settings.get_value(Settings.GENERAL_DEFAULT_PROJECT_DIR, docs_folder)
 	
 	# UI Signals
 	_toolbar.connect("undo_action", self, "_on_undo_action")
@@ -113,7 +114,7 @@ func _make_project_active(project: Project) -> void:
 
 # -------------------------------------------------------------------------------------------------
 func _is_mouse_on_ui() -> bool:
-	return Utils.is_mouse_in_control(_menubar) || Utils.is_mouse_in_control(_toolbar) || Utils.is_mouse_in_control(_statusbar)
+	return Utils.is_mouse_in_control(_menubar) || Utils.is_mouse_in_control(_toolbar) || Utils.is_mouse_in_control(_statusbar)  || Utils.is_mouse_in_control(_file_dialog) || Utils.is_mouse_in_control(_about_dialog) || Utils.is_mouse_in_control(_settings_dialog)
 
 # -------------------------------------------------------------------------------------------------
 func _create_active_default_project() -> void:

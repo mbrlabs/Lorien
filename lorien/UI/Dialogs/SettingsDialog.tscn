@@ -1,15 +1,309 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://UI/Themes/theme_dark.tres" type="Theme" id=1]
 [ext_resource path="res://UI/Dialogs/SettingsDialog.gd" type="Script" id=2]
 
+[sub_resource type="StyleBoxEmpty" id=1]
+
+[sub_resource type="StyleBoxEmpty" id=2]
+
 [node name="SettingsDialog" type="WindowDialog"]
-margin_right = 450.0
-margin_bottom = 200.0
-rect_min_size = Vector2( 450, 200 )
+margin_right = 400.0
+margin_bottom = 250.0
+rect_min_size = Vector2( 500, 350 )
 theme = ExtResource( 1 )
 window_title = "Settings"
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 12
+custom_constants/margin_top = 12
+custom_constants/margin_left = 12
+custom_constants/margin_bottom = 12
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TabContainer" type="TabContainer" parent="MarginContainer"]
+margin_left = 12.0
+margin_top = 12.0
+margin_right = 488.0
+margin_bottom = 338.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="General" type="Control" parent="MarginContainer/TabContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 27.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/TabContainer/General"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSeparator3" type="HSeparator" parent="MarginContainer/TabContainer/General/VBoxContainer"]
+margin_right = 476.0
+margin_bottom = 12.0
+custom_styles/separator = SubResource( 1 )
+custom_constants/separation = 12
+
+[node name="DefaultBrushSize" type="HBoxContainer" parent="MarginContainer/TabContainer/General/VBoxContainer"]
+margin_top = 16.0
+margin_right = 476.0
+margin_bottom = 37.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="MarginContainer/TabContainer/General/VBoxContainer/DefaultBrushSize"]
+margin_top = 2.0
+margin_right = 236.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+text = "Default Brush Size:"
+
+[node name="DefaultBrushSize" type="SpinBox" parent="MarginContainer/TabContainer/General/VBoxContainer/DefaultBrushSize"]
+margin_left = 240.0
+margin_right = 476.0
+margin_bottom = 21.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+min_value = 1.0
+value = 12.0
+allow_greater = true
+
+[node name="DefaultBrushColor" type="HBoxContainer" parent="MarginContainer/TabContainer/General/VBoxContainer"]
+margin_top = 41.0
+margin_right = 476.0
+margin_bottom = 58.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="MarginContainer/TabContainer/General/VBoxContainer/DefaultBrushColor"]
+margin_right = 236.0
+margin_bottom = 17.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+text = "Default Brush Color:"
+
+[node name="DefaultBrushColor" type="ColorPickerButton" parent="MarginContainer/TabContainer/General/VBoxContainer/DefaultBrushColor"]
+margin_left = 240.0
+margin_right = 476.0
+margin_bottom = 17.0
+size_flags_horizontal = 3
+custom_styles/hover = SubResource( 2 )
+custom_styles/pressed = SubResource( 2 )
+custom_styles/focus = SubResource( 2 )
+custom_styles/disabled = SubResource( 2 )
+custom_styles/normal = SubResource( 2 )
+flat = true
+color = Color( 1, 1, 1, 1 )
+edit_alpha = false
+
+[node name="DefaultCanvasColor" type="HBoxContainer" parent="MarginContainer/TabContainer/General/VBoxContainer"]
+margin_top = 62.0
+margin_right = 476.0
+margin_bottom = 79.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="MarginContainer/TabContainer/General/VBoxContainer/DefaultCanvasColor"]
+margin_right = 236.0
+margin_bottom = 17.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+text = "Default Canvas Color:"
+
+[node name="DefaultCanvasColor" type="ColorPickerButton" parent="MarginContainer/TabContainer/General/VBoxContainer/DefaultCanvasColor"]
+margin_left = 240.0
+margin_right = 476.0
+margin_bottom = 17.0
+size_flags_horizontal = 3
+custom_styles/hover = SubResource( 2 )
+custom_styles/pressed = SubResource( 2 )
+custom_styles/focus = SubResource( 2 )
+custom_styles/disabled = SubResource( 2 )
+custom_styles/normal = SubResource( 2 )
+flat = true
+color = Color( 0.12549, 0.129412, 0.141176, 1 )
+edit_alpha = false
+
+[node name="DefaultSaveDir" type="HBoxContainer" parent="MarginContainer/TabContainer/General/VBoxContainer"]
+margin_top = 83.0
+margin_right = 476.0
+margin_bottom = 104.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="MarginContainer/TabContainer/General/VBoxContainer/DefaultSaveDir"]
+margin_top = 2.0
+margin_right = 236.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+text = "Default Project Folder:"
+
+[node name="DefaultSaveDir" type="LineEdit" parent="MarginContainer/TabContainer/General/VBoxContainer/DefaultSaveDir"]
+margin_left = 240.0
+margin_right = 476.0
+margin_bottom = 21.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+placeholder_text = "e.g. C:/Users/me/Lorien"
+placeholder_alpha = 0.5
+
+[node name="Appearance" type="Control" parent="MarginContainer/TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 27.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/TabContainer/Appearance"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSeparator3" type="HSeparator" parent="MarginContainer/TabContainer/Appearance/VBoxContainer"]
+margin_right = 476.0
+margin_bottom = 12.0
+custom_styles/separator = SubResource( 1 )
+custom_constants/separation = 12
+
+[node name="Label" type="Label" parent="MarginContainer/TabContainer/Appearance/VBoxContainer"]
+margin_top = 16.0
+margin_right = 476.0
+margin_bottom = 33.0
+custom_colors/font_color = Color( 1, 0.470588, 0.470588, 1 )
+text = "You need to restart for settings to take effect"
+align = 1
+
+[node name="HSeparator4" type="HSeparator" parent="MarginContainer/TabContainer/Appearance/VBoxContainer"]
+margin_top = 37.0
+margin_right = 476.0
+margin_bottom = 49.0
+custom_styles/separator = SubResource( 1 )
+custom_constants/separation = 12
+
+[node name="Theme" type="HBoxContainer" parent="MarginContainer/TabContainer/Appearance/VBoxContainer"]
+margin_top = 8.0
+margin_right = 426.0
+margin_bottom = 33.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="MarginContainer/TabContainer/Appearance/VBoxContainer/Theme"]
+margin_top = 4.0
+margin_right = 211.0
+margin_bottom = 21.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+text = "Theme:"
+
+[node name="Theme" type="OptionButton" parent="MarginContainer/TabContainer/Appearance/VBoxContainer/Theme"]
+margin_left = 215.0
+margin_right = 426.0
+margin_bottom = 25.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Dark"
+items = [ "Dark", null, false, 0, null, "Light (not implemented yet)", null, false, 1, null ]
+selected = 0
+
+[node name="Rendering" type="Control" parent="MarginContainer/TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 27.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/TabContainer/Rendering"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSeparator3" type="HSeparator" parent="MarginContainer/TabContainer/Rendering/VBoxContainer"]
+margin_right = 476.0
+margin_bottom = 12.0
+custom_styles/separator = SubResource( 1 )
+custom_constants/separation = 12
+
+[node name="Label" type="Label" parent="MarginContainer/TabContainer/Rendering/VBoxContainer"]
+margin_top = 16.0
+margin_right = 476.0
+margin_bottom = 33.0
+custom_colors/font_color = Color( 1, 0.470588, 0.470588, 1 )
+text = "You need to restart for settings to take effect"
+align = 1
+
+[node name="HSeparator4" type="HSeparator" parent="MarginContainer/TabContainer/Rendering/VBoxContainer"]
+margin_top = 37.0
+margin_right = 476.0
+margin_bottom = 49.0
+custom_styles/separator = SubResource( 1 )
+custom_constants/separation = 12
+
+[node name="AntiAliasing" type="HBoxContainer" parent="MarginContainer/TabContainer/Rendering/VBoxContainer"]
+margin_top = 8.0
+margin_right = 426.0
+margin_bottom = 33.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="MarginContainer/TabContainer/Rendering/VBoxContainer/AntiAliasing"]
+margin_top = 4.0
+margin_right = 211.0
+margin_bottom = 21.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+text = "Anti Aliasing Method:"
+
+[node name="AntiAliasing" type="OptionButton" parent="MarginContainer/TabContainer/Rendering/VBoxContainer/AntiAliasing"]
+margin_left = 215.0
+margin_right = 426.0
+margin_bottom = 25.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "None"
+items = [ "None", null, false, 0, null, "OpenGL Hint", null, false, 1, null, "Texture Fill", null, false, 2, null ]
+selected = 0
+
+[node name="Debug" type="Control" parent="MarginContainer/TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 27.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/TabContainer/Debug"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSeparator3" type="HSeparator" parent="MarginContainer/TabContainer/Debug/VBoxContainer"]
+margin_right = 426.0
+margin_bottom = 12.0
+custom_styles/separator = SubResource( 1 )
+custom_constants/separation = 12
+
+[node name="Label3" type="Label" parent="MarginContainer/TabContainer/Debug/VBoxContainer"]
+margin_top = 16.0
+margin_right = 426.0
+margin_bottom = 33.0
+text = "Debug"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="value_changed" from="MarginContainer/TabContainer/General/VBoxContainer/DefaultBrushSize/DefaultBrushSize" to="." method="_on_DefaultBrushSize_value_changed"]
+[connection signal="color_changed" from="MarginContainer/TabContainer/General/VBoxContainer/DefaultBrushColor/DefaultBrushColor" to="." method="_on_DefaultBrushColor_color_changed"]
+[connection signal="color_changed" from="MarginContainer/TabContainer/General/VBoxContainer/DefaultCanvasColor/DefaultCanvasColor" to="." method="_on_DefaultCanvasColor_color_changed"]
+[connection signal="text_changed" from="MarginContainer/TabContainer/General/VBoxContainer/DefaultSaveDir/DefaultSaveDir" to="." method="_on_DefaultSaveDir_text_changed"]
+[connection signal="item_selected" from="MarginContainer/TabContainer/Appearance/VBoxContainer/Theme/Theme" to="." method="_on_Theme_item_selected"]
+[connection signal="item_selected" from="MarginContainer/TabContainer/Rendering/VBoxContainer/AntiAliasing/AntiAliasing" to="." method="_on_AntiAliasing_item_selected"]

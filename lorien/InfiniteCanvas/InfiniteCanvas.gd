@@ -33,6 +33,8 @@ var _current_tool: int
 
 # -------------------------------------------------------------------------------------------------
 func _ready():
+	brush_size = Settings.get_value(Settings.GENERAL_DEFAULT_BRUSH_SIZE, Config.DEFAULT_BRUSH_SIZE)
+	brush_color = Settings.get_value(Settings.GENERAL_DEFAULT_BRUSH_COLOR, Config.DEFAULT_BRUSH_COLOR)
 	_cursor.change_size(brush_size)
 
 # -------------------------------------------------------------------------------------------------
@@ -69,12 +71,21 @@ func _physics_process(delta: float) -> void:
 func _make_empty_line2d() -> Line2D:
 	var line := Line2D.new()
 	line.width_curve = Curve.new()
+	
+	# Joints
+	line.joint_mode = Line2D.LINE_CAP_ROUND
 	#line.begin_cap_mode = Line2D.LINE_CAP_ROUND
 	#line.end_cap_mode = Line2D.LINE_CAP_ROUND
-	line.joint_mode = Line2D.LINE_CAP_ROUND
-	line.antialiased = false 
-	#line.texture = STROKE_TEXTURE
-	line.texture_mode = Line2D.LINE_TEXTURE_STRETCH
+	
+	# Anti aliasing
+	var aa_mode: int = Settings.get_value(Settings.RENDERING_AA_MODE, Config.DEFAULT_AA_MODE)
+	match aa_mode:
+		Types.AAMode.OPENGL_HINT:
+			line.antialiased = true
+		Types.AAMode.TEXTURE_FILL: 
+			line.texture = STROKE_TEXTURE
+			line.texture_mode = Line2D.LINE_TEXTURE_STRETCH
+	
 	return line
 
 # -------------------------------------------------------------------------------------------------
