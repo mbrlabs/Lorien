@@ -70,10 +70,10 @@ __meta__ = {
 }
 
 [node name="ColorPicker" type="ColorPicker" parent="BrushColorPickerPopup/PanelContainer"]
-margin_left = 168.0
-margin_top = 168.0
-margin_right = 462.0
-margin_bottom = 605.0
+margin_left = 172.0
+margin_top = 172.0
+margin_right = 466.0
+margin_bottom = 609.0
 edit_alpha = false
 __meta__ = {
 "_edit_use_anchors_": false
@@ -101,10 +101,10 @@ __meta__ = {
 }
 
 [node name="ColorPicker" type="ColorPicker" parent="BackgroundColorPickerPopup/PanelContainer"]
-margin_left = 168.0
-margin_top = 168.0
-margin_right = 478.0
-margin_bottom = 584.0
+margin_left = 172.0
+margin_top = 172.0
+margin_right = 482.0
+margin_bottom = 588.0
 edit_alpha = false
 __meta__ = {
 "_edit_use_anchors_": false
@@ -128,9 +128,9 @@ margin_bottom = 216.5
 theme = ExtResource( 8 )
 access = 2
 filters = PoolStringArray( "*.lorien" )
-current_dir = "/Projects/Other/lorien/lorien"
+current_dir = "/home/mbr/Documents/Projects/Lorien/lorien"
 current_file = "Lorien"
-current_path = "/Projects/Other/lorien/lorien/Lorien"
+current_path = "/home/mbr/Documents/Projects/Lorien/lorien/Lorien"
 
 [node name="UnsavedChangesOnExitDialog" parent="." instance=ExtResource( 7 )]
 anchor_left = 0.5
