@@ -3,7 +3,7 @@
 [ext_resource path="res://InfiniteCanvas/InfiniteCanvas.gd" type="Script" id=1]
 [ext_resource path="res://InfiniteCanvas/PanZoomCamera.gd" type="Script" id=2]
 [ext_resource path="res://InfiniteCanvas/pressure_curve.tres" type="Curve" id=3]
-[ext_resource path="res://InfiniteCanvas/BrushCursor.tscn" type="PackedScene" id=4]
+[ext_resource path="res://InfiniteCanvas/Cursor/BrushCursor.tscn" type="PackedScene" id=4]
 
 [node name="InfiniteCanvas" type="ViewportContainer"]
 anchor_right = 1.0
