@@ -19,6 +19,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://BrushStroke/BrushStrokeOptimizer.gd"
 }, {
+"base": "CanvasTool",
+"class": "BrushTool",
+"language": "GDScript",
+"path": "res://InfiniteCanvas/Tools/BrushTool.gd"
+}, {
+"base": "Node",
+"class": "CanvasTool",
+"language": "GDScript",
+"path": "res://InfiniteCanvas/Tools/CanvasTool.gd"
+}, {
 "base": "Reference",
 "class": "Config",
 "language": "GDScript",
@@ -72,6 +82,8 @@ _global_script_classes=[ {
 _global_script_class_icons={
 "BrushStroke": "",
 "BrushStrokeOptimizer": "",
+"BrushTool": "",
+"CanvasTool": "",
 "Config": "",
 "InfiniteCanvas": "",
 "MainMenu": "",

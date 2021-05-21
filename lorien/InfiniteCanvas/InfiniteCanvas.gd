@@ -5,77 +5,43 @@ class_name InfiniteCanvas
 const DEBUG_POINT_TEXTURE = preload("res://Assets/icon.png")
 const STROKE_TEXTURE = preload("res://Assets/Textures/stroke_texture.png")
 
+const DRAW_DEBUG_POINTS := false
 const ERASER_SIZE_FACTOR = 3.5
 
 # -------------------------------------------------------------------------------------------------
-class Info:
-	var point_count: int
-	var stroke_count: int
-	var current_pressure: float
-
-# -------------------------------------------------------------------------------------------------
-export var pressure_curve: Curve
-export var draw_debug_points := false
+onready var _brush_tool: BrushTool = $BrushTool
+onready var _active_tool: CanvasTool = _brush_tool
 onready var _line2d_container: Node2D = $Viewport/Strokes
 onready var _camera: Camera2D = $Viewport/Camera2D
-onready var _cursor: Node2D = $Viewport/BrushCursor
-onready var _optimizer: BrushStrokeOptimizer = BrushStrokeOptimizer.new()
-var _brush_color := Config.DEFAULT_BRUSH_COLOR
-var _brush_size := Config.DEFAULT_BRUSH_SIZE setget set_brush_size
-var _current_project: Project
-var _current_line_2d: Line2D
-var _current_brush_stroke: BrushStroke
-var info := Info.new()
-var _last_mouse_motion: InputEventMouseMotion
+
+var info := Types.CanvasInfo.new()
 var _is_enabled := false
 var _background_color: Color
-var _current_tool: int
+var _brush_color := Config.DEFAULT_BRUSH_COLOR
+var _brush_size := Config.DEFAULT_BRUSH_SIZE setget set_brush_size
+var _current_brush_stroke: BrushStroke
+var _current_line_2d: Line2D
+var _current_project: Project
+var _optimizer: BrushStrokeOptimizer
 
 # -------------------------------------------------------------------------------------------------
 func _ready():
+	_optimizer = BrushStrokeOptimizer.new()
 	_brush_size = Settings.get_value(Settings.GENERAL_DEFAULT_BRUSH_SIZE, Config.DEFAULT_BRUSH_SIZE)
 	_brush_color = Settings.get_value(Settings.GENERAL_DEFAULT_BRUSH_COLOR, Config.DEFAULT_BRUSH_COLOR)
-	_cursor.change_size(_brush_size)
+	_active_tool._on_brush_color_changed(_brush_color)
+	_active_tool._on_brush_size_changed(_brush_size)
 
 # -------------------------------------------------------------------------------------------------
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		info.current_pressure = event.pressure
-		_last_mouse_motion = event
-		_cursor.global_position = _camera.xform(event.global_position)
-		if _current_line_2d != null:
-			_cursor.set_pressure(event.pressure)
-	
-	if _is_enabled:
-		if event is InputEventMouseButton:
-			if event.button_index == BUTTON_LEFT:
-				if event.pressed:
-					_last_mouse_motion.global_position = event.global_position
-					_last_mouse_motion.position = event.position
-					start_new_line()
-				else:
-					end_line()
-					_cursor.set_pressure(1.0)
-	
-# -------------------------------------------------------------------------------------------------
-func _physics_process(delta: float) -> void:
-	if _is_enabled:
-		if _current_line_2d != null && _last_mouse_motion != null:
-			var brush_position: Vector2 = _camera.xform(_last_mouse_motion.global_position)
-			var pressure = _last_mouse_motion.pressure
-			pressure = pressure_curve.interpolate(pressure)
-			add_point(brush_position, pressure)
-			_last_mouse_motion = null
 
 # -------------------------------------------------------------------------------------------------
 func _make_empty_line2d() -> Line2D:
 	var line := Line2D.new()
 	line.width_curve = Curve.new()
-	
-	# Joints
 	line.joint_mode = Line2D.LINE_CAP_ROUND
-	#line.begin_cap_mode = Line2D.LINE_CAP_ROUND
-	#line.end_cap_mode = Line2D.LINE_CAP_ROUND
 	
 	# Anti aliasing
 	var aa_mode: int = Settings.get_value(Settings.RENDERING_AA_MODE, Config.DEFAULT_AA_MODE)
@@ -89,8 +55,21 @@ func _make_empty_line2d() -> Line2D:
 	return line
 
 # -------------------------------------------------------------------------------------------------
-func use_tool(tool_type: int) -> void:
-	_current_tool = tool_type
+func use_tool(tool_type: int) -> void:	
+	_active_tool.enabled = false
+	match tool_type:
+		Types.Tool.BRUSH:
+			_brush_tool.mode = BrushTool.Mode.DRAW
+			_active_tool = _brush_tool
+		Types.Tool.ERASER:
+			_brush_tool.mode = BrushTool.Mode.ERASE
+			_active_tool = _brush_tool
+		Types.Tool.LINE:
+			pass # TODO: add once implemented
+		Types.Tool.COLOR_PICKER:
+			pass # TODO: add once implemented
+	
+	_active_tool.enabled = true
 
 # -------------------------------------------------------------------------------------------------
 func set_background_color(color: Color) -> void:
@@ -114,24 +93,24 @@ func get_camera() -> Camera2D:
 func enable() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	_camera.enable_intput()
-	_cursor.show()
+	_active_tool.enabled = true
 	_is_enabled = true
 	
 # -------------------------------------------------------------------------------------------------
 func disable() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	_camera.disable_intput()
-	_cursor.hide()
+	_active_tool.enabled = false
 	_is_enabled = false
 
 # -------------------------------------------------------------------------------------------------
-func start_new_line() -> void:
+func start_stroke(eraser: bool = false) -> void:
 	_current_line_2d = _make_empty_line2d()
 	
 	_current_brush_stroke = BrushStroke.new()
-	_current_brush_stroke.eraser = _current_tool == Types.Tool.ERASER
+	_current_brush_stroke.eraser = eraser
 	
-	if _current_tool == Types.Tool.ERASER:
+	if eraser:
 		_current_line_2d.default_color = _background_color
 		_current_brush_stroke.color = Color.black
 		_current_line_2d.width = _brush_size * ERASER_SIZE_FACTOR
@@ -146,13 +125,13 @@ func start_new_line() -> void:
 	_optimizer.reset()
 
 # -------------------------------------------------------------------------------------------------
-func add_point(point: Vector2, pressure: float = 1.0) -> void:	
+func add_stroke_point(point: Vector2, pressure: float = 1.0) -> void:	
 	_current_brush_stroke.add_point(point, pressure)
 	_optimizer.optimize(_current_brush_stroke)
 	_apply_stroke_to_line(_current_brush_stroke, _current_line_2d)
 
 # -------------------------------------------------------------------------------------------------
-func end_line() -> void:
+func end_stroke() -> void:
 	if _current_line_2d != null:
 		if _current_line_2d.points.empty():
 			_line2d_container.call_deferred("remove_child", _current_line_2d)
@@ -173,7 +152,7 @@ func end_line() -> void:
 			_current_project.undo_redo.add_do_property(info, "stroke_count", info.stroke_count + 1)
 			_current_project.undo_redo.add_do_property(info, "point_count", info.point_count + _current_line_2d.points.size())
 			_current_project.undo_redo.add_do_method(_current_project, "add_stroke", _current_brush_stroke)
-			if draw_debug_points:
+			if DRAW_DEBUG_POINTS:
 				_current_project.undo_redo.add_do_method(self, "_add_debug_points", _current_line_2d)
 			_current_project.undo_redo.commit_action()
 		
@@ -241,7 +220,7 @@ func use_project(project: Project) -> void:
 		_apply_stroke_to_line(stroke, line)
 		
 		_line2d_container.add_child(line)
-		if draw_debug_points:
+		if DRAW_DEBUG_POINTS:
 			_add_debug_points(line)
 
 		info.stroke_count += 1
@@ -259,8 +238,8 @@ func undo_last_stroke() -> void:
 # -------------------------------------------------------------------------------------------------
 func set_brush_size(size: int) -> void:
 	_brush_size = size
-	if _cursor != null:
-		_cursor.change_size(size)
+	if _active_tool != null:
+		_active_tool._on_brush_size_changed(_brush_size)
 
 # -------------------------------------------------------------------------------------------------
 func get_camera_zoom() -> float:
