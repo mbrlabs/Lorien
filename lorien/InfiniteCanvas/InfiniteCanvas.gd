@@ -15,13 +15,13 @@ class Info:
 
 # -------------------------------------------------------------------------------------------------
 export var pressure_curve: Curve
-export var brush_color := Config.DEFAULT_BRUSH_COLOR
-export var brush_size := Config.DEFAULT_BRUSH_SIZE setget set_brush_size
 export var draw_debug_points := false
 onready var _line2d_container: Node2D = $Viewport/Strokes
 onready var _camera: Camera2D = $Viewport/Camera2D
 onready var _cursor: Node2D = $Viewport/BrushCursor
 onready var _optimizer: BrushStrokeOptimizer = BrushStrokeOptimizer.new()
+var _brush_color := Config.DEFAULT_BRUSH_COLOR
+var _brush_size := Config.DEFAULT_BRUSH_SIZE setget set_brush_size
 var _current_project: Project
 var _current_line_2d: Line2D
 var _current_brush_stroke: BrushStroke
@@ -33,9 +33,9 @@ var _current_tool: int
 
 # -------------------------------------------------------------------------------------------------
 func _ready():
-	brush_size = Settings.get_value(Settings.GENERAL_DEFAULT_BRUSH_SIZE, Config.DEFAULT_BRUSH_SIZE)
-	brush_color = Settings.get_value(Settings.GENERAL_DEFAULT_BRUSH_COLOR, Config.DEFAULT_BRUSH_COLOR)
-	_cursor.change_size(brush_size)
+	_brush_size = Settings.get_value(Settings.GENERAL_DEFAULT_BRUSH_SIZE, Config.DEFAULT_BRUSH_SIZE)
+	_brush_color = Settings.get_value(Settings.GENERAL_DEFAULT_BRUSH_COLOR, Config.DEFAULT_BRUSH_COLOR)
+	_cursor.change_size(_brush_size)
 
 # -------------------------------------------------------------------------------------------------
 func _input(event: InputEvent) -> void:
@@ -134,19 +134,19 @@ func start_new_line() -> void:
 	if _current_tool == Types.Tool.ERASER:
 		_current_line_2d.default_color = _background_color
 		_current_brush_stroke.color = Color.black
-		_current_line_2d.width = brush_size * ERASER_SIZE_FACTOR
-		_current_brush_stroke.size = brush_size * ERASER_SIZE_FACTOR
+		_current_line_2d.width = _brush_size * ERASER_SIZE_FACTOR
+		_current_brush_stroke.size = _brush_size * ERASER_SIZE_FACTOR
 	else:
-		_current_line_2d.default_color = brush_color
-		_current_brush_stroke.color = brush_color
-		_current_line_2d.width = brush_size
-		_current_brush_stroke.size = brush_size
+		_current_line_2d.default_color = _brush_color
+		_current_brush_stroke.color = _brush_color
+		_current_line_2d.width = _brush_size
+		_current_brush_stroke.size = _brush_size
 	
 	_line2d_container.call_deferred("add_child", _current_line_2d)
 	_optimizer.reset()
 
 # -------------------------------------------------------------------------------------------------
-func add_point(point: Vector2, pressure: float = 1.0) -> void:
+func add_point(point: Vector2, pressure: float = 1.0) -> void:	
 	_current_brush_stroke.add_point(point, pressure)
 	_optimizer.optimize(_current_brush_stroke)
 	_apply_stroke_to_line(_current_brush_stroke, _current_line_2d)
@@ -176,7 +176,7 @@ func end_line() -> void:
 			if draw_debug_points:
 				_current_project.undo_redo.add_do_method(self, "_add_debug_points", _current_line_2d)
 			_current_project.undo_redo.commit_action()
-			
+		
 		_current_line_2d = null
 		_current_brush_stroke = null
 
@@ -214,7 +214,6 @@ func _apply_stroke_to_line(stroke: BrushStroke, line2d: Line2D) -> void:
 		p_idx += 1
 	line2d.width_curve.add_point(Vector2(1.0, (stroke.pressures.back()/max_pressure) * 0.75))
 	
-	line2d.width_curve.bake_resolution = stroke.pressures.size() * 2.0
 	line2d.width_curve.bake()
 
 # -------------------------------------------------------------------------------------------------
@@ -259,7 +258,7 @@ func undo_last_stroke() -> void:
 
 # -------------------------------------------------------------------------------------------------
 func set_brush_size(size: int) -> void:
-	brush_size = size
+	_brush_size = size
 	if _cursor != null:
 		_cursor.change_size(size)
 
