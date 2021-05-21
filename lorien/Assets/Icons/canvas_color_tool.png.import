@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/background_tool.png-06d2da9739dce347549819d96acf9f9b.stex"
+path="res://.import/canvas_color_tool.png-f7543959b94b6430741ede0ff6a667ed.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Icons/background_tool.png"
-dest_files=[ "res://.import/background_tool.png-06d2da9739dce347549819d96acf9f9b.stex" ]
+source_file="res://Assets/Icons/canvas_color_tool.png"
+dest_files=[ "res://.import/canvas_color_tool.png-f7543959b94b6430741ede0ff6a667ed.stex" ]
 
 [params]
 

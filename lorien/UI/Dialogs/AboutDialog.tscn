@@ -1,15 +1,130 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://UI/Themes/theme_dark.tres" type="Theme" id=1]
 [ext_resource path="res://UI/Dialogs/AboutDialog.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Logo/logo.png" type="Texture" id=3]
 
 [node name="AboutDialog" type="WindowDialog"]
-margin_right = 450.0
-margin_bottom = 200.0
-rect_min_size = Vector2( 450, 200 )
+visible = true
+margin_right = 400.0
+margin_bottom = 150.0
+rect_min_size = Vector2( 400, 160 )
 theme = ExtResource( 1 )
 window_title = "About"
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 12
+custom_constants/margin_top = 12
+custom_constants/margin_left = 12
+custom_constants/margin_bottom = 12
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+margin_left = 12.0
+margin_top = 12.0
+margin_right = 388.0
+margin_bottom = 148.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+margin_right = 376.0
+margin_bottom = 64.0
+size_flags_horizontal = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+margin_right = 64.0
+margin_bottom = 64.0
+texture = ExtResource( 3 )
+stretch_mode = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+margin_left = 68.0
+margin_right = 376.0
+margin_bottom = 64.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/margin_right = 12
+custom_constants/margin_top = 2
+custom_constants/margin_left = 12
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer"]
+margin_left = 12.0
+margin_top = 2.0
+margin_right = 296.0
+margin_bottom = 64.0
+alignment = 1
+
+[node name="VersionLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/VBoxContainer"]
+margin_top = 1.0
+margin_right = 284.0
+margin_bottom = 18.0
+text = "Lorien vX.Y.Z"
+
+[node name="CopyrightLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/VBoxContainer"]
+margin_top = 22.0
+margin_right = 284.0
+margin_bottom = 39.0
+text = "© 2021 Marcus Brummer (mbrlabs)"
+
+[node name="GithubLinkButton" type="LinkButton" parent="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/VBoxContainer"]
+margin_top = 43.0
+margin_right = 168.0
+margin_bottom = 60.0
+size_flags_horizontal = 0
+text = "github.com/mbrlabs/Lorien"
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+margin_top = 68.0
+margin_right = 376.0
+margin_bottom = 92.0
+custom_constants/separation = 24
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+margin_top = 96.0
+margin_right = 376.0
+margin_bottom = 113.0
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer3"]
+margin_right = 144.0
+margin_bottom = 17.0
+text = "Lorien is based on the"
+
+[node name="GodotButton" type="LinkButton" parent="MarginContainer/VBoxContainer/HBoxContainer3"]
+margin_left = 148.0
+margin_right = 274.0
+margin_bottom = 17.0
+focus_mode = 2
+text = "Godot Game Engine"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+margin_top = 117.0
+margin_right = 376.0
+margin_bottom = 134.0
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+margin_right = 109.0
+margin_bottom = 17.0
+text = "Lorien's License:"
+
+[node name="LicenseButton" type="LinkButton" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+margin_left = 113.0
+margin_right = 188.0
+margin_bottom = 17.0
+text = "MIT License"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/VBoxContainer/GithubLinkButton" to="." method="_on_GithubLinkButton_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer3/GodotButton" to="." method="_on_GodotButton_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer2/LicenseButton" to="." method="_on_LicenseButton_pressed"]

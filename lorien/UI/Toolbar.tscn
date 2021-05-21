@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Assets/Icons/save_file.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Icons/open_file.png" type="Texture" id=2]
@@ -11,10 +11,9 @@
 [ext_resource path="res://Assets/Icons/eraser_tool.png" type="Texture" id=9]
 [ext_resource path="res://Assets/Icons/color_picker_tool.png" type="Texture" id=10]
 [ext_resource path="res://Assets/Icons/line_tool.png" type="Texture" id=11]
-[ext_resource path="res://Assets/Icons/background_tool.png" type="Texture" id=12]
+[ext_resource path="res://Assets/Icons/canvas_color_tool.png" type="Texture" id=12]
 [ext_resource path="res://UI/Components/FlatTextureButton.gd" type="Script" id=13]
 [ext_resource path="res://Assets/Fonts/font_11.tres" type="DynamicFont" id=14]
-[ext_resource path="res://Assets/Icons/grid.png" type="Texture" id=15]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.207843, 0.211765, 0.227451, 1 )
@@ -270,7 +269,7 @@ text = "12"
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -64.0
+margin_left = -32.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 12
@@ -291,23 +290,9 @@ script = ExtResource( 13 )
 hover_tint = Color( 0.615686, 1, 0.913725, 1 )
 pressed_tint = Color( 0.313726, 1, 0.839216, 1 )
 
-[node name="GridButton" type="TextureButton" parent="Right"]
-margin_left = 28.0
-margin_top = 12.0
-margin_right = 44.0
-margin_bottom = 28.0
-hint_tooltip = "Toogle Grid"
-size_flags_horizontal = 4
-size_flags_vertical = 4
-toggle_mode = true
-texture_normal = ExtResource( 15 )
-script = ExtResource( 13 )
-hover_tint = Color( 0.615686, 1, 0.913725, 1 )
-pressed_tint = Color( 0.313726, 1, 0.839216, 1 )
-
 [node name="VSeparator" type="VSeparator" parent="Right"]
-margin_left = 56.0
-margin_right = 60.0
+margin_left = 28.0
+margin_right = 32.0
 margin_bottom = 40.0
 custom_styles/separator = SubResource( 2 )
 
@@ -324,4 +309,3 @@ custom_styles/separator = SubResource( 2 )
 [connection signal="pressed" from="Left/ColorButton" to="." method="_on_ColorButton_pressed"]
 [connection signal="value_changed" from="Left/BrushSizeSlider" to="." method="_on_BrushSizeSlider_value_changed"]
 [connection signal="pressed" from="Right/BackgroundColorButton" to="." method="_on_BackgroundColorButton_pressed"]
-[connection signal="pressed" from="Right/GridButton" to="." method="_on_GridButton_pressed"]

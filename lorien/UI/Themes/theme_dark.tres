@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=22 format=2]
+[gd_resource type="Theme" load_steps=23 format=2]
 
 [ext_resource path="res://Assets/Fonts/font_13.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Assets/Fonts/font_14b.tres" type="DynamicFont" id=2]
@@ -30,6 +30,9 @@ content_margin_right = 6.0
 content_margin_top = 4.0
 content_margin_bottom = 4.0
 bg_color = Color( 0.12549, 0.129412, 0.141176, 1 )
+
+[sub_resource type="StyleBoxLine" id=18]
+color = Color( 0.2821, 0.28768, 0.31, 1 )
 
 [sub_resource type="StyleBoxFlat" id=4]
 bg_color = Color( 0.12549, 0.129412, 0.141176, 1 )
@@ -138,6 +141,8 @@ Button/styles/focus = SubResource( 2 )
 Button/styles/hover = SubResource( 2 )
 Button/styles/normal = SubResource( 3 )
 Button/styles/pressed = SubResource( 3 )
+HSeparator/constants/separation = 4
+HSeparator/styles/separator = SubResource( 18 )
 ItemList/colors/font_color = Color( 1, 1, 1, 1 )
 ItemList/colors/font_color_selected = Color( 1, 1, 1, 1 )
 ItemList/colors/guide_color = Color( 0, 0, 0, 0.1 )
