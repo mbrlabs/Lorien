@@ -15,6 +15,8 @@ onready var _canvas_color: ColorPickerButton = $MarginContainer/TabContainer/Gen
 onready var _project_dir: LineEdit = $MarginContainer/TabContainer/General/VBoxContainer/DefaultSaveDir/DefaultSaveDir
 onready var _theme: OptionButton = $MarginContainer/TabContainer/Appearance/VBoxContainer/Theme/Theme
 onready var _aa_mode: OptionButton = $MarginContainer/TabContainer/Rendering/VBoxContainer/AntiAliasing/AntiAliasing
+onready var _appearence_restart_label: Label = $MarginContainer/TabContainer/Appearance/VBoxContainer/RestartLabel
+onready var _rendering_restart_label: Label = $MarginContainer/TabContainer/Rendering/VBoxContainer/RestartLabel
 
 # -------------------------------------------------------------------------------------------------
 func _ready():
@@ -65,7 +67,7 @@ func _on_Theme_item_selected(index: int):
 		THEME_LIGHT_INDEX: theme = Types.UITheme.LIGHT
 	
 	Settings.set_value(Settings.APPEARANCE_THEME, theme)
-	# TODO: actually change theme or require user to restart
+	_appearence_restart_label.show()
 
 # -------------------------------------------------------------------------------------------------
 func _on_AntiAliasing_item_selected(index: int):
@@ -76,5 +78,5 @@ func _on_AntiAliasing_item_selected(index: int):
 		AA_TEXTURE_FILL_INDEX: aa_mode = Types.AAMode.TEXTURE_FILL
 	
 	Settings.set_value(Settings.RENDERING_AA_MODE, aa_mode)
-	# TODO: actually change the AA or require user to restart
+	_rendering_restart_label.show()
 	

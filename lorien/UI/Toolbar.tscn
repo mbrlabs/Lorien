@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Assets/Icons/save_file.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Icons/open_file.png" type="Texture" id=2]
@@ -14,6 +14,7 @@
 [ext_resource path="res://Assets/Icons/canvas_color_tool.png" type="Texture" id=12]
 [ext_resource path="res://UI/Components/FlatTextureButton.gd" type="Script" id=13]
 [ext_resource path="res://Assets/Fonts/font_11.tres" type="DynamicFont" id=14]
+[ext_resource path="res://UI/Themes/theme_dark.tres" type="Theme" id=15]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.207843, 0.211765, 0.227451, 1 )
@@ -37,6 +38,7 @@ corner_radius_bottom_left = 4
 anchor_right = 1.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 0, 40 )
+theme = ExtResource( 15 )
 custom_styles/panel = SubResource( 1 )
 script = ExtResource( 3 )
 __meta__ = {
@@ -68,8 +70,8 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 texture_normal = ExtResource( 4 )
 script = ExtResource( 13 )
-hover_tint = Color( 0.615686, 1, 0.913725, 1 )
-pressed_tint = Color( 0.313726, 1, 0.839216, 1 )
+hover_tint = Color( 0.662745, 0.945098, 0.87451, 1 )
+pressed_tint = Color( 0.572549, 1, 0.894118, 1 )
 
 [node name="OpenFileButton" type="TextureButton" parent="Left"]
 margin_left = 46.0
@@ -81,8 +83,8 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 texture_normal = ExtResource( 2 )
 script = ExtResource( 13 )
-hover_tint = Color( 0.615686, 1, 0.913725, 1 )
-pressed_tint = Color( 0.313726, 1, 0.839216, 1 )
+hover_tint = Color( 0.662745, 0.945098, 0.87451, 1 )
+pressed_tint = Color( 0.572549, 1, 0.894118, 1 )
 
 [node name="SaveFileButton" type="TextureButton" parent="Left"]
 margin_left = 76.0
@@ -94,8 +96,8 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 texture_normal = ExtResource( 1 )
 script = ExtResource( 13 )
-hover_tint = Color( 0.615686, 1, 0.913725, 1 )
-pressed_tint = Color( 0.313726, 1, 0.839216, 1 )
+hover_tint = Color( 0.662745, 0.945098, 0.87451, 1 )
+pressed_tint = Color( 0.572549, 1, 0.894118, 1 )
 
 [node name="ClearCanvasButton" type="TextureButton" parent="Left"]
 margin_left = 106.0
@@ -107,8 +109,8 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 texture_normal = ExtResource( 5 )
 script = ExtResource( 13 )
-hover_tint = Color( 0.615686, 1, 0.913725, 1 )
-pressed_tint = Color( 0.313726, 1, 0.839216, 1 )
+hover_tint = Color( 0.662745, 0.945098, 0.87451, 1 )
+pressed_tint = Color( 0.572549, 1, 0.894118, 1 )
 
 [node name="VSeparator2" type="VSeparator" parent="Left"]
 margin_left = 136.0
@@ -129,8 +131,8 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 texture_normal = ExtResource( 7 )
 script = ExtResource( 13 )
-hover_tint = Color( 0.615686, 1, 0.913725, 1 )
-pressed_tint = Color( 0.313726, 1, 0.839216, 1 )
+hover_tint = Color( 0.662745, 0.945098, 0.87451, 1 )
+pressed_tint = Color( 0.572549, 1, 0.894118, 1 )
 
 [node name="RedoButton" type="TextureButton" parent="Left"]
 margin_left = 182.0
@@ -142,8 +144,8 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 texture_normal = ExtResource( 6 )
 script = ExtResource( 13 )
-hover_tint = Color( 0.615686, 1, 0.913725, 1 )
-pressed_tint = Color( 0.313726, 1, 0.839216, 1 )
+hover_tint = Color( 0.662745, 0.945098, 0.87451, 1 )
+pressed_tint = Color( 0.572549, 1, 0.894118, 1 )
 
 [node name="VSeparator3" type="VSeparator" parent="Left"]
 margin_left = 212.0
@@ -166,8 +168,8 @@ toggle_mode = true
 pressed = true
 texture_normal = ExtResource( 8 )
 script = ExtResource( 13 )
-hover_tint = Color( 0.615686, 1, 0.913725, 1 )
-pressed_tint = Color( 0.313726, 1, 0.839216, 1 )
+hover_tint = Color( 0.662745, 0.945098, 0.87451, 1 )
+pressed_tint = Color( 0.572549, 1, 0.894118, 1 )
 
 [node name="LineToolButton" type="TextureButton" parent="Left"]
 margin_left = 258.0
@@ -180,8 +182,8 @@ size_flags_vertical = 4
 toggle_mode = true
 texture_normal = ExtResource( 11 )
 script = ExtResource( 13 )
-hover_tint = Color( 0.615686, 1, 0.913725, 1 )
-pressed_tint = Color( 0.313726, 1, 0.839216, 1 )
+hover_tint = Color( 0.662745, 0.945098, 0.87451, 1 )
+pressed_tint = Color( 0.572549, 1, 0.894118, 1 )
 
 [node name="EraserToolButton" type="TextureButton" parent="Left"]
 margin_left = 286.0
@@ -194,8 +196,8 @@ size_flags_vertical = 4
 toggle_mode = true
 texture_normal = ExtResource( 9 )
 script = ExtResource( 13 )
-hover_tint = Color( 0.615686, 1, 0.913725, 1 )
-pressed_tint = Color( 0.313726, 1, 0.839216, 1 )
+hover_tint = Color( 0.662745, 0.945098, 0.87451, 1 )
+pressed_tint = Color( 0.572549, 1, 0.894118, 1 )
 
 [node name="ColorPickerToolButton" type="TextureButton" parent="Left"]
 margin_left = 316.0
@@ -208,8 +210,8 @@ size_flags_vertical = 4
 toggle_mode = true
 texture_normal = ExtResource( 10 )
 script = ExtResource( 13 )
-hover_tint = Color( 0.615686, 1, 0.913725, 1 )
-pressed_tint = Color( 0.313726, 1, 0.839216, 1 )
+hover_tint = Color( 0.662745, 0.945098, 0.87451, 1 )
+pressed_tint = Color( 0.572549, 1, 0.894118, 1 )
 
 [node name="VSeparator4" type="VSeparator" parent="Left"]
 margin_left = 346.0
@@ -260,7 +262,7 @@ value = 5.0
 [node name="BrushSizeLabel" type="Label" parent="Left"]
 margin_left = 566.0
 margin_top = 13.0
-margin_right = 578.0
+margin_right = 582.0
 margin_bottom = 27.0
 custom_fonts/font = ExtResource( 14 )
 text = "12"
@@ -287,8 +289,8 @@ size_flags_vertical = 4
 action_mode = 0
 texture_normal = ExtResource( 12 )
 script = ExtResource( 13 )
-hover_tint = Color( 0.615686, 1, 0.913725, 1 )
-pressed_tint = Color( 0.313726, 1, 0.839216, 1 )
+hover_tint = Color( 0.662745, 0.945098, 0.87451, 1 )
+pressed_tint = Color( 0.572549, 1, 0.894118, 1 )
 
 [node name="VSeparator" type="VSeparator" parent="Right"]
 margin_left = 28.0

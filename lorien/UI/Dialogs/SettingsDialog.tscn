@@ -8,6 +8,7 @@
 [sub_resource type="StyleBoxEmpty" id=2]
 
 [node name="SettingsDialog" type="WindowDialog"]
+visible = true
 margin_right = 400.0
 margin_bottom = 250.0
 rect_min_size = Vector2( 500, 350 )
@@ -176,44 +177,44 @@ margin_bottom = 12.0
 custom_styles/separator = SubResource( 1 )
 custom_constants/separation = 12
 
-[node name="Label" type="Label" parent="MarginContainer/TabContainer/Appearance/VBoxContainer"]
-margin_top = 16.0
-margin_right = 476.0
-margin_bottom = 33.0
-custom_colors/font_color = Color( 1, 0.470588, 0.470588, 1 )
-text = "You need to restart for settings to take effect"
-align = 1
-
-[node name="HSeparator4" type="HSeparator" parent="MarginContainer/TabContainer/Appearance/VBoxContainer"]
-margin_top = 37.0
-margin_right = 476.0
-margin_bottom = 49.0
-custom_styles/separator = SubResource( 1 )
-custom_constants/separation = 12
-
 [node name="Theme" type="HBoxContainer" parent="MarginContainer/TabContainer/Appearance/VBoxContainer"]
-margin_top = 8.0
-margin_right = 426.0
-margin_bottom = 33.0
+margin_top = 32.0
+margin_right = 476.0
+margin_bottom = 57.0
 size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="MarginContainer/TabContainer/Appearance/VBoxContainer/Theme"]
 margin_top = 4.0
-margin_right = 211.0
+margin_right = 236.0
 margin_bottom = 21.0
 size_flags_horizontal = 3
 size_flags_vertical = 6
 text = "Theme:"
 
 [node name="Theme" type="OptionButton" parent="MarginContainer/TabContainer/Appearance/VBoxContainer/Theme"]
-margin_left = 215.0
-margin_right = 426.0
+margin_left = 240.0
+margin_right = 476.0
 margin_bottom = 25.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "Dark"
 items = [ "Dark", null, false, 0, null, "Light (not implemented yet)", null, false, 1, null ]
 selected = 0
+
+[node name="HSeparator5" type="HSeparator" parent="MarginContainer/TabContainer/Appearance/VBoxContainer"]
+margin_right = 476.0
+margin_bottom = 12.0
+custom_styles/separator = SubResource( 1 )
+custom_constants/separation = 12
+
+[node name="RestartLabel" type="Label" parent="MarginContainer/TabContainer/Appearance/VBoxContainer"]
+visible = false
+margin_top = 16.0
+margin_right = 476.0
+margin_bottom = 33.0
+custom_colors/font_color = Color( 1, 0.470588, 0.470588, 1 )
+text = "You need to restart for settings to take effect"
+align = 1
 
 [node name="Rendering" type="Control" parent="MarginContainer/TabContainer"]
 visible = false
@@ -234,44 +235,45 @@ margin_bottom = 12.0
 custom_styles/separator = SubResource( 1 )
 custom_constants/separation = 12
 
-[node name="Label" type="Label" parent="MarginContainer/TabContainer/Rendering/VBoxContainer"]
-margin_top = 16.0
-margin_right = 476.0
-margin_bottom = 33.0
-custom_colors/font_color = Color( 1, 0.470588, 0.470588, 1 )
-text = "You need to restart for settings to take effect"
-align = 1
-
-[node name="HSeparator4" type="HSeparator" parent="MarginContainer/TabContainer/Rendering/VBoxContainer"]
-margin_top = 37.0
-margin_right = 476.0
-margin_bottom = 49.0
-custom_styles/separator = SubResource( 1 )
-custom_constants/separation = 12
-
 [node name="AntiAliasing" type="HBoxContainer" parent="MarginContainer/TabContainer/Rendering/VBoxContainer"]
-margin_top = 8.0
-margin_right = 426.0
-margin_bottom = 33.0
+margin_top = 32.0
+margin_right = 476.0
+margin_bottom = 57.0
 size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="MarginContainer/TabContainer/Rendering/VBoxContainer/AntiAliasing"]
 margin_top = 4.0
-margin_right = 211.0
+margin_right = 236.0
 margin_bottom = 21.0
 size_flags_horizontal = 3
 size_flags_vertical = 6
 text = "Anti Aliasing Method:"
 
 [node name="AntiAliasing" type="OptionButton" parent="MarginContainer/TabContainer/Rendering/VBoxContainer/AntiAliasing"]
-margin_left = 215.0
-margin_right = 426.0
+margin_left = 240.0
+margin_right = 476.0
 margin_bottom = 25.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "None"
 items = [ "None", null, false, 0, null, "OpenGL Hint", null, false, 1, null, "Texture Fill", null, false, 2, null ]
 selected = 0
+
+[node name="HSeparator4" type="HSeparator" parent="MarginContainer/TabContainer/Rendering/VBoxContainer"]
+margin_right = 476.0
+margin_bottom = 12.0
+custom_styles/separator = SubResource( 1 )
+custom_constants/separation = 12
+
+[node name="RestartLabel" type="Label" parent="MarginContainer/TabContainer/Rendering/VBoxContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 16.0
+margin_bottom = -11.0
+custom_colors/font_color = Color( 1, 0.470588, 0.470588, 1 )
+text = "You need to restart for settings to take effect"
+align = 1
 
 [node name="Debug" type="Control" parent="MarginContainer/TabContainer"]
 visible = false
