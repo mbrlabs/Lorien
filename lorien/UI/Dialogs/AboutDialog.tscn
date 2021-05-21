@@ -2,7 +2,7 @@
 
 [ext_resource path="res://UI/Themes/theme_dark.tres" type="Theme" id=1]
 [ext_resource path="res://UI/Dialogs/AboutDialog.gd" type="Script" id=2]
-[ext_resource path="res://Assets/Logo/logo.png" type="Texture" id=3]
+[ext_resource path="res://Assets/icon.png" type="Texture" id=3]
 
 [sub_resource type="StyleBoxEmpty" id=1]
 

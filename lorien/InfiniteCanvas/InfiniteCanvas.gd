@@ -2,7 +2,7 @@ extends ViewportContainer
 class_name InfiniteCanvas
 
 # -------------------------------------------------------------------------------------------------
-const DEBUG_POINT_TEXTURE = preload("res://Assets/Logo/logo.png")
+const DEBUG_POINT_TEXTURE = preload("res://Assets/icon.png")
 const STROKE_TEXTURE = preload("res://Assets/Textures/stroke_texture.png")
 
 const ERASER_SIZE_FACTOR = 3.5
