@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://InfiniteCanvas/InfiniteCanvas.gd" type="Script" id=1]
 [ext_resource path="res://InfiniteCanvas/PanZoomCamera.gd" type="Script" id=2]
 [ext_resource path="res://InfiniteCanvas/pressure_curve.tres" type="Curve" id=3]
 [ext_resource path="res://InfiniteCanvas/Cursor/BrushCursor.tscn" type="PackedScene" id=4]
 [ext_resource path="res://InfiniteCanvas/Tools/BrushTool.gd" type="Script" id=5]
+[ext_resource path="res://InfiniteCanvas/Tools/LineTool.gd" type="Script" id=6]
 
 [node name="InfiniteCanvas" type="ViewportContainer"]
 anchor_right = 1.0
@@ -16,6 +17,11 @@ __meta__ = {
 
 [node name="BrushTool" type="Node" parent="."]
 script = ExtResource( 5 )
+pressure_curve = ExtResource( 3 )
+brush_cursor_path = NodePath("../Viewport/BrushCursor")
+
+[node name="LineTool" type="Node" parent="."]
+script = ExtResource( 6 )
 pressure_curve = ExtResource( 3 )
 brush_cursor_path = NodePath("../Viewport/BrushCursor")
 

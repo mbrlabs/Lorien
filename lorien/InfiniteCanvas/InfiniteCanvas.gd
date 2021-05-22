@@ -10,6 +10,7 @@ const ERASER_SIZE_FACTOR = 3.5
 
 # -------------------------------------------------------------------------------------------------
 onready var _brush_tool: BrushTool = $BrushTool
+onready var _line_tool: LineTool = $LineTool
 onready var _active_tool: CanvasTool = _brush_tool
 onready var _line2d_container: Node2D = $Viewport/Strokes
 onready var _camera: Camera2D = $Viewport/Camera2D
@@ -22,6 +23,7 @@ var _brush_size := Config.DEFAULT_BRUSH_SIZE setget set_brush_size
 var _current_brush_stroke: BrushStroke
 var _current_line_2d: Line2D
 var _current_project: Project
+var _use_optimizer := true
 var _optimizer: BrushStrokeOptimizer
 
 # -------------------------------------------------------------------------------------------------
@@ -31,6 +33,7 @@ func _ready():
 	_brush_color = Settings.get_value(Settings.GENERAL_DEFAULT_BRUSH_COLOR, Config.DEFAULT_BRUSH_COLOR)
 	_active_tool._on_brush_color_changed(_brush_color)
 	_active_tool._on_brush_size_changed(_brush_size)
+	_active_tool.enabled = true
 
 # -------------------------------------------------------------------------------------------------
 func _input(event: InputEvent) -> void:
@@ -55,17 +58,20 @@ func _make_empty_line2d() -> Line2D:
 	return line
 
 # -------------------------------------------------------------------------------------------------
-func use_tool(tool_type: int) -> void:	
+func use_tool(tool_type: int) -> void:
 	_active_tool.enabled = false
 	match tool_type:
 		Types.Tool.BRUSH:
 			_brush_tool.mode = BrushTool.Mode.DRAW
 			_active_tool = _brush_tool
+			_use_optimizer = true
 		Types.Tool.ERASER:
 			_brush_tool.mode = BrushTool.Mode.ERASE
 			_active_tool = _brush_tool
+			_use_optimizer = true
 		Types.Tool.LINE:
-			pass # TODO: add once implemented
+			_active_tool = _line_tool
+			_use_optimizer = false
 		Types.Tool.COLOR_PICKER:
 			pass # TODO: add once implemented
 	
@@ -125,10 +131,20 @@ func start_stroke(eraser: bool = false) -> void:
 	_optimizer.reset()
 
 # -------------------------------------------------------------------------------------------------
-func add_stroke_point(point: Vector2, pressure: float = 1.0) -> void:	
+func add_stroke_point(point: Vector2, pressure: float = 1.0) -> void:
 	_current_brush_stroke.add_point(point, pressure)
-	_optimizer.optimize(_current_brush_stroke)
+	if _use_optimizer:
+		_optimizer.optimize(_current_brush_stroke)
 	_apply_stroke_to_line(_current_brush_stroke, _current_line_2d)
+
+# -------------------------------------------------------------------------------------------------
+func remove_last_stroke_point() -> void:
+	if _current_line_2d != null:
+		_current_line_2d.points.remove(_current_line_2d.points.size() - 1)
+		_current_line_2d.width_curve.remove_point(_current_line_2d.width_curve.get_point_count() - 1)
+	if _current_brush_stroke != null:
+		_current_brush_stroke.points.pop_back()
+		_current_brush_stroke.pressures.pop_back()
 
 # -------------------------------------------------------------------------------------------------
 func end_stroke() -> void:
@@ -136,10 +152,13 @@ func end_stroke() -> void:
 		if _current_line_2d.points.empty():
 			_line2d_container.call_deferred("remove_child", _current_line_2d)
 		else:
-			print("Stroke points: %d (%d removed by optimizer)" % [
-				_current_brush_stroke.points.size(), 
-				_optimizer.points_removed,
-			])
+			if _use_optimizer:
+				print("Stroke points: %d (%d removed by optimizer)" % [
+					_current_brush_stroke.points.size(), 
+					_optimizer.points_removed,
+				])
+			else:
+				print("Stroke points: %d" % _current_brush_stroke.points.size())
 			
 			# Remove the line temporallaly from the node tree, so the adding is registered in the undo-redo histrory below
 			_line2d_container.remove_child(_current_line_2d)
@@ -191,7 +210,6 @@ func _apply_stroke_to_line(stroke: BrushStroke, line2d: Line2D) -> void:
 		var pressure: float = stroke.pressures[p_idx]
 		line2d.width_curve.add_point(Vector2(curve_step*p_idx, pressure / max_pressure))
 		p_idx += 1
-	line2d.width_curve.add_point(Vector2(1.0, (stroke.pressures.back()/max_pressure) * 0.75))
 	
 	line2d.width_curve.bake()
 

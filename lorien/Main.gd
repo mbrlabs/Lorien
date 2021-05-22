@@ -250,7 +250,7 @@ func _on_redo_action() -> void:
 # -------------------------------------------------------------------------------------------------
 func _on_tool_changed(tool_type: int) -> void:
 	match tool_type:
-		Types.Tool.BRUSH, Types.Tool.ERASER: _canvas.use_tool(tool_type)
+		Types.Tool.BRUSH, Types.Tool.ERASER, Types.Tool.LINE: _canvas.use_tool(tool_type)
 		_:
 			_generic_alert_dialog.dialog_text = "Not implemented yet."
 			_generic_alert_dialog.popup_centered()

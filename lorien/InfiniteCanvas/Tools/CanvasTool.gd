@@ -12,6 +12,7 @@ var performing_stroke := false
 # -------------------------------------------------------------------------------------------------
 func _ready():
 	set_process(false)
+	set_process_input(false)
 
 # -------------------------------------------------------------------------------------------------
 func _on_brush_color_changed(color: Color) -> void:
@@ -39,6 +40,10 @@ func start_stroke(eraser: bool = false) -> void:
 # -------------------------------------------------------------------------------------------------
 func add_stroke_point(point: Vector2, pressure: float = 1.0) -> void:
 	_canvas.add_stroke_point(point, pressure)
+
+# -------------------------------------------------------------------------------------------------
+func remove_last_stroke_point() -> void:
+	_canvas.remove_last_stroke_point()
 
 # -------------------------------------------------------------------------------------------------
 func end_stroke() -> void:
