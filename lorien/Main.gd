@@ -172,7 +172,7 @@ func _on_project_closed(project_id: int) -> void:
 
 # -------------------------------------------------------------------------------------------------
 func _on_brush_color_changed(color: Color) -> void:
-	_canvas.brush_color = color
+	_canvas.set_brush_color(color)
 
 # -------------------------------------------------------------------------------------------------
 func _on_brush_size_changed(size: int) -> void:
@@ -251,7 +251,7 @@ func _on_tool_changed(tool_type: int) -> void:
 # -------------------------------------------------------------------------------------------------
 func _on_exit_with_changes_saved() -> void:
 	if ProjectManager.has_unsaved_projects():
-		_generic_alert_dialog.dialog_text = "Auto-saving not possible for file \"Untitled\".\nPlease save it manually."
+		_generic_alert_dialog.dialog_text = "Auto-saving not yet implemented for file \"Untitled\".\nPlease save it manually."
 		_generic_alert_dialog.popup_centered()
 	else:
 		ProjectManager.save_all_projects()

@@ -1,6 +1,6 @@
 class_name Serializer
 
-# TODO: all of this needs validation 
+# TODO: !IMPORTANT! all of this needs validation
 
 # -------------------------------------------------------------------------------------------------
 const COMPRESSION_METHOD = File.COMPRESSION_DEFLATE
@@ -13,7 +13,7 @@ const METADATA_CAMERA_OFFSET_Y := "camera_offset_y"
 const CANVAS_COLOR := "canvas_color"
 
 # -------------------------------------------------------------------------------------------------
-static func serialize(project: Project) -> void:
+static func save_project(project: Project) -> void:
 	var start_time := OS.get_ticks_msec()
 	
 	# Open file
@@ -58,7 +58,7 @@ static func serialize(project: Project) -> void:
 	print("Saved %s in %d ms" % [project.filepath, (OS.get_ticks_msec() - start_time)])
 
 # -------------------------------------------------------------------------------------------------
-static func deserialize(project: Project) -> void:
+static func load_project(project: Project) -> void:
 	var start_time := OS.get_ticks_msec()
 
 	# Open file

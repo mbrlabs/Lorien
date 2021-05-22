@@ -242,6 +242,12 @@ func set_brush_size(size: int) -> void:
 		_active_tool._on_brush_size_changed(_brush_size)
 
 # -------------------------------------------------------------------------------------------------
+func set_brush_color(color: Color) -> void:
+	_brush_color = color
+	if _active_tool != null:
+		_active_tool._on_brush_color_changed(_brush_color)
+
+# -------------------------------------------------------------------------------------------------
 func get_camera_zoom() -> float:
 	return _camera.zoom.x
 

@@ -47,7 +47,7 @@ func add_project(filepath: String = "") -> Project:
 	
 # -------------------------------------------------------------------------------------------------
 func save_project(project: Project) -> void:
-	Serializer.serialize(project)
+	Serializer.save_project(project)
 	project.dirty = false
 
 # -------------------------------------------------------------------------------------------------
@@ -59,7 +59,7 @@ func save_all_projects() -> void:
 # -------------------------------------------------------------------------------------------------
 func _load_project(project: Project) -> void:
 	if !project.loaded:
-		Serializer.deserialize(project)
+		Serializer.load_project(project)
 		project.loaded = true
 	else:
 		print_debug("Trying to load already loaded project")
