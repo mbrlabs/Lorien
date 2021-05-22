@@ -25,3 +25,4 @@ Lorien is an **infinite canvas drawing/note-taking app that is focused on perfor
 
 ## Credits
 - Icons used for the UI: [Remix Icon](https://remixicon.com/)
+- Blurred background image of demo screenshot: https://unsplash.com/photos/nO0V_T0g2fM
