@@ -100,6 +100,7 @@ hover_tint = Color( 0.662745, 0.945098, 0.87451, 1 )
 pressed_tint = Color( 0.572549, 1, 0.894118, 1 )
 
 [node name="ClearCanvasButton" type="TextureButton" parent="Left"]
+visible = false
 margin_left = 106.0
 margin_top = 11.0
 margin_right = 124.0
@@ -113,8 +114,8 @@ hover_tint = Color( 0.662745, 0.945098, 0.87451, 1 )
 pressed_tint = Color( 0.572549, 1, 0.894118, 1 )
 
 [node name="VSeparator2" type="VSeparator" parent="Left"]
-margin_left = 136.0
-margin_right = 140.0
+margin_left = 106.0
+margin_right = 110.0
 margin_bottom = 40.0
 custom_styles/separator = SubResource( 3 )
 __meta__ = {
@@ -122,9 +123,9 @@ __meta__ = {
 }
 
 [node name="UndoButton" type="TextureButton" parent="Left"]
-margin_left = 152.0
+margin_left = 122.0
 margin_top = 11.0
-margin_right = 170.0
+margin_right = 140.0
 margin_bottom = 29.0
 hint_tooltip = "Undo Action (CTRL+Z)"
 size_flags_horizontal = 4
@@ -135,9 +136,9 @@ hover_tint = Color( 0.662745, 0.945098, 0.87451, 1 )
 pressed_tint = Color( 0.572549, 1, 0.894118, 1 )
 
 [node name="RedoButton" type="TextureButton" parent="Left"]
-margin_left = 182.0
+margin_left = 152.0
 margin_top = 11.0
-margin_right = 200.0
+margin_right = 170.0
 margin_bottom = 29.0
 hint_tooltip = "Redo Action (CTRL+Y)"
 size_flags_horizontal = 4
@@ -148,8 +149,8 @@ hover_tint = Color( 0.662745, 0.945098, 0.87451, 1 )
 pressed_tint = Color( 0.572549, 1, 0.894118, 1 )
 
 [node name="VSeparator3" type="VSeparator" parent="Left"]
-margin_left = 212.0
-margin_right = 216.0
+margin_left = 182.0
+margin_right = 186.0
 margin_bottom = 40.0
 custom_styles/separator = SubResource( 3 )
 __meta__ = {
@@ -157,9 +158,9 @@ __meta__ = {
 }
 
 [node name="BrushToolButton" type="TextureButton" parent="Left"]
-margin_left = 228.0
+margin_left = 198.0
 margin_top = 11.0
-margin_right = 246.0
+margin_right = 216.0
 margin_bottom = 29.0
 hint_tooltip = "Brush Tool (B)"
 size_flags_horizontal = 4
@@ -172,9 +173,9 @@ hover_tint = Color( 0.662745, 0.945098, 0.87451, 1 )
 pressed_tint = Color( 0.572549, 1, 0.894118, 1 )
 
 [node name="LineToolButton" type="TextureButton" parent="Left"]
-margin_left = 258.0
+margin_left = 228.0
 margin_top = 12.0
-margin_right = 274.0
+margin_right = 244.0
 margin_bottom = 28.0
 hint_tooltip = "Line Tool (L)"
 size_flags_horizontal = 4
@@ -186,9 +187,9 @@ hover_tint = Color( 0.662745, 0.945098, 0.87451, 1 )
 pressed_tint = Color( 0.572549, 1, 0.894118, 1 )
 
 [node name="EraserToolButton" type="TextureButton" parent="Left"]
-margin_left = 286.0
+margin_left = 256.0
 margin_top = 11.0
-margin_right = 304.0
+margin_right = 274.0
 margin_bottom = 29.0
 hint_tooltip = "Eraser (E)"
 size_flags_horizontal = 4
@@ -200,9 +201,9 @@ hover_tint = Color( 0.662745, 0.945098, 0.87451, 1 )
 pressed_tint = Color( 0.572549, 1, 0.894118, 1 )
 
 [node name="ColorPickerToolButton" type="TextureButton" parent="Left"]
-margin_left = 316.0
+margin_left = 286.0
 margin_top = 11.0
-margin_right = 334.0
+margin_right = 304.0
 margin_bottom = 29.0
 hint_tooltip = "Color Picker"
 size_flags_horizontal = 4
@@ -214,8 +215,8 @@ hover_tint = Color( 0.662745, 0.945098, 0.87451, 1 )
 pressed_tint = Color( 0.572549, 1, 0.894118, 1 )
 
 [node name="VSeparator4" type="VSeparator" parent="Left"]
-margin_left = 346.0
-margin_right = 350.0
+margin_left = 316.0
+margin_right = 320.0
 margin_bottom = 40.0
 custom_styles/separator = SubResource( 3 )
 __meta__ = {
@@ -223,9 +224,9 @@ __meta__ = {
 }
 
 [node name="ColorButton" type="Button" parent="Left"]
-margin_left = 362.0
+margin_left = 332.0
 margin_top = 10.0
-margin_right = 422.0
+margin_right = 392.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 60, 20 )
 hint_tooltip = "Brush Color"
@@ -247,9 +248,9 @@ __meta__ = {
 }
 
 [node name="BrushSizeSlider" type="HSlider" parent="Left"]
-margin_left = 434.0
+margin_left = 404.0
 margin_top = 10.0
-margin_right = 554.0
+margin_right = 524.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 120, 20 )
 hint_tooltip = "Brush Size"
@@ -260,9 +261,9 @@ max_value = 50.0
 value = 5.0
 
 [node name="BrushSizeLabel" type="Label" parent="Left"]
-margin_left = 566.0
+margin_left = 536.0
 margin_top = 13.0
-margin_right = 582.0
+margin_right = 552.0
 margin_bottom = 27.0
 custom_fonts/font = ExtResource( 14 )
 text = "12"

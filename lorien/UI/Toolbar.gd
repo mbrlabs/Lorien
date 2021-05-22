@@ -80,6 +80,7 @@ func _on_OpenFileButton_pressed():
 	file_dialog.mode = FileDialog.MODE_OPEN_FILE
 	file_dialog.connect("file_selected", self, "_on_project_selected_to_open")
 	file_dialog.connect("popup_hide", self, "_on_file_dialog_closed")
+	file_dialog.invalidate()
 	file_dialog.popup_centered()
 
 # -------------------------------------------------------------------------------------------------

@@ -66,7 +66,7 @@ func _notification(what):
 		_canvas.disable()
 		
 # -------------------------------------------------------------------------------------------------
-func _physics_process(delta):
+func _process(delta):
 	_handle_shortcut_actions()
 	_statusbar.set_stroke_count(_canvas.info.stroke_count)
 	_statusbar.set_point_count(_canvas.info.point_count)
@@ -82,24 +82,25 @@ func _physics_process(delta):
 
 # -------------------------------------------------------------------------------------------------
 func _handle_shortcut_actions() -> void:
-	if Input.is_action_just_pressed("shortcut_new_project"):
-		_on_create_new_project()
-	if Input.is_action_just_pressed("shortcut_open_project"):
-		_toolbar._on_OpenFileButton_pressed() # FIXME that's pretty ugly
-	if Input.is_action_just_pressed("shortcut_save_project"):
-		_on_save_project()
-	if Input.is_action_just_pressed("shortcut_undo"):
-		_on_undo_action()
-	if Input.is_action_just_pressed("shortcut_redo"):
-		_on_redo_action()
-	if Input.is_action_just_pressed("shortcut_brush_tool"):
-		_toolbar.enable_tool(Types.Tool.BRUSH)
-	if Input.is_action_just_pressed("shortcut_line_tool"):
-		_toolbar.enable_tool(Types.Tool.LINE)
-	if Input.is_action_just_pressed("shortcut_eraser_tool"):
-		_toolbar.enable_tool(Types.Tool.ERASER)
-	if Input.is_action_just_pressed("shortcut_colorpicker"):
-		_toolbar.enable_tool(Types.Tool.COLOR_PICKER)
+	if !_is_dialog_open():
+		if Input.is_action_just_pressed("shortcut_new_project"):
+			_on_create_new_project()
+		if Input.is_action_just_pressed("shortcut_open_project"):
+			_toolbar._on_OpenFileButton_pressed() # FIXME that's pretty ugly
+		if Input.is_action_just_pressed("shortcut_save_project"):
+			_on_save_project()
+		if Input.is_action_just_pressed("shortcut_undo"):
+			_on_undo_action()
+		if Input.is_action_just_pressed("shortcut_redo"):
+			_on_redo_action()
+		if Input.is_action_just_pressed("shortcut_brush_tool"):
+			_toolbar.enable_tool(Types.Tool.BRUSH)
+		if Input.is_action_just_pressed("shortcut_line_tool"):
+			_toolbar.enable_tool(Types.Tool.LINE)
+		if Input.is_action_just_pressed("shortcut_eraser_tool"):
+			_toolbar.enable_tool(Types.Tool.ERASER)
+		if Input.is_action_just_pressed("shortcut_colorpicker"):
+			_toolbar.enable_tool(Types.Tool.COLOR_PICKER)
 
 # -------------------------------------------------------------------------------------------------
 func _make_project_active(project: Project) -> void:
@@ -115,7 +116,12 @@ func _make_project_active(project: Project) -> void:
 
 # -------------------------------------------------------------------------------------------------
 func _is_mouse_on_ui() -> bool:
+	# FIXME: this is really long line.... It's also pretty hacky, so replace with something better sometime
 	return Utils.is_mouse_in_control(_menubar) || Utils.is_mouse_in_control(_toolbar) || Utils.is_mouse_in_control(_statusbar)  || Utils.is_mouse_in_control(_file_dialog) || Utils.is_mouse_in_control(_about_dialog) || Utils.is_mouse_in_control(_settings_dialog)
+
+# -------------------------------------------------------------------------------------------------
+func _is_dialog_open() -> bool:
+	return _file_dialog.visible || _about_dialog.visible || _settings_dialog.visible || _generic_alert_dialog.visible
 
 # -------------------------------------------------------------------------------------------------
 func _create_active_default_project() -> void:
@@ -206,6 +212,7 @@ func _on_open_project(filepath: String) -> void:
 func _on_save_project() -> void:
 	var active_project: Project = ProjectManager.get_active_project()
 	if active_project.filepath.empty():
+		_file_dialog.invalidate()
 		_file_dialog.mode = FileDialog.MODE_SAVE_FILE
 		_file_dialog.connect("file_selected", self, "_on_file_selected_to_save_project")
 		_file_dialog.connect("popup_hide", self, "_on_file_dialog_closed")
