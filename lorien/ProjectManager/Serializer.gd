@@ -6,6 +6,9 @@ class_name Serializer
 const COMPRESSION_METHOD = File.COMPRESSION_DEFLATE
 const POINT_ELEM_SIZE := 3
 
+const TYPE_BRUSH_STROKE := 0
+const TYPE_ERASER_STROKE := 1
+
 const VERSION_NUMBER := 0
 const METADATA_CAMERA_ZOOM = "camera_zoom"
 const METADATA_CAMERA_OFFSET_X := "camera_offset_x"
@@ -28,24 +31,30 @@ static func save_project(project: Project) -> void:
 	file.store_pascal_string(_dict_to_metadata_str(project.meta_data))
 	
 	# Serialize eraser stroke indices
-	file.store_32(project.eraser_stroke_indices.size())
-	for stroke_index in project.eraser_stroke_indices:
-		file.store_32(stroke_index)
+#	file.store_32(project.eraser_stroke_indices.size())
+#	for stroke_index in project.eraser_stroke_indices:
+#		file.store_32(stroke_index)
 	
 	# Serialize stroke data
 	for stroke in project.strokes:
-		# color
+		# Type
+		if stroke.eraser:
+			file.store_8(TYPE_ERASER_STROKE)
+		else:
+			file.store_8(TYPE_BRUSH_STROKE)
+		
+		# Color
 		file.store_8(stroke.color.r8)
 		file.store_8(stroke.color.g8)
 		file.store_8(stroke.color.b8)
 		
-		# brush size
+		# Brush size
 		file.store_16(int(stroke.size))
 		
-		# number of points
+		# Number of points
 		file.store_16(stroke.points.size())
 		
-		# points
+		# Points
 		var p_idx := 0
 		for p in stroke.points:
 			file.store_float(p.x)
@@ -77,28 +86,30 @@ static func load_project(project: Project) -> void:
 	var meta_data_str = file.get_pascal_string()
 	project.meta_data = _metadata_str_to_dict(meta_data_str)
 	
-	# Deserialize eraser stroke indices
-	var eraser_stroke_count := file.get_32()
-	for i in eraser_stroke_count:
-		project.eraser_stroke_indices.append(file.get_32())
-	
 	# Deserialize strokes
+	var stroke_index := 0
 	while true:
 		var brush_stroke := BrushStroke.new()
 		
-		# color
+		# Type
+		var type := file.get_8()
+		if type == TYPE_ERASER_STROKE:
+			brush_stroke.eraser = true
+			project.eraser_stroke_indices.append(stroke_index)
+		
+		# Color
 		var r := file.get_8()
 		var g := file.get_8()
 		var b := file.get_8()
 		brush_stroke.color = Color(r/255.0, g/255.0, b/255.0, 1.0)
 		
-		# brush size
+		# Brush size
 		brush_stroke.size = file.get_16()
 			
-		# number of points
+		# Number of points
 		var point_count := file.get_16()
 
-		# points
+		# Points
 		for i in point_count:
 			var x := file.get_float()
 			var y := file.get_float()
@@ -108,11 +119,9 @@ static func load_project(project: Project) -> void:
 		project.strokes.append(brush_stroke)
 		
 		# are we done yet?
+		stroke_index += 1
 		if file.get_position() >= file.get_len()-1 || file.eof_reached():
 			break
-	
-	for eraser_index in project.eraser_stroke_indices:
-		project.strokes[eraser_index].eraser = true
 	
 	# Done
 	file.close()
