@@ -14,6 +14,7 @@ onready var _line_tool: LineTool = $LineTool
 onready var _active_tool: CanvasTool = _brush_tool
 onready var _line2d_container: Node2D = $Viewport/Strokes
 onready var _camera: Camera2D = $Viewport/Camera2D
+onready var _viewport: Viewport = $Viewport
 
 var info := Types.CanvasInfo.new()
 var _is_enabled := false
@@ -34,6 +35,7 @@ func _ready():
 	_active_tool._on_brush_color_changed(_brush_color)
 	_active_tool._on_brush_size_changed(_brush_size)
 	_active_tool.enabled = true
+	get_tree().get_root().connect("size_changed",self,"_on_window_resized")
 
 # -------------------------------------------------------------------------------------------------
 func _input(event: InputEvent) -> void:
@@ -280,3 +282,6 @@ func clear() -> void:
 	info.point_count = 0
 	info.stroke_count = 0
 	_current_project.strokes.clear()
+# -------------------------------------------------------------------------------------------------
+func _on_window_resized() -> void:
+	_viewport.size = get_viewport_rect().size
