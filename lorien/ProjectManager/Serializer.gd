@@ -1,6 +1,8 @@
 class_name Serializer
 
 # TODO: !IMPORTANT! all of this needs validation
+# TODO: !IMPORTANT! all of this needs validation
+# TODO: !IMPORTANT! all of this needs validation
 
 # -------------------------------------------------------------------------------------------------
 const COMPRESSION_METHOD = File.COMPRESSION_DEFLATE
@@ -26,16 +28,11 @@ static func save_project(project: Project) -> void:
 		print_debug("Failed to open file for writing: %s" % project.filepath)
 		return
 	
-	# Serialize meta data
+	# Meta data
 	file.store_32(VERSION_NUMBER)
 	file.store_pascal_string(_dict_to_metadata_str(project.meta_data))
 	
-	# Serialize eraser stroke indices
-#	file.store_32(project.eraser_stroke_indices.size())
-#	for stroke_index in project.eraser_stroke_indices:
-#		file.store_32(stroke_index)
-	
-	# Serialize stroke data
+	# Stroke data
 	for stroke in project.strokes:
 		# Type
 		if stroke.eraser:
@@ -81,12 +78,12 @@ static func load_project(project: Project) -> void:
 	project.strokes.clear()
 	project.meta_data.clear()
 	
-	# Deserialize meta data
+	# Meta data
 	var _version_number := file.get_32()
 	var meta_data_str = file.get_pascal_string()
 	project.meta_data = _metadata_str_to_dict(meta_data_str)
 	
-	# Deserialize strokes
+	# Brush strokes
 	var stroke_index := 0
 	while true:
 		var brush_stroke := BrushStroke.new()
