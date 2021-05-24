@@ -85,10 +85,13 @@ func set_background_color(color: Color) -> void:
 	_background_color = color
 	
 	if _current_project != null:
+		_current_project.dirty = true
+		
+		# Make the eraser brush strokes have the same color as the background
 		for eraser_index in _current_project.eraser_stroke_indices:
 			if eraser_index < _line2d_container.get_child_count():
 				_line2d_container.get_child(eraser_index).default_color = color
-
+	
 # -------------------------------------------------------------------------------------------------
 func get_background_color() -> Color:
 	return _background_color

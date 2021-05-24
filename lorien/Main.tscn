@@ -70,10 +70,10 @@ __meta__ = {
 }
 
 [node name="ColorPicker" type="ColorPicker" parent="BrushColorPickerPopup/PanelContainer"]
-margin_left = 20.0
-margin_top = 20.0
-margin_right = 325.0
-margin_bottom = 454.0
+margin_left = 28.0
+margin_top = 28.0
+margin_right = 333.0
+margin_bottom = 462.0
 edit_alpha = false
 __meta__ = {
 "_edit_use_anchors_": false
@@ -101,10 +101,10 @@ __meta__ = {
 }
 
 [node name="ColorPicker" type="ColorPicker" parent="BackgroundColorPickerPopup/PanelContainer"]
-margin_left = 256.0
-margin_top = 256.0
-margin_right = 566.0
-margin_bottom = 672.0
+margin_left = 264.0
+margin_top = 264.0
+margin_right = 574.0
+margin_bottom = 680.0
 edit_alpha = false
 __meta__ = {
 "_edit_use_anchors_": false
@@ -142,7 +142,6 @@ margin_right = 155.0
 margin_bottom = 45.0
 
 [node name="AboutDialog" parent="." instance=ExtResource( 9 )]
-visible = false
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5

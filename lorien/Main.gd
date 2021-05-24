@@ -156,7 +156,8 @@ func _on_project_closed(project_id: int) -> void:
 	
 	if project.dirty:
 		# TODO
-		printerr("Trying close project with unsaved changes. Not possible right now")
+		_generic_alert_dialog.dialog_text = "Closing files with unsaved changes is not possible right now."
+		_generic_alert_dialog.popup_centered()
 		return
 	
 	# don't remove the default project
