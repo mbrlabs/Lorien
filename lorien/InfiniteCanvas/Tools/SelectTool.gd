@@ -29,8 +29,8 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		_cursor.global_position = xform_vector2(event.global_position)
 		if is_selecting():
-			_selecting_end_pos = xform_vector2_relative(event.global_position) - _selecting_start_pos
-			_canvas.compute_selection(_selecting_start_pos, _selecting_end_pos, multi)
+			_selecting_end_pos = xform_vector2_relative(event.global_position)
+			_canvas.compute_selection(_selecting_start_pos, _selecting_end_pos)
 			_canvas.update()
 	
 	if event is InputEventMouseButton:
@@ -50,6 +50,7 @@ func set_selecting(_selecting : bool, _multi : bool = false) -> void:
 		_canvas.update()
 		_selecting_start_pos = Vector2.ZERO
 		_selecting_end_pos = _selecting_start_pos
+		_canvas.confirm_selections()
 	else:
 		if not multi:
 			_canvas.deselect_all_strokes()

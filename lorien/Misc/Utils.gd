@@ -16,11 +16,17 @@ func is_mouse_in_control(control: Control) -> bool:
 	return rect.has_point(pos)
 
 # -------------------------------------------------------------------------------------------------
-func calculate_rect_flips(rect : Rect2) -> Rect2:
-	var area : Rect2 = rect
-	if area.position.x > area.end.x and area.position.y > area.end.y: area = Rect2(area.end, area.position)
-	elif area.position.x > area.end.x and area.position.y < area.end.y: area = Rect2(area.end.x, area.position.y, area.position.x, area.end.y)
-	elif area.position.x < area.end.x and area.position.y > area.end.y: area = Rect2(area.position.x, area.end.y, area.end.x, area.position.y)
+func calculate_rect(start_pos : Vector2, end_pos : Vector2) -> Rect2:
+	var area : Rect2 = Rect2(start_pos, end_pos - start_pos)
+	if end_pos.x < start_pos.x and end_pos.y < start_pos.y :
+		area.position = end_pos
+		area.end = start_pos
+	elif end_pos.x < start_pos.x and end_pos.y > start_pos.y:
+		area.position = Vector2(end_pos.x, start_pos.y)
+		area.end = Vector2(start_pos.x, end_pos.y)
+	elif end_pos.x > start_pos.x and end_pos.y < start_pos.y:
+		area.position = Vector2(start_pos.x, end_pos.y)
+		area.end = Vector2(end_pos.x, start_pos.y)
 	return area
 
 func return_timestamp_string() -> String:

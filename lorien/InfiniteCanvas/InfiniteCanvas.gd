@@ -30,7 +30,7 @@ var _current_project: Project
 var _use_optimizer := true
 var _optimizer: BrushStrokeOptimizer
 
-
+var _debugging : bool
 
 # -------------------------------------------------------------------------------------------------
 func _connect_cursors_signals():
@@ -39,6 +39,8 @@ func _connect_cursors_signals():
 
 
 func _ready():
+	_debugging = false
+	
 	_optimizer = BrushStrokeOptimizer.new()
 	_brush_size = Settings.get_value(Settings.GENERAL_DEFAULT_BRUSH_SIZE, Config.DEFAULT_BRUSH_SIZE)
 	_brush_color = Settings.get_value(Settings.GENERAL_DEFAULT_BRUSH_COLOR, Config.DEFAULT_BRUSH_COLOR)
@@ -51,8 +53,17 @@ func _ready():
 
 func _draw():
 	if _select_tool.is_selecting():
-		draw_rect(Rect2(_select_tool._selecting_start_pos, _select_tool._selecting_end_pos), 
-		Color.whitesmoke, false, true)
+		draw_selection_rect(_select_tool._selecting_start_pos, _select_tool._selecting_end_pos)
+	
+	if _debugging:
+		draw_rect(_area, Color.red, false, true)
+		for _area2 in _areas2:
+			draw_circle(_area2.position, 3, Color.yellow)
+			draw_circle(_area2.end, 3, Color.yellow)
+		_areas2 = []
+
+func draw_selection_rect(start_pos : Vector2, end_pos : Vector2) -> void:
+	draw_rect(Rect2(start_pos, end_pos - start_pos), Color.whitesmoke, false, true)
 
 # -------------------------------------------------------------------------------------------------
 func _input(event: InputEvent) -> void:
@@ -215,15 +226,18 @@ func end_stroke() -> void:
 
 # Check if a stroke is inside the selection rectangle
 # For performance reasons and implementation ease, to consider a stroke inside the selection rectangle the first and last points of the Line2D should be inside it
-func compute_selection(start_pos : Vector2, end_pos : Vector2, multi : bool) -> void:
-	var area : Rect2 = Utils.calculate_rect_flips(Rect2(start_pos, end_pos))
-	
+var _area : Rect2
+var _areas2 : Array
+
+func compute_selection(start_pos : Vector2, end_pos : Vector2) -> void:
+	var rect : Rect2 = Utils.calculate_rect(start_pos, end_pos)
+	if _debugging: _area = rect
 	for stroke in _line2d_container.get_children():
-		set_stroke_selected(
-			stroke,
-			area.has_point(get_absolute_strokepoint_pos(stroke.points[0], stroke))
-			and area.has_point(get_absolute_strokepoint_pos(stroke.points[stroke.points.size()-1], stroke)),
-			multi)
+		var first_point : Vector2 = get_absolute_strokepoint_pos(stroke.points[0], stroke)
+		var last_point : Vector2 = get_absolute_strokepoint_pos(stroke.points[stroke.points.size()-1], stroke)
+		var stroke_rect : Rect2 = Rect2(first_point, last_point - first_point)
+		set_stroke_selected(stroke, rect.has_point(first_point) and rect.has_point(last_point))
+		if _debugging : _areas2.append(Rect2(first_point, last_point - first_point))
 	info.selected_strokes = get_tree().get_nodes_in_group("selected_strokes").size()
 
 # Returns the absolute position of a point in a Line2D through camera parameters
@@ -232,14 +246,23 @@ func get_absolute_strokepoint_pos(p : Vector2, stroke : Line2D) -> Vector2:
 
 # Sets a stroke selected or not, adding it to a group
 # This will facilitate managing only selected strokes, without computing any operation on non-selected ones
-func set_stroke_selected(stroke : Line2D, is_inside_rect : bool = true, multi : bool = false) -> void:
+func set_stroke_selected(stroke : Line2D, is_inside_rect : bool = true) -> void:
 	if is_inside_rect:
 		stroke.modulate = Color.rebeccapurple
 		stroke.add_to_group("selected_strokes")
 	else:
-		if stroke.is_in_group("selected_strokes") and not multi:
-			stroke.modulate = Color.white
-			stroke.remove_from_group("selected_strokes")
+		if stroke.is_in_group("selected_strokes"):
+			if not stroke.has_meta("was_selected"):
+				stroke.modulate = Color.white
+				stroke.remove_from_group("selected_strokes")
+
+func confirm_selections() -> void:
+	for stroke in get_tree().get_nodes_in_group("selected_strokes"):
+		stroke.set_meta("was_selected", true)
+
+func deselect_stroke(stroke : Line2D) -> void:
+	stroke.set_meta("was_selected", null)
+	stroke.remove_from_group("selected_strokes")
 
 # Deselect all strokes at once
 func deselect_all_strokes() -> void:
@@ -247,7 +270,7 @@ func deselect_all_strokes() -> void:
 	if selected_strokes.size():
 		get_tree().set_group("selected_strokes", "modulate", Color.white)
 		for stroke in selected_strokes:
-			stroke.remove_from_group("selected_strokes")
+			deselect_stroke(stroke)
 	info.selected_strokes = 0
 
 # -------------------------------------------------------------------------------------------------
