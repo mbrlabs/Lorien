@@ -48,4 +48,8 @@ func _on_MainMenu_id_pressed(id: int):
 		ITEM_MANUAL: emit_signal("open_url", "https://github.com/mbrlabs/lorien/blob/main/docs/manual.md")
 		ITEM_BUG_TRACKER: emit_signal("open_url", "https://github.com/mbrlabs/lorien/issues")
 		ITEM_ABOUT: emit_signal("open_about_dialog")
-		
+
+# -------------------------------------------------------------------------------------------------
+func add_item_with_shortcut(target: PopupMenu, name: String, id: int, shortcut_action: String) -> void:
+	var shortcut = InputMap.get_action_list(shortcut_action)[0].get_scancode_with_modifiers()
+	target.add_item(name, id, shortcut)

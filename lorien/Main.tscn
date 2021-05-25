@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://InfiniteCanvas/InfiniteCanvas.tscn" type="PackedScene" id=2]
@@ -6,10 +6,11 @@
 [ext_resource path="res://UI/Menubar.tscn" type="PackedScene" id=4]
 [ext_resource path="res://UI/MainMenu.tscn" type="PackedScene" id=5]
 [ext_resource path="res://UI/Toolbar.tscn" type="PackedScene" id=6]
-[ext_resource path="res://UI/Dialogs/UnsavedChangesOnExitDialog.tscn" type="PackedScene" id=7]
+[ext_resource path="res://UI/Dialogs/UnsavedChangesDialog.tscn" type="PackedScene" id=7]
 [ext_resource path="res://UI/Themes/theme_dark.tres" type="Theme" id=8]
 [ext_resource path="res://UI/Dialogs/AboutDialog.tscn" type="PackedScene" id=9]
 [ext_resource path="res://UI/Dialogs/SettingsDialog.tscn" type="PackedScene" id=10]
+[ext_resource path="res://UI/Dialogs/ExitDialog.tscn" type="PackedScene" id=11]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.207843, 0.211765, 0.227451, 1 )
@@ -70,10 +71,10 @@ __meta__ = {
 }
 
 [node name="ColorPicker" type="ColorPicker" parent="BrushColorPickerPopup/PanelContainer"]
-margin_left = 4.0
-margin_top = 4.0
-margin_right = 309.0
-margin_bottom = 438.0
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 313.0
+margin_bottom = 442.0
 edit_alpha = false
 __meta__ = {
 "_edit_use_anchors_": false
@@ -131,7 +132,17 @@ filters = PoolStringArray( "*.lorien" )
 current_dir = "/Users/mbrla/Projects/lorien/lorien"
 current_path = "/Users/mbrla/Projects/lorien/lorien/"
 
-[node name="UnsavedChangesOnExitDialog" parent="." instance=ExtResource( 7 )]
+[node name="ExitDialog" parent="." instance=ExtResource( 11 )]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -155.0
+margin_top = -45.0
+margin_right = 155.0
+margin_bottom = 45.0
+
+[node name="UnsavedChangesDialog" parent="." instance=ExtResource( 7 )]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5

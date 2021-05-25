@@ -10,7 +10,8 @@ onready var _about_dialog: WindowDialog = $AboutDialog
 onready var _settings_dialog: WindowDialog = $SettingsDialog
 onready var _main_menu: MainMenu = $MainMenu
 onready var _generic_alert_dialog: AcceptDialog = $GenericAlertDialog
-onready var _unsaved_changes_on_exit_dialog: WindowDialog = $UnsavedChangesOnExitDialog
+onready var _exit_dialog: WindowDialog = $ExitDialog
+onready var _unsaved_changes_dialog: WindowDialog = $UnsavedChangesDialog
 onready var _background_color_picker: ColorPicker = $BackgroundColorPickerPopup/PanelContainer/ColorPicker
 
 # -------------------------------------------------------------------------------------------------
@@ -41,9 +42,10 @@ func _ready():
 	_main_menu.connect("open_settings_dialog", self, "_on_open_settings_dialog")
 	_main_menu.connect("open_url", self, "_on_open_url")
 	
-	_unsaved_changes_on_exit_dialog.connect("save_changes", self, "_on_exit_with_changes_saved")
-	_unsaved_changes_on_exit_dialog.connect("discard_changes", self, "_on_exit_with_changes_discarded")
-	_unsaved_changes_on_exit_dialog.connect("cancel_exit", self, "_on_exit_cancled")
+	_exit_dialog.connect("save_changes", self, "_on_exit_with_changes_saved")
+	_exit_dialog.connect("discard_changes", self, "_on_exit_with_changes_discarded")
+	_unsaved_changes_dialog.connect("save_changes", self, "_on_close_file_with_changes_saved")
+	_unsaved_changes_dialog.connect("discard_changes", self, "_on_close_file_with_changes_discarded")
 	
 	# Create the default project
 	# TODO: once project managament is fully implemented, this should be replaced with last open (at exit) files
@@ -52,9 +54,9 @@ func _ready():
 # -------------------------------------------------------------------------------------------------
 func _notification(what):
 	if NOTIFICATION_WM_QUIT_REQUEST == what:
-		if !_unsaved_changes_on_exit_dialog.visible:
+		if !_exit_dialog.visible:
 			if ProjectManager.has_unsaved_changes():
-				_unsaved_changes_on_exit_dialog.call_deferred("popup")
+				_exit_dialog.call_deferred("popup")
 			else:
 				get_tree().quit()
 
@@ -152,17 +154,18 @@ func _on_project_selected(project_id: int) -> void:
 
 # -------------------------------------------------------------------------------------------------
 func _on_project_closed(project_id: int) -> void:
+	# Ask the user to save changes
 	var project: Project = ProjectManager.get_project_by_id(project_id)
-	
 	if project.dirty:
-		# TODO
-		_generic_alert_dialog.dialog_text = "Closing files with unsaved changes is not possible right now."
-		_generic_alert_dialog.popup_centered()
-		return
-	
-	# don't remove the default project
-	if ProjectManager.get_project_count() == 1 && project.filepath.empty():
-		return
+		_unsaved_changes_dialog.project_ids.clear()
+		_unsaved_changes_dialog.project_ids.append(project_id)
+		_unsaved_changes_dialog.popup_centered()
+	else:
+		_close_project(project_id)
+
+# -------------------------------------------------------------------------------------------------
+func _close_project(project_id: int) -> void:
+	var project: Project = ProjectManager.get_project_by_id(project_id)
 	
 	# Remove project
 	ProjectManager.remove_project(project)
@@ -176,6 +179,11 @@ func _on_project_closed(project_id: int) -> void:
 		var new_project_id: int = _menubar.get_first_project_id()
 		var new_project: Project = ProjectManager.get_project_by_id(new_project_id)
 		_make_project_active(new_project)
+
+# -------------------------------------------------------------------------------------------------
+func _show_autosave_not_implemented_alert() -> void:
+	_generic_alert_dialog.dialog_text = "Auto-saving not yet implemented for file \"Untitled\".\nPlease save it manually."
+	_generic_alert_dialog.popup_centered()
 
 # -------------------------------------------------------------------------------------------------
 func _on_brush_color_changed(color: Color) -> void:
@@ -257,21 +265,33 @@ func _on_tool_changed(tool_type: int) -> void:
 			_generic_alert_dialog.popup_centered()
 
 # -------------------------------------------------------------------------------------------------
-func _on_exit_with_changes_saved() -> void:
+func _on_exit_with_changes_saved(project_ids: Array) -> void:
 	if ProjectManager.has_unsaved_projects():
-		_generic_alert_dialog.dialog_text = "Auto-saving not yet implemented for file \"Untitled\".\nPlease save it manually."
-		_generic_alert_dialog.popup_centered()
+		_show_autosave_not_implemented_alert()
 	else:
 		ProjectManager.save_all_projects()
 		get_tree().quit()
 
 # -------------------------------------------------------------------------------------------------
-func _on_exit_with_changes_discarded() -> void:
+func _on_exit_with_changes_discarded(project_ids: Array) -> void:
 	get_tree().quit()
-	
+
 # -------------------------------------------------------------------------------------------------
-func _on_exit_cancled() -> void:
-	_unsaved_changes_on_exit_dialog.hide()
+func _on_close_file_with_changes_saved(project_ids: Array) -> void:
+	for id in project_ids:
+		var project: Project = ProjectManager.get_project_by_id(id)
+		if project.filepath.empty():
+			_show_autosave_not_implemented_alert()
+		else:
+			ProjectManager.save_project(project)
+			_close_project(id)
+	_unsaved_changes_dialog.hide()
+
+# -------------------------------------------------------------------------------------------------
+func _on_close_file_with_changes_discarded(project_ids: Array) -> void:
+	for id in project_ids:
+		_close_project(id)
+	_unsaved_changes_dialog.hide()
 
 # -------------------------------------------------------------------------------------------------
 func _on_open_about_dialog() -> void:
