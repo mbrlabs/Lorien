@@ -16,6 +16,12 @@ func _init():
 	undo_redo = UndoRedo.new()
 
 # -------------------------------------------------------------------------------------------------
+func _notification(what):
+	if what == NOTIFICATION_PREDELETE:
+		if undo_redo != null:
+			undo_redo.free()
+
+# -------------------------------------------------------------------------------------------------
 func clear() -> void:
 	undo_redo.free()
 	undo_redo = null

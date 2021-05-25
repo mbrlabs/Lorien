@@ -223,6 +223,7 @@ func use_project(project: Project) -> void:
 	# Cleanup old data
 	for l in _line2d_container.get_children():
 		_line2d_container.remove_child(l)
+		l.queue_free()
 	info.point_count = 0
 	info.stroke_count = 0
 	

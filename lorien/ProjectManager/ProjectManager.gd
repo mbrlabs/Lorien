@@ -30,6 +30,13 @@ func remove_project(project: Project) -> void:
 	project.clear()
 
 # -------------------------------------------------------------------------------------------------
+func remove_all_projects() -> void:
+	for project in _open_projects:
+		remove_project(project)
+	_open_projects.clear()
+	_active_project = null
+
+# -------------------------------------------------------------------------------------------------
 func add_project(filepath: String = "") -> Project:
 	# Check if already open
 	if !filepath.empty():

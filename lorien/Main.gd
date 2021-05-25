@@ -65,7 +65,12 @@ func _notification(what):
 			_canvas.enable()
 	elif NOTIFICATION_WM_FOCUS_OUT == what && _canvas != null:
 		_canvas.disable()
-		
+
+# -------------------------------------------------------------------------------------------------
+func _exit_tree():
+	_menubar.remove_all_tabs()
+	ProjectManager.remove_all_projects()
+
 # -------------------------------------------------------------------------------------------------
 func _process(delta):
 	_handle_shortcut_actions()
