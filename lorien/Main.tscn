@@ -27,12 +27,11 @@ mouse_filter = 2
 theme = ExtResource( 8 )
 script = ExtResource( 1 )
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
 [node name="InfiniteCanvas" parent="." instance=ExtResource( 2 )]
-margin_top = -0.707092
-margin_bottom = -0.707031
 
 [node name="Menubar" parent="." instance=ExtResource( 4 )]
 _main_menu_path = NodePath("../MainMenu")
@@ -53,12 +52,13 @@ rect_scale = Vector2( 1, 1.00112 )
 
 [node name="BrushColorPickerPopup" type="Popup" parent="."]
 margin_left = 332.0
-margin_top = 77.0
+margin_top = 78.0
 margin_right = 634.0
-margin_bottom = 504.0
+margin_bottom = 505.0
 theme = ExtResource( 8 )
 __meta__ = {
 "_edit_group_": true,
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
@@ -71,10 +71,10 @@ __meta__ = {
 }
 
 [node name="ColorPicker" type="ColorPicker" parent="BrushColorPickerPopup/PanelContainer"]
-margin_left = 8.0
-margin_top = 8.0
-margin_right = 313.0
-margin_bottom = 442.0
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 309.0
+margin_bottom = 438.0
 edit_alpha = false
 __meta__ = {
 "_edit_use_anchors_": false
@@ -83,13 +83,14 @@ __meta__ = {
 [node name="BackgroundColorPickerPopup" type="Popup" parent="."]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -316.613
+margin_left = -317.527
 margin_top = 77.0
-margin_right = 1.38721
+margin_right = 0.473633
 margin_bottom = 501.0
 theme = ExtResource( 8 )
 __meta__ = {
 "_edit_group_": true,
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
@@ -131,6 +132,9 @@ access = 2
 filters = PoolStringArray( "*.lorien" )
 current_dir = "/Users/mbrla/Projects/lorien/lorien"
 current_path = "/Users/mbrla/Projects/lorien/lorien/"
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="ExitDialog" parent="." instance=ExtResource( 11 )]
 anchor_left = 0.5
@@ -178,12 +182,15 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -63.5
+margin_left = -68.5
 margin_top = -35.0
-margin_right = 63.5
+margin_right = 68.5
 margin_bottom = 35.0
 theme = ExtResource( 8 )
 dialog_text = "Generic message. "
+__meta__ = {
+"_edit_lock_": true
+}
 
 [connection signal="mouse_entered" from="InfiniteCanvas" to="." method="_on_InfiniteCanvas_mouse_entered"]
 [connection signal="mouse_exited" from="InfiniteCanvas" to="." method="_on_InfiniteCanvas_mouse_exited"]

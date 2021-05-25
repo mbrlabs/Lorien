@@ -8,14 +8,9 @@ class_name Serializer
 const COMPRESSION_METHOD = File.COMPRESSION_DEFLATE
 const POINT_ELEM_SIZE := 3
 
+const VERSION_NUMBER := 0
 const TYPE_BRUSH_STROKE := 0
 const TYPE_ERASER_STROKE := 1
-
-const VERSION_NUMBER := 0
-const METADATA_CAMERA_ZOOM = "camera_zoom"
-const METADATA_CAMERA_OFFSET_X := "camera_offset_x"
-const METADATA_CAMERA_OFFSET_Y := "camera_offset_y"
-const CANVAS_COLOR := "canvas_color"
 
 # -------------------------------------------------------------------------------------------------
 static func save_project(project: Project) -> void:

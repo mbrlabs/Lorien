@@ -48,7 +48,6 @@ func _ready():
 	_unsaved_changes_dialog.connect("discard_changes", self, "_on_close_file_with_changes_discarded")
 	
 	# Create the default project
-	# TODO: once project managament is fully implemented, this should be replaced with last open (at exit) files
 	_create_active_default_project()
 
 # -------------------------------------------------------------------------------------------------
@@ -77,7 +76,7 @@ func _process(delta):
 	_statusbar.set_camera_zoom(_canvas.get_camera_zoom())
 	_statusbar.set_fps(Engine.get_frames_per_second())
 	
-	# FIXME: i put this here to update dirty tabs; shuld only be called once
+	# Update tab title
 	var active_project: Project = ProjectManager.get_active_project()
 	if active_project != null:
 		_menubar.update_tab_title(active_project)
@@ -88,7 +87,7 @@ func _handle_shortcut_actions() -> void:
 		if Input.is_action_just_pressed("shortcut_new_project"):
 			_on_create_new_project()
 		if Input.is_action_just_pressed("shortcut_open_project"):
-			_toolbar._on_OpenFileButton_pressed() # FIXME that's pretty ugly
+			_toolbar._on_OpenFileButton_pressed()
 		if Input.is_action_just_pressed("shortcut_save_project"):
 			_on_save_project()
 		if Input.is_action_just_pressed("shortcut_undo"):
@@ -113,8 +112,9 @@ func _make_project_active(project: Project) -> void:
 		_menubar.make_tab(project)
 	_menubar.set_tab_active(project)
 	
+	# TODO: find a better way to apply the color to the picker
 	var default_canvas_color = Config.DEFAULT_CANVAS_COLOR.to_html()
-	_background_color_picker.color = Color(project.meta_data.get(Serializer.CANVAS_COLOR, default_canvas_color))
+	_background_color_picker.color = Color(project.meta_data.get(ProjectMetadata.CANVAS_COLOR, default_canvas_color))
 
 # -------------------------------------------------------------------------------------------------
 func _is_mouse_on_ui() -> bool:
@@ -132,13 +132,7 @@ func _create_active_default_project() -> void:
 
 # -------------------------------------------------------------------------------------------------
 func _save_project(project: Project) -> void:
-	var cam: Camera2D = _canvas.get_camera()
-	var meta_data = { # FIXME: the parsing code is done in InfiniteCanvas. Not pretty...need to rework this eventually
-		Serializer.METADATA_CAMERA_OFFSET_X: str(cam.offset.x),
-		Serializer.METADATA_CAMERA_OFFSET_Y: str(cam.offset.y),
-		Serializer.METADATA_CAMERA_ZOOM: str(cam.zoom.x),
-		Serializer.CANVAS_COLOR: _canvas.get_background_color().to_html(false),
-	}
+	var meta_data = ProjectMetadata.make_dict(_canvas)
 	project.meta_data = meta_data
 	ProjectManager.save_project(project)
 	_menubar.update_tab_title(project)
@@ -165,20 +159,22 @@ func _on_project_closed(project_id: int) -> void:
 
 # -------------------------------------------------------------------------------------------------
 func _close_project(project_id: int) -> void:
+	var active_project: Project = ProjectManager.get_active_project()
 	var project: Project = ProjectManager.get_project_by_id(project_id)
+	var active_project_closed := active_project.id == project.id
 	
 	# Remove project
 	ProjectManager.remove_project(project)
 	_menubar.remove_tab(project)
 	
-	# choose new project
-	if ProjectManager.get_project_count() == 0:
-		_create_active_default_project()
-	else:
-		# TODO: i should choose the tab closest to the one closed; not just the first/last
-		var new_project_id: int = _menubar.get_first_project_id()
-		var new_project: Project = ProjectManager.get_project_by_id(new_project_id)
-		_make_project_active(new_project)
+	# Choose new project if active tab was closed
+	if active_project_closed:
+		if ProjectManager.get_project_count() == 0:
+			_create_active_default_project()
+		else:
+			var new_project_id: int = _menubar.get_first_project_id()
+			var new_project: Project = ProjectManager.get_project_by_id(new_project_id)
+			_make_project_active(new_project)
 
 # -------------------------------------------------------------------------------------------------
 func _show_autosave_not_implemented_alert() -> void:
@@ -243,6 +239,9 @@ func _on_file_selected_to_save_project(filepath: String) -> void:
 # -------------------------------------------------------------------------------------------------
 func _on_canvas_background_changed(color: Color) -> void:
 	_canvas.set_background_color(color)
+	var project: Project = ProjectManager.get_active_project()
+	if project != null:
+		project.dirty = true
 
 # -------------------------------------------------------------------------------------------------
 func _on_undo_action() -> void:

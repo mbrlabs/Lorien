@@ -117,6 +117,7 @@ config/icon="res://Assets/icon.png"
 Utils="*res://Misc/Utils.gd"
 ProjectManager="*res://ProjectManager/ProjectManager.gd"
 Settings="*res://Misc/Settings.gd"
+ProjectMetadata="*res://ProjectManager/ProjectMetadata.gd"
 
 [debug]
 

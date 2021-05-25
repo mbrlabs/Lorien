@@ -34,7 +34,8 @@ func _ready():
 	_brush_color = Settings.get_value(Settings.GENERAL_DEFAULT_BRUSH_COLOR, Config.DEFAULT_BRUSH_COLOR)
 	_active_tool._on_brush_color_changed(_brush_color)
 	_active_tool._on_brush_size_changed(_brush_size)
-	_active_tool.enabled = true
+	_active_tool.enabled = false
+	
 	get_tree().get_root().connect("size_changed", self, "_on_window_resized")
 
 # -------------------------------------------------------------------------------------------------
@@ -85,7 +86,6 @@ func set_background_color(color: Color) -> void:
 	_background_color = color
 	
 	if _current_project != null:
-		_current_project.dirty = true
 		
 		# Make the eraser brush strokes have the same color as the background
 		for eraser_index in _current_project.eraser_stroke_indices:
@@ -165,12 +165,12 @@ func end_stroke() -> void:
 			else:
 				print("Stroke points: %d" % _current_brush_stroke.points.size())
 			
-			# Remove the line temporallaly from the node tree, so the adding is registered in the undo-redo histrory below
+			# Remove the line temporally from the node tree, so the adding is registered in the undo-redo histrory below
 			_line2d_container.remove_child(_current_line_2d)
 			
 			_current_project.undo_redo.create_action("Stroke")
 			_current_project.undo_redo.add_undo_method(self, "undo_last_stroke")
-			_current_project.undo_redo.add_undo_reference(_current_line_2d) # TODO: not sure about that...
+			_current_project.undo_redo.add_undo_reference(_current_line_2d)
 			_current_project.undo_redo.add_do_method(_line2d_container, "add_child", _current_line_2d)
 			_current_project.undo_redo.add_do_method(self, "_apply_stroke_to_line", _current_brush_stroke, _current_line_2d)
 			_current_project.undo_redo.add_do_property(info, "stroke_count", info.stroke_count + 1)
@@ -227,14 +227,7 @@ func use_project(project: Project) -> void:
 	info.stroke_count = 0
 	
 	# Apply metda data
-	var new_cam_zoom_str: String = project.meta_data.get(Serializer.METADATA_CAMERA_ZOOM, "1.0")
-	var new_cam_offset_x_str: String = project.meta_data.get(Serializer.METADATA_CAMERA_OFFSET_X, "0.0")
-	var new_cam_offset_y_str: String = project.meta_data.get(Serializer.METADATA_CAMERA_OFFSET_Y, "0.0")
-	var new_canvas_color: String = project.meta_data.get(Serializer.CANVAS_COLOR, Config.DEFAULT_CANVAS_COLOR.to_html())
-	
-	_camera.set_zoom_level(float(new_cam_zoom_str))
-	_camera.offset = Vector2(float(new_cam_offset_x_str), float(new_cam_offset_y_str))
-	set_background_color(Color(new_canvas_color))
+	ProjectMetadata.apply_from_dict(project.meta_data, self)
 	
 	# Add new data
 	_current_project = project
