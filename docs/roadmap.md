@@ -19,6 +19,7 @@ There are still a lot of placeholders in the program. While i did my best to imp
 - Stabilize savefile format (can still change later (before 1.0) but hopefully not as much)
 - Improve the logo. I'm actually pretty proud of myself for the current logo, but i'm sure it can be improved. It's supposed to be a leaf by the way ;)
 - Maybe setup unit tests? I have never done that in Godot, but it's worth checking out early on in the project
+- i18n
 - etc.
 
 ## Milestone 2 - Improve rendering & performance
