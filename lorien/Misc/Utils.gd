@@ -23,6 +23,6 @@ func calculate_rect_flips(rect : Rect2) -> Rect2:
 	elif area.position.x < area.end.x and area.position.y > area.end.y: area = Rect2(area.position.x, area.end.y, area.end.x, area.position.y)
 	return area
 
-func return_current_day_string() -> String:
-	var today : Dictionary = OS.get_date()
-	return "%s-%s-%s" % [today.day, today.month, today.year]
+func return_timestamp_string() -> String:
+	var today : Dictionary = OS.get_datetime()
+	return "%s%s%s_%s%s%s" % [today.day, today.month, today.year, today.hour, today.minute, today.second]

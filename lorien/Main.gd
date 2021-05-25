@@ -14,9 +14,6 @@ onready var _generic_alert_dialog: AcceptDialog = $GenericAlertDialog
 onready var _unsaved_changes_on_exit_dialog: WindowDialog = $UnsavedChangesOnExitDialog
 onready var _background_color_picker: ColorPicker = $BackgroundColorPickerPopup/PanelContainer/ColorPicker
 
-var exporting_extension : String
-var path_to_save : String
-
 # -------------------------------------------------------------------------------------------------
 func _ready():
 	get_tree().set_auto_accept_quit(false)
@@ -51,7 +48,6 @@ func _ready():
 	_unsaved_changes_on_exit_dialog.connect("discard_changes", self, "_on_exit_with_changes_discarded")
 	_unsaved_changes_on_exit_dialog.connect("cancel_exit", self, "_on_exit_cancled")
 	
-	_save_as_dialog.connect("hide", self, "_on_save_as_hidden")
 	_save_as_dialog.connect("file_selected", self, "_on_save_as_confirmed")
 	
 	# Create the default project
@@ -311,19 +307,15 @@ func _on_InfiniteCanvas_mouse_exited():
 
 # --------------
 func _on_save_as_confirmed(path : String):
-	path_to_save = path
-
-func _on_save_as_hidden():
-	match exporting_extension:
+	match path.get_extension():
 		"png":
 			var image : Image = _canvas._viewport.get_texture().get_data()
 			image.flip_y()
-			image.save_png(path_to_save)
+			image.save_png(path)
 
 func _save_as(format : String) -> void:
 	match format:
 		"png":
 			_save_as_dialog.filters = ["*.png ; Portable Network Graphics"]
-	exporting_extension = format
-	_save_as_dialog.current_file = Utils.return_current_day_string() + "." + format
+	_save_as_dialog.current_file = Utils.return_timestamp_string() + "." + format
 	_save_as_dialog.popup()
