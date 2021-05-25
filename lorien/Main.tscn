@@ -51,10 +51,10 @@ margin_bottom = 0.0
 rect_scale = Vector2( 1, 1.00112 )
 
 [node name="BrushColorPickerPopup" type="Popup" parent="."]
-margin_left = 362.0
-margin_top = 78.0
-margin_right = 664.0
-margin_bottom = 505.0
+margin_left = 332.0
+margin_top = 77.0
+margin_right = 634.0
+margin_bottom = 504.0
 theme = ExtResource( 8 )
 __meta__ = {
 "_edit_group_": true,
@@ -70,10 +70,10 @@ __meta__ = {
 }
 
 [node name="ColorPicker" type="ColorPicker" parent="BrushColorPickerPopup/PanelContainer"]
-margin_left = 100.0
-margin_top = 100.0
-margin_right = 405.0
-margin_bottom = 534.0
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 309.0
+margin_bottom = 438.0
 edit_alpha = false
 __meta__ = {
 "_edit_use_anchors_": false
@@ -82,9 +82,9 @@ __meta__ = {
 [node name="BackgroundColorPickerPopup" type="Popup" parent="."]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -364.613
+margin_left = -316.613
 margin_top = 77.0
-margin_right = -46.6128
+margin_right = 1.38721
 margin_bottom = 501.0
 theme = ExtResource( 8 )
 __meta__ = {
@@ -101,10 +101,10 @@ __meta__ = {
 }
 
 [node name="ColorPicker" type="ColorPicker" parent="BackgroundColorPickerPopup/PanelContainer"]
-margin_left = 100.0
-margin_top = 100.0
-margin_right = 410.0
-margin_bottom = 534.0
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 314.0
+margin_bottom = 438.0
 edit_alpha = false
 __meta__ = {
 "_edit_use_anchors_": false
@@ -128,9 +128,6 @@ margin_bottom = 216.5
 theme = ExtResource( 8 )
 access = 2
 filters = PoolStringArray( "*.lorien" )
-current_dir = "/COMPUTER/GodotEngine/Lorien/lorien"
-current_file = "Lorien"
-current_path = "/COMPUTER/GodotEngine/Lorien/lorien/Lorien"
 
 [node name="SaveAsDialog" type="FileDialog" parent="."]
 anchor_left = 0.5
@@ -143,9 +140,6 @@ margin_right = 385.0
 margin_bottom = 216.5
 theme = ExtResource( 8 )
 access = 2
-filters = PoolStringArray( "*.png", "*.jpg" )
-current_dir = "/COMPUTER/GodotEngine/Lorien/lorien"
-current_path = "/COMPUTER/GodotEngine/Lorien/lorien/"
 
 [node name="UnsavedChangesOnExitDialog" parent="." instance=ExtResource( 7 )]
 anchor_left = 0.5
@@ -162,9 +156,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -200.0
+margin_left = -225.0
 margin_top = -92.5
-margin_right = 200.0
+margin_right = 225.0
 margin_bottom = 92.5
 
 [node name="SettingsDialog" parent="." instance=ExtResource( 10 )]
