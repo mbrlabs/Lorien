@@ -53,3 +53,7 @@ func end_stroke() -> void:
 # -------------------------------------------------------------------------------------------------
 func xform_vector2(v: Vector2) -> Vector2:
 	return _canvas.get_camera().xform(v)
+
+# Returns the input Vector translated by the camera offset and zoom, giving always the absolute position
+func xform_vector2_relative(v : Vector2) -> Vector2:
+	return (_canvas.get_camera().xform(v) - _canvas.get_camera_offset()) / _canvas.get_camera().get_zoom()

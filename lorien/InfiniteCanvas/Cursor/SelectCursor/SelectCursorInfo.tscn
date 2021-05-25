@@ -1,0 +1,40 @@
+[gd_scene load_steps=3 format=2]
+
+[sub_resource type="StyleBoxFlat" id=1]
+content_margin_left = 8.0
+content_margin_right = 8.0
+content_margin_top = 8.0
+content_margin_bottom = 8.0
+bg_color = Color( 0, 0, 0, 0.588235 )
+
+[sub_resource type="GDScript" id=2]
+script/source = "extends Label
+
+const OFFSET : Vector2 = Vector2(5,5)
+
+func _ready():
+	hide()
+	set_process(false)
+
+func _process(delta):
+	rect_global_position = get_viewport().get_mouse_position() + OFFSET
+
+func _set_info(_s_pos : Vector2, _e_pos : Vector2) -> void:
+	rect_size = (Vector2.ZERO)
+	var size : Vector2 = _e_pos - _s_pos
+	var size_str : String = \"W: %4d px\\nH: %2d px\" % [size.x, size.y]
+	if get_tree().get_nodes_in_group(\"selected_strokes\"):
+		size_str += \"\\nSelected: %4d\" % [get_tree().get_nodes_in_group(\"selected_strokes\").size()]
+	set_text(size_str)
+"
+
+[node name="SelectCursorInfo" type="Label"]
+margin_right = 25.0
+margin_bottom = 47.0
+custom_styles/normal = SubResource( 1 )
+text = "A
+B"
+script = SubResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

@@ -11,10 +11,13 @@ const ERASER_SIZE_FACTOR = 3.5
 # -------------------------------------------------------------------------------------------------
 onready var _brush_tool: BrushTool = $BrushTool
 onready var _line_tool: LineTool = $LineTool
-onready var _active_tool: CanvasTool = _brush_tool
+onready var _select_tool : SelectTool = $SelectTool
+onready var _move_tool : MoveTool = $MoveTool
 onready var _line2d_container: Node2D = $Viewport/Strokes
 onready var _camera: Camera2D = $Viewport/Camera2D
 onready var _viewport: Viewport = $Viewport
+
+onready var _active_tool: CanvasTool = _brush_tool
 
 var info := Types.CanvasInfo.new()
 var _is_enabled := false
@@ -27,7 +30,14 @@ var _current_project: Project
 var _use_optimizer := true
 var _optimizer: BrushStrokeOptimizer
 
+
+
 # -------------------------------------------------------------------------------------------------
+func _connect_cursors_signals():
+	_camera.connect("zoom_changed", $Viewport/SelectCursor, "_on_zoom_changed")
+	_camera.connect("zoom_changed", $Viewport/MoveCursor, "_on_zoom_changed")
+
+
 func _ready():
 	_optimizer = BrushStrokeOptimizer.new()
 	_brush_size = Settings.get_value(Settings.GENERAL_DEFAULT_BRUSH_SIZE, Config.DEFAULT_BRUSH_SIZE)
@@ -36,6 +46,13 @@ func _ready():
 	_active_tool._on_brush_size_changed(_brush_size)
 	_active_tool.enabled = true
 	get_tree().get_root().connect("size_changed", self, "_on_window_resized")
+	
+	_connect_cursors_signals()
+
+func _draw():
+	if _select_tool.is_selecting():
+		draw_rect(Rect2(_select_tool._selecting_start_pos, _select_tool._selecting_end_pos), 
+		Color.whitesmoke, false, true)
 
 # -------------------------------------------------------------------------------------------------
 func _input(event: InputEvent) -> void:
@@ -62,20 +79,31 @@ func _make_empty_line2d() -> Line2D:
 # -------------------------------------------------------------------------------------------------
 func use_tool(tool_type: int) -> void:
 	_active_tool.enabled = false
+	
 	match tool_type:
 		Types.Tool.BRUSH:
 			_brush_tool.mode = BrushTool.Mode.DRAW
 			_active_tool = _brush_tool
 			_use_optimizer = true
+			deselect_all_strokes()
 		Types.Tool.ERASER:
 			_brush_tool.mode = BrushTool.Mode.ERASE
 			_active_tool = _brush_tool
 			_use_optimizer = true
+			deselect_all_strokes()
 		Types.Tool.LINE:
 			_active_tool = _line_tool
 			_use_optimizer = false
+			deselect_all_strokes()
 		Types.Tool.COLOR_PICKER:
+			deselect_all_strokes()
 			pass # TODO: add once implemented
+		Types.Tool.SELECT:
+			_active_tool = _select_tool
+			_use_optimizer = false
+		Types.Tool.MOVE:
+			_active_tool = _move_tool
+			_use_optimizer = false
 	
 	_active_tool.enabled = true
 
@@ -180,6 +208,45 @@ func end_stroke() -> void:
 		_current_line_2d = null
 		_current_brush_stroke = null
 
+# ------------------------------------------------------------------------------------------------
+
+# Check if a stroke is inside the selection rectangle
+# For performance reasons and implementation ease, to consider a stroke inside the selection rectangle the first and last points of the Line2D should be inside it
+func compute_selection(start_pos : Vector2, end_pos : Vector2, multi : bool) -> void:
+	var area : Rect2 = Utils.calculate_rect_flips(Rect2(start_pos, end_pos))
+	
+	for stroke in _line2d_container.get_children():
+		set_stroke_selected(
+			stroke,
+			area.has_point(get_absolute_strokepoint_pos(stroke.points[0], stroke))
+			and area.has_point(get_absolute_strokepoint_pos(stroke.points[stroke.points.size()-1], stroke)),
+			multi)
+	info.selected_strokes = get_tree().get_nodes_in_group("selected_strokes").size()
+
+# Returns the absolute position of a point in a Line2D through camera parameters
+func get_absolute_strokepoint_pos(p : Vector2, stroke : Line2D) -> Vector2:
+	return (p + stroke.position - get_camera_offset()) / get_camera_zoom()
+
+# Sets a stroke selected or not, adding it to a group
+# This will facilitate managing only selected strokes, without computing any operation on non-selected ones
+func set_stroke_selected(stroke : Line2D, is_inside_rect : bool = true, multi : bool = false) -> void:
+	if is_inside_rect:
+		stroke.modulate = Color.rebeccapurple
+		stroke.add_to_group("selected_strokes")
+	else:
+		if stroke.is_in_group("selected_strokes") and not multi:
+			stroke.modulate = Color.white
+			stroke.remove_from_group("selected_strokes")
+
+# Deselect all strokes at once
+func deselect_all_strokes() -> void:
+	var selected_strokes : Array = get_tree().get_nodes_in_group("selected_strokes")
+	if selected_strokes.size():
+		get_tree().set_group("selected_strokes", "modulate", Color.white)
+		for stroke in selected_strokes:
+			stroke.remove_from_group("selected_strokes")
+	info.selected_strokes = 0
+
 # -------------------------------------------------------------------------------------------------
 func _add_debug_points(line2d: Line2D) -> void:
 	for p in line2d.points:
@@ -214,6 +281,7 @@ func _apply_stroke_to_line(stroke: BrushStroke, line2d: Line2D) -> void:
 		p_idx += 1
 	
 	line2d.width_curve.bake()
+
 
 # -------------------------------------------------------------------------------------------------
 func use_project(project: Project) -> void:

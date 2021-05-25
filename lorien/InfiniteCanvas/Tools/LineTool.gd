@@ -32,7 +32,7 @@ func _input(event: InputEvent) -> void:
 			_brush_cursor.set_pressure(event.pressure)
 			remove_last_stroke_point()
 			_add_point_at_current_mouse_pos(0.5)
-
+	
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT:
 			if event.pressed:

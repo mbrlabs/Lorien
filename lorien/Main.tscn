@@ -70,10 +70,10 @@ __meta__ = {
 }
 
 [node name="ColorPicker" type="ColorPicker" parent="BrushColorPickerPopup/PanelContainer"]
-margin_left = 232.0
-margin_top = 232.0
-margin_right = 526.0
-margin_bottom = 669.0
+margin_left = 100.0
+margin_top = 100.0
+margin_right = 405.0
+margin_bottom = 534.0
 edit_alpha = false
 __meta__ = {
 "_edit_use_anchors_": false
@@ -101,10 +101,10 @@ __meta__ = {
 }
 
 [node name="ColorPicker" type="ColorPicker" parent="BackgroundColorPickerPopup/PanelContainer"]
-margin_left = 232.0
-margin_top = 232.0
-margin_right = 542.0
-margin_bottom = 648.0
+margin_left = 100.0
+margin_top = 100.0
+margin_right = 410.0
+margin_bottom = 534.0
 edit_alpha = false
 __meta__ = {
 "_edit_use_anchors_": false
@@ -128,9 +128,24 @@ margin_bottom = 216.5
 theme = ExtResource( 8 )
 access = 2
 filters = PoolStringArray( "*.lorien" )
-current_dir = "/Projects/Other/lorien/lorien"
+current_dir = "/COMPUTER/GodotEngine/Lorien/lorien"
 current_file = "Lorien"
-current_path = "/Projects/Other/lorien/lorien/Lorien"
+current_path = "/COMPUTER/GodotEngine/Lorien/lorien/Lorien"
+
+[node name="SaveAsDialog" type="FileDialog" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -385.0
+margin_top = -216.5
+margin_right = 385.0
+margin_bottom = 216.5
+theme = ExtResource( 8 )
+access = 2
+filters = PoolStringArray( "*.png", "*.jpg" )
+current_dir = "/COMPUTER/GodotEngine/Lorien/lorien"
+current_path = "/COMPUTER/GodotEngine/Lorien/lorien/"
 
 [node name="UnsavedChangesOnExitDialog" parent="." instance=ExtResource( 7 )]
 anchor_left = 0.5

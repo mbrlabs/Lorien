@@ -1,5 +1,7 @@
 extends Camera2D
 
+signal zoom_changed(value)
+
 const MAX_ZOOM_LEVEL = 100.0
 const MIN_ZOOM_LEVEL = 0.1
 const ZOOM_INCREMENT = 0.1
@@ -49,6 +51,8 @@ func _do_zoom(incr: float, zoom_anchor: Vector2) -> void:
 	offset += zoom_center * ratio
 	
 	zoom = Vector2(_current_zoom_level, _current_zoom_level)
+	emit_signal("zoom_changed", _current_zoom_level)
+
 
 # -------------------------------------------------------------------------------------------------
 func enable_intput() -> void:

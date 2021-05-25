@@ -6,12 +6,16 @@ onready var _statusbar: Statusbar = $Statusbar
 onready var _menubar: Menubar = $Menubar
 onready var _toolbar: Toolbar = $Toolbar
 onready var _file_dialog: FileDialog = $FileDialog
+onready var _save_as_dialog : FileDialog = $SaveAsDialog
 onready var _about_dialog: WindowDialog = $AboutDialog
 onready var _settings_dialog: WindowDialog = $SettingsDialog
 onready var _main_menu: MainMenu = $MainMenu
 onready var _generic_alert_dialog: AcceptDialog = $GenericAlertDialog
 onready var _unsaved_changes_on_exit_dialog: WindowDialog = $UnsavedChangesOnExitDialog
 onready var _background_color_picker: ColorPicker = $BackgroundColorPickerPopup/PanelContainer/ColorPicker
+
+var exporting_extension : String
+var path_to_save : String
 
 # -------------------------------------------------------------------------------------------------
 func _ready():
@@ -20,6 +24,7 @@ func _ready():
 	_canvas.set_background_color(Config.DEFAULT_CANVAS_COLOR)
 	var docs_folder = OS.get_system_dir(OS.SYSTEM_DIR_DOCUMENTS)
 	_file_dialog.current_dir = Settings.get_value(Settings.GENERAL_DEFAULT_PROJECT_DIR, docs_folder)
+	_save_as_dialog.current_dir = Settings.get_value(Settings.GENERAL_DEFAULT_PROJECT_DIR, docs_folder)
 	
 	# UI Signals
 	_toolbar.connect("undo_action", self, "_on_undo_action")
@@ -40,10 +45,14 @@ func _ready():
 	_main_menu.connect("open_about_dialog", self, "_on_open_about_dialog")
 	_main_menu.connect("open_settings_dialog", self, "_on_open_settings_dialog")
 	_main_menu.connect("open_url", self, "_on_open_url")
+	_main_menu.connect("save_as", self, "_save_as")
 	
 	_unsaved_changes_on_exit_dialog.connect("save_changes", self, "_on_exit_with_changes_saved")
 	_unsaved_changes_on_exit_dialog.connect("discard_changes", self, "_on_exit_with_changes_discarded")
 	_unsaved_changes_on_exit_dialog.connect("cancel_exit", self, "_on_exit_cancled")
+	
+	_save_as_dialog.connect("hide", self, "_on_save_as_hidden")
+	_save_as_dialog.connect("file_selected", self, "_on_save_as_confirmed")
 	
 	# Create the default project
 	# TODO: once project managament is fully implemented, this should be replaced with last open (at exit) files
@@ -69,6 +78,7 @@ func _notification(what):
 func _process(delta):
 	_handle_shortcut_actions()
 	_statusbar.set_stroke_count(_canvas.info.stroke_count)
+	_statusbar.set_selected_strokes_count(_canvas.info.selected_strokes)
 	_statusbar.set_point_count(_canvas.info.point_count)
 	_statusbar.set_pressure(_canvas.info.current_pressure)
 	_statusbar.set_camera_position(_canvas.get_camera_offset())
@@ -101,6 +111,10 @@ func _handle_shortcut_actions() -> void:
 			_toolbar.enable_tool(Types.Tool.ERASER)
 		if Input.is_action_just_pressed("shortcut_colorpicker"):
 			_toolbar.enable_tool(Types.Tool.COLOR_PICKER)
+		if Input.is_action_just_pressed("shortcut_select_tool"):
+			_toolbar.enable_tool(Types.Tool.SELECT)
+		if Input.is_action_just_pressed("shortcut_move_tool"):
+			_toolbar.enable_tool(Types.Tool.MOVE)
 
 # -------------------------------------------------------------------------------------------------
 func _make_project_active(project: Project) -> void:
@@ -250,7 +264,7 @@ func _on_redo_action() -> void:
 # -------------------------------------------------------------------------------------------------
 func _on_tool_changed(tool_type: int) -> void:
 	match tool_type:
-		Types.Tool.BRUSH, Types.Tool.ERASER, Types.Tool.LINE: _canvas.use_tool(tool_type)
+		Types.Tool.BRUSH, Types.Tool.ERASER, Types.Tool.LINE, Types.Tool.SELECT, Types.Tool.MOVE: _canvas.use_tool(tool_type)
 		_:
 			_generic_alert_dialog.dialog_text = "Not implemented yet."
 			_generic_alert_dialog.popup_centered()
@@ -293,3 +307,22 @@ func _on_InfiniteCanvas_mouse_entered():
 # -------------------------------------------------------------------------------------------------
 func _on_InfiniteCanvas_mouse_exited():
 	_canvas.disable()
+
+# --------------
+func _on_save_as_confirmed(path : String):
+	path_to_save = path
+
+func _on_save_as_hidden():
+	match exporting_extension:
+		"png":
+			var image : Image = _canvas._viewport.get_texture().get_data()
+			image.flip_y()
+			image.save_png(path_to_save)
+
+func _save_as(format : String) -> void:
+	match format:
+		"png":
+			_save_as_dialog.filters = ["*.png ; Portable Network Graphics"]
+	exporting_extension = format
+	_save_as_dialog.current_file = Utils.return_current_day_string() + "." + format
+	_save_as_dialog.popup()
