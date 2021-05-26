@@ -16,7 +16,7 @@ func set_zoom_level(zoom_level: float) -> void:
 	zoom = Vector2(_current_zoom_level, _current_zoom_level)
 
 # -------------------------------------------------------------------------------------------------
-func _input(event):
+func _input(event: InputEvent) -> void:
 	if _is_input_enabled:
 		if event is InputEventMouseButton:
 			var increment := max(ZOOM_INCREMENT + _current_zoom_level * ZOOM_INCREMENT, ZOOM_INCREMENT)

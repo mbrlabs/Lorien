@@ -159,14 +159,8 @@ func _on_MoveToolButton_pressed():
 	_change_active_tool_button(_tool_btn_move)
 	emit_signal("tool_changed", Types.Tool.MOVE)
 
-
-
-
 # -------------------------------------------------------------------------------------------------
 func _change_active_tool_button(btn: TextureButton) -> void:
 	if _last_active_tool_button != null:
 		_last_active_tool_button.toggle()
 	_last_active_tool_button = btn
-	
-
-

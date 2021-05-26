@@ -23,7 +23,7 @@ const ITEM_SAVEAS_1		:= 200
 
 # -------------------------------------------------------------------------------------------------
 onready var _submenu_tools: PopupMenu = $ToolsMenu
-onready var _submenu_saveas : PopupMenu = $SaveAsMenu
+onready var _submenu_saveas: PopupMenu = $SaveAsMenu
 
 # -------------------------------------------------------------------------------------------------
 func _ready():

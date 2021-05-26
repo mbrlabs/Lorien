@@ -2,13 +2,11 @@ class_name CanvasTool, "res://Assets/Icons/tools.png"
 extends Node
 
 # -------------------------------------------------------------------------------------------------
-export (Curve) var pressure_curve: Curve
-export (NodePath) var cursor_path : NodePath
+export var pressure_curve: Curve
+export var cursor_path: NodePath
 
-# This is a BaseCursor. Can't type it.
-var _cursor: Sprite
-# This is an InfinteCanvas. Can't type it though because of cyclic dependency bugs...
-var _canvas: Node
+var _cursor: Sprite # This is a BaseCursor. Can't type it.
+var _canvas: Node # This is an InfinteCanvas. Can't type it though because of cyclic dependency bugs...
 var enabled := false setget set_enabled, get_enabled
 var performing_stroke := false
 
@@ -61,7 +59,7 @@ func end_stroke() -> void:
 func xform_vector2(v: Vector2) -> Vector2:
 	return _canvas.get_camera().xform(v)
 
-# -------------------------------------------------------------------------------------------------
 # Returns the input Vector translated by the camera offset and zoom, giving always the absolute position
-func xform_vector2_relative(v : Vector2) -> Vector2:
+# -------------------------------------------------------------------------------------------------
+func xform_vector2_relative(v: Vector2) -> Vector2:
 	return (_canvas.get_camera().xform(v) - _canvas.get_camera_offset()) / _canvas.get_camera().get_zoom()

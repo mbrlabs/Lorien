@@ -13,11 +13,10 @@ onready var _brush_tool: BrushTool = $BrushTool
 onready var _line_tool: LineTool = $LineTool
 onready var _select_tool: SelectTool = $SelectTool
 onready var _move_tool: MoveTool = $MoveTool
+onready var _active_tool: CanvasTool = _brush_tool
 onready var _line2d_container: Node2D = $Viewport/Strokes
 onready var _camera: Camera2D = $Viewport/Camera2D
 onready var _viewport: Viewport = $Viewport
-
-onready var _active_tool: CanvasTool = _brush_tool
 
 var info := Types.CanvasInfo.new()
 var groups := Types.CanvasGroups.new()
@@ -32,11 +31,6 @@ var _use_optimizer := true
 var _optimizer: BrushStrokeOptimizer
 
 # -------------------------------------------------------------------------------------------------
-func _connect_cursors_signals():
-	_camera.connect("zoom_changed", $Viewport/SelectCursor, "_on_zoom_changed")
-	_camera.connect("zoom_changed", $Viewport/MoveCursor, "_on_zoom_changed")
-
-# -------------------------------------------------------------------------------------------------
 func _ready():
 	_optimizer = BrushStrokeOptimizer.new()
 	_brush_size = Settings.get_value(Settings.GENERAL_DEFAULT_BRUSH_SIZE, Config.DEFAULT_BRUSH_SIZE)
@@ -46,8 +40,8 @@ func _ready():
 	_active_tool.enabled = false
 	
 	get_tree().get_root().connect("size_changed", self, "_on_window_resized")
-	
-	_connect_cursors_signals()
+	_camera.connect("zoom_changed", $Viewport/SelectCursor, "_on_zoom_changed")
+	_camera.connect("zoom_changed", $Viewport/MoveCursor, "_on_zoom_changed")
 
 # -------------------------------------------------------------------------------------------------
 func _draw():
@@ -214,9 +208,9 @@ func end_stroke() -> void:
 		_current_line_2d = null
 		_current_brush_stroke = null
 
-# ------------------------------------------------------------------------------------------------
 # Check if a line2d is inside the selection rectangle
 # For performance reasons && implementation ease, to consider a line2d inside the selection rectangle the first && last points of the Line2D should be inside it
+# ------------------------------------------------------------------------------------------------
 func compute_selection(start_pos: Vector2, end_pos: Vector2) -> void:
 	var rect : Rect2 = Utils.calculate_rect(start_pos, end_pos)
 	for line2d in _line2d_container.get_children():
@@ -225,14 +219,14 @@ func compute_selection(start_pos: Vector2, end_pos: Vector2) -> void:
 		set_line2d_selected(line2d, rect.has_point(first_point) && rect.has_point(last_point))
 	info.selected_lines = get_tree().get_nodes_in_group(groups.SELECTED_LINES).size()
 
-# ------------------------------------------------------------------------------------------------
 # Returns the absolute position of a point in a Line2D through camera parameters
+# ------------------------------------------------------------------------------------------------
 func get_absolute_line2dpoint_pos(p: Vector2, line2d: Line2D) -> Vector2:
 	return (p + line2d.position - get_camera_offset()) / get_camera_zoom()
 
-# ------------------------------------------------------------------------------------------------
 # Sets a line2d selected or not, adding it to a group
 # This will facilitate managing only selected line2ds, without computing any operation on non-selected ones
+# ------------------------------------------------------------------------------------------------
 func set_line2d_selected(line2d: Line2D, is_inside_rect: bool = true) -> void:
 	if is_inside_rect:
 		line2d.modulate = Color.rebeccapurple
@@ -253,8 +247,8 @@ func deselect_line2d(line2d : Line2D) -> void:
 	line2d.set_meta("was_selected", null)
 	line2d.remove_from_group(groups.SELECTED_LINES)
 
-# ------------------------------------------------------------------------------------------------
 # Deselect all line2ds at once
+# ------------------------------------------------------------------------------------------------
 func deselect_all_line2d() -> void:
 	var selected_lines : Array = get_tree().get_nodes_in_group(groups.SELECTED_LINES)
 	if selected_lines.size():
@@ -286,7 +280,6 @@ func _add_debug_points(line2d: Line2D) -> void:
 		s.scale = Vector2.ONE * (line2d.width * .004)
 		s.global_position = p
 
-
 # -------------------------------------------------------------------------------------------------
 func _apply_stroke_to_line(stroke: BrushStroke, line2d: Line2D) -> void:
 	var max_pressure := float(BrushStroke.MAX_PRESSURE_VALUE)
@@ -312,7 +305,6 @@ func _apply_stroke_to_line(stroke: BrushStroke, line2d: Line2D) -> void:
 		p_idx += 1
 	
 	line2d.width_curve.bake()
-
 
 # -------------------------------------------------------------------------------------------------
 func use_project(project: Project) -> void:

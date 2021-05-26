@@ -6,7 +6,7 @@ var _selecting_start_pos: Vector2 = Vector2.ZERO
 var _selecting_end_pos: Vector2 = Vector2.ZERO
 var multi_selecting : bool
 
-# -------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT:
@@ -26,18 +26,16 @@ func _input(event: InputEvent) -> void:
 			_canvas.compute_selection(_selecting_start_pos, _selecting_end_pos)
 			_canvas.update()
 
-
-
-# -------------------------------------------------------------
-func set_selecting(_selecting: bool) -> void:
-	selecting = _selecting
-	if not _selecting:
+# ------------------------------------------------------------------------------------------------
+func set_selecting(value: bool) -> void:
+	selecting = value
+	if !selecting:
 		_canvas.update()
 		_selecting_start_pos = Vector2.ZERO
 		_selecting_end_pos = _selecting_start_pos
 		_canvas.confirm_selections()
 	else:
-		if not multi_selecting:
+		if !multi_selecting:
 			_canvas.deselect_all_line2d()
 
 # -------------------------------------------------------------
