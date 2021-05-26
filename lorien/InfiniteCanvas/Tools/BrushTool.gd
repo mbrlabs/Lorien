@@ -8,7 +8,6 @@ enum Mode {
 }
 
 # -------------------------------------------------------------------------------------------------
-export var brush_cursor_path: NodePath
 var _brush_cursor: Node2D
 var mode: int = Mode.DRAW
 var _last_mouse_motion: InputEventMouseMotion
