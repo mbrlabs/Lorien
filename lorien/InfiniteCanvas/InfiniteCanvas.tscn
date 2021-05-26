@@ -13,7 +13,7 @@
 [ext_resource path="res://Assets/Icons/move_tool.png" type="Texture" id=11]
 [ext_resource path="res://InfiniteCanvas/Cursor/cursor.shader" type="Shader" id=12]
 
-[sub_resource type="ShaderMaterial" id=2]
+[sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 12 )
 
 [node name="InfiniteCanvas" type="ViewportContainer"]
@@ -44,7 +44,6 @@ cursor_path = NodePath("../Viewport/MoveCursor")
 
 [node name="Viewport" type="Viewport" parent="."]
 size = Vector2( 1920, 1080 )
-transparent_bg = true
 handle_input_locally = false
 hdr = false
 usage = 0
@@ -62,5 +61,5 @@ script = ExtResource( 2 )
 [node name="SelectCursor" parent="Viewport" instance=ExtResource( 8 )]
 
 [node name="MoveCursor" parent="Viewport" instance=ExtResource( 10 )]
-material = SubResource( 2 )
+material = SubResource( 1 )
 texture = ExtResource( 11 )
