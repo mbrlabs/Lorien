@@ -1,8 +1,6 @@
 class_name SelectTool
 extends CanvasTool
 
-export (NodePath) var cursor_path : NodePath
-
 var selecting: bool = false setget set_selecting, is_selecting
 var multi: bool = false
 var _selecting_start_pos: Vector2 = Vector2.ZERO
