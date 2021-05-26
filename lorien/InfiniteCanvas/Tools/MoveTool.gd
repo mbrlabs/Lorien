@@ -3,9 +3,8 @@ extends CanvasTool
 
 export (NodePath) var cursor_path : NodePath
 
-var moving : bool = false setget set_moving, is_moving
-var offset : Vector2
-var _cursor : Node2D
+var moving: bool = false setget set_moving, is_moving
+var offset: Vector2
 
 func _ready():
 	_cursor = get_node(cursor_path)
@@ -38,7 +37,7 @@ func _process(delta):
 			for stroke in selected_strokes:
 				stroke.global_position = stroke.get_meta("offset") + _cursor.global_position
 
-func set_moving(_moving : bool) -> void:
+func set_moving(_moving: bool) -> void:
 	moving = _moving
 
 func is_moving() -> bool:
