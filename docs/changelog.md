@@ -4,11 +4,14 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
-## [0.1.1] - Unreleased
+## [0.2.0] - Unreleased
 
 ### Added 
 - Mention contributors in the About Dialog
 - Improved closing of files with unsaved changes
+- Export the whole canvas as PNG image
+- Selection tool
+- Move tool
 
 ### Fixed
 - Fixed the size of the drawing area/viewport for [high resolution displays](https://github.com/mbrlabs/Lorien/issues/1)
@@ -31,5 +34,5 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Designed to be used with a drawing tablet (Wacom, etc.). It also supports pressure sensitivity
 - Runs on Windows, Linux & Mac
 
-[0.1.1]: https://github.com/mbrlabs/lorien/compare/v0.1.0...HEAD
+[0.2.0]: https://github.com/mbrlabs/lorien/compare/v0.1.0...HEAD
 [0.1.0]: https://github.com/mbrlabs/lorien/releases/tag/v0.1.0
