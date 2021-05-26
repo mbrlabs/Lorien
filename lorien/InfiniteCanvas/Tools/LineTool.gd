@@ -2,33 +2,30 @@ class_name LineTool
 extends CanvasTool
 
 # -------------------------------------------------------------------------------------------------
-var _brush_cursor: Node2D
-
-# -------------------------------------------------------------------------------------------------
 func _ready():
-	_brush_cursor = get_node(brush_cursor_path)
+	_cursor = get_node(brush_cursor_path)
 
 # -------------------------------------------------------------------------------------------------
 func _on_brush_size_changed(size: int) -> void:
-	_brush_cursor.change_size(size)
+	_cursor.change_size(size)
 
 # -------------------------------------------------------------------------------------------------
 func set_enabled(e: bool) -> void:
 	.set_enabled(e)
 	if e:
-		_brush_cursor.global_position = xform_vector2(get_viewport().get_mouse_position())
-		_brush_cursor.show()
+		_cursor.global_position = xform_vector2(get_viewport().get_mouse_position())
+		_cursor.show()
 	else:
-		_brush_cursor.hide()
+		_cursor.hide()
 
 # -------------------------------------------------------------------------------------------------
 func _input(event: InputEvent) -> void:
-	_brush_cursor.set_pressure(1.0)
+	_cursor.set_pressure(1.0)
 	
 	if event is InputEventMouseMotion:
-		_brush_cursor.global_position = xform_vector2(event.global_position)
+		_cursor.global_position = xform_vector2(event.global_position)
 		if performing_stroke:
-			_brush_cursor.set_pressure(event.pressure)
+			_cursor.set_pressure(event.pressure)
 			remove_last_stroke_point()
 			_add_point_at_current_mouse_pos(0.5)
 	
