@@ -1,16 +1,16 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://Assets/Fonts/font_13.tres" type="DynamicFont" id=1]
-[ext_resource path="res://UI/Dialogs/UnsavedChangesOnExitDialog.gd" type="Script" id=2]
+[ext_resource path="res://UI/Dialogs/UnsavedChangesDialog.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Fonts/font_13.tres" type="DynamicFont" id=2]
 [ext_resource path="res://UI/Themes/theme_dark.tres" type="Theme" id=3]
 
-[node name="UnsavedChangesOnExitDialog" type="WindowDialog"]
+[node name="SaveBeforeExitDialog" type="WindowDialog"]
 margin_right = 310.0
 margin_bottom = 90.0
 rect_min_size = Vector2( 310, 90 )
 theme = ExtResource( 3 )
 window_title = "Save changes?"
-script = ExtResource( 2 )
+script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -29,24 +29,24 @@ __meta__ = {
 }
 
 [node name="SaveButton" type="Button" parent="HBoxContainer"]
-margin_left = 61.0
-margin_right = 102.0
-margin_bottom = 23.0
-custom_fonts/font = ExtResource( 1 )
+margin_left = 58.0
+margin_right = 100.0
+margin_bottom = 25.0
+custom_fonts/font = ExtResource( 2 )
 text = "Save"
 
 [node name="DiscardButton" type="Button" parent="HBoxContainer"]
-margin_left = 122.0
-margin_right = 177.0
-margin_bottom = 23.0
-custom_fonts/font = ExtResource( 1 )
+margin_left = 120.0
+margin_right = 178.0
+margin_bottom = 25.0
+custom_fonts/font = ExtResource( 2 )
 text = "Discard"
 
 [node name="CancelButton" type="Button" parent="HBoxContainer"]
-margin_left = 197.0
-margin_right = 249.0
-margin_bottom = 23.0
-custom_fonts/font = ExtResource( 1 )
+margin_left = 198.0
+margin_right = 252.0
+margin_bottom = 25.0
+custom_fonts/font = ExtResource( 2 )
 text = "Cancel"
 
 [node name="Label" type="Label" parent="."]
@@ -55,8 +55,8 @@ anchor_right = 0.5
 margin_left = -145.5
 margin_right = 145.5
 margin_bottom = 51.0
-custom_fonts/font = ExtResource( 1 )
-text = "There are unsaved changes. Do you want to save  before exiting Lorien?"
+custom_fonts/font = ExtResource( 2 )
+text = "There are unsaved changes. Do you want to save before exiting Lorien?"
 valign = 1
 autowrap = true
 __meta__ = {

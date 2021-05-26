@@ -33,8 +33,19 @@ func has_tab(project: Project) -> bool:
 func remove_tab(project: Project) -> void:
 	if _tabs_map.has(project.id):
 		var tab = _tabs_map[project.id]
+		tab.disconnect("close_requested", self, "_on_tab_close_requested")
+		tab.disconnect("selected", self, "_on_tab_selected")
 		_file_tabs_container.remove_child(tab)
 		_tabs_map.erase(project.id)
+		tab.call_deferred("free")
+
+# ------------------------------------------------------------------------------------------------
+func remove_all_tabs() -> void:
+	for project_id in _tabs_map.keys():
+		var project: Project = ProjectManager.get_project_by_id(project_id)
+		remove_tab(project)
+	_tabs_map.clear()
+	_active_file_tab = null
 
 # ------------------------------------------------------------------------------------------------
 func update_tab_title(project: Project) -> void:

@@ -29,3 +29,8 @@ func add_point(point: Vector2, pressure: float) -> void:
 	
 	points.append(point)
 	pressures.append(converted_pressure)
+
+# -------------------------------------------------------------------------------------------------
+func clear() -> void:
+	points.clear()
+	pressures.clear()

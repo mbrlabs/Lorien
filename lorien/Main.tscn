@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://InfiniteCanvas/InfiniteCanvas.tscn" type="PackedScene" id=2]
@@ -6,10 +6,11 @@
 [ext_resource path="res://UI/Menubar.tscn" type="PackedScene" id=4]
 [ext_resource path="res://UI/MainMenu.tscn" type="PackedScene" id=5]
 [ext_resource path="res://UI/Toolbar.tscn" type="PackedScene" id=6]
-[ext_resource path="res://UI/Dialogs/UnsavedChangesOnExitDialog.tscn" type="PackedScene" id=7]
+[ext_resource path="res://UI/Dialogs/UnsavedChangesDialog.tscn" type="PackedScene" id=7]
 [ext_resource path="res://UI/Themes/theme_dark.tres" type="Theme" id=8]
 [ext_resource path="res://UI/Dialogs/AboutDialog.tscn" type="PackedScene" id=9]
 [ext_resource path="res://UI/Dialogs/SettingsDialog.tscn" type="PackedScene" id=10]
+[ext_resource path="res://UI/Dialogs/ExitDialog.tscn" type="PackedScene" id=11]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.207843, 0.211765, 0.227451, 1 )
@@ -26,12 +27,11 @@ mouse_filter = 2
 theme = ExtResource( 8 )
 script = ExtResource( 1 )
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
 [node name="InfiniteCanvas" parent="." instance=ExtResource( 2 )]
-margin_top = -0.707092
-margin_bottom = -0.707031
 
 [node name="Menubar" parent="." instance=ExtResource( 4 )]
 _main_menu_path = NodePath("../MainMenu")
@@ -52,12 +52,13 @@ rect_scale = Vector2( 1, 1.00112 )
 
 [node name="BrushColorPickerPopup" type="Popup" parent="."]
 margin_left = 332.0
-margin_top = 77.0
+margin_top = 78.0
 margin_right = 634.0
-margin_bottom = 504.0
+margin_bottom = 505.0
 theme = ExtResource( 8 )
 __meta__ = {
 "_edit_group_": true,
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
@@ -82,13 +83,14 @@ __meta__ = {
 [node name="BackgroundColorPickerPopup" type="Popup" parent="."]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -316.613
+margin_left = -317.527
 margin_top = 77.0
-margin_right = 1.38721
+margin_right = 0.473633
 margin_bottom = 501.0
 theme = ExtResource( 8 )
 __meta__ = {
 "_edit_group_": true,
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
@@ -128,8 +130,17 @@ margin_bottom = 216.5
 theme = ExtResource( 8 )
 access = 2
 filters = PoolStringArray( "*.lorien" )
-current_dir = "/COMPUTER/GodotEngine/Lorien/lorien"
-current_path = "/COMPUTER/GodotEngine/Lorien/lorien/"
+current_dir = "/Users/mbrla/Projects/lorien/lorien"
+current_path = "/Users/mbrla/Projects/lorien/lorien/"
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="ExitDialog" parent="." instance=ExtResource( 11 )]
+margin_left = -155.0
+margin_top = -45.0
+margin_right = 155.0
+margin_bottom = 45.0
 
 [node name="SaveAsDialog" type="FileDialog" parent="."]
 anchor_left = 0.5
@@ -142,10 +153,10 @@ margin_right = 385.0
 margin_bottom = 216.5
 theme = ExtResource( 8 )
 access = 2
-current_dir = "/COMPUTER/GodotEngine/Lorien/lorien"
-current_path = "/COMPUTER/GodotEngine/Lorien/lorien/"
+current_dir = "/Users/mbrla/Projects/lorien/lorien"
+current_path = "/Users/mbrla/Projects/lorien/lorien/"
 
-[node name="UnsavedChangesOnExitDialog" parent="." instance=ExtResource( 7 )]
+[node name="UnsavedChangesDialog" parent="." instance=ExtResource( 7 )]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -181,12 +192,15 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -63.5
+margin_left = -68.5
 margin_top = -35.0
-margin_right = 63.5
+margin_right = 68.5
 margin_bottom = 35.0
 theme = ExtResource( 8 )
 dialog_text = "Generic message. "
+__meta__ = {
+"_edit_lock_": true
+}
 
 [connection signal="mouse_entered" from="InfiniteCanvas" to="." method="_on_InfiniteCanvas_mouse_entered"]
 [connection signal="mouse_exited" from="InfiniteCanvas" to="." method="_on_InfiniteCanvas_mouse_exited"]
