@@ -1,5 +1,5 @@
 class_name BrushCursor
-extends CursorClass
+extends BaseCursor
 
 # -------------------------------------------------------------------------------------------------
 func _draw():
