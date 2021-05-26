@@ -6,7 +6,7 @@ onready var _statusbar: Statusbar = $Statusbar
 onready var _menubar: Menubar = $Menubar
 onready var _toolbar: Toolbar = $Toolbar
 onready var _file_dialog: FileDialog = $FileDialog
-onready var _save_as_dialog : FileDialog = $SaveAsDialog
+onready var _export_dialog : FileDialog = $ExportDialog
 onready var _about_dialog: WindowDialog = $AboutDialog
 onready var _settings_dialog: WindowDialog = $SettingsDialog
 onready var _main_menu: MainMenu = $MainMenu
@@ -22,7 +22,7 @@ func _ready():
 	_canvas.set_background_color(Config.DEFAULT_CANVAS_COLOR)
 	var docs_folder = OS.get_system_dir(OS.SYSTEM_DIR_DOCUMENTS)
 	_file_dialog.current_dir = Settings.get_value(Settings.GENERAL_DEFAULT_PROJECT_DIR, docs_folder)
-	_save_as_dialog.current_dir = Settings.get_value(Settings.GENERAL_DEFAULT_PROJECT_DIR, docs_folder)
+	_export_dialog.current_dir = Settings.get_value(Settings.GENERAL_DEFAULT_PROJECT_DIR, docs_folder)
 	
 	# UI Signals
 	_toolbar.connect("undo_action", self, "_on_undo_action")
@@ -43,14 +43,14 @@ func _ready():
 	_main_menu.connect("open_about_dialog", self, "_on_open_about_dialog")
 	_main_menu.connect("open_settings_dialog", self, "_on_open_settings_dialog")
 	_main_menu.connect("open_url", self, "_on_open_url")
-	_main_menu.connect("save_as", self, "_save_as")
+	_main_menu.connect("export_as", self, "_export_as")
 	
 	_exit_dialog.connect("save_changes", self, "_on_exit_with_changes_saved")
 	_exit_dialog.connect("discard_changes", self, "_on_exit_with_changes_discarded")
 	_unsaved_changes_dialog.connect("save_changes", self, "_on_close_file_with_changes_saved")
 	_unsaved_changes_dialog.connect("discard_changes", self, "_on_close_file_with_changes_discarded")
 	
-	_save_as_dialog.connect("file_selected", self, "_on_save_as_confirmed")
+	_export_dialog.connect("file_selected", self, "_on_export_confirmed")
 	
 	# Create the default project
 	_create_active_default_project()
@@ -330,17 +330,17 @@ func _on_InfiniteCanvas_mouse_exited():
 	_canvas.disable()
 
 # --------------------------------------------------------------------------------------------------
-func _on_save_as_confirmed(path: String):
+func _on_export_confirmed(path: String):
 	match path.get_extension():
 		"png":
-			var image : Image = _canvas._viewport.get_texture().get_data()
+			var image: Image = _canvas.take_screenshot()
 			image.flip_y()
 			image.save_png(path)
 
 # --------------------------------------------------------------------------------------------------
-func _save_as(format: String) -> void:
-	match format:
-		"png":
-			_save_as_dialog.filters = ["*.png ; Portable Network Graphics"]
-	_save_as_dialog.current_file = Utils.return_timestamp_string() + "." + format
-	_save_as_dialog.popup()
+func _export_as(export_type: int) -> void:
+	match export_type:
+		Types.ExportType.PNG:
+			_export_dialog.filters = ["*.png ; Portable Network Graphics"]
+			_export_dialog.current_file = Utils.return_timestamp_string() + ".png"
+	_export_dialog.popup()

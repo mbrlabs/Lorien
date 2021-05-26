@@ -111,7 +111,6 @@ func set_background_color(color: Color) -> void:
 	_background_color = color
 	
 	if _current_project != null:
-		
 		# Make the eraser brush strokes have the same color as the background
 		for eraser_index in _current_project.eraser_stroke_indices:
 			if eraser_index < _line2d_container.get_child_count():
@@ -138,6 +137,10 @@ func disable() -> void:
 	_camera.disable_intput()
 	_active_tool.enabled = false
 	_is_enabled = false
+
+# -------------------------------------------------------------------------------------------------
+func take_screenshot() -> Image:
+	return _viewport.get_texture().get_data()
 
 # -------------------------------------------------------------------------------------------------
 func start_stroke(eraser: bool = false) -> void:
