@@ -20,6 +20,7 @@ onready var _viewport: Viewport = $Viewport
 onready var _active_tool: CanvasTool = _brush_tool
 
 var info := Types.CanvasInfo.new()
+var groups := Types.CanvasGroups.new()
 var _is_enabled := false
 var _background_color: Color
 var _brush_color := Config.DEFAULT_BRUSH_COLOR
@@ -53,7 +54,7 @@ func _draw():
 		draw_selection_rect(_select_tool._selecting_start_pos, _select_tool._selecting_end_pos)
 
 # -------------------------------------------------------------------------------------------------
-func draw_selection_rect(start_pos : Vector2, end_pos : Vector2) -> void:
+func draw_selection_rect(start_pos: Vector2, end_pos: Vector2) -> void:
 	draw_rect(Rect2(start_pos, end_pos - start_pos), Color.whitesmoke, false, true)
 
 # -------------------------------------------------------------------------------------------------
@@ -87,18 +88,18 @@ func use_tool(tool_type: int) -> void:
 			_brush_tool.mode = BrushTool.Mode.DRAW
 			_active_tool = _brush_tool
 			_use_optimizer = true
-			deselect_all_strokes()
+			deselect_all_line2d()
 		Types.Tool.ERASER:
 			_brush_tool.mode = BrushTool.Mode.ERASE
 			_active_tool = _brush_tool
 			_use_optimizer = true
-			deselect_all_strokes()
+			deselect_all_line2d()
 		Types.Tool.LINE:
 			_active_tool = _line_tool
 			_use_optimizer = false
-			deselect_all_strokes()
+			deselect_all_line2d()
 		Types.Tool.COLOR_PICKER:
-			deselect_all_strokes()
+			deselect_all_line2d()
 			pass # TODO: add once implemented
 		Types.Tool.SELECT:
 			_active_tool = _select_tool
@@ -215,53 +216,66 @@ func end_stroke() -> void:
 
 # ------------------------------------------------------------------------------------------------
 # Check if a line2d is inside the selection rectangle
-# For performance reasons and implementation ease, to consider a line2d inside the selection rectangle the first and last points of the Line2D should be inside it
-func compute_selection(start_pos : Vector2, end_pos : Vector2) -> void:
+# For performance reasons && implementation ease, to consider a line2d inside the selection rectangle the first && last points of the Line2D should be inside it
+func compute_selection(start_pos: Vector2, end_pos: Vector2) -> void:
 	var rect : Rect2 = Utils.calculate_rect(start_pos, end_pos)
-	if _debugging: _area = rect
 	for line2d in _line2d_container.get_children():
 		var first_point : Vector2 = get_absolute_line2dpoint_pos(line2d.points[0], line2d)
 		var last_point : Vector2 = get_absolute_line2dpoint_pos(line2d.points[line2d.points.size()-1], line2d)
-		set_line2d_selected(line2d, rect.has_point(first_point) and rect.has_point(last_point))
-	info.selected_lines = get_tree().get_nodes_in_group("selected_lines").size()
+		set_line2d_selected(line2d, rect.has_point(first_point) && rect.has_point(last_point))
+	info.selected_lines = get_tree().get_nodes_in_group(groups.SELECTED_LINES).size()
 
 # ------------------------------------------------------------------------------------------------
 # Returns the absolute position of a point in a Line2D through camera parameters
-func get_absolute_line2dpoint_pos(p : Vector2, line2d : Line2D) -> Vector2:
-	return (p + lien2d.position - get_camera_offset()) / get_camera_zoom()
+func get_absolute_line2dpoint_pos(p: Vector2, line2d: Line2D) -> Vector2:
+	return (p + line2d.position - get_camera_offset()) / get_camera_zoom()
 
 # ------------------------------------------------------------------------------------------------
 # Sets a line2d selected or not, adding it to a group
 # This will facilitate managing only selected line2ds, without computing any operation on non-selected ones
-func set_line2d_selected(line2d : Line2D, is_inside_rect : bool = true) -> void:
+func set_line2d_selected(line2d: Line2D, is_inside_rect: bool = true) -> void:
 	if is_inside_rect:
-		lin2d.modulate = Color.rebeccapurple
-		line2d.add_to_group("selected_lines")
+		line2d.modulate = Color.rebeccapurple
+		line2d.add_to_group(groups.SELECTED_LINES)
 	else:
-		if line2d.is_in_group("selected_lines"):
-			if not line2d.has_meta("was_selected"):
+		if line2d.is_in_group(groups.SELECTED_LINES):
+			if !line2d.has_meta("was_selected"):
 				line2d.modulate = Color.white
-				line2d.remove_from_group("selected_lines")
+				line2d.remove_from_group(groups.SELECTED_LINES)
 
 # ------------------------------------------------------------------------------------------------
 func confirm_selections() -> void:
-	for line2d in get_tree().get_nodes_in_group("selected_lines"):
+	for line2d in get_tree().get_nodes_in_group(groups.SELECTED_LINES):
 		line2d.set_meta("was_selected", true)
 
 # ------------------------------------------------------------------------------------------------
 func deselect_line2d(line2d : Line2D) -> void:
 	line2d.set_meta("was_selected", null)
-	line2d.remove_from_group("selected_lines")
+	line2d.remove_from_group(groups.SELECTED_LINES)
 
 # ------------------------------------------------------------------------------------------------
 # Deselect all line2ds at once
 func deselect_all_line2d() -> void:
-	var selected_lines : Array = get_tree().get_nodes_in_group("selected_lines")
+	var selected_lines : Array = get_tree().get_nodes_in_group(groups.SELECTED_LINES)
 	if selected_lines.size():
-		get_tree().set_group("selected_lines", "modulate", Color.white)
+		get_tree().set_group(groups.SELECTED_LINES, "modulate", Color.white)
 		for line2d in selected_lines:
 			deselect_line2d(line2d)
 	info.selected_lines = 0
+
+# -------------------------------------------------------------------------------------------------
+func offset_selected_lines_by(offset_by: Vector2) -> void:
+	var selected_lines : Array = get_tree().get_nodes_in_group(Types.CanvasGroups.SELECTED_LINES)
+	if selected_lines.size():
+		for line2d in selected_lines:
+			line2d.set_meta("offset", line2d.position - offset_by)
+
+# -------------------------------------------------------------------------------------------------
+func move_selected_lines_by(cursor_pos: Vector2) -> void:
+	var selected_lines : Array = get_tree().get_nodes_in_group(Types.CanvasGroups.SELECTED_LINES)
+	if selected_lines.size():
+		for line2d in selected_lines:
+			line2d.global_position = line2d.get_meta("offset") + cursor_pos
 
 # -------------------------------------------------------------------------------------------------
 func _add_debug_points(line2d: Line2D) -> void:
@@ -271,6 +285,7 @@ func _add_debug_points(line2d: Line2D) -> void:
 		s.texture = DEBUG_POINT_TEXTURE
 		s.scale = Vector2.ONE * (line2d.width * .004)
 		s.global_position = p
+
 
 # -------------------------------------------------------------------------------------------------
 func _apply_stroke_to_line(stroke: BrushStroke, line2d: Line2D) -> void:

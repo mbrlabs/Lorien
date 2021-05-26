@@ -2,7 +2,7 @@ class_name CanvasTool, "res://Assets/Icons/tools.png"
 extends Node
 
 # -------------------------------------------------------------------------------------------------
-export var pressure_curve: Curve
+export (Curve) var pressure_curve: Curve
 export (NodePath) var cursor_path : NodePath
 
 # This is a BaseCursor. Can't type it.
@@ -15,9 +15,8 @@ var performing_stroke := false
 # -------------------------------------------------------------------------------------------------
 func _ready():
 	_cursor = get_node(cursor_path)
-	set_enabled(false)
-	yield(get_parent(), "ready")
 	_canvas = get_parent()
+	set_enabled(false)
 
 # -------------------------------------------------------------------------------------------------
 func _on_brush_color_changed(color: Color) -> void:
@@ -33,6 +32,8 @@ func set_enabled(e: bool) -> void:
 	set_process(enabled)
 	set_process_input(enabled)
 	_cursor.set_visible(enabled)
+	if enabled && _canvas:
+		_cursor.global_position = xform_vector2(get_viewport().get_mouse_position())
 
 # -------------------------------------------------------------------------------------------------
 func get_enabled() -> bool:

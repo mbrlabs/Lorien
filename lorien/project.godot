@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Sprite",
+"class": "BaseCursor",
+"language": "GDScript",
+"path": "res://InfiniteCanvas/Cursor/BaseCursor.gd"
+}, {
 "base": "BaseCursor",
 "class": "BrushCursor",
 "language": "GDScript",
@@ -38,11 +43,6 @@ _global_script_classes=[ {
 "class": "Config",
 "language": "GDScript",
 "path": "res://Misc/Config.gd"
-}, {
-"base": "Node2D",
-"class": "BaseCursor",
-"language": "GDScript",
-"path": "res://InfiniteCanvas/Cursor/BaseCursor.gd"
 }, {
 "base": "ViewportContainer",
 "class": "InfiniteCanvas",
@@ -115,13 +115,13 @@ _global_script_classes=[ {
 "path": "res://Misc/Types.gd"
 } ]
 _global_script_class_icons={
+"BaseCursor": "res://Assets/Icons/cursor_icon.png",
 "BrushCursor": "",
 "BrushStroke": "",
 "BrushStrokeOptimizer": "",
 "BrushTool": "",
-"CanvasTool": "",
+"CanvasTool": "res://Assets/Icons/tools.png",
 "Config": "",
-"CursorClass": "",
 "InfiniteCanvas": "",
 "LineTool": "",
 "MainMenu": "",
@@ -223,12 +223,12 @@ shortcut_colorpicker={
 }
 shortcut_select_tool={
 "deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":77,"unicode":0,"echo":false,"script":null)
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":83,"unicode":0,"echo":false,"script":null)
  ]
 }
 shortcut_move_tool={
 "deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":86,"unicode":0,"echo":false,"script":null)
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":77,"unicode":0,"echo":false,"script":null)
  ]
 }
 

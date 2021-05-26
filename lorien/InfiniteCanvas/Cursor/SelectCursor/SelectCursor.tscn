@@ -6,6 +6,6 @@
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 2 )
 
-[node name="SelectCursor" type="Node2D"]
+[node name="SelectCursor" type="Sprite"]
 material = SubResource( 1 )
 script = ExtResource( 1 )

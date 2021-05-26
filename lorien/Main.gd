@@ -74,7 +74,7 @@ func _notification(what):
 func _process(delta):
 	_handle_shortcut_actions()
 	_statusbar.set_stroke_count(_canvas.info.stroke_count)
-	_statusbar.set_selected_strokes_count(_canvas.info.selected_strokes)
+	_statusbar.set_selected_strokes_count(_canvas.info.selected_lines)
 	_statusbar.set_point_count(_canvas.info.point_count)
 	_statusbar.set_pressure(_canvas.info.current_pressure)
 	_statusbar.set_camera_position(_canvas.get_camera_offset())
@@ -305,15 +305,16 @@ func _on_InfiniteCanvas_mouse_entered():
 func _on_InfiniteCanvas_mouse_exited():
 	_canvas.disable()
 
-# --------------
-func _on_save_as_confirmed(path : String):
+# --------------------------------------------------------------------------------------------------
+func _on_save_as_confirmed(path: String):
 	match path.get_extension():
 		"png":
 			var image : Image = _canvas._viewport.get_texture().get_data()
 			image.flip_y()
 			image.save_png(path)
 
-func _save_as(format : String) -> void:
+# --------------------------------------------------------------------------------------------------
+func _save_as(format: String) -> void:
 	match format:
 		"png":
 			_save_as_dialog.filters = ["*.png ; Portable Network Graphics"]

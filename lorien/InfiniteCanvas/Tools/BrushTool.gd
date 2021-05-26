@@ -12,23 +12,6 @@ var mode: int = Mode.DRAW
 var _last_mouse_motion: InputEventMouseMotion
 
 # -------------------------------------------------------------------------------------------------
-func _ready():
-	_cursor = get_node(brush_cursor_path)
-
-# -------------------------------------------------------------------------------------------------
-func _on_brush_size_changed(size: int) -> void:
-	_cursor.change_size(size)
-
-# -------------------------------------------------------------------------------------------------
-func set_enabled(e: bool) -> void:
-	.set_enabled(e)
-	if e:
-		_cursor.global_position = xform_vector2(get_viewport().get_mouse_position())
-		_cursor.show()
-	else:
-		_cursor.hide()
-
-# -------------------------------------------------------------------------------------------------
 func _input(event: InputEvent) -> void:
 	_cursor.set_pressure(1.0)
 	
