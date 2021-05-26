@@ -9,7 +9,7 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "CursorClass",
+"base": "BaseCursor",
 "class": "BrushCursor",
 "language": "GDScript",
 "path": "res://InfiniteCanvas/Cursor/BrushCursor/BrushCursor.gd"
@@ -40,9 +40,9 @@ _global_script_classes=[ {
 "path": "res://Misc/Config.gd"
 }, {
 "base": "Node2D",
-"class": "CursorClass",
+"class": "BaseCursor",
 "language": "GDScript",
-"path": "res://InfiniteCanvas/Cursor/CursorClass.gd"
+"path": "res://InfiniteCanvas/Cursor/BaseCursor.gd"
 }, {
 "base": "ViewportContainer",
 "class": "InfiniteCanvas",
@@ -64,7 +64,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://UI/Menubar.gd"
 }, {
-"base": "CursorClass",
+"base": "BaseCursor",
 "class": "MoveCursor",
 "language": "GDScript",
 "path": "res://InfiniteCanvas/Cursor/MoveCursor/MoveCursor.gd"
@@ -84,7 +84,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://UI/Components/ProjectTab.gd"
 }, {
-"base": "CursorClass",
+"base": "BaseCursor",
 "class": "SelectCursor",
 "language": "GDScript",
 "path": "res://InfiniteCanvas/Cursor/SelectCursor/SelectCursor.gd"
