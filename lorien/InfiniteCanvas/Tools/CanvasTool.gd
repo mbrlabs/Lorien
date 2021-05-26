@@ -12,8 +12,8 @@ var performing_stroke := false
 
 # -------------------------------------------------------------------------------------------------
 func _ready():
-	set_process(false)
-	set_process_input(false)
+	_cursor = get_node(brush_cursor_path)
+	set_enabled(false)
 
 # -------------------------------------------------------------------------------------------------
 func _on_brush_color_changed(color: Color) -> void:
