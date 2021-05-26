@@ -10,7 +10,6 @@ var _cursor : Node2D
 func _ready():
 	_cursor = get_node(cursor_path)
 	set_enabled(false)
-	set_process(false)
 
 func set_enabled(e: bool) -> void:
 	.set_enabled(e)
