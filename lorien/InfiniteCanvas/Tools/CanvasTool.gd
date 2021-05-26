@@ -1,19 +1,23 @@
-class_name CanvasTool
+class_name CanvasTool, "res://Assets/Icons/tools.png"
 extends Node
 
 # -------------------------------------------------------------------------------------------------
 export var pressure_curve: Curve
 export (NodePath) var cursor_path : NodePath
 
+# This is a BaseCursor. Can't type it.
+var _cursor: Sprite
 # This is an InfinteCanvas. Can't type it though because of cyclic dependency bugs...
-onready var _canvas: Node = get_parent()
+var _canvas: Node
 var enabled := false setget set_enabled, get_enabled
 var performing_stroke := false
 
 # -------------------------------------------------------------------------------------------------
 func _ready():
-	_cursor = get_node(brush_cursor_path)
+	_cursor = get_node(cursor_path)
 	set_enabled(false)
+	yield(get_parent(), "ready")
+	_canvas = get_parent()
 
 # -------------------------------------------------------------------------------------------------
 func _on_brush_color_changed(color: Color) -> void:
@@ -21,13 +25,14 @@ func _on_brush_color_changed(color: Color) -> void:
 
 # -------------------------------------------------------------------------------------------------
 func _on_brush_size_changed(size: int) -> void:
-	pass
+	_cursor.change_size(size)
 
 # -------------------------------------------------------------------------------------------------
 func set_enabled(e: bool) -> void:
 	enabled = e
 	set_process(enabled)
 	set_process_input(enabled)
+	_cursor.set_visible(enabled)
 
 # -------------------------------------------------------------------------------------------------
 func get_enabled() -> bool:
@@ -55,6 +60,7 @@ func end_stroke() -> void:
 func xform_vector2(v: Vector2) -> Vector2:
 	return _canvas.get_camera().xform(v)
 
+# -------------------------------------------------------------------------------------------------
 # Returns the input Vector translated by the camera offset and zoom, giving always the absolute position
 func xform_vector2_relative(v : Vector2) -> Vector2:
 	return (_canvas.get_camera().xform(v) - _canvas.get_camera_offset()) / _canvas.get_camera().get_zoom()
