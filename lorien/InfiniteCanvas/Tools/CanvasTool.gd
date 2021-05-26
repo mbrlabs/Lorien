@@ -3,6 +3,7 @@ extends Node
 
 # -------------------------------------------------------------------------------------------------
 export var pressure_curve: Curve
+export (NodePath) var cursor_path : NodePath
 
 # This is an InfinteCanvas. Can't type it though because of cyclic dependency bugs...
 onready var _canvas: Node = get_parent()
