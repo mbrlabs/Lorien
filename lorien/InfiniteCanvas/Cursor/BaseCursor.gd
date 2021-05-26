@@ -1,9 +1,15 @@
 class_name BaseCursor
 extends Node2D
 
-var _sprite : Sprite
+export (ImageTexture) var cursor_sprite: ImageTexture
 var _brush_size: int
 var _pressure := 1.0
+var _sprite: Sprite
+
+# --------------------------------------------
+func _ready() -> void:
+	if has_node("Sprite"):
+		_sprite.texture = load(cursor_sprite)
 
 # --------------------------------------------
 func set_pressure(pressure: float) -> void:
@@ -16,3 +22,7 @@ func change_size(value : int) -> void:
 # --------------------------------------------
 func _on_zoom_changed(value : float) -> void:
 	pass
+
+# --------------------------------------------
+func set_cursor_sprite(img : ImageTexture) -> void:
+	cursor_sprite = img
