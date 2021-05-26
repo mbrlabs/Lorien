@@ -1,11 +1,20 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://InfiniteCanvas/InfiniteCanvas.gd" type="Script" id=1]
 [ext_resource path="res://InfiniteCanvas/PanZoomCamera.gd" type="Script" id=2]
 [ext_resource path="res://InfiniteCanvas/pressure_curve.tres" type="Curve" id=3]
-[ext_resource path="res://InfiniteCanvas/Cursor/BrushCursor.tscn" type="PackedScene" id=4]
+[ext_resource path="res://InfiniteCanvas/Cursor/BrushCursor/BrushCursor.tscn" type="PackedScene" id=4]
 [ext_resource path="res://InfiniteCanvas/Tools/BrushTool.gd" type="Script" id=5]
 [ext_resource path="res://InfiniteCanvas/Tools/LineTool.gd" type="Script" id=6]
+[ext_resource path="res://InfiniteCanvas/Tools/SelectTool.gd" type="Script" id=7]
+[ext_resource path="res://InfiniteCanvas/Cursor/SelectCursor/SelectCursor.tscn" type="PackedScene" id=8]
+[ext_resource path="res://InfiniteCanvas/Tools/MoveTool.gd" type="Script" id=9]
+[ext_resource path="res://InfiniteCanvas/Cursor/MoveCursor/MoveCursor.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Assets/Icons/move_tool.png" type="Texture" id=11]
+[ext_resource path="res://InfiniteCanvas/Cursor/cursor.shader" type="Shader" id=12]
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 12 )
 
 [node name="InfiniteCanvas" type="ViewportContainer"]
 anchor_right = 1.0
@@ -18,12 +27,20 @@ __meta__ = {
 [node name="BrushTool" type="Node" parent="."]
 script = ExtResource( 5 )
 pressure_curve = ExtResource( 3 )
-brush_cursor_path = NodePath("../Viewport/BrushCursor")
+cursor_path = NodePath("../Viewport/BrushCursor")
 
 [node name="LineTool" type="Node" parent="."]
 script = ExtResource( 6 )
 pressure_curve = ExtResource( 3 )
-brush_cursor_path = NodePath("../Viewport/BrushCursor")
+cursor_path = NodePath("../Viewport/BrushCursor")
+
+[node name="SelectTool" type="Node" parent="."]
+script = ExtResource( 7 )
+cursor_path = NodePath("../Viewport/SelectCursor")
+
+[node name="MoveTool" type="Node" parent="."]
+script = ExtResource( 9 )
+cursor_path = NodePath("../Viewport/MoveCursor")
 
 [node name="Viewport" type="Viewport" parent="."]
 size = Vector2( 1920, 1080 )
@@ -40,3 +57,9 @@ script = ExtResource( 2 )
 [node name="Strokes" type="Node2D" parent="Viewport"]
 
 [node name="BrushCursor" parent="Viewport" instance=ExtResource( 4 )]
+
+[node name="SelectCursor" parent="Viewport" instance=ExtResource( 8 )]
+
+[node name="MoveCursor" parent="Viewport" instance=ExtResource( 10 )]
+material = SubResource( 1 )
+texture = ExtResource( 11 )

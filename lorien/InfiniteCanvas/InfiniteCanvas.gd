@@ -11,12 +11,16 @@ const ERASER_SIZE_FACTOR = 3.5
 # -------------------------------------------------------------------------------------------------
 onready var _brush_tool: BrushTool = $BrushTool
 onready var _line_tool: LineTool = $LineTool
-onready var _active_tool: CanvasTool = _brush_tool
+onready var _select_tool: SelectTool = $SelectTool
+onready var _move_tool: MoveTool = $MoveTool
 onready var _line2d_container: Node2D = $Viewport/Strokes
 onready var _camera: Camera2D = $Viewport/Camera2D
 onready var _viewport: Viewport = $Viewport
 
+onready var _active_tool: CanvasTool = _brush_tool
+
 var info := Types.CanvasInfo.new()
+var groups := Types.CanvasGroups.new()
 var _is_enabled := false
 var _background_color: Color
 var _brush_color := Config.DEFAULT_BRUSH_COLOR
@@ -28,6 +32,11 @@ var _use_optimizer := true
 var _optimizer: BrushStrokeOptimizer
 
 # -------------------------------------------------------------------------------------------------
+func _connect_cursors_signals():
+	_camera.connect("zoom_changed", $Viewport/SelectCursor, "_on_zoom_changed")
+	_camera.connect("zoom_changed", $Viewport/MoveCursor, "_on_zoom_changed")
+
+# -------------------------------------------------------------------------------------------------
 func _ready():
 	_optimizer = BrushStrokeOptimizer.new()
 	_brush_size = Settings.get_value(Settings.GENERAL_DEFAULT_BRUSH_SIZE, Config.DEFAULT_BRUSH_SIZE)
@@ -37,6 +46,17 @@ func _ready():
 	_active_tool.enabled = false
 	
 	get_tree().get_root().connect("size_changed", self, "_on_window_resized")
+	
+	_connect_cursors_signals()
+
+# -------------------------------------------------------------------------------------------------
+func _draw():
+	if _select_tool.is_selecting():
+		draw_selection_rect(_select_tool._selecting_start_pos, _select_tool._selecting_end_pos)
+
+# -------------------------------------------------------------------------------------------------
+func draw_selection_rect(start_pos: Vector2, end_pos: Vector2) -> void:
+	draw_rect(Rect2(start_pos, end_pos - start_pos), Color.whitesmoke, false, true)
 
 # -------------------------------------------------------------------------------------------------
 func _input(event: InputEvent) -> void:
@@ -63,20 +83,31 @@ func _make_empty_line2d() -> Line2D:
 # -------------------------------------------------------------------------------------------------
 func use_tool(tool_type: int) -> void:
 	_active_tool.enabled = false
+	
 	match tool_type:
 		Types.Tool.BRUSH:
 			_brush_tool.mode = BrushTool.Mode.DRAW
 			_active_tool = _brush_tool
 			_use_optimizer = true
+			deselect_all_line2d()
 		Types.Tool.ERASER:
 			_brush_tool.mode = BrushTool.Mode.ERASE
 			_active_tool = _brush_tool
 			_use_optimizer = true
+			deselect_all_line2d()
 		Types.Tool.LINE:
 			_active_tool = _line_tool
 			_use_optimizer = false
+			deselect_all_line2d()
 		Types.Tool.COLOR_PICKER:
+			deselect_all_line2d()
 			pass # TODO: add once implemented
+		Types.Tool.SELECT:
+			_active_tool = _select_tool
+			_use_optimizer = false
+		Types.Tool.MOVE:
+			_active_tool = _move_tool
+			_use_optimizer = false
 	
 	_active_tool.enabled = true
 
@@ -183,6 +214,69 @@ func end_stroke() -> void:
 		_current_line_2d = null
 		_current_brush_stroke = null
 
+# ------------------------------------------------------------------------------------------------
+# Check if a line2d is inside the selection rectangle
+# For performance reasons && implementation ease, to consider a line2d inside the selection rectangle the first && last points of the Line2D should be inside it
+func compute_selection(start_pos: Vector2, end_pos: Vector2) -> void:
+	var rect : Rect2 = Utils.calculate_rect(start_pos, end_pos)
+	for line2d in _line2d_container.get_children():
+		var first_point : Vector2 = get_absolute_line2dpoint_pos(line2d.points[0], line2d)
+		var last_point : Vector2 = get_absolute_line2dpoint_pos(line2d.points[line2d.points.size()-1], line2d)
+		set_line2d_selected(line2d, rect.has_point(first_point) && rect.has_point(last_point))
+	info.selected_lines = get_tree().get_nodes_in_group(groups.SELECTED_LINES).size()
+
+# ------------------------------------------------------------------------------------------------
+# Returns the absolute position of a point in a Line2D through camera parameters
+func get_absolute_line2dpoint_pos(p: Vector2, line2d: Line2D) -> Vector2:
+	return (p + line2d.position - get_camera_offset()) / get_camera_zoom()
+
+# ------------------------------------------------------------------------------------------------
+# Sets a line2d selected or not, adding it to a group
+# This will facilitate managing only selected line2ds, without computing any operation on non-selected ones
+func set_line2d_selected(line2d: Line2D, is_inside_rect: bool = true) -> void:
+	if is_inside_rect:
+		line2d.modulate = Color.rebeccapurple
+		line2d.add_to_group(groups.SELECTED_LINES)
+	else:
+		if line2d.is_in_group(groups.SELECTED_LINES):
+			if !line2d.has_meta("was_selected"):
+				line2d.modulate = Color.white
+				line2d.remove_from_group(groups.SELECTED_LINES)
+
+# ------------------------------------------------------------------------------------------------
+func confirm_selections() -> void:
+	for line2d in get_tree().get_nodes_in_group(groups.SELECTED_LINES):
+		line2d.set_meta("was_selected", true)
+
+# ------------------------------------------------------------------------------------------------
+func deselect_line2d(line2d : Line2D) -> void:
+	line2d.set_meta("was_selected", null)
+	line2d.remove_from_group(groups.SELECTED_LINES)
+
+# ------------------------------------------------------------------------------------------------
+# Deselect all line2ds at once
+func deselect_all_line2d() -> void:
+	var selected_lines : Array = get_tree().get_nodes_in_group(groups.SELECTED_LINES)
+	if selected_lines.size():
+		get_tree().set_group(groups.SELECTED_LINES, "modulate", Color.white)
+		for line2d in selected_lines:
+			deselect_line2d(line2d)
+	info.selected_lines = 0
+
+# -------------------------------------------------------------------------------------------------
+func offset_selected_lines_by(offset_by: Vector2) -> void:
+	var selected_lines : Array = get_tree().get_nodes_in_group(Types.CanvasGroups.SELECTED_LINES)
+	if selected_lines.size():
+		for line2d in selected_lines:
+			line2d.set_meta("offset", line2d.position - offset_by)
+
+# -------------------------------------------------------------------------------------------------
+func move_selected_lines_by(cursor_pos: Vector2) -> void:
+	var selected_lines : Array = get_tree().get_nodes_in_group(Types.CanvasGroups.SELECTED_LINES)
+	if selected_lines.size():
+		for line2d in selected_lines:
+			line2d.global_position = line2d.get_meta("offset") + cursor_pos
+
 # -------------------------------------------------------------------------------------------------
 func _add_debug_points(line2d: Line2D) -> void:
 	for p in line2d.points:
@@ -191,6 +285,7 @@ func _add_debug_points(line2d: Line2D) -> void:
 		s.texture = DEBUG_POINT_TEXTURE
 		s.scale = Vector2.ONE * (line2d.width * .004)
 		s.global_position = p
+
 
 # -------------------------------------------------------------------------------------------------
 func _apply_stroke_to_line(stroke: BrushStroke, line2d: Line2D) -> void:
@@ -217,6 +312,7 @@ func _apply_stroke_to_line(stroke: BrushStroke, line2d: Line2D) -> void:
 		p_idx += 1
 	
 	line2d.width_curve.bake()
+
 
 # -------------------------------------------------------------------------------------------------
 func use_project(project: Project) -> void:

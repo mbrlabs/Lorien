@@ -122,9 +122,9 @@ custom_constants/separation = 0
 alignment = 2
 
 [node name="StrokesLabel" type="Label" parent="MarginContainer/HBoxContainer/Right"]
-margin_left = 833.0
+margin_left = 717.0
 margin_top = 5.0
-margin_right = 890.0
+margin_right = 774.0
 margin_bottom = 19.0
 custom_fonts/font = ExtResource( 3 )
 text = "Strokes: 0"
@@ -133,9 +133,9 @@ __meta__ = {
 }
 
 [node name="Sep" type="Label" parent="MarginContainer/HBoxContainer/Right"]
-margin_left = 890.0
+margin_left = 774.0
 margin_top = 5.0
-margin_right = 898.0
+margin_right = 782.0
 margin_bottom = 19.0
 custom_fonts/font = ExtResource( 3 )
 text = "|"
@@ -144,12 +144,34 @@ __meta__ = {
 }
 
 [node name="PointsLabel" type="Label" parent="MarginContainer/HBoxContainer/Right"]
-margin_left = 898.0
+margin_left = 782.0
+margin_top = 5.0
+margin_right = 832.0
+margin_bottom = 19.0
+custom_fonts/font = ExtResource( 3 )
+text = "Points: 0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sep2" type="Label" parent="MarginContainer/HBoxContainer/Right"]
+margin_left = 832.0
+margin_top = 5.0
+margin_right = 840.0
+margin_bottom = 19.0
+custom_fonts/font = ExtResource( 3 )
+text = "|"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SelectedLabel" type="Label" parent="MarginContainer/HBoxContainer/Right"]
+margin_left = 840.0
 margin_top = 5.0
 margin_right = 948.0
 margin_bottom = 19.0
 custom_fonts/font = ExtResource( 3 )
-text = "Points: 0"
+text = "Selected Strokes : 0"
 __meta__ = {
 "_edit_use_anchors_": false
 }

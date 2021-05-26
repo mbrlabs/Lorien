@@ -3,6 +3,7 @@ class_name Statusbar
 
 # -------------------------------------------------------------------------------------------------
 onready var _strokes_label: Label = $MarginContainer/HBoxContainer/Right/StrokesLabel
+onready var _selected_strokes_label: Label = $MarginContainer/HBoxContainer/Right/SelectedLabel
 onready var _points_label: Label = $MarginContainer/HBoxContainer/Right/PointsLabel
 onready var _pressure_label: Label = $MarginContainer/HBoxContainer/Left/PressureLabel
 onready var _position_label: Label = $MarginContainer/HBoxContainer/Left/PositionLabel
@@ -12,6 +13,10 @@ onready var _fps_label: Label = $MarginContainer/HBoxContainer/Left/FpsLabel
 # -------------------------------------------------------------------------------------------------
 func set_stroke_count(brush_stroke_count: int) -> void:
 	_strokes_label.text = "Strokes: %d" % brush_stroke_count
+
+# -------------------------------------------------------------------------------------------------
+func set_selected_strokes_count(selected: int) -> void:
+	_selected_strokes_label.text = "Selected Strokes: %d" % selected
 
 # -------------------------------------------------------------------------------------------------
 func set_point_count(point_count: int) -> void:

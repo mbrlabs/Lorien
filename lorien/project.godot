@@ -9,6 +9,16 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Sprite",
+"class": "BaseCursor",
+"language": "GDScript",
+"path": "res://InfiniteCanvas/Cursor/BaseCursor.gd"
+}, {
+"base": "BaseCursor",
+"class": "BrushCursor",
+"language": "GDScript",
+"path": "res://InfiniteCanvas/Cursor/BrushCursor/BrushCursor.gd"
+}, {
 "base": "Reference",
 "class": "BrushStroke",
 "language": "GDScript",
@@ -54,6 +64,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://UI/Menubar.gd"
 }, {
+"base": "BaseCursor",
+"class": "MoveCursor",
+"language": "GDScript",
+"path": "res://InfiniteCanvas/Cursor/MoveCursor/MoveCursor.gd"
+}, {
+"base": "CanvasTool",
+"class": "MoveTool",
+"language": "GDScript",
+"path": "res://InfiniteCanvas/Tools/MoveTool.gd"
+}, {
 "base": "Reference",
 "class": "Project",
 "language": "GDScript",
@@ -63,6 +83,16 @@ _global_script_classes=[ {
 "class": "ProjectTab",
 "language": "GDScript",
 "path": "res://UI/Components/ProjectTab.gd"
+}, {
+"base": "BaseCursor",
+"class": "SelectCursor",
+"language": "GDScript",
+"path": "res://InfiniteCanvas/Cursor/SelectCursor/SelectCursor.gd"
+}, {
+"base": "CanvasTool",
+"class": "SelectTool",
+"language": "GDScript",
+"path": "res://InfiniteCanvas/Tools/SelectTool.gd"
 }, {
 "base": "Reference",
 "class": "Serializer",
@@ -85,17 +115,23 @@ _global_script_classes=[ {
 "path": "res://Misc/Types.gd"
 } ]
 _global_script_class_icons={
+"BaseCursor": "res://Assets/Icons/cursor_icon.png",
+"BrushCursor": "",
 "BrushStroke": "",
 "BrushStrokeOptimizer": "",
 "BrushTool": "",
-"CanvasTool": "",
+"CanvasTool": "res://Assets/Icons/tools.png",
 "Config": "",
 "InfiniteCanvas": "",
 "LineTool": "",
 "MainMenu": "",
 "Menubar": "",
+"MoveCursor": "",
+"MoveTool": "",
 "Project": "",
 "ProjectTab": "",
+"SelectCursor": "",
+"SelectTool": "",
 "Serializer": "",
 "Statusbar": "",
 "Toolbar": "",
@@ -184,6 +220,16 @@ shortcut_eraser_tool={
 shortcut_colorpicker={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":67,"unicode":0,"echo":false,"script":null)
+ ]
+}
+shortcut_select_tool={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":83,"unicode":0,"echo":false,"script":null)
+ ]
+}
+shortcut_move_tool={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":77,"unicode":0,"echo":false,"script":null)
  ]
 }
 

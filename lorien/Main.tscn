@@ -71,10 +71,10 @@ __meta__ = {
 }
 
 [node name="ColorPicker" type="ColorPicker" parent="BrushColorPickerPopup/PanelContainer"]
-margin_left = 4.0
-margin_top = 4.0
-margin_right = 309.0
-margin_bottom = 438.0
+margin_left = 52.0
+margin_top = 52.0
+margin_right = 357.0
+margin_bottom = 486.0
 edit_alpha = false
 __meta__ = {
 "_edit_use_anchors_": false
@@ -103,10 +103,10 @@ __meta__ = {
 }
 
 [node name="ColorPicker" type="ColorPicker" parent="BackgroundColorPickerPopup/PanelContainer"]
-margin_left = 4.0
-margin_top = 4.0
-margin_right = 314.0
-margin_bottom = 438.0
+margin_left = 52.0
+margin_top = 52.0
+margin_right = 362.0
+margin_bottom = 486.0
 edit_alpha = false
 __meta__ = {
 "_edit_use_anchors_": false
@@ -137,14 +137,24 @@ __meta__ = {
 }
 
 [node name="ExitDialog" parent="." instance=ExtResource( 11 )]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
 margin_left = -155.0
 margin_top = -45.0
 margin_right = 155.0
 margin_bottom = 45.0
+
+[node name="SaveAsDialog" type="FileDialog" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -385.0
+margin_top = -216.5
+margin_right = 385.0
+margin_bottom = 216.5
+theme = ExtResource( 8 )
+access = 2
+current_dir = "/Users/mbrla/Projects/lorien/lorien"
+current_path = "/Users/mbrla/Projects/lorien/lorien/"
 
 [node name="UnsavedChangesDialog" parent="." instance=ExtResource( 7 )]
 anchor_left = 0.5

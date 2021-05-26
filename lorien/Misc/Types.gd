@@ -6,8 +6,11 @@ enum Tool {
 	BRUSH,
 	LINE,
 	ERASER,
-	COLOR_PICKER
+	COLOR_PICKER,
+	SELECT,
+	MOVE
 }
+
 
 # -------------------------------------------------------------------------------------------------
 enum AAMode {
@@ -27,3 +30,8 @@ class CanvasInfo:
 	var point_count: int
 	var stroke_count: int
 	var current_pressure: float
+	var selected_lines : int
+
+# -------------------------------------------------------------------------------------------------
+class CanvasGroups:
+	const SELECTED_LINES : String = "selected_lines"
