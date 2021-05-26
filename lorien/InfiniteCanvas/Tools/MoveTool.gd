@@ -13,7 +13,6 @@ func _ready():
 
 func set_enabled(e: bool) -> void:
 	.set_enabled(e)
-	set_process(e)
 	if e:
 		_cursor.global_position = xform_vector2(get_viewport().get_mouse_position())
 		_cursor.show()
