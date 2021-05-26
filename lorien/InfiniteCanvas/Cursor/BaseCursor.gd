@@ -9,7 +9,8 @@ var _sprite: Sprite
 # --------------------------------------------
 func _ready() -> void:
 	if has_node("Sprite"):
-		_sprite.texture = load(cursor_sprite)
+		_sprite = $Sprite
+		
 
 # --------------------------------------------
 func set_pressure(pressure: float) -> void:
@@ -26,3 +27,4 @@ func _on_zoom_changed(value : float) -> void:
 # --------------------------------------------
 func set_cursor_sprite(img : ImageTexture) -> void:
 	cursor_sprite = img
+	_sprite.texture = load(cursor_sprite)
