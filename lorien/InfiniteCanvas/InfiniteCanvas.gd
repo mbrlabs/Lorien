@@ -61,16 +61,16 @@ func use_tool(tool_type: int) -> void:
 			_brush_tool.mode = BrushTool.Mode.DRAW
 			_active_tool = _brush_tool
 			_use_optimizer = true
-			deselect_all_strokes()
+			_select_tool.deselect_all_strokes()
 		Types.Tool.ERASER:
 			_brush_tool.mode = BrushTool.Mode.ERASE
 			_active_tool = _brush_tool
 			_use_optimizer = true
-			deselect_all_strokes()
+			_select_tool.deselect_all_strokes()
 		Types.Tool.LINE:
 			_active_tool = _line_tool
 			_use_optimizer = false
-			deselect_all_strokes()
+			_select_tool.deselect_all_strokes()
 		Types.Tool.SELECT:
 			_active_tool = _select_tool
 			_use_optimizer = false
@@ -78,7 +78,7 @@ func use_tool(tool_type: int) -> void:
 			_active_tool = _move_tool
 			_use_optimizer = false
 		Types.Tool.COLOR_PICKER:
-			deselect_all_strokes()
+			_select_tool.deselect_all_strokes()
 			# TODO: implemented
 			
 	_active_tool.enabled = true
@@ -92,7 +92,7 @@ func set_background_color(color: Color) -> void:
 		# Make the eraser brush strokes have the same color as the background
 		for eraser_index in _current_project.eraser_stroke_indices:
 			if eraser_index < _strokes_parent.get_child_count():
-				_strokes_parent.get_child(eraser_index).default_color = color
+				_strokes_parent.get_child(eraser_index).color = color
 	
 # -------------------------------------------------------------------------------------------------
 func get_background_color() -> Color:
@@ -101,6 +101,11 @@ func get_background_color() -> Color:
 # -------------------------------------------------------------------------------------------------
 func get_camera() -> Camera2D:
 	return _camera
+
+# -------------------------------------------------------------------------------------------------
+func get_strokes_in_camera_frustrum() -> Array:
+	# FIXME: this currently returns every stroke. 
+	return _current_project.strokes
 
 # -------------------------------------------------------------------------------------------------
 func enable() -> void:
@@ -177,68 +182,6 @@ func end_stroke() -> void:
 			_current_project.undo_redo.commit_action()
 		
 		_current_stroke = null
-
-# Check if a stroke is inside the selection rectangle
-# For performance reasons && implementation ease, to consider a stroke inside the selection rectangle the first && last points of the Line2D should be inside it
-# ------------------------------------------------------------------------------------------------
-func compute_selection(start_pos: Vector2, end_pos: Vector2) -> void:
-	var rect : Rect2 = Utils.calculate_rect(start_pos, end_pos)
-	for stroke in _strokes_parent.get_children():
-		var first_point: Vector2 = get_absolute_stroke_point_pos(stroke.points[0], stroke)
-		var last_point: Vector2 = get_absolute_stroke_point_pos(stroke.points.back(), stroke)
-		set_stroke_selected(stroke, rect.has_point(first_point) && rect.has_point(last_point))
-	info.selected_lines = get_tree().get_nodes_in_group(Types.CANVAS_GROUP_SELECTED_STROKES).size()
-
-# Returns the absolute position of a point in a Line2D through camera parameters
-# ------------------------------------------------------------------------------------------------
-func get_absolute_stroke_point_pos(p: Vector2, stroke: BrushStroke) -> Vector2:
-	return (p + stroke.position - get_camera_offset()) / get_camera_zoom()
-
-# Sets a stroke selected or not, adding it to a group
-# This will facilitate managing only selected line2ds, without computing any operation on non-selected ones
-# ------------------------------------------------------------------------------------------------
-func set_stroke_selected(stroke: BrushStroke, is_inside_rect: bool = true) -> void:
-	if is_inside_rect:
-		stroke.modulate = Color.rebeccapurple
-		stroke.add_to_group(Types.CANVAS_GROUP_SELECTED_STROKES)
-	else:
-		if stroke.is_in_group(Types.CANVAS_GROUP_SELECTED_STROKES):
-			if !stroke.has_meta("was_selected"):
-				stroke.modulate = Color.white
-				stroke.remove_from_group(Types.CANVAS_GROUP_SELECTED_STROKES)
-
-# ------------------------------------------------------------------------------------------------
-func confirm_selections() -> void:
-	for stroke in get_tree().get_nodes_in_group(Types.CANVAS_GROUP_SELECTED_STROKES):
-		stroke.set_meta("was_selected", true)
-
-# ------------------------------------------------------------------------------------------------
-func deselect_stroke(stroke: BrushStroke) -> void:
-	stroke.set_meta("was_selected", null)
-	stroke.remove_from_group(Types.CANVAS_GROUP_SELECTED_STROKES)
-
-# ------------------------------------------------------------------------------------------------
-func deselect_all_strokes() -> void:
-	var selected_strokes: Array = get_tree().get_nodes_in_group(Types.CANVAS_GROUP_SELECTED_STROKES)
-	if selected_strokes.size():
-		get_tree().set_group(Types.CANVAS_GROUP_SELECTED_STROKES, "modulate", Color.white)
-		for stroke in selected_strokes:
-			deselect_stroke(stroke)
-	info.selected_lines = 0
-
-# -------------------------------------------------------------------------------------------------
-func offset_selected_strokes_by(offset_by: Vector2) -> void:
-	var selected_strokes: Array = get_tree().get_nodes_in_group(Types.CANVAS_GROUP_SELECTED_STROKES)
-	if selected_strokes.size():
-		for stroke in selected_strokes:
-			stroke.set_meta("offset", stroke.position - offset_by)
-
-# -------------------------------------------------------------------------------------------------
-func move_selected_strokes_by(cursor_pos: Vector2) -> void:
-	var selected_strokes: Array = get_tree().get_nodes_in_group(Types.CANVAS_GROUP_SELECTED_STROKES)
-	if selected_strokes.size():
-		for stroke in selected_strokes:
-			stroke.global_position = stroke.get_meta("offset") + cursor_pos
 
 # -------------------------------------------------------------------------------------------------
 func use_project(project: Project) -> void:

@@ -12,9 +12,23 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT:
 			_moving = event.pressed
-			_canvas.offset_selected_strokes_by(_cursor.global_position)
+			offset_selected_strokes_by(_cursor.global_position)
 
 # ------------------------------------------------------------------------------------------------
 func _process(delta: float) -> void:
 	if _moving:
-		_canvas.move_selected_strokes_by(_cursor.global_position)
+		move_selected_strokes_by(_cursor.global_position)
+
+# -------------------------------------------------------------------------------------------------
+func offset_selected_strokes_by(offset_by: Vector2) -> void:
+	var selected_strokes: Array = get_tree().get_nodes_in_group(Types.CANVAS_GROUP_SELECTED_STROKES)
+	if selected_strokes.size():
+		for stroke in selected_strokes:
+			stroke.set_meta("offset", stroke.position - offset_by)
+
+# -------------------------------------------------------------------------------------------------
+func move_selected_strokes_by(cursor_pos: Vector2) -> void:
+	var selected_strokes: Array = get_tree().get_nodes_in_group(Types.CANVAS_GROUP_SELECTED_STROKES)
+	if selected_strokes.size():
+		for stroke in selected_strokes:
+			stroke.global_position = stroke.get_meta("offset") + cursor_pos

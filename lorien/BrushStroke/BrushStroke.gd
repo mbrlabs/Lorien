@@ -15,7 +15,7 @@ signal camera_frustrum_change(inside_frustrum)
 # ------------------------------------------------------------------------------------------------
 onready var _line2d: Line2D = $Line2D
 var eraser := false
-var color: Color
+var color: Color setget set_color, get_color
 var size: int
 var points: Array
 var pressures: Array
@@ -92,6 +92,16 @@ func refresh() -> void:
 	_line2d.width_curve.bake()
 	
 	# TODO: calculate bounding box for the visibility notifier
+
+# -------------------------------------------------------------------------------------------------
+func set_color(c: Color) -> void:
+	color = c
+	if _line2d != null:
+		_line2d.default_color = color
+
+# -------------------------------------------------------------------------------------------------
+func get_color() -> Color:
+	return color
 
 # -------------------------------------------------------------------------------------------------
 func clear() -> void:
