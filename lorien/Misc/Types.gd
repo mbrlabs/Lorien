@@ -37,5 +37,4 @@ class CanvasInfo:
 	var selected_lines : int
 
 # -------------------------------------------------------------------------------------------------
-class CanvasGroups:
-	const SELECTED_LINES : String = "selected_lines"
+const CANVAS_GROUP_SELECTED_STROKES := "selected_strokes"

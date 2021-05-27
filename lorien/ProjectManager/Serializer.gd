@@ -5,6 +5,7 @@ class_name Serializer
 # TODO: !IMPORTANT! all of this needs validation
 
 # -------------------------------------------------------------------------------------------------
+const BRUSH_STROKE = preload("res://BrushStroke/BrushStroke.tscn")
 const COMPRESSION_METHOD = File.COMPRESSION_DEFLATE
 const POINT_ELEM_SIZE := 3
 
@@ -49,8 +50,9 @@ static func save_project(project: Project) -> void:
 		# Points
 		var p_idx := 0
 		for p in stroke.points:
-			file.store_float(p.x)
-			file.store_float(p.y)
+			# Add global_position offset which is != 0 when moved by move tool; but mostly it should just add 0
+			file.store_float(p.x + stroke.global_position.x)
+			file.store_float(p.y + stroke.global_position.y)
 			file.store_8(stroke.pressures[p_idx])
 			p_idx += 1
 
@@ -81,7 +83,7 @@ static func load_project(project: Project) -> void:
 	# Brush strokes
 	var stroke_index := 0
 	while true:
-		var brush_stroke := BrushStroke.new()
+		var brush_stroke: BrushStroke = BRUSH_STROKE.instance()
 		
 		# Type
 		var type := file.get_8()

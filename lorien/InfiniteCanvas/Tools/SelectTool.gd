@@ -36,7 +36,7 @@ func set_selecting(value: bool) -> void:
 		_canvas.confirm_selections()
 	else:
 		if !multi_selecting:
-			_canvas.deselect_all_line2d()
+			_canvas.deselect_all_strokes()
 
 # -------------------------------------------------------------
 func is_selecting() -> bool:

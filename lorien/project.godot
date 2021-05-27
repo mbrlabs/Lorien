@@ -19,7 +19,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://InfiniteCanvas/Cursor/BrushCursor/BrushCursor.gd"
 }, {
-"base": "Reference",
+"base": "Node2D",
 "class": "BrushStroke",
 "language": "GDScript",
 "path": "res://BrushStroke/BrushStroke.gd"
