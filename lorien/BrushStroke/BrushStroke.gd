@@ -64,11 +64,12 @@ func remove_last_point() -> void:
 	if !points.empty():
 		points.pop_back()
 		pressures.pop_back()
-		_line2d.points.remove(_line2d.size() - 1)
+		_line2d.points.remove(_line2d.points.size() - 1)
 		_line2d.width_curve.remove_point(_line2d.width_curve.get_point_count() - 1)
 
 # ------------------------------------------------------------------------------------------------
 func refresh() -> void:
+
 	var max_pressure := float(MAX_PRESSURE_VALUE)
 	
 	_line2d.clear_points()
@@ -91,7 +92,7 @@ func refresh() -> void:
 	
 	_line2d.width_curve.bake()
 	
-	# TODO: calculate bounding box for the visibility notifier
+	# TODO: calculate bounding box for the visibility notifier and move the correct position
 
 # -------------------------------------------------------------------------------------------------
 func set_color(c: Color) -> void:

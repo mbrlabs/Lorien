@@ -35,6 +35,7 @@ func _add_undoredo_action() -> void:
 		project.undo_redo.add_do_property(stroke, "global_position", stroke.global_position)
 		project.undo_redo.add_undo_property(stroke, "global_position", _initial_positions[stroke])
 	project.undo_redo.commit_action()
+	project.dirty = true
 
 # ------------------------------------------------------------------------------------------------
 func _process(delta: float) -> void:

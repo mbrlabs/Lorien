@@ -46,7 +46,7 @@ func compute_selection(start_pos: Vector2, end_pos: Vector2) -> void:
 		var last_point: Vector2 = _get_absolute_stroke_point_pos(stroke.points.back(), stroke)
 		var is_inside_selection_rect := rect.has_point(first_point) && rect.has_point(last_point)
 		_set_stroke_selected(stroke, is_inside_selection_rect)
-	_canvas.info.selected_lines = get_tree().get_nodes_in_group(Types.CANVAS_GROUP_SELECTED_STROKES).size()
+	_canvas.info.selected_lines = get_selected_strokes().size()
 
 # Returns the absolute position of a point in a Line2D through camera parameters
 # ------------------------------------------------------------------------------------------------
@@ -65,13 +65,17 @@ func _set_stroke_selected(stroke: BrushStroke, is_inside_rect: bool = true) -> v
 
 # ------------------------------------------------------------------------------------------------
 func deselect_all_strokes() -> void:
-	var selected_strokes: Array = get_tree().get_nodes_in_group(Types.CANVAS_GROUP_SELECTED_STROKES)
+	var selected_strokes: Array = get_selected_strokes()
 	if selected_strokes.size():
 		get_tree().set_group(Types.CANVAS_GROUP_SELECTED_STROKES, "modulate", Color.white)
 		for stroke in selected_strokes:
 			stroke.remove_from_group(Types.CANVAS_GROUP_SELECTED_STROKES)
 	_canvas.info.selected_lines = 0
 
-# -------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------
 func is_selecting() -> bool:
 	return _selecting
+
+# ------------------------------------------------------------------------------------------------
+func get_selected_strokes() -> Array:
+	return get_tree().get_nodes_in_group(Types.CANVAS_GROUP_SELECTED_STROKES)

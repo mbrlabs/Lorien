@@ -57,6 +57,10 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("deselect_all_strokes"):
 		if _active_tool == _select_tool || _active_tool == _move_tool:
 			_select_tool.deselect_all_strokes()
+	
+	if Input.is_action_just_pressed("delete_selected_strokes"):
+		if _active_tool == _select_tool || _active_tool == _move_tool:
+			_delete_selected_strokes()
 
 # -------------------------------------------------------------------------------------------------
 func use_tool(tool_type: int) -> void:
@@ -143,7 +147,7 @@ func start_stroke(eraser: bool = false) -> void:
 	else:
 		_current_stroke.color = _brush_color
 	
-	_strokes_parent.call_deferred("add_child", _current_stroke)
+	_strokes_parent.add_child(_current_stroke)
 	_optimizer.reset()
 
 # -------------------------------------------------------------------------------------------------
@@ -235,6 +239,36 @@ func get_camera_zoom() -> float:
 # -------------------------------------------------------------------------------------------------
 func get_camera_offset() -> Vector2:
 	return _camera.offset
+
+# -------------------------------------------------------------------------------------------------
+func _delete_selected_strokes() -> void:
+	var strokes := _select_tool.get_selected_strokes()
+	if !strokes.empty():
+		_current_project.undo_redo.create_action("Delete Selection")
+		for stroke in strokes:
+			_current_project.undo_redo.add_do_method(self, "_do_delete_stroke", stroke)
+			_current_project.undo_redo.add_undo_reference(stroke)
+			_current_project.undo_redo.add_undo_method(self, "_undo_delete_stroke", stroke)
+		_select_tool.deselect_all_strokes()
+		_current_project.undo_redo.commit_action()
+		_current_project.dirty = true
+
+# -------------------------------------------------------------------------------------------------
+func _do_delete_stroke(stroke: BrushStroke) -> void:
+	var index := _current_project.strokes.find(stroke)
+	_current_project.strokes.remove(index)
+	_strokes_parent.remove_child(stroke)
+	info.point_count -= stroke.points.size()
+	info.stroke_count -= 1
+
+# FIXME: this adds strokes at the back and does not preserve stroke order; not sure how to do that except saving before
+# and after versions of the stroke arrays which is a nogo.
+# -------------------------------------------------------------------------------------------------
+func _undo_delete_stroke(stroke: BrushStroke) -> void:
+	_current_project.strokes.append(stroke)
+	_strokes_parent.add_child(stroke)
+	info.point_count += stroke.points.size()
+	info.stroke_count += 1
 
 # -------------------------------------------------------------------------------------------------
 func _on_window_resized() -> void:
