@@ -2,6 +2,9 @@ class_name MoveTool
 extends CanvasTool
 
 # ------------------------------------------------------------------------------------------------
+const META_OFFSET := "offset"
+
+# ------------------------------------------------------------------------------------------------
 var _moving := false
 
 # ------------------------------------------------------------------------------------------------
@@ -12,23 +15,23 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT:
 			_moving = event.pressed
-			offset_selected_strokes_by(_cursor.global_position)
+			_offset_selected_strokes(_cursor.global_position)
 
 # ------------------------------------------------------------------------------------------------
 func _process(delta: float) -> void:
 	if _moving:
-		move_selected_strokes_by(_cursor.global_position)
+		_move_selected_strokes()
 
 # -------------------------------------------------------------------------------------------------
-func offset_selected_strokes_by(offset_by: Vector2) -> void:
+func _offset_selected_strokes(offset: Vector2) -> void:
 	var selected_strokes: Array = get_tree().get_nodes_in_group(Types.CANVAS_GROUP_SELECTED_STROKES)
 	if selected_strokes.size():
 		for stroke in selected_strokes:
-			stroke.set_meta("offset", stroke.position - offset_by)
+			stroke.set_meta(META_OFFSET, stroke.position - offset)
 
 # -------------------------------------------------------------------------------------------------
-func move_selected_strokes_by(cursor_pos: Vector2) -> void:
+func _move_selected_strokes() -> void:
 	var selected_strokes: Array = get_tree().get_nodes_in_group(Types.CANVAS_GROUP_SELECTED_STROKES)
 	if selected_strokes.size():
 		for stroke in selected_strokes:
-			stroke.global_position = stroke.get_meta("offset") + cursor_pos
+			stroke.global_position = stroke.get_meta(META_OFFSET) + _cursor.global_position
