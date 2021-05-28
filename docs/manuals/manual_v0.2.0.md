@@ -1,4 +1,4 @@
-# Manual v0.1.0
+# Manual v0.2.0
 
 Drawing tablets are supported and reccomended, but you can also just use Keyboard+Mouse. 
 
@@ -17,3 +17,6 @@ Drawing tablets are supported and reccomended, but you can also just use Keyboar
 - `E`: activate the eraser tool
 - `L`: activate the line tool
 - `C`: activate the color picker tool
+- `S`: activate selection tool
+- `M`: activate move tool
+- `ESC`: Deselect everything

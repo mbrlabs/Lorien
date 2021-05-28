@@ -54,7 +54,7 @@ func _on_MainMenu_id_pressed(id: int):
 		ITEM_SAVE: pass # TODO: implement
 		ITEM_SAVE_AS: pass # TODO: implement
 		ITEM_SETTINGS: emit_signal("open_settings_dialog")
-		ITEM_MANUAL: emit_signal("open_url", "https://github.com/mbrlabs/lorien/blob/main/docs/manual.md")
+		ITEM_MANUAL: emit_signal("open_url", "https://github.com/mbrlabs/lorien/blob/main/docs/manuals/manual_v0.2.0.md")
 		ITEM_BUG_TRACKER: emit_signal("open_url", "https://github.com/mbrlabs/lorien/issues")
 		ITEM_ABOUT: emit_signal("open_about_dialog")
 

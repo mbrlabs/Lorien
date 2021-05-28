@@ -25,13 +25,11 @@ func _process(delta: float) -> void:
 # -------------------------------------------------------------------------------------------------
 func _offset_selected_strokes(offset: Vector2) -> void:
 	var selected_strokes: Array = get_tree().get_nodes_in_group(Types.CANVAS_GROUP_SELECTED_STROKES)
-	if selected_strokes.size():
-		for stroke in selected_strokes:
-			stroke.set_meta(META_OFFSET, stroke.position - offset)
+	for stroke in selected_strokes:
+		stroke.set_meta(META_OFFSET, stroke.position - offset)
 
 # -------------------------------------------------------------------------------------------------
 func _move_selected_strokes() -> void:
 	var selected_strokes: Array = get_tree().get_nodes_in_group(Types.CANVAS_GROUP_SELECTED_STROKES)
-	if selected_strokes.size():
-		for stroke in selected_strokes:
-			stroke.global_position = stroke.get_meta(META_OFFSET) + _cursor.global_position
+	for stroke in selected_strokes:
+		stroke.global_position = stroke.get_meta(META_OFFSET) + _cursor.global_position

@@ -53,6 +53,12 @@ func _input(event: InputEvent) -> void:
 		info.current_pressure = event.pressure
 
 # -------------------------------------------------------------------------------------------------
+func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("deselect_all_strokes"):
+		if _active_tool == _select_tool || _active_tool == _move_tool:
+			_select_tool.deselect_all_strokes()
+
+# -------------------------------------------------------------------------------------------------
 func use_tool(tool_type: int) -> void:
 	_active_tool.enabled = false
 	
