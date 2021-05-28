@@ -79,6 +79,7 @@ static func load_project(project: Project) -> void:
 	var _version_number := file.get_32()
 	var meta_data_str = file.get_pascal_string()
 	project.meta_data = _metadata_str_to_dict(meta_data_str)
+	var canvas_color: Color = ProjectMetadata.get_canvas_color_from_dict(project.meta_data)
 	
 	# Brush strokes
 	var stroke_index := 0
@@ -87,7 +88,8 @@ static func load_project(project: Project) -> void:
 		
 		# Type
 		var type := file.get_8()
-		if type == TYPE_ERASER_STROKE:
+		var is_eraser_stroke := (type == TYPE_ERASER_STROKE)
+		if is_eraser_stroke:
 			brush_stroke.eraser = true
 			project.eraser_stroke_indices.append(stroke_index)
 		
@@ -96,6 +98,11 @@ static func load_project(project: Project) -> void:
 		var g := file.get_8()
 		var b := file.get_8()
 		brush_stroke.color = Color(r/255.0, g/255.0, b/255.0, 1.0)
+		
+		# v0 just saved eraser stroke colors as black. Now we need it to be the actual background color...so just set it 
+		# here for all eraser strokes no matter the version. Doesn't hurt.
+		if is_eraser_stroke:
+			brush_stroke.color = canvas_color
 		
 		# Brush size
 		brush_stroke.size = file.get_16()
