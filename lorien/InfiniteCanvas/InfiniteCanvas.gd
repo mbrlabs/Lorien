@@ -51,13 +51,21 @@ func draw_selection_rect(start_pos: Vector2, end_pos: Vector2) -> void:
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		info.current_pressure = event.pressure
+	
+	# Deselect selected strokes on right click
+	if event is InputEventMouseButton:
+		if event.button_index == BUTTON_RIGHT && event.pressed:
+			if _active_tool == _select_tool || _active_tool == _move_tool:
+				_select_tool.deselect_all_strokes()
 
 # -------------------------------------------------------------------------------------------------
 func _process(delta: float) -> void:
+	# Deselect selected strokes with shortcut key
 	if Input.is_action_just_pressed("deselect_all_strokes"):
 		if _active_tool == _select_tool || _active_tool == _move_tool:
 			_select_tool.deselect_all_strokes()
 	
+	# Delete selected strokes with shortcut key
 	if Input.is_action_just_pressed("delete_selected_strokes"):
 		if _active_tool == _select_tool || _active_tool == _move_tool:
 			_delete_selected_strokes()

@@ -1,4 +1,4 @@
-# Manual v0.2.0
+# Lorien Manual v0.2.0
 
 Drawing tablets are supported and reccomended, but you can also just use Keyboard+Mouse. 
 
@@ -6,6 +6,8 @@ Drawing tablets are supported and reccomended, but you can also just use Keyboar
 - Draw with the left mouse button or with your drawing tablet's pen
 - Pan/drag across the canvas with the middle mouse button (i recommend to map a button on your pen to the middle mouse button for easy navigation)
 - Zoom with mouse wheel
+- To select a number of strokes activate the Selection tool and drag across the canvas. By holding down shift you can add more strokes to your current selection. `DELETE` deletes all strokes you have currently selected. Right click or `ESC` deselects everyting again.
+- With the Move Tool you can move your current selection anywhere you want
 
 ## Keyboard shortcuts
 - `CTRL+S`: Saves the current file
@@ -19,5 +21,5 @@ Drawing tablets are supported and reccomended, but you can also just use Keyboar
 - `C`: Color picker tool
 - `S`: Selection tool
 - `M`: Move tool
-- `ESC`: Deselect everything
+- `ESC`or `RMB`: Deselect everything
 - `DELETE`: Deletes selected brush strokes

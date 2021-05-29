@@ -1,4 +1,4 @@
-# Manual v0.1.0
+# Lorien Manual v0.1.0
 
 Drawing tablets are supported and reccomended, but you can also just use Keyboard+Mouse. 
 
