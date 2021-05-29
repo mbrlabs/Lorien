@@ -8,12 +8,11 @@
 [sub_resource type="StyleBoxEmpty" id=2]
 
 [node name="SettingsDialog" type="WindowDialog"]
-visible = true
 margin_right = 400.0
 margin_bottom = 250.0
 rect_min_size = Vector2( 500, 350 )
 theme = ExtResource( 1 )
-window_title = "Settings"
+window_title = "SETTINGS_TITLE"
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -69,7 +68,7 @@ margin_right = 236.0
 margin_bottom = 19.0
 size_flags_horizontal = 3
 size_flags_vertical = 6
-text = "Default Brush Size:"
+text = "SETTINGS_BRUSH_SIZE"
 
 [node name="DefaultBrushSize" type="SpinBox" parent="MarginContainer/TabContainer/General/VBoxContainer/DefaultBrushSize"]
 margin_left = 240.0
@@ -92,7 +91,7 @@ margin_right = 236.0
 margin_bottom = 17.0
 size_flags_horizontal = 3
 size_flags_vertical = 6
-text = "Default Brush Color:"
+text = "SETTINGS_BRUSH_COLOR"
 
 [node name="DefaultBrushColor" type="ColorPickerButton" parent="MarginContainer/TabContainer/General/VBoxContainer/DefaultBrushColor"]
 margin_left = 240.0
@@ -119,7 +118,7 @@ margin_right = 236.0
 margin_bottom = 17.0
 size_flags_horizontal = 3
 size_flags_vertical = 6
-text = "Default Canvas Color:"
+text = "SETTINGS_CANVAS_COLOR"
 
 [node name="DefaultCanvasColor" type="ColorPickerButton" parent="MarginContainer/TabContainer/General/VBoxContainer/DefaultCanvasColor"]
 margin_left = 240.0
@@ -147,7 +146,7 @@ margin_right = 236.0
 margin_bottom = 19.0
 size_flags_horizontal = 3
 size_flags_vertical = 6
-text = "Default Project Folder:"
+text = "SETTINGS_PROJECT_FOLDER"
 
 [node name="DefaultSaveDir" type="LineEdit" parent="MarginContainer/TabContainer/General/VBoxContainer/DefaultSaveDir"]
 margin_left = 240.0
@@ -157,6 +156,44 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 placeholder_text = "e.g. C:/Users/me/Lorien"
 placeholder_alpha = 0.5
+
+[node name="HSeparator4" type="HSeparator" parent="MarginContainer/TabContainer/General/VBoxContainer"]
+margin_top = 108.0
+margin_right = 476.0
+margin_bottom = 132.0
+custom_constants/separation = 24
+
+[node name="Language" type="HBoxContainer" parent="MarginContainer/TabContainer/General/VBoxContainer"]
+margin_top = 136.0
+margin_right = 476.0
+margin_bottom = 161.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="MarginContainer/TabContainer/General/VBoxContainer/Language"]
+margin_top = 4.0
+margin_right = 236.0
+margin_bottom = 21.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+text = "SETTINGS_LANGUAGE"
+
+[node name="OptionButton" type="OptionButton" parent="MarginContainer/TabContainer/General/VBoxContainer/Language"]
+margin_left = 240.0
+margin_right = 476.0
+margin_bottom = 25.0
+size_flags_horizontal = 3
+text = "English"
+items = [ "English", null, false, 0, null, "German", null, false, 1, null ]
+selected = 0
+
+[node name="RestartLabel" type="Label" parent="MarginContainer/TabContainer/General/VBoxContainer"]
+visible = false
+margin_top = 165.0
+margin_right = 476.0
+margin_bottom = 182.0
+custom_colors/font_color = Color( 1, 0.470588, 0.470588, 1 )
+text = "You need to restart for settings to take effect"
+align = 1
 
 [node name="Appearance" type="Control" parent="MarginContainer/TabContainer"]
 visible = false
@@ -178,9 +215,9 @@ custom_styles/separator = SubResource( 1 )
 custom_constants/separation = 12
 
 [node name="Theme" type="HBoxContainer" parent="MarginContainer/TabContainer/Appearance/VBoxContainer"]
-margin_top = 32.0
+margin_top = 16.0
 margin_right = 476.0
-margin_bottom = 57.0
+margin_bottom = 41.0
 size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="MarginContainer/TabContainer/Appearance/VBoxContainer/Theme"]
@@ -189,7 +226,7 @@ margin_right = 236.0
 margin_bottom = 21.0
 size_flags_horizontal = 3
 size_flags_vertical = 6
-text = "Theme:"
+text = "SETTINGS_THEME"
 
 [node name="Theme" type="OptionButton" parent="MarginContainer/TabContainer/Appearance/VBoxContainer/Theme"]
 margin_left = 240.0
@@ -202,8 +239,9 @@ items = [ "Dark", null, false, 0, null, "Light (not implemented yet)", null, fal
 selected = 0
 
 [node name="HSeparator5" type="HSeparator" parent="MarginContainer/TabContainer/Appearance/VBoxContainer"]
+margin_top = 45.0
 margin_right = 476.0
-margin_bottom = 12.0
+margin_bottom = 57.0
 custom_styles/separator = SubResource( 1 )
 custom_constants/separation = 12
 
@@ -236,9 +274,9 @@ custom_styles/separator = SubResource( 1 )
 custom_constants/separation = 12
 
 [node name="AntiAliasing" type="HBoxContainer" parent="MarginContainer/TabContainer/Rendering/VBoxContainer"]
-margin_top = 32.0
+margin_top = 16.0
 margin_right = 476.0
-margin_bottom = 57.0
+margin_bottom = 41.0
 size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="MarginContainer/TabContainer/Rendering/VBoxContainer/AntiAliasing"]
@@ -247,7 +285,7 @@ margin_right = 236.0
 margin_bottom = 21.0
 size_flags_horizontal = 3
 size_flags_vertical = 6
-text = "Anti Aliasing Method:"
+text = "SETTINGS_AA_METHOD"
 
 [node name="AntiAliasing" type="OptionButton" parent="MarginContainer/TabContainer/Rendering/VBoxContainer/AntiAliasing"]
 margin_left = 240.0
@@ -255,13 +293,14 @@ margin_right = 476.0
 margin_bottom = 25.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-text = "None"
-items = [ "None", null, false, 0, null, "OpenGL Hint", null, false, 1, null, "Texture Fill", null, false, 2, null ]
+text = "SETTINGS_AA_METHOD_NONE"
+items = [ "SETTINGS_AA_METHOD_NONE", null, false, 0, null, "OpenGL Hint", null, false, 1, null, "Texture Fill", null, false, 2, null ]
 selected = 0
 
 [node name="HSeparator4" type="HSeparator" parent="MarginContainer/TabContainer/Rendering/VBoxContainer"]
+margin_top = 45.0
 margin_right = 476.0
-margin_bottom = 12.0
+margin_bottom = 57.0
 custom_styles/separator = SubResource( 1 )
 custom_constants/separation = 12
 
@@ -275,37 +314,10 @@ custom_colors/font_color = Color( 1, 0.470588, 0.470588, 1 )
 text = "You need to restart for settings to take effect"
 align = 1
 
-[node name="Debug" type="Control" parent="MarginContainer/TabContainer"]
-visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_top = 27.0
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/TabContainer/Debug"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="HSeparator3" type="HSeparator" parent="MarginContainer/TabContainer/Debug/VBoxContainer"]
-margin_right = 426.0
-margin_bottom = 12.0
-custom_styles/separator = SubResource( 1 )
-custom_constants/separation = 12
-
-[node name="Label3" type="Label" parent="MarginContainer/TabContainer/Debug/VBoxContainer"]
-margin_top = 16.0
-margin_right = 426.0
-margin_bottom = 33.0
-text = "Debug"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [connection signal="value_changed" from="MarginContainer/TabContainer/General/VBoxContainer/DefaultBrushSize/DefaultBrushSize" to="." method="_on_DefaultBrushSize_value_changed"]
 [connection signal="color_changed" from="MarginContainer/TabContainer/General/VBoxContainer/DefaultBrushColor/DefaultBrushColor" to="." method="_on_DefaultBrushColor_color_changed"]
 [connection signal="color_changed" from="MarginContainer/TabContainer/General/VBoxContainer/DefaultCanvasColor/DefaultCanvasColor" to="." method="_on_DefaultCanvasColor_color_changed"]
 [connection signal="text_changed" from="MarginContainer/TabContainer/General/VBoxContainer/DefaultSaveDir/DefaultSaveDir" to="." method="_on_DefaultSaveDir_text_changed"]
+[connection signal="item_selected" from="MarginContainer/TabContainer/General/VBoxContainer/Language/OptionButton" to="." method="_on_OptionButton_item_selected"]
 [connection signal="item_selected" from="MarginContainer/TabContainer/Appearance/VBoxContainer/Theme/Theme" to="." method="_on_Theme_item_selected"]
 [connection signal="item_selected" from="MarginContainer/TabContainer/Rendering/VBoxContainer/AntiAliasing/AntiAliasing" to="." method="_on_AntiAliasing_item_selected"]

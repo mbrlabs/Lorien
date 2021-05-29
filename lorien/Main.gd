@@ -17,8 +17,9 @@ onready var _background_color_picker: ColorPicker = $BackgroundColorPickerPopup/
 
 # -------------------------------------------------------------------------------------------------
 func _ready():
-	get_tree().set_auto_accept_quit(false)
+	# Init stuff
 	OS.set_window_title("Lorien v%s" % Config.VERSION_STRING)
+	get_tree().set_auto_accept_quit(false)
 	_canvas.set_background_color(Config.DEFAULT_CANVAS_COLOR)
 	var docs_folder = OS.get_system_dir(OS.SYSTEM_DIR_DOCUMENTS)
 	_file_dialog.current_dir = Settings.get_value(Settings.GENERAL_DEFAULT_PROJECT_DIR, docs_folder)
@@ -193,7 +194,7 @@ func _close_project(project_id: int) -> void:
 
 # -------------------------------------------------------------------------------------------------
 func _show_autosave_not_implemented_alert() -> void:
-	_generic_alert_dialog.dialog_text = "Auto-saving not yet implemented for file \"Untitled\".\nPlease save it manually."
+	_generic_alert_dialog.dialog_text = tr("ERROR_AUTOSAVE_NOT_IMPLEMENTED")
 	_generic_alert_dialog.popup_centered()
 
 # -------------------------------------------------------------------------------------------------
@@ -275,7 +276,7 @@ func _on_tool_changed(tool_type: int) -> void:
 	match tool_type:
 		Types.Tool.BRUSH, Types.Tool.ERASER, Types.Tool.LINE, Types.Tool.SELECT, Types.Tool.MOVE: _canvas.use_tool(tool_type)
 		_:
-			_generic_alert_dialog.dialog_text = "Not implemented yet."
+			_generic_alert_dialog.dialog_text = tr("ERROR_NOT_IMPLEMENTED")
 			_generic_alert_dialog.popup_centered()
 
 # -------------------------------------------------------------------------------------------------

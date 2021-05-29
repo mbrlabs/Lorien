@@ -13,7 +13,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ToolsMenu" type="PopupMenu" parent="."]
+[node name="ViewsMenu" type="PopupMenu" parent="."]
 margin_right = 16.0
 margin_bottom = 16.0
 

@@ -5,11 +5,12 @@
 [ext_resource path="res://UI/Themes/theme_dark.tres" type="Theme" id=3]
 
 [node name="UnsavedChangesDialog" type="WindowDialog"]
+visible = true
 margin_right = 310.0
 margin_bottom = 90.0
 rect_min_size = Vector2( 310, 90 )
 theme = ExtResource( 3 )
-window_title = "Save changes?"
+window_title = "UNSAVED_CHANGES_DIALOG_TITLE"
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -19,8 +20,8 @@ __meta__ = {
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = -30.8979
-margin_bottom = -9.89786
+margin_top = -34.2653
+margin_bottom = -9.2653
 custom_constants/separation = 20
 alignment = 1
 __meta__ = {
@@ -29,25 +30,25 @@ __meta__ = {
 }
 
 [node name="SaveButton" type="Button" parent="HBoxContainer"]
-margin_left = 58.0
-margin_right = 100.0
+margin_left = 46.0
+margin_right = 92.0
 margin_bottom = 25.0
 custom_fonts/font = ExtResource( 2 )
-text = "Save"
+text = "SAVE"
 
 [node name="DiscardButton" type="Button" parent="HBoxContainer"]
-margin_left = 120.0
-margin_right = 178.0
+margin_left = 112.0
+margin_right = 179.0
 margin_bottom = 25.0
 custom_fonts/font = ExtResource( 2 )
-text = "Discard"
+text = "DISCARD"
 
 [node name="CancelButton" type="Button" parent="HBoxContainer"]
-margin_left = 198.0
-margin_right = 252.0
+margin_left = 199.0
+margin_right = 263.0
 margin_bottom = 25.0
 custom_fonts/font = ExtResource( 2 )
-text = "Cancel"
+text = "CANCEL"
 
 [node name="Label" type="Label" parent="."]
 anchor_left = 0.5
@@ -56,7 +57,7 @@ margin_left = -145.5
 margin_right = 145.5
 margin_bottom = 51.0
 custom_fonts/font = ExtResource( 2 )
-text = "Do you want to save your changes before closing the file?"
+text = "UNSAVED_CHANGES_DIALOG_TEXT"
 valign = 1
 autowrap = true
 __meta__ = {

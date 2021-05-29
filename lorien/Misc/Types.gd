@@ -2,6 +2,13 @@ extends Node
 class_name Types
 
 # -------------------------------------------------------------------------------------------------
+const CANVAS_GROUP_SELECTED_STROKES := "selected_strokes"
+
+# -------------------------------------------------------------------------------------------------
+const LOCALE_ENGLISH := "en"
+const LOCALE_GERMAN := "de"
+
+# -------------------------------------------------------------------------------------------------
 enum Tool {
 	BRUSH,
 	LINE,
@@ -35,6 +42,3 @@ class CanvasInfo:
 	var stroke_count: int
 	var current_pressure: float
 	var selected_lines : int
-
-# -------------------------------------------------------------------------------------------------
-const CANVAS_GROUP_SELECTED_STROKES := "selected_strokes"

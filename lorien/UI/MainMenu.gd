@@ -15,38 +15,37 @@ const ITEM_MANUAL 		:= 3
 const ITEM_BUG_TRACKER 	:= 4
 const ITEM_ABOUT 		:= 5
 
-const ITEM_TOOL_1 		:= 100
-const ITEM_TOOL_2 		:= 101
-const ITEM_TOOL_3 		:= 102
+const ITEM_VIEW_1 		:= 100
+const ITEM_VIEW_2 		:= 101
+const ITEM_VIEW_3 		:= 102
 
 const ITEM_EXPORT_PNG	:= 200
 
 # -------------------------------------------------------------------------------------------------
-onready var _submenu_tools: PopupMenu = $ToolsMenu
+onready var _submenu_views: PopupMenu = $ViewsMenu
 onready var _submenu_export: PopupMenu = $ExportMenu
 
 # -------------------------------------------------------------------------------------------------
 func _ready():
-	# Tool submenu
-	_submenu_tools.name = "Tools"
-	_submenu_tools.add_item("Tool 1", ITEM_TOOL_1)
-	_submenu_tools.add_item("Tool 2", ITEM_TOOL_2)
+	# Views submenu
+	_submenu_views.name = "Views"
+	_submenu_views.add_item("View 1", ITEM_VIEW_1)
+	_submenu_views.add_item("View 2", ITEM_VIEW_2)
 	
 	# Export submenu
-	_submenu_export.name = "Export"
-	_submenu_export.add_item("Export Canvas as PNG", ITEM_EXPORT_PNG)
+	_submenu_export.name = tr("MENU_EXPORT")
+	_submenu_export.add_item(tr("MENU_EXPORT_PNG"), ITEM_EXPORT_PNG)
 	
 	# main menu
-	add_item("Save", ITEM_SAVE)
-	add_item("Save as", ITEM_SAVE_AS)
-	add_submenu_item(_submenu_export.name, "Export")
+	add_item(tr("MENU_SAVE"), ITEM_SAVE)
+	add_item(tr("MENU_SAVE_AS"), ITEM_SAVE_AS)
+	add_submenu_item(_submenu_export.name, tr("MENU_EXPORT"))
 	add_separator()
-	add_submenu_item(_submenu_tools.name, "Tools")
-	add_item("Settings", ITEM_SETTINGS)
+	add_item(tr("MENU_SETTINGS"), ITEM_SETTINGS)
 	add_separator()
-	add_item("Online Manual", ITEM_MANUAL)
-	add_item("Bug Tracker", ITEM_BUG_TRACKER)
-	add_item("About", ITEM_ABOUT)
+	add_item(tr("MENU_MANUAL"), ITEM_MANUAL)
+	add_item(tr("MENU_BUG_TRACKER"), ITEM_BUG_TRACKER)
+	add_item(tr("MENU_ABOUT"), ITEM_ABOUT)
 
 # -------------------------------------------------------------------------------------------------
 func _on_MainMenu_id_pressed(id: int):

@@ -44,6 +44,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Misc/Config.gd"
 }, {
+"base": "Reference",
+"class": "I18nParser",
+"language": "GDScript",
+"path": "res://Misc/I18nParser.gd"
+}, {
 "base": "ViewportContainer",
 "class": "InfiniteCanvas",
 "language": "GDScript",
@@ -122,6 +127,7 @@ _global_script_class_icons={
 "BrushTool": "",
 "CanvasTool": "res://Assets/Icons/tools.png",
 "Config": "",
+"I18nParser": "",
 "InfiniteCanvas": "",
 "LineTool": "",
 "MainMenu": "",

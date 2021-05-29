@@ -1,0 +1,96 @@
+# -----------------------------------------------------------------------------
+# Menu strings
+# -----------------------------------------------------------------------------
+
+MENU_SAVE           Save
+MENU_SAVE_AS        Save as..
+MENU_SETTINGS       Settings
+MENU_MANUAL         Manual
+MENU_BUG_TRACKER    Bug Tracker
+MENU_ABOUT          About
+MENU_EXPORT         Export
+MENU_EXPORT_PNG     Export Canvas as PNG
+
+# -----------------------------------------------------------------------------
+# Toolbar
+# -----------------------------------------------------------------------------
+TOOLBAR_TOOLTIP_NEW_FILE        Create New File (CTRL+N)
+TOOLBAR_TOOLTIP_OPEN_FILE       Open File (CTRL+O)
+TOOLBAR_TOOLTIP_SAVE_FILE       Save File (CTRL+S)
+TOOLBAR_TOOLTIP_UNDO            Undo Action (CTRL+Z)
+TOOLBAR_TOOLTIP_REDO            Redo Action (CTRL+Y)
+TOOLBAR_TOOLTIP_BRUSH_TOOL      Brush Tool (B)
+TOOLBAR_TOOLTIP_LINE_TOOL       Line Tool (L)
+TOOLBAR_TOOLTIP_ERASER_TOOL     Eraser (E)
+TOOLBAR_TOOLTIP_PICKER_TOOL     Color Picker Tool (C)
+TOOLBAR_TOOLTIP_SELECT_TOOL     Select Tool (S)
+TOOLBAR_TOOLTIP_MOVE_TOOL       Move Tool (M)
+TOOLBAR_TOOLTIP_BRUSH_COLOR     Brush Color
+TOOLBAR_TOOLTIP_BRUSH_SIZE      Brush Size
+TOOLBAR_TOOLTIP_CANVAS_COLOR    Canvas Color
+
+# -----------------------------------------------------------------------------
+# Statusbar strings
+# -----------------------------------------------------------------------------
+
+STATUSBAR_POSITION              Position
+STATUSBAR_ZOOM                  Zoom
+STATUSBAR_PRESSURE              Pressure
+STATUSBAR_FPS                   FPS
+STATUSBAR_STROKES               Strokes
+STATUSBAR_POINTS                Points
+STATUSBAR_SELECTED_STROKES      Selected strokes
+
+# -----------------------------------------------------------------------------
+# Settings strings
+# -----------------------------------------------------------------------------
+
+SETTINGS_TITLE              Settings
+SETTINGS_GENERAL            General
+SETTINGS_APPEARANCE         Appearance
+SETTINGS_RENDERING          Rendering
+SETTINGS_BRUSH_SIZE         Default Brush Size
+SETTINGS_BRUSH_COLOR        Default Brush Color
+SETTINGS_CANVAS_COLOR       Default Canvas Color
+SETTINGS_PROJECT_FOLDER     Default Project Folder
+SETTINGS_LANGUAGE           Language
+SETTINGS_THEME              Theme
+SETTINGS_AA_METHOD          Anti Aliasing Method
+SETTINGS_AA_METHOD_NONE     None
+
+# -----------------------------------------------------------------------------
+# About dialog strings
+# -----------------------------------------------------------------------------
+
+ABOUT_DIALOG_TITLE              About
+ABOUT_DIALOG_COPYRIGHT          © 2021 Marcus Brummer (mbrlabs) and contributors 
+ABOUT_DIALOG_LICSENSE           Lorien is licensed under:
+ABOUT_DIALOG_BASED_ON           Lorien is based on:
+
+# -----------------------------------------------------------------------------
+# Unsaved changes dialog
+# -----------------------------------------------------------------------------
+
+UNSAVED_CHANGES_DIALOG_TITLE    Save changes?
+UNSAVED_CHANGES_DIALOG_TEXT     Do you want to save your changes before closing the file?
+
+# -----------------------------------------------------------------------------
+# Exit dialog
+# -----------------------------------------------------------------------------
+
+EXIT_DIALOG_TITLE    Save changes?
+EXIT_DIALOG_TEXT     Do you want to save your changes before exiting Lorien?
+
+# -----------------------------------------------------------------------------
+# Error messages
+# -----------------------------------------------------------------------------
+ERROR_NOT_IMPLEMENTED               Not implemented yet.
+ERROR_AUTOSAVE_NOT_IMPLEMENTED      Auto-saving not yet implemented for file "Untitled". Please save it manually.
+
+# -----------------------------------------------------------------------------
+# Generic strings
+# -----------------------------------------------------------------------------
+
+SAVE            Save
+DISCARD         Discard
+CANCEL          Cancel

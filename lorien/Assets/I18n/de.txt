@@ -1,0 +1,96 @@
+# --------------------------------------------------------------------------------
+# Menu
+# --------------------------------------------------------------------------------
+
+MENU_SAVE           Speichern
+MENU_SAVE_AS        Speichern als..
+MENU_SETTINGS       Einstellungen
+MENU_MANUAL         Benutzeranleitung
+MENU_BUG_TRACKER    Bug Tracker
+MENU_ABOUT          Über
+MENU_EXPORT         Exportieren
+MENU_EXPORT_PNG     Exportieren als PNG
+
+# -----------------------------------------------------------------------------
+# Toolbar
+# -----------------------------------------------------------------------------
+TOOLBAR_TOOLTIP_NEW_FILE        Neue Datei anlegen (CTRL+N)
+TOOLBAR_TOOLTIP_OPEN_FILE       Datei öffnen (CTRL+O)
+TOOLBAR_TOOLTIP_SAVE_FILE       Datei speichern (CTRL+S)
+TOOLBAR_TOOLTIP_UNDO            Undo Action (CTRL+Z)
+TOOLBAR_TOOLTIP_REDO            Redo Action (CTRL+Y)
+TOOLBAR_TOOLTIP_BRUSH_TOOL      Pinsel Werkzeug (B)
+TOOLBAR_TOOLTIP_LINE_TOOL       Linien Werkzeug (L)
+TOOLBAR_TOOLTIP_ERASER_TOOL     Radierer (E)
+TOOLBAR_TOOLTIP_PICKER_TOOL     Color Picker Werkzeug (C)
+TOOLBAR_TOOLTIP_SELECT_TOOL     Pinselstriche auswählen (S)
+TOOLBAR_TOOLTIP_MOVE_TOOL       Auswahl verschieben (M)
+TOOLBAR_TOOLTIP_BRUSH_COLOR     Pinsel Farbe
+TOOLBAR_TOOLTIP_BRUSH_SIZE      Pinsel Größe
+TOOLBAR_TOOLTIP_CANVAS_COLOR    Canvas Farbe
+
+# -----------------------------------------------------------------------------
+# Statusbar
+# -----------------------------------------------------------------------------
+
+STATUSBAR_POSITION              Position
+STATUSBAR_ZOOM                  Zoom
+STATUSBAR_PRESSURE              Druck
+STATUSBAR_FPS                   FPS
+STATUSBAR_STROKES               Striche
+STATUSBAR_POINTS                Punkte
+STATUSBAR_SELECTED_STROKES      Ausgewählte Striche
+
+# -----------------------------------------------------------------------------
+# Settings
+# -----------------------------------------------------------------------------
+
+SETTINGS_TITLE              Einstellungen
+SETTINGS_GENERAL            Generell
+SETTINGS_APPEARANCE         Ansicht
+SETTINGS_RENDERING          Rendering
+SETTINGS_BRUSH_SIZE         Default Pinsel Größe
+SETTINGS_BRUSH_COLOR        Default Pinsel Farbe
+SETTINGS_CANVAS_COLOR       Default Canvas Farbe
+SETTINGS_PROJECT_FOLDER     Default Project Ordner
+SETTINGS_LANGUAGE           Sprache
+SETTINGS_THEME              Theme
+SETTINGS_AA_METHOD          Anti Aliasing Methode
+SETTINGS_AA_METHOD_NONE     Keine
+
+# -----------------------------------------------------------------------------
+# About dialog
+# -----------------------------------------------------------------------------
+
+ABOUT_DIALOG_TITLE              Über
+ABOUT_DIALOG_COPYRIGHT          © 2021 Marcus Brummer (mbrlabs) und Mitwirkende
+ABOUT_DIALOG_LICSENSE           Lorien ist lizenziert unter:
+ABOUT_DIALOG_BASED_ON           Lorien basiert auf:
+
+# -----------------------------------------------------------------------------
+# Unsaved changes dialog
+# -----------------------------------------------------------------------------
+
+UNSAVED_CHANGES_DIALOG_TITLE    Änderungen speichern?
+UNSAVED_CHANGES_DIALOG_TEXT     Willst du deine Änderungen speichern bevor die Datei geschlossen wird?
+
+# -----------------------------------------------------------------------------
+# Exit dialog
+# -----------------------------------------------------------------------------
+
+EXIT_DIALOG_TITLE    Änderungen speichern?
+EXIT_DIALOG_TEXT     Willst du deine Änderungen speichern bevor Lorien geschlossen wird?
+
+# -----------------------------------------------------------------------------
+# Error messages
+# -----------------------------------------------------------------------------
+ERROR_NOT_IMPLEMENTED               Nicht implementriert
+ERROR_AUTOSAVE_NOT_IMPLEMENTED      Auto-Speichern ist nicht implementriert für Datei "Untitled". Bitte manuell speichern.
+
+# -----------------------------------------------------------------------------
+# Generic strings
+# -----------------------------------------------------------------------------
+
+SAVE            Speichern
+DISCARD         Verwerfen
+CANCEL          Abbrechen

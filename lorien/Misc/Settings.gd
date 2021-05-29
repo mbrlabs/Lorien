@@ -7,6 +7,7 @@ const GENERAL_DEFAULT_BRUSH_COLOR 		:= "general_default_brush_color"
 const GENERAL_DEFAULT_PROJECT_DIR		:= "general_default_project_dir"
 const APPEARANCE_THEME 					:= "appearance_theme"
 const RENDERING_AA_MODE					:= "rendering_aa_mode"
+const LANGUAGE							:= "language"
 const DEBUG_DRAW_STROKE_POINTS			:= "debug_draw_stroke_points"
 
 # -------------------------------------------------------------------------------------------------
@@ -16,6 +17,10 @@ var _config_file := ConfigFile.new()
 func _ready():
 	_config_file = ConfigFile.new()
 	_load_settings()
+
+	var i18n := I18nParser.new()
+	i18n.load_files()
+	TranslationServer.set_locale(get_value(LANGUAGE, "en"))
 
 # -------------------------------------------------------------------------------------------------
 func _load_settings() -> int:
