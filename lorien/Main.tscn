@@ -71,10 +71,10 @@ __meta__ = {
 }
 
 [node name="ColorPicker" type="ColorPicker" parent="BrushColorPickerPopup/PanelContainer"]
-margin_left = 4.0
-margin_top = 4.0
-margin_right = 309.0
-margin_bottom = 438.0
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 321.0
+margin_bottom = 450.0
 edit_alpha = false
 __meta__ = {
 "_edit_use_anchors_": false
@@ -103,10 +103,10 @@ __meta__ = {
 }
 
 [node name="ColorPicker" type="ColorPicker" parent="BackgroundColorPickerPopup/PanelContainer"]
-margin_left = 4.0
-margin_top = 4.0
-margin_right = 314.001
-margin_bottom = 438.0
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 326.001
+margin_bottom = 450.0
 edit_alpha = false
 __meta__ = {
 "_edit_use_anchors_": false
@@ -161,6 +161,7 @@ current_dir = "/Users/mbrla/Projects/lorien/lorien"
 current_path = "/Users/mbrla/Projects/lorien/lorien/"
 
 [node name="UnsavedChangesDialog" parent="." instance=ExtResource( 7 )]
+visible = false
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -181,7 +182,6 @@ margin_right = 225.0
 margin_bottom = 92.5
 
 [node name="SettingsDialog" parent="." instance=ExtResource( 10 )]
-visible = false
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5

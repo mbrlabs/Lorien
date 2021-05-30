@@ -10,6 +10,7 @@ const AA_TEXTURE_FILL_INDEX := 2
 
 const LANGUAGE_ID_ENGLISH := 0
 const LANGUAGE_ID_GERMAN := 1
+const LANGUAGE_ID_ITALIAN := 2
 
 # -------------------------------------------------------------------------------------------------
 onready var _tab_general: Control = $MarginContainer/TabContainer/General
@@ -53,6 +54,7 @@ func _set_values() -> void:
 	match language:
 		Types.LOCALE_ENGLISH: _language_options.selected = LANGUAGE_ID_ENGLISH
 		Types.LOCALE_GERMAN: _language_options.selected = LANGUAGE_ID_GERMAN
+		Types.LOCALE_ITALIAN: _language_options.selected = LANGUAGE_ID_ITALIAN
 	
 	_brush_size.value = brush_size
 	_brush_color.color = brush_color
@@ -105,6 +107,7 @@ func _on_OptionButton_item_selected(id: int):
 	var locale := Types.LOCALE_ENGLISH
 	match id:
 		LANGUAGE_ID_GERMAN: locale = Types.LOCALE_GERMAN
+		LANGUAGE_ID_ITALIAN: locale = Types.LOCALE_ITALIAN
 	
 	Settings.set_value(Settings.LANGUAGE, locale)
 	TranslationServer.set_locale(locale)

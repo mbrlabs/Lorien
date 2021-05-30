@@ -63,7 +63,7 @@ SETTINGS_AA_METHOD_NONE     Nessuno
 # -----------------------------------------------------------------------------
 
 ABOUT_DIALOG_TITLE              Informazioni
-ABOUT_DIALOG_COPYRIGHT          © 2021 Marcus Brummer (mbrlabs) and contributori 
+ABOUT_DIALOG_COPYRIGHT          © 2021 Marcus Brummer (mbrlabs) e contributori 
 ABOUT_DIALOG_LICSENSE           Lorien è concesso in licenza sotto:
 ABOUT_DIALOG_BASED_ON           Lorien si basa su:
 
@@ -85,7 +85,7 @@ EXIT_DIALOG_TEXT     Vuoi salvare le modifiche prima di uscire da Lorien?
 # Error messages
 # -----------------------------------------------------------------------------
 ERROR_NOT_IMPLEMENTED               Non ancora implementato.
-ERROR_AUTOSAVE_NOT_IMPLEMENTED      Salvataggio automatico non ancora implementato per il file "Senza titolo". Si prega di salvarlo manualmente.
+ERROR_AUTOSAVE_NOT_IMPLEMENTED      Salvataggio automatico non ancora implementato per il file "Untitled". Si prega di salvarlo manualmente.
 
 # -----------------------------------------------------------------------------
 # Generic strings
