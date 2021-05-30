@@ -1,0 +1,96 @@
+# -----------------------------------------------------------------------------
+# Menu
+# -----------------------------------------------------------------------------
+
+MENU_SAVE           Salva
+MENU_SAVE_AS        Salva come..
+MENU_SETTINGS       Impostazioni
+MENU_MANUAL         Manuale
+MENU_BUG_TRACKER    Bug Tracker
+MENU_ABOUT          Informazioni
+MENU_EXPORT         Esporta
+MENU_EXPORT_PNG     Esporta Tela come PNG
+
+# -----------------------------------------------------------------------------
+# Toolbar
+# -----------------------------------------------------------------------------
+TOOLBAR_TOOLTIP_NEW_FILE        Crea nuovo file (CTRL+N)
+TOOLBAR_TOOLTIP_OPEN_FILE       Apri File (CTRL+O)
+TOOLBAR_TOOLTIP_SAVE_FILE       Salva File (CTRL+S)
+TOOLBAR_TOOLTIP_UNDO            Annulla Azione (CTRL+Z)
+TOOLBAR_TOOLTIP_REDO            Ripeti Azione (CTRL+Y)
+TOOLBAR_TOOLTIP_BRUSH_TOOL      Strumento Pennello (B)
+TOOLBAR_TOOLTIP_LINE_TOOL       Strumento Linea (L)
+TOOLBAR_TOOLTIP_ERASER_TOOL     Gomma per cancellare (E)
+TOOLBAR_TOOLTIP_PICKER_TOOL     Strumento selezione del Colore (C)
+TOOLBAR_TOOLTIP_SELECT_TOOL     Seleziona strumento (S)
+TOOLBAR_TOOLTIP_MOVE_TOOL       Sposta Strumento (M)
+TOOLBAR_TOOLTIP_BRUSH_COLOR     Colore Pennello
+TOOLBAR_TOOLTIP_BRUSH_SIZE      Dimensione del Pennello
+TOOLBAR_TOOLTIP_CANVAS_COLOR    Colore della Tela
+
+# -----------------------------------------------------------------------------
+# Statusbar strings
+# -----------------------------------------------------------------------------
+
+STATUSBAR_POSITION              Posizione
+STATUSBAR_ZOOM                  Zoom
+STATUSBAR_PRESSURE              Pressione
+STATUSBAR_FPS                   FPS
+STATUSBAR_STROKES               Tratti
+STATUSBAR_POINTS                Punti
+STATUSBAR_SELECTED_STROKES      Tratti selezionati
+
+# -----------------------------------------------------------------------------
+# Settings strings
+# -----------------------------------------------------------------------------
+
+SETTINGS_TITLE              Impostazioni
+SETTINGS_GENERAL            Generale
+SETTINGS_APPEARANCE         Aspetto
+SETTINGS_RENDERING          Rendering
+SETTINGS_BRUSH_SIZE         Dimensione Pennello Predefinita
+SETTINGS_BRUSH_COLOR        Colore Pennello Predefinito
+SETTINGS_CANVAS_COLOR       Colore Tela Predefinito
+SETTINGS_PROJECT_FOLDER     Cartella di Progetto Predefinita
+SETTINGS_LANGUAGE           Lingua
+SETTINGS_THEME              Tema
+SETTINGS_AA_METHOD          Metodo Anti-Aliasing
+SETTINGS_AA_METHOD_NONE     Nessuno
+
+# -----------------------------------------------------------------------------
+# About dialog strings
+# -----------------------------------------------------------------------------
+
+ABOUT_DIALOG_TITLE              Informazioni
+ABOUT_DIALOG_COPYRIGHT          © 2021 Marcus Brummer (mbrlabs) and contributori 
+ABOUT_DIALOG_LICSENSE           Lorien è concesso in licenza sotto:
+ABOUT_DIALOG_BASED_ON           Lorien si basa su:
+
+# -----------------------------------------------------------------------------
+# Unsaved changes dialog
+# -----------------------------------------------------------------------------
+
+UNSAVED_CHANGES_DIALOG_TITLE    Salvare le modifiche?
+UNSAVED_CHANGES_DIALOG_TEXT     Vuoi salvare le modifiche prima di chiudere il file?
+
+# -----------------------------------------------------------------------------
+# Exit dialog
+# -----------------------------------------------------------------------------
+
+EXIT_DIALOG_TITLE    Salvare le modifiche?
+EXIT_DIALOG_TEXT     Vuoi salvare le modifiche prima di uscire da Lorien?
+
+# -----------------------------------------------------------------------------
+# Error messages
+# -----------------------------------------------------------------------------
+ERROR_NOT_IMPLEMENTED               Non ancora implementato.
+ERROR_AUTOSAVE_NOT_IMPLEMENTED      Salvataggio automatico non ancora implementato per il file "Senza titolo". Si prega di salvarlo manualmente.
+
+# -----------------------------------------------------------------------------
+# Generic strings
+# -----------------------------------------------------------------------------
+
+SAVE            Salva
+DISCARD         Abbandona
+CANCEL          Cancella
