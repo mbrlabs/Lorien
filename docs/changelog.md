@@ -13,11 +13,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Selection tool
 - Move tool
 - Delete selected brush strokes
-- Added an option to switch between languages (currently: English and German)
+- Added an option to switch between languages: English, German and Italian
 
 ### Fixed
 - Fixed the size of the drawing area/viewport for [high resolution displays](https://github.com/mbrlabs/Lorien/issues/1)
 - Fixed some memory leaks
+- Various smaller fixes
 
 ### Changed
 - Switched to GLES2 for better compability with older hardware

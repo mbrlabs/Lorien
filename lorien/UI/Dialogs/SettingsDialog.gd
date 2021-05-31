@@ -42,7 +42,7 @@ func _set_values() -> void:
 	var project_dir = Settings.get_value(Settings.GENERAL_DEFAULT_PROJECT_DIR, "")
 	var theme = Settings.get_value(Settings.APPEARANCE_THEME, Types.UITheme.DARK)
 	var aa_mode = Settings.get_value(Settings.RENDERING_AA_MODE, Config.DEFAULT_AA_MODE)
-	var language = Settings.get_value(Settings.LANGUAGE, Types.LOCALE_ENGLISH)
+	var language = Settings.get_value(Settings.GENERAL_LANGUAGE, Types.LOCALE_ENGLISH)
 	
 	match theme:
 		Types.UITheme.DARK: _theme.selected = THEME_DARK_INDEX
@@ -109,7 +109,7 @@ func _on_OptionButton_item_selected(id: int):
 		LANGUAGE_ID_GERMAN: locale = Types.LOCALE_GERMAN
 		LANGUAGE_ID_ITALIAN: locale = Types.LOCALE_ITALIAN
 	
-	Settings.set_value(Settings.LANGUAGE, locale)
+	Settings.set_value(Settings.GENERAL_LANGUAGE, locale)
 	TranslationServer.set_locale(locale)
 	_general_restart_label.show()
 	

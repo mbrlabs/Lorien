@@ -4,7 +4,7 @@ extends CanvasTool
 var _selecting: bool
 var _selecting_start_pos: Vector2 = Vector2.ZERO
 var _selecting_end_pos: Vector2 = Vector2.ZERO
-var multi_selecting : bool
+var _multi_selecting : bool
 
 # ------------------------------------------------------------------------------------------------
 func _input(event: InputEvent) -> void:
@@ -17,7 +17,7 @@ func _input(event: InputEvent) -> void:
 	
 	if event is InputEventKey:
 		if event.scancode == KEY_SHIFT:
-			multi_selecting = event.pressed
+			_multi_selecting = event.pressed
 	
 	if event is InputEventMouseMotion:
 		_cursor.global_position = xform_vector2(event.global_position)
@@ -34,7 +34,7 @@ func _set_selecting(value: bool) -> void:
 		_selecting_start_pos = Vector2.ZERO
 		_selecting_end_pos = _selecting_start_pos
 	else:
-		if !multi_selecting:
+		if !_multi_selecting:
 			deselect_all_strokes()
 
 # ------------------------------------------------------------------------------------------------
@@ -59,7 +59,7 @@ func _set_stroke_selected(stroke: BrushStroke, is_inside_rect: bool = true) -> v
 		stroke.modulate = Color.rebeccapurple
 		stroke.add_to_group(Types.CANVAS_GROUP_SELECTED_STROKES)
 	else:
-		if stroke.is_in_group(Types.CANVAS_GROUP_SELECTED_STROKES) && !multi_selecting:
+		if stroke.is_in_group(Types.CANVAS_GROUP_SELECTED_STROKES) && !_multi_selecting:
 			stroke.remove_from_group(Types.CANVAS_GROUP_SELECTED_STROKES)
 			stroke.modulate = Color.white
 

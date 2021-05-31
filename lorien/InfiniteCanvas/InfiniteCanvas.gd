@@ -172,9 +172,10 @@ func remove_last_stroke_point() -> void:
 # -------------------------------------------------------------------------------------------------
 func end_stroke() -> void:
 	if _current_stroke != null:
-		if _current_stroke.points.empty():
-			# FIXME: memory leak right here!
-			_strokes_parent.call_deferred("remove_child", _current_stroke)
+		var points: Array = _current_stroke.points
+		if points.size() <= 1 || (points.size() == 2 && points.front().is_equal_approx(points.back())):
+			_strokes_parent.remove_child(_current_stroke)
+			_current_stroke.queue_free()
 		else:
 			if _use_optimizer:
 				print("Stroke points: %d (%d removed by optimizer)" % [
