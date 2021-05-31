@@ -2,7 +2,6 @@ class_name CanvasTool, "res://Assets/Icons/tools.png"
 extends Node
 
 # -------------------------------------------------------------------------------------------------
-export var pressure_curve: Curve
 export var cursor_path: NodePath
 
 var _cursor: Sprite # This is a BaseCursor. Can't type it.

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://InfiniteCanvas/InfiniteCanvas.gd" type="Script" id=1]
 [ext_resource path="res://InfiniteCanvas/PanZoomCamera.gd" type="Script" id=2]
@@ -10,8 +10,9 @@
 [ext_resource path="res://InfiniteCanvas/Cursor/SelectCursor/SelectCursor.tscn" type="PackedScene" id=8]
 [ext_resource path="res://InfiniteCanvas/Tools/MoveTool.gd" type="Script" id=9]
 [ext_resource path="res://InfiniteCanvas/Cursor/MoveCursor/MoveCursor.tscn" type="PackedScene" id=10]
-[ext_resource path="res://Assets/Icons/move_tool.png" type="Texture" id=11]
+[ext_resource path="res://InfiniteCanvas/Cursor/ColorPickerCursor/ColorPickerCursor.tscn" type="PackedScene" id=11]
 [ext_resource path="res://InfiniteCanvas/Cursor/cursor.shader" type="Shader" id=12]
+[ext_resource path="res://InfiniteCanvas/Tools/ColorPickerTool.gd" type="Script" id=13]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 12 )
@@ -26,13 +27,13 @@ __meta__ = {
 
 [node name="BrushTool" type="Node" parent="."]
 script = ExtResource( 5 )
-pressure_curve = ExtResource( 3 )
 cursor_path = NodePath("../Viewport/BrushCursor")
+pressure_curve = ExtResource( 3 )
 
 [node name="LineTool" type="Node" parent="."]
 script = ExtResource( 6 )
-pressure_curve = ExtResource( 3 )
 cursor_path = NodePath("../Viewport/BrushCursor")
+pressure_curve = ExtResource( 3 )
 
 [node name="SelectTool" type="Node" parent="."]
 script = ExtResource( 7 )
@@ -41,6 +42,10 @@ cursor_path = NodePath("../Viewport/SelectCursor")
 [node name="MoveTool" type="Node" parent="."]
 script = ExtResource( 9 )
 cursor_path = NodePath("../Viewport/MoveCursor")
+
+[node name="ColorPickerTool" type="Node" parent="."]
+script = ExtResource( 13 )
+cursor_path = NodePath("../Viewport/ColorPickerCursor")
 
 [node name="Viewport" type="Viewport" parent="."]
 size = Vector2( 1920, 1080 )
@@ -62,4 +67,5 @@ script = ExtResource( 2 )
 
 [node name="MoveCursor" parent="Viewport" instance=ExtResource( 10 )]
 material = SubResource( 1 )
-texture = ExtResource( 11 )
+
+[node name="ColorPickerCursor" parent="Viewport" instance=ExtResource( 11 )]

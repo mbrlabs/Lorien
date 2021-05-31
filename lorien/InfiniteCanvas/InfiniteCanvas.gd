@@ -10,6 +10,7 @@ onready var _brush_tool: BrushTool = $BrushTool
 onready var _line_tool: LineTool = $LineTool
 onready var _select_tool: SelectTool = $SelectTool
 onready var _move_tool: MoveTool = $MoveTool
+onready var _colorpicker_tool: ColorPickerTool = $ColorPickerTool
 onready var _active_tool: CanvasTool = _brush_tool
 onready var _strokes_parent: Node2D = $Viewport/Strokes
 onready var _camera: Camera2D = $Viewport/Camera2D
@@ -37,6 +38,7 @@ func _ready():
 	get_tree().get_root().connect("size_changed", self, "_on_window_resized")
 	_camera.connect("zoom_changed", $Viewport/SelectCursor, "_on_zoom_changed")
 	_camera.connect("zoom_changed", $Viewport/MoveCursor, "_on_zoom_changed")
+	_camera.connect("zoom_changed", $Viewport/ColorPickerCursor, "_on_zoom_changed")
 
 # -------------------------------------------------------------------------------------------------
 func _draw():
@@ -97,7 +99,8 @@ func use_tool(tool_type: int) -> void:
 			_use_optimizer = false
 		Types.Tool.COLOR_PICKER:
 			_select_tool.deselect_all_strokes()
-			# TODO: implemented
+			_active_tool = _colorpicker_tool
+			_use_optimizer = false
 			
 	_active_tool.enabled = true
 

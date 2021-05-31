@@ -8,6 +8,7 @@ enum Mode {
 }
 
 # -------------------------------------------------------------------------------------------------
+export var pressure_curve: Curve
 var mode: int = Mode.DRAW
 var _last_mouse_motion: InputEventMouseMotion
 

@@ -5,6 +5,7 @@ extends CanvasTool
 const SNAP_STEP := deg2rad(90.0 / 6.0) # = 15 deg
 
 # -------------------------------------------------------------------------------------------------
+export var pressure_curve: Curve
 var _snapping_enabled := false
 var _head: Vector2
 var _tail: Vector2

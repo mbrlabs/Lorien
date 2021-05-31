@@ -1,0 +1,35 @@
+class_name ColorPickerTool
+extends CanvasTool
+
+var _toolbar: Toolbar
+var _viewport: Viewport
+
+# -------------------------------------------------------------------------------------------------
+func _ready():
+	_toolbar = get_tree().root.find_node("Toolbar", true, false)
+	_viewport = get_node("../Viewport")
+
+# -------------------------------------------------------------------------------------------------
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseMotion:
+		_cursor.global_position = xform_vector2(event.global_position)
+
+	elif event is InputEventMouseButton:
+		if event.button_index == BUTTON_LEFT && event.pressed:
+			var color = _pick_color()
+			_toolbar._on_brush_color_changed(color)
+	
+# -------------------------------------------------------------------------------------------------
+func _pick_color() -> Color:
+	var img: Image = _canvas.take_screenshot()
+	img.flip_y()
+	
+	var uv_coords := _viewport.get_mouse_position() / _viewport.size
+	var coords := img.get_size() * uv_coords
+	coords = Vector2(min(coords.x, img.get_width()-1), min(coords.y, img.get_height()-1))
+	
+	img.lock()
+	var color := img.get_pixel(coords.x, coords.y+5)
+	img.unlock()
+		
+	return color

@@ -273,11 +273,7 @@ func _on_redo_action() -> void:
 
 # -------------------------------------------------------------------------------------------------
 func _on_tool_changed(tool_type: int) -> void:
-	match tool_type:
-		Types.Tool.BRUSH, Types.Tool.ERASER, Types.Tool.LINE, Types.Tool.SELECT, Types.Tool.MOVE: _canvas.use_tool(tool_type)
-		_:
-			_generic_alert_dialog.dialog_text = tr("ERROR_NOT_IMPLEMENTED")
-			_generic_alert_dialog.popup_centered()
+	_canvas.use_tool(tool_type)
 
 # -------------------------------------------------------------------------------------------------
 func _on_exit_with_changes_saved(project_ids: Array) -> void:
