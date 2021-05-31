@@ -12,8 +12,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Export the whole canvas as PNG image
 - Selection tool
 - Move tool
-- Delete selected brush strokes
+- Ability to delete selected brush strokes with delete key
 - Added an option to switch between languages: English, German and Italian
+- Line Tool: snap in 15° steps when holding down shift 
 
 ### Fixed
 - Fixed the size of the drawing area/viewport for [high resolution displays](https://github.com/mbrlabs/Lorien/issues/1)

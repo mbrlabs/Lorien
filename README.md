@@ -8,15 +8,18 @@ Lorien is an **infinite canvas drawing/note-taking app that is focused on perfor
 
 ⚠ **This is very much a WIP and still a bit rough around the edges** ⚠. The savefile format *might* also change in the future. Contributions (be it bug reports, code, art or [translations](docs/i18n.md)) are very welcome.
 
-## Features
+## Features as of v0.2.0-dev:
 - Infinite canvas
 - Infinite undo/redo
 - (Almost) Infinite zoom
 - Extremely small savefiles ([File format specs](docs/file_format.md))
 - Work on multiple documents simultaneously
-- Tools: Freehand brush, eraser, line tool
-- You can choose different colors for brush strokes and the canvas background via an easy to use color picker
+- [Tools](docs/manual.md): Freehand brush, eraser, line tool, selection tool, move tool
+- Deletion of selected strokes
+- Basic Export: visible canvas as PNG
+- Choose different colors for brush strokes and the canvas background via an easy to use color picker
 - Designed to be used with a drawing tablet (Wacom, etc.). It also supports pressure sensitivity
+- Localization: English, German, Italian 
 - Runs on Windows, Linux & Mac
 
 ## More information

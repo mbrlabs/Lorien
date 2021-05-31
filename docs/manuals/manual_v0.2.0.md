@@ -6,20 +6,21 @@ Drawing tablets are supported and reccomended, but you can also just use Keyboar
 - Draw with the left mouse button or with your drawing tablet's pen
 - Pan/drag across the canvas with the middle mouse button (i recommend to map a button on your pen to the middle mouse button for easy navigation)
 - Zoom with mouse wheel
-- To select a number of strokes activate the Selection tool and drag across the canvas. By holding down shift you can add more strokes to your current selection. `DELETE` deletes all strokes you have currently selected. Right click or `ESC` deselects everyting again.
+- To select a number of strokes activate the Selection tool and drag across the canvas. By holding down <kbd>Shift</kbd> you can add more strokes to your current selection. <kbd>Delete</kbd> deletes all strokes you have currently selected. <kbd>RMB</kbd> or <kbd>Esc</kbd> deselects everyting again.
 - With the Move Tool you can move your current selection anywhere you want
+- You can hold down <kbd>Shift</kbd> while using the line tool to snap the line in 15° increments 
 
 ## Keyboard shortcuts
-- `CTRL+S`: Saves the current file
-- `CTRL+O`: Open a new file
-- `CTRL+N`: Open a new empty tab
-- `CTRL+Z`: Undo an action
-- `CTRL+Y`: Redo an action
-- `B`: Brush tool
-- `E`: Eraser tool
-- `L`: Line tool
-- `C`: Color picker tool
-- `S`: Selection tool
-- `M`: Move tool
-- `ESC`or `RMB`: Deselect everything
-- `DELETE`: Deletes selected brush strokes
+- <kbd>Ctrl</kbd> + <kbd>S</kbd>: Saves the current file
+- <kbd>Ctrl</kbd> + <kbd>N</kbd>: Open a new file
+- <kbd>Ctrl</kbd> + <kbd>O</kbd>: Open a new empty tab
+- <kbd>Ctrl</kbd> + <kbd>Z</kbd>: Undo a brush stroke
+- <kbd>Ctrl</kbd> + <kbd>Y</kbd>: Redo a brush stroke
+- <kbd>B</kbd>: Brush tool
+- <kbd>E</kbd>: Eraser tool
+- <kbd>L</kbd>: Line tool
+- <kbd>C</kbd>: Color picker tool
+- <kbd>S</kbd>: Selection tool
+- <kbd>M</kbd>: Move tool
+- <kbd>Esc</kbd> or <kbd>RMB</kbd>: Deselect everything
+- <kbd>Delete</kbd>: Deletes selected brush strokes

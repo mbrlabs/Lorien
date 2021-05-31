@@ -8,12 +8,12 @@ Drawing tablets are supported and reccomended, but you can also just use Keyboar
 - Zoom with mouse wheel
 
 ## Keyboard shortcuts
-- `CTRL+S`: Saves the current file
-- `CTRL+O`: Open a new file
-- `CTRL+N`: Open a new empty tab
-- `CTRL+Z`: Undo a brush stroke
-- `CTRL+Y`: Redo a brush stroke
-- `B`: Brush tool
-- `E`: Eraser tool
-- `L`: Line tool
-- `C`: Color picker tool
+- <kbd>Ctrl</kbd> + <kbd>S</kbd>: Saves the current file
+- <kbd>Ctrl</kbd> + <kbd>N</kbd>: Open a new file
+- <kbd>Ctrl</kbd> + <kbd>O</kbd>: Open a new empty tab
+- <kbd>Ctrl</kbd> + <kbd>Z</kbd>: Undo a brush stroke
+- <kbd>Ctrl</kbd> + <kbd>Y</kbd>: Redo a brush stroke
+- <kbd>B</kbd>: Brush tool
+- <kbd>E</kbd>: Eraser tool
+- <kbd>L</kbd>: Line tool
+- <kbd>C</kbd>: Color picker tool
