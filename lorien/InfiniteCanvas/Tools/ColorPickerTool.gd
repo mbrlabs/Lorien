@@ -26,10 +26,10 @@ func _pick_color() -> Color:
 	
 	var uv_coords := _viewport.get_mouse_position() / _viewport.size
 	var coords := img.get_size() * uv_coords
-	coords = Vector2(min(coords.x, img.get_width()-1), min(coords.y, img.get_height()-1))
+	coords = Vector2(min(coords.x + 5, img.get_width()-1), min(coords.y + 5, img.get_height()-1))
 	
 	img.lock()
-	var color := img.get_pixel(coords.x, coords.y+5)
+	var color := img.get_pixel(coords.x, coords.y)
 	img.unlock()
 		
 	return color
