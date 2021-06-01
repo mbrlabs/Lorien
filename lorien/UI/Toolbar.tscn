@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Assets/Icons/save_file.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Icons/open_file.png" type="Texture" id=2]
@@ -16,7 +16,6 @@
 [ext_resource path="res://Assets/Fonts/font_11.tres" type="DynamicFont" id=14]
 [ext_resource path="res://UI/Themes/theme_dark.tres" type="Theme" id=15]
 [ext_resource path="res://Assets/Icons/select_tool.png" type="Texture" id=16]
-[ext_resource path="res://Assets/Icons/move_tool.png" type="Texture" id=17]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.207843, 0.211765, 0.227451, 1 )
@@ -230,23 +229,9 @@ script = ExtResource( 13 )
 hover_tint = Color( 0.662745, 0.945098, 0.87451, 1 )
 pressed_tint = Color( 0.572549, 1, 0.894118, 1 )
 
-[node name="MoveToolButton" type="TextureButton" parent="Left"]
-margin_left = 346.0
-margin_top = 11.0
-margin_right = 364.0
-margin_bottom = 29.0
-hint_tooltip = "TOOLBAR_TOOLTIP_MOVE_TOOL"
-size_flags_horizontal = 4
-size_flags_vertical = 4
-toggle_mode = true
-texture_normal = ExtResource( 17 )
-script = ExtResource( 13 )
-hover_tint = Color( 0.662745, 0.945098, 0.87451, 1 )
-pressed_tint = Color( 0.572549, 1, 0.894118, 1 )
-
 [node name="VSeparator4" type="VSeparator" parent="Left"]
-margin_left = 376.0
-margin_right = 380.0
+margin_left = 346.0
+margin_right = 350.0
 margin_bottom = 40.0
 custom_styles/separator = SubResource( 3 )
 __meta__ = {
@@ -254,9 +239,9 @@ __meta__ = {
 }
 
 [node name="ColorButton" type="Button" parent="Left"]
-margin_left = 392.0
+margin_left = 362.0
 margin_top = 10.0
-margin_right = 452.0
+margin_right = 422.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 60, 20 )
 hint_tooltip = "TOOLBAR_TOOLTIP_BRUSH_COLOR"
@@ -278,9 +263,9 @@ __meta__ = {
 }
 
 [node name="BrushSizeSlider" type="HSlider" parent="Left"]
-margin_left = 464.0
+margin_left = 434.0
 margin_top = 10.0
-margin_right = 584.0
+margin_right = 554.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 120, 20 )
 hint_tooltip = "TOOLBAR_TOOLTIP_BRUSH_SIZE"
@@ -291,9 +276,9 @@ max_value = 50.0
 value = 5.0
 
 [node name="BrushSizeLabel" type="Label" parent="Left"]
-margin_left = 596.0
+margin_left = 566.0
 margin_top = 13.0
-margin_right = 612.0
+margin_right = 582.0
 margin_bottom = 27.0
 custom_fonts/font = ExtResource( 14 )
 text = "12"
@@ -340,7 +325,6 @@ custom_styles/separator = SubResource( 2 )
 [connection signal="pressed" from="Left/EraserToolButton" to="." method="_on_EraserToolButton_pressed"]
 [connection signal="pressed" from="Left/ColorPickerToolButton" to="." method="_on_ColorPickerToolButton_pressed"]
 [connection signal="pressed" from="Left/SelectToolButton" to="." method="_on_SelectToolButton_pressed"]
-[connection signal="pressed" from="Left/MoveToolButton" to="." method="_on_MoveToolButton_pressed"]
 [connection signal="pressed" from="Left/ColorButton" to="." method="_on_ColorButton_pressed"]
 [connection signal="value_changed" from="Left/BrushSizeSlider" to="." method="_on_BrushSizeSlider_value_changed"]
 [connection signal="pressed" from="Right/BackgroundColorButton" to="." method="_on_BackgroundColorButton_pressed"]

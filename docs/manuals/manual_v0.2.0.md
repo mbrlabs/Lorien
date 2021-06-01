@@ -3,11 +3,17 @@
 Drawing tablets are supported and reccomended, but you can also just use Keyboard+Mouse. 
 
 ## Basic Usage
-- Draw with the left mouse button or with your drawing tablet's pen
+- Draw with the left mouse button (<kbd>LMB</kbd>) or with your drawing tablet's pen
 - Pan/drag across the canvas with the middle mouse button (i recommend to map a button on your pen to the middle mouse button for easy navigation)
 - Zoom with mouse wheel
-- To select a number of strokes activate the Selection tool and drag across the canvas. By holding down <kbd>Shift</kbd> you can add more strokes to your current selection. <kbd>Delete</kbd> deletes all strokes you have currently selected. <kbd>RMB</kbd> or <kbd>Esc</kbd> deselects everyting again.
-- With the Move Tool you can move your current selection anywhere you want
+
+## Selection Tool
+- With the Selection tool you can select a number of brush stokes by dragging across the screen with your <kbd>LMB</kbd> pressed. Brush strokes which are considered inside the selection recatangle will be added to the current selection. You can add more strokes to your current selection by holding down <kbd>Shift</kbd> while dragging.
+- You can deselect your current selection by pressing <kbd>RMB</kbd> or <kbd>Esc</kbd>.
+- To move the selected strokes simply drag them while holding down <kbd>LMB</kbd>. If you did not move your mouse while pressing <kbd>LMB</kbd>, everything will be deselected automatically.
+- Press <kbd>Delete</kbd> to delete the current selection
+
+## Line Tool
 - You can hold down <kbd>Shift</kbd> while using the line tool to snap the line in 15° increments 
 
 ## Keyboard shortcuts
@@ -21,6 +27,5 @@ Drawing tablets are supported and reccomended, but you can also just use Keyboar
 - <kbd>L</kbd>: Line tool
 - <kbd>C</kbd>: Color picker tool
 - <kbd>S</kbd>: Selection tool
-- <kbd>M</kbd>: Move tool
 - <kbd>Esc</kbd> or <kbd>RMB</kbd>: Deselect everything
 - <kbd>Delete</kbd>: Deletes selected brush strokes

@@ -8,8 +8,7 @@ const ERASER_SIZE_FACTOR = 3.5
 # -------------------------------------------------------------------------------------------------
 onready var _brush_tool: BrushTool = $BrushTool
 onready var _line_tool: LineTool = $LineTool
-onready var _select_tool: SelectTool = $SelectTool
-onready var _move_tool: MoveTool = $MoveTool
+onready var _selection_tool: SelectionTool = $SelectionTool
 onready var _colorpicker_tool: ColorPickerTool = $ColorPickerTool
 onready var _active_tool: CanvasTool = _brush_tool
 onready var _strokes_parent: Node2D = $Viewport/Strokes
@@ -37,13 +36,12 @@ func _ready():
 	
 	get_tree().get_root().connect("size_changed", self, "_on_window_resized")
 	_camera.connect("zoom_changed", $Viewport/SelectCursor, "_on_zoom_changed")
-	_camera.connect("zoom_changed", $Viewport/MoveCursor, "_on_zoom_changed")
 	_camera.connect("zoom_changed", $Viewport/ColorPickerCursor, "_on_zoom_changed")
 
 # -------------------------------------------------------------------------------------------------
 func _draw():
-	if _select_tool.is_selecting():
-		draw_selection_rect(_select_tool._selecting_start_pos, _select_tool._selecting_end_pos)
+	if _selection_tool.is_selecting():
+		draw_selection_rect(_selection_tool._selecting_start_pos, _selection_tool._selecting_end_pos)
 
 # -------------------------------------------------------------------------------------------------
 func draw_selection_rect(start_pos: Vector2, end_pos: Vector2) -> void:
@@ -57,48 +55,42 @@ func _input(event: InputEvent) -> void:
 	# Deselect selected strokes on right click
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_RIGHT && event.pressed:
-			if _active_tool == _select_tool || _active_tool == _move_tool:
-				_select_tool.deselect_all_strokes()
+			if _active_tool == _selection_tool:
+				_selection_tool.deselect_all_strokes()
 
 # -------------------------------------------------------------------------------------------------
 func _process(delta: float) -> void:
 	# Deselect selected strokes with shortcut key
 	if Input.is_action_just_pressed("deselect_all_strokes"):
-		if _active_tool == _select_tool || _active_tool == _move_tool:
-			_select_tool.deselect_all_strokes()
+		if _active_tool == _selection_tool:
+			_selection_tool.deselect_all_strokes()
 	
 	# Delete selected strokes with shortcut key
 	if Input.is_action_just_pressed("delete_selected_strokes"):
-		if _active_tool == _select_tool || _active_tool == _move_tool:
+		if _active_tool == _selection_tool:
 			_delete_selected_strokes()
 
 # -------------------------------------------------------------------------------------------------
 func use_tool(tool_type: int) -> void:
 	_active_tool.enabled = false
+	_selection_tool.deselect_all_strokes()
 	
 	match tool_type:
 		Types.Tool.BRUSH:
 			_brush_tool.mode = BrushTool.Mode.DRAW
 			_active_tool = _brush_tool
 			_use_optimizer = true
-			_select_tool.deselect_all_strokes()
 		Types.Tool.ERASER:
 			_brush_tool.mode = BrushTool.Mode.ERASE
 			_active_tool = _brush_tool
 			_use_optimizer = true
-			_select_tool.deselect_all_strokes()
 		Types.Tool.LINE:
 			_active_tool = _line_tool
 			_use_optimizer = false
-			_select_tool.deselect_all_strokes()
 		Types.Tool.SELECT:
-			_active_tool = _select_tool
-			_use_optimizer = false
-		Types.Tool.MOVE:
-			_active_tool = _move_tool
+			_active_tool = _selection_tool
 			_use_optimizer = false
 		Types.Tool.COLOR_PICKER:
-			_select_tool.deselect_all_strokes()
 			_active_tool = _colorpicker_tool
 			_use_optimizer = false
 			
@@ -254,14 +246,14 @@ func get_camera_offset() -> Vector2:
 
 # -------------------------------------------------------------------------------------------------
 func _delete_selected_strokes() -> void:
-	var strokes := _select_tool.get_selected_strokes()
+	var strokes := _selection_tool.get_selected_strokes()
 	if !strokes.empty():
 		_current_project.undo_redo.create_action("Delete Selection")
 		for stroke in strokes:
 			_current_project.undo_redo.add_do_method(self, "_do_delete_stroke", stroke)
 			_current_project.undo_redo.add_undo_reference(stroke)
 			_current_project.undo_redo.add_undo_method(self, "_undo_delete_stroke", stroke)
-		_select_tool.deselect_all_strokes()
+		_selection_tool.deselect_all_strokes()
 		_current_project.undo_redo.commit_action()
 		_current_project.dirty = true
 

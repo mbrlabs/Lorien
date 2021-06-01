@@ -1,41 +1,71 @@
-class_name SelectTool
+class_name SelectionTool
 extends CanvasTool
 
-var _selecting: bool
+# -------------------------------------------------------------------------------------------------
+const META_OFFSET := "offset"
+
+enum State {
+	NONE,
+	SELECTING,
+	MOVING
+}
+
+# -------------------------------------------------------------------------------------------------
+var _state = State.NONE
 var _selecting_start_pos: Vector2 = Vector2.ZERO
 var _selecting_end_pos: Vector2 = Vector2.ZERO
-var _multi_selecting : bool
+var _multi_selecting: bool
+var _mouse_moved_during_pressed := false
+var _stroke_positions_before_move := {} # BrushStroke -> Vector2
 
 # ------------------------------------------------------------------------------------------------
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT:
-			if !is_selecting():
-				if event.is_pressed():
-					_selecting_start_pos = xform_vector2_relative(event.global_position)
-			_set_selecting(event.is_pressed())
+			# LMB down - decide if we should select/multiselect or move the selection
+			if event.pressed:
+				_selecting_start_pos = xform_vector2_relative(event.global_position)
+				if event.shift:
+					_state = State.SELECTING
+					_multi_selecting = true
+				elif get_selected_strokes().size() == 0:
+					_state = State.SELECTING
+					_multi_selecting = false
+				else:
+					_state = State.MOVING
+					_mouse_moved_during_pressed = false
+					_offset_selected_strokes(_cursor.global_position)
+					for s in get_selected_strokes():
+						_stroke_positions_before_move[s] = s.global_position
+			# LMB up - stop selection or movement
+			else:
+				if _state == State.SELECTING:
+					_state = State.NONE
+					_canvas.update()
+				elif _state == State.MOVING:
+					_state = State.NONE
+					if _mouse_moved_during_pressed:
+						_add_undoredo_action_for_moved_strokes()
+						_stroke_positions_before_move.clear()
+					else:
+						deselect_all_strokes()
+					_mouse_moved_during_pressed = false
+						
+		# RMB down - just deselect
+		elif event.button_index == BUTTON_RIGHT && event.pressed:
+			_state = State.NONE
+			deselect_all_strokes()
 	
-	if event is InputEventKey:
-		if event.scancode == KEY_SHIFT:
-			_multi_selecting = event.pressed
-	
-	if event is InputEventMouseMotion:
+	# Mouse movement: move the selection
+	elif event is InputEventMouseMotion:
 		_cursor.global_position = xform_vector2(event.global_position)
-		if is_selecting():
+		if _state == State.SELECTING:
 			_selecting_end_pos = xform_vector2_relative(event.global_position)
 			compute_selection(_selecting_start_pos, _selecting_end_pos)
 			_canvas.update()
-
-# ------------------------------------------------------------------------------------------------
-func _set_selecting(value: bool) -> void:
-	_selecting = value
-	if !_selecting:
-		_canvas.update()
-		_selecting_start_pos = Vector2.ZERO
-		_selecting_end_pos = _selecting_start_pos
-	else:
-		if !_multi_selecting:
-			deselect_all_strokes()
+		elif _state == State.MOVING:
+			_mouse_moved_during_pressed = true
+			_move_selected_strokes()
 
 # ------------------------------------------------------------------------------------------------
 func compute_selection(start_pos: Vector2, end_pos: Vector2) -> void:
@@ -48,7 +78,6 @@ func compute_selection(start_pos: Vector2, end_pos: Vector2) -> void:
 		_set_stroke_selected(stroke, is_inside_selection_rect)
 	_canvas.info.selected_lines = get_selected_strokes().size()
 
-# Returns the absolute position of a point in a Line2D through camera parameters
 # ------------------------------------------------------------------------------------------------
 func _get_absolute_stroke_point_pos(p: Vector2, stroke: BrushStroke) -> Vector2:
 	return (p + stroke.position - _canvas.get_camera_offset()) / _canvas.get_camera_zoom()
@@ -64,6 +93,26 @@ func _set_stroke_selected(stroke: BrushStroke, is_inside_rect: bool = true) -> v
 			stroke.modulate = Color.white
 
 # ------------------------------------------------------------------------------------------------
+func _add_undoredo_action_for_moved_strokes() -> void:
+	var project: Project = ProjectManager.get_active_project()
+	project.undo_redo.create_action("Move Strokes")
+	for stroke in _stroke_positions_before_move.keys():
+		project.undo_redo.add_do_property(stroke, "global_position", stroke.global_position)
+		project.undo_redo.add_undo_property(stroke, "global_position", _stroke_positions_before_move[stroke])
+	project.undo_redo.commit_action()
+	project.dirty = true
+
+# -------------------------------------------------------------------------------------------------
+func _offset_selected_strokes(offset: Vector2) -> void:
+	for stroke in get_selected_strokes():
+		stroke.set_meta(META_OFFSET, stroke.position - offset)
+
+# -------------------------------------------------------------------------------------------------
+func _move_selected_strokes() -> void:
+	for stroke in get_selected_strokes():
+		stroke.global_position = stroke.get_meta(META_OFFSET) + _cursor.global_position
+
+# ------------------------------------------------------------------------------------------------
 func deselect_all_strokes() -> void:
 	var selected_strokes: Array = get_selected_strokes()
 	if selected_strokes.size():
@@ -74,7 +123,7 @@ func deselect_all_strokes() -> void:
 
 # ------------------------------------------------------------------------------------------------
 func is_selecting() -> bool:
-	return _selecting
+	return _state == State.SELECTING
 
 # ------------------------------------------------------------------------------------------------
 func get_selected_strokes() -> Array:
