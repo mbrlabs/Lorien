@@ -98,25 +98,25 @@ func _handle_shortcut_actions() -> void:
 	if !_is_dialog_open():
 		if Input.is_action_just_pressed("shortcut_new_project"):
 			_on_create_new_project()
-		if Input.is_action_just_pressed("shortcut_open_project"):
+		elif Input.is_action_just_pressed("shortcut_open_project"):
 			_toolbar._on_OpenFileButton_pressed()
-		if Input.is_action_just_pressed("shortcut_save_project"):
+		elif Input.is_action_just_pressed("shortcut_save_project"):
 			_on_save_project()
-		if Input.is_action_just_pressed("shortcut_undo"):
+		elif Input.is_action_just_pressed("shortcut_undo"):
 			_on_undo_action()
-		if Input.is_action_just_pressed("shortcut_redo"):
+		elif Input.is_action_just_pressed("shortcut_redo"):
 			_on_redo_action()
-		if Input.is_action_just_pressed("shortcut_brush_tool"):
+		elif Input.is_action_just_pressed("shortcut_brush_tool"):
 			_toolbar.enable_tool(Types.Tool.BRUSH)
-		if Input.is_action_just_pressed("shortcut_line_tool"):
+		elif Input.is_action_just_pressed("shortcut_line_tool"):
 			_toolbar.enable_tool(Types.Tool.LINE)
-		if Input.is_action_just_pressed("shortcut_eraser_tool"):
+		elif Input.is_action_just_pressed("shortcut_eraser_tool"):
 			_toolbar.enable_tool(Types.Tool.ERASER)
-		if Input.is_action_just_pressed("shortcut_colorpicker"):
+		elif Input.is_action_just_pressed("shortcut_colorpicker"):
 			_toolbar.enable_tool(Types.Tool.COLOR_PICKER)
-		if Input.is_action_just_pressed("shortcut_select_tool"):
+		elif Input.is_action_just_pressed("shortcut_select_tool"):
 			_toolbar.enable_tool(Types.Tool.SELECT)
-		if Input.is_action_just_pressed("shortcut_move_tool"):
+		elif Input.is_action_just_pressed("shortcut_move_tool"):
 			_toolbar.enable_tool(Types.Tool.MOVE)
 
 # -------------------------------------------------------------------------------------------------
@@ -233,8 +233,9 @@ func _on_open_project(filepath: String) -> void:
 func _on_save_project() -> void:
 	var active_project: Project = ProjectManager.get_active_project()
 	if active_project.filepath.empty():
-		_file_dialog.invalidate()
+		_canvas.disable()
 		_file_dialog.mode = FileDialog.MODE_SAVE_FILE
+		_file_dialog.invalidate()
 		_file_dialog.connect("file_selected", self, "_on_file_selected_to_save_project")
 		_file_dialog.connect("popup_hide", self, "_on_file_dialog_closed")
 		_file_dialog.popup_centered()

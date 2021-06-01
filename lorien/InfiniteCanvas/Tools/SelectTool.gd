@@ -56,7 +56,7 @@ func _get_absolute_stroke_point_pos(p: Vector2, stroke: BrushStroke) -> Vector2:
 # ------------------------------------------------------------------------------------------------
 func _set_stroke_selected(stroke: BrushStroke, is_inside_rect: bool = true) -> void:
 	if is_inside_rect:
-		stroke.modulate = Color.rebeccapurple
+		stroke.modulate = Config.DEFAULT_SELECTION_COLOR
 		stroke.add_to_group(Types.CANVAS_GROUP_SELECTED_STROKES)
 	else:
 		if stroke.is_in_group(Types.CANVAS_GROUP_SELECTED_STROKES) && !_multi_selecting:
