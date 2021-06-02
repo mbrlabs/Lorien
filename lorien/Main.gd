@@ -116,9 +116,7 @@ func _handle_shortcut_actions() -> void:
 			_toolbar.enable_tool(Types.Tool.COLOR_PICKER)
 		elif Input.is_action_just_pressed("shortcut_select_tool"):
 			_toolbar.enable_tool(Types.Tool.SELECT)
-		elif Input.is_action_just_pressed("shortcut_move_tool"):
-			_toolbar.enable_tool(Types.Tool.MOVE)
-
+			
 # -------------------------------------------------------------------------------------------------
 func _make_project_active(project: Project) -> void:
 	ProjectManager.make_project_active(project)

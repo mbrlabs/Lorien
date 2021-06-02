@@ -24,7 +24,6 @@ TOOLBAR_TOOLTIP_LINE_TOOL       Strumento Linea (L)
 TOOLBAR_TOOLTIP_ERASER_TOOL     Gomma per cancellare (E)
 TOOLBAR_TOOLTIP_PICKER_TOOL     Strumento selezione del Colore (C)
 TOOLBAR_TOOLTIP_SELECT_TOOL     Seleziona strumento (S)
-TOOLBAR_TOOLTIP_MOVE_TOOL       Sposta Strumento (M)
 TOOLBAR_TOOLTIP_BRUSH_COLOR     Colore Pennello
 TOOLBAR_TOOLTIP_BRUSH_SIZE      Dimensione del Pennello
 TOOLBAR_TOOLTIP_CANVAS_COLOR    Colore della Tela

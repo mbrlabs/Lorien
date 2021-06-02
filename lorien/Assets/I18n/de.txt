@@ -24,7 +24,6 @@ TOOLBAR_TOOLTIP_LINE_TOOL       Linien Werkzeug (L)
 TOOLBAR_TOOLTIP_ERASER_TOOL     Radierer (E)
 TOOLBAR_TOOLTIP_PICKER_TOOL     Color Picker Werkzeug (C)
 TOOLBAR_TOOLTIP_SELECT_TOOL     Pinselstriche auswählen (S)
-TOOLBAR_TOOLTIP_MOVE_TOOL       Auswahl verschieben (M)
 TOOLBAR_TOOLTIP_BRUSH_COLOR     Pinsel Farbe
 TOOLBAR_TOOLTIP_BRUSH_SIZE      Pinsel Größe
 TOOLBAR_TOOLTIP_CANVAS_COLOR    Canvas Farbe
