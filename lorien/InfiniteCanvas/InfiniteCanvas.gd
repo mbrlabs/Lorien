@@ -39,15 +39,6 @@ func _ready():
 	_camera.connect("zoom_changed", $Viewport/ColorPickerCursor, "_on_zoom_changed")
 
 # -------------------------------------------------------------------------------------------------
-func _draw():
-	if _selection_tool.is_selecting():
-		draw_selection_rect(_selection_tool._selecting_start_pos, _selection_tool._selecting_end_pos)
-
-# -------------------------------------------------------------------------------------------------
-func draw_selection_rect(start_pos: Vector2, end_pos: Vector2) -> void:
-	draw_rect(Rect2(start_pos, end_pos - start_pos), Color.whitesmoke, false, true)
-
-# -------------------------------------------------------------------------------------------------
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		info.current_pressure = event.pressure

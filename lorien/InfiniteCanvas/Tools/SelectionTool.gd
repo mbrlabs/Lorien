@@ -11,12 +11,18 @@ enum State {
 }
 
 # -------------------------------------------------------------------------------------------------
+export var selection_rectangle_path: NodePath
+var _selection_rectangle: SelectionRectangle
 var _state = State.NONE
 var _selecting_start_pos: Vector2 = Vector2.ZERO
 var _selecting_end_pos: Vector2 = Vector2.ZERO
 var _multi_selecting: bool
 var _mouse_moved_during_pressed := false
 var _stroke_positions_before_move := {} # BrushStroke -> Vector2
+
+# ------------------------------------------------------------------------------------------------
+func _ready():
+	_selection_rectangle = get_node(selection_rectangle_path)
 
 # ------------------------------------------------------------------------------------------------
 func _input(event: InputEvent) -> void:
@@ -41,7 +47,8 @@ func _input(event: InputEvent) -> void:
 			else:
 				if _state == State.SELECTING:
 					_state = State.NONE
-					_canvas.update()
+					_selection_rectangle.reset()
+					_selection_rectangle.update()
 				elif _state == State.MOVING:
 					_state = State.NONE
 					if _mouse_moved_during_pressed:
@@ -62,7 +69,9 @@ func _input(event: InputEvent) -> void:
 		if _state == State.SELECTING:
 			_selecting_end_pos = xform_vector2_relative(event.global_position)
 			compute_selection(_selecting_start_pos, _selecting_end_pos)
-			_canvas.update()
+			_selection_rectangle.start_position = _selecting_start_pos
+			_selection_rectangle.end_position = _selecting_end_pos
+			_selection_rectangle.update()
 		elif _state == State.MOVING:
 			_mouse_moved_during_pressed = true
 			_move_selected_strokes()

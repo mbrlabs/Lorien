@@ -6,7 +6,7 @@ void fragment() {
 	
 	vec3 inverted = vec3(texture_color.rgb - background_color.rgb);
 	float grayscale = (inverted.r + inverted.g + inverted.b) / 3.0;
-	grayscale = clamp(grayscale*0.75, 0.0, 1.0);
+	grayscale = min(1.0, grayscale*1.25);
 	
 	COLOR = vec4(grayscale, grayscale, grayscale, texture_color.a);
 }

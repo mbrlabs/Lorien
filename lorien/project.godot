@@ -94,10 +94,15 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://InfiniteCanvas/Cursor/SelectCursor/SelectCursor.gd"
 }, {
+"base": "Node2D",
+"class": "SelectionRectangle",
+"language": "GDScript",
+"path": "res://InfiniteCanvas/Tools/SelectionRectangle.gd"
+}, {
 "base": "CanvasTool",
 "class": "SelectionTool",
 "language": "GDScript",
-"path": "res://InfiniteCanvas/Tools/SelectTool.gd"
+"path": "res://InfiniteCanvas/Tools/SelectionTool.gd"
 }, {
 "base": "Reference",
 "class": "Serializer",
@@ -137,6 +142,7 @@ _global_script_class_icons={
 "Project": "",
 "ProjectTab": "",
 "SelectCursor": "",
+"SelectionRectangle": "",
 "SelectionTool": "",
 "Serializer": "",
 "Statusbar": "",
