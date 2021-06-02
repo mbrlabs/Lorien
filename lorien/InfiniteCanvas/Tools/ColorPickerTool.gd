@@ -22,11 +22,13 @@ func _input(event: InputEvent) -> void:
 # -------------------------------------------------------------------------------------------------
 func _pick_color() -> Color:
 	var img: Image = _canvas.take_screenshot()
-	img.flip_y()
 	
 	var uv_coords := _viewport.get_mouse_position() / _viewport.size
+	uv_coords += Vector2(-0.004, 0.004)
+	uv_coords.y = 1.0 - uv_coords.y
+	
 	var coords := img.get_size() * uv_coords
-	coords = Vector2(min(coords.x + 5, img.get_width()-1), min(coords.y + 5, img.get_height()-1))
+	coords = Vector2(min(coords.x, img.get_width()-1), min(coords.y, img.get_height()-1))
 	
 	img.lock()
 	var color := img.get_pixel(coords.x, coords.y)
