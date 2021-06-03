@@ -51,9 +51,9 @@ margin_bottom = 0.0
 rect_scale = Vector2( 1, 1.00112 )
 
 [node name="BrushColorPickerPopup" type="Popup" parent="."]
-margin_left = 392.0
+margin_left = 360.0
 margin_top = 78.0
-margin_right = 694.0
+margin_right = 662.0
 margin_bottom = 505.0
 theme = ExtResource( 8 )
 __meta__ = {

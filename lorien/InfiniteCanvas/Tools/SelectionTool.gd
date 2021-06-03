@@ -49,6 +49,8 @@ func _input(event: InputEvent) -> void:
 					_state = State.NONE
 					_selection_rectangle.reset()
 					_selection_rectangle.update()
+					if get_selected_strokes().size() > 0:
+						_cursor.mode = SelectionCursor.Mode.MOVE
 				elif _state == State.MOVING:
 					_state = State.NONE
 					if _mouse_moved_during_pressed:
@@ -75,6 +77,14 @@ func _input(event: InputEvent) -> void:
 		elif _state == State.MOVING:
 			_mouse_moved_during_pressed = true
 			_move_selected_strokes()
+	
+	# Shift click - switch between move/select cursor mode
+	elif event is InputEventKey:
+		if event.scancode == KEY_SHIFT:
+			if event.pressed:
+				_cursor.mode = SelectionCursor.Mode.SELECT
+			elif get_selected_strokes().size() > 0:
+				_cursor.mode = SelectionCursor.Mode.MOVE
 
 # ------------------------------------------------------------------------------------------------
 func compute_selection(start_pos: Vector2, end_pos: Vector2) -> void:
@@ -129,6 +139,7 @@ func deselect_all_strokes() -> void:
 		for stroke in selected_strokes:
 			stroke.remove_from_group(Types.CANVAS_GROUP_SELECTED_STROKES)
 	_canvas.info.selected_lines = 0
+	_cursor.mode = SelectionCursor.Mode.SELECT
 
 # ------------------------------------------------------------------------------------------------
 func is_selecting() -> bool:

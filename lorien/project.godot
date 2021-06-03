@@ -90,9 +90,9 @@ _global_script_classes=[ {
 "path": "res://UI/Components/ProjectTab.gd"
 }, {
 "base": "BaseCursor",
-"class": "SelectCursor",
+"class": "SelectionCursor",
 "language": "GDScript",
-"path": "res://InfiniteCanvas/Cursor/SelectCursor/SelectCursor.gd"
+"path": "res://InfiniteCanvas/Cursor/SelectionCursor/SelectionCursor.gd"
 }, {
 "base": "Node2D",
 "class": "SelectionRectangle",
@@ -141,7 +141,7 @@ _global_script_class_icons={
 "Menubar": "",
 "Project": "",
 "ProjectTab": "",
-"SelectCursor": "",
+"SelectionCursor": "",
 "SelectionRectangle": "",
 "SelectionTool": "",
 "Serializer": "",

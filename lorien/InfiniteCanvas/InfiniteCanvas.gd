@@ -35,7 +35,7 @@ func _ready():
 	_active_tool.enabled = false
 	
 	get_tree().get_root().connect("size_changed", self, "_on_window_resized")
-	_camera.connect("zoom_changed", $Viewport/SelectCursor, "_on_zoom_changed")
+	_camera.connect("zoom_changed", $Viewport/SelectionCursor, "_on_zoom_changed")
 	_camera.connect("zoom_changed", $Viewport/ColorPickerCursor, "_on_zoom_changed")
 
 # -------------------------------------------------------------------------------------------------
