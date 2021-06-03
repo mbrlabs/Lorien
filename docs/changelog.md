@@ -4,12 +4,21 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [0.y.z] - Unreleased
+
+### Added
+
+### Fixed
+
+### Changed
+
 ## [0.2.0] - 2021-06-03
 
 ### Added 
 - Mention contributors in the About Dialog
 - Improved closing of files with unsaved changes
 - Export the whole canvas as PNG image
+- Implemented the color picker tool, which let's you pick any color on the canvas
 - Selection tool
 - Ability to move selected brush strokes
 - Ability to delete selected brush strokes with delete key
