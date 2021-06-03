@@ -4,14 +4,14 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
-## [0.2.0] - Unreleased
+## [0.2.0] - 2021-06-03
 
 ### Added 
 - Mention contributors in the About Dialog
 - Improved closing of files with unsaved changes
 - Export the whole canvas as PNG image
 - Selection tool
-- Move tool
+- Ability to move selected brush strokes
 - Ability to delete selected brush strokes with delete key
 - Added an option to switch between languages: English, German and Italian
 - Line Tool: snap in 15° steps when holding down shift 
