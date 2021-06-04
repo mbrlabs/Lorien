@@ -13,7 +13,7 @@
 [ext_resource path="res://UI/Dialogs/ExitDialog.tscn" type="PackedScene" id=11]
 
 [sub_resource type="StyleBoxFlat" id=1]
-bg_color = Color( 0.207843, 0.211765, 0.227451, 1 )
+bg_color = Color( 0.12549, 0.129412, 0.141176, 1 )
 border_width_left = 4
 border_width_top = 4
 border_width_right = 4
@@ -71,10 +71,10 @@ __meta__ = {
 }
 
 [node name="ColorPicker" type="ColorPicker" parent="BrushColorPickerPopup/PanelContainer"]
-margin_left = 16.0
-margin_top = 16.0
-margin_right = 321.0
-margin_bottom = 450.0
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 317.0
+margin_bottom = 442.0
 edit_alpha = false
 __meta__ = {
 "_edit_use_anchors_": false
@@ -103,10 +103,10 @@ __meta__ = {
 }
 
 [node name="ColorPicker" type="ColorPicker" parent="BackgroundColorPickerPopup/PanelContainer"]
-margin_left = 16.0
-margin_top = 16.0
-margin_right = 326.001
-margin_bottom = 450.0
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 314.001
+margin_bottom = 438.0
 edit_alpha = false
 __meta__ = {
 "_edit_use_anchors_": false
@@ -130,8 +130,8 @@ margin_bottom = 216.5
 theme = ExtResource( 8 )
 access = 2
 filters = PoolStringArray( "*.lorien" )
-current_dir = "/Users/mbrla/Projects/lorien/lorien"
-current_path = "/Users/mbrla/Projects/lorien/lorien/"
+current_dir = "/home/jere/GitHub/Lorien/lorien"
+current_path = "/home/jere/GitHub/Lorien/lorien/"
 __meta__ = {
 "_edit_lock_": true
 }
@@ -157,8 +157,8 @@ margin_right = 385.0
 margin_bottom = 216.5
 theme = ExtResource( 8 )
 access = 2
-current_dir = "/Users/mbrla/Projects/lorien/lorien"
-current_path = "/Users/mbrla/Projects/lorien/lorien/"
+current_dir = "/home/jere/GitHub/Lorien/lorien"
+current_path = "/home/jere/GitHub/Lorien/lorien/"
 
 [node name="UnsavedChangesDialog" parent="." instance=ExtResource( 7 )]
 visible = false

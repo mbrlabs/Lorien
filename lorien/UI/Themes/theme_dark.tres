@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=28 format=2]
+[gd_resource type="Theme" load_steps=29 format=2]
 
 [ext_resource path="res://Assets/Fonts/font_13.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Assets/Fonts/font_14b.tres" type="DynamicFont" id=2]
@@ -32,6 +32,8 @@ content_margin_right = 6.0
 content_margin_top = 4.0
 content_margin_bottom = 4.0
 bg_color = Color( 0.12549, 0.129412, 0.141176, 1 )
+
+[sub_resource type="StyleBoxEmpty" id=22]
 
 [sub_resource type="StyleBoxLine" id=4]
 color = Color( 0.2821, 0.28768, 0.31, 1 )
@@ -165,6 +167,24 @@ Button/styles/focus = SubResource( 2 )
 Button/styles/hover = SubResource( 2 )
 Button/styles/normal = SubResource( 3 )
 Button/styles/pressed = SubResource( 3 )
+CheckButton/colors/font_color = Color( 0.88, 0.88, 0.88, 1 )
+CheckButton/colors/font_color_disabled = Color( 0.9, 0.9, 0.9, 0.2 )
+CheckButton/colors/font_color_hover = Color( 0.94, 0.94, 0.94, 1 )
+CheckButton/colors/font_color_hover_pressed = Color( 1, 1, 1, 1 )
+CheckButton/colors/font_color_pressed = Color( 1, 1, 1, 1 )
+CheckButton/constants/check_vadjust = 0
+CheckButton/constants/hseparation = 4
+CheckButton/fonts/font = null
+CheckButton/icons/off = null
+CheckButton/icons/off_disabled = null
+CheckButton/icons/on = null
+CheckButton/icons/on_disabled = null
+CheckButton/styles/disabled = SubResource( 22 )
+CheckButton/styles/focus = null
+CheckButton/styles/hover = null
+CheckButton/styles/hover_pressed = null
+CheckButton/styles/normal = null
+CheckButton/styles/pressed = null
 ColorPicker/constants/h_width = 30
 ColorPicker/constants/label_width = 10
 ColorPicker/constants/margin = 4
@@ -266,7 +286,7 @@ Tree/colors/drop_position_color = Color( 1, 0.3, 0.2, 1 )
 Tree/colors/font_color = Color( 1, 1, 1, 1 )
 Tree/colors/font_color_selected = Color( 1, 1, 1, 1 )
 Tree/colors/guide_color = Color( 0, 0, 0, 0.1 )
-Tree/colors/relationship_line_color = Color( 0.27, 0.27, 0.27, 1 )
+Tree/colors/relationship_line_color = Color( 0.270588, 0.270588, 0.270588, 1 )
 Tree/colors/title_button_color = Color( 0.88, 0.88, 0.88, 1 )
 Tree/constants/button_margin = 4
 Tree/constants/draw_guides = 1
