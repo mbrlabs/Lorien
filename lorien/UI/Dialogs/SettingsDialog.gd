@@ -56,7 +56,7 @@ func _set_values() -> void:
 	_project_dir.text = project_dir
 
 # -------------------------------------------------------------------------------------------------
-func _set_languages(current_locale : String) -> void:
+func _set_languages(current_locale: String) -> void:
 	# Technically, Settings.language_names is useless from here on out, but I figure it's probably gonna come in handy in the future
 	var sorted_languages := Array(Settings.language_names)
 	var unsorted_languages := sorted_languages.duplicate()
