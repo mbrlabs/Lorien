@@ -42,12 +42,6 @@ func _ready():
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		info.current_pressure = event.pressure
-	
-	# Deselect selected strokes on right click
-	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_RIGHT && event.pressed:
-			if _active_tool == _selection_tool:
-				_selection_tool.deselect_all_strokes()
 
 # -------------------------------------------------------------------------------------------------
 func _process(delta: float) -> void:

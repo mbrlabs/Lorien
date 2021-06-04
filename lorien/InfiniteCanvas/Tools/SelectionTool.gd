@@ -61,11 +61,8 @@ func _input(event: InputEvent) -> void:
 					_mouse_moved_during_pressed = false
 						
 		# RMB down - just deselect
-		elif event.button_index == BUTTON_RIGHT && event.pressed:
-			_state = State.NONE
+		elif event.button_index == BUTTON_RIGHT && event.pressed && _state == State.NONE:
 			deselect_all_strokes()
-			_selection_rectangle.reset()
-			_selection_rectangle.update()
 	
 	# Mouse movement: move the selection
 	elif event is InputEventMouseMotion:
