@@ -52,3 +52,4 @@ func set_value(key: String, value = null):
 	_config_file.set_value(DEFAULT_SECTION, key, value)
 	_save_settings()
 	
+

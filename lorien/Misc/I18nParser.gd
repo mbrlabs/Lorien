@@ -5,8 +5,8 @@ const I18N_FOLDER := "res://Assets/I18n/"
 
 # -------------------------------------------------------------------------------------------------
 func load_files() -> void:
-	var locales : PoolStringArray
-	var language_names : PoolStringArray
+	var locales := PoolStringArray()
+	var language_names := PoolStringArray()
 	for f in _get_i18n_files():
 		var file := File.new()
 		print("Loading i18n file: %s" % f)

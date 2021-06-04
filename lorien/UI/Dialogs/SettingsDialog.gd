@@ -38,7 +38,7 @@ func _set_values() -> void:
 	var project_dir = Settings.get_value(Settings.GENERAL_DEFAULT_PROJECT_DIR, "")
 	var theme = Settings.get_value(Settings.APPEARANCE_THEME, Types.UITheme.DARK)
 	var aa_mode = Settings.get_value(Settings.RENDERING_AA_MODE, Config.DEFAULT_AA_MODE)
-	var locale = Settings.get_value(Settings.GENERAL_LANGUAGE, Settings.locales[0])
+	var locale = Settings.get_value(Settings.GENERAL_LANGUAGE, "en")
 	
 	match theme:
 		Types.UITheme.DARK: _theme.selected = THEME_DARK_INDEX
@@ -48,14 +48,32 @@ func _set_values() -> void:
 		Types.AAMode.OPENGL_HINT: _aa_mode.selected = AA_OPENGL_HINT_INDEX
 		Types.AAMode.TEXTURE_FILL: _aa_mode.selected = AA_TEXTURE_FILL_INDEX
 	
-	for lang in Settings.language_names:
-		_language_options.add_item(lang)
-	_language_options.selected = Array(Settings.locales).find(locale)
+	_set_languages(locale)
 	
 	_brush_size.value = brush_size
 	_brush_color.color = brush_color
 	_canvas_color.color = canvas_color
 	_project_dir.text = project_dir
+
+# -------------------------------------------------------------------------------------------------
+func _set_languages(current_locale : String) -> void:
+	# Technically, Settings.language_names is useless from here on out, but I figure it's probably gonna come in handy in the future
+	var sorted_languages := Array(Settings.language_names)
+	var unsorted_languages := sorted_languages.duplicate()
+	# English appears at the top, so it mustn't be sorted alphabetically with the rest
+	sorted_languages.erase("English")
+	sorted_languages.sort()
+	
+	# Add English before the rest + a separator so that it doesn't look weird for the alphabetical order to start after it
+	_language_options.add_item("English", unsorted_languages.find("English"))
+	_language_options.add_separator()
+	for lang in sorted_languages:
+		var id := unsorted_languages.find(lang)
+		_language_options.add_item(lang, id)
+	
+	# Set selected
+	var id := Array(Settings.locales).find(current_locale)
+	_language_options.selected = _language_options.get_item_index(id)
 
 # -------------------------------------------------------------------------------------------------
 func _on_DefaultBrushSize_value_changed(value: int) -> void:
@@ -99,7 +117,8 @@ func _on_AntiAliasing_item_selected(index: int):
 	_rendering_restart_label.show()
 
 # -------------------------------------------------------------------------------------------------
-func _on_OptionButton_item_selected(id: int):
+func _on_OptionButton_item_selected(idx: int):
+	var id := _language_options.get_item_id(idx)
 	var locale: String = Settings.locales[id]
 	
 	Settings.set_value(Settings.GENERAL_LANGUAGE, locale)
