@@ -11,6 +11,8 @@ const RENDERING_AA_MODE					:= "rendering_aa_mode"
 
 # -------------------------------------------------------------------------------------------------
 var _config_file := ConfigFile.new()
+var locales: PoolStringArray
+var language_names: PoolStringArray
 
 # -------------------------------------------------------------------------------------------------
 func _ready():

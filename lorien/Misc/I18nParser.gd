@@ -5,12 +5,19 @@ const I18N_FOLDER := "res://Assets/I18n/"
 
 # -------------------------------------------------------------------------------------------------
 func load_files() -> void:
+	var locales : PoolStringArray
+	var language_names : PoolStringArray
 	for f in _get_i18n_files():
 		var file := File.new()
 		print("Loading i18n file: %s" % f)
 		if file.open(f, File.READ) == OK:
 			var translation := Translation.new()
 			translation.locale = f.get_file().get_basename()
+			var name := file.get_line().strip_edges()
+			if not name.begins_with("LANGUAGE_NAME"):
+				printerr("The file must start with 'LANGUAGE_NAME' key.")
+				continue
+			name = name.trim_prefix("LANGUAGE_NAME").strip_edges()
 			while !file.eof_reached():
 				var line := file.get_line().strip_edges()
 				if line.length() == 0 || line.begins_with("#"):
@@ -25,7 +32,11 @@ func load_files() -> void:
 				else:
 					printerr("Key not found (make sure to use spaces; not tabs): %s" % line)
 			TranslationServer.add_translation(translation)
-		
+			locales.append(translation.locale)
+			language_names.append(name)
+	Settings.locales = locales
+	Settings.language_names = language_names
+
 # -------------------------------------------------------------------------------------------------
 func _get_i18n_files() -> Array:
 	var files := []

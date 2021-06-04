@@ -8,11 +8,6 @@ const AA_NONE_INDEX 		:= 0
 const AA_OPENGL_HINT_INDEX 	:= 1
 const AA_TEXTURE_FILL_INDEX := 2
 
-const LANGUAGE_ID_ENGLISH := 0
-const LANGUAGE_ID_GERMAN := 1
-const LANGUAGE_ID_ITALIAN := 2
-const LANGUAGE_ID_SPANISH := 3
-
 # -------------------------------------------------------------------------------------------------
 onready var _tab_general: Control = $MarginContainer/TabContainer/General
 onready var _tab_appearance: Control = $MarginContainer/TabContainer/Appearance
@@ -43,7 +38,7 @@ func _set_values() -> void:
 	var project_dir = Settings.get_value(Settings.GENERAL_DEFAULT_PROJECT_DIR, "")
 	var theme = Settings.get_value(Settings.APPEARANCE_THEME, Types.UITheme.DARK)
 	var aa_mode = Settings.get_value(Settings.RENDERING_AA_MODE, Config.DEFAULT_AA_MODE)
-	var language = Settings.get_value(Settings.GENERAL_LANGUAGE, Types.LOCALE_ENGLISH)
+	var locale = Settings.get_value(Settings.GENERAL_LANGUAGE, Settings.locales[0])
 	
 	match theme:
 		Types.UITheme.DARK: _theme.selected = THEME_DARK_INDEX
@@ -52,11 +47,10 @@ func _set_values() -> void:
 		Types.AAMode.NONE: _aa_mode.selected = AA_NONE_INDEX
 		Types.AAMode.OPENGL_HINT: _aa_mode.selected = AA_OPENGL_HINT_INDEX
 		Types.AAMode.TEXTURE_FILL: _aa_mode.selected = AA_TEXTURE_FILL_INDEX
-	match language:
-		Types.LOCALE_ENGLISH: _language_options.selected = LANGUAGE_ID_ENGLISH
-		Types.LOCALE_GERMAN: _language_options.selected = LANGUAGE_ID_GERMAN
-		Types.LOCALE_ITALIAN: _language_options.selected = LANGUAGE_ID_ITALIAN
-		Types.LOCALE_SPANISH: _language_options.selected = LANGUAGE_ID_SPANISH
+	
+	for lang in Settings.language_names:
+		_language_options.add_item(lang)
+	_language_options.selected = Array(Settings.locales).find(locale)
 	
 	_brush_size.value = brush_size
 	_brush_color.color = brush_color
@@ -106,11 +100,7 @@ func _on_AntiAliasing_item_selected(index: int):
 
 # -------------------------------------------------------------------------------------------------
 func _on_OptionButton_item_selected(id: int):
-	var locale := Types.LOCALE_ENGLISH
-	match id:
-		LANGUAGE_ID_GERMAN: locale = Types.LOCALE_GERMAN
-		LANGUAGE_ID_ITALIAN: locale = Types.LOCALE_ITALIAN
-		LANGUAGE_ID_SPANISH: locale = Types.LOCALE_SPANISH
+	var locale: String = Settings.locales[id]
 	
 	Settings.set_value(Settings.GENERAL_LANGUAGE, locale)
 	TranslationServer.set_locale(locale)
