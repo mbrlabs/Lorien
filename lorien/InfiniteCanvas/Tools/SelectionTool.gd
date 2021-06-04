@@ -64,6 +64,8 @@ func _input(event: InputEvent) -> void:
 		elif event.button_index == BUTTON_RIGHT && event.pressed:
 			_state = State.NONE
 			deselect_all_strokes()
+			_selection_rectangle.reset()
+			_selection_rectangle.update()
 	
 	# Mouse movement: move the selection
 	elif event is InputEventMouseMotion:
