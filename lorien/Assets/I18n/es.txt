@@ -1,0 +1,100 @@
+# -----------------------------------------------------------------------------
+# Menu strings
+# -----------------------------------------------------------------------------
+
+MENU_SAVE           Guardar
+MENU_SAVE_AS        Guardar como..
+MENU_SETTINGS       Configuración
+MENU_MANUAL         Manual
+# Changed from "Bug tracker" to "Report a bug"
+MENU_BUG_TRACKER    Reportar un bug
+# Changed from "About" to "About Lorien"
+MENU_ABOUT          Acerca de Lorien
+MENU_EXPORT         Exportar
+MENU_EXPORT_PNG     Exportar Canvas como PNG
+
+# -----------------------------------------------------------------------------
+# Toolbar
+# -----------------------------------------------------------------------------
+TOOLBAR_TOOLTIP_NEW_FILE        Crear Nuevo Archivo (CTRL+N)
+TOOLBAR_TOOLTIP_OPEN_FILE       Abrir Archivo (CTRL+O)
+TOOLBAR_TOOLTIP_SAVE_FILE       Guardar Archivo (CTRL+S)
+TOOLBAR_TOOLTIP_UNDO            Deshacer Acción (CTRL+Z)
+TOOLBAR_TOOLTIP_REDO            Rehacer Acción (CTRL+Y)
+TOOLBAR_TOOLTIP_BRUSH_TOOL      Herramienta de Pincel (B)
+TOOLBAR_TOOLTIP_LINE_TOOL       Herramienta de Línea (L)
+TOOLBAR_TOOLTIP_ERASER_TOOL     Borrador (E)
+TOOLBAR_TOOLTIP_PICKER_TOOL     Selector de Colores (C)
+TOOLBAR_TOOLTIP_SELECT_TOOL     Herramienta de Selección (S)
+TOOLBAR_TOOLTIP_BRUSH_COLOR     Color de Pincel
+TOOLBAR_TOOLTIP_BRUSH_SIZE      Tamaño de Pincel
+TOOLBAR_TOOLTIP_CANVAS_COLOR    Color de Canvas
+
+# -----------------------------------------------------------------------------
+# Statusbar strings
+# -----------------------------------------------------------------------------
+
+STATUSBAR_POSITION              Posición
+STATUSBAR_ZOOM                  Zoom
+STATUSBAR_PRESSURE              Presión
+STATUSBAR_FPS                   FPS
+# Changed "Strokes" to "Curves", other alternative is "Lines"
+STATUSBAR_STROKES               Curvas
+STATUSBAR_POINTS                Puntos
+STATUSBAR_SELECTED_STROKES      Curvas seleccionadas
+
+# -----------------------------------------------------------------------------
+# Settings strings
+# -----------------------------------------------------------------------------
+
+SETTINGS_TITLE              Configuración
+SETTINGS_GENERAL            General
+SETTINGS_APPEARANCE         Apariencia
+SETTINGS_RENDERING          Renderizado
+SETTINGS_BRUSH_SIZE         Tamaño de Pincel Predeterminado
+SETTINGS_BRUSH_COLOR        Color de Pincel Predeterminado
+SETTINGS_CANVAS_COLOR       Color de Canvas Predeterminado
+SETTINGS_PROJECT_FOLDER     Carpeta de Proyectos Predeterminada
+SETTINGS_LANGUAGE           Idioma
+SETTINGS_THEME              Tema
+SETTINGS_AA_METHOD          Método de Anti Aliasing
+SETTINGS_AA_METHOD_NONE     Ninguno
+
+# -----------------------------------------------------------------------------
+# About dialog strings
+# -----------------------------------------------------------------------------
+
+ABOUT_DIALOG_TITLE              Acerca de Lorien
+ABOUT_DIALOG_COPYRIGHT          © 2021 Marcus Brummer (mbrlabs) y colaboradores 
+ABOUT_DIALOG_LICSENSE           Lorien está licenciado bajo:
+ABOUT_DIALOG_BASED_ON           Lorien está basado en:
+
+# -----------------------------------------------------------------------------
+# Unsaved changes dialog
+# -----------------------------------------------------------------------------
+
+UNSAVED_CHANGES_DIALOG_TITLE    Guardar cambios?
+# Changed "Do you want to save changes (...)?" to "Save changes (...)?"
+UNSAVED_CHANGES_DIALOG_TEXT     Guardar tus cambios antes de cerrar el archivo?
+
+# -----------------------------------------------------------------------------
+# Exit dialog
+# -----------------------------------------------------------------------------
+
+EXIT_DIALOG_TITLE    Guardar cambios?
+# Changed "Do you want to save changes (...)?" to "Save changes (...)?"
+EXIT_DIALOG_TEXT     Guardar tus cambios antes de salir?
+
+# -----------------------------------------------------------------------------
+# Error messages
+# -----------------------------------------------------------------------------
+ERROR_NOT_IMPLEMENTED               Aún no ha sido implementado.
+ERROR_AUTOSAVE_NOT_IMPLEMENTED      El guardado automático aún no ha sido implementado para el archivo "Untitled". Por favor, guárdalo manualmente.
+
+# -----------------------------------------------------------------------------
+# Generic strings
+# -----------------------------------------------------------------------------
+
+SAVE            Guardar
+DISCARD         Descartar
+CANCEL          Cancelar
