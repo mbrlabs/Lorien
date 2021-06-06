@@ -4,9 +4,14 @@ class_name I18nParser
 const I18N_FOLDER := "res://Assets/I18n/"
 
 # -------------------------------------------------------------------------------------------------
-func load_files() -> void:
+
+class ParseResult:
 	var locales := PoolStringArray()
 	var language_names := PoolStringArray()
+
+# -------------------------------------------------------------------------------------------------
+func load_files() -> ParseResult:
+	var result = ParseResult.new()
 	for f in _get_i18n_files():
 		var file := File.new()
 		print("Loading i18n file: %s" % f)
@@ -32,10 +37,9 @@ func load_files() -> void:
 				else:
 					printerr("Key not found (make sure to use spaces; not tabs): %s" % line)
 			TranslationServer.add_translation(translation)
-			locales.append(translation.locale)
-			language_names.append(name)
-	Settings.locales = locales
-	Settings.language_names = language_names
+			result.locales.append(translation.locale)
+			result.language_names.append(name)
+	return result
 
 # -------------------------------------------------------------------------------------------------
 func _get_i18n_files() -> Array:

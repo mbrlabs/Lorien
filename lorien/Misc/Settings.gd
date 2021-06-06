@@ -20,8 +20,10 @@ func _ready():
 	_load_settings()
 
 	var i18n := I18nParser.new()
-	i18n.load_files()
+	var parse_result := i18n.load_files()
 	TranslationServer.set_locale(get_value(GENERAL_LANGUAGE, "en"))
+	locales = parse_result.locales
+	language_names = parse_result.language_names
 
 # -------------------------------------------------------------------------------------------------
 func _load_settings() -> int:
