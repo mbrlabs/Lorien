@@ -2,9 +2,6 @@ extends Node
 class_name Types
 
 # -------------------------------------------------------------------------------------------------
-const CANVAS_GROUP_SELECTED_STROKES := "selected_strokes"
-
-# -------------------------------------------------------------------------------------------------
 const LOCALE_ENGLISH := "en"
 const LOCALE_GERMAN := "de"
 const LOCALE_ITALIAN := "it"

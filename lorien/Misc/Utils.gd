@@ -33,3 +33,8 @@ func calculate_rect(start_pos: Vector2, end_pos: Vector2) -> Rect2:
 func return_timestamp_string() -> String:
 	var today := OS.get_datetime()
 	return "%s%s%s_%s%s%s" % [today.day, today.month, today.year, today.hour, today.minute, today.second]
+
+# -------------------------------------------------------------------------------------------------
+func remove_group_from_all_nodes(group: String) -> void:
+	for n in get_tree().get_nodes_in_group(group):
+		n.remove_from_group(group)
