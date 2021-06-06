@@ -19,7 +19,7 @@ func load_files() -> ParseResult:
 			var translation := Translation.new()
 			translation.locale = f.get_file().get_basename()
 			var name := file.get_line().strip_edges()
-			if not name.begins_with("LANGUAGE_NAME"):
+			if !name.begins_with("LANGUAGE_NAME"):
 				printerr("The file must start with 'LANGUAGE_NAME' key.")
 				continue
 			name = name.trim_prefix("LANGUAGE_NAME").strip_edges()
