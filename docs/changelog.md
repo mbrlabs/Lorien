@@ -9,6 +9,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Added
 - Translations: Spanish
 - The selection tool can now also deselect seperate brush strokes by holding down shift
+- "Save as" functionality to save a file as a new file with a new file name, while keeping the original
+- Implemented "Open" and "Save" functionality in menu
 
 ### Fixed
 
@@ -49,5 +51,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Designed to be used with a drawing tablet (Wacom, etc.). It also supports pressure sensitivity
 - Runs on Windows, Linux & Mac
 
-[0.2.0]: https://github.com/mbrlabs/lorien/compare/v0.1.0...HEAD
+[0.3.0]: https://github.com/mbrlabs/lorien/compare/v0.2.0...HEAD
+[0.2.0]: https://github.com/mbrlabs/lorien/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/mbrlabs/lorien/releases/tag/v0.1.0
