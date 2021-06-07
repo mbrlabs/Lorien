@@ -45,6 +45,9 @@ func _ready():
 	_main_menu.connect("open_settings_dialog", self, "_on_open_settings_dialog")
 	_main_menu.connect("open_url", self, "_on_open_url")
 	_main_menu.connect("export_as", self, "_export_as")
+	_main_menu.connect("open_project", self, "_on_open_project")
+	_main_menu.connect("save_project", self, "_on_save_project")
+	_main_menu.connect("save_project_as", self, "_on_save_project_as")
 	
 	_exit_dialog.connect("save_changes", self, "_on_exit_with_changes_saved")
 	_exit_dialog.connect("discard_changes", self, "_on_exit_with_changes_discarded")
@@ -226,6 +229,17 @@ func _on_open_project(filepath: String) -> void:
 	# Create and open it
 	project = ProjectManager.add_project(filepath)
 	_make_project_active(project)
+	
+# -------------------------------------------------------------------------------------------------
+func _on_save_project_as() -> void:
+	var active_project: Project = ProjectManager.get_active_project()
+	_canvas.disable()
+	_file_dialog.mode = FileDialog.MODE_SAVE_FILE
+	_file_dialog.invalidate()
+	_file_dialog.current_file = active_project.filepath.get_file()
+	_file_dialog.connect("file_selected", self, "_on_file_selected_to_save_project")
+	_file_dialog.connect("popup_hide", self, "_on_file_dialog_closed")
+	_file_dialog.popup_centered()
 
 # -------------------------------------------------------------------------------------------------
 func _on_save_project() -> void:
