@@ -7,10 +7,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ## [0.3.0] - Unreleased
 
 ### Added
-- Translations: Spanish
+- Infinite grid
 - The selection tool can now also deselect seperate brush strokes by holding down shift
 - "Save as" functionality to save a file as a new file with a new file name, while keeping the original
 - Implemented "Open" and "Save" functionality in menu
+- Translations: Spanish
 
 ### Fixed
 
