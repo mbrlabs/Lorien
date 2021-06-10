@@ -39,17 +39,27 @@ func get_color() -> Color:
 # -------------------------------------------------------------------------------------------------
 func _draw() -> void:
 	var size = get_viewport().size  * _camera.zoom
-	var cam = _camera.offset
-	var grid_size := GRID_SIZE
+	var zoom = _camera.zoom.x
+	var offset = _camera.offset
+	
+	var grid_size = GRID_SIZE
+	if zoom > 50:
+		grid_size *= 50
+	elif zoom > 25:
+		grid_size *= 25
+	elif zoom > 10:
+		grid_size *= 10
+	elif zoom > 5:
+		grid_size *= 5
 	
 	# Vertical lines
-	var start_index := int((cam.x - size.x) / grid_size) - 1
-	var end_index := int((size.x + cam.x) / grid_size) + 1
+	var start_index := int((offset.x - size.x) / grid_size) - 1
+	var end_index := int((size.x + offset.x) / grid_size) + 1
 	for i in range(start_index, end_index):
-		draw_line(Vector2(i * grid_size, cam.y + size.y), Vector2(i * grid_size, cam.y - size.y), color)
+		draw_line(Vector2(i * grid_size, offset.y + size.y), Vector2(i * grid_size, offset.y - size.y), color)
 	
 	# Horizontal lines
-	start_index = int((cam.y - size.y) / grid_size) - 1
-	end_index = int((size.y + cam.y) / grid_size) + 1
+	start_index = int((offset.y - size.y) / grid_size) - 1
+	end_index = int((size.y + offset.y) / grid_size) + 1
 	for i in range(start_index, end_index):
-		draw_line(Vector2(cam.x + size.x, i * grid_size), Vector2(cam.x - size.x, i * grid_size), color)
+		draw_line(Vector2(offset.x + size.x, i * grid_size), Vector2(offset.x - size.x, i * grid_size), color)
