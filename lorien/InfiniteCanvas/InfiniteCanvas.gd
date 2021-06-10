@@ -97,7 +97,11 @@ func set_background_color(color: Color) -> void:
 		for eraser_index in _current_project.eraser_stroke_indices:
 			if eraser_index < _strokes_parent.get_child_count():
 				_strokes_parent.get_child(eraser_index).color = color
-	
+
+# -------------------------------------------------------------------------------------------------
+func enable_grid(e: bool) -> void:
+	_grid.enable(e)
+
 # -------------------------------------------------------------------------------------------------
 func get_background_color() -> Color:
 	return _background_color

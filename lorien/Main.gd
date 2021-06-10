@@ -36,6 +36,7 @@ func _ready():
 	_toolbar.connect("brush_size_changed", self, "_on_brush_size_changed")
 	_toolbar.connect("canvas_background_changed", self, "_on_canvas_background_changed")
 	_toolbar.connect("tool_changed", self, "_on_tool_changed")
+	_toolbar.connect("grid_enabled", self, "_on_grid_enabled")
 	
 	_menubar.connect("create_new_project", self, "_on_create_new_project")
 	_menubar.connect("project_selected", self, "_on_project_selected")
@@ -271,6 +272,10 @@ func _on_canvas_background_changed(color: Color) -> void:
 	var project: Project = ProjectManager.get_active_project()
 	if project != null:
 		project.dirty = true
+
+# -------------------------------------------------------------------------------------------------
+func _on_grid_enabled(enabled: bool) -> void:
+	_canvas.enable_grid(enabled)
 
 # -------------------------------------------------------------------------------------------------
 func _on_undo_action() -> void:
