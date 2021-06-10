@@ -1,6 +1,7 @@
 extends Camera2D
 
 signal zoom_changed(value)
+signal position_changed(value)
 
 const MAX_ZOOM_LEVEL = 100.0
 const MIN_ZOOM_LEVEL = 0.1
@@ -34,6 +35,7 @@ func _input(event: InputEvent) -> void:
 # -------------------------------------------------------------------------------------------------
 func _do_pan(pan: Vector2) -> void:
 	offset -= pan * _current_zoom_level
+	emit_signal("position_changed", offset)
 
 # -------------------------------------------------------------------------------------------------
 func _do_zoom(incr: float, zoom_anchor: Vector2) -> void:
