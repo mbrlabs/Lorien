@@ -175,6 +175,7 @@ ProjectMetadata="*res://ProjectManager/ProjectMetadata.gd"
 
 [debug]
 
+settings/fps/force_fps=144
 gdscript/warnings/unused_argument=false
 gdscript/warnings/narrowing_conversion=false
 gdscript/warnings/unused_signal=false
@@ -187,6 +188,7 @@ window/size/height=1080
 window/size/test_width=1440
 window/size/test_height=810
 window/dpi/allow_hidpi=true
+window/vsync/use_vsync=false
 
 [input]
 

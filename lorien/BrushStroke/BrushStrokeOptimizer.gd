@@ -8,8 +8,9 @@ func reset() -> void:
 
 # -------------------------------------------------------------------------------------------------
 func optimize(s: BrushStroke) -> void:
+	# TODO: if the FPS is low i should optimze less i.e. make these numbers smaller
 	var max_angle_diff = 4.0 if s.eraser else 1.0
-	var max_distance = 8.0 if s.eraser else 1.0
+	var max_distance = 8.0 if s.eraser else 4.0
 	
 	if s.points.size() < 3:
 		return
