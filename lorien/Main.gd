@@ -1,5 +1,8 @@
 extends Control
 
+const TARGET_FPS_FOREGROUND := 144
+const TARGET_FPS_BACKGROUND := 10
+
 # -------------------------------------------------------------------------------------------------
 onready var _canvas: InfiniteCanvas = $InfiniteCanvas
 onready var _statusbar: Statusbar = $Statusbar
@@ -69,12 +72,15 @@ func _notification(what):
 			else:
 				get_tree().quit()
 
-	elif NOTIFICATION_WM_FOCUS_IN == what && _canvas != null:
-		if !_is_mouse_on_ui():
+	elif NOTIFICATION_WM_FOCUS_IN == what:
+		Engine.target_fps = TARGET_FPS_FOREGROUND
+		if !_is_mouse_on_ui() && _canvas != null:
 			yield(get_tree().create_timer(0.12), "timeout")
 			_canvas.enable()
-	elif NOTIFICATION_WM_FOCUS_OUT == what && _canvas != null:
-		_canvas.disable()
+	elif NOTIFICATION_WM_FOCUS_OUT == what:
+		Engine.target_fps = TARGET_FPS_BACKGROUND
+		if _canvas != null:
+			_canvas.disable()
 
 # -------------------------------------------------------------------------------------------------
 func _exit_tree():
