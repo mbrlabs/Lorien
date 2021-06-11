@@ -183,7 +183,6 @@ margin_right = 476.0
 margin_bottom = 25.0
 size_flags_horizontal = 3
 text = "English"
-items = [ "English", null, false, 0, null, "Deutsch", null, false, 1, null, "Italiano", null, false, 2, null, "Español", null, false, 3, null ]
 selected = 0
 
 [node name="RestartLabel" type="Label" parent="MarginContainer/TabContainer/General/VBoxContainer"]

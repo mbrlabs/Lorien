@@ -2,12 +2,6 @@ extends Node
 class_name Types
 
 # -------------------------------------------------------------------------------------------------
-const LOCALE_ENGLISH := "en"
-const LOCALE_GERMAN := "de"
-const LOCALE_ITALIAN := "it"
-const LOCALE_SPANISH := "es"
-
-# -------------------------------------------------------------------------------------------------
 enum Tool {
 	BRUSH,
 	LINE,
