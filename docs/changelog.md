@@ -4,13 +4,20 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
-## [0.y.z] - Unreleased
+## [0.3.0] - Unreleased
 
 ### Added
+- Infinite grid
+- The selection tool can now also deselect seperate brush strokes by holding down shift
+- "Save as" functionality to save a file as a new file with a new file name, while keeping the original
+- Implemented "Open" and "Save" functionality in menu
+- Translations: Spanish
 
 ### Fixed
 
 ### Changed
+- Disabled VSync and set the fixed target FPS to 144, which results in much smoother brush strokes and a better feeling on low Hz monitors
+- Lower the FPS to 10 if the window is unfocused to reduce the CPU/GPU load and save energy
 
 ## [0.2.0] - 2021-06-03
 
@@ -47,5 +54,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Designed to be used with a drawing tablet (Wacom, etc.). It also supports pressure sensitivity
 - Runs on Windows, Linux & Mac
 
-[0.2.0]: https://github.com/mbrlabs/lorien/compare/v0.1.0...HEAD
+[0.3.0]: https://github.com/mbrlabs/lorien/compare/v0.2.0...HEAD
+[0.2.0]: https://github.com/mbrlabs/lorien/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/mbrlabs/lorien/releases/tag/v0.1.0

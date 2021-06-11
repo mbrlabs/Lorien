@@ -117,6 +117,7 @@ margin_left = 1.0
 margin_top = 38.0
 margin_right = 151.0
 margin_bottom = 138.0
+file_dialog_path = NodePath("../FileDialog")
 
 [node name="FileDialog" type="FileDialog" parent="."]
 anchor_left = 0.5

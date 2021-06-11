@@ -14,6 +14,7 @@ onready var _active_tool: CanvasTool = _brush_tool
 onready var _strokes_parent: Node2D = $Viewport/Strokes
 onready var _camera: Camera2D = $Viewport/Camera2D
 onready var _viewport: Viewport = $Viewport
+onready var _grid: InfiniteCanvasGrid = $Viewport/Grid
 
 var info := Types.CanvasInfo.new()
 var _is_enabled := false
@@ -37,17 +38,12 @@ func _ready():
 	get_tree().get_root().connect("size_changed", self, "_on_window_resized")
 	_camera.connect("zoom_changed", $Viewport/SelectionCursor, "_on_zoom_changed")
 	_camera.connect("zoom_changed", $Viewport/ColorPickerCursor, "_on_zoom_changed")
+	_viewport.size = OS.window_size
 
 # -------------------------------------------------------------------------------------------------
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		info.current_pressure = event.pressure
-	
-	# Deselect selected strokes on right click
-	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_RIGHT && event.pressed:
-			if _active_tool == _selection_tool:
-				_selection_tool.deselect_all_strokes()
 
 # -------------------------------------------------------------------------------------------------
 func _process(delta: float) -> void:
@@ -92,12 +88,20 @@ func set_background_color(color: Color) -> void:
 	VisualServer.set_default_clear_color(color)
 	_background_color = color
 	
+	if _grid != null:
+		var grid_color := color.lightened(0.03)
+		_grid.color = grid_color
+	
 	if _current_project != null:
 		# Make the eraser brush strokes have the same color as the background
 		for eraser_index in _current_project.eraser_stroke_indices:
 			if eraser_index < _strokes_parent.get_child_count():
 				_strokes_parent.get_child(eraser_index).color = color
-	
+
+# -------------------------------------------------------------------------------------------------
+func enable_grid(e: bool) -> void:
+	_grid.enable(e)
+
 # -------------------------------------------------------------------------------------------------
 func get_background_color() -> Color:
 	return _background_color

@@ -3,6 +3,9 @@ extends CanvasTool
 
 # -------------------------------------------------------------------------------------------------
 const META_OFFSET := "offset"
+const GROUP_SELECTED_STROKES := "selected_strokes" # selected strokes
+const GROUP_STROKES_IN_SELECTION_RECTANGLE := "strokes_in_selection_rectangle" # strokes that are in selection rectangle but not commit (i.e. the user is still selecting)
+const GROUP_MARKED_FOR_DESELECTION := "strokes_marked_for_deselection" # strokes that need to be deslected once LMB is released
 
 enum State {
 	NONE,
@@ -49,6 +52,8 @@ func _input(event: InputEvent) -> void:
 					_state = State.NONE
 					_selection_rectangle.reset()
 					_selection_rectangle.update()
+					_commit_strokes_under_selection_rectangle()
+					_deselect_marked_strokes()
 					if get_selected_strokes().size() > 0:
 						_cursor.mode = SelectionCursor.Mode.MOVE
 				elif _state == State.MOVING:
@@ -61,11 +66,8 @@ func _input(event: InputEvent) -> void:
 					_mouse_moved_during_pressed = false
 						
 		# RMB down - just deselect
-		elif event.button_index == BUTTON_RIGHT && event.pressed:
-			_state = State.NONE
+		elif event.button_index == BUTTON_RIGHT && event.pressed && _state == State.NONE:
 			deselect_all_strokes()
-			_selection_rectangle.reset()
-			_selection_rectangle.update()
 	
 	# Mouse movement: move the selection
 	elif event is InputEventMouseMotion:
@@ -106,11 +108,19 @@ func _get_absolute_stroke_point_pos(p: Vector2, stroke: BrushStroke) -> Vector2:
 # ------------------------------------------------------------------------------------------------
 func _set_stroke_selected(stroke: BrushStroke, is_inside_rect: bool = true) -> void:
 	if is_inside_rect:
-		stroke.modulate = Config.DEFAULT_SELECTION_COLOR
-		stroke.add_to_group(Types.CANVAS_GROUP_SELECTED_STROKES)
+		if stroke.is_in_group(GROUP_SELECTED_STROKES):
+			stroke.modulate = Color.white
+			stroke.add_to_group(GROUP_MARKED_FOR_DESELECTION)
+		else:
+			stroke.modulate = Config.DEFAULT_SELECTION_COLOR
+			stroke.add_to_group(GROUP_STROKES_IN_SELECTION_RECTANGLE)
 	else:
-		if stroke.is_in_group(Types.CANVAS_GROUP_SELECTED_STROKES) && !_multi_selecting:
-			stroke.remove_from_group(Types.CANVAS_GROUP_SELECTED_STROKES)
+		if stroke.is_in_group(GROUP_MARKED_FOR_DESELECTION):
+			stroke.modulate = Config.DEFAULT_SELECTION_COLOR
+			stroke.remove_from_group(GROUP_MARKED_FOR_DESELECTION)
+		
+		if stroke.is_in_group(GROUP_STROKES_IN_SELECTION_RECTANGLE) && !stroke.is_in_group(GROUP_SELECTED_STROKES):
+			stroke.remove_from_group(GROUP_STROKES_IN_SELECTION_RECTANGLE)
 			stroke.modulate = Color.white
 
 # ------------------------------------------------------------------------------------------------
@@ -134,12 +144,28 @@ func _move_selected_strokes() -> void:
 		stroke.global_position = stroke.get_meta(META_OFFSET) + _cursor.global_position
 
 # ------------------------------------------------------------------------------------------------
+func _commit_strokes_under_selection_rectangle() -> void:
+	for stroke in get_tree().get_nodes_in_group(GROUP_STROKES_IN_SELECTION_RECTANGLE):
+		stroke.remove_from_group(GROUP_STROKES_IN_SELECTION_RECTANGLE)
+		stroke.add_to_group(GROUP_SELECTED_STROKES)
+
+# ------------------------------------------------------------------------------------------------
+func _deselect_marked_strokes() -> void:
+	for s in get_tree().get_nodes_in_group(GROUP_MARKED_FOR_DESELECTION):
+		s.remove_from_group(GROUP_MARKED_FOR_DESELECTION)
+		s.remove_from_group(GROUP_SELECTED_STROKES)
+		s.modulate = Color.white
+
+# ------------------------------------------------------------------------------------------------
 func deselect_all_strokes() -> void:
 	var selected_strokes: Array = get_selected_strokes()
 	if selected_strokes.size():
-		get_tree().set_group(Types.CANVAS_GROUP_SELECTED_STROKES, "modulate", Color.white)
-		for stroke in selected_strokes:
-			stroke.remove_from_group(Types.CANVAS_GROUP_SELECTED_STROKES)
+		get_tree().set_group(GROUP_SELECTED_STROKES, "modulate", Color.white)
+		get_tree().set_group(GROUP_STROKES_IN_SELECTION_RECTANGLE, "modulate", Color.white)
+		Utils.remove_group_from_all_nodes(GROUP_SELECTED_STROKES)
+		Utils.remove_group_from_all_nodes(GROUP_MARKED_FOR_DESELECTION)
+		Utils.remove_group_from_all_nodes(GROUP_STROKES_IN_SELECTION_RECTANGLE)
+		
 	_canvas.info.selected_lines = 0
 	_cursor.mode = SelectionCursor.Mode.SELECT
 
@@ -149,4 +175,4 @@ func is_selecting() -> bool:
 
 # ------------------------------------------------------------------------------------------------
 func get_selected_strokes() -> Array:
-	return get_tree().get_nodes_in_group(Types.CANVAS_GROUP_SELECTED_STROKES)
+	return get_tree().get_nodes_in_group(GROUP_SELECTED_STROKES)

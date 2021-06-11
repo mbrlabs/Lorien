@@ -8,6 +8,7 @@ signal clear_canvas
 signal undo_action
 signal redo_action
 signal brush_color_changed(color)
+signal grid_enabled(enabled)
 signal brush_size_changed(size)
 signal canvas_background_changed(color)
 signal tool_changed(t)
@@ -35,6 +36,7 @@ onready var _brush_color_picker: ColorPicker = get_node(brush_color_picker_path)
 onready var _brush_color_picker_popup: Popup = get_node(brush_color_picker_path).get_parent().get_parent() # meh...
 onready var _background_color_picker: ColorPicker = get_node(background_color_picker_path)
 onready var _background_color_picker_popup: Popup = get_node(background_color_picker_path).get_parent().get_parent() # meh...
+onready var _grid_button: TextureButton = $Right/GridButton
 onready var _tool_btn_brush: TextureButton = $Left/BrushToolButton
 onready var _tool_btn_line: TextureButton = $Left/LineToolButton
 onready var _tool_btn_eraser: TextureButton = $Left/EraserToolButton
@@ -124,10 +126,6 @@ func _on_BrushSizeSlider_value_changed(value: float):
 	emit_signal("brush_size_changed", new_size)
 
 # -------------------------------------------------------------------------------------------------
-func _on_BackgroundColorButton_pressed():
-	_background_color_picker_popup.popup()
-
-# -------------------------------------------------------------------------------------------------
 func _on_BrushToolButton_pressed():
 	_change_active_tool_button(_tool_btn_brush)
 	emit_signal("tool_changed", Types.Tool.BRUSH)
@@ -151,6 +149,14 @@ func _on_ColorPickerToolButton_pressed():
 func _on_SelectToolButton_pressed():
 	_change_active_tool_button(_tool_btn_selection)
 	emit_signal("tool_changed", Types.Tool.SELECT)
+
+# -------------------------------------------------------------------------------------------------
+func _on_BackgroundColorButton_pressed():
+	_background_color_picker_popup.popup()
+
+# -------------------------------------------------------------------------------------------------
+func _on_GridButton_toggled(toggled: bool):
+	emit_signal("grid_enabled", toggled)
 
 # -------------------------------------------------------------------------------------------------
 func _change_active_tool_button(btn: TextureButton) -> void:

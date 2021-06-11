@@ -1,5 +1,8 @@
 extends Control
 
+const TARGET_FPS_FOREGROUND := 144
+const TARGET_FPS_BACKGROUND := 10
+
 # -------------------------------------------------------------------------------------------------
 onready var _canvas: InfiniteCanvas = $InfiniteCanvas
 onready var _statusbar: Statusbar = $Statusbar
@@ -36,6 +39,7 @@ func _ready():
 	_toolbar.connect("brush_size_changed", self, "_on_brush_size_changed")
 	_toolbar.connect("canvas_background_changed", self, "_on_canvas_background_changed")
 	_toolbar.connect("tool_changed", self, "_on_tool_changed")
+	_toolbar.connect("grid_enabled", self, "_on_grid_enabled")
 	
 	_menubar.connect("create_new_project", self, "_on_create_new_project")
 	_menubar.connect("project_selected", self, "_on_project_selected")
@@ -45,6 +49,9 @@ func _ready():
 	_main_menu.connect("open_settings_dialog", self, "_on_open_settings_dialog")
 	_main_menu.connect("open_url", self, "_on_open_url")
 	_main_menu.connect("export_as", self, "_export_as")
+	_main_menu.connect("open_project", self, "_on_open_project")
+	_main_menu.connect("save_project", self, "_on_save_project")
+	_main_menu.connect("save_project_as", self, "_on_save_project_as")
 	
 	_exit_dialog.connect("save_changes", self, "_on_exit_with_changes_saved")
 	_exit_dialog.connect("discard_changes", self, "_on_exit_with_changes_discarded")
@@ -65,12 +72,15 @@ func _notification(what):
 			else:
 				get_tree().quit()
 
-	elif NOTIFICATION_WM_FOCUS_IN == what && _canvas != null:
-		if !_is_mouse_on_ui():
+	elif NOTIFICATION_WM_FOCUS_IN == what:
+		Engine.target_fps = TARGET_FPS_FOREGROUND
+		if !_is_mouse_on_ui() && _canvas != null:
 			yield(get_tree().create_timer(0.12), "timeout")
 			_canvas.enable()
-	elif NOTIFICATION_WM_FOCUS_OUT == what && _canvas != null:
-		_canvas.disable()
+	elif NOTIFICATION_WM_FOCUS_OUT == what:
+		Engine.target_fps = TARGET_FPS_BACKGROUND
+		if _canvas != null:
+			_canvas.disable()
 
 # -------------------------------------------------------------------------------------------------
 func _exit_tree():
@@ -226,6 +236,17 @@ func _on_open_project(filepath: String) -> void:
 	# Create and open it
 	project = ProjectManager.add_project(filepath)
 	_make_project_active(project)
+	
+# -------------------------------------------------------------------------------------------------
+func _on_save_project_as() -> void:
+	var active_project: Project = ProjectManager.get_active_project()
+	_canvas.disable()
+	_file_dialog.mode = FileDialog.MODE_SAVE_FILE
+	_file_dialog.invalidate()
+	_file_dialog.current_file = active_project.filepath.get_file()
+	_file_dialog.connect("file_selected", self, "_on_file_selected_to_save_project")
+	_file_dialog.connect("popup_hide", self, "_on_file_dialog_closed")
+	_file_dialog.popup_centered()
 
 # -------------------------------------------------------------------------------------------------
 func _on_save_project() -> void:
@@ -257,6 +278,10 @@ func _on_canvas_background_changed(color: Color) -> void:
 	var project: Project = ProjectManager.get_active_project()
 	if project != null:
 		project.dirty = true
+
+# -------------------------------------------------------------------------------------------------
+func _on_grid_enabled(enabled: bool) -> void:
+	_canvas.enable_grid(enabled)
 
 # -------------------------------------------------------------------------------------------------
 func _on_undo_action() -> void:
