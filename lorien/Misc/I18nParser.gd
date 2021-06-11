@@ -8,6 +8,10 @@ const I18N_FOLDER := "res://Assets/I18n/"
 class ParseResult:
 	var locales := PoolStringArray()
 	var language_names := PoolStringArray()
+	
+	func append(var locale : String, var name : String) -> void:
+		locales.append(locale)
+		language_names.append(name)
 
 # -------------------------------------------------------------------------------------------------
 func load_files() -> ParseResult:
@@ -37,8 +41,7 @@ func load_files() -> ParseResult:
 				else:
 					printerr("Key not found (make sure to use spaces; not tabs): %s" % line)
 			TranslationServer.add_translation(translation)
-			result.locales.append(translation.locale)
-			result.language_names.append(name)
+			result.append(translation.locale, name)
 	return result
 
 # -------------------------------------------------------------------------------------------------
