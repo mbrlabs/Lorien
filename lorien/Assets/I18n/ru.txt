@@ -1,0 +1,97 @@
+LANGUAGE_NAME Русский
+
+# -----------------------------------------------------------------------------
+# Menu strings
+# -----------------------------------------------------------------------------
+
+MENU_SAVE           Сохранить
+MENU_SAVE_AS        Сохранить как..
+MENU_SETTINGS       Настройки
+MENU_MANUAL         Руководство
+MENU_BUG_TRACKER    Баг трекер
+MENU_ABOUT          О Lorien
+MENU_EXPORT         Экспортировать
+MENU_EXPORT_PNG     Экспортировать холст как PNG
+
+# -----------------------------------------------------------------------------
+# Toolbar
+# -----------------------------------------------------------------------------
+TOOLBAR_TOOLTIP_NEW_FILE        Создать новый файл (CTRL+N)
+TOOLBAR_TOOLTIP_OPEN_FILE       Открыть файл (CTRL+O)
+TOOLBAR_TOOLTIP_SAVE_FILE       Сохранить файл (CTRL+S)
+TOOLBAR_TOOLTIP_UNDO            Отменить действие (CTRL+Z)
+TOOLBAR_TOOLTIP_REDO            Повторить действие (CTRL+Y)
+TOOLBAR_TOOLTIP_BRUSH_TOOL      Кисть (B)
+TOOLBAR_TOOLTIP_LINE_TOOL       Линия (L)
+TOOLBAR_TOOLTIP_ERASER_TOOL     Стерка (E)
+TOOLBAR_TOOLTIP_PICKER_TOOL     Выбор цвета (C)
+TOOLBAR_TOOLTIP_SELECT_TOOL     Выделить  (S)
+TOOLBAR_TOOLTIP_BRUSH_COLOR     Цвет кисти
+TOOLBAR_TOOLTIP_BRUSH_SIZE      Размер кисти
+TOOLBAR_TOOLTIP_CANVAS_COLOR    Цвет холста
+
+# -----------------------------------------------------------------------------
+# Statusbar strings
+# -----------------------------------------------------------------------------
+
+STATUSBAR_POSITION              Позиция
+STATUSBAR_ZOOM                  Zoom
+STATUSBAR_PRESSURE              Давление
+STATUSBAR_FPS                   FPS
+STATUSBAR_STROKES               Штрихи
+STATUSBAR_POINTS                Количество точек
+STATUSBAR_SELECTED_STROKES      Выбранные штрихи
+
+# -----------------------------------------------------------------------------
+# Settings strings
+# -----------------------------------------------------------------------------
+
+SETTINGS_TITLE              Настройки
+SETTINGS_GENERAL            Общее
+SETTINGS_APPEARANCE         Внешний вид
+SETTINGS_RENDERING          Рендеринг
+SETTINGS_BRUSH_SIZE         Размер кисти по умолчанию
+SETTINGS_BRUSH_COLOR        Цвет кисти по умолчанию
+SETTINGS_CANVAS_COLOR       Цвет холста по умолчанию
+SETTINGS_PROJECT_FOLDER     Папка проекта по умолчанию
+SETTINGS_LANGUAGE           Язык
+SETTINGS_THEME              Тема
+SETTINGS_AA_METHOD          Метод сглаживания
+SETTINGS_AA_METHOD_NONE     Не использовать
+
+# -----------------------------------------------------------------------------
+# About dialog strings
+# -----------------------------------------------------------------------------
+
+ABOUT_DIALOG_TITLE              О Lorien
+ABOUT_DIALOG_COPYRIGHT          © 2021 Marcus Brummer (mbrlabs) и контрибютеры
+ABOUT_DIALOG_LICSENSE           Lorien находится под лицензией:
+ABOUT_DIALOG_BASED_ON           Lorien основан на:
+
+# -----------------------------------------------------------------------------
+# Unsaved changes dialog
+# -----------------------------------------------------------------------------
+
+UNSAVED_CHANGES_DIALOG_TITLE    Сохранить изменения?
+UNSAVED_CHANGES_DIALOG_TEXT     Вы хотите сохранить изменения перед закрытием файла?
+
+# -----------------------------------------------------------------------------
+# Exit dialog
+# -----------------------------------------------------------------------------
+
+EXIT_DIALOG_TITLE    Сохранить изменения?
+EXIT_DIALOG_TEXT     Вы хотите сохранить изменения перед выходом из Lorien?
+
+# -----------------------------------------------------------------------------
+# Error messages
+# -----------------------------------------------------------------------------
+ERROR_NOT_IMPLEMENTED               Еще не реализовано.
+ERROR_AUTOSAVE_NOT_IMPLEMENTED      Автосохранение еще не реализовано для файла "Untitled". Пожалуйста, сохраните его вручную.
+
+# -----------------------------------------------------------------------------
+# Generic strings
+# -----------------------------------------------------------------------------
+
+SAVE            Сохранить
+DISCARD         Отказаться
+CANCEL          Отмена
