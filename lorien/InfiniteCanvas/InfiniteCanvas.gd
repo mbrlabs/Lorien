@@ -211,6 +211,8 @@ func use_project(project: Project) -> void:
 		info.stroke_count += 1
 		info.point_count += stroke.points.size()
 	
+	_grid.update()
+	
 # -------------------------------------------------------------------------------------------------
 func undo_last_stroke() -> void:
 	if _current_stroke == null && !_current_project.strokes.empty():
