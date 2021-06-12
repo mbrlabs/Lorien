@@ -38,6 +38,8 @@ func _ready():
 	get_tree().get_root().connect("size_changed", self, "_on_window_resized")
 	_camera.connect("zoom_changed", $Viewport/SelectionCursor, "_on_zoom_changed")
 	_camera.connect("zoom_changed", $Viewport/ColorPickerCursor, "_on_zoom_changed")
+	_camera.connect("zoom_changed", self, "_on_zoom_changed")
+	_camera.connect("position_changed", self, "_on_camera_moved")
 	_viewport.size = OS.window_size
 
 # -------------------------------------------------------------------------------------------------
@@ -238,6 +240,17 @@ func get_camera_zoom() -> float:
 # -------------------------------------------------------------------------------------------------
 func get_camera_offset() -> Vector2:
 	return _camera.offset
+
+# -------------------------------------------------------------------------------------------------
+func _on_zoom_changed(zoom: float) -> void:
+	_current_project.meta_data[ProjectMetadata.CAMERA_ZOOM] = str(zoom)
+	_current_project.dirty = true
+
+# -------------------------------------------------------------------------------------------------
+func _on_camera_moved(pos: Vector2) -> void:
+	_current_project.meta_data[ProjectMetadata.CAMERA_OFFSET_X] = str(pos.x)
+	_current_project.meta_data[ProjectMetadata.CAMERA_OFFSET_Y] = str(pos.y)
+	_current_project.dirty = true
 
 # -------------------------------------------------------------------------------------------------
 func _delete_selected_strokes() -> void:

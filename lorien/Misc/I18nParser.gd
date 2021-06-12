@@ -4,14 +4,13 @@ class_name I18nParser
 const I18N_FOLDER := "res://Assets/I18n/"
 
 # -------------------------------------------------------------------------------------------------
-
 class ParseResult:
 	var locales := PoolStringArray()
 	var language_names := PoolStringArray()
 	
-	func append(var locale : String, var name : String) -> void:
+	func append(var locale: String, var lang_name: String) -> void:
 		locales.append(locale)
-		language_names.append(name)
+		language_names.append(lang_name)
 
 # -------------------------------------------------------------------------------------------------
 func load_files() -> ParseResult:

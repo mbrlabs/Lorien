@@ -1,7 +1,7 @@
 extends Node
 
 # -------------------------------------------------------------------------------------------------
-const CAMERA_ZOOM = "camera_zoom"
+const CAMERA_ZOOM := "camera_zoom"
 const CAMERA_OFFSET_X := "camera_offset_x"
 const CAMERA_OFFSET_Y := "camera_offset_y"
 const CANVAS_COLOR := "canvas_color"
@@ -26,8 +26,8 @@ func apply_from_dict(meta_data: Dictionary, canvas: InfiniteCanvas) -> void:
 	var new_cam_offset_y_str: String = meta_data.get(CAMERA_OFFSET_Y, "0.0")
 	var new_canvas_color: String = meta_data.get(CANVAS_COLOR, Config.DEFAULT_CANVAS_COLOR.to_html())
 	
-	cam.set_zoom_level(float(new_cam_zoom_str))
 	cam.offset = Vector2(float(new_cam_offset_x_str), float(new_cam_offset_y_str))
+	cam.set_zoom_level(float(new_cam_zoom_str))
 	canvas.set_background_color(Color(new_canvas_color))
 
 # -------------------------------------------------------------------------------------------------

@@ -14,10 +14,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Translations: Spanish
 
 ### Fixed
+- Fixed camera position & zoom getting reset when switching between tabs
 
 ### Changed
 - Disabled VSync and set the fixed target FPS to 144, which results in much smoother brush strokes and a better feeling on low Hz monitors
 - Lower the FPS to 10 if the window is unfocused to reduce the CPU/GPU load and save energy
+- Improved camera zoom
 
 ## [0.2.0] - 2021-06-03
 
