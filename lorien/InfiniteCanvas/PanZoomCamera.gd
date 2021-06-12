@@ -17,7 +17,6 @@ var _mouse_wheel_counter := 0
 
 # -------------------------------------------------------------------------------------------------
 func set_zoom_level(zoom_level: float) -> void:
-	_current_zoom_level = 1.0
 	_mouse_wheel_counter = 0
 	
 	if !is_equal_approx(zoom_level, 1.0):
@@ -33,6 +32,8 @@ func set_zoom_level(zoom_level: float) -> void:
 			else:
 				if _current_zoom_level >= zoom_level:
 					break
+	
+	_current_zoom_level = zoom_level
 	zoom = Vector2(_current_zoom_level, _current_zoom_level)
 
 # -------------------------------------------------------------------------------------------------
