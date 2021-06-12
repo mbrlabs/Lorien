@@ -3,10 +3,10 @@ extends Node2D
 
 # -------------------------------------------------------------------------------------------------
 const GRID_SIZE := 25.0
+const COLOR := Color.red
 
 # -------------------------------------------------------------------------------------------------
 export var camera_path: NodePath
-var color := Color("2b2d31") setget set_color, get_color
 var _enabled: bool
 var _camera: Camera2D
 
@@ -28,13 +28,8 @@ func _on_position_changed(pos: Vector2) -> void: update()
 func _on_viewport_size_changed() -> void: update()
 
 # -------------------------------------------------------------------------------------------------
-func set_color(c: Color) -> void:
-	color = c
-	update()
-
-# -------------------------------------------------------------------------------------------------
-func get_color() -> Color:
-	return color
+func set_canvas_color(c: Color) -> void:
+	material.set_shader_param("canvas_color", c)
 
 # -------------------------------------------------------------------------------------------------
 func _draw() -> void:
@@ -56,10 +51,10 @@ func _draw() -> void:
 	var start_index := int((offset.x - size.x) / grid_size) - 1
 	var end_index := int((size.x + offset.x) / grid_size) + 1
 	for i in range(start_index, end_index):
-		draw_line(Vector2(i * grid_size, offset.y + size.y), Vector2(i * grid_size, offset.y - size.y), color)
+		draw_line(Vector2(i * grid_size, offset.y + size.y), Vector2(i * grid_size, offset.y - size.y), COLOR)
 	
 	# Horizontal lines
 	start_index = int((offset.y - size.y) / grid_size) - 1
 	end_index = int((size.y + offset.y) / grid_size) + 1
 	for i in range(start_index, end_index):
-		draw_line(Vector2(offset.x + size.x, i * grid_size), Vector2(offset.x - size.x, i * grid_size), color)
+		draw_line(Vector2(offset.x + size.x, i * grid_size), Vector2(offset.x - size.x, i * grid_size), COLOR)

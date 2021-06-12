@@ -87,18 +87,17 @@ func use_tool(tool_type: int) -> void:
 
 # -------------------------------------------------------------------------------------------------
 func set_background_color(color: Color) -> void:
-	VisualServer.set_default_clear_color(color)
 	_background_color = color
 	
-	if _grid != null:
-		var grid_color := color.lightened(0.03)
-		_grid.color = grid_color
+	VisualServer.set_default_clear_color(_background_color)
+	_grid.set_canvas_color(_background_color)
 	
 	if _current_project != null:
 		# Make the eraser brush strokes have the same color as the background
 		for eraser_index in _current_project.eraser_stroke_indices:
 			if eraser_index < _strokes_parent.get_child_count():
-				_strokes_parent.get_child(eraser_index).color = color
+				_strokes_parent.get_child(eraser_index).color = _background_color
+	
 
 # -------------------------------------------------------------------------------------------------
 func enable_grid(e: bool) -> void:
