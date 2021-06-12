@@ -42,7 +42,7 @@ func _ready():
 	_submenu_export.add_item(tr("MENU_EXPORT_PNG"), ITEM_EXPORT_PNG)
 	
 	# main menu
-	add_item("Open", ITEM_OPEN) # TODO: i18n
+	add_item(tr("MENU_OPEN"), ITEM_OPEN)
 	add_item(tr("MENU_SAVE"), ITEM_SAVE)
 	add_item(tr("MENU_SAVE_AS"), ITEM_SAVE_AS)
 	add_submenu_item(_submenu_export.name, tr("MENU_EXPORT"))

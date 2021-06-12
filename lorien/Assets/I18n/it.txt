@@ -4,6 +4,7 @@ LANGUAGE_NAME Italiano
 # Menu
 # -----------------------------------------------------------------------------
 
+MENU_OPEN           Open # TODO 
 MENU_SAVE           Salva
 MENU_SAVE_AS        Salva come..
 MENU_SETTINGS       Impostazioni

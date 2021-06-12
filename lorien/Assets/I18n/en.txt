@@ -4,6 +4,7 @@ LANGUAGE_NAME English
 # Menu strings
 # -----------------------------------------------------------------------------
 
+MENU_OPEN           Open
 MENU_SAVE           Save
 MENU_SAVE_AS        Save as..
 MENU_SETTINGS       Settings

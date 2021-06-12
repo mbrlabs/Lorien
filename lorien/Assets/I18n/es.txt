@@ -4,6 +4,7 @@ LANGUAGE_NAME Español
 # Menu strings
 # -----------------------------------------------------------------------------
 
+MENU_OPEN           Open # TODO 
 MENU_SAVE           Guardar
 MENU_SAVE_AS        Guardar como..
 MENU_SETTINGS       Configuración

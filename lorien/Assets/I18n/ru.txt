@@ -4,6 +4,7 @@ LANGUAGE_NAME Русский
 # Menu strings
 # -----------------------------------------------------------------------------
 
+MENU_OPEN           Open # TODO 
 MENU_SAVE           Сохранить
 MENU_SAVE_AS        Сохранить как..
 MENU_SETTINGS       Настройки
