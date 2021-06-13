@@ -24,6 +24,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Lower the FPS to 10 if the window is unfocused to reduce the CPU/GPU load and save energy
 - Improved camera zoom
 - Switched to GLES3 backend
+- Removed unimplemented color-preset ui-elements from colorpickers
 
 ## [0.2.0] - 2021-06-03
 

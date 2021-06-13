@@ -51,9 +51,9 @@ margin_bottom = 0.0
 rect_scale = Vector2( 1, 1.00112 )
 
 [node name="BrushColorPickerPopup" type="Popup" parent="."]
-margin_left = 360.0
+margin_left = 358.216
 margin_top = 78.0
-margin_right = 662.0
+margin_right = 660.216
 margin_bottom = 505.0
 theme = ExtResource( 8 )
 __meta__ = {
@@ -71,11 +71,13 @@ __meta__ = {
 }
 
 [node name="ColorPicker" type="ColorPicker" parent="BrushColorPickerPopup/PanelContainer"]
-margin_left = 16.0
-margin_top = 16.0
-margin_right = 321.0
-margin_bottom = 450.0
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 309.0
+margin_bottom = 423.0
 edit_alpha = false
+presets_enabled = false
+presets_visible = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -103,11 +105,13 @@ __meta__ = {
 }
 
 [node name="ColorPicker" type="ColorPicker" parent="BackgroundColorPickerPopup/PanelContainer"]
-margin_left = 16.0
-margin_top = 16.0
-margin_right = 326.001
-margin_bottom = 450.0
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 314.001
+margin_bottom = 420.0
 edit_alpha = false
+presets_enabled = false
+presets_visible = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
