@@ -38,3 +38,7 @@ func return_timestamp_string() -> String:
 func remove_group_from_all_nodes(group: String) -> void:
 	for n in get_tree().get_nodes_in_group(group):
 		n.remove_from_group(group)
+
+# -------------------------------------------------------------------------------------------------
+func is_valid_lorien_file(filepath: String) -> bool:
+	return filepath.ends_with(".lorien")

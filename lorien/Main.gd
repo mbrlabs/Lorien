@@ -28,7 +28,9 @@ func _ready():
 	_file_dialog.current_dir = Settings.get_value(Settings.GENERAL_DEFAULT_PROJECT_DIR, docs_folder)
 	_export_dialog.current_dir = Settings.get_value(Settings.GENERAL_DEFAULT_PROJECT_DIR, docs_folder)
 	
-	# UI Signals
+	# Signals
+	get_tree().connect("files_dropped", self, "_on_files_dropped")
+	
 	_toolbar.connect("undo_action", self, "_on_undo_action")
 	_toolbar.connect("redo_action", self, "_on_redo_action")
 	_toolbar.connect("clear_canvas", self, "_on_clear_canvas")
@@ -62,6 +64,11 @@ func _ready():
 	
 	# Create the default project
 	_create_active_default_project()
+
+	# Open project passed as CLI argument
+	for arg in OS.get_cmdline_args():
+		if Utils.is_valid_lorien_file(arg):
+			_on_open_project(arg)
 
 # -------------------------------------------------------------------------------------------------
 func _notification(what):
@@ -126,7 +133,13 @@ func _handle_shortcut_actions() -> void:
 			_toolbar.enable_tool(Types.Tool.COLOR_PICKER)
 		elif Input.is_action_just_pressed("shortcut_select_tool"):
 			_toolbar.enable_tool(Types.Tool.SELECT)
-			
+
+# -------------------------------------------------------------------------------------------------
+func _on_files_dropped(files: PoolStringArray, screen: int) -> void:
+	for file in files:
+		if Utils.is_valid_lorien_file(file):
+			_on_open_project(file)
+
 # -------------------------------------------------------------------------------------------------
 func _make_project_active(project: Project) -> void:
 	ProjectManager.make_project_active(project)
@@ -218,7 +231,12 @@ func _on_clear_canvas() -> void:
 	_canvas.clear() 
 
 # -------------------------------------------------------------------------------------------------
-func _on_open_project(filepath: String) -> void:
+func _on_open_project(filepath: String) -> bool:
+	# Check if file exists
+	var file := File.new()
+	if !file.file_exists(filepath):
+		return false
+	
 	var project: Project = ProjectManager.get_open_project_by_filepath(filepath)
 	var active_project: Project = ProjectManager.get_active_project()
 	
@@ -226,7 +244,7 @@ func _on_open_project(filepath: String) -> void:
 	if project != null:
 		if project != active_project:
 			_make_project_active(project)
-		return
+		return true
 	
 	# Remove/Replace active project if not changed and unsaved (default project)
 	if active_project.filepath.empty() && !active_project.dirty:
@@ -236,6 +254,8 @@ func _on_open_project(filepath: String) -> void:
 	# Create and open it
 	project = ProjectManager.add_project(filepath)
 	_make_project_active(project)
+	
+	return true
 	
 # -------------------------------------------------------------------------------------------------
 func _on_save_project_as() -> void:

@@ -12,6 +12,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - "Save as" functionality to save a file as a new file with a new file name, while keeping the original
 - Implemented "Open" and "Save" functionality in menu
 - Translations: Spanish, Russian
+- Open files via drag'n drop from the filesystem
+- Open files via cli arguments and "Open with.." functionality on Windows
 
 ### Fixed
 - Fixed camera position & zoom getting reset when switching between tabs
