@@ -39,3 +39,10 @@ func _process(delta: float) -> void:
 		pressure = pressure_curve.interpolate(pressure)
 		add_stroke_point(brush_position, pressure)
 		_last_mouse_motion = null
+		
+		# If the brush stroke gets too long, we make a new one. This is necessary because Godot limits the number
+		# of indices in a Line2D/Polygon
+		if get_current_brush_stroke().points.size() >= BrushStroke.MAX_POINTS:
+			end_stroke()
+			start_stroke(mode == Mode.ERASE)
+			add_stroke_point(brush_position, pressure)

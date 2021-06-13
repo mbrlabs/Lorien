@@ -5,6 +5,7 @@ class_name BrushStroke
 const STROKE_TEXTURE = preload("res://Assets/Textures/stroke_texture.png")
 
 # ------------------------------------------------------------------------------------------------
+const MAX_POINTS 		:= 1000
 const MAX_PRESSURE_VALUE := 255
 const MIN_PRESSURE_VALUE := 30
 const MAX_PRESSURE_DIFF := 20
