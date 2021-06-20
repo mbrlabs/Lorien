@@ -8,6 +8,8 @@ const GENERAL_DEFAULT_PROJECT_DIR		:= "general_default_project_dir"
 const GENERAL_LANGUAGE					:= "general_language"
 const APPEARANCE_THEME 					:= "appearance_theme"
 const RENDERING_AA_MODE					:= "rendering_aa_mode"
+const RENDERING_FOREGROUND_FPS			:= "rendering_foreground_fps"
+const RENDERING_BACKGROUND_FPS			:= "rendering_background_fps"
 
 # -------------------------------------------------------------------------------------------------
 var _config_file := ConfigFile.new()

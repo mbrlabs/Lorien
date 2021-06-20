@@ -18,6 +18,8 @@ onready var _canvas_color: ColorPickerButton = $MarginContainer/TabContainer/Gen
 onready var _project_dir: LineEdit = $MarginContainer/TabContainer/General/VBoxContainer/DefaultSaveDir/DefaultSaveDir
 onready var _theme: OptionButton = $MarginContainer/TabContainer/Appearance/VBoxContainer/Theme/Theme
 onready var _aa_mode: OptionButton = $MarginContainer/TabContainer/Rendering/VBoxContainer/AntiAliasing/AntiAliasing
+onready var _foreground_fps: SpinBox = $MarginContainer/TabContainer/Rendering/VBoxContainer/TargetFramerate/TargetFramerate
+onready var _background_fps: SpinBox = $MarginContainer/TabContainer/Rendering/VBoxContainer/BackgroundFramerate/BackgroundFramerate
 onready var _general_restart_label: Label = $MarginContainer/TabContainer/General/VBoxContainer/RestartLabel
 onready var _appearence_restart_label: Label = $MarginContainer/TabContainer/Appearance/VBoxContainer/RestartLabel
 onready var _rendering_restart_label: Label = $MarginContainer/TabContainer/Rendering/VBoxContainer/RestartLabel
@@ -39,6 +41,8 @@ func _set_values() -> void:
 	var theme = Settings.get_value(Settings.APPEARANCE_THEME, Types.UITheme.DARK)
 	var aa_mode = Settings.get_value(Settings.RENDERING_AA_MODE, Config.DEFAULT_AA_MODE)
 	var locale = Settings.get_value(Settings.GENERAL_LANGUAGE, "en")
+	var foreground_fps = Settings.get_value(Settings.RENDERING_FOREGROUND_FPS, Config.DEFAULT_FOREGROUND_FPS)
+	var background_fps = Settings.get_value(Settings.RENDERING_BACKGROUND_FPS, Config.DEFAULT_BACKGROUND_FPS)
 	
 	match theme:
 		Types.UITheme.DARK: _theme.selected = THEME_DARK_INDEX
@@ -54,6 +58,8 @@ func _set_values() -> void:
 	_brush_color.color = brush_color
 	_canvas_color.color = canvas_color
 	_project_dir.text = project_dir
+	_foreground_fps.value = foreground_fps
+	_background_fps.value = background_fps
 
 # -------------------------------------------------------------------------------------------------
 func _set_languages(current_locale: String) -> void:
@@ -94,6 +100,18 @@ func _on_DefaultSaveDir_text_changed(text: String) -> void:
 	var dir = Directory.new()
 	if dir.dir_exists(text):
 		Settings.set_value(Settings.GENERAL_DEFAULT_PROJECT_DIR, text)
+
+# -------------------------------------------------------------------------------------------------
+func _on_Target_Fps_Foreground_changed(value: int) -> void:
+	Settings.set_value(Settings.RENDERING_FOREGROUND_FPS, value)
+
+	# Settings FPS so user instantly Sees fps Change else fps only changes after unfocusing
+	Engine.target_fps = value
+
+# -------------------------------------------------------------------------------------------------
+func _on_Target_Fps_Background_changed(value: int) -> void:
+	# Background Fps need to be a minimum of 5 so you can smoothly reopen the window
+	Settings.set_value(Settings.RENDERING_BACKGROUND_FPS, value)
 
 # -------------------------------------------------------------------------------------------------
 func _on_Theme_item_selected(index: int):
