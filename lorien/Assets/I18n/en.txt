@@ -59,6 +59,8 @@ SETTINGS_LANGUAGE           Language
 SETTINGS_THEME              Theme
 SETTINGS_AA_METHOD          Anti Aliasing Method
 SETTINGS_AA_METHOD_NONE     None
+TARGET_FPS_FOREGROUND       Foreground Fps
+TARGET_FPS_BACKGROUND       Background Fps
 
 # -----------------------------------------------------------------------------
 # About dialog strings

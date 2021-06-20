@@ -59,6 +59,8 @@ SETTINGS_LANGUAGE           Sprache
 SETTINGS_THEME              Theme
 SETTINGS_AA_METHOD          Anti Aliasing Methode
 SETTINGS_AA_METHOD_NONE     Keine
+TARGET_FPS_FOREGROUND       Vordergrund-Bildfrequenz (Fps)
+TARGET_FPS_BACKGROUND       Hintergrund-Bildfrequenz (Fps)
 
 # -----------------------------------------------------------------------------
 # About dialog

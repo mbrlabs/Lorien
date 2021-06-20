@@ -1,8 +1,5 @@
 extends Control
 
-const TARGET_FPS_FOREGROUND := 144
-const TARGET_FPS_BACKGROUND := 10
-
 # -------------------------------------------------------------------------------------------------
 onready var _canvas: InfiniteCanvas = $InfiniteCanvas
 onready var _statusbar: Statusbar = $Statusbar
@@ -69,6 +66,9 @@ func _ready():
 	for arg in OS.get_cmdline_args():
 		if Utils.is_valid_lorien_file(arg):
 			_on_open_project(arg)
+			
+	# Set inital Target Fps
+	Engine.target_fps = Settings.get_value(Settings.RENDERING_FOREGROUND_FPS, Config.DEFAULT_FOREGROUND_FPS)
 
 # -------------------------------------------------------------------------------------------------
 func _notification(what):
@@ -80,12 +80,12 @@ func _notification(what):
 				get_tree().quit()
 
 	elif NOTIFICATION_WM_FOCUS_IN == what:
-		Engine.target_fps = TARGET_FPS_FOREGROUND
+		Engine.target_fps = Settings.get_value(Settings.RENDERING_FOREGROUND_FPS, Config.DEFAULT_FOREGROUND_FPS)
 		if !_is_mouse_on_ui() && _canvas != null:
 			yield(get_tree().create_timer(0.12), "timeout")
 			_canvas.enable()
 	elif NOTIFICATION_WM_FOCUS_OUT == what:
-		Engine.target_fps = TARGET_FPS_BACKGROUND
+		Engine.target_fps = Settings.get_value(Settings.RENDERING_BACKGROUND_FPS, Config.DEFAULT_BACKGROUND_FPS)
 		if _canvas != null:
 			_canvas.disable()
 
