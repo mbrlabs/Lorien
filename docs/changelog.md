@@ -14,6 +14,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Translations: Spanish, Russian
 - Open files via drag'n drop from the filesystem
 - Open files via cli arguments and "Open with.." functionality on Windows
+- Option to set foreground and backgound FPS in the settings menu
+- Option to set the line cap in settings menu (flat & round)
 
 ### Fixed
 - Fixed camera position & zoom getting reset when switching between tabs
