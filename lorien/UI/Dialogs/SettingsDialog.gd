@@ -24,6 +24,7 @@ onready var _general_restart_label: Label = $MarginContainer/TabContainer/Genera
 onready var _appearence_restart_label: Label = $MarginContainer/TabContainer/Appearance/VBoxContainer/RestartLabel
 onready var _rendering_restart_label: Label = $MarginContainer/TabContainer/Rendering/VBoxContainer/RestartLabel
 onready var _language_options: OptionButton = $MarginContainer/TabContainer/General/VBoxContainer/Language/OptionButton
+onready var _brush_rounding_options: OptionButton = $MarginContainer/TabContainer/Rendering/VBoxContainer/BrushRounding/OptionButton
 
 # -------------------------------------------------------------------------------------------------
 func _ready():
@@ -53,6 +54,7 @@ func _set_values() -> void:
 		Types.AAMode.TEXTURE_FILL: _aa_mode.selected = AA_TEXTURE_FILL_INDEX
 	
 	_set_languages(locale)
+	_set_rounding()
 	
 	_brush_size.value = brush_size
 	_brush_color.color = brush_color
@@ -60,6 +62,9 @@ func _set_values() -> void:
 	_project_dir.text = project_dir
 	_foreground_fps.value = foreground_fps
 	_background_fps.value = background_fps
+
+func _set_rounding():
+	_brush_rounding_options.selected = Settings.get_value(Settings.RENDERING_BRUSH_ROUNDING, Config.DEFAULT_BRUSH_ROUNDING)
 
 # -------------------------------------------------------------------------------------------------
 func _set_languages(current_locale: String) -> void:
@@ -135,6 +140,19 @@ func _on_AntiAliasing_item_selected(index: int):
 	_rendering_restart_label.show()
 
 # -------------------------------------------------------------------------------------------------
+func _on_Brush_rounding_item_selected(index: int):
+	match index:
+		0:
+			Settings.set_value(Settings.RENDERING_BRUSH_ROUNDING, Types.BrushRoundingType.FLAT)
+		1:
+			Settings.set_value(Settings.RENDERING_BRUSH_ROUNDING, Types.BrushRoundingType.ROUNDED)
+	
+	# The Changes do work even without restarting but if the user doesn't restart old strokes remain
+	# the same (Don't wanna implement saving of the cap roundings per line since that would break file
+	# Compatibility)
+	_general_restart_label.show()
+
+# -------------------------------------------------------------------------------------------------
 func _on_OptionButton_item_selected(idx: int):
 	var id := _language_options.get_item_id(idx)
 	var locale: String = Settings.locales[id]
@@ -142,4 +160,3 @@ func _on_OptionButton_item_selected(idx: int):
 	Settings.set_value(Settings.GENERAL_LANGUAGE, locale)
 	TranslationServer.set_locale(locale)
 	_general_restart_label.show()
-	

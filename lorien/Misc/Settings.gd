@@ -10,6 +10,7 @@ const APPEARANCE_THEME 					:= "appearance_theme"
 const RENDERING_AA_MODE					:= "rendering_aa_mode"
 const RENDERING_FOREGROUND_FPS			:= "rendering_foreground_fps"
 const RENDERING_BACKGROUND_FPS			:= "rendering_background_fps"
+const RENDERING_BRUSH_ROUNDING			:= "rendering_brush_rounding"
 
 # -------------------------------------------------------------------------------------------------
 var _config_file := ConfigFile.new()

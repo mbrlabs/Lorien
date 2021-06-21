@@ -35,6 +35,15 @@ func _ready():
 			_line2d.texture = STROKE_TEXTURE
 			_line2d.texture_mode = Line2D.LINE_TEXTURE_STRETCH
 	
+	var rounding_mode:int = Settings.get_value(Settings.RENDERING_BRUSH_ROUNDING, Config.DEFAULT_BRUSH_ROUNDING)
+	match rounding_mode:
+		Types.BrushRoundingType.FLAT:
+			_line2d.end_cap_mode = Line2D.LINE_CAP_NONE
+			_line2d.begin_cap_mode = Line2D.LINE_CAP_NONE
+		Types.BrushRoundingType.ROUNDED:
+			_line2d.end_cap_mode = Line2D.LINE_CAP_ROUND
+			_line2d.begin_cap_mode = Line2D.LINE_CAP_ROUND
+	
 	refresh()
 
 # ------------------------------------------------------------------------------------------------

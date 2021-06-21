@@ -39,6 +39,7 @@ __meta__ = {
 }
 
 [node name="General" type="Control" parent="MarginContainer/TabContainer"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = 27.0
@@ -253,7 +254,6 @@ text = "You need to restart for settings to take effect"
 align = 1
 
 [node name="Rendering" type="Control" parent="MarginContainer/TabContainer"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = 27.0
@@ -295,10 +295,33 @@ text = "SETTINGS_AA_METHOD_NONE"
 items = [ "SETTINGS_AA_METHOD_NONE", null, false, 0, null, "OpenGL Hint", null, false, 1, null, "Texture Fill", null, false, 2, null ]
 selected = 0
 
-[node name="TargetFramerate" type="HBoxContainer" parent="MarginContainer/TabContainer/Rendering/VBoxContainer"]
+[node name="BrushRounding" type="HBoxContainer" parent="MarginContainer/TabContainer/Rendering/VBoxContainer"]
 margin_top = 45.0
 margin_right = 476.0
-margin_bottom = 66.0
+margin_bottom = 70.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="MarginContainer/TabContainer/Rendering/VBoxContainer/BrushRounding"]
+margin_top = 4.0
+margin_right = 219.0
+margin_bottom = 21.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+text = "SETTINGS_BRUSH_ROUNDING"
+
+[node name="OptionButton" type="OptionButton" parent="MarginContainer/TabContainer/Rendering/VBoxContainer/BrushRounding"]
+margin_left = 223.0
+margin_right = 476.0
+margin_bottom = 25.0
+size_flags_horizontal = 3
+text = "SETTINGS_BRUSH_ROUNDING_FLAT"
+items = [ "SETTINGS_BRUSH_ROUNDING_FLAT", null, false, 0, null, "SETTINGS_BRUSH_ROUNDING_ROUND", null, false, 1, null ]
+selected = 0
+
+[node name="TargetFramerate" type="HBoxContainer" parent="MarginContainer/TabContainer/Rendering/VBoxContainer"]
+margin_top = 74.0
+margin_right = 476.0
+margin_bottom = 95.0
 size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="MarginContainer/TabContainer/Rendering/VBoxContainer/TargetFramerate"]
@@ -321,9 +344,9 @@ value = 144.0
 allow_greater = true
 
 [node name="BackgroundFramerate" type="HBoxContainer" parent="MarginContainer/TabContainer/Rendering/VBoxContainer"]
-margin_top = 70.0
+margin_top = 99.0
 margin_right = 476.0
-margin_bottom = 91.0
+margin_bottom = 120.0
 size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="MarginContainer/TabContainer/Rendering/VBoxContainer/BackgroundFramerate"]
@@ -346,9 +369,9 @@ value = 10.0
 allow_greater = true
 
 [node name="HSeparator4" type="HSeparator" parent="MarginContainer/TabContainer/Rendering/VBoxContainer"]
-margin_top = 95.0
+margin_top = 124.0
 margin_right = 476.0
-margin_bottom = 107.0
+margin_bottom = 136.0
 custom_styles/separator = SubResource( 1 )
 custom_constants/separation = 12
 
@@ -369,5 +392,6 @@ align = 1
 [connection signal="item_selected" from="MarginContainer/TabContainer/General/VBoxContainer/Language/OptionButton" to="." method="_on_OptionButton_item_selected"]
 [connection signal="item_selected" from="MarginContainer/TabContainer/Appearance/VBoxContainer/Theme/Theme" to="." method="_on_Theme_item_selected"]
 [connection signal="item_selected" from="MarginContainer/TabContainer/Rendering/VBoxContainer/AntiAliasing/AntiAliasing" to="." method="_on_AntiAliasing_item_selected"]
+[connection signal="item_selected" from="MarginContainer/TabContainer/Rendering/VBoxContainer/BrushRounding/OptionButton" to="." method="_on_Brush_rounding_item_selected"]
 [connection signal="value_changed" from="MarginContainer/TabContainer/Rendering/VBoxContainer/TargetFramerate/TargetFramerate" to="." method="_on_Target_Fps_Foreground_changed"]
 [connection signal="value_changed" from="MarginContainer/TabContainer/Rendering/VBoxContainer/BackgroundFramerate/BackgroundFramerate" to="." method="_on_Target_Fps_Background_changed"]
