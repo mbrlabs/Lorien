@@ -5,12 +5,12 @@ const GENERAL_DEFAULT_CANVAS_COLOR 		:= "general_default_canvas_color"
 const GENERAL_DEFAULT_BRUSH_SIZE 		:= "general_default_brush_size"
 const GENERAL_DEFAULT_BRUSH_COLOR 		:= "general_default_brush_color"
 const GENERAL_DEFAULT_PROJECT_DIR		:= "general_default_project_dir"
-const GENERAL_BRUSH_ROUNDING			:= "general_brush_rounding"
 const GENERAL_LANGUAGE					:= "general_language"
 const APPEARANCE_THEME 					:= "appearance_theme"
 const RENDERING_AA_MODE					:= "rendering_aa_mode"
 const RENDERING_FOREGROUND_FPS			:= "rendering_foreground_fps"
 const RENDERING_BACKGROUND_FPS			:= "rendering_background_fps"
+const RENDERING_BRUSH_ROUNDING			:= "rendering_brush_rounding"
 
 # -------------------------------------------------------------------------------------------------
 var _config_file := ConfigFile.new()

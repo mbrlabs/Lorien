@@ -64,7 +64,7 @@ func _set_values() -> void:
 	_background_fps.value = background_fps
 
 func _set_rounding():
-	_brush_rounding_options.selected = Settings.get_value(Settings.GENERAL_BRUSH_ROUNDING, Config.DEFAULT_BRUSH_ROUNDING)
+	_brush_rounding_options.selected = Settings.get_value(Settings.RENDERING_BRUSH_ROUNDING, Config.DEFAULT_BRUSH_ROUNDING)
 
 # -------------------------------------------------------------------------------------------------
 func _set_languages(current_locale: String) -> void:
@@ -143,9 +143,9 @@ func _on_AntiAliasing_item_selected(index: int):
 func _on_Brush_rounding_item_selected(index: int):
 	match index:
 		0:
-			Settings.set_value(Settings.GENERAL_BRUSH_ROUNDING, Types.BrushRoundingType.FLAT)
+			Settings.set_value(Settings.RENDERING_BRUSH_ROUNDING, Types.BrushRoundingType.FLAT)
 		1:
-			Settings.set_value(Settings.GENERAL_BRUSH_ROUNDING, Types.BrushRoundingType.ROUNDED)
+			Settings.set_value(Settings.RENDERING_BRUSH_ROUNDING, Types.BrushRoundingType.ROUNDED)
 	
 	# The Changes do work even without restarting but if the user doesn't restart old strokes remain
 	# the same (Don't wanna implement saving of the cap roundings per line since that would break file
