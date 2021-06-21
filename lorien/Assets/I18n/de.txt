@@ -61,6 +61,14 @@ SETTINGS_AA_METHOD          Anti Aliasing Methode
 SETTINGS_AA_METHOD_NONE     Keine
 TARGET_FPS_FOREGROUND       Vordergrund Fps
 TARGET_FPS_BACKGROUND       Hintergrund Fps
+SETTINGS_BRUSH_ROUNDING	    Pinsel Abrundung
+
+# -----------------------------------------------------------------------------
+# Selection option strings
+# -----------------------------------------------------------------------------
+
+SETTINGS_BRUSH_ROUNDING_FLAT    Flach
+SETTINGS_BRUSH_ROUNDING_ROUND   Abgerundet
 
 # -----------------------------------------------------------------------------
 # About dialog
