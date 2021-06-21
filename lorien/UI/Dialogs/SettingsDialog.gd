@@ -24,7 +24,7 @@ onready var _general_restart_label: Label = $MarginContainer/TabContainer/Genera
 onready var _appearence_restart_label: Label = $MarginContainer/TabContainer/Appearance/VBoxContainer/RestartLabel
 onready var _rendering_restart_label: Label = $MarginContainer/TabContainer/Rendering/VBoxContainer/RestartLabel
 onready var _language_options: OptionButton = $MarginContainer/TabContainer/General/VBoxContainer/Language/OptionButton
-onready var _brush_rounding_options: OptionButton = $MarginContainer/TabContainer/General/VBoxContainer/BrushRounding/OptionButton
+onready var _brush_rounding_options: OptionButton = $MarginContainer/TabContainer/Rendering/VBoxContainer/BrushRounding/OptionButton
 
 # -------------------------------------------------------------------------------------------------
 func _ready():
