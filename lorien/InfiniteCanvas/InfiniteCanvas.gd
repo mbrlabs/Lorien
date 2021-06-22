@@ -284,5 +284,9 @@ func _undo_delete_stroke(stroke: BrushStroke) -> void:
 	info.stroke_count += 1
 
 # -------------------------------------------------------------------------------------------------
+# I don't get why we are resizing the canvas to the size of the canvas
+# But capping the res at 4 or more pixels fixes the crash
+# See issue https://github.com/mbrlabs/Lorien/issues/35
 func _on_window_resized() -> void:
-	_viewport.size = get_viewport_rect().size
+	if get_viewport_rect().size.y >= 4:
+		_viewport.size = get_viewport_rect().size
