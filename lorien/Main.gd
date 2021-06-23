@@ -19,6 +19,7 @@ onready var _background_color_picker: ColorPicker = $BackgroundColorPickerPopup/
 func _ready():
 	# Init stuff
 	OS.set_window_title("Lorien v%s" % Config.VERSION_STRING)
+	OS.min_window_size = Vector2(1920, 1080)*0.4
 	get_tree().set_auto_accept_quit(false)
 	_canvas.set_background_color(Config.DEFAULT_CANVAS_COLOR)
 	var docs_folder = OS.get_system_dir(OS.SYSTEM_DIR_DOCUMENTS)
