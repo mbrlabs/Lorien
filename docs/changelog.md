@@ -27,6 +27,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Improved camera zoom
 - Switched to GLES3 backend
 - Removed unimplemented color-preset ui-elements from colorpickers
+- Introduced a minimum window size so it can't be resized to 0 anymore
 
 ## [0.2.0] - 2021-06-03
 
