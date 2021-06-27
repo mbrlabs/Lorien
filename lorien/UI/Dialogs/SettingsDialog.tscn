@@ -8,9 +8,10 @@
 [sub_resource type="StyleBoxEmpty" id=2]
 
 [node name="SettingsDialog" type="WindowDialog"]
+visible = true
 margin_right = 400.0
 margin_bottom = 250.0
-rect_min_size = Vector2( 500, 350 )
+rect_min_size = Vector2( 520, 350 )
 theme = ExtResource( 1 )
 window_title = "SETTINGS_TITLE"
 script = ExtResource( 2 )
@@ -32,14 +33,13 @@ __meta__ = {
 [node name="TabContainer" type="TabContainer" parent="MarginContainer"]
 margin_left = 12.0
 margin_top = 12.0
-margin_right = 488.0
+margin_right = 508.0
 margin_bottom = 338.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="General" type="Control" parent="MarginContainer/TabContainer"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = 27.0
@@ -52,28 +52,28 @@ __meta__ = {
 }
 
 [node name="HSeparator3" type="HSeparator" parent="MarginContainer/TabContainer/General/VBoxContainer"]
-margin_right = 476.0
+margin_right = 496.0
 margin_bottom = 12.0
 custom_styles/separator = SubResource( 1 )
 custom_constants/separation = 12
 
 [node name="DefaultBrushSize" type="HBoxContainer" parent="MarginContainer/TabContainer/General/VBoxContainer"]
 margin_top = 16.0
-margin_right = 476.0
+margin_right = 496.0
 margin_bottom = 37.0
 size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="MarginContainer/TabContainer/General/VBoxContainer/DefaultBrushSize"]
 margin_top = 2.0
-margin_right = 236.0
+margin_right = 246.0
 margin_bottom = 19.0
 size_flags_horizontal = 3
 size_flags_vertical = 6
 text = "SETTINGS_BRUSH_SIZE"
 
 [node name="DefaultBrushSize" type="SpinBox" parent="MarginContainer/TabContainer/General/VBoxContainer/DefaultBrushSize"]
-margin_left = 240.0
-margin_right = 476.0
+margin_left = 250.0
+margin_right = 496.0
 margin_bottom = 21.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -83,20 +83,20 @@ allow_greater = true
 
 [node name="DefaultBrushColor" type="HBoxContainer" parent="MarginContainer/TabContainer/General/VBoxContainer"]
 margin_top = 41.0
-margin_right = 476.0
+margin_right = 496.0
 margin_bottom = 58.0
 size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="MarginContainer/TabContainer/General/VBoxContainer/DefaultBrushColor"]
-margin_right = 236.0
+margin_right = 246.0
 margin_bottom = 17.0
 size_flags_horizontal = 3
 size_flags_vertical = 6
 text = "SETTINGS_BRUSH_COLOR"
 
 [node name="DefaultBrushColor" type="ColorPickerButton" parent="MarginContainer/TabContainer/General/VBoxContainer/DefaultBrushColor"]
-margin_left = 240.0
-margin_right = 476.0
+margin_left = 250.0
+margin_right = 496.0
 margin_bottom = 17.0
 size_flags_horizontal = 3
 custom_styles/hover = SubResource( 2 )
@@ -110,20 +110,20 @@ edit_alpha = false
 
 [node name="DefaultCanvasColor" type="HBoxContainer" parent="MarginContainer/TabContainer/General/VBoxContainer"]
 margin_top = 62.0
-margin_right = 476.0
+margin_right = 496.0
 margin_bottom = 79.0
 size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="MarginContainer/TabContainer/General/VBoxContainer/DefaultCanvasColor"]
-margin_right = 236.0
+margin_right = 246.0
 margin_bottom = 17.0
 size_flags_horizontal = 3
 size_flags_vertical = 6
 text = "SETTINGS_CANVAS_COLOR"
 
 [node name="DefaultCanvasColor" type="ColorPickerButton" parent="MarginContainer/TabContainer/General/VBoxContainer/DefaultCanvasColor"]
-margin_left = 240.0
-margin_right = 476.0
+margin_left = 250.0
+margin_right = 496.0
 margin_bottom = 17.0
 size_flags_horizontal = 3
 custom_styles/hover = SubResource( 2 )
@@ -137,21 +137,21 @@ edit_alpha = false
 
 [node name="DefaultSaveDir" type="HBoxContainer" parent="MarginContainer/TabContainer/General/VBoxContainer"]
 margin_top = 83.0
-margin_right = 476.0
+margin_right = 496.0
 margin_bottom = 104.0
 size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="MarginContainer/TabContainer/General/VBoxContainer/DefaultSaveDir"]
 margin_top = 2.0
-margin_right = 236.0
+margin_right = 246.0
 margin_bottom = 19.0
 size_flags_horizontal = 3
 size_flags_vertical = 6
 text = "SETTINGS_PROJECT_FOLDER"
 
 [node name="DefaultSaveDir" type="LineEdit" parent="MarginContainer/TabContainer/General/VBoxContainer/DefaultSaveDir"]
-margin_left = 240.0
-margin_right = 476.0
+margin_left = 250.0
+margin_right = 496.0
 margin_bottom = 21.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -160,27 +160,27 @@ placeholder_alpha = 0.5
 
 [node name="HSeparator4" type="HSeparator" parent="MarginContainer/TabContainer/General/VBoxContainer"]
 margin_top = 108.0
-margin_right = 476.0
+margin_right = 496.0
 margin_bottom = 132.0
 custom_constants/separation = 24
 
 [node name="Language" type="HBoxContainer" parent="MarginContainer/TabContainer/General/VBoxContainer"]
 margin_top = 136.0
-margin_right = 476.0
+margin_right = 496.0
 margin_bottom = 161.0
 size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="MarginContainer/TabContainer/General/VBoxContainer/Language"]
 margin_top = 4.0
-margin_right = 236.0
+margin_right = 246.0
 margin_bottom = 21.0
 size_flags_horizontal = 3
 size_flags_vertical = 6
 text = "SETTINGS_LANGUAGE"
 
 [node name="OptionButton" type="OptionButton" parent="MarginContainer/TabContainer/General/VBoxContainer/Language"]
-margin_left = 240.0
-margin_right = 476.0
+margin_left = 250.0
+margin_right = 496.0
 margin_bottom = 25.0
 size_flags_horizontal = 3
 text = "English"
@@ -254,6 +254,7 @@ text = "You need to restart for settings to take effect"
 align = 1
 
 [node name="Rendering" type="Control" parent="MarginContainer/TabContainer"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = 27.0
