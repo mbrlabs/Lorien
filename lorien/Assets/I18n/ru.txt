@@ -47,18 +47,23 @@ STATUSBAR_SELECTED_STROKES      Выбранные штрихи
 # Settings strings
 # -----------------------------------------------------------------------------
 
-SETTINGS_TITLE              Настройки
-SETTINGS_GENERAL            Общее
-SETTINGS_APPEARANCE         Внешний вид
-SETTINGS_RENDERING          Рендеринг
-SETTINGS_BRUSH_SIZE         Размер кисти по умолчанию
-SETTINGS_BRUSH_COLOR        Цвет кисти по умолчанию
-SETTINGS_CANVAS_COLOR       Цвет холста по умолчанию
-SETTINGS_PROJECT_FOLDER     Папка проекта по умолчанию
-SETTINGS_LANGUAGE           Язык
-SETTINGS_THEME              Тема
-SETTINGS_AA_METHOD          Метод сглаживания
-SETTINGS_AA_METHOD_NONE     Не использовать
+SETTINGS_TITLE                  Настройки
+SETTINGS_GENERAL                Общее
+SETTINGS_APPEARANCE             Внешний вид
+SETTINGS_RENDERING              Рендеринг
+SETTINGS_BRUSH_SIZE             Размер кисти по умолчанию
+SETTINGS_BRUSH_COLOR            Цвет кисти по умолчанию
+SETTINGS_CANVAS_COLOR           Цвет холста по умолчанию
+SETTINGS_PROJECT_FOLDER         Папка проекта по умолчанию
+SETTINGS_LANGUAGE               Язык
+SETTINGS_THEME                  Тема
+SETTINGS_AA_METHOD              Метод сглаживания
+SETTINGS_AA_METHOD_NONE         Не использовать
+SETTINGS_FPS_FOREGROUND         Foreground Fps # TODO
+SETTINGS_FPS_BACKGROUND         Background Fps # TODO
+SETTINGS_BRUSH_CAPS             Brush Rounding Mode # TODO
+SETTINGS_BRUSH_CAPS_FLAT        Flat # TODO
+SETTINGS_BRUSH_CAPS_ROUND       Round # TODO
 
 # -----------------------------------------------------------------------------
 # About dialog strings

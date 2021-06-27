@@ -47,28 +47,23 @@ STATUSBAR_SELECTED_STROKES      Ausgewählte Striche
 # Settings
 # -----------------------------------------------------------------------------
 
-SETTINGS_TITLE              Einstellungen
-SETTINGS_GENERAL            Generell
-SETTINGS_APPEARANCE         Ansicht
-SETTINGS_RENDERING          Rendering
-SETTINGS_BRUSH_SIZE         Default Pinsel Größe
-SETTINGS_BRUSH_COLOR        Default Pinsel Farbe
-SETTINGS_CANVAS_COLOR       Default Canvas Farbe
-SETTINGS_PROJECT_FOLDER     Default Project Ordner
-SETTINGS_LANGUAGE           Sprache
-SETTINGS_THEME              Theme
-SETTINGS_AA_METHOD          Anti Aliasing Methode
-SETTINGS_AA_METHOD_NONE     Keine
-TARGET_FPS_FOREGROUND       Vordergrund Fps
-TARGET_FPS_BACKGROUND       Hintergrund Fps
-SETTINGS_BRUSH_ROUNDING	    Pinsel Abrundung
-
-# -----------------------------------------------------------------------------
-# Selection option strings
-# -----------------------------------------------------------------------------
-
-SETTINGS_BRUSH_ROUNDING_FLAT    Flach
-SETTINGS_BRUSH_ROUNDING_ROUND   Abgerundet
+SETTINGS_TITLE                  Einstellungen
+SETTINGS_GENERAL                Generell
+SETTINGS_APPEARANCE             Ansicht
+SETTINGS_RENDERING              Rendering
+SETTINGS_BRUSH_SIZE             Default Pinsel Größe
+SETTINGS_BRUSH_COLOR            Default Pinsel Farbe
+SETTINGS_CANVAS_COLOR           Default Canvas Farbe
+SETTINGS_PROJECT_FOLDER         Default Project Ordner
+SETTINGS_LANGUAGE               Sprache
+SETTINGS_THEME                  Theme
+SETTINGS_AA_METHOD              Anti Aliasing Methode
+SETTINGS_AA_METHOD_NONE         Keine
+SETTINGS_FPS_FOREGROUND         Vordergrund Fps
+SETTINGS_FPS_BACKGROUND         Hintergrund Fps
+SETTINGS_BRUSH_CAPS	            Pinsel Abrundung
+SETTINGS_BRUSH_CAPS_FLAT        Flach
+SETTINGS_BRUSH_CAPS_ROUND       Abgerundet
 
 # -----------------------------------------------------------------------------
 # About dialog
