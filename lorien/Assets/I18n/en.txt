@@ -47,28 +47,23 @@ STATUSBAR_SELECTED_STROKES      Selected strokes
 # Settings strings
 # -----------------------------------------------------------------------------
 
-SETTINGS_TITLE              Settings
-SETTINGS_GENERAL            General
-SETTINGS_APPEARANCE         Appearance
-SETTINGS_RENDERING          Rendering
-SETTINGS_BRUSH_SIZE         Default Brush Size
-SETTINGS_BRUSH_COLOR        Default Brush Color
-SETTINGS_CANVAS_COLOR       Default Canvas Color
-SETTINGS_PROJECT_FOLDER     Default Project Folder
-SETTINGS_LANGUAGE           Language
-SETTINGS_THEME              Theme
-SETTINGS_AA_METHOD          Anti Aliasing Method
-SETTINGS_AA_METHOD_NONE     None
-TARGET_FPS_FOREGROUND       Foreground Fps
-TARGET_FPS_BACKGROUND       Background Fps
-SETTINGS_BRUSH_ROUNDING     Brush Rounding Mode
-
-# -----------------------------------------------------------------------------
-# Selection option strings
-# -----------------------------------------------------------------------------
-
-SETTINGS_BRUSH_ROUNDING_FLAT    Flat
-SETTINGS_BRUSH_ROUNDING_ROUND   Round
+SETTINGS_TITLE                  Settings
+SETTINGS_GENERAL                General
+SETTINGS_APPEARANCE             Appearance
+SETTINGS_RENDERING              Rendering
+SETTINGS_BRUSH_SIZE             Default Brush Size
+SETTINGS_BRUSH_COLOR            Default Brush Color
+SETTINGS_CANVAS_COLOR           Default Canvas Color
+SETTINGS_PROJECT_FOLDER         Default Project Folder
+SETTINGS_LANGUAGE               Language
+SETTINGS_THEME                  Theme
+SETTINGS_AA_METHOD              Anti Aliasing Method
+SETTINGS_AA_METHOD_NONE         None
+SETTINGS_FPS_FOREGROUND         Foreground Fps
+SETTINGS_FPS_BACKGROUND         Background Fps
+SETTINGS_BRUSH_CAPS             Brush Rounding Mode
+SETTINGS_BRUSH_CAPS_FLAT        Flat
+SETTINGS_BRUSH_CAPS_ROUND       Round
 
 # -----------------------------------------------------------------------------
 # About dialog strings

@@ -8,7 +8,6 @@
 [sub_resource type="StyleBoxEmpty" id=2]
 
 [node name="SettingsDialog" type="WindowDialog"]
-visible = true
 margin_right = 400.0
 margin_bottom = 250.0
 rect_min_size = Vector2( 520, 350 )
@@ -208,28 +207,28 @@ __meta__ = {
 }
 
 [node name="HSeparator3" type="HSeparator" parent="MarginContainer/TabContainer/Appearance/VBoxContainer"]
-margin_right = 476.0
+margin_right = 496.0
 margin_bottom = 12.0
 custom_styles/separator = SubResource( 1 )
 custom_constants/separation = 12
 
 [node name="Theme" type="HBoxContainer" parent="MarginContainer/TabContainer/Appearance/VBoxContainer"]
 margin_top = 16.0
-margin_right = 476.0
+margin_right = 496.0
 margin_bottom = 41.0
 size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="MarginContainer/TabContainer/Appearance/VBoxContainer/Theme"]
 margin_top = 4.0
-margin_right = 236.0
+margin_right = 246.0
 margin_bottom = 21.0
 size_flags_horizontal = 3
 size_flags_vertical = 6
 text = "SETTINGS_THEME"
 
 [node name="Theme" type="OptionButton" parent="MarginContainer/TabContainer/Appearance/VBoxContainer/Theme"]
-margin_left = 240.0
-margin_right = 476.0
+margin_left = 250.0
+margin_right = 496.0
 margin_bottom = 25.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -239,7 +238,7 @@ selected = 0
 
 [node name="HSeparator5" type="HSeparator" parent="MarginContainer/TabContainer/Appearance/VBoxContainer"]
 margin_top = 45.0
-margin_right = 476.0
+margin_right = 496.0
 margin_bottom = 57.0
 custom_styles/separator = SubResource( 1 )
 custom_constants/separation = 12
@@ -267,28 +266,28 @@ __meta__ = {
 }
 
 [node name="HSeparator3" type="HSeparator" parent="MarginContainer/TabContainer/Rendering/VBoxContainer"]
-margin_right = 476.0
+margin_right = 496.0
 margin_bottom = 12.0
 custom_styles/separator = SubResource( 1 )
 custom_constants/separation = 12
 
 [node name="AntiAliasing" type="HBoxContainer" parent="MarginContainer/TabContainer/Rendering/VBoxContainer"]
 margin_top = 16.0
-margin_right = 476.0
+margin_right = 496.0
 margin_bottom = 41.0
 size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="MarginContainer/TabContainer/Rendering/VBoxContainer/AntiAliasing"]
 margin_top = 4.0
-margin_right = 236.0
+margin_right = 246.0
 margin_bottom = 21.0
 size_flags_horizontal = 3
 size_flags_vertical = 6
 text = "SETTINGS_AA_METHOD"
 
 [node name="AntiAliasing" type="OptionButton" parent="MarginContainer/TabContainer/Rendering/VBoxContainer/AntiAliasing"]
-margin_left = 240.0
-margin_right = 476.0
+margin_left = 250.0
+margin_right = 496.0
 margin_bottom = 25.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -298,44 +297,44 @@ selected = 0
 
 [node name="BrushRounding" type="HBoxContainer" parent="MarginContainer/TabContainer/Rendering/VBoxContainer"]
 margin_top = 45.0
-margin_right = 476.0
+margin_right = 496.0
 margin_bottom = 70.0
 size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="MarginContainer/TabContainer/Rendering/VBoxContainer/BrushRounding"]
 margin_top = 4.0
-margin_right = 219.0
+margin_right = 246.0
 margin_bottom = 21.0
 size_flags_horizontal = 3
 size_flags_vertical = 6
-text = "SETTINGS_BRUSH_ROUNDING"
+text = "SETTINGS_BRUSH_CAPS"
 
 [node name="OptionButton" type="OptionButton" parent="MarginContainer/TabContainer/Rendering/VBoxContainer/BrushRounding"]
-margin_left = 223.0
-margin_right = 476.0
+margin_left = 250.0
+margin_right = 496.0
 margin_bottom = 25.0
 size_flags_horizontal = 3
-text = "SETTINGS_BRUSH_ROUNDING_FLAT"
-items = [ "SETTINGS_BRUSH_ROUNDING_FLAT", null, false, 0, null, "SETTINGS_BRUSH_ROUNDING_ROUND", null, false, 1, null ]
+text = "SETTINGS_BRUSH_CAPS_FLAT"
+items = [ "SETTINGS_BRUSH_CAPS_FLAT", null, false, 0, null, "SETTINGS_BRUSH_CAPS_ROUND", null, false, 1, null ]
 selected = 0
 
 [node name="TargetFramerate" type="HBoxContainer" parent="MarginContainer/TabContainer/Rendering/VBoxContainer"]
 margin_top = 74.0
-margin_right = 476.0
+margin_right = 496.0
 margin_bottom = 95.0
 size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="MarginContainer/TabContainer/Rendering/VBoxContainer/TargetFramerate"]
 margin_top = 2.0
-margin_right = 236.0
+margin_right = 246.0
 margin_bottom = 19.0
 size_flags_horizontal = 3
 size_flags_vertical = 6
-text = "TARGET_FPS_FOREGROUND"
+text = "SETTINGS_FPS_FOREGROUND"
 
 [node name="TargetFramerate" type="SpinBox" parent="MarginContainer/TabContainer/Rendering/VBoxContainer/TargetFramerate"]
-margin_left = 240.0
-margin_right = 476.0
+margin_left = 250.0
+margin_right = 496.0
 margin_bottom = 21.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -346,21 +345,21 @@ allow_greater = true
 
 [node name="BackgroundFramerate" type="HBoxContainer" parent="MarginContainer/TabContainer/Rendering/VBoxContainer"]
 margin_top = 99.0
-margin_right = 476.0
+margin_right = 496.0
 margin_bottom = 120.0
 size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="MarginContainer/TabContainer/Rendering/VBoxContainer/BackgroundFramerate"]
 margin_top = 2.0
-margin_right = 236.0
+margin_right = 246.0
 margin_bottom = 19.0
 size_flags_horizontal = 3
 size_flags_vertical = 6
-text = "TARGET_FPS_BACKGROUND"
+text = "SETTINGS_FPS_BACKGROUND"
 
 [node name="BackgroundFramerate" type="SpinBox" parent="MarginContainer/TabContainer/Rendering/VBoxContainer/BackgroundFramerate"]
-margin_left = 240.0
-margin_right = 476.0
+margin_left = 250.0
+margin_right = 496.0
 margin_bottom = 21.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -371,7 +370,7 @@ allow_greater = true
 
 [node name="HSeparator4" type="HSeparator" parent="MarginContainer/TabContainer/Rendering/VBoxContainer"]
 margin_top = 124.0
-margin_right = 476.0
+margin_right = 496.0
 margin_bottom = 136.0
 custom_styles/separator = SubResource( 1 )
 custom_constants/separation = 12

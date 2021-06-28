@@ -50,18 +50,23 @@ STATUSBAR_SELECTED_STROKES      Curvas seleccionadas
 # Settings strings
 # -----------------------------------------------------------------------------
 
-SETTINGS_TITLE              Configuración
-SETTINGS_GENERAL            General
-SETTINGS_APPEARANCE         Apariencia
-SETTINGS_RENDERING          Renderizado
-SETTINGS_BRUSH_SIZE         Tamaño de Pincel Predeterminado
-SETTINGS_BRUSH_COLOR        Color de Pincel Predeterminado
-SETTINGS_CANVAS_COLOR       Color de Canvas Predeterminado
-SETTINGS_PROJECT_FOLDER     Carpeta de Proyectos Predeterminada
-SETTINGS_LANGUAGE           Idioma
-SETTINGS_THEME              Tema
-SETTINGS_AA_METHOD          Método de Anti Aliasing
-SETTINGS_AA_METHOD_NONE     Ninguno
+SETTINGS_TITLE                  Configuración
+SETTINGS_GENERAL                General
+SETTINGS_APPEARANCE             Apariencia
+SETTINGS_RENDERING              Renderizado
+SETTINGS_BRUSH_SIZE             Tamaño de Pincel Predeterminado
+SETTINGS_BRUSH_COLOR            Color de Pincel Predeterminado
+SETTINGS_CANVAS_COLOR           Color de Canvas Predeterminado
+SETTINGS_PROJECT_FOLDER         Carpeta de Proyectos Predeterminada
+SETTINGS_LANGUAGE               Idioma
+SETTINGS_THEME                  Tema
+SETTINGS_AA_METHOD              Método de Anti Aliasing
+SETTINGS_AA_METHOD_NONE         Ninguno
+SETTINGS_FPS_FOREGROUND         Foreground Fps # TODO
+SETTINGS_FPS_BACKGROUND         Background Fps # TODO
+SETTINGS_BRUSH_CAPS             Brush Rounding Mode # TODO
+SETTINGS_BRUSH_CAPS_FLAT        Flat # TODO
+SETTINGS_BRUSH_CAPS_ROUND       Round # TODO
 
 # -----------------------------------------------------------------------------
 # About dialog strings
