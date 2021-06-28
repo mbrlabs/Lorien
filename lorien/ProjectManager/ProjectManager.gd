@@ -45,7 +45,10 @@ func add_project(filepath: String = "") -> Project:
 			print_debug("Project already in open project list")
 			return p
 	
+	var canvas_color: Color = Settings.get_value(Settings.GENERAL_DEFAULT_CANVAS_COLOR, Config.DEFAULT_CANVAS_COLOR)
+	
 	var project := Project.new()
+	project.meta_data[ProjectMetadata.CANVAS_COLOR] = canvas_color.to_html(false)
 	project.id = _open_projects.size()
 	project.filepath = filepath
 	project.loaded = project.filepath.empty() # empty/unsaved/new projects are loaded by definition
