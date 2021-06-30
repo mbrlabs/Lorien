@@ -33,7 +33,7 @@ func set_fps(fps: int) -> void:
 # -------------------------------------------------------------------------------------------------
 func set_pressure(pressure: float) -> void:
 	if pressure >= 0.01:
-		_pressure_label.text = "%s: %d" % [_str_pressure, pressure]
+		_pressure_label.text = "%s: %.2f" % [_str_pressure, pressure]
 	else:
 		_pressure_label.text = "%s: -" % _str_pressure
 
