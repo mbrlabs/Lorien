@@ -36,7 +36,8 @@ func _process(delta: float) -> void:
 	if performing_stroke && _last_mouse_motion != null:
 		var brush_position: Vector2 = xform_vector2(_last_mouse_motion.global_position)
 		var pressure = _last_mouse_motion.pressure
-		pressure = pressure_curve.interpolate(pressure)
+		var sensitivity: float = Settings.get_value(Settings.GENERAL_PRESSURE_SENSITIVITY, Config.DEFAULT_PRESSURE_SENSITIVITY)
+		pressure = pressure_curve.interpolate(pressure) * sensitivity
 		add_stroke_point(brush_position, pressure)
 		_last_mouse_motion = null
 		

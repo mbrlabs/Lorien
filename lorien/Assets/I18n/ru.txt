@@ -51,6 +51,7 @@ SETTINGS_TITLE                  Настройки
 SETTINGS_GENERAL                Общее
 SETTINGS_APPEARANCE             Внешний вид
 SETTINGS_RENDERING              Рендеринг
+SETTINGS_PRESSURE_SENSITIVITY   Pressure Sensitivity # TODO
 SETTINGS_BRUSH_SIZE             Размер кисти по умолчанию
 SETTINGS_BRUSH_COLOR            Цвет кисти по умолчанию
 SETTINGS_CANVAS_COLOR           Цвет холста по умолчанию
