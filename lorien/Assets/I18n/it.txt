@@ -51,6 +51,7 @@ SETTINGS_TITLE                  Impostazioni
 SETTINGS_GENERAL                Generale
 SETTINGS_APPEARANCE             Aspetto
 SETTINGS_RENDERING              Rendering
+SETTINGS_PRESSURE_SENSITIVITY   Pressure Sensitivity # TODO
 SETTINGS_BRUSH_SIZE             Dimensione Pennello Predefinita
 SETTINGS_BRUSH_COLOR            Colore Pennello Predefinito
 SETTINGS_CANVAS_COLOR           Colore Tela Predefinito

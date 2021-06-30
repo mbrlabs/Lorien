@@ -51,6 +51,7 @@ SETTINGS_TITLE                  Settings
 SETTINGS_GENERAL                General
 SETTINGS_APPEARANCE             Appearance
 SETTINGS_RENDERING              Rendering
+SETTINGS_PRESSURE_SENSITIVITY   Pressure Sensitivity
 SETTINGS_BRUSH_SIZE             Default Brush Size
 SETTINGS_BRUSH_COLOR            Default Brush Color
 SETTINGS_CANVAS_COLOR           Default Canvas Color

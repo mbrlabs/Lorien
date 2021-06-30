@@ -1,6 +1,7 @@
 extends Node
 
 const DEFAULT_SECTION 					:= "settings"
+const GENERAL_PRESSURE_SENSITIVITY 		:= "general_pressure_sensitvity"
 const GENERAL_DEFAULT_CANVAS_COLOR 		:= "general_default_canvas_color"
 const GENERAL_DEFAULT_BRUSH_SIZE 		:= "general_default_brush_size"
 const GENERAL_DEFAULT_BRUSH_COLOR 		:= "general_default_brush_color"

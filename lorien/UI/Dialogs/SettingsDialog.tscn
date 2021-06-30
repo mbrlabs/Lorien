@@ -56,10 +56,35 @@ margin_bottom = 12.0
 custom_styles/separator = SubResource( 1 )
 custom_constants/separation = 12
 
-[node name="DefaultBrushSize" type="HBoxContainer" parent="MarginContainer/TabContainer/General/VBoxContainer"]
+[node name="PressureSensitivity" type="HBoxContainer" parent="MarginContainer/TabContainer/General/VBoxContainer"]
 margin_top = 16.0
 margin_right = 496.0
 margin_bottom = 37.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="MarginContainer/TabContainer/General/VBoxContainer/PressureSensitivity"]
+margin_top = 2.0
+margin_right = 246.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+text = "SETTINGS_PRESSURE_SENSITIVITY"
+
+[node name="PressureSensitivity" type="SpinBox" parent="MarginContainer/TabContainer/General/VBoxContainer/PressureSensitivity"]
+margin_left = 250.0
+margin_right = 496.0
+margin_bottom = 21.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+min_value = 0.1
+max_value = 2.0
+step = 0.01
+value = 1.0
+
+[node name="DefaultBrushSize" type="HBoxContainer" parent="MarginContainer/TabContainer/General/VBoxContainer"]
+margin_top = 41.0
+margin_right = 496.0
+margin_bottom = 62.0
 size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="MarginContainer/TabContainer/General/VBoxContainer/DefaultBrushSize"]
@@ -81,9 +106,9 @@ value = 12.0
 allow_greater = true
 
 [node name="DefaultBrushColor" type="HBoxContainer" parent="MarginContainer/TabContainer/General/VBoxContainer"]
-margin_top = 41.0
+margin_top = 66.0
 margin_right = 496.0
-margin_bottom = 58.0
+margin_bottom = 83.0
 size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="MarginContainer/TabContainer/General/VBoxContainer/DefaultBrushColor"]
@@ -108,9 +133,9 @@ color = Color( 1, 1, 1, 1 )
 edit_alpha = false
 
 [node name="DefaultCanvasColor" type="HBoxContainer" parent="MarginContainer/TabContainer/General/VBoxContainer"]
-margin_top = 62.0
+margin_top = 87.0
 margin_right = 496.0
-margin_bottom = 79.0
+margin_bottom = 104.0
 size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="MarginContainer/TabContainer/General/VBoxContainer/DefaultCanvasColor"]
@@ -135,9 +160,9 @@ color = Color( 0.12549, 0.129412, 0.141176, 1 )
 edit_alpha = false
 
 [node name="DefaultSaveDir" type="HBoxContainer" parent="MarginContainer/TabContainer/General/VBoxContainer"]
-margin_top = 83.0
+margin_top = 108.0
 margin_right = 496.0
-margin_bottom = 104.0
+margin_bottom = 129.0
 size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="MarginContainer/TabContainer/General/VBoxContainer/DefaultSaveDir"]
@@ -158,15 +183,15 @@ placeholder_text = "e.g. C:/Users/me/Lorien"
 placeholder_alpha = 0.5
 
 [node name="HSeparator4" type="HSeparator" parent="MarginContainer/TabContainer/General/VBoxContainer"]
-margin_top = 108.0
+margin_top = 133.0
 margin_right = 496.0
-margin_bottom = 132.0
+margin_bottom = 157.0
 custom_constants/separation = 24
 
 [node name="Language" type="HBoxContainer" parent="MarginContainer/TabContainer/General/VBoxContainer"]
-margin_top = 136.0
+margin_top = 161.0
 margin_right = 496.0
-margin_bottom = 161.0
+margin_bottom = 186.0
 size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="MarginContainer/TabContainer/General/VBoxContainer/Language"]
@@ -385,6 +410,7 @@ custom_colors/font_color = Color( 1, 0.470588, 0.470588, 1 )
 text = "You need to restart for settings to take effect"
 align = 1
 
+[connection signal="value_changed" from="MarginContainer/TabContainer/General/VBoxContainer/PressureSensitivity/PressureSensitivity" to="." method="_on_PressureSensitivity_value_changed"]
 [connection signal="value_changed" from="MarginContainer/TabContainer/General/VBoxContainer/DefaultBrushSize/DefaultBrushSize" to="." method="_on_DefaultBrushSize_value_changed"]
 [connection signal="color_changed" from="MarginContainer/TabContainer/General/VBoxContainer/DefaultBrushColor/DefaultBrushColor" to="." method="_on_DefaultBrushColor_color_changed"]
 [connection signal="color_changed" from="MarginContainer/TabContainer/General/VBoxContainer/DefaultCanvasColor/DefaultCanvasColor" to="." method="_on_DefaultCanvasColor_color_changed"]

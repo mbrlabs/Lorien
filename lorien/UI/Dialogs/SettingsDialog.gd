@@ -12,6 +12,7 @@ const AA_TEXTURE_FILL_INDEX := 2
 onready var _tab_general: Control = $MarginContainer/TabContainer/General
 onready var _tab_appearance: Control = $MarginContainer/TabContainer/Appearance
 onready var _tab_rendering: Control = $MarginContainer/TabContainer/Rendering
+onready var _pressure_sensitivity: SpinBox = $MarginContainer/TabContainer/General/VBoxContainer/PressureSensitivity/PressureSensitivity
 onready var _brush_size: SpinBox = $MarginContainer/TabContainer/General/VBoxContainer/DefaultBrushSize/DefaultBrushSize
 onready var _brush_color: ColorPickerButton = $MarginContainer/TabContainer/General/VBoxContainer/DefaultBrushColor/DefaultBrushColor
 onready var _canvas_color: ColorPickerButton = $MarginContainer/TabContainer/General/VBoxContainer/DefaultCanvasColor/DefaultCanvasColor
@@ -44,6 +45,7 @@ func _set_values() -> void:
 	var locale = Settings.get_value(Settings.GENERAL_LANGUAGE, "en")
 	var foreground_fps = Settings.get_value(Settings.RENDERING_FOREGROUND_FPS, Config.DEFAULT_FOREGROUND_FPS)
 	var background_fps = Settings.get_value(Settings.RENDERING_BACKGROUND_FPS, Config.DEFAULT_BACKGROUND_FPS)
+	var pressure_sensitivity = Settings.get_value(Settings.GENERAL_PRESSURE_SENSITIVITY, Config.DEFAULT_PRESSURE_SENSITIVITY)
 	
 	match theme:
 		Types.UITheme.DARK: _theme.selected = THEME_DARK_INDEX
@@ -56,6 +58,7 @@ func _set_values() -> void:
 	_set_languages(locale)
 	_set_rounding()
 	
+	_pressure_sensitivity.value = pressure_sensitivity
 	_brush_size.value = brush_size
 	_brush_color.color = brush_color
 	_canvas_color.color = canvas_color
@@ -97,6 +100,10 @@ func _on_DefaultBrushColor_color_changed(color: Color) -> void:
 # -------------------------------------------------------------------------------------------------
 func _on_DefaultCanvasColor_color_changed(color: Color) -> void:
 	Settings.set_value(Settings.GENERAL_DEFAULT_CANVAS_COLOR, color)
+
+# -------------------------------------------------------------------------------------------------
+func _on_PressureSensitivity_value_changed(value: float):
+	Settings.set_value(Settings.GENERAL_PRESSURE_SENSITIVITY, value)
 
 # -------------------------------------------------------------------------------------------------
 func _on_DefaultSaveDir_text_changed(text: String) -> void:

@@ -16,6 +16,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Open files via cli arguments and "Open with.." functionality on Windows
 - Option to set foreground and backgound FPS in the settings menu
 - Option to set the line cap in settings menu (flat & round)
+- Option to change the pressure sensitivity by a fixed multilpier
 
 ### Fixed
 - Fixed camera position & zoom getting reset when switching between tabs
