@@ -49,6 +49,8 @@ func _input(event: InputEvent) -> void:
 
 # -------------------------------------------------------------------------------------------------
 func _process(delta: float) -> void:
+	#print(get_strokes_in_camera_frustrum().size())
+	
 	# Deselect selected strokes with shortcut key
 	if Input.is_action_just_pressed("deselect_all_strokes"):
 		if _active_tool == _selection_tool:
@@ -97,7 +99,6 @@ func set_background_color(color: Color) -> void:
 		for eraser_index in _current_project.eraser_stroke_indices:
 			if eraser_index < _strokes_parent.get_child_count():
 				_strokes_parent.get_child(eraser_index).color = _background_color
-	
 
 # -------------------------------------------------------------------------------------------------
 func enable_grid(e: bool) -> void:
@@ -113,8 +114,7 @@ func get_camera() -> Camera2D:
 
 # -------------------------------------------------------------------------------------------------
 func get_strokes_in_camera_frustrum() -> Array:
-	# FIXME: this currently returns every stroke. 
-	return _current_project.strokes
+	return get_tree().get_nodes_in_group(BrushStroke.GROUP_ONSCREEN)
 
 # -------------------------------------------------------------------------------------------------
 func enable() -> void:
@@ -136,7 +136,7 @@ func take_screenshot() -> Image:
 
 # -------------------------------------------------------------------------------------------------
 func start_stroke(eraser: bool = false) -> void:
-	_current_stroke = BRUSH_STROKE.instance()
+	_current_stroke = BRUSH_STROKE.instance()	
 	_current_stroke.eraser = eraser
 	_current_stroke.size = _brush_size
 	

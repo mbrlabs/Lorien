@@ -5,21 +5,23 @@ class_name BrushStroke
 const STROKE_TEXTURE = preload("res://Assets/Textures/stroke_texture.png")
 
 # ------------------------------------------------------------------------------------------------
-const MAX_POINTS 		:= 1000
-const MAX_PRESSURE_VALUE := 255
-const MIN_PRESSURE_VALUE := 30
-const MAX_PRESSURE_DIFF := 20
+const MAX_POINTS 			:= 1000
+const MAX_PRESSURE_VALUE 	:= 255
+const MIN_PRESSURE_VALUE 	:= 30
+const MAX_PRESSURE_DIFF 	:= 20
+const GROUP_ONSCREEN 		:= "onscreen_stroke"
 
-# ------------------------------------------------------------------------------------------------
-signal camera_frustrum_change(inside_frustrum)
+const MAX_VECTOR2 := Vector2(2147483647, 2147483647)
+const MIN_VECTOR2 := -MAX_VECTOR2
 
 # ------------------------------------------------------------------------------------------------
 onready var _line2d: Line2D = $Line2D
+onready var _visibility_notifier: VisibilityNotifier2D = $VisibilityNotifier2D
 var eraser := false
 var color: Color setget set_color, get_color
 var size: int
-var points: Array
-var pressures: Array
+var points: Array # Array<Vector2>
+var pressures: Array # Array<float>
 
 # ------------------------------------------------------------------------------------------------
 func _ready():
@@ -47,8 +49,14 @@ func _ready():
 	refresh()
 
 # ------------------------------------------------------------------------------------------------
-func _on_VisibilityNotifier2D_viewport_entered(viewport: Viewport) -> void: emit_signal("camera_frustrum_change", true)
-func _on_VisibilityNotifier2D_viewport_exited(viewport: Viewport) -> void: emit_signal("camera_frustrum_change", false)
+func _on_VisibilityNotifier2D_viewport_entered(viewport: Viewport) -> void: 
+	add_to_group(GROUP_ONSCREEN)
+	visible = true
+	
+# ------------------------------------------------------------------------------------------------
+func _on_VisibilityNotifier2D_viewport_exited(viewport: Viewport) -> void:
+	remove_from_group(GROUP_ONSCREEN)
+	visible = false
 
 # -------------------------------------------------------------------------------------------------
 func _to_string() -> String:
@@ -79,7 +87,6 @@ func remove_last_point() -> void:
 
 # ------------------------------------------------------------------------------------------------
 func refresh() -> void:
-
 	var max_pressure := float(MAX_PRESSURE_VALUE)
 	
 	_line2d.clear_points()
@@ -93,14 +100,24 @@ func refresh() -> void:
 	_line2d.width = size
 	
 	var p_idx := 0
+	var top_left := MAX_VECTOR2
+	var bottom_right := MIN_VECTOR2
 	var curve_step: float = 1.0 / pressures.size()
 	for point in points:
+		# Add the point
 		_line2d.add_point(point)
 		var pressure: float = pressures[p_idx]
 		_line2d.width_curve.add_point(Vector2(curve_step*p_idx, pressure / max_pressure))
 		p_idx += 1
-	
+			
+		# Update the extreme values
+		top_left.x = min(top_left.x, point.x)
+		top_left.y = min(top_left.y, point.y)
+		bottom_right.x = max(bottom_right.x, point.x)
+		bottom_right.y = max(bottom_right.y, point.y)
+		
 	_line2d.width_curve.bake()
+	_visibility_notifier.rect = Utils.calculate_rect(top_left, bottom_right)
 	
 	# TODO: calculate bounding box for the visibility notifier and move the correct position
 
