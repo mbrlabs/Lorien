@@ -24,6 +24,10 @@ func _on_brush_size_changed(size: int) -> void:
 	_cursor.change_size(size)
 
 # -------------------------------------------------------------------------------------------------
+func get_cursor():
+	return _cursor
+
+# -------------------------------------------------------------------------------------------------
 func set_enabled(e: bool) -> void:
 	enabled = e
 	set_process(enabled)

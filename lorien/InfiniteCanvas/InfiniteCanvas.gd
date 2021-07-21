@@ -86,6 +86,7 @@ func use_tool(tool_type: int) -> void:
 			_use_optimizer = false
 			
 	_active_tool.enabled = true
+	_active_tool.get_cursor()._on_zoom_changed(_camera.zoom.x)
 
 # -------------------------------------------------------------------------------------------------
 func set_background_color(color: Color) -> void:
@@ -203,6 +204,7 @@ func use_project(project: Project) -> void:
 	
 	# Apply metdadata
 	ProjectMetadata.apply_from_dict(project.meta_data, self)
+	_active_tool.get_cursor()._on_zoom_changed(_camera.zoom.x)
 	
 	# Add new data
 	_current_project = project

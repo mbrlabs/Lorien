@@ -23,6 +23,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Fixed an issue where a brush stroke disappeared if it got too long (See: [#26](https://github.com/mbrlabs/Lorien/issues/26))
 - Use default canvas color from settings for newly opened tabs
 - Fixed wrong pen pressure display in status bar
+- Wrong scaling of cursors when switching between files
 
 ### Changed
 - Disabled VSync and set the fixed target FPS to 144, which results in much smoother brush strokes and a better feeling on low Hz monitors
