@@ -118,6 +118,10 @@ func get_strokes_in_camera_frustrum() -> Array:
 	return get_tree().get_nodes_in_group(BrushStroke.GROUP_ONSCREEN)
 
 # -------------------------------------------------------------------------------------------------
+func get_all_strokes() -> Array:
+	return _current_project.strokes
+
+# -------------------------------------------------------------------------------------------------
 func enable() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	_camera.enable_intput()

@@ -22,6 +22,8 @@ var color: Color setget set_color, get_color
 var size: int
 var points: Array # Array<Vector2>
 var pressures: Array # Array<float>
+var top_left_pos: Vector2
+var bottom_right_pos: Vector2
 
 # ------------------------------------------------------------------------------------------------
 func _ready():
@@ -117,6 +119,8 @@ func refresh() -> void:
 		bottom_right.y = max(bottom_right.y, point.y)
 		
 	_line2d.width_curve.bake()
+	top_left_pos = top_left
+	bottom_right_pos = bottom_right
 	_visibility_notifier.rect = Utils.calculate_rect(top_left, bottom_right)
 	
 	# TODO: calculate bounding box for the visibility notifier and move the correct position

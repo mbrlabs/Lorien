@@ -32,6 +32,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Switched to GLES3 backend
 - Removed unimplemented color-preset ui-elements from colorpickers
 - Introduced a minimum window size so it can't be resized to 0 anymore
+- The selection tool now selects any brush stroke when at least one stroke point is inside the selection rectangle
 
 ## [0.2.0] - 2021-06-03
 

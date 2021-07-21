@@ -23,6 +23,8 @@ var _multi_selecting: bool
 var _mouse_moved_during_pressed := false
 var _stroke_positions_before_move := {} # BrushStroke -> Vector2
 
+var _bounding_box_cache = {} # BrushStroke -> Rect2
+
 # ------------------------------------------------------------------------------------------------
 func _ready():
 	_selection_rectangle = get_node(selection_rectangle_path)
@@ -37,9 +39,11 @@ func _input(event: InputEvent) -> void:
 				if event.shift:
 					_state = State.SELECTING
 					_multi_selecting = true
+					_build_bounding_boxes()
 				elif get_selected_strokes().size() == 0:
 					_state = State.SELECTING
 					_multi_selecting = false
+					_build_bounding_boxes()
 				else:
 					_state = State.MOVING
 					_mouse_moved_during_pressed = false
@@ -92,17 +96,29 @@ func _input(event: InputEvent) -> void:
 
 # ------------------------------------------------------------------------------------------------
 func compute_selection(start_pos: Vector2, end_pos: Vector2) -> void:
-	var rect : Rect2 = Utils.calculate_rect(start_pos, end_pos)
+	var selection_rect : Rect2 = Utils.calculate_rect(start_pos, end_pos)
 	for stroke in _canvas.get_strokes_in_camera_frustrum():
-		# Strokes are selected when the first and last points are in the rect
-		var first_point: Vector2 = _get_absolute_stroke_point_pos(stroke.points[0], stroke)
-		var last_point: Vector2 = _get_absolute_stroke_point_pos(stroke.points.back(), stroke)
-		var is_inside_selection_rect := rect.has_point(first_point) && rect.has_point(last_point)
+		var bounding_box: Rect2 = _bounding_box_cache[stroke]
+		var is_inside_selection_rect := false
+		if selection_rect.intersects(bounding_box):
+			for point in stroke.points:
+				if selection_rect.has_point(_calc_abs_stroke_point(point, stroke)):
+					is_inside_selection_rect = true
+					break
 		_set_stroke_selected(stroke, is_inside_selection_rect)
 	_canvas.info.selected_lines = get_selected_strokes().size()
 
 # ------------------------------------------------------------------------------------------------
-func _get_absolute_stroke_point_pos(p: Vector2, stroke: BrushStroke) -> Vector2:
+func _build_bounding_boxes() -> void:
+	_bounding_box_cache.clear()
+	for stroke in _canvas.get_all_strokes():
+		var top_left := _calc_abs_stroke_point(stroke.top_left_pos, stroke)
+		var bottom_right := _calc_abs_stroke_point(stroke.bottom_right_pos, stroke)
+		var bounding_box := Utils.calculate_rect(top_left, bottom_right)
+		_bounding_box_cache[stroke] = bounding_box
+
+# ------------------------------------------------------------------------------------------------
+func _calc_abs_stroke_point(p: Vector2, stroke: BrushStroke) -> Vector2:
 	return (p + stroke.position - _canvas.get_camera_offset()) / _canvas.get_camera_zoom()
 
 # ------------------------------------------------------------------------------------------------
