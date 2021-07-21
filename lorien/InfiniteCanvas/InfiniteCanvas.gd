@@ -61,6 +61,16 @@ func _process(delta: float) -> void:
 		if _active_tool == _selection_tool:
 			_delete_selected_strokes()
 
+	if Input.is_action_just_pressed("f12"):
+		if _current_project.strokes.size() > 0:
+			var stroke: BrushStroke = _current_project.strokes[0]
+			var dup := duplicate_stroke(stroke, Vector2(100, 100))
+			
+			_current_project.strokes.append(dup)
+			_strokes_parent.add_child(dup)
+			info.point_count += dup.points.size()
+			info.stroke_count += 1
+			
 # -------------------------------------------------------------------------------------------------
 func use_tool(tool_type: int) -> void:
 	_active_tool.enabled = false
@@ -141,7 +151,7 @@ func take_screenshot() -> Image:
 
 # -------------------------------------------------------------------------------------------------
 func start_stroke(eraser: bool = false) -> void:
-	_current_stroke = BRUSH_STROKE.instance()	
+	_current_stroke = BRUSH_STROKE.instance()
 	_current_stroke.eraser = eraser
 	_current_stroke.size = _brush_size
 	
@@ -197,6 +207,17 @@ func end_stroke() -> void:
 			_current_project.undo_redo.commit_action()
 		
 		_current_stroke = null
+
+# -------------------------------------------------------------------------------------------------
+func duplicate_stroke(stroke: BrushStroke, offset: Vector2) -> BrushStroke:
+	var dup: BrushStroke = BRUSH_STROKE.instance()
+	dup.eraser = stroke.eraser
+	dup.size = stroke.size
+	dup.color = stroke.color
+	dup.pressures = stroke.pressures.duplicate()
+	for point in stroke.points:
+		dup.points.append(point + offset)
+	return dup
 
 # -------------------------------------------------------------------------------------------------
 func use_project(project: Project) -> void:

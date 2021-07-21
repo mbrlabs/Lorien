@@ -122,8 +122,6 @@ func refresh() -> void:
 	top_left_pos = top_left
 	bottom_right_pos = bottom_right
 	_visibility_notifier.rect = Utils.calculate_rect(top_left, bottom_right)
-	
-	# TODO: calculate bounding box for the visibility notifier and move the correct position
 
 # -------------------------------------------------------------------------------------------------
 func set_color(c: Color) -> void:
