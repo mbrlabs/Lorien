@@ -4,7 +4,7 @@ LANGUAGE_NAME Italiano
 # Menu
 # -----------------------------------------------------------------------------
 
-MENU_OPEN           Open # TODO 
+MENU_OPEN           Apri # TODO 
 MENU_SAVE           Salva
 MENU_SAVE_AS        Salva come..
 MENU_SETTINGS       Impostazioni
@@ -50,7 +50,7 @@ SETTINGS_TITLE                  Impostazioni
 SETTINGS_GENERAL                Generale
 SETTINGS_APPEARANCE             Aspetto
 SETTINGS_RENDERING              Rendering
-SETTINGS_PRESSURE_SENSITIVITY   Pressure Sensitivity # TODO
+SETTINGS_PRESSURE_SENSITIVITY   Sensibilità alla pressione # TODO
 SETTINGS_BRUSH_SIZE             Dimensione Pennello Predefinita
 SETTINGS_BRUSH_COLOR            Colore Pennello Predefinito
 SETTINGS_CANVAS_COLOR           Colore Tela Predefinito
@@ -59,11 +59,11 @@ SETTINGS_LANGUAGE               Lingua
 SETTINGS_THEME                  Tema
 SETTINGS_AA_METHOD              Metodo Anti-Aliasing
 SETTINGS_AA_METHOD_NONE         Nessuno
-SETTINGS_FPS_FOREGROUND         Foreground Fps # TODO
-SETTINGS_FPS_BACKGROUND         Background Fps # TODO
-SETTINGS_BRUSH_CAPS             Brush Rounding Mode # TODO
-SETTINGS_BRUSH_CAPS_FLAT        Flat # TODO
-SETTINGS_BRUSH_CAPS_ROUND       Round # TODO
+SETTINGS_FPS_FOREGROUND         Fps in primo piano # TODO
+SETTINGS_FPS_BACKGROUND         Fps sullo sfondo # TODO
+SETTINGS_BRUSH_CAPS             Modalità arrotondamento pennello # TODO
+SETTINGS_BRUSH_CAPS_FLAT        Piatto # TODO
+SETTINGS_BRUSH_CAPS_ROUND       Rotondo # TODO
 
 # -----------------------------------------------------------------------------
 # About dialog strings
@@ -92,7 +92,7 @@ EXIT_DIALOG_TEXT     Vuoi salvare le modifiche prima di uscire da Lorien?
 # Error messages
 # -----------------------------------------------------------------------------
 ERROR_NOT_IMPLEMENTED               Non ancora implementato.
-ERROR_AUTOSAVE_NOT_IMPLEMENTED      Salvataggio automatico non ancora implementato per il file "Untitled". Si prega di salvarlo manualmente.
+ERROR_AUTOSAVE_NOT_IMPLEMENTED      Salvataggio automatico non ancora implementato per il file "Senza nome". Si prega di salvarlo manualmente.
 
 # -----------------------------------------------------------------------------
 # Generic strings
