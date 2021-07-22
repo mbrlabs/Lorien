@@ -41,7 +41,6 @@ STATUSBAR_PRESSURE              Druck
 STATUSBAR_FPS                   FPS
 STATUSBAR_STROKES               Striche
 STATUSBAR_POINTS                Punkte
-STATUSBAR_SELECTED_STROKES      Ausgewählte Striche
 
 # -----------------------------------------------------------------------------
 # Settings

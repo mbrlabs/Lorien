@@ -99,7 +99,6 @@ func _exit_tree():
 func _process(delta):
 	_handle_shortcut_actions()
 	_statusbar.set_stroke_count(_canvas.info.stroke_count)
-	_statusbar.set_selected_strokes_count(_canvas.info.selected_lines)
 	_statusbar.set_point_count(_canvas.info.point_count)
 	_statusbar.set_pressure(_canvas.info.current_pressure)
 	_statusbar.set_camera_position(_canvas.get_camera_offset())

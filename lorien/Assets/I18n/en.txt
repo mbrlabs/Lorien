@@ -41,7 +41,6 @@ STATUSBAR_PRESSURE              Pressure
 STATUSBAR_FPS                   FPS
 STATUSBAR_STROKES               Strokes
 STATUSBAR_POINTS                Points
-STATUSBAR_SELECTED_STROKES      Selected strokes
 
 # -----------------------------------------------------------------------------
 # Settings strings

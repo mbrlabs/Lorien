@@ -41,10 +41,8 @@ STATUSBAR_POSITION              Posición
 STATUSBAR_ZOOM                  Zoom
 STATUSBAR_PRESSURE              Presión
 STATUSBAR_FPS                   FPS
-# Changed "Strokes" to "Curves", other alternative is "Lines"
 STATUSBAR_STROKES               Curvas
 STATUSBAR_POINTS                Puntos
-STATUSBAR_SELECTED_STROKES      Curvas seleccionadas
 
 # -----------------------------------------------------------------------------
 # Settings strings

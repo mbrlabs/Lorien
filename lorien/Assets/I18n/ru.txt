@@ -41,7 +41,6 @@ STATUSBAR_PRESSURE              Давление
 STATUSBAR_FPS                   FPS
 STATUSBAR_STROKES               Штрихи
 STATUSBAR_POINTS                Количество точек
-STATUSBAR_SELECTED_STROKES      Выбранные штрихи
 
 # -----------------------------------------------------------------------------
 # Settings strings

@@ -207,17 +207,6 @@ func end_stroke() -> void:
 		_current_stroke = null
 
 # -------------------------------------------------------------------------------------------------
-#func duplicate_stroke(stroke: BrushStroke, offset: Vector2) -> BrushStroke:
-#	var dup: BrushStroke = BRUSH_STROKE.instance()
-#	dup.eraser = stroke.eraser
-#	dup.size = stroke.size
-#	dup.color = stroke.color
-#	dup.pressures = stroke.pressures.duplicate()
-#	for point in stroke.points:
-#		dup.points.append(point + offset)
-#	return dup
-
-# -------------------------------------------------------------------------------------------------
 func use_project(project: Project) -> void:
 	# Cleanup old data
 	for stroke in _strokes_parent.get_children():
