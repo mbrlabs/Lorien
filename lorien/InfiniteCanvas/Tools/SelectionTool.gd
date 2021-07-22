@@ -2,10 +2,13 @@ class_name SelectionTool
 extends CanvasTool
 
 # -------------------------------------------------------------------------------------------------
+const BRUSH_STROKE = preload("res://BrushStroke/BrushStroke.tscn")
+
 const META_OFFSET := "offset"
 const GROUP_SELECTED_STROKES := "selected_strokes" # selected strokes
 const GROUP_STROKES_IN_SELECTION_RECTANGLE := "strokes_in_selection_rectangle" # strokes that are in selection rectangle but not commit (i.e. the user is still selecting)
 const GROUP_MARKED_FOR_DESELECTION := "strokes_marked_for_deselection" # strokes that need to be deslected once LMB is released
+const GROUP_COPIED_STROKES := "strokes_copied"
 
 enum State {
 	NONE,
@@ -22,7 +25,6 @@ var _selecting_end_pos: Vector2 = Vector2.ZERO
 var _multi_selecting: bool
 var _mouse_moved_during_pressed := false
 var _stroke_positions_before_move := {} # BrushStroke -> Vector2
-
 var _bounding_box_cache = {} # BrushStroke -> Rect2
 
 # ------------------------------------------------------------------------------------------------
@@ -95,6 +97,23 @@ func _input(event: InputEvent) -> void:
 				_cursor.mode = SelectionCursor.Mode.MOVE
 
 # ------------------------------------------------------------------------------------------------
+func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("copy_strokes"):
+		var strokes := get_selected_strokes()
+		for stroke in strokes:
+			stroke.add_to_group(GROUP_COPIED_STROKES)
+		print("Copied %d strokes" % strokes.size())
+	elif Input.is_action_just_pressed("paste_strokes"):
+		var strokes := get_tree().get_nodes_in_group(GROUP_COPIED_STROKES)
+		var offset: Vector2
+		if !strokes.empty():
+			offset = _cursor.global_position - strokes[0].points[0]
+			for stroke in strokes:
+				var dup := _duplicate_stroke(stroke, offset)
+				_canvas.add_stroke(dup)
+		print("Pasted %d strokes (offset: %s)" % [strokes.size(), offset])
+
+# ------------------------------------------------------------------------------------------------
 func compute_selection(start_pos: Vector2, end_pos: Vector2) -> void:
 	var selection_rect : Rect2 = Utils.calculate_rect(start_pos, end_pos)
 	for stroke in _canvas.get_strokes_in_camera_frustrum():
@@ -107,6 +126,17 @@ func compute_selection(start_pos: Vector2, end_pos: Vector2) -> void:
 					break
 		_set_stroke_selected(stroke, is_inside_selection_rect)
 	_canvas.info.selected_lines = get_selected_strokes().size()
+
+# ------------------------------------------------------------------------------------------------
+func _duplicate_stroke(stroke: BrushStroke, offset: Vector2) -> BrushStroke:
+	var dup: BrushStroke = BRUSH_STROKE.instance()
+	dup.eraser = stroke.eraser
+	dup.size = stroke.size
+	dup.color = stroke.color
+	dup.pressures = stroke.pressures.duplicate()
+	for point in stroke.points:
+		dup.points.append(point + offset)
+	return dup
 
 # ------------------------------------------------------------------------------------------------
 func _build_bounding_boxes() -> void:

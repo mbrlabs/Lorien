@@ -114,6 +114,9 @@ func _process(delta):
 # -------------------------------------------------------------------------------------------------
 func _handle_shortcut_actions() -> void:
 	if !_is_dialog_open():
+		if Input.is_action_just_pressed("copy_strokes") || Input.is_action_just_pressed("paste_strokes"):
+			return
+
 		if Input.is_action_just_pressed("shortcut_new_project"):
 			_on_create_new_project()
 		elif Input.is_action_just_pressed("shortcut_open_project"):
