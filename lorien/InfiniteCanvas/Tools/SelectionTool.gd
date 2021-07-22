@@ -113,9 +113,7 @@ func _process(delta: float) -> void:
 		if !strokes.empty():
 			deselect_all_strokes()
 			_cursor.mode = SelectionCursor.Mode.MOVE
-			var offset: Vector2 = _cursor.global_position - strokes[0].points[0]
-			_paste_strokes(strokes, offset)
-			print("Pasted %d strokes (offset: %s)" % [strokes.size(), offset])
+			_paste_strokes(strokes)
 
 # ------------------------------------------------------------------------------------------------
 func compute_selection(start_pos: Vector2, end_pos: Vector2) -> void:
@@ -132,14 +130,28 @@ func compute_selection(start_pos: Vector2, end_pos: Vector2) -> void:
 	_canvas.info.selected_lines = get_selected_strokes().size()
 
 # ------------------------------------------------------------------------------------------------
-func _paste_strokes(strokes: Array, offset: Vector2) -> void:
+func _paste_strokes(strokes: Array) -> void:
+	# Calculate offset at center
+	var top_left := Vector2(100000000, 100000000)
+	var bottom_right := Vector2(-100000000, -100000000)
+	
+	for stroke in strokes:
+		top_left.x = min(top_left.x, stroke.top_left_pos.x)
+		top_left.y = min(top_left.y, stroke.top_left_pos.y)
+		bottom_right.x = max(bottom_right.x, stroke.bottom_right_pos.x)
+		bottom_right.y = max(bottom_right.y, stroke.bottom_right_pos.y)
+	var offset := _cursor.global_position - (top_left + (bottom_right - top_left) / 2.0)
+	
+	# Duplicate the strokes 
 	var duplicates := []
 	for stroke in strokes:
 		var dup := _duplicate_stroke(stroke, offset)
 		dup.add_to_group(GROUP_SELECTED_STROKES)
 		dup.modulate = Config.DEFAULT_SELECTION_COLOR
 		duplicates.append(dup)
+	
 	_canvas.add_strokes(duplicates)
+	print("Pasted %d strokes (offset: %s)" % [strokes.size(), offset])
 
 # ------------------------------------------------------------------------------------------------
 func _duplicate_stroke(stroke: BrushStroke, offset: Vector2) -> BrushStroke:	
