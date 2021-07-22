@@ -99,7 +99,7 @@ func _input(event: InputEvent) -> void:
 # ------------------------------------------------------------------------------------------------
 func _process(delta: float) -> void:
 	# Copy selected strokes
-	if Input.is_action_just_pressed("copy_strokes"):
+	if Input.is_action_just_pressed("copy_strokes") || Input.is_action_just_pressed("duplicate_strokes"):
 		var strokes := get_selected_strokes()
 		if strokes.size() > 0:
 			Utils.remove_group_from_all_nodes(GROUP_COPIED_STROKES)
@@ -108,7 +108,7 @@ func _process(delta: float) -> void:
 			print("Copied %d strokes" % strokes.size())
 	
 	# Paste strokes
-	elif Input.is_action_just_pressed("paste_strokes"):
+	if Input.is_action_just_pressed("paste_strokes") || Input.is_action_just_pressed("duplicate_strokes"):
 		var strokes := get_tree().get_nodes_in_group(GROUP_COPIED_STROKES)
 		if !strokes.empty():
 			deselect_all_strokes()

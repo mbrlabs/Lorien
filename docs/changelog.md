@@ -8,6 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Added
 - Infinite grid
+- Copy-Paste selected brush strokes with CTRL+C/CTRL+V or duplicate in one step with CTRL+D
 - The selection tool can now also deselect seperate brush strokes by holding down shift
 - "Save as" functionality to save a file as a new file with a new file name, while keeping the original
 - Implemented "Open" and "Save" functionality in menu
