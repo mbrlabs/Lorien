@@ -114,11 +114,7 @@ func _process(delta: float) -> void:
 			deselect_all_strokes()
 			_cursor.mode = SelectionCursor.Mode.MOVE
 			var offset: Vector2 = _cursor.global_position - strokes[0].points[0]
-			for stroke in strokes:
-				var dup := _duplicate_stroke(stroke, offset)
-				_canvas.add_stroke(dup)
-				dup.add_to_group(GROUP_SELECTED_STROKES)
-				dup.modulate = Config.DEFAULT_SELECTION_COLOR
+			_paste_strokes(strokes, offset)
 			print("Pasted %d strokes (offset: %s)" % [strokes.size(), offset])
 
 # ------------------------------------------------------------------------------------------------
@@ -134,6 +130,16 @@ func compute_selection(start_pos: Vector2, end_pos: Vector2) -> void:
 					break
 		_set_stroke_selected(stroke, is_inside_selection_rect)
 	_canvas.info.selected_lines = get_selected_strokes().size()
+
+# ------------------------------------------------------------------------------------------------
+func _paste_strokes(strokes: Array, offset: Vector2) -> void:
+	var duplicates := []
+	for stroke in strokes:
+		var dup := _duplicate_stroke(stroke, offset)
+		dup.add_to_group(GROUP_SELECTED_STROKES)
+		dup.modulate = Config.DEFAULT_SELECTION_COLOR
+		duplicates.append(dup)
+	_canvas.add_strokes(duplicates)
 
 # ------------------------------------------------------------------------------------------------
 func _duplicate_stroke(stroke: BrushStroke, offset: Vector2) -> BrushStroke:	

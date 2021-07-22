@@ -207,6 +207,20 @@ func end_stroke() -> void:
 		_current_stroke = null
 
 # -------------------------------------------------------------------------------------------------
+func add_strokes(strokes: Array) -> void:
+	_current_project.undo_redo.create_action("Add Strokes")
+	var point_count := 0
+	for stroke in strokes:
+		point_count += stroke.points.size()
+		_current_project.undo_redo.add_undo_method(self, "undo_last_stroke")
+		_current_project.undo_redo.add_undo_reference(stroke)
+		_current_project.undo_redo.add_do_method(_strokes_parent, "add_child", stroke)
+		_current_project.undo_redo.add_do_method(_current_project, "add_stroke", stroke)
+	_current_project.undo_redo.add_do_property(info, "stroke_count", info.stroke_count + strokes.size())
+	_current_project.undo_redo.add_do_property(info, "point_count", info.point_count + point_count)
+	_current_project.undo_redo.commit_action()
+
+# -------------------------------------------------------------------------------------------------
 func use_project(project: Project) -> void:
 	# Cleanup old data
 	for stroke in _strokes_parent.get_children():
