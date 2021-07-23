@@ -4,7 +4,7 @@ LANGUAGE_NAME Italiano
 # Menu
 # -----------------------------------------------------------------------------
 
-MENU_OPEN           Apri # TODO 
+MENU_OPEN           Apri  
 MENU_SAVE           Salva
 MENU_SAVE_AS        Salva come..
 MENU_SETTINGS       Impostazioni
@@ -50,7 +50,7 @@ SETTINGS_TITLE                  Impostazioni
 SETTINGS_GENERAL                Generale
 SETTINGS_APPEARANCE             Aspetto
 SETTINGS_RENDERING              Rendering
-SETTINGS_PRESSURE_SENSITIVITY   Sensibilità alla pressione # TODO
+SETTINGS_PRESSURE_SENSITIVITY   Sensibilità alla pressione 
 SETTINGS_BRUSH_SIZE             Dimensione Pennello Predefinita
 SETTINGS_BRUSH_COLOR            Colore Pennello Predefinito
 SETTINGS_CANVAS_COLOR           Colore Tela Predefinito
@@ -59,11 +59,11 @@ SETTINGS_LANGUAGE               Lingua
 SETTINGS_THEME                  Tema
 SETTINGS_AA_METHOD              Metodo Anti-Aliasing
 SETTINGS_AA_METHOD_NONE         Nessuno
-SETTINGS_FPS_FOREGROUND         Fps in primo piano # TODO
-SETTINGS_FPS_BACKGROUND         Fps sullo sfondo # TODO
-SETTINGS_BRUSH_CAPS             Modalità arrotondamento pennello # TODO
-SETTINGS_BRUSH_CAPS_FLAT        Piatto # TODO
-SETTINGS_BRUSH_CAPS_ROUND       Rotondo # TODO
+SETTINGS_FPS_FOREGROUND         Fps in primo piano 
+SETTINGS_FPS_BACKGROUND         Fps sullo sfondo 
+SETTINGS_BRUSH_CAPS             Modalità arrotondamento pennello 
+SETTINGS_BRUSH_CAPS_FLAT        Piatto 
+SETTINGS_BRUSH_CAPS_ROUND       Rotondo 
 
 # -----------------------------------------------------------------------------
 # About dialog strings
