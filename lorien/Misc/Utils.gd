@@ -11,9 +11,11 @@ func remove_signal_connections(node: Node, signal_name: String) -> void:
 
 # -------------------------------------------------------------------------------------------------
 func is_mouse_in_control(control: Control) -> bool:
-	var pos = get_viewport().get_mouse_position()
-	var rect = control.get_global_rect()
-	return rect.has_point(pos)
+	if control.visible:
+		var pos = get_viewport().get_mouse_position()
+		var rect = control.get_global_rect()
+		return rect.has_point(pos)
+	return false
 
 # -------------------------------------------------------------------------------------------------
 func calculate_rect(start_pos: Vector2, end_pos: Vector2) -> Rect2:

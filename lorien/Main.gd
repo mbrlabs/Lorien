@@ -158,8 +158,13 @@ func _make_project_active(project: Project) -> void:
 
 # -------------------------------------------------------------------------------------------------
 func _is_mouse_on_ui() -> bool:
-	# FIXME: this is really long line.... It's also pretty hacky, so replace with something better sometime
-	return Utils.is_mouse_in_control(_menubar) || Utils.is_mouse_in_control(_toolbar) || Utils.is_mouse_in_control(_statusbar)  || Utils.is_mouse_in_control(_file_dialog) || Utils.is_mouse_in_control(_about_dialog) || Utils.is_mouse_in_control(_settings_dialog)
+	var on_ui := Utils.is_mouse_in_control(_menubar)
+	on_ui = on_ui || Utils.is_mouse_in_control(_toolbar)
+	on_ui = on_ui || Utils.is_mouse_in_control(_statusbar)
+	on_ui = on_ui || Utils.is_mouse_in_control(_file_dialog)
+	on_ui = on_ui || Utils.is_mouse_in_control(_about_dialog)
+	on_ui = on_ui || Utils.is_mouse_in_control(_settings_dialog)
+	return on_ui
 
 # -------------------------------------------------------------------------------------------------
 func _is_dialog_open() -> bool:
