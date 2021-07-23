@@ -4,12 +4,15 @@ extends CanvasTool
 # -------------------------------------------------------------------------------------------------
 const BRUSH_STROKE = preload("res://BrushStroke/BrushStroke.tscn")
 
+const MAX_FLOAT := 2147483646.0
+const MIN_FLOAT := -2147483646.0
 const META_OFFSET := "offset"
 const GROUP_SELECTED_STROKES := "selected_strokes" # selected strokes
 const GROUP_STROKES_IN_SELECTION_RECTANGLE := "strokes_in_selection_rectangle" # strokes that are in selection rectangle but not commit (i.e. the user is still selecting)
 const GROUP_MARKED_FOR_DESELECTION := "strokes_marked_for_deselection" # strokes that need to be deslected once LMB is released
 const GROUP_COPIED_STROKES := "strokes_copied"
 
+# -------------------------------------------------------------------------------------------------
 enum State {
 	NONE,
 	SELECTING,
@@ -132,14 +135,14 @@ func compute_selection(start_pos: Vector2, end_pos: Vector2) -> void:
 # ------------------------------------------------------------------------------------------------
 func _paste_strokes(strokes: Array) -> void:
 	# Calculate offset at center
-	var top_left := Vector2(100000000, 100000000)
-	var bottom_right := Vector2(-100000000, -100000000)
+	var top_left := Vector2(MAX_FLOAT, MAX_FLOAT)
+	var bottom_right := Vector2(MIN_FLOAT, MIN_FLOAT)
 	
 	for stroke in strokes:
-		top_left.x = min(top_left.x, stroke.top_left_pos.x)
-		top_left.y = min(top_left.y, stroke.top_left_pos.y)
-		bottom_right.x = max(bottom_right.x, stroke.bottom_right_pos.x)
-		bottom_right.y = max(bottom_right.y, stroke.bottom_right_pos.y)
+		top_left.x = min(top_left.x, stroke.top_left_pos.x + stroke.position.x)
+		top_left.y = min(top_left.y, stroke.top_left_pos.y + stroke.position.y)
+		bottom_right.x = max(bottom_right.x, stroke.bottom_right_pos.x + stroke.position.x)
+		bottom_right.y = max(bottom_right.y, stroke.bottom_right_pos.y + stroke.position.y)
 	var offset := _cursor.global_position - (top_left + (bottom_right - top_left) / 2.0)
 	
 	# Duplicate the strokes 
