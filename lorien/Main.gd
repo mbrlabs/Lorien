@@ -15,6 +15,8 @@ onready var _exit_dialog: WindowDialog = $ExitDialog
 onready var _unsaved_changes_dialog: WindowDialog = $UnsavedChangesDialog
 onready var _background_color_picker: ColorPicker = $BackgroundColorPickerPopup/PanelContainer/ColorPicker
 
+var _ui_visible := true 
+
 # -------------------------------------------------------------------------------------------------
 func _ready():
 	# Init stuff
@@ -97,7 +99,7 @@ func _exit_tree():
 
 # -------------------------------------------------------------------------------------------------
 func _process(delta):
-	_handle_shortcut_actions()
+	_handle_input_actions()
 	_statusbar.set_stroke_count(_canvas.info.stroke_count)
 	_statusbar.set_point_count(_canvas.info.point_count)
 	_statusbar.set_pressure(_canvas.info.current_pressure)
@@ -111,7 +113,7 @@ func _process(delta):
 		_menubar.update_tab_title(active_project)
 
 # -------------------------------------------------------------------------------------------------
-func _handle_shortcut_actions() -> void:
+func _handle_input_actions() -> void:
 	if !_is_dialog_open():
 		if Input.is_action_just_pressed("copy_strokes") || Input.is_action_just_pressed("paste_strokes") || Input.is_action_just_pressed("duplicate_strokes"):
 			return
@@ -136,7 +138,16 @@ func _handle_shortcut_actions() -> void:
 			_toolbar.enable_tool(Types.Tool.COLOR_PICKER)
 		elif Input.is_action_just_pressed("shortcut_select_tool"):
 			_toolbar.enable_tool(Types.Tool.SELECT)
+		elif Input.is_action_just_pressed("toggle_distraction_free_mode"):
+			_toggle_distraction_free_mode()
 
+# -------------------------------------------------------------------------------------------------
+func _toggle_distraction_free_mode() -> void:
+	_ui_visible = !_ui_visible
+	_menubar.visible = _ui_visible
+	_statusbar.visible = _ui_visible
+	_toolbar.visible = _ui_visible
+	
 # -------------------------------------------------------------------------------------------------
 func _on_files_dropped(files: PoolStringArray, screen: int) -> void:
 	for file in files:

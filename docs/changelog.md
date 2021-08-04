@@ -7,6 +7,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ## [0.4.0] - Unreleased
 
 ### Added
+- Distraction free mode which hides the UI. Can be toggled with TAB
 
 ### Fixed
 
