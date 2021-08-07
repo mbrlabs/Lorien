@@ -3,6 +3,7 @@ class_name BrushStroke
 
 # ------------------------------------------------------------------------------------------------
 const STROKE_TEXTURE = preload("res://Assets/Textures/stroke_texture.png")
+const COLLIDER_NODE_NAME := "StrokeCollider"
 
 # ------------------------------------------------------------------------------------------------
 const MAX_POINTS 			:= 1000
@@ -63,6 +64,28 @@ func _on_VisibilityNotifier2D_viewport_exited(viewport: Viewport) -> void:
 # -------------------------------------------------------------------------------------------------
 func _to_string() -> String:
 	return "Color: %s, Size: %d, Points: %s" % [color, size, points]
+
+# -------------------------------------------------------------------------------------------------
+func enable_collider(enable: bool) -> void:
+	# Remove current collider
+	var collider = get_node_or_null(COLLIDER_NODE_NAME)
+	if collider != null:
+		remove_child(collider)
+		collider.queue_free()
+	
+	# Create new collider
+	var body := StaticBody2D.new()
+	body.name = COLLIDER_NODE_NAME
+	var idx := 0
+	while idx < points.size()-1:
+		var col := CollisionShape2D.new()
+		var shape := SegmentShape2D.new()
+		shape.a = points[idx]
+		shape.b = points[idx + 1]
+		col.shape = shape
+		body.add_child(col)
+		idx += 1
+	add_child(body)
 
 # -------------------------------------------------------------------------------------------------
 func add_point(point: Vector2, pressure: float) -> void:

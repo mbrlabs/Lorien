@@ -24,6 +24,7 @@ var _brush_size := Config.DEFAULT_BRUSH_SIZE setget set_brush_size
 var _current_stroke: BrushStroke
 var _current_project: Project
 var _use_optimizer := true
+var _colliders_enabled := true
 var _optimizer: BrushStrokeOptimizer
 
 # -------------------------------------------------------------------------------------------------
@@ -41,6 +42,7 @@ func _ready():
 	_camera.connect("zoom_changed", self, "_on_zoom_changed")
 	_camera.connect("position_changed", self, "_on_camera_moved")
 	_viewport.size = OS.window_size
+
 
 # -------------------------------------------------------------------------------------------------
 func _input(event: InputEvent) -> void:
@@ -100,6 +102,13 @@ func set_background_color(color: Color) -> void:
 		for eraser_index in _current_project.eraser_stroke_indices:
 			if eraser_index < _strokes_parent.get_child_count():
 				_strokes_parent.get_child(eraser_index).color = _background_color
+
+# -------------------------------------------------------------------------------------------------
+func enable_colliders(enable: bool) -> void:
+	if _colliders_enabled != enable:
+		_colliders_enabled = enable
+		for stroke in _strokes_parent:
+			stroke.enable_collider(enable)
 
 # -------------------------------------------------------------------------------------------------
 func enable_grid(e: bool) -> void:
@@ -191,6 +200,10 @@ func end_stroke() -> void:
 			
 			# TODO: not sure if needed here
 			_current_stroke.refresh()
+			
+			# Colliders for the platformer easter-egg
+			if _colliders_enabled:
+				_current_stroke.enable_collider(true)
 			
 			# Remove the line temporally from the node tree, so the adding is registered in the undo-redo histrory below
 			_strokes_parent.remove_child(_current_stroke)

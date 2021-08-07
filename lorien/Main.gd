@@ -16,6 +16,7 @@ onready var _unsaved_changes_dialog: WindowDialog = $UnsavedChangesDialog
 onready var _background_color_picker: ColorPicker = $BackgroundColorPickerPopup/PanelContainer/ColorPicker
 
 var _ui_visible := true 
+var _player_enabled := false
 
 # -------------------------------------------------------------------------------------------------
 func _ready():
@@ -140,6 +141,16 @@ func _handle_input_actions() -> void:
 			_toolbar.enable_tool(Types.Tool.SELECT)
 		elif Input.is_action_just_pressed("toggle_distraction_free_mode"):
 			_toggle_distraction_free_mode()
+		elif Input.is_action_just_pressed("toggle_player"):
+			_toggle_player()
+
+# -------------------------------------------------------------------------------------------------
+func _toggle_player() -> void:
+	if _player_enabled:
+		pass
+	else:
+		pass
+	_player_enabled = !_player_enabled
 
 # -------------------------------------------------------------------------------------------------
 func _toggle_distraction_free_mode() -> void:
