@@ -146,11 +146,9 @@ func _handle_input_actions() -> void:
 
 # -------------------------------------------------------------------------------------------------
 func _toggle_player() -> void:
-	if _player_enabled:
-		pass
-	else:
-		pass
 	_player_enabled = !_player_enabled
+	_canvas.enable_colliders(_player_enabled)
+	_canvas.enable_player(_player_enabled)
 
 # -------------------------------------------------------------------------------------------------
 func _toggle_distraction_free_mode() -> void:

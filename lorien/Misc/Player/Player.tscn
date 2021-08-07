@@ -1,0 +1,61 @@
+[gd_scene load_steps=18 format=2]
+
+[ext_resource path="res://Misc/Player/Player.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Player/p1_stand.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Player/p1_jump.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Player/p1_walk/p1_walk08.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Player/p1_walk/p1_walk09.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Player/p1_walk/p1_walk04.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Player/p1_walk/p1_walk10.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Player/p1_walk/p1_walk01.png" type="Texture" id=8]
+[ext_resource path="res://Assets/Player/p1_walk/p1_walk11.png" type="Texture" id=9]
+[ext_resource path="res://Assets/Player/p1_walk/p1_walk06.png" type="Texture" id=10]
+[ext_resource path="res://Assets/Player/p1_walk/p1_walk05.png" type="Texture" id=11]
+[ext_resource path="res://Assets/Player/p1_walk/p1_walk07.png" type="Texture" id=12]
+[ext_resource path="res://Assets/Player/p1_walk/p1_walk02.png" type="Texture" id=13]
+[ext_resource path="res://Assets/Player/p1_walk/p1_walk03.png" type="Texture" id=14]
+[ext_resource path="res://Assets/Player/p1_hurt.png" type="Texture" id=15]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 35.7294
+height = 28.0319
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 2 ) ],
+"loop": false,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 8 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 6 ), ExtResource( 11 ), ExtResource( 10 ), ExtResource( 12 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 7 ), ExtResource( 9 ) ],
+"loop": true,
+"name": "walk",
+"speed": 12.0
+}, {
+"frames": [ ExtResource( 15 ) ],
+"loop": false,
+"name": "hurt",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 3 ) ],
+"loop": false,
+"name": "jump",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 3 ) ],
+"loop": false,
+"name": "falling",
+"speed": 5.0
+} ]
+
+[node name="Player" type="KinematicBody2D"]
+script = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 2 )
+animation = "walk"
+frame = 7
+playing = true
