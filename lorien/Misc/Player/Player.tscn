@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Misc/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Player/p1_stand.png" type="Texture" id=2]
@@ -15,10 +15,15 @@
 [ext_resource path="res://Assets/Player/p1_walk/p1_walk02.png" type="Texture" id=13]
 [ext_resource path="res://Assets/Player/p1_walk/p1_walk03.png" type="Texture" id=14]
 [ext_resource path="res://Assets/Player/p1_hurt.png" type="Texture" id=15]
+[ext_resource path="res://Assets/Player/p1_duck.png" type="Texture" id=16]
 
-[sub_resource type="CapsuleShape2D" id=1]
+[sub_resource type="CapsuleShape2D" id=3]
 radius = 35.7294
-height = 28.0319
+height = 34.0149
+
+[sub_resource type="CapsuleShape2D" id=4]
+radius = 35.7294
+height = 10.4698
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
@@ -26,11 +31,6 @@ animations = [ {
 "loop": false,
 "name": "idle",
 "speed": 5.0
-}, {
-"frames": [ ExtResource( 8 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 6 ), ExtResource( 11 ), ExtResource( 10 ), ExtResource( 12 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 7 ), ExtResource( 9 ) ],
-"loop": true,
-"name": "walk",
-"speed": 12.0
 }, {
 "frames": [ ExtResource( 15 ) ],
 "loop": false,
@@ -46,16 +46,29 @@ animations = [ {
 "loop": false,
 "name": "falling",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 8 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 6 ), ExtResource( 11 ), ExtResource( 10 ), ExtResource( 12 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 7 ), ExtResource( 9 ) ],
+"loop": true,
+"name": "walk",
+"speed": 12.0
+}, {
+"frames": [ ExtResource( 16 ) ],
+"loop": true,
+"name": "crouch",
+"speed": 5.0
 } ]
 
 [node name="Player" type="KinematicBody2D"]
 script = ExtResource( 1 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 1 )
+[node name="CollisionShapeNormal" type="CollisionShape2D" parent="."]
+shape = SubResource( 3 )
+
+[node name="CollisionShapeCrouching" type="CollisionShape2D" parent="."]
+shape = SubResource( 4 )
+disabled = true
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 2 )
-animation = "walk"
-frame = 7
+animation = "crouch"
 playing = true

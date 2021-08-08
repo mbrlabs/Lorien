@@ -120,6 +120,7 @@ func enable_player(enable: bool) -> void:
 		if enable:
 			if _player == null:
 				_player = PLAYER.instance()
+				_player.z_index = -100
 			_player.reset(_active_tool.get_cursor().global_position)
 			_viewport.add_child(_player)
 		else:
