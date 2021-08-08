@@ -74,18 +74,19 @@ func enable_collider(enable: bool) -> void:
 		collider.queue_free()
 	
 	# Create new collider
-	var body := StaticBody2D.new()
-	body.name = COLLIDER_NODE_NAME
-	var idx := 0
-	while idx < points.size()-1:
-		var col := CollisionShape2D.new()
-		var shape := SegmentShape2D.new()
-		shape.a = points[idx]
-		shape.b = points[idx + 1]
-		col.shape = shape
-		body.add_child(col)
-		idx += 1
-	add_child(body)
+	if enable:
+		var body := StaticBody2D.new()
+		body.name = COLLIDER_NODE_NAME
+		var idx := 0
+		while idx < points.size()-1:
+			var col := CollisionShape2D.new()
+			var shape := SegmentShape2D.new()
+			shape.a = points[idx]
+			shape.b = points[idx + 1]
+			col.shape = shape
+			body.add_child(col)
+			idx += 1
+		add_child(body)
 
 # -------------------------------------------------------------------------------------------------
 func add_point(point: Vector2, pressure: float) -> void:
