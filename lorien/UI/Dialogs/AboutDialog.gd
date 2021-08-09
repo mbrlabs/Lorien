@@ -22,3 +22,7 @@ func _on_GodotButton_pressed():
 # -------------------------------------------------------------------------------------------------
 func _on_RemixIconsButton_pressed():
 	OS.shell_open("https://remixicon.com/")
+
+# -------------------------------------------------------------------------------------------------
+func _on_KennyButton_pressed():
+	OS.shell_open("https://www.kenney.nl/assets/platformer-art-deluxe")
