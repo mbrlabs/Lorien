@@ -119,30 +119,32 @@ func _handle_input_actions() -> void:
 		if Input.is_action_just_pressed("copy_strokes") || Input.is_action_just_pressed("paste_strokes") || Input.is_action_just_pressed("duplicate_strokes"):
 			return
 
-		if Input.is_action_just_pressed("shortcut_new_project"):
-			_on_create_new_project()
-		elif Input.is_action_just_pressed("shortcut_open_project"):
-			_toolbar._on_OpenFileButton_pressed()
-		elif Input.is_action_just_pressed("shortcut_save_project"):
-			_on_save_project()
-		elif Input.is_action_just_pressed("shortcut_undo"):
-			_on_undo_action()
-		elif Input.is_action_just_pressed("shortcut_redo"):
-			_on_redo_action()
-		elif Input.is_action_just_pressed("shortcut_brush_tool"):
-			_toolbar.enable_tool(Types.Tool.BRUSH)
-		elif Input.is_action_just_pressed("shortcut_line_tool"):
-			_toolbar.enable_tool(Types.Tool.LINE)
-		elif Input.is_action_just_pressed("shortcut_eraser_tool"):
-			_toolbar.enable_tool(Types.Tool.ERASER)
-		elif Input.is_action_just_pressed("shortcut_colorpicker"):
-			_toolbar.enable_tool(Types.Tool.COLOR_PICKER)
-		elif Input.is_action_just_pressed("shortcut_select_tool"):
-			_toolbar.enable_tool(Types.Tool.SELECT)
-		elif Input.is_action_just_pressed("toggle_distraction_free_mode"):
-			_toggle_distraction_free_mode()
-		elif Input.is_action_just_pressed("toggle_player"):
+		if Input.is_action_just_pressed("toggle_player"):
 			_toggle_player()
+		
+		if !_player_enabled:
+			if Input.is_action_just_pressed("shortcut_new_project"):
+				_on_create_new_project()
+			elif Input.is_action_just_pressed("shortcut_open_project"):
+				_toolbar._on_OpenFileButton_pressed()
+			elif Input.is_action_just_pressed("shortcut_save_project"):
+				_on_save_project()
+			elif Input.is_action_just_pressed("shortcut_undo"):
+				_on_undo_action()
+			elif Input.is_action_just_pressed("shortcut_redo"):
+				_on_redo_action()
+			elif Input.is_action_just_pressed("shortcut_brush_tool"):
+				_toolbar.enable_tool(Types.Tool.BRUSH)
+			elif Input.is_action_just_pressed("shortcut_line_tool"):
+				_toolbar.enable_tool(Types.Tool.LINE)
+			elif Input.is_action_just_pressed("shortcut_eraser_tool"):
+				_toolbar.enable_tool(Types.Tool.ERASER)
+			elif Input.is_action_just_pressed("shortcut_colorpicker"):
+				_toolbar.enable_tool(Types.Tool.COLOR_PICKER)
+			elif Input.is_action_just_pressed("shortcut_select_tool"):
+				_toolbar.enable_tool(Types.Tool.SELECT)
+			elif Input.is_action_just_pressed("toggle_distraction_free_mode"):
+				_toggle_distraction_free_mode()
 
 # -------------------------------------------------------------------------------------------------
 func _toggle_player() -> void:
