@@ -182,9 +182,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -225.0
-margin_top = -92.5
+margin_top = -102.5
 margin_right = 225.0
-margin_bottom = 92.5
+margin_bottom = 102.5
 
 [node name="SettingsDialog" parent="." instance=ExtResource( 10 )]
 anchor_left = 0.5
