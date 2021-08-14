@@ -30,6 +30,7 @@ TOOLBAR_TOOLTIP_SELECT_TOOL     Auswahl Werkzeug (S)
 TOOLBAR_TOOLTIP_BRUSH_COLOR     Pinsel Farbe
 TOOLBAR_TOOLTIP_BRUSH_SIZE      Pinsel Größe
 TOOLBAR_TOOLTIP_CANVAS_COLOR    Canvas Farbe
+TOOLBAR_TOOLTIP_GRID 			Gitter anzeigen
 
 # -----------------------------------------------------------------------------
 # Statusbar
@@ -64,6 +65,7 @@ SETTINGS_FPS_BACKGROUND         Hintergrund Fps
 SETTINGS_BRUSH_CAPS	            Pinsel Abrundung
 SETTINGS_BRUSH_CAPS_FLAT        Flach
 SETTINGS_BRUSH_CAPS_ROUND       Abgerundet
+SETTINGS_RESTART_NOTICE  		Ein Neustart ist notwendig um die Einstellungen zu übernehmen
 
 # -----------------------------------------------------------------------------
 # About dialog
@@ -73,6 +75,7 @@ ABOUT_DIALOG_TITLE              Über
 ABOUT_DIALOG_COPYRIGHT          © 2021 Marcus Brummer (mbrlabs) und Mitwirkende
 ABOUT_DIALOG_LICSENSE           Lorien ist lizenziert unter:
 ABOUT_DIALOG_BASED_ON           Lorien basiert auf:
+ABOUT_DIALOG_EASTEREGG          Easteregg Charakter:
 
 # -----------------------------------------------------------------------------
 # Unsaved changes dialog

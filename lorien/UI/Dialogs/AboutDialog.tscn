@@ -139,13 +139,13 @@ margin_right = 426.0
 margin_bottom = 159.0
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer5"]
-margin_right = 135.0
+margin_right = 186.0
 margin_bottom = 17.0
-text = "Easteregg character:"
+text = "ABOUT_DIALOG_EASTEREGG"
 
 [node name="KennyButton" type="LinkButton" parent="MarginContainer/VBoxContainer/HBoxContainer5"]
-margin_left = 139.0
-margin_right = 327.0
+margin_left = 190.0
+margin_right = 378.0
 margin_bottom = 17.0
 focus_mode = 2
 text = "Kenny's Platformer Art Deluxe"

@@ -30,6 +30,7 @@ TOOLBAR_TOOLTIP_SELECT_TOOL     Выделить  (S)
 TOOLBAR_TOOLTIP_BRUSH_COLOR     Цвет кисти
 TOOLBAR_TOOLTIP_BRUSH_SIZE      Размер кисти
 TOOLBAR_TOOLTIP_CANVAS_COLOR    Цвет холста
+TOOLBAR_TOOLTIP_GRID 			Show Grid											# TODO
 
 # -----------------------------------------------------------------------------
 # Statusbar strings
@@ -59,11 +60,12 @@ SETTINGS_LANGUAGE               Язык
 SETTINGS_THEME                  Тема
 SETTINGS_AA_METHOD              Метод сглаживания
 SETTINGS_AA_METHOD_NONE         Не использовать
-SETTINGS_FPS_FOREGROUND         Foreground Fps # TODO
-SETTINGS_FPS_BACKGROUND         Background Fps # TODO
-SETTINGS_BRUSH_CAPS             Brush Rounding Mode # TODO
-SETTINGS_BRUSH_CAPS_FLAT        Flat # TODO
-SETTINGS_BRUSH_CAPS_ROUND       Round # TODO
+SETTINGS_FPS_FOREGROUND         Foreground Fps 										# TODO
+SETTINGS_FPS_BACKGROUND         Background Fps 										# TODO
+SETTINGS_BRUSH_CAPS             Brush Rounding Mode 								# TODO
+SETTINGS_BRUSH_CAPS_FLAT        Flat 												# TODO
+SETTINGS_BRUSH_CAPS_ROUND       Round 												# TODO
+SETTINGS_RESTART_NOTICE  		Restart required to apply the new settings 			# TODO
 
 # -----------------------------------------------------------------------------
 # About dialog strings
@@ -73,6 +75,7 @@ ABOUT_DIALOG_TITLE              О Lorien
 ABOUT_DIALOG_COPYRIGHT          © 2021 Marcus Brummer (mbrlabs) и контрибютеры
 ABOUT_DIALOG_LICSENSE           Lorien находится под лицензией:
 ABOUT_DIALOG_BASED_ON           Lorien основан на:
+ABOUT_DIALOG_EASTEREGG          Easteregg character: 								# TODO
 
 # -----------------------------------------------------------------------------
 # Unsaved changes dialog
