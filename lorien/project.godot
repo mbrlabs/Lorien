@@ -84,6 +84,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://UI/Menubar.gd"
 }, {
+"base": "Control",
+"class": "Palette",
+"language": "GDScript",
+"path": "res://UI/Palette.gd"
+}, {
 "base": "KinematicBody2D",
 "class": "Player",
 "language": "GDScript",
@@ -150,6 +155,7 @@ _global_script_class_icons={
 "LineTool": "",
 "MainMenu": "",
 "Menubar": "",
+"Palette": "",
 "Player": "",
 "Project": "",
 "ProjectTab": "",

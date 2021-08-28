@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://InfiniteCanvas/InfiniteCanvas.tscn" type="PackedScene" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://UI/Dialogs/AboutDialog.tscn" type="PackedScene" id=9]
 [ext_resource path="res://UI/Dialogs/SettingsDialog.tscn" type="PackedScene" id=10]
 [ext_resource path="res://UI/Dialogs/ExitDialog.tscn" type="PackedScene" id=11]
+[ext_resource path="res://UI/Palette.tscn" type="PackedScene" id=12]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.207843, 0.211765, 0.227451, 1 )
@@ -19,6 +20,9 @@ border_width_top = 4
 border_width_right = 4
 border_width_bottom = 4
 border_color = Color( 0.207843, 0.211765, 0.227451, 1 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.207843, 0.211765, 0.227451, 1 )
 
 [node name="Main" type="Control"]
 anchor_right = 1.0
@@ -32,6 +36,8 @@ __meta__ = {
 }
 
 [node name="InfiniteCanvas" parent="." instance=ExtResource( 2 )]
+margin_left = 4.0
+margin_right = 4.0
 
 [node name="Menubar" parent="." instance=ExtResource( 4 )]
 _main_menu_path = NodePath("../MainMenu")
@@ -51,9 +57,10 @@ margin_bottom = 0.0
 rect_scale = Vector2( 1, 1.00112 )
 
 [node name="BrushColorPickerPopup" type="Popup" parent="."]
+visible = true
 margin_left = 358.216
 margin_top = 78.0
-margin_right = 660.216
+margin_right = 851.0
 margin_bottom = 505.0
 theme = ExtResource( 8 )
 __meta__ = {
@@ -65,22 +72,36 @@ __meta__ = {
 [node name="PanelContainer" type="PanelContainer" parent="BrushColorPickerPopup"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_right = -174.784
 custom_styles/panel = SubResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="ColorPicker" type="ColorPicker" parent="BrushColorPickerPopup/PanelContainer"]
-margin_left = 68.0
-margin_top = 68.0
-margin_right = 373.0
-margin_bottom = 487.0
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 314.0
+margin_bottom = 423.0
+alignment = 2
 edit_alpha = false
 presets_enabled = false
 presets_visible = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Panel" type="Panel" parent="BrushColorPickerPopup"]
+margin_left = 313.0
+margin_right = 479.0
+margin_bottom = 427.0
+theme = ExtResource( 8 )
+custom_styles/panel = SubResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Palette" parent="BrushColorPickerPopup/Panel" instance=ExtResource( 12 )]
 
 [node name="BackgroundColorPickerPopup" type="Popup" parent="."]
 anchor_left = 1.0
@@ -105,10 +126,10 @@ __meta__ = {
 }
 
 [node name="ColorPicker" type="ColorPicker" parent="BackgroundColorPickerPopup/PanelContainer"]
-margin_left = 68.0
-margin_top = 68.0
-margin_right = 378.001
-margin_bottom = 484.0
+margin_left = 352.0
+margin_top = 352.0
+margin_right = 662.001
+margin_bottom = 768.0
 edit_alpha = false
 presets_enabled = false
 presets_visible = false
@@ -135,8 +156,8 @@ margin_bottom = 216.5
 theme = ExtResource( 8 )
 access = 2
 filters = PoolStringArray( "*.lorien" )
-current_dir = "/Users/mbrla/Projects/lorien/lorien"
-current_path = "/Users/mbrla/Projects/lorien/lorien/"
+current_dir = "/home/gurchain/Desktop/Lorien-main/lorien"
+current_path = "/home/gurchain/Desktop/Lorien-main/lorien/"
 __meta__ = {
 "_edit_lock_": true
 }
@@ -162,8 +183,8 @@ margin_right = 385.0
 margin_bottom = 216.5
 theme = ExtResource( 8 )
 access = 2
-current_dir = "/Users/mbrla/Projects/lorien/lorien"
-current_path = "/Users/mbrla/Projects/lorien/lorien/"
+current_dir = "/home/gurchain/Desktop/Lorien-main/lorien"
+current_path = "/home/gurchain/Desktop/Lorien-main/lorien/"
 
 [node name="UnsavedChangesDialog" parent="." instance=ExtResource( 7 )]
 visible = false

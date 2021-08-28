@@ -1,0 +1,27 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://UI/Themes/PaletteButton.tres" type="StyleBox" id=1]
+
+[node name="PaletteButton" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -1880.0
+margin_bottom = -1040.0
+rect_min_size = Vector2( 40, 40 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="."]
+margin_left = 3.7
+margin_top = 3.7
+margin_right = 35.7
+margin_bottom = 35.7
+rect_min_size = Vector2( 40, 40 )
+custom_styles/hover = ExtResource( 1 )
+custom_styles/pressed = ExtResource( 1 )
+custom_styles/focus = ExtResource( 1 )
+custom_styles/normal = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
