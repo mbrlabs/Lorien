@@ -48,6 +48,7 @@ margin_bottom = 78.0
 file_dialog_path = NodePath("../FileDialog")
 brush_color_picker_path = NodePath("../BrushColorPickerPopup/PanelContainer/ColorPicker")
 background_color_picker_path = NodePath("../BackgroundColorPickerPopup/PanelContainer/ColorPicker")
+brush_color_palette_path = NodePath("../BrushColorPickerPopup/Panel/Palette")
 
 [node name="Statusbar" parent="." instance=ExtResource( 3 )]
 anchor_top = 1.0
@@ -102,6 +103,8 @@ __meta__ = {
 }
 
 [node name="Palette" parent="BrushColorPickerPopup/Panel" instance=ExtResource( 12 )]
+_default_button_number = 18
+_palette_theme = ExtResource( 8 )
 
 [node name="BackgroundColorPickerPopup" type="Popup" parent="."]
 anchor_left = 1.0
@@ -126,10 +129,10 @@ __meta__ = {
 }
 
 [node name="ColorPicker" type="ColorPicker" parent="BackgroundColorPickerPopup/PanelContainer"]
-margin_left = 352.0
-margin_top = 352.0
-margin_right = 662.001
-margin_bottom = 768.0
+margin_left = 404.0
+margin_top = 404.0
+margin_right = 714.001
+margin_bottom = 820.0
 edit_alpha = false
 presets_enabled = false
 presets_visible = false
