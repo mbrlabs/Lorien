@@ -160,8 +160,8 @@ margin_bottom = 216.5
 theme = ExtResource( 8 )
 access = 2
 filters = PoolStringArray( "*.lorien" )
-current_dir = "/home/gurchain/Desktop/Lorien-main/lorien"
-current_path = "/home/gurchain/Desktop/Lorien-main/lorien/"
+current_dir = "/Users/mbrla/Projects/lorien/lorien"
+current_path = "/Users/mbrla/Projects/lorien/lorien"
 __meta__ = {
 "_edit_lock_": true
 }
@@ -187,8 +187,8 @@ margin_right = 385.0
 margin_bottom = 216.5
 theme = ExtResource( 8 )
 access = 2
-current_dir = "/home/gurchain/Desktop/Lorien-main/lorien"
-current_path = "/home/gurchain/Desktop/Lorien-main/lorien/"
+current_dir = "/Users/mbrla/Projects/lorien/lorien"
+current_path = "/Users/mbrla/Projects/lorien/lorien"
 
 [node name="UnsavedChangesDialog" parent="." instance=ExtResource( 7 )]
 visible = false
