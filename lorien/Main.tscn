@@ -96,7 +96,6 @@ __meta__ = {
 margin_left = 313.0
 margin_right = 479.0
 margin_bottom = 427.0
-theme = ExtResource( 8 )
 custom_styles/panel = SubResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -105,6 +104,8 @@ __meta__ = {
 [node name="Palette" parent="BrushColorPickerPopup/Panel" instance=ExtResource( 12 )]
 _default_button_number = 18
 _palette_theme = ExtResource( 8 )
+_color_picker_path = NodePath("../../PanelContainer/ColorPicker")
+_default_palette = "Lorien-Default"
 
 [node name="BackgroundColorPickerPopup" type="Popup" parent="."]
 anchor_left = 1.0
@@ -129,10 +130,10 @@ __meta__ = {
 }
 
 [node name="ColorPicker" type="ColorPicker" parent="BackgroundColorPickerPopup/PanelContainer"]
-margin_left = 404.0
-margin_top = 404.0
-margin_right = 714.001
-margin_bottom = 820.0
+margin_left = 456.0
+margin_top = 456.0
+margin_right = 766.001
+margin_bottom = 872.0
 edit_alpha = false
 presets_enabled = false
 presets_visible = false
