@@ -8,6 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Added
 - Distraction free mode which hides the UI. Can be toggled with TAB
+- Simple palette. Can add and change colors in the palette, and apply colors to the brush.
 
 ### Fixed
 
