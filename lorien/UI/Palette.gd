@@ -57,7 +57,8 @@ func _set_active_color(button: Button, color: Color) -> void:
 
 # -------------------------------------------------------------------------------------------------
 func _on_color_picker_change(color: Color) -> void:
-	_set_button_color(_focused_button, color)
+	if (_focused_button != null):
+		_set_button_color(_focused_button, color)
 
 # -------------------------------------------------------------------------------------------------
 func _set_button_color(button: Button, color: Color) -> void:
