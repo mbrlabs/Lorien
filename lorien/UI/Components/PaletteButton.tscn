@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://Assets/Icons/palette_button_outline.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Icons/dot.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Icons/palette_button.png" type="Texture" id=2]
 [ext_resource path="res://UI/Components/PaletteButton.gd" type="Script" id=3]
 
@@ -23,12 +23,20 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Outline" type="TextureRect" parent="."]
-margin_right = 32.0
-margin_bottom = 32.0
+[node name="Selection" type="TextureRect" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -4.0
+margin_top = -4.0
+margin_right = 4.0
+margin_bottom = 4.0
 texture = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [connection signal="gui_input" from="." to="." method="_on_PaletteButton_gui_input"]
+[connection signal="mouse_entered" from="." to="." method="_on_PaletteButton_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_PaletteButton_mouse_exited"]
