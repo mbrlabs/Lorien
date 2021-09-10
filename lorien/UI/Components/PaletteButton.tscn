@@ -1,21 +1,34 @@
-[gd_scene format=2]
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Assets/Icons/palette_button_outline.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Icons/palette_button.png" type="Texture" id=2]
+[ext_resource path="res://UI/Components/PaletteButton.gd" type="Script" id=3]
 
 [node name="PaletteButton" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = -1880.0
-margin_bottom = -1040.0
-rect_min_size = Vector2( 40, 40 )
+margin_right = -1888.0
+margin_bottom = -1048.0
+rect_min_size = Vector2( 32, 32 )
+script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Button" type="Button" parent="."]
-margin_left = 3.7
-margin_top = 3.7
-margin_right = 35.7
-margin_bottom = 35.7
-rect_min_size = Vector2( 40, 40 )
+[node name="Color" type="TextureRect" parent="."]
+margin_right = 32.0
+margin_bottom = 32.0
+texture = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Outline" type="TextureRect" parent="."]
+margin_right = 32.0
+margin_bottom = 32.0
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="gui_input" from="." to="." method="_on_PaletteButton_gui_input"]

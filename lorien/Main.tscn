@@ -77,10 +77,10 @@ __meta__ = {
 }
 
 [node name="ColorPicker" type="ColorPicker" parent="BrushColorPickerPopup/PanelContainer"]
-margin_left = 8.0
-margin_top = 8.0
-margin_right = 318.0
-margin_bottom = 427.0
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 314.0
+margin_bottom = 423.0
 alignment = 2
 edit_alpha = false
 presets_enabled = false
@@ -91,7 +91,7 @@ __meta__ = {
 
 [node name="Panel" type="Panel" parent="BrushColorPickerPopup"]
 margin_left = 313.0
-margin_right = 479.0
+margin_right = 434.0
 margin_bottom = 427.0
 custom_styles/panel = SubResource( 2 )
 __meta__ = {
@@ -99,8 +99,11 @@ __meta__ = {
 }
 
 [node name="Palette" parent="BrushColorPickerPopup/Panel" instance=ExtResource( 12 )]
-default_button_number = 18
-palette_theme = ExtResource( 8 )
+margin_left = 6.0
+margin_top = 9.0
+margin_right = 0.0
+margin_bottom = 0.0
+default_button_number = 20
 color_picker_path = NodePath("../../PanelContainer/ColorPicker")
 default_palette = "Lorien-Default"
 
@@ -127,10 +130,10 @@ __meta__ = {
 }
 
 [node name="ColorPicker" type="ColorPicker" parent="BackgroundColorPickerPopup/PanelContainer"]
-margin_left = 464.0
-margin_top = 464.0
-margin_right = 774.001
-margin_bottom = 880.0
+margin_left = 476.0
+margin_top = 476.0
+margin_right = 786.001
+margin_bottom = 892.0
 edit_alpha = false
 presets_enabled = false
 presets_visible = false
@@ -157,8 +160,8 @@ margin_bottom = 216.5
 theme = ExtResource( 8 )
 access = 2
 filters = PoolStringArray( "*.lorien" )
-current_dir = "/Users/mbrla/Projects/lorien/lorien"
-current_path = "/Users/mbrla/Projects/lorien/lorien/"
+current_dir = "/Projects/Other/Lorien/lorien"
+current_path = "/Projects/Other/Lorien/lorien/"
 __meta__ = {
 "_edit_lock_": true
 }
@@ -184,8 +187,8 @@ margin_right = 385.0
 margin_bottom = 216.5
 theme = ExtResource( 8 )
 access = 2
-current_dir = "/Users/mbrla/Projects/lorien/lorien"
-current_path = "/Users/mbrla/Projects/lorien/lorien/"
+current_dir = "/Projects/Other/Lorien/lorien"
+current_path = "/Projects/Other/Lorien/lorien/"
 
 [node name="UnsavedChangesDialog" parent="." instance=ExtResource( 7 )]
 visible = false
