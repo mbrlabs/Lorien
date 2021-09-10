@@ -46,7 +46,6 @@ func _ready():
 	_camera.connect("position_changed", self, "_on_camera_moved")
 	_viewport.size = OS.window_size
 
-
 # -------------------------------------------------------------------------------------------------
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:

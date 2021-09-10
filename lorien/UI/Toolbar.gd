@@ -7,7 +7,7 @@ signal save_project
 signal clear_canvas
 signal undo_action
 signal redo_action
-signal brush_color_changed(color)
+signal toggle_brush_color_picker
 signal grid_enabled(enabled)
 signal brush_size_changed(size)
 signal canvas_background_changed(color)
@@ -20,9 +20,7 @@ const BUTTON_NORMAL_COLOR = Color.white
 
 # -------------------------------------------------------------------------------------------------
 export var file_dialog_path: NodePath
-export var brush_color_picker_path: NodePath
 export var background_color_picker_path: NodePath
-export var brush_color_palette_path: NodePath
 
 onready var _new_button: TextureButton = $Left/NewFileButton
 onready var _save_button: TextureButton = $Left/SaveFileButton
@@ -33,9 +31,6 @@ onready var _redo_button: TextureButton = $Left/RedoButton
 onready var _color_button: Button = $Left/ColorButton
 onready var _brush_size_label: Label = $Left/BrushSizeLabel
 onready var _brush_size_slider: HSlider = $Left/BrushSizeSlider
-onready var _brush_color_picker: ColorPicker = get_node(brush_color_picker_path)
-onready var _brush_color_picker_popup: Popup = get_node(brush_color_picker_path).get_parent().get_parent() # meh...
-onready var _brush_color_palette = get_node(brush_color_palette_path)
 onready var _background_color_picker: ColorPicker = get_node(background_color_picker_path)
 onready var _background_color_picker_popup: Popup = get_node(background_color_picker_path).get_parent().get_parent() # meh...
 onready var _grid_button: TextureButton = $Right/GridButton
@@ -50,15 +45,10 @@ var _last_active_tool_button: TextureButton
 # -------------------------------------------------------------------------------------------------
 func _ready():
 	var brush_size: int = Settings.get_value(Settings.GENERAL_DEFAULT_BRUSH_SIZE, Config.DEFAULT_BRUSH_SIZE)
-	var brush_color: Color = Settings.get_value(Settings.GENERAL_DEFAULT_BRUSH_COLOR, Config.DEFAULT_BRUSH_COLOR)
-	
-	_brush_color_picker.connect("color_changed", self, "_on_brush_color_changed")
-	_brush_color_palette.connect("color_changed", self, "_on_brush_color_changed")
 	_background_color_picker.connect("color_changed", self, "_on_background_color_changed")
 	_brush_size_label.text = str(brush_size)
 	_brush_size_slider.value = brush_size
 	_last_active_tool_button = _tool_btn_brush
-	_on_brush_color_changed(brush_color)
 
 # Button clicked callbacks
 # -------------------------------------------------------------------------------------------------
@@ -80,6 +70,15 @@ func enable_tool(tool_type: int) -> void:
 	btn.toggle()
 	_change_active_tool_button(btn)
 	emit_signal("tool_changed", tool_type)
+
+# -------------------------------------------------------------------------------------------------
+func set_brush_color(color: Color) -> void:
+	_color_button.get("custom_styles/normal").bg_color = color
+	var text_color := color.inverted()
+	_color_button.set("custom_colors/font_color", text_color)
+	_color_button.set("custom_colors/font_color_hover", text_color)
+	_color_button.set("custom_colors/font_color_pressed", text_color)
+	_color_button.text = "#" + color.to_html(false)
 
 # -------------------------------------------------------------------------------------------------
 func _on_OpenFileButton_pressed():
@@ -106,17 +105,7 @@ func _on_file_dialog_closed() -> void:
 
 # -------------------------------------------------------------------------------------------------
 func _on_ColorButton_pressed():
-	_brush_color_picker_popup.popup()
-
-# -------------------------------------------------------------------------------------------------
-func _on_brush_color_changed(color: Color) -> void:
-	_color_button.get("custom_styles/normal").bg_color = color
-	var text_color := color.inverted()
-	_color_button.set("custom_colors/font_color", text_color)
-	_color_button.set("custom_colors/font_color_hover", text_color)
-	_color_button.set("custom_colors/font_color_pressed", text_color)
-	_color_button.text = "#" + color.to_html(false)
-	emit_signal("brush_color_changed", color)
+	emit_signal("toggle_brush_color_picker")
 
 # -------------------------------------------------------------------------------------------------
 func _on_background_color_changed(color: Color) -> void:
@@ -166,3 +155,7 @@ func _change_active_tool_button(btn: TextureButton) -> void:
 	if _last_active_tool_button != null:
 		_last_active_tool_button.toggle()
 	_last_active_tool_button = btn
+
+# -------------------------------------------------------------------------------------------------
+func get_brush_color_button() -> Control:
+	return _color_button

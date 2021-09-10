@@ -9,6 +9,7 @@ onready var _file_dialog: FileDialog = $FileDialog
 onready var _export_dialog : FileDialog = $ExportDialog
 onready var _about_dialog: WindowDialog = $AboutDialog
 onready var _settings_dialog: WindowDialog = $SettingsDialog
+onready var _brush_color_picker: ColorPalettePicker = $BrushColorPicker
 onready var _main_menu: MainMenu = $MainMenu
 onready var _generic_alert_dialog: AcceptDialog = $GenericAlertDialog
 onready var _exit_dialog: WindowDialog = $ExitDialog
@@ -36,9 +37,9 @@ func _ready():
 	_toolbar.connect("redo_action", self, "_on_redo_action")
 	_toolbar.connect("clear_canvas", self, "_on_clear_canvas")
 	_toolbar.connect("open_project", self, "_on_open_project")
+	_toolbar.connect("toggle_brush_color_picker", self, "_on_toggle_brush_color_picker")
 	_toolbar.connect("new_project", self, "_on_create_new_project")
 	_toolbar.connect("save_project", self, "_on_save_project")
-	_toolbar.connect("brush_color_changed", self, "_on_brush_color_changed")
 	_toolbar.connect("brush_size_changed", self, "_on_brush_size_changed")
 	_toolbar.connect("canvas_background_changed", self, "_on_canvas_background_changed")
 	_toolbar.connect("tool_changed", self, "_on_tool_changed")
@@ -112,6 +113,14 @@ func _process(delta):
 	var active_project: Project = ProjectManager.get_active_project()
 	if active_project != null:
 		_menubar.update_tab_title(active_project)
+
+# -------------------------------------------------------------------------------------------------
+func _input(event: InputEvent) -> void:
+	# TODO: This is a hacky way to close the Brush color picker when clicking outside of it
+	# It's quite hacky, so refactor this at some point!
+	if event is InputEventMouseButton && event.pressed:
+		if _brush_color_picker.visible && !Utils.is_mouse_in_control(_brush_color_picker) && !Utils.is_mouse_in_control(_toolbar.get_brush_color_button()):
+			_brush_color_picker.hide()
 
 # -------------------------------------------------------------------------------------------------
 func _handle_input_actions() -> void:
@@ -415,3 +424,12 @@ func _export_as(export_type: int) -> void:
 			_export_dialog.filters = ["*.png ; Portable Network Graphics"]
 			_export_dialog.current_file = Utils.return_timestamp_string() + ".png"
 	_export_dialog.popup()
+
+# --------------------------------------------------------------------------------------------------
+func _on_toggle_brush_color_picker() -> void:
+	_brush_color_picker.visible = !_brush_color_picker.visible
+
+# --------------------------------------------------------------------------------------------------
+func _on_BrushColorPicker_color_changed(color: Color) -> void:
+	_toolbar.set_brush_color(color)
+	_canvas.set_brush_color(color)

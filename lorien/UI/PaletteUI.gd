@@ -1,5 +1,5 @@
+class_name PaletteUI
 extends Control
-class_name Palette
 
 signal color_changed
 
