@@ -29,13 +29,11 @@ func set_color(c: Color) -> void:
 
 # -------------------------------------------------------------------------------------------------
 func _get_selection_color() -> Color:
-	var v := color.inverted().v
-	return Color(v, v, v)
+	return Color.black
 
 # -------------------------------------------------------------------------------------------------
 func _get_hover_color() -> Color:
-	var v := color.darkened(0.1).inverted().v
-	return Color(v, v, v)
+	return Color.black
 
 # -------------------------------------------------------------------------------------------------
 func _on_PaletteButton_gui_input(event: InputEvent) -> void:

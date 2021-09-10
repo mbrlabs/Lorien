@@ -1,38 +1,35 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://Assets/Icons/dot.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Icons/palette_button_outline.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Icons/palette_button.png" type="Texture" id=2]
 [ext_resource path="res://UI/Components/PaletteButton.gd" type="Script" id=3]
 
 [node name="PaletteButton" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = -1888.0
-margin_bottom = -1048.0
-rect_min_size = Vector2( 32, 32 )
+margin_right = -1885.0
+margin_bottom = -1045.0
+rect_min_size = Vector2( 35, 35 )
 script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Color" type="TextureRect" parent="."]
-margin_right = 32.0
-margin_bottom = 32.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 texture = ExtResource( 2 )
+stretch_mode = 4
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Selection" type="TextureRect" parent="."]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -4.0
-margin_top = -4.0
-margin_right = 4.0
-margin_bottom = 4.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 texture = ExtResource( 1 )
+expand = true
+stretch_mode = 4
 __meta__ = {
 "_edit_use_anchors_": false
 }
