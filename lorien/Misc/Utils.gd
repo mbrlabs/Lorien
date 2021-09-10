@@ -7,7 +7,7 @@ func get_native_mouse_position_on_screen() -> Vector2:
 # -------------------------------------------------------------------------------------------------
 func remove_signal_connections(node: Node, signal_name: String) -> void:
 	for conn in node.get_signal_connection_list(signal_name):
-		node.disconnect(conn.signal, conn.target, conn.method)
+		node.disconnect(conn["signal"], conn["target"], conn["method"])
 
 # -------------------------------------------------------------------------------------------------
 func is_mouse_in_control(control: Control) -> bool:
