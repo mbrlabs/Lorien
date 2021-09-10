@@ -22,6 +22,7 @@ const BUTTON_NORMAL_COLOR = Color.white
 export var file_dialog_path: NodePath
 export var brush_color_picker_path: NodePath
 export var background_color_picker_path: NodePath
+export var brush_color_palette_path: NodePath
 
 onready var _new_button: TextureButton = $Left/NewFileButton
 onready var _save_button: TextureButton = $Left/SaveFileButton
@@ -34,6 +35,7 @@ onready var _brush_size_label: Label = $Left/BrushSizeLabel
 onready var _brush_size_slider: HSlider = $Left/BrushSizeSlider
 onready var _brush_color_picker: ColorPicker = get_node(brush_color_picker_path)
 onready var _brush_color_picker_popup: Popup = get_node(brush_color_picker_path).get_parent().get_parent() # meh...
+onready var _brush_color_palette = get_node(brush_color_palette_path)
 onready var _background_color_picker: ColorPicker = get_node(background_color_picker_path)
 onready var _background_color_picker_popup: Popup = get_node(background_color_picker_path).get_parent().get_parent() # meh...
 onready var _grid_button: TextureButton = $Right/GridButton
@@ -51,6 +53,7 @@ func _ready():
 	var brush_color: Color = Settings.get_value(Settings.GENERAL_DEFAULT_BRUSH_COLOR, Config.DEFAULT_BRUSH_COLOR)
 	
 	_brush_color_picker.connect("color_changed", self, "_on_brush_color_changed")
+	_brush_color_palette.connect("color_changed", self, "_on_brush_color_changed")
 	_background_color_picker.connect("color_changed", self, "_on_background_color_changed")
 	_brush_size_label.text = str(brush_size)
 	_brush_size_slider.value = brush_size
