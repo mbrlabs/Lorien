@@ -2,7 +2,7 @@
 
 [ext_resource path="res://UI/Themes/theme_dark.tres" type="Theme" id=1]
 [ext_resource path="res://UI/ColorPalettePicker.gd" type="Script" id=2]
-[ext_resource path="res://Palettes/palette_default.tres" type="Resource" id=3]
+[ext_resource path="res://Palettes/default_palette.tres" type="Resource" id=3]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.207843, 0.211765, 0.227451, 1 )

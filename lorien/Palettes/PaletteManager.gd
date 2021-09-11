@@ -1,6 +1,7 @@
 extends Node
 
 # -------------------------------------------------------------------------------------------------
+const BUILTIN_PALETTES := [preload("res://Palettes/default_palette.tres")]
 const FILE_EXTENSION := "txt"
 const SECTION := "palette"
 const KEY_NAME := "name"
@@ -17,8 +18,9 @@ var palettes: Array # Array<Palette>
 
 # -------------------------------------------------------------------------------------------------
 func _ready() -> void:
+	_ensure_builtin_palettes()
 	_load_palettes()
-	sort()
+	_sort()
 
 # -------------------------------------------------------------------------------------------------
 func save() -> void:
@@ -27,7 +29,23 @@ func save() -> void:
 			_save_palette(p)
 
 # -------------------------------------------------------------------------------------------------
-func sort() -> void:
+func create_palette(palette_name: String, builtin: bool) -> Palette:
+	for p in palettes:
+		if p.name == name:
+			printerr("Palette names must be unique")
+			return null
+			
+	var palette := Palette.new()
+	palette.name = palette_name
+	palette.builtin = builtin
+	palette.dirty = true
+	palettes.append(palette)
+	_sort()
+	
+	return palette
+
+# -------------------------------------------------------------------------------------------------
+func _sort() -> void:
 	palettes.sort_custom(PaletteSorter, "sort_descending")
 
 # -------------------------------------------------------------------------------------------------
@@ -110,6 +128,14 @@ func _ensure_palette_folder() -> bool:
 			printerr("Failed to create palette folder")
 			return false
 	return true
+
+# -------------------------------------------------------------------------------------------------
+func _ensure_builtin_palettes() -> void:
+	for p in BUILTIN_PALETTES:
+		var path := _get_palette_path(p)
+		var file := File.new()
+		if !file.file_exists(path):
+			_save_palette(p)
 
 # -------------------------------------------------------------------------------------------------
 func _get_palette_path(palette: Palette) -> String:
