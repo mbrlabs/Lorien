@@ -2,8 +2,8 @@ extends Node
 
 # -------------------------------------------------------------------------------------------------
 const BUILTIN_PALETTES := [
-	preload("res://Palettes/default_palette.tres"), 
-	preload("res://Palettes/minimal_palette.tres")
+	preload("res://Palette/default_palette.tres"), 
+	preload("res://Palette/minimal_palette.tres")
 ]
 const FILE_EXTENSION := "txt"
 const SECTION := "palette"
@@ -30,21 +30,22 @@ func _ready() -> void:
 
 # -------------------------------------------------------------------------------------------------
 func save() -> void:
+	Settings.set_value(Settings.PALETTE_ACTIVE, palettes[_active_palette_index].name)
 	for p in palettes:
 		if p.dirty:
 			_save_palette(p)
-
+	
 # -------------------------------------------------------------------------------------------------
 func create_custom_palette(palette_name: String) -> Palette:
-	for p in palettes:
-		if p.name == name:
-			printerr("Palette names must be unique")
-			return null
+	if has_palette_name(palette_name):
+		printerr("Palette names must be unique")
+		return null
 			
 	var palette := Palette.new()
 	palette.name = palette_name
 	palette.builtin = false
 	palette.dirty = true
+	palette.colors = PoolColorArray([Color.white, Color.black])
 	palettes.append(palette)
 	_sort()
 	
@@ -53,7 +54,21 @@ func create_custom_palette(palette_name: String) -> Palette:
 # -------------------------------------------------------------------------------------------------
 func set_active_palette_index(index: int) -> void:
 	_active_palette_index = index
-	Settings.set_value(Settings.PALETTE_ACTIVE, palettes[index].name)
+
+# -------------------------------------------------------------------------------------------------
+func set_active_palette(palette: Palette) -> void:
+	var index := 0
+	var found := false
+	for p in palettes:
+		if p.name == palette.name:
+			found = true
+			break
+		index += 1
+	
+	if found:
+		_active_palette_index = index
+	else:
+		printerr("Cold not find palette: %s" % palette.name)
 
 # -------------------------------------------------------------------------------------------------
 func get_active_palette() -> Palette:
@@ -62,6 +77,13 @@ func get_active_palette() -> Palette:
 # -------------------------------------------------------------------------------------------------
 func get_active_palette_index() -> int:
 	return _active_palette_index
+
+# -------------------------------------------------------------------------------------------------
+func has_palette_name(name: String) -> bool:
+	for p in palettes:
+		if p.name == name:
+			return true
+	return false
 
 # -------------------------------------------------------------------------------------------------
 func _sort() -> void:

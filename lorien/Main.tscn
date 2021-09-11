@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://InfiniteCanvas/InfiniteCanvas.tscn" type="PackedScene" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://UI/Dialogs/AboutDialog.tscn" type="PackedScene" id=9]
 [ext_resource path="res://UI/Dialogs/SettingsDialog.tscn" type="PackedScene" id=10]
 [ext_resource path="res://UI/Dialogs/ExitDialog.tscn" type="PackedScene" id=11]
+[ext_resource path="res://UI/Dialogs/NewPaletteDialog.tscn" type="PackedScene" id=12]
 [ext_resource path="res://UI/ColorPalettePicker.tscn" type="PackedScene" id=13]
 
 [sub_resource type="StyleBoxFlat" id=1]
@@ -70,10 +71,10 @@ __meta__ = {
 }
 
 [node name="ColorPicker" type="ColorPicker" parent="BackgroundColorPickerPopup/PanelContainer"]
-margin_left = 12.0
-margin_top = 12.0
-margin_right = 330.001
-margin_bottom = 436.0
+margin_left = 52.0
+margin_top = 52.0
+margin_right = 370.001
+margin_bottom = 476.0
 edit_alpha = false
 presets_enabled = false
 presets_visible = false
@@ -87,6 +88,7 @@ margin_left = 359.0
 margin_top = 81.0
 margin_right = 717.0
 margin_bottom = 196.0
+add_new_palette_dialog_path = NodePath("../NewPaletteDialog")
 
 [node name="MainMenu" parent="." instance=ExtResource( 5 )]
 margin_left = 1.0
@@ -105,6 +107,7 @@ margin_top = -216.5
 margin_right = 385.0
 margin_bottom = 216.5
 theme = ExtResource( 8 )
+popup_exclusive = true
 access = 2
 filters = PoolStringArray( "*.lorien" )
 current_dir = "/Projects/Other/Lorien/lorien"
@@ -122,6 +125,17 @@ margin_left = -155.0
 margin_top = -45.0
 margin_right = 155.0
 margin_bottom = 45.0
+popup_exclusive = true
+
+[node name="NewPaletteDialog" parent="." instance=ExtResource( 12 )]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -129.5
+margin_top = -40.0
+margin_right = 129.5
+margin_bottom = 40.0
 
 [node name="ExportDialog" type="FileDialog" parent="."]
 anchor_left = 0.5
@@ -133,6 +147,7 @@ margin_top = -216.5
 margin_right = 385.0
 margin_bottom = 216.5
 theme = ExtResource( 8 )
+popup_exclusive = true
 access = 2
 current_dir = "/Projects/Other/Lorien/lorien"
 current_path = "/Projects/Other/Lorien/lorien/"
@@ -147,6 +162,7 @@ margin_left = -155.0
 margin_top = -45.0
 margin_right = 155.0
 margin_bottom = 45.0
+popup_exclusive = true
 
 [node name="AboutDialog" parent="." instance=ExtResource( 9 )]
 anchor_left = 0.5
@@ -157,6 +173,7 @@ margin_left = -225.0
 margin_top = -102.5
 margin_right = 225.0
 margin_bottom = 102.5
+popup_exclusive = true
 
 [node name="SettingsDialog" parent="." instance=ExtResource( 10 )]
 anchor_left = 0.5
@@ -178,6 +195,7 @@ margin_top = -35.0
 margin_right = 68.5
 margin_bottom = 35.0
 theme = ExtResource( 8 )
+popup_exclusive = true
 dialog_text = "Generic message. "
 __meta__ = {
 "_edit_lock_": true
@@ -186,3 +204,4 @@ __meta__ = {
 [connection signal="mouse_entered" from="InfiniteCanvas" to="." method="_on_InfiniteCanvas_mouse_entered"]
 [connection signal="mouse_exited" from="InfiniteCanvas" to="." method="_on_InfiniteCanvas_mouse_exited"]
 [connection signal="color_changed" from="BrushColorPicker" to="." method="_on_BrushColorPicker_color_changed"]
+[connection signal="new_palette_created" from="NewPaletteDialog" to="." method="_on_NewPaletteDialog_new_palette_created"]

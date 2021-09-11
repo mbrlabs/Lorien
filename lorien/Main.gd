@@ -15,6 +15,7 @@ onready var _generic_alert_dialog: AcceptDialog = $GenericAlertDialog
 onready var _exit_dialog: WindowDialog = $ExitDialog
 onready var _unsaved_changes_dialog: WindowDialog = $UnsavedChangesDialog
 onready var _background_color_picker: ColorPicker = $BackgroundColorPickerPopup/PanelContainer/ColorPicker
+onready var _new_palette_dialog: WindowDialog = $NewPaletteDialog
 
 var _ui_visible := true 
 var _player_enabled := false
@@ -120,7 +121,7 @@ func _input(event: InputEvent) -> void:
 	# TODO: This is a hacky way to close the Brush color picker when clicking outside of it
 	# It's quite hacky, so refactor this at some point!
 	if event is InputEventMouseButton && event.pressed:
-		if _brush_color_picker.visible && !Utils.is_mouse_in_control(_brush_color_picker) && !Utils.is_mouse_in_control(_toolbar.get_brush_color_button()):
+		if _brush_color_picker.visible && !Utils.is_mouse_in_control(_brush_color_picker) && !Utils.is_mouse_in_control(_toolbar.get_brush_color_button()) && !_is_dialog_open():
 			_brush_color_picker.hide()
 
 # -------------------------------------------------------------------------------------------------
@@ -196,11 +197,13 @@ func _is_mouse_on_ui() -> bool:
 	on_ui = on_ui || Utils.is_mouse_in_control(_file_dialog)
 	on_ui = on_ui || Utils.is_mouse_in_control(_about_dialog)
 	on_ui = on_ui || Utils.is_mouse_in_control(_settings_dialog)
+	on_ui = on_ui || Utils.is_mouse_in_control(_brush_color_picker)
+	on_ui = on_ui || Utils.is_mouse_in_control(_new_palette_dialog)
 	return on_ui
 
 # -------------------------------------------------------------------------------------------------
 func _is_dialog_open() -> bool:
-	return _file_dialog.visible || _about_dialog.visible || _settings_dialog.visible || _generic_alert_dialog.visible
+	return _file_dialog.visible || _about_dialog.visible || _settings_dialog.visible || _generic_alert_dialog.visible || _new_palette_dialog.visible
 
 # -------------------------------------------------------------------------------------------------
 func _create_active_default_project() -> void:
@@ -434,3 +437,8 @@ func _on_toggle_brush_color_picker() -> void:
 func _on_BrushColorPicker_color_changed(color: Color) -> void:
 	_toolbar.set_brush_color(color)
 	_canvas.set_brush_color(color)
+
+# --------------------------------------------------------------------------------------------------
+func _on_NewPaletteDialog_new_palette_created(palette: Palette) -> void:
+	PaletteManager.set_active_palette(palette)
+	_brush_color_picker.update_palettes()

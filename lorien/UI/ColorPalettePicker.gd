@@ -8,7 +8,7 @@ const PALETTE_BUTTON = preload("res://UI/Components/PaletteButton.tscn")
 signal color_changed(color)
 
 # -------------------------------------------------------------------------------------------------
-export var color_picker_path: NodePath
+export var add_new_palette_dialog_path: NodePath
 
 onready var _palette_selection_button: OptionButton = $MarginContainer/VBoxContainer/Buttons/PaletteSelectionButton
 onready var _color_grid: GridContainer = $MarginContainer/VBoxContainer/ColorGrid
@@ -17,7 +17,17 @@ var _active_palette_button: PaletteButton
 
 # -------------------------------------------------------------------------------------------------
 func _ready() -> void:
+	update_palettes()
+
+# -------------------------------------------------------------------------------------------------
+func _input(event: InputEvent) -> void:
+	if event is InputEventKey && event.pressed && event.scancode == KEY_ESCAPE:
+		visible = false
+
+# -------------------------------------------------------------------------------------------------
+func update_palettes() -> void:
 	# Add palettes to the dropdown
+	_palette_selection_button.clear()
 	for palette in PaletteManager.palettes:
 		_palette_selection_button.add_item(palette.name)
 	
@@ -26,11 +36,6 @@ func _ready() -> void:
 	_palette_selection_button.selected = PaletteManager.get_active_palette_index()
 	_create_buttons(active_palette)
 	_activate_palette_button(_color_grid.get_child(0))
-
-# -------------------------------------------------------------------------------------------------
-func _input(event: InputEvent) -> void:
-	if event is InputEventKey && event.pressed && event.scancode == KEY_ESCAPE:
-		visible = false
 
 # -------------------------------------------------------------------------------------------------
 func _create_buttons(palette: Palette) -> void:
@@ -65,5 +70,10 @@ func _on_platte_button_pressed(button: PaletteButton) -> void:
 # -------------------------------------------------------------------------------------------------
 func _on_PaletteSelectionButton_item_selected(index: int) -> void:
 	PaletteManager.set_active_palette_index(index)
+	PaletteManager.save()
 	_create_buttons(PaletteManager.get_active_palette())
 	_activate_palette_button(_color_grid.get_child(0))
+
+# -------------------------------------------------------------------------------------------------
+func _on_AddPaletteButton_pressed() -> void:
+	get_node(add_new_palette_dialog_path).popup_centered()

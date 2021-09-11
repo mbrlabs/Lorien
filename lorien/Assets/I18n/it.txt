@@ -92,6 +92,11 @@ EXIT_DIALOG_TITLE    Salvare le modifiche?
 EXIT_DIALOG_TEXT     Vuoi salvare le modifiche prima di uscire da Lorien?
 
 # -----------------------------------------------------------------------------
+# New palette dialog
+# -----------------------------------------------------------------------------
+NEW_PALETTE_DIALOG_TITLE 		New Palette 										# TODO
+
+# -----------------------------------------------------------------------------
 # Error messages
 # -----------------------------------------------------------------------------
 ERROR_NOT_IMPLEMENTED               Non ancora implementato.

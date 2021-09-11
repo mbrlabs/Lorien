@@ -92,6 +92,11 @@ EXIT_DIALOG_TITLE    Änderungen speichern?
 EXIT_DIALOG_TEXT     Willst du deine Änderungen speichern bevor Lorien geschlossen wird?
 
 # -----------------------------------------------------------------------------
+# New palette dialog
+# -----------------------------------------------------------------------------
+NEW_PALETTE_DIALOG_TITLE 		Neue Palette
+
+# -----------------------------------------------------------------------------
 # Error messages
 # -----------------------------------------------------------------------------
 ERROR_NOT_IMPLEMENTED               Nicht implementriert

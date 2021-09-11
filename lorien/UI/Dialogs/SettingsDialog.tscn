@@ -14,6 +14,7 @@ margin_right = 520.0
 margin_bottom = 300.0
 rect_min_size = Vector2( 520, 300 )
 theme = ExtResource( 1 )
+popup_exclusive = true
 window_title = "SETTINGS_TITLE"
 script = ExtResource( 2 )
 __meta__ = {

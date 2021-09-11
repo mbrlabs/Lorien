@@ -58,6 +58,13 @@ margin_bottom = 25.0
 hint_tooltip = "Change the currently seleted color"
 text = "Edit"
 
+[node name="AddPaletteButton" type="Button" parent="MarginContainer/VBoxContainer/Buttons"]
+margin_left = 78.0
+margin_right = 119.0
+margin_bottom = 25.0
+hint_tooltip = "Change the currently seleted color"
+text = "New"
+
 [node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer"]
 margin_top = 29.0
 margin_right = 346.0
@@ -74,3 +81,4 @@ size_flags_vertical = 3
 columns = 10
 
 [connection signal="item_selected" from="MarginContainer/VBoxContainer/Buttons/PaletteSelectionButton" to="." method="_on_PaletteSelectionButton_item_selected"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Buttons/AddPaletteButton" to="." method="_on_AddPaletteButton_pressed"]

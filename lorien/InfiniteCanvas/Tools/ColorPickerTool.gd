@@ -17,7 +17,7 @@ func _input(event: InputEvent) -> void:
 	elif event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT && event.pressed:
 			var color = _pick_color()
-			_toolbar._on_brush_color_changed(color)
+			_toolbar.set_brush_color(color)
 	
 # -------------------------------------------------------------------------------------------------
 func _pick_color() -> Color:

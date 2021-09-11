@@ -57,7 +57,7 @@ _global_script_classes=[ {
 "base": "Reference",
 "class": "Config",
 "language": "GDScript",
-"path": "res://Misc/Config.gd"
+"path": "res://Config.gd"
 }, {
 "base": "Reference",
 "class": "I18nParser",
@@ -92,7 +92,7 @@ _global_script_classes=[ {
 "base": "Resource",
 "class": "Palette",
 "language": "GDScript",
-"path": "res://Palettes/Palette.gd"
+"path": "res://Palette/Palette.gd"
 }, {
 "base": "Control",
 "class": "PaletteButton",
@@ -196,7 +196,7 @@ Utils="*res://Misc/Utils.gd"
 ProjectManager="*res://ProjectManager/ProjectManager.gd"
 Settings="*res://Misc/Settings.gd"
 ProjectMetadata="*res://ProjectManager/ProjectMetadata.gd"
-PaletteManager="*res://Palettes/PaletteManager.gd"
+PaletteManager="*res://Palette/PaletteManager.gd"
 
 [debug]
 
