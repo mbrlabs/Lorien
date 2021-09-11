@@ -30,7 +30,7 @@ TOOLBAR_TOOLTIP_SELECT_TOOL     Seleziona strumento (S)
 TOOLBAR_TOOLTIP_BRUSH_COLOR     Colore Pennello
 TOOLBAR_TOOLTIP_BRUSH_SIZE      Dimensione del Pennello
 TOOLBAR_TOOLTIP_CANVAS_COLOR    Colore della Tela
-TOOLBAR_TOOLTIP_GRID 			Show Grid											# TODO
+TOOLBAR_TOOLTIP_GRID 			      Mostra Griglia							
 
 # -----------------------------------------------------------------------------
 # Statusbar strings
@@ -65,7 +65,7 @@ SETTINGS_FPS_BACKGROUND         Fps sullo sfondo
 SETTINGS_BRUSH_CAPS             Modalità arrotondamento pennello 
 SETTINGS_BRUSH_CAPS_FLAT        Piatto 
 SETTINGS_BRUSH_CAPS_ROUND       Rotondo 
-SETTINGS_RESTART_NOTICE  		Restart required to apply the new settings 			# TODO
+SETTINGS_RESTART_NOTICE  		    È necessario riavviare per applicare le nuove impostazioni 		
 
 # -----------------------------------------------------------------------------
 # About dialog strings
@@ -75,7 +75,7 @@ ABOUT_DIALOG_TITLE              Informazioni
 ABOUT_DIALOG_COPYRIGHT          © 2021 Marcus Brummer (mbrlabs) e contributori 
 ABOUT_DIALOG_LICSENSE           Lorien è concesso in licenza sotto:
 ABOUT_DIALOG_BASED_ON           Lorien si basa su:
-ABOUT_DIALOG_EASTEREGG          Easteregg character: 								# TODO
+ABOUT_DIALOG_EASTEREGG          Carattere Easteregg: 								
 
 # -----------------------------------------------------------------------------
 # Unsaved changes dialog
