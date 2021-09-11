@@ -17,7 +17,6 @@ func load_files() -> ParseResult:
 	var result = ParseResult.new()
 	for f in _get_i18n_files():
 		var file := File.new()
-		print("Loading i18n file: %s" % f)
 		if file.open(f, File.READ) == OK:
 			var translation := Translation.new()
 			translation.locale = f.get_file().get_basename()
@@ -51,6 +50,7 @@ func load_files() -> ParseResult:
 					printerr("Key not found (make sure to use spaces; not tabs): %s" % line)
 			TranslationServer.add_translation(translation)
 			result.append(translation.locale, name)
+			print("Loaded i18n file: %s" % f)
 	return result
 
 # -------------------------------------------------------------------------------------------------

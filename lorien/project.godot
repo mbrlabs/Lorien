@@ -99,11 +99,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://UI/Components/PaletteButton.gd"
 }, {
-"base": "Control",
-"class": "PaletteUI",
-"language": "GDScript",
-"path": "res://UI/PaletteUI.gd"
-}, {
 "base": "KinematicBody2D",
 "class": "Player",
 "language": "GDScript",
@@ -173,7 +168,6 @@ _global_script_class_icons={
 "Menubar": "",
 "Palette": "",
 "PaletteButton": "",
-"PaletteUI": "",
 "Player": "",
 "Project": "",
 "ProjectTab": "",
@@ -202,6 +196,7 @@ Utils="*res://Misc/Utils.gd"
 ProjectManager="*res://ProjectManager/ProjectManager.gd"
 Settings="*res://Misc/Settings.gd"
 ProjectMetadata="*res://ProjectManager/ProjectMetadata.gd"
+PaletteManager="*res://Palettes/PaletteManager.gd"
 
 [debug]
 
