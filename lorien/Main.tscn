@@ -70,10 +70,10 @@ __meta__ = {
 }
 
 [node name="ColorPicker" type="ColorPicker" parent="BackgroundColorPickerPopup/PanelContainer"]
-margin_left = 596.0
-margin_top = 596.0
-margin_right = 906.001
-margin_bottom = 1012.0
+margin_left = 12.0
+margin_top = 12.0
+margin_right = 330.001
+margin_bottom = 436.0
 edit_alpha = false
 presets_enabled = false
 presets_visible = false
@@ -85,7 +85,7 @@ __meta__ = {
 visible = false
 margin_left = 359.0
 margin_top = 81.0
-margin_right = 759.0
+margin_right = 717.0
 margin_bottom = 196.0
 
 [node name="MainMenu" parent="." instance=ExtResource( 5 )]

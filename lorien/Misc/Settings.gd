@@ -1,5 +1,6 @@
 extends Node
 
+# -------------------------------------------------------------------------------------------------
 const DEFAULT_SECTION 					:= "settings"
 const GENERAL_PRESSURE_SENSITIVITY 		:= "general_pressure_sensitvity"
 const GENERAL_DEFAULT_CANVAS_COLOR 		:= "general_default_canvas_color"
@@ -12,6 +13,7 @@ const RENDERING_AA_MODE					:= "rendering_aa_mode"
 const RENDERING_FOREGROUND_FPS			:= "rendering_foreground_fps"
 const RENDERING_BACKGROUND_FPS			:= "rendering_background_fps"
 const RENDERING_BRUSH_ROUNDING			:= "rendering_brush_rounding"
+const PALETTE_ACTIVE 					:= "palette_current"
 
 # -------------------------------------------------------------------------------------------------
 var _config_file := ConfigFile.new()

@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://UI/Themes/theme_dark.tres" type="Theme" id=1]
 [ext_resource path="res://UI/ColorPalettePicker.gd" type="Script" id=2]
-[ext_resource path="res://Palettes/default_palette.tres" type="Resource" id=3]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.207843, 0.211765, 0.227451, 1 )
@@ -16,19 +15,18 @@ shadow_size = 2
 [sub_resource type="StyleBoxEmpty" id=2]
 
 [node name="ColorPalettePicker" type="PanelContainer"]
-margin_right = 410.0
-margin_bottom = 115.0
-rect_min_size = Vector2( 400, 115 )
+margin_right = 358.0
+margin_bottom = 78.0
+rect_min_size = Vector2( 358, 78 )
 custom_styles/panel = SubResource( 1 )
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-palette = ExtResource( 3 )
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
-margin_right = 410.0
-margin_bottom = 115.0
+margin_right = 358.0
+margin_bottom = 78.0
 custom_constants/margin_right = 6
 custom_constants/margin_top = 6
 custom_constants/margin_left = 6
@@ -37,12 +35,12 @@ custom_constants/margin_bottom = 6
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 margin_left = 6.0
 margin_top = 6.0
-margin_right = 404.0
-margin_bottom = 109.0
+margin_right = 352.0
+margin_bottom = 72.0
 theme = ExtResource( 1 )
 
 [node name="Buttons" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
-margin_right = 398.0
+margin_right = 346.0
 margin_bottom = 25.0
 custom_constants/separation = 8
 
@@ -62,15 +60,17 @@ text = "Edit"
 
 [node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer"]
 margin_top = 29.0
-margin_right = 398.0
+margin_right = 346.0
 margin_bottom = 31.0
 custom_styles/separator = SubResource( 2 )
 custom_constants/separation = 2
 
 [node name="ColorGrid" type="GridContainer" parent="MarginContainer/VBoxContainer"]
 margin_top = 35.0
-margin_right = 398.0
-margin_bottom = 103.0
+margin_right = 346.0
+margin_bottom = 66.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-columns = 11
+columns = 10
+
+[connection signal="item_selected" from="MarginContainer/VBoxContainer/Buttons/PaletteSelectionButton" to="." method="_on_PaletteSelectionButton_item_selected"]

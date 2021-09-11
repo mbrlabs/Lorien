@@ -7,19 +7,27 @@
 [node name="PaletteButton" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = -1885.0
-margin_bottom = -1045.0
-rect_min_size = Vector2( 35, 35 )
+margin_right = -1889.0
+margin_bottom = -1049.0
+rect_min_size = Vector2( 31, 31 )
 script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Color" type="TextureRect" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -16.0
+margin_top = -16.0
+margin_right = 16.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 32, 32 )
 texture = ExtResource( 2 )
-stretch_mode = 4
+expand = true
+stretch_mode = 6
 __meta__ = {
 "_edit_use_anchors_": false
 }

@@ -9,7 +9,6 @@ signal color_changed(color)
 
 # -------------------------------------------------------------------------------------------------
 export var color_picker_path: NodePath
-export var palette: Resource
 
 onready var _palette_selection_button: OptionButton = $MarginContainer/VBoxContainer/Buttons/PaletteSelectionButton
 onready var _color_grid: GridContainer = $MarginContainer/VBoxContainer/ColorGrid
@@ -18,9 +17,14 @@ var _active_palette_button: PaletteButton
 
 # -------------------------------------------------------------------------------------------------
 func _ready() -> void:
-	assert(palette != null && palette is Palette)
-	_palette_selection_button.add_item(palette.name, 0)
-	_create_buttons()
+	# Add palettes to the dropdown
+	for palette in PaletteManager.palettes:
+		_palette_selection_button.add_item(palette.name)
+	
+	# Load the active palette
+	var active_palette := PaletteManager.get_active_palette()
+	_palette_selection_button.selected = PaletteManager.get_active_palette_index()
+	_create_buttons(active_palette)
 	_activate_palette_button(_color_grid.get_child(0))
 
 # -------------------------------------------------------------------------------------------------
@@ -29,13 +33,23 @@ func _input(event: InputEvent) -> void:
 		visible = false
 
 # -------------------------------------------------------------------------------------------------
-func _create_buttons() -> void:
+func _create_buttons(palette: Palette) -> void:
+	# Remove old buttons
+	_active_palette_button = null
+	for c in _color_grid.get_children():
+		_color_grid.remove_child(c)
+		c.queue_free()
+	
+	# Add new ones
 	for color in palette.colors:
 		var button: PaletteButton = PALETTE_BUTTON.instance()
 		_color_grid.add_child(button)
 		button.color = color
 		button.connect("pressed", self, "_on_platte_button_pressed", [button])
-
+	
+	# Adjust ui size
+	rect_size = get_combined_minimum_size()
+	
 # -------------------------------------------------------------------------------------------------
 func _activate_palette_button(button: PaletteButton) -> void:
 	if _active_palette_button != null:
@@ -47,3 +61,9 @@ func _activate_palette_button(button: PaletteButton) -> void:
 func _on_platte_button_pressed(button: PaletteButton) -> void:
 	_activate_palette_button(button)
 	emit_signal("color_changed", button.color)
+
+# -------------------------------------------------------------------------------------------------
+func _on_PaletteSelectionButton_item_selected(index: int) -> void:
+	PaletteManager.set_active_palette_index(index)
+	_create_buttons(PaletteManager.get_active_palette())
+	_activate_palette_button(_color_grid.get_child(0))

@@ -1,7 +1,10 @@
 extends Node
 
 # -------------------------------------------------------------------------------------------------
-const BUILTIN_PALETTES := [preload("res://Palettes/default_palette.tres")]
+const BUILTIN_PALETTES := [
+	preload("res://Palettes/default_palette.tres"), 
+	preload("res://Palettes/minimal_palette.tres")
+]
 const FILE_EXTENSION := "txt"
 const SECTION := "palette"
 const KEY_NAME := "name"
@@ -15,12 +18,15 @@ class PaletteSorter:
 
 # -------------------------------------------------------------------------------------------------
 var palettes: Array # Array<Palette>
+var _active_palette_index: int
 
 # -------------------------------------------------------------------------------------------------
 func _ready() -> void:
 	_ensure_builtin_palettes()
 	_load_palettes()
 	_sort()
+	assert(palettes.size() > 0)
+	_select_active_palette()
 
 # -------------------------------------------------------------------------------------------------
 func save() -> void:
@@ -29,7 +35,7 @@ func save() -> void:
 			_save_palette(p)
 
 # -------------------------------------------------------------------------------------------------
-func create_palette(palette_name: String, builtin: bool) -> Palette:
+func create_custom_palette(palette_name: String) -> Palette:
 	for p in palettes:
 		if p.name == name:
 			printerr("Palette names must be unique")
@@ -37,12 +43,25 @@ func create_palette(palette_name: String, builtin: bool) -> Palette:
 			
 	var palette := Palette.new()
 	palette.name = palette_name
-	palette.builtin = builtin
+	palette.builtin = false
 	palette.dirty = true
 	palettes.append(palette)
 	_sort()
 	
 	return palette
+
+# -------------------------------------------------------------------------------------------------
+func set_active_palette_index(index: int) -> void:
+	_active_palette_index = index
+	Settings.set_value(Settings.PALETTE_ACTIVE, palettes[index].name)
+
+# -------------------------------------------------------------------------------------------------
+func get_active_palette() -> Palette:
+	return palettes[_active_palette_index]
+
+# -------------------------------------------------------------------------------------------------
+func get_active_palette_index() -> int:
+	return _active_palette_index
 
 # -------------------------------------------------------------------------------------------------
 func _sort() -> void:
@@ -86,6 +105,18 @@ func _load_palettes() -> void:
 			palettes.append(palette)
 		filename = dir.get_next()
 
+# -------------------------------------------------------------------------------------------------
+func _select_active_palette() -> void:
+	var active_name = Settings.get_value(Settings.PALETTE_ACTIVE, "Default Palette")
+	_active_palette_index = 0
+	var index := 0
+	for p in palettes:
+		if p.name == active_name:
+			_active_palette_index = index
+			break
+		index += 1
+	print("Active palette: " + palettes[_active_palette_index].name)
+	
 # -------------------------------------------------------------------------------------------------
 func _load_palette(path: String) -> Palette:
 	var file := ConfigFile.new()
