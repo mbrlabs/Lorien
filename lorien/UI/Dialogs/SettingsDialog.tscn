@@ -10,6 +10,7 @@
 [sub_resource type="StyleBoxEmpty" id=3]
 
 [node name="SettingsDialog" type="WindowDialog"]
+visible = true
 margin_right = 520.0
 margin_bottom = 300.0
 rect_min_size = Vector2( 520, 300 )
@@ -126,11 +127,6 @@ margin_left = 250.0
 margin_right = 496.0
 margin_bottom = 17.0
 size_flags_horizontal = 3
-custom_styles/hover = SubResource( 2 )
-custom_styles/pressed = SubResource( 2 )
-custom_styles/focus = SubResource( 2 )
-custom_styles/disabled = SubResource( 2 )
-custom_styles/normal = SubResource( 2 )
 flat = true
 color = Color( 1, 1, 1, 1 )
 edit_alpha = false

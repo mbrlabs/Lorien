@@ -1,16 +1,7 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://UI/Themes/theme_dark.tres" type="Theme" id=1]
 [ext_resource path="res://UI/ColorPalettePicker.gd" type="Script" id=2]
-
-[sub_resource type="StyleBoxFlat" id=1]
-bg_color = Color( 0.207843, 0.211765, 0.227451, 1 )
-corner_radius_top_left = 2
-corner_radius_top_right = 2
-corner_radius_bottom_right = 2
-corner_radius_bottom_left = 2
-shadow_color = Color( 0, 0, 0, 0.313726 )
-shadow_size = 2
 
 [sub_resource type="StyleBoxEmpty" id=2]
 
@@ -18,7 +9,7 @@ shadow_size = 2
 margin_right = 358.0
 margin_bottom = 78.0
 rect_min_size = Vector2( 358, 78 )
-custom_styles/panel = SubResource( 1 )
+theme = ExtResource( 1 )
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false

@@ -58,6 +58,8 @@ text = "CANCEL"
 [node name="LineEdit" type="LineEdit" parent="MarginContainer/Container"]
 anchor_right = 1.0
 margin_bottom = 21.0
+placeholder_text = "NEW_PALETTE_DIALOG_PLACEHOLDER"
+placeholder_alpha = 0.5
 __meta__ = {
 "_edit_use_anchors_": false
 }

@@ -97,6 +97,7 @@ EXIT_DIALOG_TEXT     Guardar tus cambios antes de salir?
 # New palette dialog
 # -----------------------------------------------------------------------------
 NEW_PALETTE_DIALOG_TITLE 		New Palette 										# TODO
+NEW_PALETTE_DIALOG_PLACEHOLDER 	Palette LANGUAGE_NAME								# TODO
 
 # -----------------------------------------------------------------------------
 # Error messages

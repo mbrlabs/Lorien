@@ -95,6 +95,7 @@ EXIT_DIALOG_TEXT     Willst du deine Änderungen speichern bevor Lorien geschlos
 # New palette dialog
 # -----------------------------------------------------------------------------
 NEW_PALETTE_DIALOG_TITLE 		Neue Palette
+NEW_PALETTE_DIALOG_PLACEHOLDER 	Palette Name
 
 # -----------------------------------------------------------------------------
 # Error messages
