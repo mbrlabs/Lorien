@@ -9,7 +9,9 @@ signal color_changed(color)
 
 # -------------------------------------------------------------------------------------------------
 export var add_new_palette_dialog_path: NodePath
+export var toolbar_path: NodePath
 
+onready var _toolbar = get_node(toolbar_path)
 onready var _palette_selection_button: OptionButton = $MarginContainer/VBoxContainer/Buttons/PaletteSelectionButton
 onready var _color_grid: GridContainer = $MarginContainer/VBoxContainer/ColorGrid
 
@@ -21,8 +23,16 @@ func _ready() -> void:
 
 # -------------------------------------------------------------------------------------------------
 func _input(event: InputEvent) -> void:
+	if event is InputEventMouseButton && event.pressed:
+		var should_hide := !Utils.is_mouse_in_control(self)
+		should_hide = should_hide && !Utils.is_mouse_in_control(_toolbar.get_brush_color_button())
+		should_hide = should_hide && !get_parent().is_dialog_open()
+		should_hide = should_hide && !_palette_selection_button.get_popup().visible
+		if visible && should_hide:
+			hide()
+	
 	if event is InputEventKey && event.pressed && event.scancode == KEY_ESCAPE:
-		visible = false
+		hide()
 
 # -------------------------------------------------------------------------------------------------
 func update_palettes() -> void:

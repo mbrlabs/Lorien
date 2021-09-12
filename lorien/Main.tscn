@@ -71,10 +71,10 @@ __meta__ = {
 }
 
 [node name="ColorPicker" type="ColorPicker" parent="BackgroundColorPickerPopup/PanelContainer"]
-margin_left = 76.0
-margin_top = 76.0
-margin_right = 394.001
-margin_bottom = 500.0
+margin_left = 84.0
+margin_top = 84.0
+margin_right = 402.001
+margin_bottom = 508.0
 edit_alpha = false
 presets_enabled = false
 presets_visible = false
@@ -89,6 +89,7 @@ margin_top = 81.0
 margin_right = 717.0
 margin_bottom = 196.0
 add_new_palette_dialog_path = NodePath("../NewPaletteDialog")
+toolbar_path = NodePath("../Toolbar")
 
 [node name="MainMenu" parent="." instance=ExtResource( 5 )]
 margin_left = 1.0

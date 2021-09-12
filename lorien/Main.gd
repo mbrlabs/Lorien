@@ -117,16 +117,8 @@ func _process(delta):
 		_menubar.update_tab_title(active_project)
 
 # -------------------------------------------------------------------------------------------------
-func _input(event: InputEvent) -> void:
-	# TODO: This is a hacky way to close the Brush color picker when clicking outside of it
-	# It's quite hacky, so refactor this at some point!
-	if event is InputEventMouseButton && event.pressed:
-		if _brush_color_picker.visible && !Utils.is_mouse_in_control(_brush_color_picker) && !Utils.is_mouse_in_control(_toolbar.get_brush_color_button()) && !_is_dialog_open():
-			_brush_color_picker.hide()
-
-# -------------------------------------------------------------------------------------------------
 func _handle_input_actions() -> void:
-	if !_is_dialog_open():
+	if !is_dialog_open():
 		if Input.is_action_just_pressed("copy_strokes") || Input.is_action_just_pressed("paste_strokes") || Input.is_action_just_pressed("duplicate_strokes"):
 			return
 
@@ -202,7 +194,7 @@ func _is_mouse_on_ui() -> bool:
 	return on_ui
 
 # -------------------------------------------------------------------------------------------------
-func _is_dialog_open() -> bool:
+func is_dialog_open() -> bool:
 	return _file_dialog.visible || _about_dialog.visible || _settings_dialog.visible || _generic_alert_dialog.visible || _new_palette_dialog.visible
 
 # -------------------------------------------------------------------------------------------------
