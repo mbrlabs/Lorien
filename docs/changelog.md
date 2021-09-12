@@ -13,6 +13,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Fixed
 
 ### Changed
+- Lines created with the line tool are now subdivided (more points between start and end point) so that it's easier to select them
 
 ## [0.3.0] - 2021-07-23
 
