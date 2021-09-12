@@ -18,10 +18,11 @@ var _palette_edited := false
 
 # -------------------------------------------------------------------------------------------------
 func _setup() -> void:
+	# Reset internal stuff
+	_active_button = null
+	_active_button_index = -1
 	_palette_edited = false
-	
-	var palette := PaletteManager.get_active_palette()
-	_name_line_edit.text = palette.name
+	_disable_color_picker_callback = false
 	
 	# Clear color grid
 	for c in _color_grid.get_children():
@@ -30,12 +31,16 @@ func _setup() -> void:
 	
 	# Fill color grid
 	var index := 0
+	var palette := PaletteManager.get_active_palette()
 	for color in palette.colors:
 		var button: PaletteButton = PALETTE_BUTTON.instance()
 		_color_grid.add_child(button)
 		button.color = color
 		button.connect("pressed", self, "_on_platte_button_pressed", [button, index])
 		index += 1
+	
+	# Set name
+	_name_line_edit.text = palette.name
 		
 # -------------------------------------------------------------------------------------------------
 func _on_platte_button_pressed(button: PaletteButton, index: int) -> void:
