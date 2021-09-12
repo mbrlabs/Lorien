@@ -9,6 +9,7 @@ signal color_changed(color)
 
 # -------------------------------------------------------------------------------------------------
 export var add_new_palette_dialog_path: NodePath
+export var edit_palette_dialog: NodePath
 export var toolbar_path: NodePath
 
 onready var _toolbar = get_node(toolbar_path)
@@ -87,3 +88,8 @@ func _on_PaletteSelectionButton_item_selected(index: int) -> void:
 # -------------------------------------------------------------------------------------------------
 func _on_AddPaletteButton_pressed() -> void:
 	get_node(add_new_palette_dialog_path).popup_centered()
+
+# -------------------------------------------------------------------------------------------------
+func _on_EditColorButton_pressed() -> void:
+	hide()
+	get_node(edit_palette_dialog).popup_centered()

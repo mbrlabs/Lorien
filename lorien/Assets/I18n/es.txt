@@ -100,6 +100,11 @@ NEW_PALETTE_DIALOG_TITLE 		New Palette 										# TODO
 NEW_PALETTE_DIALOG_PLACEHOLDER 	Palette LANGUAGE_NAME								# TODO
 
 # -----------------------------------------------------------------------------
+# Edit palette dialog
+# -----------------------------------------------------------------------------
+EDIT_PALETTE_DIALOG_TITLE 		Edit Palette 										# TODO
+
+# -----------------------------------------------------------------------------
 # Error messages
 # -----------------------------------------------------------------------------
 ERROR_NOT_IMPLEMENTED               Aún no ha sido implementado.

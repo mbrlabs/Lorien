@@ -3,7 +3,7 @@
 [ext_resource path="res://UI/Themes/theme_dark.tres" type="Theme" id=1]
 [ext_resource path="res://UI/ColorPalettePicker.gd" type="Script" id=2]
 
-[sub_resource type="StyleBoxEmpty" id=2]
+[sub_resource type="StyleBoxEmpty" id=1]
 
 [node name="ColorPalettePicker" type="PanelContainer"]
 margin_right = 358.0
@@ -60,7 +60,7 @@ text = "New"
 margin_top = 29.0
 margin_right = 346.0
 margin_bottom = 31.0
-custom_styles/separator = SubResource( 2 )
+custom_styles/separator = SubResource( 1 )
 custom_constants/separation = 2
 
 [node name="ColorGrid" type="GridContainer" parent="MarginContainer/VBoxContainer"]
@@ -72,4 +72,5 @@ size_flags_vertical = 3
 columns = 10
 
 [connection signal="item_selected" from="MarginContainer/VBoxContainer/Buttons/PaletteSelectionButton" to="." method="_on_PaletteSelectionButton_item_selected"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Buttons/EditColorButton" to="." method="_on_EditColorButton_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Buttons/AddPaletteButton" to="." method="_on_AddPaletteButton_pressed"]

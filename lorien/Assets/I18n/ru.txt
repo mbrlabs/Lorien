@@ -95,7 +95,12 @@ EXIT_DIALOG_TEXT     Вы хотите сохранить изменения п�
 # New palette dialog
 # -----------------------------------------------------------------------------
 NEW_PALETTE_DIALOG_TITLE 		New Palette 										# TODO
-NEW_PALETTE_DIALOG_PLACEHOLDER 	Palette LANGUAGE_NAME								# TODO
+NEW_PALETTE_DIALOG_PLACEHOLDER 	Palette												# TODO
+
+# -----------------------------------------------------------------------------
+# Edit palette dialog
+# -----------------------------------------------------------------------------
+EDIT_PALETTE_DIALOG_TITLE 		Edit Palette 										# TODO
 
 # -----------------------------------------------------------------------------
 # Error messages

@@ -1,0 +1,247 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://UI/Themes/theme_dark.tres" type="Theme" id=1]
+[ext_resource path="res://UI/Dialogs/EditPaletteDialog.gd" type="Script" id=2]
+[ext_resource path="res://UI/Components/PaletteButton.tscn" type="PackedScene" id=3]
+
+[node name="EditPaletteDialog" type="WindowDialog"]
+margin_right = 478.0
+margin_bottom = 474.0
+rect_min_size = Vector2( 478, 474 )
+theme = ExtResource( 1 )
+popup_exclusive = true
+window_title = "EDIT_PALETTE_DIALOG_TITLE"
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 12
+custom_constants/margin_top = 12
+custom_constants/margin_left = 12
+custom_constants/margin_bottom = 12
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+margin_left = 12.0
+margin_top = 12.0
+margin_right = 466.0
+margin_bottom = 462.0
+custom_constants/separation = 12
+
+[node name="ColorPicker" type="ColorPicker" parent="MarginContainer/HBoxContainer"]
+margin_right = 305.0
+margin_bottom = 450.0
+edit_alpha = false
+presets_enabled = false
+presets_visible = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+margin_left = 317.0
+margin_right = 454.0
+margin_bottom = 450.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 12
+
+[node name="NameLineEdit" type="LineEdit" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+margin_right = 137.0
+margin_bottom = 21.0
+
+[node name="ColorGrid" type="GridContainer" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+margin_top = 33.0
+margin_right = 137.0
+margin_bottom = 450.0
+size_flags_vertical = 3
+columns = 4
+
+[node name="PaletteButton" parent="MarginContainer/HBoxContainer/VBoxContainer/ColorGrid" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 31.0
+margin_bottom = 31.0
+
+[node name="PaletteButton2" parent="MarginContainer/HBoxContainer/VBoxContainer/ColorGrid" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 35.0
+margin_right = 66.0
+margin_bottom = 31.0
+
+[node name="PaletteButton3" parent="MarginContainer/HBoxContainer/VBoxContainer/ColorGrid" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 70.0
+margin_right = 101.0
+margin_bottom = 31.0
+
+[node name="PaletteButton4" parent="MarginContainer/HBoxContainer/VBoxContainer/ColorGrid" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 105.0
+margin_right = 136.0
+margin_bottom = 31.0
+
+[node name="PaletteButton5" parent="MarginContainer/HBoxContainer/VBoxContainer/ColorGrid" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 35.0
+margin_right = 31.0
+margin_bottom = 66.0
+
+[node name="PaletteButton6" parent="MarginContainer/HBoxContainer/VBoxContainer/ColorGrid" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 35.0
+margin_top = 35.0
+margin_right = 66.0
+margin_bottom = 66.0
+
+[node name="PaletteButton7" parent="MarginContainer/HBoxContainer/VBoxContainer/ColorGrid" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 70.0
+margin_top = 35.0
+margin_right = 101.0
+margin_bottom = 66.0
+
+[node name="PaletteButton8" parent="MarginContainer/HBoxContainer/VBoxContainer/ColorGrid" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 105.0
+margin_top = 35.0
+margin_right = 136.0
+margin_bottom = 66.0
+
+[node name="PaletteButton9" parent="MarginContainer/HBoxContainer/VBoxContainer/ColorGrid" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 70.0
+margin_right = 31.0
+margin_bottom = 101.0
+
+[node name="PaletteButton10" parent="MarginContainer/HBoxContainer/VBoxContainer/ColorGrid" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 35.0
+margin_top = 70.0
+margin_right = 66.0
+margin_bottom = 101.0
+
+[node name="PaletteButton11" parent="MarginContainer/HBoxContainer/VBoxContainer/ColorGrid" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 70.0
+margin_top = 70.0
+margin_right = 101.0
+margin_bottom = 101.0
+
+[node name="PaletteButton12" parent="MarginContainer/HBoxContainer/VBoxContainer/ColorGrid" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 105.0
+margin_top = 70.0
+margin_right = 136.0
+margin_bottom = 101.0
+
+[node name="PaletteButton13" parent="MarginContainer/HBoxContainer/VBoxContainer/ColorGrid" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 105.0
+margin_right = 31.0
+margin_bottom = 136.0
+
+[node name="PaletteButton14" parent="MarginContainer/HBoxContainer/VBoxContainer/ColorGrid" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 35.0
+margin_top = 105.0
+margin_right = 66.0
+margin_bottom = 136.0
+
+[node name="PaletteButton15" parent="MarginContainer/HBoxContainer/VBoxContainer/ColorGrid" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 70.0
+margin_top = 105.0
+margin_right = 101.0
+margin_bottom = 136.0
+
+[node name="PaletteButton16" parent="MarginContainer/HBoxContainer/VBoxContainer/ColorGrid" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 105.0
+margin_top = 105.0
+margin_right = 136.0
+margin_bottom = 136.0
+
+[node name="PaletteButton17" parent="MarginContainer/HBoxContainer/VBoxContainer/ColorGrid" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 140.0
+margin_right = 31.0
+margin_bottom = 171.0
+
+[node name="PaletteButton18" parent="MarginContainer/HBoxContainer/VBoxContainer/ColorGrid" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 35.0
+margin_top = 140.0
+margin_right = 66.0
+margin_bottom = 171.0
+
+[node name="PaletteButton19" parent="MarginContainer/HBoxContainer/VBoxContainer/ColorGrid" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 70.0
+margin_top = 140.0
+margin_right = 101.0
+margin_bottom = 171.0
+
+[node name="PaletteButton20" parent="MarginContainer/HBoxContainer/VBoxContainer/ColorGrid" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 105.0
+margin_top = 140.0
+margin_right = 136.0
+margin_bottom = 171.0
+
+[node name="PaletteButton21" parent="MarginContainer/HBoxContainer/VBoxContainer/ColorGrid" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 175.0
+margin_right = 31.0
+margin_bottom = 206.0
+
+[node name="PaletteButton22" parent="MarginContainer/HBoxContainer/VBoxContainer/ColorGrid" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 35.0
+margin_top = 175.0
+margin_right = 66.0
+margin_bottom = 206.0
+
+[node name="PaletteButton23" parent="MarginContainer/HBoxContainer/VBoxContainer/ColorGrid" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 70.0
+margin_top = 175.0
+margin_right = 101.0
+margin_bottom = 206.0
+
+[node name="PaletteButton24" parent="MarginContainer/HBoxContainer/VBoxContainer/ColorGrid" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 105.0
+margin_top = 175.0
+margin_right = 136.0
+margin_bottom = 206.0
+
+[connection signal="about_to_show" from="." to="." method="_on_EditPaletteDialog_about_to_show"]
+[connection signal="popup_hide" from="." to="." method="_on_EditPaletteDialog_popup_hide"]
+[connection signal="color_changed" from="MarginContainer/HBoxContainer/ColorPicker" to="." method="_on_ColorPicker_color_changed"]

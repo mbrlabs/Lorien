@@ -16,6 +16,7 @@ onready var _exit_dialog: WindowDialog = $ExitDialog
 onready var _unsaved_changes_dialog: WindowDialog = $UnsavedChangesDialog
 onready var _background_color_picker: ColorPicker = $BackgroundColorPickerPopup/PanelContainer/ColorPicker
 onready var _new_palette_dialog: WindowDialog = $NewPaletteDialog
+onready var _edit_palette_dialog: WindowDialog = $EditPaletteDialog
 
 var _ui_visible := true 
 var _player_enabled := false
@@ -119,7 +120,10 @@ func _process(delta):
 # -------------------------------------------------------------------------------------------------
 func _handle_input_actions() -> void:
 	if !is_dialog_open():
-		if Input.is_action_just_pressed("copy_strokes") || Input.is_action_just_pressed("paste_strokes") || Input.is_action_just_pressed("duplicate_strokes"):
+		var copy := Input.is_action_just_pressed("copy_strokes")
+		var paste := Input.is_action_just_pressed("paste_strokes")
+		var duplicate := Input.is_action_just_pressed("duplicate_strokes")
+		if copy || paste || duplicate:
 			return
 
 		if Input.is_action_just_pressed("toggle_player"):
@@ -191,11 +195,15 @@ func _is_mouse_on_ui() -> bool:
 	on_ui = on_ui || Utils.is_mouse_in_control(_settings_dialog)
 	on_ui = on_ui || Utils.is_mouse_in_control(_brush_color_picker)
 	on_ui = on_ui || Utils.is_mouse_in_control(_new_palette_dialog)
+	on_ui = on_ui || Utils.is_mouse_in_control(_edit_palette_dialog)
 	return on_ui
 
 # -------------------------------------------------------------------------------------------------
 func is_dialog_open() -> bool:
-	return _file_dialog.visible || _about_dialog.visible || _settings_dialog.visible || _generic_alert_dialog.visible || _new_palette_dialog.visible
+	var open := _file_dialog.visible || _about_dialog.visible
+	open = open || (_settings_dialog.visible || _generic_alert_dialog.visible)
+	open = open || (_new_palette_dialog.visible || _edit_palette_dialog.visible)
+	return open
 
 # -------------------------------------------------------------------------------------------------
 func _create_active_default_project() -> void:
@@ -433,4 +441,8 @@ func _on_BrushColorPicker_color_changed(color: Color) -> void:
 # --------------------------------------------------------------------------------------------------
 func _on_NewPaletteDialog_new_palette_created(palette: Palette) -> void:
 	PaletteManager.set_active_palette(palette)
+	_brush_color_picker.update_palettes()
+
+# --------------------------------------------------------------------------------------------------
+func _on_EditPaletteDialog_palette_changed() -> void:
 	_brush_color_picker.update_palettes()
