@@ -1,0 +1,33 @@
+name: "build"
+
+on: push
+
+env:
+  GODOT_VERSION: 3.3.3
+  EXPORT_NAME: Lorien
+  LORIEN_VERSION: v0.4.0-dev
+
+jobs:
+  linux-export:
+    name: Linux Export
+    runs-on: ubuntu-latest
+    container:
+      image: docker://barichello/godot-ci:3.3.3
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup
+        run: |
+          mkdir -v -p build/${EXPORT_NAME}_${LORIEN_VERSION}_Linux
+          mkdir -v -p ~/.local/share/godot/templates
+          mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable ~/.local/share/godot/templates/${GODOT_VERSION}.stable
+      - name: Linux Build
+        run: | 
+          cd lorien
+          godot -v --export "Linux/X11" ../build/${EXPORT_NAME}_${LORIEN_VERSION}_Linux/${EXPORT_NAME}_${LORIEN_VERSION}.x86_64
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: Lorien Linux
+          path: build/${{ env.EXPORT_NAME }}_${{ env.LORIEN_VERSION }}_Linux
+          retention-days: 14
