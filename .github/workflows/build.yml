@@ -1,6 +1,10 @@
 name: "build"
 
-on: push
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
 env:
   GODOT_VERSION: 3.3.3
