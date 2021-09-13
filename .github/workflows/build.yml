@@ -8,6 +8,30 @@ env:
   LORIEN_VERSION: v0.4.0-dev
 
 jobs:
+  windows-export:
+    name: Windows Export
+    runs-on: ubuntu-latest
+    container:
+      image: docker://barichello/godot-ci:3.3.3
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup
+        run: |
+          mkdir -v -p build/${EXPORT_NAME}_${LORIEN_VERSION}_Windows
+          mkdir -v -p ~/.local/share/godot/templates
+          mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable ~/.local/share/godot/templates/${GODOT_VERSION}.stable
+      - name: Windows Build
+        run: | 
+          cd lorien
+          godot -v --export "Windows Desktop" ../build/${EXPORT_NAME}_${LORIEN_VERSION}_Windows/${EXPORT_NAME}_${LORIEN_VERSION}.exe
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: Lorien Windows
+          path: build/${{ env.EXPORT_NAME }}_${{ env.LORIEN_VERSION }}_Windows
+          retention-days: 14
+
   linux-export:
     name: Linux Export
     runs-on: ubuntu-latest
@@ -30,4 +54,28 @@ jobs:
         with:
           name: Lorien Linux
           path: build/${{ env.EXPORT_NAME }}_${{ env.LORIEN_VERSION }}_Linux
+          retention-days: 14
+
+  mac-export:
+    name: Mac Export
+    runs-on: ubuntu-latest
+    container:
+      image: docker://barichello/godot-ci:3.3.3
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup
+        run: |
+          mkdir -v -p build/${EXPORT_NAME}_${LORIEN_VERSION}_Mac
+          mkdir -v -p ~/.local/share/godot/templates
+          mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable ~/.local/share/godot/templates/${GODOT_VERSION}.stable
+      - name: Windows Build
+        run: | 
+          cd lorien
+          godot -v --export "Mac OSX" ../build/${EXPORT_NAME}_${LORIEN_VERSION}_Mac/${EXPORT_NAME}_${LORIEN_VERSION}.zip
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: Lorien Mac
+          path: build/${{ env.EXPORT_NAME }}_${{ env.LORIEN_VERSION }}_Mac
           retention-days: 14
