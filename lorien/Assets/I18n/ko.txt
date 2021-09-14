@@ -1,0 +1,118 @@
+LANGUAGE_NAME Korean(한국어)
+
+# -----------------------------------------------------------------------------
+# Menu strings
+# -----------------------------------------------------------------------------
+
+MENU_OPEN           열기
+MENU_SAVE           저장
+MENU_SAVE_AS        다른 이름으로 저장..
+MENU_SETTINGS       설정
+MENU_MANUAL         설명서
+MENU_BUG_TRACKER    버그 제보
+MENU_ABOUT          정보
+MENU_EXPORT         내보내기
+MENU_EXPORT_PNG     PNG파일로 내보내기
+
+# -----------------------------------------------------------------------------
+# Toolbar
+# -----------------------------------------------------------------------------
+TOOLBAR_TOOLTIP_NEW_FILE        새 파일 만들기 (CTRL+N)
+TOOLBAR_TOOLTIP_OPEN_FILE       파일 열기 (CTRL+O)
+TOOLBAR_TOOLTIP_SAVE_FILE       파일 저장하기 (CTRL+S)
+TOOLBAR_TOOLTIP_UNDO            되돌리기 (CTRL+Z)
+TOOLBAR_TOOLTIP_REDO            다시하기 (CTRL+Y)
+TOOLBAR_TOOLTIP_BRUSH_TOOL      브러쉬 (B)
+TOOLBAR_TOOLTIP_LINE_TOOL       직선 (L)
+TOOLBAR_TOOLTIP_ERASER_TOOL     지우개 (E)
+TOOLBAR_TOOLTIP_PICKER_TOOL     스포이드 (C)
+TOOLBAR_TOOLTIP_SELECT_TOOL     범위 선택 (S)
+TOOLBAR_TOOLTIP_BRUSH_COLOR     브러쉬 색깔
+TOOLBAR_TOOLTIP_BRUSH_SIZE      브러쉬 크기
+TOOLBAR_TOOLTIP_CANVAS_COLOR    배경 색깔
+TOOLBAR_TOOLTIP_GRID 			눈금
+
+# -----------------------------------------------------------------------------
+# Statusbar strings
+# -----------------------------------------------------------------------------
+
+STATUSBAR_POSITION              위치
+STATUSBAR_ZOOM                  확대
+STATUSBAR_PRESSURE              필압
+STATUSBAR_FPS                   프레임
+STATUSBAR_STROKES               획
+STATUSBAR_POINTS                점
+
+# -----------------------------------------------------------------------------
+# Settings strings
+# -----------------------------------------------------------------------------
+
+SETTINGS_TITLE                  설정
+SETTINGS_GENERAL                기본적인
+SETTINGS_APPEARANCE             모양
+SETTINGS_RENDERING              렌더링
+SETTINGS_PRESSURE_SENSITIVITY   필압 민감도
+SETTINGS_BRUSH_SIZE             기본 브러쉬 크기
+SETTINGS_BRUSH_COLOR            기본 브러쉬 색깔
+SETTINGS_CANVAS_COLOR           기본 배경 색깔
+SETTINGS_PROJECT_FOLDER         기본 프로젝트 풀더
+SETTINGS_LANGUAGE               언어
+SETTINGS_THEME                  테마
+SETTINGS_AA_METHOD              안티에일리어싱
+SETTINGS_AA_METHOD_NONE         없음
+SETTINGS_FPS_FOREGROUND         필기 프레임
+SETTINGS_FPS_BACKGROUND         배경 프레임
+SETTINGS_BRUSH_CAPS             브러쉬 끝 부분 모양
+SETTINGS_BRUSH_CAPS_FLAT        평평하게
+SETTINGS_BRUSH_CAPS_ROUND       둥굴게
+SETTINGS_RESTART_NOTICE  		변경된 설정을 적용하려면 재시작이 필요합니다.
+
+# -----------------------------------------------------------------------------
+# About dialog strings
+# -----------------------------------------------------------------------------
+
+ABOUT_DIALOG_TITLE              정보
+ABOUT_DIALOG_COPYRIGHT          © 2021 Marcus Brummer (mbrlabs) 와 기여자들
+ABOUT_DIALOG_LICSENSE           Lorien은 다음의 라이센스를 따릅니다:
+ABOUT_DIALOG_BASED_ON           Lorien is based on:
+ABOUT_DIALOG_EASTEREGG          이스터에그:
+
+# -----------------------------------------------------------------------------
+# Unsaved changes dialog
+# -----------------------------------------------------------------------------
+
+UNSAVED_CHANGES_DIALOG_TITLE    변경사항을 저장할까요?
+UNSAVED_CHANGES_DIALOG_TEXT     파일을 닫기전에 저장할까요?
+
+# -----------------------------------------------------------------------------
+# Exit dialog
+# -----------------------------------------------------------------------------
+
+EXIT_DIALOG_TITLE    변경사항을 저장할까요?
+EXIT_DIALOG_TEXT     Lorien을 나가지전에 저장할까요?
+
+# -----------------------------------------------------------------------------
+# New palette dialog
+# -----------------------------------------------------------------------------
+NEW_PALETTE_DIALOG_TITLE 		새 팔레트
+NEW_PALETTE_DIALOG_PLACEHOLDER 	팔레트 이름 
+
+# -----------------------------------------------------------------------------
+# Edit palette dialog
+# -----------------------------------------------------------------------------
+EDIT_PALETTE_DIALOG_TITLE 		팔레트 수정
+
+# -----------------------------------------------------------------------------
+# Error messages
+# -----------------------------------------------------------------------------
+
+ERROR_NOT_IMPLEMENTED               아직 구현되지 않음
+ERROR_AUTOSAVE_NOT_IMPLEMENTED      "Untitled" 파일을 위한 자동저장 기능은 구현되지 않았습니다. 수동으로 저장해주세요.
+
+# -----------------------------------------------------------------------------
+# Generic strings
+# -----------------------------------------------------------------------------
+
+SAVE            저장하고 나가기
+DISCARD         저장하지 않고 나가기
+CANCEL          취소
