@@ -1,7 +1,7 @@
 [gd_resource type="Theme" load_steps=30 format=2]
 
-[ext_resource path="res://Assets/Fonts/font_13.tres" type="DynamicFont" id=1]
-[ext_resource path="res://Assets/Fonts/font_14b.tres" type="DynamicFont" id=2]
+[ext_resource path="res://Assets/Fonts/font_big_bold.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Assets/Fonts/font_normal.tres" type="DynamicFont" id=2]
 [ext_resource path="res://Assets/Icons/close.png" type="Texture" id=3]
 [ext_resource path="res://Assets/Icons/arrow_right.png" type="Texture" id=4]
 [ext_resource path="res://Assets/Icons/slider_knob_white.png" type="Texture" id=5]
@@ -184,7 +184,7 @@ shadow_color = Color( 0, 0, 0, 0.156863 )
 shadow_size = 2
 
 [resource]
-default_font = ExtResource( 1 )
+default_font = ExtResource( 2 )
 Button/colors/font_color = Color( 1, 1, 1, 1 )
 Button/colors/font_color_disabled = Color( 0.9, 0.9, 0.9, 0.2 )
 Button/colors/font_color_hover = Color( 0.941176, 0.941176, 0.941176, 1 )
@@ -235,7 +235,7 @@ ItemList/constants/hseparation = 4
 ItemList/constants/icon_margin = 4
 ItemList/constants/line_separation = 2
 ItemList/constants/vseparation = 2
-ItemList/fonts/font = ExtResource( 1 )
+ItemList/fonts/font = ExtResource( 2 )
 ItemList/styles/bg = SubResource( 8 )
 ItemList/styles/bg_focus = null
 ItemList/styles/cursor = null
@@ -346,7 +346,7 @@ WindowDialog/constants/close_h_ofs = 18
 WindowDialog/constants/close_v_ofs = 18
 WindowDialog/constants/scaleborder_size = 4
 WindowDialog/constants/title_height = 20
-WindowDialog/fonts/title_font = ExtResource( 2 )
+WindowDialog/fonts/title_font = ExtResource( 1 )
 WindowDialog/icons/close = ExtResource( 3 )
 WindowDialog/icons/close_highlight = ExtResource( 3 )
 WindowDialog/styles/panel = SubResource( 23 )

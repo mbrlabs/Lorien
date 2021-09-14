@@ -7,10 +7,12 @@
 [sub_resource type="StyleBoxEmpty" id=1]
 
 [node name="AboutDialog" type="WindowDialog"]
+visible = true
 margin_right = 450.0
 margin_bottom = 205.0
 rect_min_size = Vector2( 450, 205 )
 theme = ExtResource( 1 )
+popup_exclusive = true
 window_title = "ABOUT_DIALOG_TITLE"
 script = ExtResource( 2 )
 __meta__ = {
@@ -20,6 +22,8 @@ __meta__ = {
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_bottom = -1.0
+size_flags_vertical = 3
 custom_constants/margin_right = 12
 custom_constants/margin_top = 12
 custom_constants/margin_left = 12
@@ -32,7 +36,7 @@ __meta__ = {
 margin_left = 12.0
 margin_top = 12.0
 margin_right = 438.0
-margin_bottom = 193.0
+margin_bottom = 192.0
 __meta__ = {
 "_edit_use_anchors_": false
 }

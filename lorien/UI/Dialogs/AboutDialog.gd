@@ -6,6 +6,7 @@ onready var _version_label: Label = $MarginContainer/VBoxContainer/HBoxContainer
 # -------------------------------------------------------------------------------------------------
 func _ready():
 	_version_label.text = "Lorien v%s" % Config.VERSION_STRING
+	rect_size.y = $MarginContainer.rect_size.y + 5
 
 # -------------------------------------------------------------------------------------------------
 func _on_GithubLinkButton_pressed():

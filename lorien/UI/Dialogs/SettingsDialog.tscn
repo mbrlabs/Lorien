@@ -10,7 +10,6 @@
 [sub_resource type="StyleBoxEmpty" id=3]
 
 [node name="SettingsDialog" type="WindowDialog"]
-visible = true
 margin_right = 520.0
 margin_bottom = 300.0
 rect_min_size = Vector2( 520, 300 )

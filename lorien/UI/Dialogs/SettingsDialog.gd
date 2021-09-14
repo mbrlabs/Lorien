@@ -9,6 +9,7 @@ const AA_OPENGL_HINT_INDEX 	:= 1
 const AA_TEXTURE_FILL_INDEX := 2
 
 # -------------------------------------------------------------------------------------------------
+onready var _tab_container: TabContainer = $MarginContainer/TabContainer
 onready var _tab_general: Control = $MarginContainer/TabContainer/General
 onready var _tab_appearance: Control = $MarginContainer/TabContainer/Appearance
 onready var _tab_rendering: Control = $MarginContainer/TabContainer/Rendering
@@ -29,9 +30,9 @@ onready var _brush_rounding_options: OptionButton = $MarginContainer/TabContaine
 
 # -------------------------------------------------------------------------------------------------
 func _ready():
-	_tab_general.name = tr("SETTINGS_GENERAL")
-	_tab_appearance.name = tr("SETTINGS_APPEARANCE")
-	_tab_rendering.name = tr("SETTINGS_RENDERING")
+	_tab_container.set_tab_title(0, tr("SETTINGS_GENERAL"))
+	_tab_container.set_tab_title(1, tr("SETTINGS_APPEARANCE"))
+	_tab_container.set_tab_title(2, tr("SETTINGS_RENDERING"))
 	_set_values()
 
 # -------------------------------------------------------------------------------------------------

@@ -1,8 +1,9 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://UI/Dialogs/UnsavedChangesDialog.gd" type="Script" id=1]
-[ext_resource path="res://Assets/Fonts/font_13.tres" type="DynamicFont" id=2]
+[ext_resource path="res://Assets/Fonts/font_normal.tres" type="DynamicFont" id=2]
 [ext_resource path="res://UI/Themes/theme_dark.tres" type="Theme" id=3]
+
 
 [node name="SaveBeforeExitDialog" type="WindowDialog"]
 margin_right = 310.0

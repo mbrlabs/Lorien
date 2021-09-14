@@ -395,6 +395,15 @@ player_crouch={
  ]
 }
 
+[locale]
+
+translation_remaps={
+"res://Assets/Fonts/font_big.tres": PoolStringArray( "res://Assets/Fonts/Korean/font_big_ko.tres:ko" ),
+"res://Assets/Fonts/font_big_bold.tres": PoolStringArray( "res://Assets/Fonts/Korean/font_big_bold_ko.tres:ko" ),
+"res://Assets/Fonts/font_normal.tres": PoolStringArray( "res://Assets/Fonts/Korean/font_normal_ko.tres:ko" ),
+"res://Assets/Fonts/font_small.tres": PoolStringArray( "res://Assets/Fonts/Korean/font_small_ko.tres:ko" )
+}
+
 [physics]
 
 common/enable_pause_aware_picking=true

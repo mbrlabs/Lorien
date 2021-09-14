@@ -30,7 +30,7 @@ TOOLBAR_TOOLTIP_SELECT_TOOL     Seleziona strumento (S)
 TOOLBAR_TOOLTIP_BRUSH_COLOR     Colore Pennello
 TOOLBAR_TOOLTIP_BRUSH_SIZE      Dimensione del Pennello
 TOOLBAR_TOOLTIP_CANVAS_COLOR    Colore della Tela
-TOOLBAR_TOOLTIP_GRID 			      Mostra Griglia							
+TOOLBAR_TOOLTIP_GRID 			Mostra Griglia							
 
 # -----------------------------------------------------------------------------
 # Statusbar strings
@@ -65,7 +65,7 @@ SETTINGS_FPS_BACKGROUND         Fps sullo sfondo
 SETTINGS_BRUSH_CAPS             Modalità arrotondamento pennello 
 SETTINGS_BRUSH_CAPS_FLAT        Piatto 
 SETTINGS_BRUSH_CAPS_ROUND       Rotondo 
-SETTINGS_RESTART_NOTICE  		    È necessario riavviare per applicare le nuove impostazioni 		
+SETTINGS_RESTART_NOTICE  		È necessario riavviare per applicare le nuove impostazioni 		
 
 # -----------------------------------------------------------------------------
 # About dialog strings
