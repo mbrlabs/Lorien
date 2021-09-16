@@ -30,8 +30,8 @@ Lorien is an **infinite canvas drawing/note-taking app that is focused on perfor
 - Choose different colors for brush strokes and the canvas background via an easy to use color picker
 - Designed to be used with a drawing tablet (Wacom, etc.). It also supports pressure sensitivity
 - A little Surprise Mechanic™ when pressing F12
-- Runs on Windows, Linux & Mac
-- Localization
+- Runs on Windows, Linux & macOS
+- Localizations: English, German, Italian, Korean, Russian, Spanish
 
 ## More information
 - [Contributing Guide](docs/contributing.md)

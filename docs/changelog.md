@@ -9,8 +9,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Added
 - Distraction free mode which hides the UI. Can be toggled with TAB
 - Simple palette. Can add and change colors in the palette, and apply colors to the brush.
+- Translations: Korean
 
 ### Fixed
+- Some UI elements were not hooked up to the localization system
 
 ### Changed
 - Lines created with the line tool are now subdivided (more points between start and end point) so that it's easier to select them
