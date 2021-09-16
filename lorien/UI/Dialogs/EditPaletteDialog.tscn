@@ -35,8 +35,10 @@ margin_bottom = 462.0
 custom_constants/separation = 12
 
 [node name="ColorPicker" type="ColorPicker" parent="MarginContainer/HBoxContainer"]
-margin_right = 305.0
-margin_bottom = 450.0
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 309.0
+margin_bottom = 454.0
 edit_alpha = false
 presets_enabled = false
 presets_visible = false
@@ -242,6 +244,5 @@ margin_top = 175.0
 margin_right = 136.0
 margin_bottom = 206.0
 
-[connection signal="about_to_show" from="." to="." method="_on_EditPaletteDialog_about_to_show"]
 [connection signal="popup_hide" from="." to="." method="_on_EditPaletteDialog_popup_hide"]
 [connection signal="color_changed" from="MarginContainer/HBoxContainer/ColorPicker" to="." method="_on_ColorPicker_color_changed"]

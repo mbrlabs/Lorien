@@ -1,3 +1,4 @@
+class_name EditPaletteDialog
 extends WindowDialog
 
 # -------------------------------------------------------------------------------------------------
@@ -11,16 +12,16 @@ onready var _name_line_edit: LineEdit = $MarginContainer/HBoxContainer/VBoxConta
 onready var _color_picker: ColorPicker = $MarginContainer/HBoxContainer/ColorPicker
 onready var _color_grid: GridContainer = $MarginContainer/HBoxContainer/VBoxContainer/ColorGrid
 
+var _palette: Palette
 var _active_button: PaletteButton = null
 var _active_button_index := -1
 var _disable_color_picker_callback := false
 var _palette_edited := false
 
 # -------------------------------------------------------------------------------------------------
-func _setup() -> void:
+func setup(palette: Palette, color_index: int) -> void:
 	# Reset internal stuff
-	_active_button = null
-	_active_button_index = -1
+	_palette = palette
 	_palette_edited = false
 	_disable_color_picker_callback = false
 	
@@ -31,7 +32,6 @@ func _setup() -> void:
 	
 	# Fill color grid
 	var index := 0
-	var palette := PaletteManager.get_active_palette()
 	for color in palette.colors:
 		var button: PaletteButton = PALETTE_BUTTON.instance()
 		_color_grid.add_child(button)
@@ -41,7 +41,13 @@ func _setup() -> void:
 	
 	# Set name
 	_name_line_edit.text = palette.name
-		
+	
+	# Select active color
+	_active_button_index = color_index
+	_active_button = _color_grid.get_child(_active_button_index)
+	_active_button.selected = true
+	_color_picker.color = _active_button.color
+	
 # -------------------------------------------------------------------------------------------------
 func _on_platte_button_pressed(button: PaletteButton, index: int) -> void:
 	if _active_button != null:
@@ -59,13 +65,8 @@ func _on_ColorPicker_color_changed(color: Color) -> void:
 	elif _active_button != null:
 		_palette_edited = true
 		_active_button.color = color
-		var palette := PaletteManager.get_active_palette()
-		palette.colors[_active_button_index] = color
+		_palette.colors[_active_button_index] = color
 		
-# -------------------------------------------------------------------------------------------------
-func _on_EditPaletteDialog_about_to_show() -> void:
-	_setup()
-
 # -------------------------------------------------------------------------------------------------
 func _on_EditPaletteDialog_popup_hide() -> void:
 	if _palette_edited:
