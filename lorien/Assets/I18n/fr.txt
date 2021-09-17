@@ -1,0 +1,118 @@
+LANGUAGE_NAME Français
+
+# -----------------------------------------------------------------------------
+# Menu strings
+# -----------------------------------------------------------------------------
+
+MENU_OPEN           Ouvrir
+MENU_SAVE           Enregistrer
+MENU_SAVE_AS        Enregistrer sous...
+MENU_SETTINGS       Paramètres
+MENU_MANUAL         Documentation
+MENU_BUG_TRACKER    Suivi des bogues
+MENU_ABOUT          À propos
+MENU_EXPORT         Exporter
+MENU_EXPORT_PNG     Exporter la zone visible en PNG
+
+# -----------------------------------------------------------------------------
+# Toolbar
+# -----------------------------------------------------------------------------
+TOOLBAR_TOOLTIP_NEW_FILE        Créer un nouveau fichier (CTRL+N)
+TOOLBAR_TOOLTIP_OPEN_FILE       Ouvrir un fichier (CTRL+O)
+TOOLBAR_TOOLTIP_SAVE_FILE       Enregistrer un fichier (CTRL+S)
+TOOLBAR_TOOLTIP_UNDO            Annuler l'action (CTRL+Z)
+TOOLBAR_TOOLTIP_REDO            Rétablir l'action (CTRL+Y)
+TOOLBAR_TOOLTIP_BRUSH_TOOL      Pinceau (B)
+TOOLBAR_TOOLTIP_LINE_TOOL       Ligne (L)
+TOOLBAR_TOOLTIP_ERASER_TOOL     Gomme (E)
+TOOLBAR_TOOLTIP_PICKER_TOOL     Sélecteur de couleur (C)
+TOOLBAR_TOOLTIP_SELECT_TOOL     Outil de sélection (S)
+TOOLBAR_TOOLTIP_BRUSH_COLOR     Couleur de la brosse
+TOOLBAR_TOOLTIP_BRUSH_SIZE      Épaisseur de la brosse
+TOOLBAR_TOOLTIP_CANVAS_COLOR    Couleur du canevas
+TOOLBAR_TOOLTIP_GRID 			Afficher la grille
+
+# -----------------------------------------------------------------------------
+# Statusbar strings
+# -----------------------------------------------------------------------------
+
+STATUSBAR_POSITION              Position
+STATUSBAR_ZOOM                  Échelle
+STATUSBAR_PRESSURE              Pression
+STATUSBAR_FPS                   FPS
+STATUSBAR_STROKES               Courbes # TODO : check if "Tracés" could be a better fit
+STATUSBAR_POINTS                Points
+
+# -----------------------------------------------------------------------------
+# Settings strings
+# -----------------------------------------------------------------------------
+
+SETTINGS_TITLE                  Paramètres
+SETTINGS_GENERAL                Général
+SETTINGS_APPEARANCE             Apparence
+SETTINGS_RENDERING              Affichage
+SETTINGS_PRESSURE_SENSITIVITY   Sensibilité de la pression
+SETTINGS_BRUSH_SIZE             Épaisseur par défaut de la brosse
+SETTINGS_BRUSH_COLOR            Couleur par défaut de la brosse
+SETTINGS_CANVAS_COLOR           Couleur par défaut du canevas
+SETTINGS_PROJECT_FOLDER         Dossier par défaut du projet
+SETTINGS_LANGUAGE               Langue
+SETTINGS_THEME                  Thème
+SETTINGS_AA_METHOD              Méthode d'anticrénelage
+SETTINGS_AA_METHOD_NONE         Aucun
+SETTINGS_FPS_FOREGROUND         Fps lorsque actif
+SETTINGS_FPS_BACKGROUND         Fps lorsque inactif
+SETTINGS_BRUSH_CAPS             Extrémités des tracés
+SETTINGS_BRUSH_CAPS_FLAT        Plates
+SETTINGS_BRUSH_CAPS_ROUND       Arrondies
+SETTINGS_RESTART_NOTICE  		Un redémarrage est nécessaire pour appliquer les changements
+
+# -----------------------------------------------------------------------------
+# About dialog strings
+# -----------------------------------------------------------------------------
+
+ABOUT_DIALOG_TITLE              A propos
+ABOUT_DIALOG_COPYRIGHT          © 2021 Marcus Brummer (mbrlabs) et contributeurs 
+ABOUT_DIALOG_LICSENSE           Lorien est sous licence :
+ABOUT_DIALOG_BASED_ON           Lorien est basé sur :
+ABOUT_DIALOG_EASTEREGG          Caractère secret : # TODO : check the real meaning
+
+# -----------------------------------------------------------------------------
+# Unsaved changes dialog
+# -----------------------------------------------------------------------------
+
+UNSAVED_CHANGES_DIALOG_TITLE    Enregistrer les changements ?
+UNSAVED_CHANGES_DIALOG_TEXT     Voulez-vous enregistrer les changements avant de fermer ?
+
+# -----------------------------------------------------------------------------
+# Exit dialog
+# -----------------------------------------------------------------------------
+
+EXIT_DIALOG_TITLE    Enregistrer les changements ?
+EXIT_DIALOG_TEXT     Voulez-vous enregistrer les changements avant de quitter ?
+
+# -----------------------------------------------------------------------------
+# New palette dialog
+# -----------------------------------------------------------------------------
+NEW_PALETTE_DIALOG_TITLE 		Nouvelle palette
+NEW_PALETTE_DIALOG_PLACEHOLDER 	Nom de la palette
+
+# -----------------------------------------------------------------------------
+# Edit palette dialog
+# -----------------------------------------------------------------------------
+EDIT_PALETTE_DIALOG_TITLE 		Modifier la palette
+
+# -----------------------------------------------------------------------------
+# Error messages
+# -----------------------------------------------------------------------------
+
+ERROR_NOT_IMPLEMENTED               Implémentation manquante.
+ERROR_AUTOSAVE_NOT_IMPLEMENTED      La sauvegarde automatique n'existe pas encore pour les fichiers "Untitled". Veuillez enregistrer manuellement. # TODO : add an option to translate "Untitled" by "Sans nom"
+
+# -----------------------------------------------------------------------------
+# Generic strings
+# -----------------------------------------------------------------------------
+
+SAVE            Enregistrer
+DISCARD         Ignorer
+CANCEL          Annuler
