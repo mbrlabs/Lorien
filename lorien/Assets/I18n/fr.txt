@@ -40,7 +40,7 @@ STATUSBAR_POSITION              Position
 STATUSBAR_ZOOM                  Échelle
 STATUSBAR_PRESSURE              Pression
 STATUSBAR_FPS                   FPS
-STATUSBAR_STROKES               Courbes # TODO : check if "Tracés" could be a better fit
+STATUSBAR_STROKES               Courbes
 STATUSBAR_POINTS                Points
 
 # -----------------------------------------------------------------------------
@@ -75,7 +75,7 @@ ABOUT_DIALOG_TITLE              A propos
 ABOUT_DIALOG_COPYRIGHT          © 2021 Marcus Brummer (mbrlabs) et contributeurs 
 ABOUT_DIALOG_LICSENSE           Lorien est sous licence :
 ABOUT_DIALOG_BASED_ON           Lorien est basé sur :
-ABOUT_DIALOG_EASTEREGG          Caractère secret : # TODO : check the real meaning
+ABOUT_DIALOG_EASTEREGG          Personnage Easter egg :
 
 # -----------------------------------------------------------------------------
 # Unsaved changes dialog
