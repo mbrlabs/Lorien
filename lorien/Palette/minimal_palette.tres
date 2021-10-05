@@ -1,9 +1,0 @@
-[gd_resource type="Resource" load_steps=2 format=2]
-
-[ext_resource path="res://Palette/Palette.gd" type="Script" id=1]
-
-[resource]
-script = ExtResource( 1 )
-name = "Minimal Palette"
-builtin = true
-colors = PoolColorArray( 1, 1, 1, 1, 0, 0, 0, 1, 1, 0.34902, 0.34902, 1, 0.380392, 1, 0.435294, 1, 0.341176, 0.517647, 1, 1 )

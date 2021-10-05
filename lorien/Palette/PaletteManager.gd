@@ -3,7 +3,6 @@ extends Node
 # -------------------------------------------------------------------------------------------------
 const BUILTIN_PALETTES := [
 	preload("res://Palette/default_palette.tres"), 
-	preload("res://Palette/minimal_palette.tres")
 ]
 const FILE_EXTENSION := "txt"
 const SECTION := "palette"
@@ -22,7 +21,6 @@ var _active_palette_index: int
 
 # -------------------------------------------------------------------------------------------------
 func _ready() -> void:
-	_ensure_builtin_palettes()
 	_load_palettes()
 	_sort()
 	assert(palettes.size() > 0)
@@ -51,6 +49,22 @@ func create_custom_palette(palette_name: String) -> Palette:
 	
 	return palette
 
+# -------------------------------------------------------------------------------------------------
+func duplicate_palette(palette: Palette, new_palette_name: String) -> Palette:
+	if has_palette_name(new_palette_name):
+		printerr("Palette names must be unique")
+		return null
+	
+	var new_palette := Palette.new()
+	new_palette.name = new_palette_name
+	new_palette.builtin = false
+	new_palette.dirty = true
+	new_palette.colors = palette.colors # TODO: make sure this is passed by-value
+	palettes.append(new_palette)
+	_sort()
+	
+	return new_palette
+	
 # -------------------------------------------------------------------------------------------------
 func set_active_palette_index(index: int) -> void:
 	_active_palette_index = index
@@ -109,6 +123,10 @@ func _save_palette(palette: Palette) -> bool:
 
 # -------------------------------------------------------------------------------------------------
 func _load_palettes() -> void:
+	# Built-in palettes
+	palettes.append_array(BUILTIN_PALETTES)
+	
+	# Load custom palettes
 	_ensure_palette_folder()
 	
 	var dir := Directory.new()
@@ -183,16 +201,11 @@ func _ensure_palette_folder() -> bool:
 	return true
 
 # -------------------------------------------------------------------------------------------------
-func _ensure_builtin_palettes() -> void:
-	for p in BUILTIN_PALETTES:
-		var path := _get_palette_path(p)
-		var file := File.new()
-		if !file.file_exists(path):
-			_save_palette(p)
-
-# -------------------------------------------------------------------------------------------------
 func _get_palette_path(palette: Palette) -> String:
-	var path := Config.PALETTE_FOLDER
-	var filename := palette.name.to_lower().replace(" ", "_")
-	filename += "." + FILE_EXTENSION
-	return path + filename
+	if palette.builtin:
+		return ""
+	else:
+		var path := Config.PALETTE_FOLDER
+		var filename := palette.name.to_lower().replace(" ", "_")
+		filename += "." + FILE_EXTENSION
+		return path + filename

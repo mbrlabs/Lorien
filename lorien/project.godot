@@ -94,6 +94,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://UI/Menubar.gd"
 }, {
+"base": "WindowDialog",
+"class": "NewPaletteDialog",
+"language": "GDScript",
+"path": "res://UI/Dialogs/NewPaletteDialog.gd"
+}, {
 "base": "Resource",
 "class": "Palette",
 "language": "GDScript",
@@ -172,6 +177,7 @@ _global_script_class_icons={
 "LineTool": "",
 "MainMenu": "",
 "Menubar": "",
+"NewPaletteDialog": "",
 "Palette": "",
 "PaletteButton": "",
 "Player": "",
@@ -203,6 +209,7 @@ ProjectManager="*res://ProjectManager/ProjectManager.gd"
 Settings="*res://Misc/Settings.gd"
 ProjectMetadata="*res://ProjectManager/ProjectMetadata.gd"
 PaletteManager="*res://Palette/PaletteManager.gd"
+AlertDialog="*res://UI/Dialogs/AlertDialog.tscn"
 
 [debug]
 

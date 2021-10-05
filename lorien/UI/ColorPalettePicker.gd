@@ -30,6 +30,7 @@ func _input(event: InputEvent) -> void:
 		should_hide = should_hide && !Utils.is_mouse_in_control(_toolbar.get_brush_color_button())
 		should_hide = should_hide && !get_parent().is_dialog_open()
 		should_hide = should_hide && !_palette_selection_button.get_popup().visible
+		should_hide = should_hide && !AlertDialog.visible
 		if visible && should_hide:
 			hide()
 	
@@ -86,16 +87,32 @@ func _on_platte_button_pressed(button: PaletteButton, index: int) -> void:
 func _on_PaletteSelectionButton_item_selected(index: int) -> void:
 	PaletteManager.set_active_palette_index(index)
 	PaletteManager.save()
-	_create_buttons(PaletteManager.get_active_palette())
+	
+	var palette := PaletteManager.get_active_palette()
+	_create_buttons(palette)
 	_activate_palette_button(_color_grid.get_child(0), index)
 
 # -------------------------------------------------------------------------------------------------
 func _on_AddPaletteButton_pressed() -> void:
-	get_node(add_new_palette_dialog_path).popup_centered()
+	var dialog: NewPaletteDialog = get_node(add_new_palette_dialog_path)
+	dialog.duplicate_current_palette = false
+	dialog.popup_centered()
 
 # -------------------------------------------------------------------------------------------------
 func _on_EditColorButton_pressed() -> void:
-	hide()
-	var edit_popup: EditPaletteDialog = get_node(edit_palette_dialog)
-	edit_popup.setup(PaletteManager.get_active_palette(), _active_palette_button_index)
-	edit_popup.popup_centered()
+	var palette := PaletteManager.get_active_palette()
+	if palette.builtin:
+		# TODO: i18n
+		AlertDialog.dialog_text = "Editing built-in palettes is not possible.\nIf you want to customize this palette you can make a copy and edit that instead."
+		AlertDialog.popup_centered()
+	else:
+		hide()
+		var edit_popup: EditPaletteDialog = get_node(edit_palette_dialog)
+		edit_popup.setup(PaletteManager.get_active_palette(), _active_palette_button_index)
+		edit_popup.popup_centered()
+
+# -------------------------------------------------------------------------------------------------
+func _on_DuplicatePaletteButton_pressed() -> void:
+	var dialog: NewPaletteDialog = get_node(add_new_palette_dialog_path)
+	dialog.duplicate_current_palette = true
+	dialog.popup_centered()
