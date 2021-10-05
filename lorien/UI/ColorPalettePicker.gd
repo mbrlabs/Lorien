@@ -90,7 +90,7 @@ func _on_PaletteSelectionButton_item_selected(index: int) -> void:
 	
 	var palette := PaletteManager.get_active_palette()
 	_create_buttons(palette)
-	_activate_palette_button(_color_grid.get_child(0), index)
+	_activate_palette_button(_color_grid.get_child(0), 0)
 
 # -------------------------------------------------------------------------------------------------
 func _on_AddPaletteButton_pressed() -> void:
