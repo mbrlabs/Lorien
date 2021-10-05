@@ -25,7 +25,6 @@ TOOLBAR_TOOLTIP_REDO            Ripeti Azione (CTRL+Y)
 TOOLBAR_TOOLTIP_BRUSH_TOOL      Strumento Pennello (B)
 TOOLBAR_TOOLTIP_LINE_TOOL       Strumento Linea (L)
 TOOLBAR_TOOLTIP_ERASER_TOOL     Gomma per cancellare (E)
-TOOLBAR_TOOLTIP_PICKER_TOOL     Strumento selezione del Colore (C)
 TOOLBAR_TOOLTIP_SELECT_TOOL     Seleziona strumento (S)
 TOOLBAR_TOOLTIP_BRUSH_COLOR     Colore Pennello
 TOOLBAR_TOOLTIP_BRUSH_SIZE      Dimensione del Pennello

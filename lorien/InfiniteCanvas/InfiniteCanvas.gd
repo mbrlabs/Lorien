@@ -10,7 +10,6 @@ const ERASER_SIZE_FACTOR = 1.25
 onready var _brush_tool: BrushTool = $BrushTool
 onready var _line_tool: LineTool = $LineTool
 onready var _selection_tool: SelectionTool = $SelectionTool
-onready var _colorpicker_tool: ColorPickerTool = $ColorPickerTool
 onready var _active_tool: CanvasTool = _brush_tool
 onready var _strokes_parent: Node2D = $Viewport/Strokes
 onready var _camera: Camera2D = $Viewport/Camera2D
@@ -41,7 +40,6 @@ func _ready():
 	
 	get_tree().get_root().connect("size_changed", self, "_on_window_resized")
 	_camera.connect("zoom_changed", $Viewport/SelectionCursor, "_on_zoom_changed")
-	_camera.connect("zoom_changed", $Viewport/ColorPickerCursor, "_on_zoom_changed")
 	_camera.connect("zoom_changed", self, "_on_zoom_changed")
 	_camera.connect("position_changed", self, "_on_camera_moved")
 	_viewport.size = OS.window_size
@@ -53,8 +51,6 @@ func _input(event: InputEvent) -> void:
 
 # -------------------------------------------------------------------------------------------------
 func _process(delta: float) -> void:
-	#print(get_strokes_in_camera_frustrum().size())
-	
 	# Deselect selected strokes with shortcut key
 	if Input.is_action_just_pressed("deselect_all_strokes"):
 		if _active_tool == _selection_tool:
@@ -84,9 +80,6 @@ func use_tool(tool_type: int) -> void:
 			_use_optimizer = false
 		Types.Tool.SELECT:
 			_active_tool = _selection_tool
-			_use_optimizer = false
-		Types.Tool.COLOR_PICKER:
-			_active_tool = _colorpicker_tool
 			_use_optimizer = false
 			
 	_active_tool.enabled = true

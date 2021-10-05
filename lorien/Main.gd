@@ -146,8 +146,6 @@ func _handle_input_actions() -> void:
 				_toolbar.enable_tool(Types.Tool.LINE)
 			elif Input.is_action_just_pressed("shortcut_eraser_tool"):
 				_toolbar.enable_tool(Types.Tool.ERASER)
-			elif Input.is_action_just_pressed("shortcut_colorpicker"):
-				_toolbar.enable_tool(Types.Tool.COLOR_PICKER)
 			elif Input.is_action_just_pressed("shortcut_select_tool"):
 				_toolbar.enable_tool(Types.Tool.SELECT)
 			elif Input.is_action_just_pressed("toggle_distraction_free_mode"):

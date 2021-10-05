@@ -6,7 +6,6 @@ enum Tool {
 	BRUSH,
 	LINE,
 	ERASER,
-	COLOR_PICKER,
 	SELECT,
 }
 

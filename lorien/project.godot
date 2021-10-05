@@ -44,16 +44,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://UI/ColorPalettePicker.gd"
 }, {
-"base": "BaseCursor",
-"class": "ColorPickerCursor",
-"language": "GDScript",
-"path": "res://InfiniteCanvas/Cursor/ColorPickerCursor/ColorPickerCursor.gd"
-}, {
-"base": "CanvasTool",
-"class": "ColorPickerTool",
-"language": "GDScript",
-"path": "res://InfiniteCanvas/Tools/ColorPickerTool.gd"
-}, {
 "base": "Reference",
 "class": "Config",
 "language": "GDScript",
@@ -167,8 +157,6 @@ _global_script_class_icons={
 "BrushTool": "",
 "CanvasTool": "res://Assets/Icons/tools.png",
 "ColorPalettePicker": "",
-"ColorPickerCursor": "",
-"ColorPickerTool": "",
 "Config": "",
 "EditPaletteDialog": "",
 "I18nParser": "",
@@ -282,11 +270,6 @@ ui_end={
 "deadzone": 0.5,
 "events": [  ]
 }
-f1={
-"deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777244,"unicode":0,"echo":false,"script":null)
- ]
-}
 shortcut_save_project={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":true,"meta":false,"command":true,"pressed":false,"scancode":83,"unicode":0,"echo":false,"script":null)
@@ -325,11 +308,6 @@ shortcut_line_tool={
 shortcut_eraser_tool={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":69,"unicode":0,"echo":false,"script":null)
- ]
-}
-shortcut_colorpicker={
-"deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":67,"unicode":0,"echo":false,"script":null)
  ]
 }
 shortcut_select_tool={

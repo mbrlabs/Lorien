@@ -37,7 +37,6 @@ onready var _grid_button: TextureButton = $Right/GridButton
 onready var _tool_btn_brush: TextureButton = $Left/BrushToolButton
 onready var _tool_btn_line: TextureButton = $Left/LineToolButton
 onready var _tool_btn_eraser: TextureButton = $Left/EraserToolButton
-onready var _tool_btn_colorpicker: TextureButton = $Left/ColorPickerToolButton
 onready var _tool_btn_selection: TextureButton = $Left/SelectionToolButton
 
 var _last_active_tool_button: TextureButton
@@ -64,7 +63,6 @@ func enable_tool(tool_type: int) -> void:
 		Types.Tool.BRUSH: btn = _tool_btn_brush
 		Types.Tool.LINE: btn = _tool_btn_line
 		Types.Tool.ERASER: btn = _tool_btn_eraser
-		Types.Tool.COLOR_PICKER: btn = _tool_btn_colorpicker
 		Types.Tool.SELECT: btn = _tool_btn_selection
 	
 	btn.toggle()
@@ -131,11 +129,6 @@ func _on_LineToolButton_pressed():
 func _on_EraserToolButton_pressed():
 	_change_active_tool_button(_tool_btn_eraser)
 	emit_signal("tool_changed", Types.Tool.ERASER)
-
-# -------------------------------------------------------------------------------------------------
-func _on_ColorPickerToolButton_pressed():
-	_change_active_tool_button(_tool_btn_colorpicker)
-	emit_signal("tool_changed", Types.Tool.COLOR_PICKER)
 
 # -------------------------------------------------------------------------------------------------
 func _on_SelectToolButton_pressed():

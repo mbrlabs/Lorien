@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://InfiniteCanvas/InfiniteCanvas.gd" type="Script" id=1]
 [ext_resource path="res://InfiniteCanvas/PanZoomCamera.gd" type="Script" id=2]
@@ -10,9 +10,7 @@
 [ext_resource path="res://InfiniteCanvas/Cursor/SelectionCursor/SelectionCursor.tscn" type="PackedScene" id=8]
 [ext_resource path="res://InfiniteCanvas/Tools/SelectionRectangle.gd" type="Script" id=9]
 [ext_resource path="res://InfiniteCanvas/Tools/selection_rectangle.shader" type="Shader" id=10]
-[ext_resource path="res://InfiniteCanvas/Cursor/ColorPickerCursor/ColorPickerCursor.tscn" type="PackedScene" id=11]
 [ext_resource path="res://InfiniteCanvas/InfiniteCanvasGrid.gd" type="Script" id=12]
-[ext_resource path="res://InfiniteCanvas/Tools/ColorPickerTool.gd" type="Script" id=13]
 [ext_resource path="res://InfiniteCanvas/zoom_curve.tres" type="Curve" id=14]
 [ext_resource path="res://InfiniteCanvas/grid.shader" type="Shader" id=15]
 
@@ -47,10 +45,6 @@ script = ExtResource( 7 )
 cursor_path = NodePath("../Viewport/SelectionCursor")
 selection_rectangle_path = NodePath("../SelectionRectangle")
 
-[node name="ColorPickerTool" type="Node" parent="."]
-script = ExtResource( 13 )
-cursor_path = NodePath("../Viewport/ColorPickerCursor")
-
 [node name="SelectionRectangle" type="Node2D" parent="."]
 material = SubResource( 1 )
 script = ExtResource( 9 )
@@ -78,5 +72,3 @@ camera_path = NodePath("../Camera2D")
 [node name="BrushCursor" parent="Viewport" instance=ExtResource( 4 )]
 
 [node name="SelectionCursor" parent="Viewport" instance=ExtResource( 8 )]
-
-[node name="ColorPickerCursor" parent="Viewport" instance=ExtResource( 11 )]
