@@ -27,11 +27,14 @@ Lorien is an **infinite canvas drawing/note-taking app that is focused on perfor
 - [Tools](docs/manuals/manual_v0.2.0.md): Freehand brush, eraser, line tool, selection tool
 - Move and delete selected brush strokes
 - Basic Export: visible canvas as PNG
-- Choose different colors for brush strokes and the canvas background via an easy to use color picker
+- Built-in and custom color palettes
 - Designed to be used with a drawing tablet (Wacom, etc.). It also supports pressure sensitivity
 - A little Surprise Mechanic™ when pressing F12
 - Runs on Windows, Linux & macOS
 - Localizations: English, German, Italian, Korean, Russian, Spanish
+
+## Download
+You can download the latest stable releases on [Github](https://github.com/mbrlabs/Lorien/releases). If you want to check out the bleeding edge main branch without building the project yourself you can also check out the [CI builds](https://github.com/mbrlabs/Lorien/actions). But make sure to backup your files and be prepared for bugs if you do that.
 
 ## More information
 - [Contributing Guide](docs/contributing.md)
