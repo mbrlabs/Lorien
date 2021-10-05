@@ -24,6 +24,7 @@ var _player_enabled := false
 # -------------------------------------------------------------------------------------------------
 func _ready():
 	# Init stuff
+	randomize()
 	OS.set_window_title("Lorien v%s" % Config.VERSION_STRING)
 	OS.min_window_size = Vector2(1920, 1080)*0.4
 	get_tree().set_auto_accept_quit(false)
@@ -444,3 +445,4 @@ func _on_NewPaletteDialog_new_palette_created(palette: Palette) -> void:
 # --------------------------------------------------------------------------------------------------
 func _on_EditPaletteDialog_palette_changed() -> void:
 	_brush_color_picker.update_palettes()
+	PaletteManager.save()

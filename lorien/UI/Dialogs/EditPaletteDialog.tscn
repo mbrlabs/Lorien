@@ -12,7 +12,6 @@ expand_margin_right = 1.0
 [sub_resource type="StyleBoxEmpty" id=1]
 
 [node name="EditPaletteDialog" type="WindowDialog"]
-visible = true
 margin_right = 495.0
 margin_bottom = 474.0
 rect_min_size = Vector2( 495, 474 )

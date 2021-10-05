@@ -1,6 +1,9 @@
 extends Node
 
 # -------------------------------------------------------------------------------------------------
+const UUID_ALPHABET := "abcdefghijklmnopqrstuvwxyz0123456789"
+
+# -------------------------------------------------------------------------------------------------
 func get_native_mouse_position_on_screen() -> Vector2:
 	return OS.window_position + get_viewport().get_mouse_position()
 
@@ -44,3 +47,12 @@ func remove_group_from_all_nodes(group: String) -> void:
 # -------------------------------------------------------------------------------------------------
 func is_valid_lorien_file(filepath: String) -> bool:
 	return filepath.ends_with(".lorien")
+
+# -------------------------------------------------------------------------------------------------
+func generate_uuid(length: int) -> String:
+	var s := ""
+	for i in length:
+		var idx: int = rand_range(0, UUID_ALPHABET.length()-1)
+		s += UUID_ALPHABET[idx]
+	return s
+
