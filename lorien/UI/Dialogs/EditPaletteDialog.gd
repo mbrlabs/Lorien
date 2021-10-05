@@ -71,3 +71,46 @@ func _on_ColorPicker_color_changed(color: Color) -> void:
 func _on_EditPaletteDialog_popup_hide() -> void:
 	if _palette_edited:
 		emit_signal("palette_changed")
+
+# -------------------------------------------------------------------------------------------------
+func _on_NameLineEdit_text_changed(new_text: String) -> void:
+	_palette_edited = true
+	_palette.name = new_text
+
+# -------------------------------------------------------------------------------------------------
+func _on_AddColorButton_pressed() -> void:
+	if _palette.colors.size() < Config.MAX_PALETTE_SIZE:
+		var new_color := Color.white
+		
+		# This adds the new color to PoolColorArray. For some reason .resize() does not work,
+		# so i have to create a completly new one.
+		var arr := []
+		for c in _palette.colors:
+			arr.append(c)
+		arr.append(new_color)
+		_palette.colors = PoolColorArray(arr)
+		
+		# Add the color button
+		var button: PaletteButton = PALETTE_BUTTON.instance()
+		_color_grid.add_child(button)
+		button.color = new_color
+		button.connect("pressed", self, "_on_platte_button_pressed", [button, _color_grid.get_child_count() - 1])
+		_on_platte_button_pressed(button, _color_grid.get_child_count() - 1)
+	
+# -------------------------------------------------------------------------------------------------
+func _on_RemoveColorButton_pressed() -> void:
+	if _palette.colors.size() > Config.MIN_PALETTE_SIZE:
+		# This removes the color to PoolColorArray. For some reason .resize() does not work,
+		# so i have to create a completly new one.
+		var arr := []
+		var index := 0
+		for c in _palette.colors:
+			if index != _active_button_index:
+				arr.append(c)
+			index += 1
+		_palette.colors = PoolColorArray(arr)
+
+		_color_grid.remove_child(_active_button)
+		_active_button_index = min(_active_button_index, _color_grid.get_child_count() - 1)
+		_active_button = _color_grid.get_child(_active_button_index)
+		_on_platte_button_pressed(_active_button, _color_grid.get_child_count() - 1)

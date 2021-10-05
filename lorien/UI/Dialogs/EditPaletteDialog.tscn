@@ -1,13 +1,21 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://UI/Themes/theme_dark.tres" type="Theme" id=1]
 [ext_resource path="res://UI/Dialogs/EditPaletteDialog.gd" type="Script" id=2]
 [ext_resource path="res://UI/Components/PaletteButton.tscn" type="PackedScene" id=3]
 
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.270588, 0.27451, 0.294118, 1 )
+expand_margin_left = 1.0
+expand_margin_right = 1.0
+
+[sub_resource type="StyleBoxEmpty" id=1]
+
 [node name="EditPaletteDialog" type="WindowDialog"]
-margin_right = 478.0
+visible = true
+margin_right = 495.0
 margin_bottom = 474.0
-rect_min_size = Vector2( 478, 474 )
+rect_min_size = Vector2( 495, 474 )
 theme = ExtResource( 1 )
 popup_exclusive = true
 window_title = "EDIT_PALETTE_DIALOG_TITLE"
@@ -30,35 +38,45 @@ __meta__ = {
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
 margin_left = 12.0
 margin_top = 12.0
-margin_right = 466.0
+margin_right = 483.0
 margin_bottom = 462.0
 custom_constants/separation = 12
 
 [node name="ColorPicker" type="ColorPicker" parent="MarginContainer/HBoxContainer"]
-margin_left = 4.0
-margin_top = 4.0
-margin_right = 309.0
-margin_bottom = 454.0
+margin_right = 305.0
+margin_bottom = 450.0
 edit_alpha = false
 presets_enabled = false
 presets_visible = false
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+[node name="VSeparator" type="VSeparator" parent="MarginContainer/HBoxContainer"]
 margin_left = 317.0
-margin_right = 454.0
+margin_right = 321.0
+margin_bottom = 450.0
+custom_styles/separator = SubResource( 2 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+margin_left = 333.0
+margin_right = 471.0
 margin_bottom = 450.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_constants/separation = 12
+custom_constants/separation = 6
 
 [node name="NameLineEdit" type="LineEdit" parent="MarginContainer/HBoxContainer/VBoxContainer"]
-margin_right = 137.0
+margin_right = 138.0
 margin_bottom = 21.0
 
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+margin_top = 27.0
+margin_right = 138.0
+margin_bottom = 31.0
+custom_styles/separator = SubResource( 1 )
+
 [node name="ColorGrid" type="GridContainer" parent="MarginContainer/HBoxContainer/VBoxContainer"]
-margin_top = 33.0
-margin_right = 137.0
-margin_bottom = 450.0
+margin_top = 37.0
+margin_right = 138.0
+margin_bottom = 388.0
 size_flags_vertical = 3
 columns = 4
 
@@ -244,5 +262,20 @@ margin_top = 175.0
 margin_right = 136.0
 margin_bottom = 206.0
 
+[node name="AddColorButton" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+margin_top = 394.0
+margin_right = 138.0
+margin_bottom = 419.0
+text = "Add Color"
+
+[node name="RemoveColorButton" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+margin_top = 425.0
+margin_right = 138.0
+margin_bottom = 450.0
+text = "Remove Color"
+
 [connection signal="popup_hide" from="." to="." method="_on_EditPaletteDialog_popup_hide"]
 [connection signal="color_changed" from="MarginContainer/HBoxContainer/ColorPicker" to="." method="_on_ColorPicker_color_changed"]
+[connection signal="text_changed" from="MarginContainer/HBoxContainer/VBoxContainer/NameLineEdit" to="." method="_on_NameLineEdit_text_changed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/AddColorButton" to="." method="_on_AddColorButton_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/RemoveColorButton" to="." method="_on_RemoveColorButton_pressed"]
