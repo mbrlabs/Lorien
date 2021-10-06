@@ -80,6 +80,7 @@ func _on_NameLineEdit_text_changed(new_text: String) -> void:
 # -------------------------------------------------------------------------------------------------
 func _on_AddColorButton_pressed() -> void:
 	if _palette.colors.size() < Config.MAX_PALETTE_SIZE:
+		_palette_edited = true
 		var new_color := Color.white
 		
 		# This adds the new color to PoolColorArray. For some reason .resize() does not work,
@@ -100,6 +101,8 @@ func _on_AddColorButton_pressed() -> void:
 # -------------------------------------------------------------------------------------------------
 func _on_RemoveColorButton_pressed() -> void:
 	if _palette.colors.size() > Config.MIN_PALETTE_SIZE:
+		_palette_edited = true
+		
 		# This removes the color to PoolColorArray. For some reason .resize() does not work,
 		# so i have to create a completly new one.
 		var arr := []

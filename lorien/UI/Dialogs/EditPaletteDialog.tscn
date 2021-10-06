@@ -4,12 +4,12 @@
 [ext_resource path="res://UI/Dialogs/EditPaletteDialog.gd" type="Script" id=2]
 [ext_resource path="res://UI/Components/PaletteButton.tscn" type="PackedScene" id=3]
 
-[sub_resource type="StyleBoxFlat" id=2]
+[sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.270588, 0.27451, 0.294118, 1 )
 expand_margin_left = 1.0
 expand_margin_right = 1.0
 
-[sub_resource type="StyleBoxEmpty" id=1]
+[sub_resource type="StyleBoxEmpty" id=2]
 
 [node name="EditPaletteDialog" type="WindowDialog"]
 margin_right = 495.0
@@ -42,8 +42,10 @@ margin_bottom = 462.0
 custom_constants/separation = 12
 
 [node name="ColorPicker" type="ColorPicker" parent="MarginContainer/HBoxContainer"]
-margin_right = 305.0
-margin_bottom = 450.0
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 309.0
+margin_bottom = 454.0
 edit_alpha = false
 presets_enabled = false
 presets_visible = false
@@ -52,7 +54,7 @@ presets_visible = false
 margin_left = 317.0
 margin_right = 321.0
 margin_bottom = 450.0
-custom_styles/separator = SubResource( 2 )
+custom_styles/separator = SubResource( 1 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
 margin_left = 333.0
@@ -70,7 +72,7 @@ margin_bottom = 21.0
 margin_top = 27.0
 margin_right = 138.0
 margin_bottom = 31.0
-custom_styles/separator = SubResource( 1 )
+custom_styles/separator = SubResource( 2 )
 
 [node name="ColorGrid" type="GridContainer" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 margin_top = 37.0

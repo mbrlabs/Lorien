@@ -1,12 +1,8 @@
 extends Node
 
 # -------------------------------------------------------------------------------------------------
-const BUILTIN_PALETTES := [
-	preload("res://Palette/default_palette.tres"), 
-]
-
+const DEAFULT_PALETTE := preload("res://Palette/default_palette.tres")
 const UUID_LENGTH := 32
-const SECTION := "palettes"
 const KEY_NAME := "name"
 const KEY_COLORS := "colors"
 
@@ -89,8 +85,8 @@ func _sort() -> void:
 
 # -------------------------------------------------------------------------------------------------
 func _load_palettes() -> bool:
-	# Built-in palettes
-	palettes.append_array(BUILTIN_PALETTES)
+	# Built-in palette
+	palettes.append(DEAFULT_PALETTE)
 	
 	# Load file
 	var file := ConfigFile.new()
@@ -106,6 +102,5 @@ func _load_palettes() -> bool:
 		palette.colors = file.get_value(uuid, KEY_COLORS)
 		if palette.colors != null && palette.name != null:
 			palettes.append(palette)
-		
-	print("Loaded palette file: %s" % Config.PALETTES_PATH)
+			
 	return true

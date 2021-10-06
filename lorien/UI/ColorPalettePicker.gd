@@ -17,7 +17,7 @@ onready var _palette_selection_button: OptionButton = $MarginContainer/VBoxConta
 onready var _color_grid: GridContainer = $MarginContainer/VBoxContainer/ColorGrid
 
 var _active_palette_button: PaletteButton
-var _active_palette_button_index := -1
+var _active_color_index := -1
 
 # -------------------------------------------------------------------------------------------------
 func _ready() -> void:
@@ -38,7 +38,17 @@ func _input(event: InputEvent) -> void:
 		hide()
 
 # -------------------------------------------------------------------------------------------------
-func update_palettes() -> void:
+func get_active_color() -> Color:
+	if _active_palette_button != null:
+		return _active_palette_button.color
+	return Color.white
+
+# -------------------------------------------------------------------------------------------------
+func get_active_color_index() -> int:
+	return _active_color_index
+
+# -------------------------------------------------------------------------------------------------
+func update_palettes(color_index: int = 0) -> void:
 	# Add palettes to the dropdown
 	_palette_selection_button.clear()
 	for palette in PaletteManager.palettes:
@@ -48,7 +58,7 @@ func update_palettes() -> void:
 	var active_palette := PaletteManager.get_active_palette()
 	_palette_selection_button.selected = PaletteManager.get_active_palette_index()
 	_create_buttons(active_palette)
-	_activate_palette_button(_color_grid.get_child(0), 0)
+	_activate_palette_button(_color_grid.get_child(color_index), color_index)
 
 # -------------------------------------------------------------------------------------------------
 func _create_buttons(palette: Palette) -> void:
@@ -71,11 +81,11 @@ func _create_buttons(palette: Palette) -> void:
 	rect_size = get_combined_minimum_size()
 	
 # -------------------------------------------------------------------------------------------------
-func _activate_palette_button(button: PaletteButton, button_index: int) -> void:
+func _activate_palette_button(button: PaletteButton, color_index: int) -> void:
 	if _active_palette_button != null:
 		_active_palette_button.selected = false
 	_active_palette_button = button
-	_active_palette_button_index = button_index
+	_active_color_index = color_index
 	_active_palette_button.selected = true
 
 # -------------------------------------------------------------------------------------------------
@@ -108,7 +118,7 @@ func _on_EditColorButton_pressed() -> void:
 	else:
 		hide()
 		var edit_popup: EditPaletteDialog = get_node(edit_palette_dialog)
-		edit_popup.setup(PaletteManager.get_active_palette(), _active_palette_button_index)
+		edit_popup.setup(PaletteManager.get_active_palette(), _active_color_index)
 		edit_popup.popup_centered()
 
 # -------------------------------------------------------------------------------------------------

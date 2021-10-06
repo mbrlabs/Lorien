@@ -444,5 +444,8 @@ func _on_NewPaletteDialog_new_palette_created(palette: Palette) -> void:
 
 # --------------------------------------------------------------------------------------------------
 func _on_EditPaletteDialog_palette_changed() -> void:
-	_brush_color_picker.update_palettes()
 	PaletteManager.save()
+	var color_index := min(_brush_color_picker.get_active_color_index(), PaletteManager.get_active_palette().colors.size()-1)
+	_brush_color_picker.update_palettes(color_index)
+	_toolbar.set_brush_color(_brush_color_picker.get_active_color())
+	_canvas.set_brush_color(_brush_color_picker.get_active_color())
