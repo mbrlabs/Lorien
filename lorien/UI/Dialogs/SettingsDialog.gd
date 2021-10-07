@@ -15,7 +15,6 @@ onready var _tab_appearance: Control = $MarginContainer/TabContainer/Appearance
 onready var _tab_rendering: Control = $MarginContainer/TabContainer/Rendering
 onready var _pressure_sensitivity: SpinBox = $MarginContainer/TabContainer/General/VBoxContainer/PressureSensitivity/PressureSensitivity
 onready var _brush_size: SpinBox = $MarginContainer/TabContainer/General/VBoxContainer/DefaultBrushSize/DefaultBrushSize
-onready var _brush_color: ColorPickerButton = $MarginContainer/TabContainer/General/VBoxContainer/DefaultBrushColor/DefaultBrushColor
 onready var _canvas_color: ColorPickerButton = $MarginContainer/TabContainer/General/VBoxContainer/DefaultCanvasColor/DefaultCanvasColor
 onready var _project_dir: LineEdit = $MarginContainer/TabContainer/General/VBoxContainer/DefaultSaveDir/DefaultSaveDir
 onready var _theme: OptionButton = $MarginContainer/TabContainer/Appearance/VBoxContainer/Theme/Theme
@@ -38,7 +37,6 @@ func _ready():
 # -------------------------------------------------------------------------------------------------
 func _set_values() -> void:
 	var brush_size = Settings.get_value(Settings.GENERAL_DEFAULT_BRUSH_SIZE, Config.DEFAULT_BRUSH_SIZE)
-	var brush_color = Settings.get_value(Settings.GENERAL_DEFAULT_BRUSH_COLOR, Config.DEFAULT_BRUSH_COLOR)
 	var canvas_color = Settings.get_value(Settings.GENERAL_DEFAULT_CANVAS_COLOR, Config.DEFAULT_CANVAS_COLOR)
 	var project_dir = Settings.get_value(Settings.GENERAL_DEFAULT_PROJECT_DIR, "")
 	var theme = Settings.get_value(Settings.APPEARANCE_THEME, Types.UITheme.DARK)
@@ -61,7 +59,6 @@ func _set_values() -> void:
 	
 	_pressure_sensitivity.value = pressure_sensitivity
 	_brush_size.value = brush_size
-	_brush_color.color = brush_color
 	_canvas_color.color = canvas_color
 	_project_dir.text = project_dir
 	_foreground_fps.value = foreground_fps
@@ -93,10 +90,6 @@ func _set_languages(current_locale: String) -> void:
 # -------------------------------------------------------------------------------------------------
 func _on_DefaultBrushSize_value_changed(value: int) -> void:
 	Settings.set_value(Settings.GENERAL_DEFAULT_BRUSH_SIZE, int(value))
-
-# -------------------------------------------------------------------------------------------------
-func _on_DefaultBrushColor_color_changed(color: Color) -> void:
-	Settings.set_value(Settings.GENERAL_DEFAULT_BRUSH_COLOR, color)
 
 # -------------------------------------------------------------------------------------------------
 func _on_DefaultCanvasColor_color_changed(color: Color) -> void:

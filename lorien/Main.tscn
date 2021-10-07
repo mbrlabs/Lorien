@@ -28,10 +28,15 @@ theme = ExtResource( 8 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_lock_": true,
-"_edit_use_anchors_": false
+"_edit_use_anchors_": false,
+"_edit_vertical_guides_": [  ]
 }
 
 [node name="InfiniteCanvas" parent="." instance=ExtResource( 2 )]
+margin_left = -3.53552
+margin_top = 0.707108
+margin_right = -3.53552
+margin_bottom = 0.707153
 
 [node name="Menubar" parent="." instance=ExtResource( 4 )]
 _main_menu_path = NodePath("../MainMenu")
@@ -72,10 +77,10 @@ __meta__ = {
 }
 
 [node name="ColorPicker" type="ColorPicker" parent="BackgroundColorPickerPopup/PanelContainer"]
-margin_left = 128.0
-margin_top = 128.0
-margin_right = 446.001
-margin_bottom = 552.0
+margin_left = 176.0
+margin_top = 176.0
+margin_right = 494.001
+margin_bottom = 600.0
 edit_alpha = false
 presets_enabled = false
 presets_visible = false
@@ -85,9 +90,9 @@ __meta__ = {
 
 [node name="BrushColorPicker" parent="." instance=ExtResource( 13 )]
 visible = false
-margin_left = 359.0
+margin_left = 329.513
 margin_top = 81.0
-margin_right = 717.0
+margin_right = 687.513
 margin_bottom = 196.0
 add_new_palette_dialog_path = NodePath("../NewPaletteDialog")
 edit_palette_dialog = NodePath("../EditPaletteDialog")
@@ -194,9 +199,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -260.0
-margin_top = -150.0
+margin_top = -125.0
 margin_right = 260.0
-margin_bottom = 150.0
+margin_bottom = 125.0
 
 [node name="GenericAlertDialog" type="AcceptDialog" parent="."]
 anchor_left = 0.5

@@ -11,8 +11,8 @@
 
 [node name="SettingsDialog" type="WindowDialog"]
 margin_right = 520.0
-margin_bottom = 300.0
-rect_min_size = Vector2( 520, 300 )
+margin_bottom = 250.0
+rect_min_size = Vector2( 520, 250 )
 theme = ExtResource( 1 )
 popup_exclusive = true
 window_title = "SETTINGS_TITLE"
@@ -36,7 +36,7 @@ __meta__ = {
 margin_left = 12.0
 margin_top = 12.0
 margin_right = 508.0
-margin_bottom = 288.0
+margin_bottom = 238.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -108,32 +108,10 @@ min_value = 1.0
 value = 12.0
 allow_greater = true
 
-[node name="DefaultBrushColor" type="HBoxContainer" parent="MarginContainer/TabContainer/General/VBoxContainer"]
+[node name="DefaultCanvasColor" type="HBoxContainer" parent="MarginContainer/TabContainer/General/VBoxContainer"]
 margin_top = 66.0
 margin_right = 496.0
 margin_bottom = 83.0
-size_flags_horizontal = 3
-
-[node name="Label" type="Label" parent="MarginContainer/TabContainer/General/VBoxContainer/DefaultBrushColor"]
-margin_right = 246.0
-margin_bottom = 17.0
-size_flags_horizontal = 3
-size_flags_vertical = 6
-text = "SETTINGS_BRUSH_COLOR"
-
-[node name="DefaultBrushColor" type="ColorPickerButton" parent="MarginContainer/TabContainer/General/VBoxContainer/DefaultBrushColor"]
-margin_left = 250.0
-margin_right = 496.0
-margin_bottom = 17.0
-size_flags_horizontal = 3
-flat = true
-color = Color( 1, 1, 1, 1 )
-edit_alpha = false
-
-[node name="DefaultCanvasColor" type="HBoxContainer" parent="MarginContainer/TabContainer/General/VBoxContainer"]
-margin_top = 87.0
-margin_right = 496.0
-margin_bottom = 104.0
 size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="MarginContainer/TabContainer/General/VBoxContainer/DefaultCanvasColor"]
@@ -158,9 +136,9 @@ color = Color( 0.12549, 0.129412, 0.141176, 1 )
 edit_alpha = false
 
 [node name="DefaultSaveDir" type="HBoxContainer" parent="MarginContainer/TabContainer/General/VBoxContainer"]
-margin_top = 108.0
+margin_top = 87.0
 margin_right = 496.0
-margin_bottom = 129.0
+margin_bottom = 108.0
 size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="MarginContainer/TabContainer/General/VBoxContainer/DefaultSaveDir"]
@@ -181,15 +159,15 @@ placeholder_text = "e.g. C:/Users/me/Lorien"
 placeholder_alpha = 0.5
 
 [node name="HSeparator4" type="HSeparator" parent="MarginContainer/TabContainer/General/VBoxContainer"]
-margin_top = 133.0
+margin_top = 112.0
 margin_right = 496.0
-margin_bottom = 157.0
+margin_bottom = 136.0
 custom_constants/separation = 24
 
 [node name="Language" type="HBoxContainer" parent="MarginContainer/TabContainer/General/VBoxContainer"]
-margin_top = 161.0
+margin_top = 140.0
 margin_right = 496.0
-margin_bottom = 186.0
+margin_bottom = 165.0
 size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="MarginContainer/TabContainer/General/VBoxContainer/Language"]
@@ -208,9 +186,9 @@ size_flags_horizontal = 3
 text = "English"
 
 [node name="HSeparator" type="HSeparator" parent="MarginContainer/TabContainer/General/VBoxContainer"]
-margin_top = 190.0
+margin_top = 169.0
 margin_right = 496.0
-margin_bottom = 202.0
+margin_bottom = 181.0
 custom_styles/separator = SubResource( 3 )
 custom_constants/separation = 12
 
@@ -416,7 +394,6 @@ align = 1
 
 [connection signal="value_changed" from="MarginContainer/TabContainer/General/VBoxContainer/PressureSensitivity/PressureSensitivity" to="." method="_on_PressureSensitivity_value_changed"]
 [connection signal="value_changed" from="MarginContainer/TabContainer/General/VBoxContainer/DefaultBrushSize/DefaultBrushSize" to="." method="_on_DefaultBrushSize_value_changed"]
-[connection signal="color_changed" from="MarginContainer/TabContainer/General/VBoxContainer/DefaultBrushColor/DefaultBrushColor" to="." method="_on_DefaultBrushColor_color_changed"]
 [connection signal="color_changed" from="MarginContainer/TabContainer/General/VBoxContainer/DefaultCanvasColor/DefaultCanvasColor" to="." method="_on_DefaultCanvasColor_color_changed"]
 [connection signal="text_changed" from="MarginContainer/TabContainer/General/VBoxContainer/DefaultSaveDir/DefaultSaveDir" to="." method="_on_DefaultSaveDir_text_changed"]
 [connection signal="item_selected" from="MarginContainer/TabContainer/General/VBoxContainer/Language/OptionButton" to="." method="_on_OptionButton_item_selected"]

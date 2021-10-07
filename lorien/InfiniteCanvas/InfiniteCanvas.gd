@@ -33,8 +33,6 @@ var _optimizer: BrushStrokeOptimizer
 func _ready():
 	_optimizer = BrushStrokeOptimizer.new()
 	_brush_size = Settings.get_value(Settings.GENERAL_DEFAULT_BRUSH_SIZE, Config.DEFAULT_BRUSH_SIZE)
-	_brush_color = Settings.get_value(Settings.GENERAL_DEFAULT_BRUSH_COLOR, Config.DEFAULT_BRUSH_COLOR)
-	_active_tool._on_brush_color_changed(_brush_color)
 	_active_tool._on_brush_size_changed(_brush_size)
 	_active_tool.enabled = false
 	
