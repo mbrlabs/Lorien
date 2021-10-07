@@ -52,7 +52,6 @@ SETTINGS_APPEARANCE             Внешний вид
 SETTINGS_RENDERING              Рендеринг
 SETTINGS_PRESSURE_SENSITIVITY   Pressure Sensitivity # TODO
 SETTINGS_BRUSH_SIZE             Размер кисти по умолчанию
-SETTINGS_BRUSH_COLOR            Цвет кисти по умолчанию
 SETTINGS_CANVAS_COLOR           Цвет холста по умолчанию
 SETTINGS_PROJECT_FOLDER         Папка проекта по умолчанию
 SETTINGS_LANGUAGE               Язык

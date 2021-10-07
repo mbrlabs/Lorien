@@ -52,7 +52,6 @@ SETTINGS_APPEARANCE             Apparence
 SETTINGS_RENDERING              Affichage
 SETTINGS_PRESSURE_SENSITIVITY   Sensibilité de la pression
 SETTINGS_BRUSH_SIZE             Épaisseur par défaut de la brosse
-SETTINGS_BRUSH_COLOR            Couleur par défaut de la brosse
 SETTINGS_CANVAS_COLOR           Couleur par défaut du canevas
 SETTINGS_PROJECT_FOLDER         Dossier par défaut du projet
 SETTINGS_LANGUAGE               Langue

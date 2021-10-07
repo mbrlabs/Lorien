@@ -52,7 +52,6 @@ SETTINGS_APPEARANCE             모양
 SETTINGS_RENDERING              렌더링
 SETTINGS_PRESSURE_SENSITIVITY   필압 민감도
 SETTINGS_BRUSH_SIZE             기본 브러쉬 크기
-SETTINGS_BRUSH_COLOR            기본 브러쉬 색깔
 SETTINGS_CANVAS_COLOR           기본 배경 색깔
 SETTINGS_PROJECT_FOLDER         기본 프로젝트 풀더
 SETTINGS_LANGUAGE               언어

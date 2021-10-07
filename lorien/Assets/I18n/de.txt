@@ -52,7 +52,6 @@ SETTINGS_APPEARANCE             Ansicht
 SETTINGS_RENDERING              Rendering
 SETTINGS_PRESSURE_SENSITIVITY   Druckempfindlichkeit
 SETTINGS_BRUSH_SIZE             Default Pinsel Größe
-SETTINGS_BRUSH_COLOR            Default Pinsel Farbe
 SETTINGS_CANVAS_COLOR           Default Canvas Farbe
 SETTINGS_PROJECT_FOLDER         Default Project Ordner
 SETTINGS_LANGUAGE               Sprache

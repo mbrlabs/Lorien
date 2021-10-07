@@ -17,7 +17,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Changed
 - Lines created with the line tool are now subdivided (more points between start and end point) so that it's easier to select them
 - Removed the color picker tool in favour of the new palette system
+- Removed the default brush color setting in favour of the new palette system
 - UI: subtle rounded corners for most elements 
+- UI: replaced some default Godot icons with custom versions
+- UI: General polish
 
 ## [0.3.0] - 2021-07-23
 
