@@ -15,6 +15,10 @@ export var toolbar_path: NodePath
 onready var _toolbar = get_node(toolbar_path)
 onready var _palette_selection_button: OptionButton = $MarginContainer/VBoxContainer/Buttons/PaletteSelectionButton
 onready var _color_grid: GridContainer = $MarginContainer/VBoxContainer/ColorGrid
+onready var _edit_button: TextureButton = $MarginContainer/VBoxContainer/Buttons/EditColorButton
+onready var _new_button: TextureButton = $MarginContainer/VBoxContainer/Buttons/AddPaletteButton
+onready var _duplicate_button: TextureButton = $MarginContainer/VBoxContainer/Buttons/DuplicatePaletteButton
+onready var _delete_button: TextureButton = $MarginContainer/VBoxContainer/Buttons/DeletePaletteButton
 
 var _active_palette_button: PaletteButton
 var _active_color_index := -1
@@ -113,9 +117,9 @@ func _on_EditColorButton_pressed() -> void:
 	var palette := PaletteManager.get_active_palette()
 	if palette.builtin:
 		# TODO: i18n
-		AlertDialog.dialog_text = "Editing built-in palettes is not possible.\nIf you want to customize this palette you can make a copy and edit that instead."
+		AlertDialog.dialog_text = tr("ALERT_EDITING_BUITIN_PALETTE")
 		AlertDialog.popup_centered()
-	else:
+	else:#
 		hide()
 		var edit_popup: EditPaletteDialog = get_node(edit_palette_dialog)
 		edit_popup.setup(PaletteManager.get_active_palette(), _active_color_index)
@@ -126,3 +130,7 @@ func _on_DuplicatePaletteButton_pressed() -> void:
 	var dialog: NewPaletteDialog = get_node(add_new_palette_dialog_path)
 	dialog.duplicate_current_palette = true
 	dialog.popup_centered()
+
+# -------------------------------------------------------------------------------------------------
+func _on_DeletePaletteButton_pressed() -> void:
+	pass # Replace with function body.

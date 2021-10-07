@@ -36,6 +36,6 @@ func _on_NewPaletteDialog_popup_hide() -> void:
 # -------------------------------------------------------------------------------------------------
 func _on_NewPaletteDialog_about_to_show() -> void:
 	if duplicate_current_palette:
-		window_title = "Duplicate Palette" # TODO: i18n
+		window_title = tr("NEW_PALETTE_DIALOG_DUPLICATE_TITLE")
 	else:
-		window_title = tr("NEW_PALETTE_DIALOG_TITLE")
+		window_title = tr("NEW_PALETTE_DIALOG_CREATE_TITLE")

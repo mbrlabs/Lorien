@@ -32,6 +32,15 @@ TOOLBAR_TOOLTIP_CANVAS_COLOR    Canvas Farbe
 TOOLBAR_TOOLTIP_GRID 			Gitter anzeigen
 
 # -----------------------------------------------------------------------------
+# Color Palette Picker
+# -----------------------------------------------------------------------------
+COLOR_PALETTE_PICKER_HINT_EDIT       Aktuelle Farbpalette editieren
+COLOR_PALETTE_PICKER_HINT_NEW        Neue Farbpalette anlegen
+COLOR_PALETTE_PICKER_HINT_DUPLICATE  Aktuelle Farbpalette duplizieren
+COLOR_PALETTE_PICKER_HINT_DELETE     Aktuelle Farbpalette permanent löschen
+
+
+# -----------------------------------------------------------------------------
 # Statusbar
 # -----------------------------------------------------------------------------
 
@@ -92,8 +101,9 @@ EXIT_DIALOG_TEXT     Willst du deine Änderungen speichern bevor Lorien geschlos
 # -----------------------------------------------------------------------------
 # New palette dialog
 # -----------------------------------------------------------------------------
-NEW_PALETTE_DIALOG_TITLE 		Neue Palette
-NEW_PALETTE_DIALOG_PLACEHOLDER 	Palette Name
+NEW_PALETTE_DIALOG_CREATE_TITLE 		Neue Farbpalette
+NEW_PALETTE_DIALOG_DUPLICATE_TITLE 		Farbpalette duplizieren
+NEW_PALETTE_DIALOG_PLACEHOLDER 			Palette Name 
 
 # -----------------------------------------------------------------------------
 # Edit palette dialog
@@ -101,10 +111,11 @@ NEW_PALETTE_DIALOG_PLACEHOLDER 	Palette Name
 EDIT_PALETTE_DIALOG_TITLE 		Palette bearbeiten
 
 # -----------------------------------------------------------------------------
-# Error messages
+# Error/Alert messages
 # -----------------------------------------------------------------------------
 ERROR_NOT_IMPLEMENTED               Nicht implementriert
 ERROR_AUTOSAVE_NOT_IMPLEMENTED      Auto-Speichern ist nicht implementriert für Datei "Untitled". Bitte manuell speichern.
+ALERT_EDITING_BUITIN_PALETTE        Built-in Paletten können nicht verändert werden. Um diese Palette zu anzupassen, mache eine Kopie und verändere diese stattdessen.
 
 # -----------------------------------------------------------------------------
 # Generic strings

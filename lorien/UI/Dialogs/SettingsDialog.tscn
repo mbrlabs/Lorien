@@ -12,7 +12,7 @@
 [node name="SettingsDialog" type="WindowDialog"]
 margin_right = 520.0
 margin_bottom = 250.0
-rect_min_size = Vector2( 520, 250 )
+rect_min_size = Vector2( 520, 270 )
 theme = ExtResource( 1 )
 popup_exclusive = true
 window_title = "SETTINGS_TITLE"
@@ -36,7 +36,7 @@ __meta__ = {
 margin_left = 12.0
 margin_top = 12.0
 margin_right = 508.0
-margin_bottom = 238.0
+margin_bottom = 258.0
 __meta__ = {
 "_edit_use_anchors_": false
 }

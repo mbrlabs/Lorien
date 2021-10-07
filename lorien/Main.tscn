@@ -17,8 +17,14 @@
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.207843, 0.211765, 0.227451, 1 )
-shadow_color = Color( 0, 0, 0, 0.313726 )
-shadow_size = 2
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+expand_margin_left = 6.0
+expand_margin_right = 6.0
+expand_margin_top = 6.0
+expand_margin_bottom = 6.0
 
 [node name="Main" type="Control"]
 anchor_right = 1.0
@@ -57,30 +63,35 @@ rect_scale = Vector2( 1, 1.00112 )
 [node name="BackgroundColorPickerPopup" type="Popup" parent="."]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -317.527
-margin_top = 77.0
-margin_right = 0.473633
-margin_bottom = 501.0
+margin_left = -305.505
+margin_top = 80.245
+margin_right = -5.50513
+margin_bottom = 483.245
 theme = ExtResource( 8 )
 __meta__ = {
 "_edit_group_": true,
-"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
 [node name="PanelContainer" type="PanelContainer" parent="BackgroundColorPickerPopup"]
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -147.0
+margin_top = -192.5
+margin_right = 143.0
+margin_bottom = 197.5
 custom_styles/panel = SubResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="ColorPicker" type="ColorPicker" parent="BackgroundColorPickerPopup/PanelContainer"]
-margin_left = 176.0
-margin_top = 176.0
-margin_right = 494.001
-margin_bottom = 600.0
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 294.0
+margin_bottom = 394.0
 edit_alpha = false
 presets_enabled = false
 presets_visible = false
@@ -194,14 +205,15 @@ margin_right = 225.0
 margin_bottom = 102.5
 
 [node name="SettingsDialog" parent="." instance=ExtResource( 10 )]
+visible = false
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -260.0
-margin_top = -125.0
+margin_top = -135.0
 margin_right = 260.0
-margin_bottom = 125.0
+margin_bottom = 135.0
 
 [node name="GenericAlertDialog" type="AcceptDialog" parent="."]
 anchor_left = 0.5

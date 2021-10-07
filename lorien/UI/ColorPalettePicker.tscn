@@ -1,7 +1,18 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://UI/Themes/theme_dark.tres" type="Theme" id=1]
 [ext_resource path="res://UI/ColorPalettePicker.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Icons/edit.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Icons/plus.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Icons/copy.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Icons/delete.png" type="Texture" id=6]
+[ext_resource path="res://UI/Components/FlatTextureButton.gd" type="Script" id=7]
+
+[sub_resource type="StyleBoxLine" id=2]
+color = Color( 0.4, 0.407843, 0.443137, 1 )
+grow_begin = -4.0
+grow_end = -4.0
+vertical = true
 
 [sub_resource type="StyleBoxEmpty" id=1]
 
@@ -42,26 +53,59 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="EditColorButton" type="Button" parent="MarginContainer/VBoxContainer/Buttons"]
+[node name="AddPaletteButton" type="TextureButton" parent="MarginContainer/VBoxContainer/Buttons"]
 margin_left = 34.0
-margin_right = 70.0
-margin_bottom = 25.0
-hint_tooltip = "Change the currently seleted color"
-text = "Edit"
+margin_top = 4.0
+margin_right = 50.0
+margin_bottom = 20.0
+hint_tooltip = "COLOR_PALETTE_PICKER_HINT_NEW"
+size_flags_vertical = 4
+texture_normal = ExtResource( 4 )
+script = ExtResource( 7 )
+hover_tint = Color( 0.662745, 0.945098, 0.87451, 1 )
+pressed_tint = Color( 0.572549, 1, 0.894118, 1 )
 
-[node name="AddPaletteButton" type="Button" parent="MarginContainer/VBoxContainer/Buttons"]
-margin_left = 78.0
-margin_right = 119.0
-margin_bottom = 25.0
-hint_tooltip = "Change the currently seleted color"
-text = "New"
+[node name="EditColorButton" type="TextureButton" parent="MarginContainer/VBoxContainer/Buttons"]
+margin_left = 58.0
+margin_top = 3.0
+margin_right = 76.0
+margin_bottom = 21.0
+hint_tooltip = "COLOR_PALETTE_PICKER_HINT_EDIT"
+size_flags_vertical = 4
+texture_normal = ExtResource( 3 )
+script = ExtResource( 7 )
+hover_tint = Color( 0.662745, 0.945098, 0.87451, 1 )
+pressed_tint = Color( 0.572549, 1, 0.894118, 1 )
 
-[node name="DuplicatePaletteButton" type="Button" parent="MarginContainer/VBoxContainer/Buttons"]
-margin_left = 127.0
-margin_right = 197.0
+[node name="DuplicatePaletteButton" type="TextureButton" parent="MarginContainer/VBoxContainer/Buttons"]
+margin_left = 84.0
+margin_top = 3.0
+margin_right = 102.0
+margin_bottom = 21.0
+hint_tooltip = "COLOR_PALETTE_PICKER_HINT_DUPLICATE"
+size_flags_vertical = 4
+texture_normal = ExtResource( 5 )
+script = ExtResource( 7 )
+hover_tint = Color( 0.662745, 0.945098, 0.87451, 1 )
+pressed_tint = Color( 0.572549, 1, 0.894118, 1 )
+
+[node name="VSeparator" type="VSeparator" parent="MarginContainer/VBoxContainer/Buttons"]
+margin_left = 110.0
+margin_right = 114.0
 margin_bottom = 25.0
-hint_tooltip = "Change the currently seleted color"
-text = "Duplicate"
+custom_styles/separator = SubResource( 2 )
+
+[node name="DeletePaletteButton" type="TextureButton" parent="MarginContainer/VBoxContainer/Buttons"]
+margin_left = 122.0
+margin_top = 3.0
+margin_right = 140.0
+margin_bottom = 21.0
+hint_tooltip = "COLOR_PALETTE_PICKER_HINT_DELETE"
+size_flags_vertical = 4
+texture_normal = ExtResource( 6 )
+script = ExtResource( 7 )
+hover_tint = Color( 1, 0.431373, 0.431373, 1 )
+pressed_tint = Color( 1, 0.266667, 0.266667, 1 )
 
 [node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer"]
 margin_top = 29.0
@@ -79,6 +123,7 @@ size_flags_vertical = 3
 columns = 10
 
 [connection signal="item_selected" from="MarginContainer/VBoxContainer/Buttons/PaletteSelectionButton" to="." method="_on_PaletteSelectionButton_item_selected"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Buttons/EditColorButton" to="." method="_on_EditColorButton_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Buttons/AddPaletteButton" to="." method="_on_AddPaletteButton_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Buttons/EditColorButton" to="." method="_on_EditColorButton_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Buttons/DuplicatePaletteButton" to="." method="_on_DuplicatePaletteButton_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Buttons/DeletePaletteButton" to="." method="_on_DeletePaletteButton_pressed"]

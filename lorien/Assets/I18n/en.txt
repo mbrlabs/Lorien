@@ -32,6 +32,14 @@ TOOLBAR_TOOLTIP_CANVAS_COLOR    Canvas Color
 TOOLBAR_TOOLTIP_GRID 			Show Grid
 
 # -----------------------------------------------------------------------------
+# Color Palette Picker
+# -----------------------------------------------------------------------------
+COLOR_PALETTE_PICKER_HINT_NEW        Create new color palette
+COLOR_PALETTE_PICKER_HINT_EDIT       Edit the current color palette
+COLOR_PALETTE_PICKER_HINT_DUPLICATE  Duplicate the current color palette
+COLOR_PALETTE_PICKER_HINT_DELETE     Delete the current color palette permanently
+
+# -----------------------------------------------------------------------------
 # Statusbar strings
 # -----------------------------------------------------------------------------
 
@@ -92,8 +100,9 @@ EXIT_DIALOG_TEXT     Do you want to save your changes before exiting Lorien?
 # -----------------------------------------------------------------------------
 # New palette dialog
 # -----------------------------------------------------------------------------
-NEW_PALETTE_DIALOG_TITLE 		New Palette
-NEW_PALETTE_DIALOG_PLACEHOLDER 	Palette name 
+NEW_PALETTE_DIALOG_CREATE_TITLE 		New Palette
+NEW_PALETTE_DIALOG_DUPLICATE_TITLE 		Duplicate Palette
+NEW_PALETTE_DIALOG_PLACEHOLDER 			Palette name 
 
 # -----------------------------------------------------------------------------
 # Edit palette dialog
@@ -101,11 +110,12 @@ NEW_PALETTE_DIALOG_PLACEHOLDER 	Palette name
 EDIT_PALETTE_DIALOG_TITLE 		Edit Palette
 
 # -----------------------------------------------------------------------------
-# Error messages
+# Error/Alert messages
 # -----------------------------------------------------------------------------
 
 ERROR_NOT_IMPLEMENTED               Not implemented yet.
 ERROR_AUTOSAVE_NOT_IMPLEMENTED      Auto-saving not yet implemented for file "Untitled". Please save it manually.
+ALERT_EDITING_BUITIN_PALETTE        Editing built-in palettes is not possible. If you want to customize this palette you can make a copy and edit that instead. # TODO
 
 # -----------------------------------------------------------------------------
 # Generic strings
