@@ -35,6 +35,7 @@ onready var _background_color_picker: ColorPicker = get_node(background_color_pi
 onready var _background_color_picker_popup: Popup = get_node(background_color_picker_path).get_parent().get_parent() # meh...
 onready var _grid_button: TextureButton = $Right/GridButton
 onready var _tool_btn_brush: TextureButton = $Left/BrushToolButton
+onready var _tool_btn_rectangle: TextureButton = $Left/RectangleToolButton
 onready var _tool_btn_line: TextureButton = $Left/LineToolButton
 onready var _tool_btn_eraser: TextureButton = $Left/EraserToolButton
 onready var _tool_btn_selection: TextureButton = $Left/SelectionToolButton
@@ -64,6 +65,7 @@ func enable_tool(tool_type: int) -> void:
 		Types.Tool.LINE: btn = _tool_btn_line
 		Types.Tool.ERASER: btn = _tool_btn_eraser
 		Types.Tool.SELECT: btn = _tool_btn_selection
+		Types.Tool.RECTANGLE: btn = _tool_btn_rectangle
 	
 	btn.toggle()
 	_change_active_tool_button(btn)
@@ -119,6 +121,11 @@ func _on_BrushSizeSlider_value_changed(value: float):
 func _on_BrushToolButton_pressed():
 	_change_active_tool_button(_tool_btn_brush)
 	emit_signal("tool_changed", Types.Tool.BRUSH)
+
+# -------------------------------------------------------------------------------------------------
+func _on_RectangleToolButton_pressed() -> void:
+	_change_active_tool_button(_tool_btn_rectangle)
+	emit_signal("tool_changed", Types.Tool.RECTANGLE)
 
 # -------------------------------------------------------------------------------------------------
 func _on_LineToolButton_pressed():

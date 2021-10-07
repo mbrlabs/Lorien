@@ -30,6 +30,7 @@ Drawing tablets are supported and recommended, but you can also just use Keyboar
 - <kbd>Ctrl</kbd> + <kbd>V</kbd>: Paste copied brush strokes
 - <kbd>Ctrl</kbd> + <kbd>D</kbd>: Duplicate selected brush strokes
 - <kbd>B</kbd>: Brush tool
+- <kbd>R</kbd>: Rectangle tool
 - <kbd>E</kbd>: Eraser tool
 - <kbd>L</kbd>: Line tool
 - <kbd>S</kbd>: Selection tool

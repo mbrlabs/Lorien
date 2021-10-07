@@ -25,6 +25,7 @@ TOOLBAR_TOOLTIP_SAVE_FILE       Guardar Archivo (CTRL+S)
 TOOLBAR_TOOLTIP_UNDO            Deshacer Acción (CTRL+Z)
 TOOLBAR_TOOLTIP_REDO            Rehacer Acción (CTRL+Y)
 TOOLBAR_TOOLTIP_BRUSH_TOOL      Herramienta de Pincel (B)
+TOOLBAR_TOOLTIP_RECTANGLE_TOOL  Rectangle Tool (R) 									# TODO
 TOOLBAR_TOOLTIP_LINE_TOOL       Herramienta de Línea (L)
 TOOLBAR_TOOLTIP_ERASER_TOOL     Borrador (E)
 TOOLBAR_TOOLTIP_SELECT_TOOL     Herramienta de Selección (S)

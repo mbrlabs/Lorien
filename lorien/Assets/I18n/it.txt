@@ -23,6 +23,7 @@ TOOLBAR_TOOLTIP_SAVE_FILE       Salva File (CTRL+S)
 TOOLBAR_TOOLTIP_UNDO            Annulla Azione (CTRL+Z)
 TOOLBAR_TOOLTIP_REDO            Ripeti Azione (CTRL+Y)
 TOOLBAR_TOOLTIP_BRUSH_TOOL      Strumento Pennello (B)
+TOOLBAR_TOOLTIP_RECTANGLE_TOOL  Rectangle Tool (R) 									# TODO
 TOOLBAR_TOOLTIP_LINE_TOOL       Strumento Linea (L)
 TOOLBAR_TOOLTIP_ERASER_TOOL     Gomma per cancellare (E)
 TOOLBAR_TOOLTIP_SELECT_TOOL     Seleziona strumento (S)
