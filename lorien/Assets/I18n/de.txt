@@ -106,6 +106,12 @@ NEW_PALETTE_DIALOG_DUPLICATE_TITLE 		Farbpalette duplizieren
 NEW_PALETTE_DIALOG_PLACEHOLDER 			Palette Name 
 
 # -----------------------------------------------------------------------------
+# Delete palette dialog
+# -----------------------------------------------------------------------------
+DELETE_PALETTE_DIALOG_TITLE 			Farbpalette löschen
+DELETE_PALETTE_DIALOG_TEXT 				Bist du sicher folgende Farbpalette permanent zu löschen:
+
+# -----------------------------------------------------------------------------
 # Edit palette dialog
 # -----------------------------------------------------------------------------
 EDIT_PALETTE_DIALOG_TITLE 		Palette bearbeiten
@@ -116,6 +122,7 @@ EDIT_PALETTE_DIALOG_TITLE 		Palette bearbeiten
 ERROR_NOT_IMPLEMENTED               Nicht implementriert
 ERROR_AUTOSAVE_NOT_IMPLEMENTED      Auto-Speichern ist nicht implementriert für Datei "Untitled". Bitte manuell speichern.
 ALERT_EDITING_BUITIN_PALETTE        Built-in Paletten können nicht verändert werden. Um diese Palette zu anzupassen, mache eine Kopie und verändere diese stattdessen.
+ALERT_DELETING_BUITIN_PALETTE       Built-in Farbpaletten können nicht gelöscht werden.
 
 # -----------------------------------------------------------------------------
 # Generic strings
@@ -124,3 +131,4 @@ ALERT_EDITING_BUITIN_PALETTE        Built-in Paletten können nicht verändert w
 SAVE            Speichern
 DISCARD         Verwerfen
 CANCEL          Abbrechen
+DELETE          Löschen

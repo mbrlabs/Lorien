@@ -51,7 +51,25 @@ func duplicate_palette(palette: Palette, new_palette_name: String) -> Palette:
 	_sort()
 	
 	return new_palette
-	
+
+# -------------------------------------------------------------------------------------------------
+func remove_palette(palette: Palette) -> bool:
+	if !palette.builtin:
+		var index := 0
+		var palette_found := false
+		for p in palettes:
+			if p == palette:
+				palette_found = true
+				break
+			index += 1
+		
+		if palette_found:
+			if index == _active_palette_index:
+				_active_palette_index = 0
+			palettes.remove(index)
+			return true
+	return false
+		
 # -------------------------------------------------------------------------------------------------
 func set_active_palette_index(index: int) -> void:
 	_active_palette_index = index

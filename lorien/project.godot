@@ -50,6 +50,11 @@ _global_script_classes=[ {
 "path": "res://Config.gd"
 }, {
 "base": "WindowDialog",
+"class": "DeletePaletteDialog",
+"language": "GDScript",
+"path": "res://UI/Dialogs/DeletePaletteDialog.gd"
+}, {
+"base": "WindowDialog",
 "class": "EditPaletteDialog",
 "language": "GDScript",
 "path": "res://UI/Dialogs/EditPaletteDialog.gd"
@@ -158,6 +163,7 @@ _global_script_class_icons={
 "CanvasTool": "res://Assets/Icons/tools.png",
 "ColorPalettePicker": "",
 "Config": "",
+"DeletePaletteDialog": "",
 "EditPaletteDialog": "",
 "I18nParser": "",
 "InfiniteCanvas": "",

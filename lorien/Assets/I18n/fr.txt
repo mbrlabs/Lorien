@@ -105,6 +105,12 @@ NEW_PALETTE_DIALOG_DUPLICATE_TITLE 		Duplicate Palette 							# TODO
 NEW_PALETTE_DIALOG_PLACEHOLDER 			Nom de la palette
 
 # -----------------------------------------------------------------------------
+# Delete palette dialog
+# -----------------------------------------------------------------------------
+DELETE_PALETTE_DIALOG_TITLE 			Delete palette 									# TODO
+DELETE_PALETTE_DIALOG_TEXT 				Are you sure you want to permanently delete:    # TODO
+
+# -----------------------------------------------------------------------------
 # Edit palette dialog
 # -----------------------------------------------------------------------------
 EDIT_PALETTE_DIALOG_TITLE 		Modifier la palette
@@ -116,6 +122,7 @@ EDIT_PALETTE_DIALOG_TITLE 		Modifier la palette
 ERROR_NOT_IMPLEMENTED               Implémentation manquante.
 ERROR_AUTOSAVE_NOT_IMPLEMENTED      La sauvegarde automatique n'existe pas encore pour les fichiers "Untitled". Veuillez enregistrer manuellement. # TODO : add an option to translate "Untitled" by "Sans nom"
 ALERT_EDITING_BUITIN_PALETTE        Editing built-in palettes is not possible. If you want to customize this palette you can make a copy and edit that instead. # TODO
+ALERT_DELETING_BUITIN_PALETTE       Deleting built-in palettes is not possible. # TODO
 
 # -----------------------------------------------------------------------------
 # Generic strings
@@ -124,3 +131,4 @@ ALERT_EDITING_BUITIN_PALETTE        Editing built-in palettes is not possible. I
 SAVE            Enregistrer
 DISCARD         Ignorer
 CANCEL          Annuler
+DELETE          Delete 			# TODO

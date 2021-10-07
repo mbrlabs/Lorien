@@ -10,6 +10,7 @@ signal color_changed(color)
 # -------------------------------------------------------------------------------------------------
 export var add_new_palette_dialog_path: NodePath
 export var edit_palette_dialog: NodePath
+export var delete_palette_dialog: NodePath
 export var toolbar_path: NodePath
 
 onready var _toolbar = get_node(toolbar_path)
@@ -116,7 +117,6 @@ func _on_AddPaletteButton_pressed() -> void:
 func _on_EditColorButton_pressed() -> void:
 	var palette := PaletteManager.get_active_palette()
 	if palette.builtin:
-		# TODO: i18n
 		AlertDialog.dialog_text = tr("ALERT_EDITING_BUITIN_PALETTE")
 		AlertDialog.popup_centered()
 	else:#
@@ -133,4 +133,9 @@ func _on_DuplicatePaletteButton_pressed() -> void:
 
 # -------------------------------------------------------------------------------------------------
 func _on_DeletePaletteButton_pressed() -> void:
-	pass # Replace with function body.
+	if PaletteManager.get_active_palette().builtin:
+		AlertDialog.dialog_text = tr("ALERT_DELETING_BUITIN_PALETTE")
+		AlertDialog.popup_centered()
+	else:
+		var dialog: DeletePaletteDialog = get_node(delete_palette_dialog)
+		dialog.popup_centered()

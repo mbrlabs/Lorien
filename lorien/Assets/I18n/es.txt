@@ -107,6 +107,12 @@ NEW_PALETTE_DIALOG_DUPLICATE_TITLE 		Duplicate Palette 							# TODO
 NEW_PALETTE_DIALOG_PLACEHOLDER 			Palette name  								# TODO
 
 # -----------------------------------------------------------------------------
+# Delete palette dialog
+# -----------------------------------------------------------------------------
+DELETE_PALETTE_DIALOG_TITLE 			Delete palette 									# TODO
+DELETE_PALETTE_DIALOG_TEXT 				Are you sure you want to permanently delete:    # TODO
+
+# -----------------------------------------------------------------------------
 # Edit palette dialog
 # -----------------------------------------------------------------------------
 EDIT_PALETTE_DIALOG_TITLE 		Edit Palette 										# TODO
@@ -117,6 +123,7 @@ EDIT_PALETTE_DIALOG_TITLE 		Edit Palette 										# TODO
 ERROR_NOT_IMPLEMENTED               Aún no ha sido implementado.
 ERROR_AUTOSAVE_NOT_IMPLEMENTED      El guardado automático aún no ha sido implementado para el archivo "Untitled". Por favor, guárdalo manualmente.
 ALERT_EDITING_BUITIN_PALETTE        Editing built-in palettes is not possible. If you want to customize this palette you can make a copy and edit that instead. # TODO
+ALERT_DELETING_BUITIN_PALETTE       Deleting built-in palettes is not possible. # TODO
 
 # -----------------------------------------------------------------------------
 # Generic strings
@@ -125,3 +132,4 @@ ALERT_EDITING_BUITIN_PALETTE        Editing built-in palettes is not possible. I
 SAVE            Guardar
 DISCARD         Descartar
 CANCEL          Cancelar
+DELETE          Delete 			# TODO

@@ -70,6 +70,7 @@ func _on_ColorPicker_color_changed(color: Color) -> void:
 # -------------------------------------------------------------------------------------------------
 func _on_EditPaletteDialog_popup_hide() -> void:
 	if _palette_edited:
+		PaletteManager.save()
 		emit_signal("palette_changed")
 
 # -------------------------------------------------------------------------------------------------

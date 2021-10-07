@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://InfiniteCanvas/InfiniteCanvas.tscn" type="PackedScene" id=2]
@@ -14,6 +14,7 @@
 [ext_resource path="res://UI/Dialogs/NewPaletteDialog.tscn" type="PackedScene" id=12]
 [ext_resource path="res://UI/ColorPalettePicker.tscn" type="PackedScene" id=13]
 [ext_resource path="res://UI/Dialogs/EditPaletteDialog.tscn" type="PackedScene" id=14]
+[ext_resource path="res://UI/Dialogs/DeletePaletteDialog.tscn" type="PackedScene" id=15]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.207843, 0.211765, 0.227451, 1 )
@@ -88,10 +89,10 @@ __meta__ = {
 }
 
 [node name="ColorPicker" type="ColorPicker" parent="BackgroundColorPickerPopup/PanelContainer"]
-margin_left = 4.0
-margin_top = 4.0
-margin_right = 294.0
-margin_bottom = 394.0
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 310.0
+margin_bottom = 410.0
 edit_alpha = false
 presets_enabled = false
 presets_visible = false
@@ -107,6 +108,7 @@ margin_right = 687.513
 margin_bottom = 196.0
 add_new_palette_dialog_path = NodePath("../NewPaletteDialog")
 edit_palette_dialog = NodePath("../EditPaletteDialog")
+delete_palette_dialog = NodePath("../DeletePaletteDialog")
 toolbar_path = NodePath("../Toolbar")
 
 [node name="MainMenu" parent="." instance=ExtResource( 5 )]
@@ -155,6 +157,17 @@ margin_left = -129.5
 margin_top = -40.0
 margin_right = 129.5
 margin_bottom = 40.0
+
+[node name="DeletePaletteDialog" parent="." instance=ExtResource( 15 )]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -150.0
+margin_top = -50.0
+margin_right = 150.0
+margin_bottom = 50.0
 
 [node name="EditPaletteDialog" parent="." instance=ExtResource( 14 )]
 anchor_left = 0.5
@@ -205,7 +218,6 @@ margin_right = 225.0
 margin_bottom = 102.5
 
 [node name="SettingsDialog" parent="." instance=ExtResource( 10 )]
-visible = false
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -235,4 +247,5 @@ __meta__ = {
 [connection signal="mouse_exited" from="InfiniteCanvas" to="." method="_on_InfiniteCanvas_mouse_exited"]
 [connection signal="color_changed" from="BrushColorPicker" to="." method="_on_BrushColorPicker_color_changed"]
 [connection signal="new_palette_created" from="NewPaletteDialog" to="." method="_on_NewPaletteDialog_new_palette_created"]
+[connection signal="palette_deleted" from="DeletePaletteDialog" to="." method="_on_DeletePaletteDialog_palette_deleted"]
 [connection signal="palette_changed" from="EditPaletteDialog" to="." method="_on_EditPaletteDialog_palette_changed"]
