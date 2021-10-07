@@ -203,7 +203,7 @@ func _is_mouse_on_ui() -> bool:
 func is_dialog_open() -> bool:
 	var open := _file_dialog.visible || _about_dialog.visible
 	open = open || (_settings_dialog.visible || _generic_alert_dialog.visible)
-	open = open || (_new_palette_dialog.visible || _edit_palette_dialog.visible || _delete_palette_dialog)
+	open = open || (_new_palette_dialog.visible || _edit_palette_dialog.visible || _delete_palette_dialog.visible)
 	return open
 
 # -------------------------------------------------------------------------------------------------
