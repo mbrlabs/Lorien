@@ -1,6 +1,6 @@
 # Lorien Manual v0.4.0
 
-Drawing tablets are supported and reccomended, but you can also just use Keyboard+Mouse. 
+Drawing tablets are supported and recommended, but you can also just use Keyboard+Mouse. 
 
 ## Basic Usage
 - Draw with the left mouse button (<kbd>LMB</kbd>) or with your drawing tablet's pen
@@ -9,7 +9,7 @@ Drawing tablets are supported and reccomended, but you can also just use Keyboar
 - You can open files by dragging them into the window or by opening it via the menu (Shortcut <kbd>CTRL</kbd> + <kbd>O</kbd>)
 
 ## Selection Tool
-- With the Selection tool you can select a number of brush stokes by dragging across the screen with your <kbd>LMB</kbd> pressed. Brush strokes which are considered inside the selection recatangle will be added to the current selection. You can add more strokes to your current selection by holding down <kbd>Shift</kbd> while dragging.
+- With the Selection tool you can select a number of brush strokes by dragging across the screen with your <kbd>LMB</kbd> pressed. Brush strokes which are considered inside the selection recatangle will be added to the current selection. You can add more strokes to your current selection by holding down <kbd>Shift</kbd> while dragging.
 - You can deselect your current selection by pressing <kbd>RMB</kbd> or <kbd>Esc</kbd>.
 - To move the selected strokes simply drag them while holding down <kbd>LMB</kbd>. If you did not move your mouse while pressing <kbd>LMB</kbd>, everything will be deselected automatically.
 - Press <kbd>Delete</kbd> to delete the current selection
@@ -32,8 +32,8 @@ Drawing tablets are supported and reccomended, but you can also just use Keyboar
 - <kbd>B</kbd>: Brush tool
 - <kbd>E</kbd>: Eraser tool
 - <kbd>L</kbd>: Line tool
-- <kbd>C</kbd>: Color picker tool
 - <kbd>S</kbd>: Selection tool
 - <kbd>Esc</kbd> or <kbd>RMB</kbd>: Deselect everything
 - <kbd>Delete</kbd>: Deletes selected brush strokes
 - <kbd>Tab</kbd>: enter/exit distraction free mode (no UI)
+- <kbd>F12</kbd>: Spwans a playable character at the mouse position who can walk on the drawn lines (easteregg)

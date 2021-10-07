@@ -34,7 +34,9 @@ Lorien is an **infinite canvas drawing/note-taking app that is focused on perfor
 - Localizations: English, German, Italian, Korean, Russian, Spanish
 
 ## Download
-You can download the latest stable releases on [Github](https://github.com/mbrlabs/Lorien/releases). If you want to check out the bleeding edge main branch without building the project yourself you can also check out the [CI builds](https://github.com/mbrlabs/Lorien/actions). But make sure to backup your files and be prepared for bugs if you do that.
+You can download the latest stable releases on [Github](https://github.com/mbrlabs/Lorien/releases). 
+
+If you want to check out the bleeding edge main branch without building the project yourself you can also check out the [CI builds](https://github.com/mbrlabs/Lorien/actions). But make sure to backup your files and be prepared for bugs if you do that.
 
 ## More information
 - [Contributing Guide](docs/contributing.md)

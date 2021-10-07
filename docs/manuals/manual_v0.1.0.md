@@ -1,6 +1,6 @@
 # Lorien Manual v0.1.0
 
-Drawing tablets are supported and reccomended, but you can also just use Keyboard+Mouse. 
+Drawing tablets are supported and recommended, but you can also just use Keyboard+Mouse. 
 
 ## Basic Usage
 - Draw with the left mouse button or with your drawing tablet's pen
