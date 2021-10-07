@@ -113,6 +113,14 @@ func remove_last_point() -> void:
 		_line2d.width_curve.remove_point(_line2d.width_curve.get_point_count() - 1)
 
 # ------------------------------------------------------------------------------------------------
+func remove_all_points() -> void:
+	if !points.empty():
+		points.clear()
+		pressures.clear()
+		_line2d.points = PoolVector2Array()
+		_line2d.width_curve.clear_points()
+
+# ------------------------------------------------------------------------------------------------
 func refresh() -> void:
 	var max_pressure := float(MAX_PRESSURE_VALUE)
 	

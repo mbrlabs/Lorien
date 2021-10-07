@@ -192,6 +192,10 @@ func remove_last_stroke_point() -> void:
 	_current_stroke.remove_last_point()
 
 # -------------------------------------------------------------------------------------------------
+func remove_all_stroke_points() -> void:
+	_current_stroke.remove_all_points()
+
+# -------------------------------------------------------------------------------------------------
 func end_stroke() -> void:
 	if _current_stroke != null:
 		var points: Array = _current_stroke.points

@@ -54,6 +54,10 @@ func remove_last_stroke_point() -> void:
 	_canvas.remove_last_stroke_point()
 
 # -------------------------------------------------------------------------------------------------
+func remove_all_stroke_points() -> void:
+	_canvas.remove_all_stroke_points()
+
+# -------------------------------------------------------------------------------------------------
 func get_current_brush_stroke() -> BrushStroke:
 	return _canvas._current_stroke
 

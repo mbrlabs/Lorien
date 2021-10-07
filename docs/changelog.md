@@ -10,6 +10,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Distraction free mode which hides the UI. Can be toggled with TAB
 - Color palettes: You can use the built-in palette or create custom palettes yourself
 - Easteregg: Pressing F12 spwans a playable character who can walk on the drawn lines
+- Rectangle tool: Easily draw rectangular shapes
 - Translations: Korean, French
 
 ### Fixed
