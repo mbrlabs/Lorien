@@ -29,7 +29,7 @@ var bottom_right_pos: Vector2
 # ------------------------------------------------------------------------------------------------
 func _ready():
 	_line2d.width_curve = Curve.new()
-	_line2d.joint_mode = Line2D.LINE_CAP_ROUND
+	_line2d.joint_mode = Line2D.LINE_JOINT_ROUND
 	
 	# Anti aliasing
 	var aa_mode: int = Settings.get_value(Settings.RENDERING_AA_MODE, Config.DEFAULT_AA_MODE)

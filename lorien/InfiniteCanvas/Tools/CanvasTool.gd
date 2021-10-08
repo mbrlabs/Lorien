@@ -3,6 +3,7 @@ extends Node
 
 # -------------------------------------------------------------------------------------------------
 const SUBDIVISION_PERCENT := 0.16
+const SUBDIVISION_THRESHHOLD := 50.0 # min length in pixels for when subdivision is required 
 
 # -------------------------------------------------------------------------------------------------
 export var cursor_path: NodePath
@@ -60,13 +61,15 @@ func remove_last_stroke_point() -> void:
 func add_subdivided_line(from: Vector2, to: Vector2, pressure: float) -> void:
 	var dist := from.distance_to(to)
 	var dir := from.direction_to(to).normalized()
-	var subdiv_length := dist * SUBDIVISION_PERCENT
-	var subdiv_count := int(dist / subdiv_length)
-	for i in subdiv_count:
-		var point: Vector2 = from + dir*subdiv_length*i
-		add_stroke_point(point, pressure)
+	var do_subdiv := dist > SUBDIVISION_THRESHHOLD
+	if do_subdiv:
+		var subdiv_length := dist * SUBDIVISION_PERCENT
+		var subdiv_count := int(dist / subdiv_length)
+		for i in subdiv_count:
+			var point: Vector2 = from + dir*subdiv_length*i
+			add_stroke_point(point, pressure)
 		
-	if subdiv_count == 0:
+	if !do_subdiv:
 		add_stroke_point(from, pressure)
 	add_stroke_point(to, pressure)
 
