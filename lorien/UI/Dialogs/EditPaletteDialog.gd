@@ -84,8 +84,7 @@ func _on_AddColorButton_pressed() -> void:
 		_palette_edited = true
 		var new_color := Color.white
 		
-		# This adds the new color to PoolColorArray. For some reason .resize() does not work,
-		# so i have to create a completly new one.
+		# Create a new color array with the new color
 		var arr := []
 		for c in _palette.colors:
 			arr.append(c)
@@ -104,8 +103,7 @@ func _on_RemoveColorButton_pressed() -> void:
 	if _palette.colors.size() > Config.MIN_PALETTE_SIZE:
 		_palette_edited = true
 		
-		# This removes the color to PoolColorArray. For some reason .resize() does not work,
-		# so i have to create a completly new one.
+		# Create a new color array with the color removed
 		var arr := []
 		var index := 0
 		for c in _palette.colors:
