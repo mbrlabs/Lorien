@@ -3,7 +3,6 @@ extends CanvasTool
 
 # -------------------------------------------------------------------------------------------------
 const SNAP_STEP := deg2rad(90.0 / 6.0) # = 15 deg
-const SUBDIVISION_LENGTH := 50.0
 
 # -------------------------------------------------------------------------------------------------
 export var pressure_curve: Curve
@@ -40,21 +39,8 @@ func _input(event: InputEvent) -> void:
 				_tail = _add_point_at_mouse_pos(0.5)
 			elif !event.pressed:
 				remove_last_stroke_point()
-				_make_final_line(0.5)
-
-# -------------------------------------------------------------------------------------------------
-func _make_final_line(pressure: float) -> void:
-	pressure = pressure_curve.interpolate(pressure)
-	var dist := _head.distance_to(_tail)
-	if dist >= 1.0:
-		var dir := _head.direction_to(_tail).normalized()
-		var subdiv_count := int(dist / SUBDIVISION_LENGTH)
-		for i in range(1, subdiv_count):
-			var point := _head + dir*SUBDIVISION_LENGTH*i
-			add_stroke_point(point, pressure)
-	
-	add_stroke_point(_tail, pressure)
-	end_stroke()
+				add_subdivided_line(_head, _tail, pressure_curve.interpolate(0.5))
+				end_stroke()
 
 # -------------------------------------------------------------------------------------------------
 func _add_point_at_mouse_pos(pressure: float) -> Vector2:

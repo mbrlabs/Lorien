@@ -2,6 +2,9 @@ class_name CanvasTool, "res://Assets/Icons/tools.png"
 extends Node
 
 # -------------------------------------------------------------------------------------------------
+const SUBDIVISION_PERCENT := 0.16
+
+# -------------------------------------------------------------------------------------------------
 export var cursor_path: NodePath
 
 var _cursor: Sprite # This is a BaseCursor. Can't type it.
@@ -52,6 +55,20 @@ func add_stroke_point(point: Vector2, pressure: float = 1.0) -> void:
 # -------------------------------------------------------------------------------------------------
 func remove_last_stroke_point() -> void:
 	_canvas.remove_last_stroke_point()
+
+# -------------------------------------------------------------------------------------------------
+func add_subdivided_line(from: Vector2, to: Vector2, pressure: float) -> void:
+	var dist := from.distance_to(to)
+	var dir := from.direction_to(to).normalized()
+	var subdiv_length := dist * SUBDIVISION_PERCENT
+	var subdiv_count := int(dist / subdiv_length)
+	for i in subdiv_count:
+		var point: Vector2 = from + dir*subdiv_length*i
+		add_stroke_point(point, pressure)
+		
+	if subdiv_count == 0:
+		add_stroke_point(from, pressure)
+	add_stroke_point(to, pressure)
 
 # -------------------------------------------------------------------------------------------------
 func remove_all_stroke_points() -> void:
