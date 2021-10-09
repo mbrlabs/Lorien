@@ -245,6 +245,7 @@ __meta__ = {
 
 [connection signal="mouse_entered" from="InfiniteCanvas" to="." method="_on_InfiniteCanvas_mouse_entered"]
 [connection signal="mouse_exited" from="InfiniteCanvas" to="." method="_on_InfiniteCanvas_mouse_exited"]
+[connection signal="closed" from="BrushColorPicker" to="." method="_on_BrushColorPicker_closed"]
 [connection signal="color_changed" from="BrushColorPicker" to="." method="_on_BrushColorPicker_color_changed"]
 [connection signal="new_palette_created" from="NewPaletteDialog" to="." method="_on_NewPaletteDialog_new_palette_created"]
 [connection signal="palette_deleted" from="DeletePaletteDialog" to="." method="_on_DeletePaletteDialog_palette_deleted"]
