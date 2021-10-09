@@ -1,13 +1,10 @@
-[gd_resource type="Theme" load_steps=32 format=2]
+[gd_resource type="Theme" load_steps=29 format=2]
 
 [ext_resource path="res://Assets/Fonts/font_big_bold.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Assets/Fonts/font_normal.tres" type="DynamicFont" id=2]
 [ext_resource path="res://Assets/Icons/close.png" type="Texture" id=3]
 [ext_resource path="res://Assets/Icons/arrow_right.png" type="Texture" id=4]
 [ext_resource path="res://Assets/Icons/slider_knob_white.png" type="Texture" id=5]
-[ext_resource path="res://Assets/Icons/color_picker.png" type="Texture" id=6]
-[ext_resource path="res://Assets/Icons/switch_off.png" type="Texture" id=7]
-[ext_resource path="res://Assets/Icons/switch_on.png" type="Texture" id=8]
 
 [sub_resource type="StyleBoxFlat" id=1]
 content_margin_left = 6.0
@@ -206,10 +203,10 @@ CheckButton/colors/font_color_pressed = Color( 1, 1, 1, 1 )
 CheckButton/constants/check_vadjust = 0
 CheckButton/constants/hseparation = 4
 CheckButton/fonts/font = null
-CheckButton/icons/off = ExtResource( 7 )
-CheckButton/icons/off_disabled = ExtResource( 7 )
-CheckButton/icons/on = ExtResource( 8 )
-CheckButton/icons/on_disabled = ExtResource( 8 )
+CheckButton/icons/off = null
+CheckButton/icons/off_disabled = null
+CheckButton/icons/on = null
+CheckButton/icons/on_disabled = null
 CheckButton/styles/disabled = null
 CheckButton/styles/focus = null
 CheckButton/styles/hover = null
@@ -226,7 +223,7 @@ ColorPicker/icons/color_hue = null
 ColorPicker/icons/color_sample = null
 ColorPicker/icons/overbright_indicator = null
 ColorPicker/icons/preset_bg = null
-ColorPicker/icons/screen_picker = ExtResource( 6 )
+ColorPicker/icons/screen_picker = null
 ColorPickerButton/colors/font_color = Color( 1, 1, 1, 1 )
 ColorPickerButton/colors/font_color_disabled = Color( 0.9, 0.9, 0.9, 0.3 )
 ColorPickerButton/colors/font_color_hover = Color( 1, 1, 1, 1 )

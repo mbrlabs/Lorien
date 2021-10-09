@@ -8,7 +8,30 @@ Drawing tablets are supported and recommended, but you can also just use Keyboar
 - Zoom with mouse wheel
 - You can open files by dragging them into the window or by opening it via the menu (Shortcut <kbd>CTRL</kbd> + <kbd>O</kbd>)
 
-## Selection Tool
+## Tools
+Lorien provides you with different tools which you can find in the toolbar. If you want to enable a tool all you have to do is click on it or use the keyboard shortcut. If you hover over the icons you can also see a short description including the keyboard shortcut.
+
+### Brush Tool
+- The brush tool is selected by default. It allows you to freely draw on the canvas with your mouse or drawing tablet. 
+- You can change the brush size with the adjuster in the toolbar
+- The brush color can be changed by clicking on the colored button in the toolbar next to the brush size adjuster 
+- It is pressure sensitve
+
+### Rectangle Tool
+- You can use the rectangle tool to create perfect (unfilled) rectagles
+- Not pressure sensitive 
+
+
+### Line Tool
+- Allows you to draw perfect lines
+- You can hold down <kbd>Shift</kbd> while using the line tool to snap the line in 15° increments 
+- Not pressure sensitve
+
+### Eraser Tool
+- Allows you to erease any brush stroke
+- Otherwise behaves like the brush tool
+
+### Selection Tool
 - With the Selection tool you can select a number of brush strokes by dragging across the screen with your <kbd>LMB</kbd> pressed. Brush strokes which are considered inside the selection recatangle will be added to the current selection. You can add more strokes to your current selection by holding down <kbd>Shift</kbd> while dragging.
 - You can deselect your current selection by pressing <kbd>RMB</kbd> or <kbd>Esc</kbd>.
 - To move the selected strokes simply drag them while holding down <kbd>LMB</kbd>. If you did not move your mouse while pressing <kbd>LMB</kbd>, everything will be deselected automatically.
@@ -17,8 +40,10 @@ Drawing tablets are supported and recommended, but you can also just use Keyboar
 - Press <kbd>CTRL</kbd> + <kbd>V</kbd> to paste the copied brush strokes
 - Press <kbd>CTRL</kbd> + <kbd>D</kbd> to duplicate the current selection
 
-## Line Tool
-- You can hold down <kbd>Shift</kbd> while using the line tool to snap the line in 15° increments 
+## Color Palettes
+- Color palettes allow you to easily switch between different pre-defined colors. To open the pallete you have to click on the colored button in the toolbar next to the brush size adjsuter.
+- You can add/edit/delete custom color palettes
+- The default color palette can't be edited or deleted. If you want to customize it you can can make a copy of it and edit that instead.
 
 ## Keyboard shortcuts
 - <kbd>Ctrl</kbd> + <kbd>S</kbd>: Saves the current file
