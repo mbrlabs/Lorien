@@ -21,6 +21,11 @@ func set_selected(s: bool) -> void:
 	_selection_texture.modulate = _get_selection_color() if selected else color
 
 # -------------------------------------------------------------------------------------------------
+func clear_hover_state() -> void:
+	if !selected:
+		_selection_texture.modulate = color
+
+# -------------------------------------------------------------------------------------------------
 func set_color(c: Color) -> void:
 	color = c
 	_color_texture.modulate = c

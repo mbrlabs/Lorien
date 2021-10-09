@@ -6,6 +6,7 @@ const PALETTE_BUTTON = preload("res://UI/Components/PaletteButton.tscn")
 
 # -------------------------------------------------------------------------------------------------
 signal color_changed(color)
+signal closed
 
 # -------------------------------------------------------------------------------------------------
 export var add_new_palette_dialog_path: NodePath
@@ -37,10 +38,10 @@ func _input(event: InputEvent) -> void:
 		should_hide = should_hide && !_palette_selection_button.get_popup().visible
 		should_hide = should_hide && !AlertDialog.visible
 		if visible && should_hide:
-			hide()
+			_close()
 	
 	if event is InputEventKey && event.pressed && event.scancode == KEY_ESCAPE:
-		hide()
+		_close()
 
 # -------------------------------------------------------------------------------------------------
 func get_active_color() -> Color:
@@ -64,6 +65,13 @@ func update_palettes(color_index: int = 0) -> void:
 	_palette_selection_button.selected = PaletteManager.get_active_palette_index()
 	_create_buttons(active_palette)
 	_activate_palette_button(_color_grid.get_child(color_index), color_index)
+
+# -------------------------------------------------------------------------------------------------
+func _close() -> void:
+	for btn in _color_grid.get_children():
+		btn.clear_hover_state()
+	hide()
+	emit_signal("closed")
 
 # -------------------------------------------------------------------------------------------------
 func _create_buttons(palette: Palette) -> void:

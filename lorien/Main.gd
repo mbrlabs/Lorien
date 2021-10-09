@@ -442,6 +442,11 @@ func _on_BrushColorPicker_color_changed(color: Color) -> void:
 	_canvas.set_brush_color(color)
 
 # --------------------------------------------------------------------------------------------------
+func _on_BrushColorPicker_closed() -> void:
+	if !_is_mouse_on_ui():
+		_canvas.enable()
+
+# --------------------------------------------------------------------------------------------------
 func _on_NewPaletteDialog_new_palette_created(palette: Palette) -> void:
 	PaletteManager.set_active_palette(palette)
 	_brush_color_picker.update_palettes()
