@@ -91,7 +91,7 @@ func _notification(what):
 
 	elif NOTIFICATION_WM_FOCUS_IN == what:
 		Engine.target_fps = Settings.get_value(Settings.RENDERING_FOREGROUND_FPS, Config.DEFAULT_FOREGROUND_FPS)
-		if !_is_mouse_on_ui() && _canvas != null:
+		if !_is_mouse_on_ui() && _canvas != null && !is_dialog_open():
 			yield(get_tree().create_timer(0.12), "timeout")
 			_canvas.enable()
 	elif NOTIFICATION_WM_FOCUS_OUT == what:

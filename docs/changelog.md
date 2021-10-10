@@ -14,6 +14,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Translations: Korean, French
 
 ### Fixed
+- Issue where Lorien the mouse cursor vanished when switching from annother proram to Lorien while a dialog was open 
 - Some UI elements were not hooked up to the localization system
 
 ### Changed
