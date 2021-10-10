@@ -108,7 +108,7 @@ func _on_platte_button_pressed(button: PaletteButton, index: int) -> void:
 
 # -------------------------------------------------------------------------------------------------
 func _on_PaletteSelectionButton_item_selected(index: int) -> void:
-	PaletteManager.set_active_palette_index(index)
+	PaletteManager.set_active_palette_by_index(index)
 	PaletteManager.save()
 	
 	var palette := PaletteManager.get_active_palette()
