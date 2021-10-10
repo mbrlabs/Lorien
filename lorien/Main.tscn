@@ -40,10 +40,6 @@ __meta__ = {
 }
 
 [node name="InfiniteCanvas" parent="." instance=ExtResource( 2 )]
-margin_left = -3.53552
-margin_top = 0.707108
-margin_right = -3.53552
-margin_bottom = 0.707153
 
 [node name="Menubar" parent="." instance=ExtResource( 4 )]
 _main_menu_path = NodePath("../MainMenu")

@@ -74,7 +74,8 @@ func enable_tool(tool_type: int) -> void:
 # -------------------------------------------------------------------------------------------------
 func set_brush_color(color: Color) -> void:
 	_color_button.get("custom_styles/normal").bg_color = color
-	var text_color := color.inverted()
+	var lum := color.r * 0.2126 + color.g * 0.7152 + color.b * 0.0722
+	var text_color := Color.black if lum > 0.4 else Color.white	
 	_color_button.set("custom_colors/font_color", text_color)
 	_color_button.set("custom_colors/font_color_hover", text_color)
 	_color_button.set("custom_colors/font_color_pressed", text_color)
