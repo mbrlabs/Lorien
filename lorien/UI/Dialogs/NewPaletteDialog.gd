@@ -35,7 +35,12 @@ func _on_NewPaletteDialog_popup_hide() -> void:
 
 # -------------------------------------------------------------------------------------------------
 func _on_NewPaletteDialog_about_to_show() -> void:
+	# Set title
 	if duplicate_current_palette:
 		window_title = tr("NEW_PALETTE_DIALOG_DUPLICATE_TITLE")
 	else:
 		window_title = tr("NEW_PALETTE_DIALOG_CREATE_TITLE")
+	
+	# Grab focus
+	yield(get_tree(), "idle_frame")
+	_line_edit.grab_focus()
