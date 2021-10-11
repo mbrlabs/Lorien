@@ -3,10 +3,8 @@ extends Camera2D
 signal zoom_changed(value)
 signal position_changed(value)
 
-# NOTE: Seems like Krita uses sqrt(2), but that feels a bit high here
-# Could be due to my mouse wheel registering twice, though
-const ZOOM_INCREMENT := 1.1
-const MIN_ZOOM_LEVEL := pow(ZOOM_INCREMENT, -20)
+const ZOOM_INCREMENT := 1.1 	# Feel free to modify (Krita uses sqrt(2))
+const MIN_ZOOM_LEVEL := 0.1
 const MAX_ZOOM_LEVEL := 100
 
 var _is_input_enabled := true
@@ -29,9 +27,11 @@ func _input(event: InputEvent) -> void:
 			
 			# Scroll wheel up/down to zoom
 			if event.button_index == BUTTON_WHEEL_DOWN:
-				_do_zoom_scroll(1)
+				if event.pressed:
+					_do_zoom_scroll(1)
 			elif event.button_index == BUTTON_WHEEL_UP:
-				_do_zoom_scroll(-1)
+				if event.pressed:
+					_do_zoom_scroll(-1)
 			
 			# MMB press to begin pan; ctrl+MMB press to begin zoom
 			if event.button_index == BUTTON_MIDDLE:
@@ -57,10 +57,6 @@ func _do_pan(pan: Vector2) -> void:
 
 # -------------------------------------------------------------------------------------------------
 func _do_zoom_scroll(step: int) -> void:
-	# NOTE: This *should* make zooming using scroll after having dragged "snap"
-	# to the nearest step, meaning we can always go back to a level of 1.0. 
-	# However, my mouse registers twice for each physical step of the wheel, 
-	# making this impossible in some cases.
 	var new_zoom = _to_nearest_zoom_step(_current_zoom_level) * pow(ZOOM_INCREMENT, step)
 	_zoom_canvas(new_zoom, get_local_mouse_position())
 
@@ -78,7 +74,7 @@ func _zoom_canvas(target_zoom: float, anchor: Vector2) -> void:
 
 	# Pan canvas to keep content fixed under the cursor
 	var zoom_center = anchor - offset
-	var ratio = 1.0 - target_zoom/_current_zoom_level
+	var ratio = 1.0 - target_zoom / _current_zoom_level
 	offset += zoom_center * ratio
 	
 	_current_zoom_level = target_zoom
@@ -89,7 +85,7 @@ func _zoom_canvas(target_zoom: float, anchor: Vector2) -> void:
 # -------------------------------------------------------------------------------------------------
 func _to_nearest_zoom_step(zoom_level: float) -> float:
 	zoom_level = clamp(zoom_level, MIN_ZOOM_LEVEL, MAX_ZOOM_LEVEL)
-	zoom_level = round(log(zoom_level)/log(ZOOM_INCREMENT))
+	zoom_level = round(log(zoom_level) / log(ZOOM_INCREMENT))
 	return pow(ZOOM_INCREMENT, zoom_level)
 
 # -------------------------------------------------------------------------------------------------
