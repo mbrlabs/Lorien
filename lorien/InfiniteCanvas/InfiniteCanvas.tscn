@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://InfiniteCanvas/InfiniteCanvas.gd" type="Script" id=1]
 [ext_resource path="res://InfiniteCanvas/PanZoomCamera.gd" type="Script" id=2]
@@ -12,7 +12,6 @@
 [ext_resource path="res://InfiniteCanvas/Tools/selection_rectangle.shader" type="Shader" id=10]
 [ext_resource path="res://InfiniteCanvas/Tools/RectangleTool.gd" type="Script" id=11]
 [ext_resource path="res://InfiniteCanvas/InfiniteCanvasGrid.gd" type="Script" id=12]
-[ext_resource path="res://InfiniteCanvas/zoom_curve.tres" type="Curve" id=14]
 [ext_resource path="res://InfiniteCanvas/grid.shader" type="Shader" id=15]
 
 [sub_resource type="ShaderMaterial" id=1]
@@ -66,7 +65,6 @@ render_target_update_mode = 3
 anchor_mode = 0
 current = true
 script = ExtResource( 2 )
-zoom_curve = ExtResource( 14 )
 
 [node name="Strokes" type="Node2D" parent="Viewport"]
 

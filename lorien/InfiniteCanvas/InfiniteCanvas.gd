@@ -142,14 +142,14 @@ func get_all_strokes() -> Array:
 # -------------------------------------------------------------------------------------------------
 func enable() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
-	_camera.enable_intput()
+	_camera.enable_input()
 	_active_tool.enabled = true
 	_is_enabled = true
 	
 # -------------------------------------------------------------------------------------------------
 func disable() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-	_camera.disable_intput()
+	_camera.disable_input()
 	_active_tool.enabled = false
 	_is_enabled = false
 

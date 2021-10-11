@@ -3,55 +3,52 @@ extends Camera2D
 signal zoom_changed(value)
 signal position_changed(value)
 
-const MAX_MOUSE_WHEEL_LEVEL := 99
-const MIN_MOUSE_WHEEL_LEVEL := -8
-const ZOOM_INCREMENT = 0.1
+const ZOOM_INCREMENT := 1.1 	# Feel free to modify (Krita uses sqrt(2))
+const MIN_ZOOM_LEVEL := 0.1
+const MAX_ZOOM_LEVEL := 100
 
-export var zoom_curve: Curve
-
-var _current_zoom_level := 1.0
-var _pan_active := false
 var _is_input_enabled := true
 
-var _mouse_wheel_counter := 0
+var _pan_active := false
+var _zoom_active := false
+
+var _current_zoom_level := 1.0
+var _start_mouse_pos := Vector2(0.0, 0.0)
 
 # -------------------------------------------------------------------------------------------------
 func set_zoom_level(zoom_level: float) -> void:
-	_mouse_wheel_counter = 0
-	
-	if !is_equal_approx(zoom_level, 1.0):
-		var wheel_direction := -1 if (zoom_level < 1.0) else 1
-		
-		while true:
-			_mouse_wheel_counter += wheel_direction
-			_current_zoom_level = 1.0 + _mouse_wheel_counter * _calc_zoom_increment()
-			
-			if wheel_direction < 0:
-				if _current_zoom_level <= zoom_level:
-					break
-			else:
-				if _current_zoom_level >= zoom_level:
-					break
-	
-	_current_zoom_level = zoom_level
+	_current_zoom_level = _to_nearest_zoom_step(zoom_level)
 	zoom = Vector2(_current_zoom_level, _current_zoom_level)
 
 # -------------------------------------------------------------------------------------------------
 func _input(event: InputEvent) -> void:
 	if _is_input_enabled:
 		if event is InputEventMouseButton:
-			if event.pressed:
-				if event.button_index == BUTTON_WHEEL_DOWN:
-					_mouse_wheel_counter += 1
-					_do_zoom()
-				elif event.button_index == BUTTON_WHEEL_UP:
-					_mouse_wheel_counter -= 1
-					_do_zoom()
+			
+			# Scroll wheel up/down to zoom
+			if event.button_index == BUTTON_WHEEL_DOWN:
+				if event.pressed:
+					_do_zoom_scroll(1)
+			elif event.button_index == BUTTON_WHEEL_UP:
+				if event.pressed:
+					_do_zoom_scroll(-1)
+			
+			# MMB press to begin pan; ctrl+MMB press to begin zoom
 			if event.button_index == BUTTON_MIDDLE:
-				_pan_active = event.is_pressed()
+				if !event.control:
+					_pan_active = event.is_pressed()
+					_zoom_active = false
+				else:
+					_zoom_active = event.is_pressed()
+					_pan_active = false
+					_start_mouse_pos = get_local_mouse_position()
+					
 		elif event is InputEventMouseMotion:
+			# MMB drag to pan; ctrl+MMB drag to zoom
 			if _pan_active:
 				_do_pan(event.relative)
+			elif _zoom_active:
+				_do_zoom_drag(event.relative.y)
 
 # -------------------------------------------------------------------------------------------------
 func _do_pan(pan: Vector2) -> void:
@@ -59,40 +56,46 @@ func _do_pan(pan: Vector2) -> void:
 	emit_signal("position_changed", offset)
 
 # -------------------------------------------------------------------------------------------------
-func _do_zoom() -> void:
-	var anchor := get_local_mouse_position()
+func _do_zoom_scroll(step: int) -> void:
+	var new_zoom = _to_nearest_zoom_step(_current_zoom_level) * pow(ZOOM_INCREMENT, step)
+	_zoom_canvas(new_zoom, get_local_mouse_position())
 
-	var old_zoom := _current_zoom_level
-	if _mouse_wheel_counter <= MIN_MOUSE_WHEEL_LEVEL:
-		_mouse_wheel_counter = MIN_MOUSE_WHEEL_LEVEL
-	elif _mouse_wheel_counter >= MAX_MOUSE_WHEEL_LEVEL:
-		_mouse_wheel_counter = MAX_MOUSE_WHEEL_LEVEL
-	_current_zoom_level = 1.0 + _mouse_wheel_counter * _calc_zoom_increment()
+# -------------------------------------------------------------------------------------------------
+func _do_zoom_drag(delta: float) -> void:
+	delta *= _current_zoom_level / 100
+	_zoom_canvas(_current_zoom_level + delta, _start_mouse_pos)
+
+# -------------------------------------------------------------------------------------------------
+func _zoom_canvas(target_zoom: float, anchor: Vector2) -> void:
+	target_zoom = clamp(target_zoom, MIN_ZOOM_LEVEL, MAX_ZOOM_LEVEL)
 	
-	if old_zoom == _current_zoom_level:
+	if target_zoom == _current_zoom_level:
 		return
-	
+
+	# Pan canvas to keep content fixed under the cursor
 	var zoom_center = anchor - offset
-	var ratio = 1.0 - _current_zoom_level/old_zoom
+	var ratio = 1.0 - target_zoom / _current_zoom_level
 	offset += zoom_center * ratio
+	
+	_current_zoom_level = target_zoom
 	
 	zoom = Vector2(_current_zoom_level, _current_zoom_level)
 	emit_signal("zoom_changed", _current_zoom_level)
 
 # -------------------------------------------------------------------------------------------------
-func _calc_zoom_increment() -> float:
-	var progress: float = _mouse_wheel_counter + abs(MIN_MOUSE_WHEEL_LEVEL)
-	progress /= (abs(MIN_MOUSE_WHEEL_LEVEL) + MAX_MOUSE_WHEEL_LEVEL)
-	return zoom_curve.interpolate(progress)
+func _to_nearest_zoom_step(zoom_level: float) -> float:
+	zoom_level = clamp(zoom_level, MIN_ZOOM_LEVEL, MAX_ZOOM_LEVEL)
+	zoom_level = round(log(zoom_level) / log(ZOOM_INCREMENT))
+	return pow(ZOOM_INCREMENT, zoom_level)
 
 # -------------------------------------------------------------------------------------------------
-func enable_intput() -> void:
+func enable_input() -> void:
 	_is_input_enabled = true
 
 # -------------------------------------------------------------------------------------------------
-func disable_intput() -> void:
-	_is_input_enabled = false
 
+func disable_input() -> void:
+	_is_input_enabled = false
 # -------------------------------------------------------------------------------------------------
 func xform(pos: Vector2) -> Vector2:
 	return (pos * zoom) + offset
