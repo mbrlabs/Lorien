@@ -4,7 +4,16 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
-## [0.4.0] - Unreleased
+## [0.5.0] - Unreleased
+
+### Added
+- Zooming with CTRL+MMB
+
+### Fixed
+
+### Changed
+
+## [0.4.0] - 2021-10-10
 
 ### Added
 - Distraction free mode which hides the UI. Can be toggled with TAB
@@ -93,7 +102,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Designed to be used with a drawing tablet (Wacom, etc.). It also supports pressure sensitivity
 - Runs on Windows, Linux & Mac
 
-[0.4.0]: https://github.com/mbrlabs/lorien/compare/v0.3.0...HEAD
+[0.5.0]: https://github.com/mbrlabs/lorien/compare/v0.4.0...HEAD
+[0.4.0]: https://github.com/mbrlabs/lorien/compare/v0.3.0...v0.4.0
 [0.3.0]: https://github.com/mbrlabs/lorien/compare/v0.2.0...v0.3.0
 [0.2.0]: https://github.com/mbrlabs/lorien/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/mbrlabs/lorien/releases/tag/v0.1.0
