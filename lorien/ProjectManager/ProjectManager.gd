@@ -109,3 +109,7 @@ func get_project_count() -> int:
 # -------------------------------------------------------------------------------------------------
 func is_active_project(project: Project) -> bool:
 	return _active_project == project
+
+# -------------------------------------------------------------------------------------------------
+func get_open_projects() -> Array:
+	return _open_projects

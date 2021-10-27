@@ -71,6 +71,12 @@ func _ready():
 	
 	# Create the default project
 	_create_active_default_project()
+	
+	# Check if the session file exists
+	var file = ConfigFile.new()
+	if file.load(Config.SESSION_PATH) == 0:
+		for i in range(0, file.get_section_keys("last").size()):
+			_on_open_project(file.get_value("last", str(i)))
 
 	# Open project passed as CLI argument
 	for arg in OS.get_cmdline_args():
@@ -87,6 +93,10 @@ func _notification(what):
 			if ProjectManager.has_unsaved_changes():
 				_exit_dialog.call_deferred("popup")
 			else:
+				var file := ConfigFile.new()
+				for i in range(0, ProjectManager.get_open_projects().size()):
+					file.set_value("last", str(i), ProjectManager.get_open_projects()[i].filepath)
+				file.save(Config.SESSION_PATH)
 				get_tree().quit()
 
 	elif NOTIFICATION_WM_FOCUS_IN == what:
