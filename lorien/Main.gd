@@ -164,6 +164,8 @@ func _handle_input_actions() -> void:
 				_toolbar.enable_tool(Types.Tool.SELECT)
 			elif Input.is_action_just_pressed("toggle_distraction_free_mode"):
 				_toggle_distraction_free_mode()
+			elif Input.is_action_just_pressed("toggle_fullscreen"):
+				_toggle_fullscreen()
 
 # -------------------------------------------------------------------------------------------------
 func _toggle_player() -> void:
@@ -177,7 +179,11 @@ func _toggle_distraction_free_mode() -> void:
 	_menubar.visible = _ui_visible
 	_statusbar.visible = _ui_visible
 	_toolbar.visible = _ui_visible
-	
+
+# -------------------------------------------------------------------------------------------------
+func _toggle_fullscreen() -> void:
+	OS.set_window_fullscreen(!OS.window_fullscreen)
+
 # -------------------------------------------------------------------------------------------------
 func _on_files_dropped(files: PoolStringArray, screen: int) -> void:
 	for file in files:
