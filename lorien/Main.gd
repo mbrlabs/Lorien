@@ -181,10 +181,6 @@ func _toggle_distraction_free_mode() -> void:
 	_toolbar.visible = _ui_visible
 
 # -------------------------------------------------------------------------------------------------
-func _toggle_fullscreen() -> void:
-	OS.set_window_fullscreen(!OS.window_fullscreen)
-
-# -------------------------------------------------------------------------------------------------
 func _on_files_dropped(files: PoolStringArray, screen: int) -> void:
 	for file in files:
 		if Utils.is_valid_lorien_file(file):
@@ -279,6 +275,11 @@ func _close_project(project_id: int) -> void:
 func _show_autosave_not_implemented_alert() -> void:
 	_generic_alert_dialog.dialog_text = tr("ERROR_AUTOSAVE_NOT_IMPLEMENTED")
 	_generic_alert_dialog.popup_centered()
+
+# -------------------------------------------------------------------------------------------------
+func _toggle_fullscreen():
+	OS.set_window_fullscreen(!OS.window_fullscreen)
+	_toolbar.set_fullscreen_toggle(OS.window_fullscreen)
 
 # -------------------------------------------------------------------------------------------------
 func _on_brush_color_changed(color: Color) -> void:
