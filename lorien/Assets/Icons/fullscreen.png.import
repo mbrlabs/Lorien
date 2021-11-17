@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/arrows_fullscreen.png-9a153672c8107b07d02aa0e7a0edb8da.stex"
+path="res://.import/fullscreen.png-ca23a29924a680b1c411d77abca7d86c.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Icons/arrows_fullscreen.png"
-dest_files=[ "res://.import/arrows_fullscreen.png-9a153672c8107b07d02aa0e7a0edb8da.stex" ]
+source_file="res://Assets/Icons/fullscreen.png"
+dest_files=[ "res://.import/fullscreen.png-ca23a29924a680b1c411d77abca7d86c.stex" ]
 
 [params]
 
