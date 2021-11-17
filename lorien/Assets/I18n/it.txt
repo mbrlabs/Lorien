@@ -31,6 +31,7 @@ TOOLBAR_TOOLTIP_BRUSH_COLOR     Colore Pennello
 TOOLBAR_TOOLTIP_BRUSH_SIZE      Dimensione del Pennello
 TOOLBAR_TOOLTIP_CANVAS_COLOR    Colore della Tela
 TOOLBAR_TOOLTIP_GRID 			Mostra Griglia							
+TOOLBAR_FULLSCREEN_TOGGLE       Commuta la modalità a schermo intero
 
 # -----------------------------------------------------------------------------
 # Color Palette Picker
