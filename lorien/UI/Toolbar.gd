@@ -34,6 +34,7 @@ onready var _brush_size_slider: HSlider = $Left/BrushSizeSlider
 onready var _background_color_picker: ColorPicker = get_node(background_color_picker_path)
 onready var _background_color_picker_popup: Popup = get_node(background_color_picker_path).get_parent().get_parent() # meh...
 onready var _grid_button: TextureButton = $Right/GridButton
+onready var _fullscreen_btn: TextureButton = $Right/FullscreenButton
 onready var _tool_btn_brush: TextureButton = $Left/BrushToolButton
 onready var _tool_btn_rectangle: TextureButton = $Left/RectangleToolButton
 onready var _tool_btn_line: TextureButton = $Left/LineToolButton
@@ -80,6 +81,10 @@ func set_brush_color(color: Color) -> void:
 	_color_button.set("custom_colors/font_color_hover", text_color)
 	_color_button.set("custom_colors/font_color_pressed", text_color)
 	_color_button.text = "#" + color.to_html(false)
+
+# -------------------------------------------------------------------------------------------------
+func set_fullscreen_toggle(pressed):
+	_fullscreen_btn.set_pressed(pressed)
 
 # -------------------------------------------------------------------------------------------------
 func _on_OpenFileButton_pressed():
@@ -150,6 +155,10 @@ func _on_BackgroundColorButton_pressed():
 # -------------------------------------------------------------------------------------------------
 func _on_GridButton_toggled(toggled: bool):
 	emit_signal("grid_enabled", toggled)
+
+# -------------------------------------------------------------------------------------------------
+func _on_FullscreenButton_toggled(button_pressed):
+	OS.set_window_fullscreen(button_pressed)
 
 # -------------------------------------------------------------------------------------------------
 func _change_active_tool_button(btn: TextureButton) -> void:

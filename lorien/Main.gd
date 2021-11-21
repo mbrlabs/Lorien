@@ -164,6 +164,8 @@ func _handle_input_actions() -> void:
 				_toolbar.enable_tool(Types.Tool.SELECT)
 			elif Input.is_action_just_pressed("toggle_distraction_free_mode"):
 				_toggle_distraction_free_mode()
+			elif Input.is_action_just_pressed("toggle_fullscreen"):
+				_toggle_fullscreen()
 
 # -------------------------------------------------------------------------------------------------
 func _toggle_player() -> void:
@@ -177,7 +179,7 @@ func _toggle_distraction_free_mode() -> void:
 	_menubar.visible = _ui_visible
 	_statusbar.visible = _ui_visible
 	_toolbar.visible = _ui_visible
-	
+
 # -------------------------------------------------------------------------------------------------
 func _on_files_dropped(files: PoolStringArray, screen: int) -> void:
 	for file in files:
@@ -273,6 +275,11 @@ func _close_project(project_id: int) -> void:
 func _show_autosave_not_implemented_alert() -> void:
 	_generic_alert_dialog.dialog_text = tr("ERROR_AUTOSAVE_NOT_IMPLEMENTED")
 	_generic_alert_dialog.popup_centered()
+
+# -------------------------------------------------------------------------------------------------
+func _toggle_fullscreen():
+	OS.set_window_fullscreen(!OS.window_fullscreen)
+	_toolbar.set_fullscreen_toggle(OS.window_fullscreen)
 
 # -------------------------------------------------------------------------------------------------
 func _on_brush_color_changed(color: Color) -> void:
