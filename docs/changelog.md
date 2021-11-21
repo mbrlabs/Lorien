@@ -8,10 +8,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Added
 - Zooming with CTRL+MMB
+- Automatically remembering and auto-opening .lorien files upon launch
+- Fullscreen support
 
 ### Fixed
 
 ### Changed
+- Updated to Godot 3.4
+- Enabled low-energy mode
 
 ## [0.4.0] - 2021-10-10
 
