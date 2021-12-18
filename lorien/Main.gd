@@ -26,8 +26,8 @@ var _player_enabled := false
 func _ready():
 	# Init stuff
 	randomize()
+	Engine.target_fps = Settings.get_value(Settings.RENDERING_FOREGROUND_FPS, Config.DEFAULT_FOREGROUND_FPS)
 	OS.set_window_title("Lorien v%s" % Config.VERSION_STRING)
-	OS.min_window_size = Vector2(1920, 1080)*0.4
 	get_tree().set_auto_accept_quit(false)
 
 	_canvas.set_background_color(Config.DEFAULT_CANVAS_COLOR)
@@ -79,9 +79,6 @@ func _ready():
 	
 	# Apply state from previous session
 	_apply_state()
-
-	# Set inital Target Fps
-	Engine.target_fps = Settings.get_value(Settings.RENDERING_FOREGROUND_FPS, Config.DEFAULT_FOREGROUND_FPS)
 
 # -------------------------------------------------------------------------------------------------
 func _notification(what):
@@ -178,9 +175,24 @@ func _save_state() -> void:
 	# Active project
 	var active_project_path := ProjectManager.get_active_project().filepath
 	StatePersistance.set_value(StatePersistance.ACTIVE_PROJECT, active_project_path)
+	
+	# Window related stuff
+	StatePersistance.set_value(StatePersistance.WINDOW_SIZE, OS.window_size)
+	StatePersistance.set_value(StatePersistance.WINDOW_MAXIMIZED, OS.window_maximized)
 
 # -------------------------------------------------------------------------------------------------
 func _apply_state() -> void:
+	# Window related stuff
+	var is_maximized: bool = StatePersistance.get_value(StatePersistance.WINDOW_MAXIMIZED, false)
+	var default_win_size := Vector2(1920, 1080)*0.4
+	var win_size: Vector2 = StatePersistance.get_value(StatePersistance.WINDOW_SIZE, default_win_size)
+	if is_maximized:
+		OS.window_maximized = true
+	else:
+		OS.window_size = win_size
+		OS.center_window()
+	yield(get_tree().create_timer(0.12), "timeout")
+	
 	# Open projects
 	var open_projects: Array = StatePersistance.get_value(StatePersistance.OPEN_PROJECTS, Array())
 	for path in open_projects:

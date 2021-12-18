@@ -3,7 +3,7 @@ extends Node
 # -------------------------------------------------------------------------------------------------
 const DEFAULT_SECTION 					:= "states"
 const WINDOW_SIZE 						:= "window_size"
-const WINDOW_FULLSCREEN 				:= "window_fullscreen"
+const WINDOW_MAXIMIZED 					:= "window_maximized"
 const OPEN_PROJECTS 					:= "open_projects"
 const ACTIVE_PROJECT 					:= "active_project"
 

@@ -10,6 +10,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Zooming with CTRL+MMB
 - Automatically remembering and auto-opening .lorien files upon launch
 - Fullscreen support
+- The window size will be saved and restored across program restarts
 
 ### Fixed
 
