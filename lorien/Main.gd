@@ -72,17 +72,14 @@ func _ready():
 	# Create the default project
 	_create_active_default_project()
 	
-	# Check if the session file exists
-	var file = ConfigFile.new()
-	if file.load(Config.SESSION_PATH) == 0:
-		for i in range(0, file.get_section_keys("last").size()):
-			_on_open_project(file.get_value("last", str(i)))
-
 	# Open project passed as CLI argument
 	for arg in OS.get_cmdline_args():
 		if Utils.is_valid_lorien_file(arg):
 			_on_open_project(arg)
-			
+	
+	# Apply state from previous session
+	_apply_state()
+
 	# Set inital Target Fps
 	Engine.target_fps = Settings.get_value(Settings.RENDERING_FOREGROUND_FPS, Config.DEFAULT_FOREGROUND_FPS)
 
@@ -93,10 +90,7 @@ func _notification(what):
 			if ProjectManager.has_unsaved_changes():
 				_exit_dialog.call_deferred("popup")
 			else:
-				var file := ConfigFile.new()
-				for i in range(0, ProjectManager.get_open_projects().size()):
-					file.set_value("last", str(i), ProjectManager.get_open_projects()[i].filepath)
-				file.save(Config.SESSION_PATH)
+				_save_state()
 				get_tree().quit()
 
 	elif NOTIFICATION_WM_FOCUS_IN == what:
@@ -172,6 +166,32 @@ func _toggle_player() -> void:
 	_player_enabled = !_player_enabled
 	_canvas.enable_colliders(_player_enabled)
 	_canvas.enable_player(_player_enabled)
+
+# -------------------------------------------------------------------------------------------------
+func _save_state() -> void:
+	# Open projects
+	var open_projects := Array()
+	for project in ProjectManager.get_open_projects():
+		open_projects.append(project.filepath)
+	StatePersistance.set_value(StatePersistance.OPEN_PROJECTS, open_projects)
+	
+	# Active project
+	var active_project_path := ProjectManager.get_active_project().filepath
+	StatePersistance.set_value(StatePersistance.ACTIVE_PROJECT, active_project_path)
+
+# -------------------------------------------------------------------------------------------------
+func _apply_state() -> void:
+	# Open projects
+	var open_projects: Array = StatePersistance.get_value(StatePersistance.OPEN_PROJECTS, Array())
+	for path in open_projects:
+		if path is String:
+			_on_open_project(path)
+			
+	# Active project
+	var active_project_path: String = StatePersistance.get_value(StatePersistance.ACTIVE_PROJECT, "")
+	var active_project := ProjectManager.get_open_project_by_filepath(active_project_path)
+	if active_project != null:
+		_make_project_active(active_project)
 
 # -------------------------------------------------------------------------------------------------
 func _toggle_distraction_free_mode() -> void:

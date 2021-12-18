@@ -210,6 +210,7 @@ ProjectManager="*res://ProjectManager/ProjectManager.gd"
 Settings="*res://Misc/Settings.gd"
 ProjectMetadata="*res://ProjectManager/ProjectMetadata.gd"
 PaletteManager="*res://Palette/PaletteManager.gd"
+StatePersistance="*res://Misc/StatePersistance.gd"
 AlertDialog="*res://UI/Dialogs/AlertDialog.tscn"
 
 [debug]
