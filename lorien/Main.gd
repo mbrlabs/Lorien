@@ -133,6 +133,7 @@ func _handle_input_actions() -> void:
 			_toggle_player()
 		
 		if !_player_enabled:
+
 			if Input.is_action_just_pressed("shortcut_new_project"):
 				_on_create_new_project()
 			elif Input.is_action_just_pressed("shortcut_open_project"):
@@ -143,6 +144,8 @@ func _handle_input_actions() -> void:
 				_on_undo_action()
 			elif Input.is_action_just_pressed("shortcut_redo"):
 				_on_redo_action()
+			elif Input.is_action_just_pressed("center_canvas_to_mouse"):
+				_canvas.center_to_mouse()
 			elif Input.is_action_just_pressed("shortcut_brush_tool"):
 				_toolbar.enable_tool(Types.Tool.BRUSH)
 			elif Input.is_action_just_pressed("shortcut_rectangle_tool"):

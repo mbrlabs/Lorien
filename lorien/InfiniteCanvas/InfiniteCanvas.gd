@@ -61,6 +61,12 @@ func _process(delta: float) -> void:
 			_delete_selected_strokes()
 
 # -------------------------------------------------------------------------------------------------
+func center_to_mouse() -> void:
+	if _active_tool != null:
+		var screen_space_cursor_pos := _viewport.get_mouse_position()
+		_camera.do_center(screen_space_cursor_pos)
+
+# -------------------------------------------------------------------------------------------------
 func use_tool(tool_type: int) -> void:
 	_active_tool.enabled = false
 	_selection_tool.deselect_all_strokes()

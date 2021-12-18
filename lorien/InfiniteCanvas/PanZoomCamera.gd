@@ -21,6 +21,13 @@ func set_zoom_level(zoom_level: float) -> void:
 	zoom = Vector2(_current_zoom_level, _current_zoom_level)
 
 # -------------------------------------------------------------------------------------------------
+func do_center(screen_space_center_point: Vector2) -> void:
+	var screen_space_center := get_viewport().size / 2
+	var delta := screen_space_center - screen_space_center_point
+	get_viewport().warp_mouse(screen_space_center)
+	_do_pan(delta)
+	
+# -------------------------------------------------------------------------------------------------
 func _input(event: InputEvent) -> void:
 	if _is_input_enabled:
 		if event is InputEventMouseButton:
@@ -96,6 +103,7 @@ func enable_input() -> void:
 
 func disable_input() -> void:
 	_is_input_enabled = false
+	
 # -------------------------------------------------------------------------------------------------
 func xform(pos: Vector2) -> Vector2:
 	return (pos * zoom) + offset
