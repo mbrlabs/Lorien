@@ -54,6 +54,7 @@ Lorien provides you with different tools which you can find in the toolbar. If y
 - <kbd>Ctrl</kbd> + <kbd>C</kbd>: Copy selected brush strokes
 - <kbd>Ctrl</kbd> + <kbd>V</kbd>: Paste copied brush strokes
 - <kbd>Ctrl</kbd> + <kbd>D</kbd>: Duplicate selected brush strokes
+- <kbd>C</kbd>: Center the canvas based on current mouse position
 - <kbd>B</kbd>: Brush tool
 - <kbd>R</kbd>: Rectangle tool
 - <kbd>E</kbd>: Eraser tool

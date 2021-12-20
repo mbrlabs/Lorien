@@ -11,6 +11,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Automatically remembering and auto-opening .lorien files upon launch
 - Fullscreen support
 - The window size will be saved and restored across program restarts
+- Center the canvas based on current mouse position (shortcut: `C`)
 
 ### Fixed
 
