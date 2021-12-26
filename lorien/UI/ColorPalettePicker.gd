@@ -67,6 +67,12 @@ func update_palettes(color_index: int = 0) -> void:
 	_activate_palette_button(_color_grid.get_child(color_index), color_index)
 
 # -------------------------------------------------------------------------------------------------
+func set_color_index(index: int) -> void:	
+	var button: PaletteButton = _color_grid.get_child(index)
+	_activate_palette_button(button, index)
+	emit_signal("color_changed", button.color)
+
+# -------------------------------------------------------------------------------------------------
 func _close() -> void:
 	for btn in _color_grid.get_children():
 		btn.clear_hover_state()

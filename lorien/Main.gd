@@ -160,6 +160,26 @@ func _handle_input_actions() -> void:
 				_toggle_distraction_free_mode()
 			elif Input.is_action_just_pressed("toggle_fullscreen"):
 				_toggle_fullscreen()
+			elif Input.is_action_just_pressed("shortcut_select_color_0"):
+				_brush_color_picker.set_color_index(0)
+			elif Input.is_action_just_pressed("shortcut_select_color_1"):
+				_brush_color_picker.set_color_index(1)
+			elif Input.is_action_just_pressed("shortcut_select_color_2"):
+				_brush_color_picker.set_color_index(2)
+			elif Input.is_action_just_pressed("shortcut_select_color_3"):
+				_brush_color_picker.set_color_index(3)
+			elif Input.is_action_just_pressed("shortcut_select_color_4"):
+				_brush_color_picker.set_color_index(4)
+			elif Input.is_action_just_pressed("shortcut_select_color_5"):
+				_brush_color_picker.set_color_index(5)
+			elif Input.is_action_just_pressed("shortcut_select_color_6"):
+				_brush_color_picker.set_color_index(6)
+			elif Input.is_action_just_pressed("shortcut_select_color_7"):
+				_brush_color_picker.set_color_index(7)
+			elif Input.is_action_just_pressed("shortcut_select_color_8"):
+				_brush_color_picker.set_color_index(8)
+			elif Input.is_action_just_pressed("shortcut_select_color_9"):
+				_brush_color_picker.set_color_index(9)
 
 # -------------------------------------------------------------------------------------------------
 func _toggle_player() -> void:
