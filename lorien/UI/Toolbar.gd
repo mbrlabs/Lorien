@@ -152,8 +152,11 @@ func _on_SelectToolButton_pressed():
 # -------------------------------------------------------------------------------------------------
 func _on_BackgroundColorButton_pressed():
 	_background_color_picker_popup.popup()
-	_background_color_picker_popup.rect_position.y = rect_size.y * 2 # Assumes Menubar and Toolbar have the same height
+	
+	# Stop popup from automatically adjusting position, Assumes Menubar and Toolbar have the same height
+	_background_color_picker_popup.rect_position.y = rect_size.y * 2
 
+# Workaround for a bug in godot: https://github.com/godotengine/godot/issues/38171
 # -------------------------------------------------------------------------------------------------
 func _on_window_resized() -> void:
 	if _background_color_picker_popup.visible:
