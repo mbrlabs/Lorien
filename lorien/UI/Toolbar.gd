@@ -46,6 +46,7 @@ var _last_active_tool_button: TextureButton
 # -------------------------------------------------------------------------------------------------
 func _ready():
 	var brush_size: int = Settings.get_value(Settings.GENERAL_DEFAULT_BRUSH_SIZE, Config.DEFAULT_BRUSH_SIZE)
+	get_tree().get_root().connect("size_changed", self, "_on_window_resized")
 	_background_color_picker.connect("color_changed", self, "_on_background_color_changed")
 	_brush_size_label.text = str(brush_size)
 	_brush_size_slider.value = brush_size
@@ -151,6 +152,12 @@ func _on_SelectToolButton_pressed():
 # -------------------------------------------------------------------------------------------------
 func _on_BackgroundColorButton_pressed():
 	_background_color_picker_popup.popup()
+	_background_color_picker_popup.rect_position.y = rect_size.y * 2 # Assumes Menubar and Toolbar have the same height
+
+# -------------------------------------------------------------------------------------------------
+func _on_window_resized() -> void:
+	if _background_color_picker_popup.visible:
+		_background_color_picker_popup.rect_position.x = rect_size.x - _background_color_picker_popup.rect_size.x
 
 # -------------------------------------------------------------------------------------------------
 func _on_GridButton_toggled(toggled: bool):

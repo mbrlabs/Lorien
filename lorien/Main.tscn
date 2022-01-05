@@ -85,8 +85,10 @@ __meta__ = {
 }
 
 [node name="ColorPicker" type="ColorPicker" parent="BackgroundColorPickerPopup/PanelContainer"]
-margin_right = 309.0
-margin_bottom = 404.0
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 313.0
+margin_bottom = 408.0
 edit_alpha = false
 presets_enabled = false
 presets_visible = false
