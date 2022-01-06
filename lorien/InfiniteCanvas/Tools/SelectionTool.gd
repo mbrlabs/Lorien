@@ -169,6 +169,11 @@ func _duplicate_stroke(stroke: BrushStroke, offset: Vector2) -> BrushStroke:
 	return dup
 
 # ------------------------------------------------------------------------------------------------
+func _modify_strokes_colors(strokes: Array, color: Color) -> void:	
+	for stroke in strokes:
+		stroke.color = color
+
+# ------------------------------------------------------------------------------------------------
 func _build_bounding_boxes() -> void:
 	_bounding_box_cache.clear()
 	for stroke in _canvas.get_all_strokes():
@@ -252,3 +257,8 @@ func is_selecting() -> bool:
 # ------------------------------------------------------------------------------------------------
 func get_selected_strokes() -> Array:
 	return get_tree().get_nodes_in_group(GROUP_SELECTED_STROKES)
+
+# ------------------------------------------------------------------------------------------------
+func _on_brush_color_changed(color: Color) -> void:
+	var strokes := get_selected_strokes()
+	_modify_strokes_colors(strokes, color)
