@@ -65,9 +65,9 @@ func _set_values() -> void:
 		Types.AAMode.TEXTURE_FILL: _aa_mode.selected = AA_TEXTURE_FILL_INDEX
 	match gui_scale_mode: 
 		Types.GUIScale.AUTO: 
-			_gui_scale_options.selected = Types.GUIScale.AUTO
+			_gui_scale_options.selected = GUI_SCALE_AUTO_INDEX
 			_gui_scale.set_editable(false)
-		Types.GUIScale.CUSTOM: _gui_scale_options.selected = Types.GUIScale.CUSTOM
+		Types.GUIScale.CUSTOM: _gui_scale_options.selected = GUI_SCALE_CUSTOM_INDEX
 		
 	_set_languages(locale)
 	_set_rounding()
@@ -198,9 +198,7 @@ func _on_GuiScaleOptions_item_selected(index: int):
 
 # -------------------------------------------------------------------------------------------------
 func _on_GuiScale_value_changed(value: float):
-	if Input.is_action_just_pressed("ui_accept"):
-		print("confirm")
-		#_gui_scale.set_pressed(false)
+	if Input.is_action_just_pressed("ui_accept") || _gui_scale._ready:
 		Settings.set_value(Settings.APPEARANCE_GUI_SCALE, value)
 		emit_signal("ui_scale_changed")
 		popup_centered()

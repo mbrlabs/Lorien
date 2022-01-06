@@ -270,8 +270,8 @@ margin_right = 121.0
 margin_bottom = 25.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-text = "Auto"
-items = [ "Auto", null, false, 0, null, "Custom", null, false, 1, null ]
+text = "SETTINGS_GUI_SCALE_AUTO"
+items = [ "SETTINGS_GUI_SCALE_AUTO", null, false, 0, null, "SETTINGS_GUI_SCALE_CUSTOM", null, false, 1, null ]
 selected = 0
 
 [node name="GuiScaleValue" type="SpinBox" parent="MarginContainer/TabContainer/Appearance/VBoxContainer/GuiScale/HBoxContainer"]
@@ -443,7 +443,6 @@ align = 1
 [connection signal="item_selected" from="MarginContainer/TabContainer/Appearance/VBoxContainer/GuiScale/HBoxContainer/GuiScaleOptions" to="." method="_on_GuiScaleOptions_item_selected"]
 [connection signal="gui_input" from="MarginContainer/TabContainer/Appearance/VBoxContainer/GuiScale/HBoxContainer/GuiScaleValue" to="MarginContainer/TabContainer/Appearance/VBoxContainer/GuiScale/HBoxContainer/GuiScaleValue" method="_on_GuiScaleValue_gui_input"]
 [connection signal="value_changed" from="MarginContainer/TabContainer/Appearance/VBoxContainer/GuiScale/HBoxContainer/GuiScaleValue" to="." method="_on_GuiScale_value_changed"]
-[connection signal="value_changed" from="MarginContainer/TabContainer/Appearance/VBoxContainer/GuiScale/HBoxContainer/GuiScaleValue" to="MarginContainer/TabContainer/Appearance/VBoxContainer/GuiScale/HBoxContainer/GuiScaleValue" method="_on_GuiScale_value_changed"]
 [connection signal="item_selected" from="MarginContainer/TabContainer/Rendering/VBoxContainer/AntiAliasing/AntiAliasing" to="." method="_on_AntiAliasing_item_selected"]
 [connection signal="item_selected" from="MarginContainer/TabContainer/Rendering/VBoxContainer/BrushRounding/OptionButton" to="." method="_on_Brush_rounding_item_selected"]
 [connection signal="value_changed" from="MarginContainer/TabContainer/Rendering/VBoxContainer/TargetFramerate/TargetFramerate" to="." method="_on_Target_Fps_Foreground_changed"]
