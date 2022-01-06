@@ -2,13 +2,13 @@ class_name InfiniteCanvasGrid
 extends Node2D
 
 # -------------------------------------------------------------------------------------------------
-const GRID_SIZE := 25.0
 const COLOR := Color.red
 
 # -------------------------------------------------------------------------------------------------
 export var camera_path: NodePath
 var _enabled: bool
 var _camera: Camera2D
+var _grid_size := Config.DEFAULT_GRID_SIZE
 
 # -------------------------------------------------------------------------------------------------
 func _ready():
@@ -37,7 +37,7 @@ func _draw() -> void:
 	var zoom = _camera.zoom.x
 	var offset = _camera.offset
 	
-	var grid_size = GRID_SIZE
+	var grid_size = _grid_size
 	if zoom > 50:
 		grid_size *= 50
 	elif zoom > 25:

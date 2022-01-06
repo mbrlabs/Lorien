@@ -41,14 +41,26 @@ __meta__ = {
 
 [node name="InfiniteCanvas" parent="." instance=ExtResource( 2 )]
 
-[node name="Menubar" parent="." instance=ExtResource( 4 )]
-_main_menu_path = NodePath("../MainMenu")
+[node name="Topbar" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 0.0759259
+custom_constants/separation = 0
+__meta__ = {
+"_edit_use_anchors_": true
+}
 
-[node name="Toolbar" parent="." instance=ExtResource( 6 )]
+[node name="Menubar" parent="Topbar" instance=ExtResource( 4 )]
+anchor_right = 0.0
+margin_right = 1920.0
+_main_menu_path = NodePath("../../MainMenu")
+
+[node name="Toolbar" parent="Topbar" instance=ExtResource( 6 )]
+anchor_right = 0.0
 margin_top = 38.0
+margin_right = 1920.0
 margin_bottom = 78.0
-file_dialog_path = NodePath("../FileDialog")
-background_color_picker_path = NodePath("../BackgroundColorPickerPopup/PanelContainer/ColorPicker")
+file_dialog_path = NodePath("../../FileDialog")
+background_color_picker_path = NodePath("../../BackgroundColorPickerPopup/PanelContainer/ColorPicker")
 
 [node name="Statusbar" parent="." instance=ExtResource( 3 )]
 anchor_top = 1.0
@@ -85,8 +97,10 @@ __meta__ = {
 }
 
 [node name="ColorPicker" type="ColorPicker" parent="BackgroundColorPickerPopup/PanelContainer"]
-margin_right = 309.0
-margin_bottom = 404.0
+margin_left = 28.0
+margin_top = 28.0
+margin_right = 337.0
+margin_bottom = 432.0
 edit_alpha = false
 presets_enabled = false
 presets_visible = false
@@ -103,7 +117,7 @@ margin_bottom = 195.5
 add_new_palette_dialog_path = NodePath("../NewPaletteDialog")
 edit_palette_dialog = NodePath("../EditPaletteDialog")
 delete_palette_dialog = NodePath("../DeletePaletteDialog")
-toolbar_path = NodePath("../Toolbar")
+toolbar_path = NodePath("../Topbar/Toolbar")
 
 [node name="MainMenu" parent="." instance=ExtResource( 5 )]
 margin_left = 1.0
@@ -125,8 +139,8 @@ theme = ExtResource( 8 )
 popup_exclusive = true
 access = 2
 filters = PoolStringArray( "*.lorien" )
-current_dir = "/Projects/Other/Lorien/lorien"
-current_path = "/Projects/Other/Lorien/lorien/"
+current_dir = "/home/gurchain/Desktop/Dev/Test/Lorien/lorien"
+current_path = "/home/gurchain/Desktop/Dev/Test/Lorien/lorien/"
 __meta__ = {
 "_edit_lock_": true
 }
@@ -185,8 +199,8 @@ margin_bottom = 216.5
 theme = ExtResource( 8 )
 popup_exclusive = true
 access = 2
-current_dir = "/Projects/Other/Lorien/lorien"
-current_path = "/Projects/Other/Lorien/lorien/"
+current_dir = "/home/gurchain/Desktop/Dev/Test/Lorien/lorien"
+current_path = "/home/gurchain/Desktop/Dev/Test/Lorien/lorien/"
 
 [node name="UnsavedChangesDialog" parent="." instance=ExtResource( 7 )]
 visible = false
