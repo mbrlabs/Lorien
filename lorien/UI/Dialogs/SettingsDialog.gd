@@ -105,9 +105,10 @@ func _set_languages(current_locale: String) -> void:
 	_language_options.selected = _language_options.get_item_index(id)
 
 #--------------------------------------------------------------------------------------------------
-func _set_GuiScale_range(scale: float):
-	_gui_scale.min_value = scale / 2
-	_gui_scale.max_value = scale + 1.5
+func _set_GuiScale_range():
+	var screen_scale: float = OS.get_screen_size().x / ProjectSettings.get_setting("display/window/size/width")
+	_gui_scale.min_value = screen_scale / 2
+	_gui_scale.max_value = screen_scale + 1.5
 
 # -------------------------------------------------------------------------------------------------
 func _on_DefaultBrushSize_value_changed(value: int) -> void:

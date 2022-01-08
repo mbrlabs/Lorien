@@ -35,9 +35,6 @@ func _ready():
 	_file_dialog.current_dir = Settings.get_value(Settings.GENERAL_DEFAULT_PROJECT_DIR, docs_folder)
 	_export_dialog.current_dir = Settings.get_value(Settings.GENERAL_DEFAULT_PROJECT_DIR, docs_folder)
 	
-	var screen_scale: float = OS.get_screen_size().x / ProjectSettings.get_setting("display/window/size/width")
-	_settings_dialog._set_GuiScale_range(screen_scale)
-	
 	# Signals
 	get_tree().connect("files_dropped", self, "_on_files_dropped")
 	
