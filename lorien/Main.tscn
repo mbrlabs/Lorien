@@ -97,10 +97,8 @@ __meta__ = {
 }
 
 [node name="ColorPicker" type="ColorPicker" parent="BackgroundColorPickerPopup/PanelContainer"]
-margin_left = 36.0
-margin_top = 36.0
-margin_right = 345.0
-margin_bottom = 440.0
+margin_right = 309.0
+margin_bottom = 404.0
 edit_alpha = false
 presets_enabled = false
 presets_visible = false
@@ -139,8 +137,8 @@ theme = ExtResource( 8 )
 popup_exclusive = true
 access = 2
 filters = PoolStringArray( "*.lorien" )
-current_dir = "/home/gurchain/Desktop/Dev/Test/Lorien/lorien"
-current_path = "/home/gurchain/Desktop/Dev/Test/Lorien/lorien/"
+current_dir = "/Projects/Other/Lorien/lorien"
+current_path = "/Project/Other/Lorien/lorien/"
 __meta__ = {
 "_edit_lock_": true
 }
@@ -199,8 +197,8 @@ margin_bottom = 216.5
 theme = ExtResource( 8 )
 popup_exclusive = true
 access = 2
-current_dir = "/home/gurchain/Desktop/Dev/Test/Lorien/lorien"
-current_path = "/home/gurchain/Desktop/Dev/Test/Lorien/lorien/"
+current_dir = "/Projects/Other/Lorien/lorien"
+current_path = "/Projects/Other/Lorien/lorien/"
 
 [node name="UnsavedChangesDialog" parent="." instance=ExtResource( 7 )]
 visible = false
