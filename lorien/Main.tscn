@@ -44,6 +44,7 @@ __meta__ = {
 [node name="Topbar" type="VBoxContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 0.0759259
+margin_bottom = -3.99998
 custom_constants/separation = 0
 __meta__ = {
 "_edit_use_anchors_": true
@@ -138,7 +139,7 @@ popup_exclusive = true
 access = 2
 filters = PoolStringArray( "*.lorien" )
 current_dir = "/Projects/Other/Lorien/lorien"
-current_path = "/Project/Other/Lorien/lorien/"
+current_path = "/Projects/Other/Lorien/lorien/"
 __meta__ = {
 "_edit_lock_": true
 }
