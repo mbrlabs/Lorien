@@ -529,7 +529,7 @@ func _on_scale_changed() -> void:
 	var auto_scale = Settings.get_value(Settings.APPEARANCE_GUI_SCALE_MODE, Config.DEFAULT_GUI_SCALE_MODE)
 	var scale
 	match auto_scale:
-		Types.GUIScale.AUTO: scale = OS.get_screen_size().x / ProjectSettings.get_setting("display/window/size/width")
+		Types.GUIScale.AUTO:   scale = OS.get_screen_size().x / ProjectSettings.get_setting("display/window/size/width")
 		Types.GUIScale.CUSTOM: scale = Settings.get_value(Settings.APPEARANCE_GUI_SCALE, Config.DEFAULT_GUI_SCALE)
 
 	# Canvas has to be set first to make it the correct scale on startup

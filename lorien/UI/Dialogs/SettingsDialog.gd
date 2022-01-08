@@ -71,6 +71,7 @@ func _set_values() -> void:
 		
 	_set_languages(locale)
 	_set_rounding()
+	_set_GuiScale_range()
 	
 	_pressure_sensitivity.value = pressure_sensitivity
 	_brush_size.value = brush_size
