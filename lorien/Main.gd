@@ -526,11 +526,11 @@ func _on_DeletePaletteDialog_palette_deleted() -> void:
 
 # --------------------------------------------------------------------------------------------------
 func _on_scale_changed() -> void:
-	var auto_scale = Settings.get_value(Settings.APPEARANCE_GUI_SCALE_MODE, Config.DEFAULT_GUI_SCALE_MODE)
+	var auto_scale = Settings.get_value(Settings.APPEARANCE_UI_SCALE_MODE, Config.DEFAULT_UI_SCALE_MODE)
 	var scale
 	match auto_scale:
-		Types.GUIScale.AUTO:   scale = OS.get_screen_size().x / ProjectSettings.get_setting("display/window/size/width")
-		Types.GUIScale.CUSTOM: scale = Settings.get_value(Settings.APPEARANCE_GUI_SCALE, Config.DEFAULT_GUI_SCALE)
+		Types.UIScale.AUTO:   scale = OS.get_screen_size().x / ProjectSettings.get_setting("display/window/size/width")
+		Types.UIScale.CUSTOM: scale = Settings.get_value(Settings.APPEARANCE_UI_SCALE, Config.DEFAULT_UI_SCALE)
 
 	# Canvas has to be set first to make it the correct scale on startup
 	_canvas._set_scale(scale)

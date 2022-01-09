@@ -1,5 +1,5 @@
 # Delays changing value until spinbox dragging has stopped
-# Necessary to not lose cursor when changing gui scale
+# Necessary to not lose cursor when changing ui scale
 extends SpinBox
 
 # -------------------------------------------------------------------------------------------------
@@ -7,7 +7,7 @@ var _pressed := false
 var _ready   := false 
 
 # -------------------------------------------------------------------------------------------------
-func _on_GuiScaleValue_gui_input(event: InputEvent):
+func _on_UIScale_gui_input(event: InputEvent):
 	if !event is InputEventMouseButton:
 		return
 	elif event.is_pressed():

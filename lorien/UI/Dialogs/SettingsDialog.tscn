@@ -245,36 +245,36 @@ text = "Dark"
 items = [ "Dark", null, false, 0, null, "Light (not implemented yet)", null, false, 1, null ]
 selected = 0
 
-[node name="GuiScale" type="HBoxContainer" parent="MarginContainer/TabContainer/Appearance/VBoxContainer"]
+[node name="UIScale" type="HBoxContainer" parent="MarginContainer/TabContainer/Appearance/VBoxContainer"]
 margin_top = 45.0
 margin_right = 496.0
 margin_bottom = 70.0
 
-[node name="Label" type="Label" parent="MarginContainer/TabContainer/Appearance/VBoxContainer/GuiScale"]
+[node name="Label" type="Label" parent="MarginContainer/TabContainer/Appearance/VBoxContainer/UIScale"]
 margin_top = 4.0
 margin_right = 246.0
 margin_bottom = 21.0
 size_flags_horizontal = 3
 size_flags_vertical = 6
-text = "SETTINGS_GUI_SCALE"
+text = "SETTINGS_UI_SCALE"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/TabContainer/Appearance/VBoxContainer/GuiScale"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/TabContainer/Appearance/VBoxContainer/UIScale"]
 margin_left = 250.0
 margin_right = 496.0
 margin_bottom = 25.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="GuiScaleOptions" type="OptionButton" parent="MarginContainer/TabContainer/Appearance/VBoxContainer/GuiScale/HBoxContainer"]
+[node name="UIScaleOptions" type="OptionButton" parent="MarginContainer/TabContainer/Appearance/VBoxContainer/UIScale/HBoxContainer"]
 margin_right = 121.0
 margin_bottom = 25.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-text = "SETTINGS_GUI_SCALE_AUTO"
-items = [ "SETTINGS_GUI_SCALE_AUTO", null, false, 0, null, "SETTINGS_GUI_SCALE_CUSTOM", null, false, 1, null ]
+text = "SETTINGS_UI_SCALE_AUTO"
+items = [ "SETTINGS_UI_SCALE_AUTO", null, false, 0, null, "SETTINGS_UI_SCALE_CUSTOM", null, false, 1, null ]
 selected = 0
 
-[node name="GuiScaleValue" type="SpinBox" parent="MarginContainer/TabContainer/Appearance/VBoxContainer/GuiScale/HBoxContainer"]
+[node name="UIScale" type="SpinBox" parent="MarginContainer/TabContainer/Appearance/VBoxContainer/UIScale/HBoxContainer"]
 margin_left = 125.0
 margin_right = 246.0
 margin_bottom = 25.0
@@ -440,9 +440,9 @@ align = 1
 [connection signal="text_changed" from="MarginContainer/TabContainer/General/VBoxContainer/DefaultSaveDir/DefaultSaveDir" to="." method="_on_DefaultSaveDir_text_changed"]
 [connection signal="item_selected" from="MarginContainer/TabContainer/General/VBoxContainer/Language/OptionButton" to="." method="_on_OptionButton_item_selected"]
 [connection signal="item_selected" from="MarginContainer/TabContainer/Appearance/VBoxContainer/Theme/Theme" to="." method="_on_Theme_item_selected"]
-[connection signal="item_selected" from="MarginContainer/TabContainer/Appearance/VBoxContainer/GuiScale/HBoxContainer/GuiScaleOptions" to="." method="_on_GuiScaleOptions_item_selected"]
-[connection signal="gui_input" from="MarginContainer/TabContainer/Appearance/VBoxContainer/GuiScale/HBoxContainer/GuiScaleValue" to="MarginContainer/TabContainer/Appearance/VBoxContainer/GuiScale/HBoxContainer/GuiScaleValue" method="_on_GuiScaleValue_gui_input"]
-[connection signal="value_changed" from="MarginContainer/TabContainer/Appearance/VBoxContainer/GuiScale/HBoxContainer/GuiScaleValue" to="." method="_on_GuiScale_value_changed"]
+[connection signal="item_selected" from="MarginContainer/TabContainer/Appearance/VBoxContainer/UIScale/HBoxContainer/UIScaleOptions" to="." method="_on_UIScaleOptions_item_selected"]
+[connection signal="gui_input" from="MarginContainer/TabContainer/Appearance/VBoxContainer/UIScale/HBoxContainer/UIScale" to="MarginContainer/TabContainer/Appearance/VBoxContainer/UIScale/HBoxContainer/UIScale" method="_on_UIScale_gui_input"]
+[connection signal="value_changed" from="MarginContainer/TabContainer/Appearance/VBoxContainer/UIScale/HBoxContainer/UIScale" to="." method="_on_UIScale_value_changed"]
 [connection signal="item_selected" from="MarginContainer/TabContainer/Rendering/VBoxContainer/AntiAliasing/AntiAliasing" to="." method="_on_AntiAliasing_item_selected"]
 [connection signal="item_selected" from="MarginContainer/TabContainer/Rendering/VBoxContainer/BrushRounding/OptionButton" to="." method="_on_Brush_rounding_item_selected"]
 [connection signal="value_changed" from="MarginContainer/TabContainer/Rendering/VBoxContainer/TargetFramerate/TargetFramerate" to="." method="_on_Target_Fps_Foreground_changed"]

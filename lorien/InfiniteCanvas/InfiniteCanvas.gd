@@ -29,7 +29,7 @@ var _player: Player = null
 var _player_enabled := false
 var _colliders_enabled := false
 var _optimizer: BrushStrokeOptimizer
-var _scale := Config.DEFAULT_GUI_SCALE
+var _scale := Config.DEFAULT_UI_SCALE
 
 # -------------------------------------------------------------------------------------------------
 func _ready():

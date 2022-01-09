@@ -35,7 +35,7 @@ enum BrushRoundingType {
 }
 
 # -------------------------------------------------------------------------------------------------
-enum GUIScale {
+enum UIScale {
 	AUTO,
 	CUSTOM
 }
