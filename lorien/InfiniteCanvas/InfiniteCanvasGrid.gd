@@ -32,6 +32,11 @@ func set_canvas_color(c: Color) -> void:
 	material.set_shader_param("canvas_color", c)
 
 # -------------------------------------------------------------------------------------------------
+func set_grid_scale(size: float):
+	_grid_size = Config.DEFAULT_GRID_SIZE * size
+	update()
+
+# -------------------------------------------------------------------------------------------------
 func _draw() -> void:
 	var size = get_viewport().size  * _camera.zoom
 	var zoom = _camera.zoom.x

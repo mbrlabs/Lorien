@@ -346,13 +346,16 @@ func _undo_delete_stroke(stroke: BrushStroke) -> void:
 
 # -------------------------------------------------------------------------------------------------
 func _on_window_resized() -> void:
-	# Multiplying by scale needed to fix canvas after _set_scale() workaround
+	# Multiplying by scale is needed to fix canvas after changing rect_scale (set_scale() method)
 	_viewport.size = get_viewport_rect().size * _scale
 
 # -------------------------------------------------------------------------------------------------
-func _set_scale(scale: float) -> void:
+func set_canvas_scale(scale: float) -> void:
 	_scale = scale
-	_grid._grid_size = Config.DEFAULT_GRID_SIZE * _scale
-	_grid._on_viewport_size_changed()
-	# Needed to stop scaling of the canvas
-	rect_scale = Vector2(1 / _scale, 1 / _scale)
+	_grid.set_grid_scale(_scale)
+	# Needed to stop stretching of the canvas
+	set_scale(Vector2(1 / _scale, 1 / _scale))
+	
+# -------------------------------------------------------------------------------------------------
+func get_canvas_scale() -> float:
+	return _scale

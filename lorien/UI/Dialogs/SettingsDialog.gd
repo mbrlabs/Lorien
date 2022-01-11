@@ -200,7 +200,7 @@ func _on_UIScaleOptions_item_selected(index: int):
 
 # -------------------------------------------------------------------------------------------------
 func _on_UIScale_value_changed(value: float):
-	if Input.is_action_just_pressed("ui_accept") || _ui_scale._ready:
+	if Input.is_action_just_pressed("ui_accept") || _ui_scale.is_ready():
 		Settings.set_value(Settings.APPEARANCE_UI_SCALE, value)
 		emit_signal("ui_scale_changed")
 		popup_centered()

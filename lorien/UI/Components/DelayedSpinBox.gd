@@ -17,3 +17,7 @@ func _on_UIScale_gui_input(event: InputEvent):
 		emit_signal("value_changed", value)
 		_pressed = false
 		_ready = false
+
+# -------------------------------------------------------------------------------------------------
+func is_ready() -> bool:
+	return _ready
