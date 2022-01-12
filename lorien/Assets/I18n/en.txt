@@ -66,6 +66,9 @@ SETTINGS_CANVAS_COLOR           Default Canvas Color
 SETTINGS_PROJECT_FOLDER         Default Project Folder
 SETTINGS_LANGUAGE               Language
 SETTINGS_THEME                  Theme
+SETTINGS_UI_SCALE               UI Scale
+SETTINGS_UI_SCALE_AUTO          Auto
+SETTINGS_UI_SCALE_CUSTOM        Custom              
 SETTINGS_AA_METHOD              Anti Aliasing Method
 SETTINGS_AA_METHOD_NONE         None
 SETTINGS_FPS_FOREGROUND         Foreground Fps

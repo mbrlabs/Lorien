@@ -29,6 +29,7 @@ var _player: Player = null
 var _player_enabled := false
 var _colliders_enabled := false
 var _optimizer: BrushStrokeOptimizer
+var _scale := Config.DEFAULT_UI_SCALE
 
 # -------------------------------------------------------------------------------------------------
 func _ready():
@@ -345,4 +346,16 @@ func _undo_delete_stroke(stroke: BrushStroke) -> void:
 
 # -------------------------------------------------------------------------------------------------
 func _on_window_resized() -> void:
-	_viewport.size = get_viewport_rect().size
+	# Multiplying by scale is needed to fix canvas after changing rect_scale (set_scale() method)
+	_viewport.size = get_viewport_rect().size * _scale
+
+# -------------------------------------------------------------------------------------------------
+func set_canvas_scale(scale: float) -> void:
+	_scale = scale
+	_grid.set_grid_scale(_scale)
+	# Needed to stop stretching of the canvas
+	set_scale(Vector2(1 / _scale, 1 / _scale))
+	
+# -------------------------------------------------------------------------------------------------
+func get_canvas_scale() -> float:
+	return _scale

@@ -3,8 +3,8 @@ extends Control
 # -------------------------------------------------------------------------------------------------
 onready var _canvas: InfiniteCanvas = $InfiniteCanvas
 onready var _statusbar: Statusbar = $Statusbar
-onready var _menubar: Menubar = $Menubar
-onready var _toolbar: Toolbar = $Toolbar
+onready var _menubar: Menubar = $Topbar/Menubar
+onready var _toolbar: Toolbar = $Topbar/Toolbar
 onready var _file_dialog: FileDialog = $FileDialog
 onready var _export_dialog : FileDialog = $ExportDialog
 onready var _about_dialog: WindowDialog = $AboutDialog
@@ -68,6 +68,11 @@ func _ready():
 	_unsaved_changes_dialog.connect("discard_changes", self, "_on_close_file_with_changes_discarded")
 	
 	_export_dialog.connect("file_selected", self, "_on_export_confirmed")
+	
+	_settings_dialog.connect("ui_scale_changed", self, "_on_scale_changed")
+	
+	# Initialize scale
+	_on_scale_changed()
 	
 	# Create the default project
 	_create_active_default_project()
@@ -211,6 +216,7 @@ func _apply_state() -> void:
 # -------------------------------------------------------------------------------------------------
 func _toggle_distraction_free_mode() -> void:
 	_ui_visible = !_ui_visible
+	_menubar.get_parent().visible = _ui_visible
 	_menubar.visible = _ui_visible
 	_statusbar.visible = _ui_visible
 	_toolbar.visible = _ui_visible
@@ -517,3 +523,15 @@ func _on_EditPaletteDialog_palette_changed() -> void:
 # --------------------------------------------------------------------------------------------------
 func _on_DeletePaletteDialog_palette_deleted() -> void:
 	_update_brush_color()
+
+# --------------------------------------------------------------------------------------------------
+func _on_scale_changed() -> void:
+	var auto_scale: int = Settings.get_value(Settings.APPEARANCE_UI_SCALE_MODE, Config.DEFAULT_UI_SCALE_MODE)
+	var scale: float
+	match auto_scale:
+		Types.UIScale.AUTO:   scale = OS.get_screen_size().x / ProjectSettings.get_setting("display/window/size/width")
+		Types.UIScale.CUSTOM: scale = Settings.get_value(Settings.APPEARANCE_UI_SCALE, Config.DEFAULT_UI_SCALE)
+
+	# Canvas has to be set first to make it the correct scale on startup
+	_canvas.set_canvas_scale(scale)
+	get_tree().set_screen_stretch(SceneTree.STRETCH_MODE_DISABLED, SceneTree.STRETCH_ASPECT_IGNORE, Vector2(0,0), scale)

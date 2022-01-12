@@ -31,16 +31,18 @@ func _ready() -> void:
 
 # -------------------------------------------------------------------------------------------------
 func _input(event: InputEvent) -> void:
-	if event is InputEventMouseButton && event.pressed:
+	if !visible:
+		return
+	elif event is InputEventMouseButton && event.pressed:
 		var should_hide := !Utils.is_mouse_in_control(self)
 		should_hide = should_hide && !Utils.is_mouse_in_control(_toolbar.get_brush_color_button())
 		should_hide = should_hide && !get_parent().is_dialog_open()
 		should_hide = should_hide && !_palette_selection_button.get_popup().visible
 		should_hide = should_hide && !AlertDialog.visible
-		if visible && should_hide:
+		if should_hide:
 			_close()
-	
-	if event is InputEventKey && event.pressed && event.scancode == KEY_ESCAPE:
+
+	elif event is InputEventKey && event.pressed && event.scancode == KEY_ESCAPE:
 		_close()
 
 # -------------------------------------------------------------------------------------------------

@@ -8,6 +8,12 @@ const AA_NONE_INDEX 		:= 0
 const AA_OPENGL_HINT_INDEX 	:= 1
 const AA_TEXTURE_FILL_INDEX := 2
 
+const UI_SCALE_AUTO_INDEX := 0
+const UI_SCALE_CUSTOM_INDEX := 1
+
+# -------------------------------------------------------------------------------------------------
+signal ui_scale_changed
+
 # -------------------------------------------------------------------------------------------------
 onready var _tab_container: TabContainer = $MarginContainer/TabContainer
 onready var _tab_general: Control = $MarginContainer/TabContainer/General
@@ -26,6 +32,8 @@ onready var _appearence_restart_label: Label = $MarginContainer/TabContainer/App
 onready var _rendering_restart_label: Label = $MarginContainer/TabContainer/Rendering/VBoxContainer/RestartLabel
 onready var _language_options: OptionButton = $MarginContainer/TabContainer/General/VBoxContainer/Language/OptionButton
 onready var _brush_rounding_options: OptionButton = $MarginContainer/TabContainer/Rendering/VBoxContainer/BrushRounding/OptionButton
+onready var _ui_scale_options: OptionButton = $MarginContainer/TabContainer/Appearance/VBoxContainer/UIScale/HBoxContainer/UIScaleOptions
+onready var _ui_scale: SpinBox = $MarginContainer/TabContainer/Appearance/VBoxContainer/UIScale/HBoxContainer/UIScale
 
 # -------------------------------------------------------------------------------------------------
 func _ready():
@@ -45,6 +53,8 @@ func _set_values() -> void:
 	var foreground_fps = Settings.get_value(Settings.RENDERING_FOREGROUND_FPS, Config.DEFAULT_FOREGROUND_FPS)
 	var background_fps = Settings.get_value(Settings.RENDERING_BACKGROUND_FPS, Config.DEFAULT_BACKGROUND_FPS)
 	var pressure_sensitivity = Settings.get_value(Settings.GENERAL_PRESSURE_SENSITIVITY, Config.DEFAULT_PRESSURE_SENSITIVITY)
+	var ui_scale_mode = Settings.get_value(Settings.APPEARANCE_UI_SCALE_MODE, Config.DEFAULT_UI_SCALE_MODE)
+	var ui_scale = Settings.get_value(Settings.APPEARANCE_UI_SCALE, Config.DEFAULT_UI_SCALE)
 	
 	match theme:
 		Types.UITheme.DARK: _theme.selected = THEME_DARK_INDEX
@@ -53,9 +63,15 @@ func _set_values() -> void:
 		Types.AAMode.NONE: _aa_mode.selected = AA_NONE_INDEX
 		Types.AAMode.OPENGL_HINT: _aa_mode.selected = AA_OPENGL_HINT_INDEX
 		Types.AAMode.TEXTURE_FILL: _aa_mode.selected = AA_TEXTURE_FILL_INDEX
-	
+	match ui_scale_mode: 
+		Types.UIScale.AUTO: 
+			_ui_scale_options.selected = UI_SCALE_AUTO_INDEX
+			_ui_scale.set_editable(false)
+		Types.UIScale.CUSTOM: _ui_scale_options.selected = UI_SCALE_CUSTOM_INDEX
+		
 	_set_languages(locale)
 	_set_rounding()
+	_set_UIScale_range()
 	
 	_pressure_sensitivity.value = pressure_sensitivity
 	_brush_size.value = brush_size
@@ -63,7 +79,9 @@ func _set_values() -> void:
 	_project_dir.text = project_dir
 	_foreground_fps.value = foreground_fps
 	_background_fps.value = background_fps
+	_ui_scale.value = ui_scale
 
+# -------------------------------------------------------------------------------------------------
 func _set_rounding():
 	_brush_rounding_options.selected = Settings.get_value(Settings.RENDERING_BRUSH_ROUNDING, Config.DEFAULT_BRUSH_ROUNDING)
 
@@ -86,6 +104,12 @@ func _set_languages(current_locale: String) -> void:
 	# Set selected
 	var id := Array(Settings.locales).find(current_locale)
 	_language_options.selected = _language_options.get_item_index(id)
+
+#--------------------------------------------------------------------------------------------------
+func _set_UIScale_range():
+	var screen_scale: float = OS.get_screen_size().x / ProjectSettings.get_setting("display/window/size/width")
+	_ui_scale.min_value = screen_scale / 2
+	_ui_scale.max_value = screen_scale + 1.5
 
 # -------------------------------------------------------------------------------------------------
 func _on_DefaultBrushSize_value_changed(value: int) -> void:
@@ -161,3 +185,22 @@ func _on_OptionButton_item_selected(idx: int):
 	Settings.set_value(Settings.GENERAL_LANGUAGE, locale)
 	TranslationServer.set_locale(locale)
 	_general_restart_label.show()
+
+# -------------------------------------------------------------------------------------------------
+func _on_UIScaleOptions_item_selected(index: int):
+	match index:
+		UI_SCALE_AUTO_INDEX:
+			_ui_scale.set_editable(false)
+			Settings.set_value(Settings.APPEARANCE_UI_SCALE_MODE, Types.UIScale.AUTO)
+		UI_SCALE_CUSTOM_INDEX:
+			_ui_scale.set_editable(true)
+			Settings.set_value(Settings.APPEARANCE_UI_SCALE_MODE, Types.UIScale.CUSTOM)
+	emit_signal("ui_scale_changed")
+	popup_centered()
+
+# -------------------------------------------------------------------------------------------------
+func _on_UIScale_value_changed(value: float):
+	if Input.is_action_just_pressed("ui_accept") || _ui_scale.is_ready():
+		Settings.set_value(Settings.APPEARANCE_UI_SCALE, value)
+		emit_signal("ui_scale_changed")
+		popup_centered()

@@ -153,8 +153,8 @@ func _on_SelectToolButton_pressed():
 func _on_BackgroundColorButton_pressed():
 	_background_color_picker_popup.popup()
 	
-	# Stop popup from automatically adjusting position, Assumes Menubar and Toolbar have the same height
-	_background_color_picker_popup.rect_position.y = rect_size.y * 2
+	# Stop popup from automatically adjusting position
+	_background_color_picker_popup.rect_position.y = get_parent().rect_size.y
 
 # Workaround for a bug in godot: https://github.com/godotengine/godot/issues/38171
 # -------------------------------------------------------------------------------------------------
