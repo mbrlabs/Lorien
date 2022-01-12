@@ -8,16 +8,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Added
 - Zooming with CTRL+MMB
-- Automatically remembering and auto-opening .lorien files upon launch
+- Automatically remembering and auto-opening .lorien files upon exit & launch
 - Fullscreen support
 - The window size will be saved and restored across program restarts
 - Center the canvas based on current mouse position (shortcut: `C`)
+- UI scaling for high-dpi monitors
 
 ### Fixed
+- Fixed misplaced color picker after window resize
 
 ### Changed
-- Updated to Godot 3.4
+- Updated to Godot 3.4.2
 - Enabled low-energy mode
+- Changing the brush color while having strokes actively selected changes the color of these strokes
 
 ## [0.4.0] - 2021-10-10
 
