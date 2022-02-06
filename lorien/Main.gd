@@ -153,6 +153,8 @@ func _handle_input_actions() -> void:
 				_canvas.center_to_mouse()
 			elif Input.is_action_just_pressed("shortcut_brush_tool"):
 				_toolbar.enable_tool(Types.Tool.BRUSH)
+			elif Input.is_action_just_pressed("shortcut_circle_tool"):
+				_toolbar.enable_tool(Types.Tool.CIRCLE)
 			elif Input.is_action_just_pressed("shortcut_rectangle_tool"):
 				_toolbar.enable_tool(Types.Tool.RECTANGLE)
 			elif Input.is_action_just_pressed("shortcut_line_tool"):

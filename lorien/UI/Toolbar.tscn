@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://Assets/Icons/save_file.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Icons/open_file.png" type="Texture" id=2]
@@ -18,6 +18,7 @@
 [ext_resource path="res://Assets/Icons/selection_tool.png" type="Texture" id=16]
 [ext_resource path="res://Assets/Icons/grid.png" type="Texture" id=17]
 [ext_resource path="res://Assets/Icons/fullscreen.png" type="Texture" id=18]
+[ext_resource path="res://Assets/Icons/circle_tool.png" type="Texture" id=19]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.207843, 0.211765, 0.227451, 1 )
@@ -39,6 +40,8 @@ corner_radius_bottom_left = 4
 
 [node name="Toolbar" type="Panel"]
 anchor_right = 1.0
+margin_left = 2.0
+margin_right = 2.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 0, 40 )
 theme = ExtResource( 15 )
@@ -50,7 +53,9 @@ __meta__ = {
 
 [node name="Left" type="HBoxContainer" parent="."]
 anchor_bottom = 1.0
-margin_right = 578.0
+margin_top = -1.0
+margin_right = 590.0
+margin_bottom = -1.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 12
@@ -175,10 +180,24 @@ script = ExtResource( 13 )
 hover_tint = Color( 0.662745, 0.945098, 0.87451, 1 )
 pressed_tint = Color( 0.572549, 1, 0.894118, 1 )
 
-[node name="RectangleToolButton" type="TextureButton" parent="Left"]
+[node name="CircleToolButton" type="TextureButton" parent="Left"]
 margin_left = 228.0
 margin_top = 12.0
 margin_right = 244.0
+margin_bottom = 28.0
+hint_tooltip = "TOOLBAR_TOOLTIP_CIRCLE_TOOL"
+size_flags_horizontal = 4
+size_flags_vertical = 4
+toggle_mode = true
+texture_normal = ExtResource( 19 )
+script = ExtResource( 13 )
+hover_tint = Color( 0.662745, 0.945098, 0.87451, 1 )
+pressed_tint = Color( 0.572549, 1, 0.894118, 1 )
+
+[node name="RectangleToolButton" type="TextureButton" parent="Left"]
+margin_left = 256.0
+margin_top = 12.0
+margin_right = 272.0
 margin_bottom = 28.0
 hint_tooltip = "TOOLBAR_TOOLTIP_RECTANGLE_TOOL"
 size_flags_horizontal = 4
@@ -190,9 +209,9 @@ hover_tint = Color( 0.662745, 0.945098, 0.87451, 1 )
 pressed_tint = Color( 0.572549, 1, 0.894118, 1 )
 
 [node name="LineToolButton" type="TextureButton" parent="Left"]
-margin_left = 256.0
+margin_left = 284.0
 margin_top = 12.0
-margin_right = 272.0
+margin_right = 300.0
 margin_bottom = 28.0
 hint_tooltip = "TOOLBAR_TOOLTIP_LINE_TOOL"
 size_flags_horizontal = 4
@@ -204,9 +223,9 @@ hover_tint = Color( 0.662745, 0.945098, 0.87451, 1 )
 pressed_tint = Color( 0.572549, 1, 0.894118, 1 )
 
 [node name="EraserToolButton" type="TextureButton" parent="Left"]
-margin_left = 284.0
+margin_left = 312.0
 margin_top = 11.0
-margin_right = 302.0
+margin_right = 330.0
 margin_bottom = 29.0
 hint_tooltip = "TOOLBAR_TOOLTIP_ERASER_TOOL"
 size_flags_horizontal = 4
@@ -218,9 +237,9 @@ hover_tint = Color( 0.662745, 0.945098, 0.87451, 1 )
 pressed_tint = Color( 0.572549, 1, 0.894118, 1 )
 
 [node name="SelectionToolButton" type="TextureButton" parent="Left"]
-margin_left = 314.0
+margin_left = 342.0
 margin_top = 12.0
-margin_right = 330.0
+margin_right = 358.0
 margin_bottom = 28.0
 hint_tooltip = "TOOLBAR_TOOLTIP_SELECT_TOOL"
 size_flags_horizontal = 4
@@ -232,8 +251,8 @@ hover_tint = Color( 0.662745, 0.945098, 0.87451, 1 )
 pressed_tint = Color( 0.572549, 1, 0.894118, 1 )
 
 [node name="VSeparator4" type="VSeparator" parent="Left"]
-margin_left = 342.0
-margin_right = 346.0
+margin_left = 370.0
+margin_right = 374.0
 margin_bottom = 40.0
 custom_styles/separator = SubResource( 3 )
 __meta__ = {
@@ -241,9 +260,9 @@ __meta__ = {
 }
 
 [node name="ColorButton" type="Button" parent="Left"]
-margin_left = 358.0
+margin_left = 386.0
 margin_top = 10.0
-margin_right = 418.0
+margin_right = 446.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 60, 20 )
 hint_tooltip = "TOOLBAR_TOOLTIP_BRUSH_COLOR"
@@ -265,9 +284,9 @@ __meta__ = {
 }
 
 [node name="BrushSizeSlider" type="HSlider" parent="Left"]
-margin_left = 430.0
+margin_left = 458.0
 margin_top = 10.0
-margin_right = 550.0
+margin_right = 578.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 120, 20 )
 hint_tooltip = "TOOLBAR_TOOLTIP_BRUSH_SIZE"
@@ -278,9 +297,9 @@ max_value = 50.0
 value = 5.0
 
 [node name="BrushSizeLabel" type="Label" parent="Left"]
-margin_left = 562.0
+margin_left = 590.0
 margin_top = 13.0
-margin_right = 578.0
+margin_right = 606.0
 margin_bottom = 27.0
 custom_fonts/font = ExtResource( 14 )
 text = "12"
@@ -329,9 +348,9 @@ pressed_tint = Color( 0.572549, 1, 0.894118, 1 )
 
 [node name="FullscreenButton" type="TextureButton" parent="Right"]
 margin_left = 56.0
-margin_top = 12.0
-margin_right = 72.0
-margin_bottom = 28.0
+margin_top = 11.0
+margin_right = 74.0
+margin_bottom = 29.0
 hint_tooltip = "TOOLBAR_FULLSCREEN_TOGGLE"
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -343,8 +362,8 @@ hover_tint = Color( 0.662745, 0.945098, 0.87451, 1 )
 pressed_tint = Color( 0.572549, 1, 0.894118, 1 )
 
 [node name="VSeparator" type="VSeparator" parent="Right"]
-margin_left = 84.0
-margin_right = 88.0
+margin_left = 86.0
+margin_right = 90.0
 margin_bottom = 40.0
 custom_styles/separator = SubResource( 2 )
 
@@ -355,6 +374,7 @@ custom_styles/separator = SubResource( 2 )
 [connection signal="pressed" from="Left/UndoButton" to="." method="_on_UndoButton_pressed"]
 [connection signal="pressed" from="Left/RedoButton" to="." method="_on_RedoButton_pressed"]
 [connection signal="pressed" from="Left/BrushToolButton" to="." method="_on_BrushToolButton_pressed"]
+[connection signal="pressed" from="Left/CircleToolButton" to="." method="_on_CircleToolButton_pressed"]
 [connection signal="pressed" from="Left/RectangleToolButton" to="." method="_on_RectangleToolButton_pressed"]
 [connection signal="pressed" from="Left/LineToolButton" to="." method="_on_LineToolButton_pressed"]
 [connection signal="pressed" from="Left/EraserToolButton" to="." method="_on_EraserToolButton_pressed"]

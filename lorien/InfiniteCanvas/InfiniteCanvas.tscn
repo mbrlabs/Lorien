@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://InfiniteCanvas/InfiniteCanvas.gd" type="Script" id=1]
 [ext_resource path="res://InfiniteCanvas/PanZoomCamera.gd" type="Script" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://InfiniteCanvas/Tools/selection_rectangle.shader" type="Shader" id=10]
 [ext_resource path="res://InfiniteCanvas/Tools/RectangleTool.gd" type="Script" id=11]
 [ext_resource path="res://InfiniteCanvas/InfiniteCanvasGrid.gd" type="Script" id=12]
+[ext_resource path="res://InfiniteCanvas/Tools/CircleTool.gd" type="Script" id=13]
 [ext_resource path="res://InfiniteCanvas/grid.shader" type="Shader" id=15]
 
 [sub_resource type="ShaderMaterial" id=1]
@@ -21,6 +22,9 @@ shader_param/background_color = null
 [sub_resource type="ShaderMaterial" id=2]
 shader = ExtResource( 15 )
 shader_param/canvas_color = null
+
+[sub_resource type="Curve" id=3]
+_data = [ Vector2( 0, 0.0363636 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.981818 ), 0.0, 0.0, 0, 0 ]
 
 [node name="InfiniteCanvas" type="ViewportContainer"]
 anchor_right = 1.0
@@ -76,3 +80,8 @@ camera_path = NodePath("../Camera2D")
 [node name="BrushCursor" parent="Viewport" instance=ExtResource( 4 )]
 
 [node name="SelectionCursor" parent="Viewport" instance=ExtResource( 8 )]
+
+[node name="CircleTool" type="Node" parent="."]
+script = ExtResource( 13 )
+cursor_path = NodePath("../Viewport/BrushCursor")
+pressure_curve = SubResource( 3 )
