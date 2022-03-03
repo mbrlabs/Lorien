@@ -23,7 +23,7 @@ TOOLBAR_TOOLTIP_SAVE_FILE       Salva File (CTRL+S)
 TOOLBAR_TOOLTIP_UNDO            Annulla Azione (CTRL+Z)
 TOOLBAR_TOOLTIP_REDO            Ripeti Azione (CTRL+Y)
 TOOLBAR_TOOLTIP_BRUSH_TOOL      Strumento Pennello (B)
-TOOLBAR_TOOLTIP_RECTANGLE_TOOL  Rectangle Tool (R) 									# TODO
+TOOLBAR_TOOLTIP_RECTANGLE_TOOL  Strumento Rettangolo (R) 									# TODO
 TOOLBAR_TOOLTIP_LINE_TOOL       Strumento Linea (L)
 TOOLBAR_TOOLTIP_ERASER_TOOL     Gomma per cancellare (E)
 TOOLBAR_TOOLTIP_SELECT_TOOL     Seleziona strumento (S)
@@ -36,10 +36,10 @@ TOOLBAR_FULLSCREEN_TOGGLE       Commuta la modalità a schermo intero
 # -----------------------------------------------------------------------------
 # Color Palette Picker
 # -----------------------------------------------------------------------------
-COLOR_PALETTE_PICKER_HINT_NEW        Create new color palette						# TODO
-COLOR_PALETTE_PICKER_HINT_EDIT       Edit the current color palette  				# TODO
-COLOR_PALETTE_PICKER_HINT_DUPLICATE  Duplicate the current color palette 			# TODO
-COLOR_PALETTE_PICKER_HINT_DELETE     Delete the current color palette permanently 	# TODO
+COLOR_PALETTE_PICKER_HINT_NEW        Crea una nuova tavolozza di colori						# TODO
+COLOR_PALETTE_PICKER_HINT_EDIT       Modifica la tavolozza dei colori corrente  				# TODO
+COLOR_PALETTE_PICKER_HINT_DUPLICATE  Duplica la tavolozza dei colori corrente 			# TODO
+COLOR_PALETTE_PICKER_HINT_DELETE     Elimina la tavolozza dei colori corrente in modo permanente 	# TODO
 
 # -----------------------------------------------------------------------------
 # Statusbar strings
@@ -102,28 +102,28 @@ EXIT_DIALOG_TEXT     Vuoi salvare le modifiche prima di uscire da Lorien?
 # -----------------------------------------------------------------------------
 # New palette dialog
 # -----------------------------------------------------------------------------
-NEW_PALETTE_DIALOG_CREATE_TITLE 		New Palette  								# TODO
-NEW_PALETTE_DIALOG_DUPLICATE_TITLE 		Duplicate Palette 							# TODO
-NEW_PALETTE_DIALOG_PLACEHOLDER 			Palette name  								# TODO
+NEW_PALETTE_DIALOG_CREATE_TITLE 		Nuova tavolozza  								# TODO
+NEW_PALETTE_DIALOG_DUPLICATE_TITLE 		Tavolozza duplicata							# TODO
+NEW_PALETTE_DIALOG_PLACEHOLDER 			Nome della tavolozza  								# TODO
 
 # -----------------------------------------------------------------------------
 # Delete palette dialog
 # -----------------------------------------------------------------------------
-DELETE_PALETTE_DIALOG_TITLE 			Delete palette 									# TODO
-DELETE_PALETTE_DIALOG_TEXT 				Are you sure you want to permanently delete:    # TODO
+DELETE_PALETTE_DIALOG_TITLE 			Elimina tavolozza 									# TODO
+DELETE_PALETTE_DIALOG_TEXT 				Sei sicuro di voler eliminare definitivamente:    # TODO
 
 # -----------------------------------------------------------------------------
 # Edit palette dialog
 # -----------------------------------------------------------------------------
-EDIT_PALETTE_DIALOG_TITLE 		Edit Palette 										# TODO
+EDIT_PALETTE_DIALOG_TITLE 		Modifica tavolozza 										# TODO
 
 # -----------------------------------------------------------------------------
 # Error/Alert messages
 # -----------------------------------------------------------------------------
 ERROR_NOT_IMPLEMENTED               Non ancora implementato.
 ERROR_AUTOSAVE_NOT_IMPLEMENTED      Salvataggio automatico non ancora implementato per il file "Senza nome". Si prega di salvarlo manualmente.
-ALERT_EDITING_BUITIN_PALETTE        Editing built-in palettes is not possible. If you want to customize this palette you can make a copy and edit that instead. # TODO
-ALERT_DELETING_BUITIN_PALETTE       Deleting built-in palettes is not possible. # TODO
+ALERT_EDITING_BUITIN_PALETTE        Non è possibile modificare le tavolozze integrate. Se desideri personalizzare questa tavolozza, puoi crearne una copia e modificarla. # TODO
+ALERT_DELETING_BUITIN_PALETTE       Non è possibile eliminare le tavolozze integrate. # TODO
 
 # -----------------------------------------------------------------------------
 # Generic strings
@@ -132,4 +132,4 @@ ALERT_DELETING_BUITIN_PALETTE       Deleting built-in palettes is not possible. 
 SAVE            Salva
 DISCARD         Abbandona
 CANCEL          Cancella
-DELETE          Delete 			# TODO
+DELETE          Elimina 			# TODO
