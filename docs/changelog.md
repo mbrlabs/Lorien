@@ -21,6 +21,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Updated to Godot 3.4.2
 - Enabled low-energy mode
 - Changing the brush color while having strokes actively selected changes the color of these strokes
+- Improved brush stroke antialiasing
 
 ## [0.4.0] - 2021-10-10
 

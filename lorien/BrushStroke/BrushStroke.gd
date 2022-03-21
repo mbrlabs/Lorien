@@ -2,7 +2,6 @@ extends Node2D
 class_name BrushStroke
 
 # ------------------------------------------------------------------------------------------------
-const STROKE_TEXTURE = preload("res://Assets/Textures/stroke_texture.png")
 const COLLIDER_NODE_NAME := "StrokeCollider"
 
 # ------------------------------------------------------------------------------------------------
@@ -36,11 +35,11 @@ func _ready():
 	match aa_mode:
 		Types.AAMode.OPENGL_HINT:
 			_line2d.antialiased = true
-		Types.AAMode.TEXTURE_FILL: 
-			_line2d.texture = STROKE_TEXTURE
+		Types.AAMode.TEXTURE_FILL:
+			_line2d.texture = BrushStrokeTexture.texture
 			_line2d.texture_mode = Line2D.LINE_TEXTURE_STRETCH
 	
-	var rounding_mode:int = Settings.get_value(Settings.RENDERING_BRUSH_ROUNDING, Config.DEFAULT_BRUSH_ROUNDING)
+	var rounding_mode: int = Settings.get_value(Settings.RENDERING_BRUSH_ROUNDING, Config.DEFAULT_BRUSH_ROUNDING)
 	match rounding_mode:
 		Types.BrushRoundingType.FLAT:
 			_line2d.end_cap_mode = Line2D.LINE_CAP_NONE

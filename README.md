@@ -45,5 +45,6 @@ If you want to check out the bleeding edge main branch without building the proj
 - [Roadmap](docs/roadmap.md)
 
 ## Credits
+- Brush stroke antialiasing: [godot-antialiased-line2d](https://github.com/godot-extended-libraries/godot-antialiased-line2d)
 - Icons used for the UI: [Remix Icon](https://remixicon.com/)
 - Blurred background image of demo screenshot: https://unsplash.com/photos/nO0V_T0g2fM
