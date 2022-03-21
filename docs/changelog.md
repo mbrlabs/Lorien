@@ -22,7 +22,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Enabled low-energy mode
 - Changing the brush color while having strokes actively selected changes the color of these strokes
 - Improved brush stroke antialiasing
-- Made the brush stroke optimized less aggresive, which results in smoother lines at the expense of slightly bigger savefiles
+- Made the brush stroke optimizer less aggresive, which results in smoother lines at the expense of slightly bigger savefiles
+- Increased the default pressure sensitvity from 1.0 to 1.5
 
 ## [0.4.0] - 2021-10-10
 
