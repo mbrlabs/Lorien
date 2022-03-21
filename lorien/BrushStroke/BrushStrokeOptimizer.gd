@@ -1,5 +1,10 @@
 class_name BrushStrokeOptimizer
 
+# -------------------------------------------------------------------------------------------------
+const ANGLE_THRESHOLD := 1.0
+const DISTANCE_THRESHOLD := 2.0
+
+# -------------------------------------------------------------------------------------------------
 var points_removed := 0
 
 # -------------------------------------------------------------------------------------------------
@@ -8,12 +13,11 @@ func reset() -> void:
 
 # -------------------------------------------------------------------------------------------------
 func optimize(s: BrushStroke) -> void:
-	# TODO: if the FPS is low i should optimze less i.e. make these numbers smaller
-	var max_angle_diff = 4.0 if s.eraser else 1.0
-	var max_distance = 8.0 if s.eraser else 4.0
-	
 	if s.points.size() < 3:
 		return
+	
+	var max_angle_diff := ANGLE_THRESHOLD*2.0 if s.eraser else ANGLE_THRESHOLD
+	var max_distance := DISTANCE_THRESHOLD*2.0 if s.eraser else DISTANCE_THRESHOLD
 	
 	var filtered_points := []
 	var filtered_pressures := []
@@ -33,8 +37,8 @@ func optimize(s: BrushStroke) -> void:
 	
 		# Angle between points must be beigger than x deg
 		var angle := rad2deg(prev_point.angle_to_point(point))
-		var angle_diff = abs(abs(angle) - abs(previous_angle))
-		var angle_cond = angle_diff >= max_angle_diff
+		var angle_diff := abs(abs(angle) - abs(previous_angle))
+		var angle_cond := angle_diff >= max_angle_diff
 		previous_angle = angle
 		
 		var point_too_far_away = distance > 100
