@@ -26,7 +26,7 @@ func _input(event: InputEvent) -> void:
 				start_stroke(false)
 				_start_position_top_left = _cursor.global_position
 				_make_rectangle(PRESSURE)
-			elif !event.pressed:
+			elif !event.pressed && performing_stroke:
 				remove_all_stroke_points()
 				_make_rectangle(PRESSURE)
 				end_stroke()

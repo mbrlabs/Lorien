@@ -28,7 +28,7 @@ func _input(event: InputEvent) -> void:
 				_last_mouse_motion.global_position = event.global_position
 				_last_mouse_motion.position = event.position
 				start_stroke(mode == Mode.ERASE)
-			elif !event.pressed:
+			elif !event.pressed && performing_stroke:
 				end_stroke()
 
 # -------------------------------------------------------------------------------------------------

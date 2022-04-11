@@ -37,7 +37,7 @@ func _input(event: InputEvent) -> void:
 				start_stroke(false)
 				_head = _add_point_at_mouse_pos(0.5)
 				_tail = _add_point_at_mouse_pos(0.5)
-			elif !event.pressed:
+			elif !event.pressed && performing_stroke:
 				remove_last_stroke_point()
 				add_subdivided_line(_head, _tail, pressure_curve.interpolate(0.5))
 				end_stroke()
