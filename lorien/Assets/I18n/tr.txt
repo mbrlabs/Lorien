@@ -1,0 +1,139 @@
+LANGUAGE_NAME Turkish
+
+# -----------------------------------------------------------------------------
+# Menu strings
+# -----------------------------------------------------------------------------
+
+MENU_OPEN           Aç
+MENU_SAVE           Kaydet
+MENU_SAVE_AS        ... Olarak Kaydet
+MENU_SETTINGS       Ayarlar
+MENU_MANUAL         Kullanım Kılauzu
+MENU_BUG_TRACKER    Hata İzleyici
+MENU_ABOUT          Hakkında
+MENU_EXPORT         Dışa Aktar
+MENU_EXPORT_PNG     Tuvali PNG Olarak Dışa Aktar
+
+# -----------------------------------------------------------------------------
+# Toolbar
+# -----------------------------------------------------------------------------
+TOOLBAR_TOOLTIP_NEW_FILE        Yeni Dosya Oluştur (CTRL+N)
+TOOLBAR_TOOLTIP_OPEN_FILE       Dosya Aç (CTRL+O)
+TOOLBAR_TOOLTIP_SAVE_FILE       Dosya Kaydet (CTRL+S)
+TOOLBAR_TOOLTIP_UNDO            Geri Al (CTRL+Z)
+TOOLBAR_TOOLTIP_REDO            İleri Al (CTRL+Y)
+TOOLBAR_TOOLTIP_BRUSH_TOOL      Fırça (B)
+TOOLBAR_TOOLTIP_RECTANGLE_TOOL  Dikdörtgen Aracı (R)
+TOOLBAR_TOOLTIP_LINE_TOOL       Çizgi Aracı (L)
+TOOLBAR_TOOLTIP_ERASER_TOOL     Silgi (E)
+TOOLBAR_TOOLTIP_SELECT_TOOL     Seçim Aracı (S)
+TOOLBAR_TOOLTIP_BRUSH_COLOR     Fırça Rengi
+TOOLBAR_TOOLTIP_BRUSH_SIZE      Fırça Boyutu
+TOOLBAR_TOOLTIP_CANVAS_COLOR    Tuval Rengi
+TOOLBAR_TOOLTIP_GRID 			Izgarayı Göster
+TOOLBAR_FULLSCREEN_TOGGLE       Tam Ekran
+
+# -----------------------------------------------------------------------------
+# Color Palette Picker
+# -----------------------------------------------------------------------------
+COLOR_PALETTE_PICKER_HINT_NEW        Yeni renk paleti oluştur
+COLOR_PALETTE_PICKER_HINT_EDIT       Mevcut paleti düzenle
+COLOR_PALETTE_PICKER_HINT_DUPLICATE  Mevcut paleti kopyala
+COLOR_PALETTE_PICKER_HINT_DELETE     Mevcut paleti kalıcı olarak sil
+
+# -----------------------------------------------------------------------------
+# Statusbar strings
+# -----------------------------------------------------------------------------
+
+STATUSBAR_POSITION              Pozisyon
+STATUSBAR_ZOOM                  Yaklaştır
+STATUSBAR_PRESSURE              Basınç
+STATUSBAR_FPS                   FPS
+STATUSBAR_STROKES               Vuruşlar
+STATUSBAR_POINTS                Noktalar
+
+# -----------------------------------------------------------------------------
+# Settings strings
+# -----------------------------------------------------------------------------
+
+SETTINGS_TITLE                  Ayarlar
+SETTINGS_GENERAL                Genel
+SETTINGS_APPEARANCE             Görünüm
+SETTINGS_RENDERING              Rendering
+SETTINGS_PRESSURE_SENSITIVITY   Basınç Hassaslığı
+SETTINGS_BRUSH_SIZE             Varsayılan Fırça Boyutu
+SETTINGS_CANVAS_COLOR           Varsayılan Tuval Rengi
+SETTINGS_PROJECT_FOLDER         Varsayılan Proje Klasörü
+SETTINGS_LANGUAGE               Dil
+SETTINGS_THEME                  Tema
+SETTINGS_UI_SCALE               UI Boyutu
+SETTINGS_UI_SCALE_AUTO          Otomatik
+SETTINGS_UI_SCALE_CUSTOM        Özel              
+SETTINGS_AA_METHOD              Anti Aliasing Metodu
+SETTINGS_AA_METHOD_NONE         Hiçbiri
+SETTINGS_FPS_FOREGROUND         Ön plan Fps
+SETTINGS_FPS_BACKGROUND         Arka plan Fps
+SETTINGS_BRUSH_CAPS             Fırça Yuvarlama Modu
+SETTINGS_BRUSH_CAPS_FLAT        Düz
+SETTINGS_BRUSH_CAPS_ROUND       Yuvarlak
+SETTINGS_RESTART_NOTICE  		Yeni ayarların uygulanması için yeniden başlatma gereklidir
+
+# -----------------------------------------------------------------------------
+# About dialog strings
+# -----------------------------------------------------------------------------
+
+ABOUT_DIALOG_TITLE              Hakkında
+ABOUT_DIALOG_COPYRIGHT          © 2021-2022 Marcus Brummer & katkıda bulunanlar 
+ABOUT_DIALOG_LICSENSE           Lorien, altında lisanslanmıştır:
+ABOUT_DIALOG_BASED_ON           Lorien, tabanlıdır:
+ABOUT_DIALOG_EASTEREGG          Easteregg karakteri:
+
+# -----------------------------------------------------------------------------
+# Unsaved changes dialog
+# -----------------------------------------------------------------------------
+
+UNSAVED_CHANGES_DIALOG_TITLE    Değişiklikleri kaydet?
+UNSAVED_CHANGES_DIALOG_TEXT     Dosyayı kapatmadan önce değişikliklerinizi kaydetmek istiyor musunuz?
+
+# -----------------------------------------------------------------------------
+# Exit dialog
+# -----------------------------------------------------------------------------
+
+EXIT_DIALOG_TITLE    Değişiklikleri kaydet?
+EXIT_DIALOG_TEXT     Lorien'den çıkmadan önce değişikliklerinizi kaydetmek istiyor musunuz?
+
+# -----------------------------------------------------------------------------
+# New palette dialog
+# -----------------------------------------------------------------------------
+NEW_PALETTE_DIALOG_CREATE_TITLE 		Yeni Palet
+NEW_PALETTE_DIALOG_DUPLICATE_TITLE 		Paleti kopyala
+NEW_PALETTE_DIALOG_PLACEHOLDER 			Palet adı 
+
+# -----------------------------------------------------------------------------
+# Delete palette dialog
+# -----------------------------------------------------------------------------
+DELETE_PALETTE_DIALOG_TITLE 			Paleti sil
+DELETE_PALETTE_DIALOG_TEXT 				Gerçekten bunu silmek istiyor musunuz:
+
+# -----------------------------------------------------------------------------
+# Edit palette dialog
+# -----------------------------------------------------------------------------
+EDIT_PALETTE_DIALOG_TITLE 		Paleti Düzenle
+
+# -----------------------------------------------------------------------------
+# Error/Alert messages
+# -----------------------------------------------------------------------------
+
+ERROR_NOT_IMPLEMENTED               Daha eklenmedi.
+ERROR_AUTOSAVE_NOT_IMPLEMENTED      "Adsız" dosyası için otomatik kaydetme henüz uygulanmadı. Lütfen manuel olarak kaydedin.
+ALERT_EDITING_BUITIN_PALETTE        Yerleşik paletleri düzenlemek mümkün değildir. Bu paleti özelleştirmek istiyorsanız, bunun yerine bir kopya oluşturabilir ve düzenleyebilirsiniz.. # TODO
+ALERT_DELETING_BUITIN_PALETTE       Yerleşik paletleri silmek mümkün değildir.
+
+# -----------------------------------------------------------------------------
+# Generic strings
+# -----------------------------------------------------------------------------
+
+SAVE            Kaydet
+DISCARD         Kaydetme
+CANCEL          İptal
+DELETE          Sil
