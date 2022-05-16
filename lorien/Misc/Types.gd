@@ -5,6 +5,7 @@ class_name Types
 enum Tool {
 	BRUSH,
 	RECTANGLE,
+	CIRCLE,
 	LINE,
 	ERASER,
 	SELECT,

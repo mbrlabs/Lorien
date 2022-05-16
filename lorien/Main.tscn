@@ -98,8 +98,10 @@ __meta__ = {
 }
 
 [node name="ColorPicker" type="ColorPicker" parent="BackgroundColorPickerPopup/PanelContainer"]
-margin_right = 309.0
-margin_bottom = 404.0
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 329.0
+margin_bottom = 424.0
 edit_alpha = false
 presets_enabled = false
 presets_visible = false
@@ -138,8 +140,8 @@ theme = ExtResource( 8 )
 popup_exclusive = true
 access = 2
 filters = PoolStringArray( "*.lorien" )
-current_dir = "/Projects/Other/Lorien/lorien"
-current_path = "/Projects/Other/Lorien/lorien/"
+current_dir = "/home/hiderr/programming/godot/Lorien/lorien"
+current_path = "/home/hiderr/programming/godot/Lorien/lorien/"
 __meta__ = {
 "_edit_lock_": true
 }
@@ -198,8 +200,8 @@ margin_bottom = 216.5
 theme = ExtResource( 8 )
 popup_exclusive = true
 access = 2
-current_dir = "/Projects/Other/Lorien/lorien"
-current_path = "/Projects/Other/Lorien/lorien/"
+current_dir = "/home/hiderr/programming/godot/Lorien/lorien"
+current_path = "/home/hiderr/programming/godot/Lorien/lorien/"
 
 [node name="UnsavedChangesDialog" parent="." instance=ExtResource( 7 )]
 visible = false
