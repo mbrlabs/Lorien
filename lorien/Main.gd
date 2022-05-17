@@ -125,6 +125,10 @@ func _process(delta):
 	if active_project != null:
 		_menubar.update_tab_title(active_project)
 
+	if Input.is_action_just_pressed("export_svg"):
+		var svg := SvgExporter.new()
+		svg.export_svg(ProjectManager.get_active_project().strokes)
+
 # -------------------------------------------------------------------------------------------------
 func _handle_input_actions() -> void:
 	if !is_dialog_open():
