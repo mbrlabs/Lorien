@@ -15,6 +15,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Center the canvas based on current mouse position (shortcut: `C`)
 - UI scaling for high-dpi monitors
 - Changing the brush color while having strokes actively selected changes the color of these strokes
+- Translations: Turkish
 
 ### Fixed
 - Fixed misplaced color picker after window resize
