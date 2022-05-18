@@ -1,4 +1,4 @@
-LANGUAGE_NAME Turkish
+LANGUAGE_NAME Türkçe
 
 # -----------------------------------------------------------------------------
 # Menu strings
