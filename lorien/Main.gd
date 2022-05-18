@@ -57,7 +57,7 @@ func _ready():
 	_main_menu.connect("open_about_dialog", self, "_on_open_about_dialog")
 	_main_menu.connect("open_settings_dialog", self, "_on_open_settings_dialog")
 	_main_menu.connect("open_url", self, "_on_open_url")
-	_main_menu.connect("export_as", self, "_export_as")
+	_main_menu.connect("export_svg", self, "_export_svg")
 	_main_menu.connect("open_project", self, "_on_open_project")
 	_main_menu.connect("save_project", self, "_on_save_project")
 	_main_menu.connect("save_project_as", self, "_on_save_project_as")
@@ -125,10 +125,6 @@ func _process(delta):
 	if active_project != null:
 		_menubar.update_tab_title(active_project)
 
-	if Input.is_action_just_pressed("export_svg"):
-		var svg := SvgExporter.new()
-		svg.export_svg(ProjectManager.get_active_project().strokes)
-
 # -------------------------------------------------------------------------------------------------
 func _handle_input_actions() -> void:
 	if !is_dialog_open():
@@ -149,6 +145,8 @@ func _handle_input_actions() -> void:
 				_toolbar._on_OpenFileButton_pressed()
 			elif Input.is_action_just_pressed("shortcut_save_project"):
 				_on_save_project()
+			elif Input.is_action_just_pressed("shortcut_export_project"):
+				_export_svg()
 			elif Input.is_action_just_pressed("shortcut_undo"):
 				_on_undo_action()
 			elif Input.is_action_just_pressed("shortcut_redo"):
@@ -481,17 +479,19 @@ func _on_InfiniteCanvas_mouse_exited():
 # --------------------------------------------------------------------------------------------------
 func _on_export_confirmed(path: String):
 	match path.get_extension():
-		"png":
-			var image: Image = _canvas.take_screenshot()
-			image.flip_y()
-			image.save_png(path)
+		"svg":
+			var project: Project = ProjectManager.get_active_project()
+			if project != null:
+				var background := _canvas.get_background_color()
+				var svg := SvgExporter.new()
+				svg.export_svg(project.strokes, background, path)
+		_:
+			printerr("Unsupported format")
 
 # --------------------------------------------------------------------------------------------------
-func _export_as(export_type: int) -> void:
-	match export_type:
-		Types.ExportType.PNG:
-			_export_dialog.filters = ["*.png ; Portable Network Graphics"]
-			_export_dialog.current_file = Utils.return_timestamp_string() + ".png"
+func _export_svg() -> void:
+	_export_dialog.filters = ["*.svg ; Scalable Vector graphics"]
+	_export_dialog.current_file = "lorien.svg"
 	_export_dialog.popup()
 
 # --------------------------------------------------------------------------------------------------

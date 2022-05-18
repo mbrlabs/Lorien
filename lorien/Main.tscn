@@ -197,6 +197,7 @@ margin_right = 385.0
 margin_bottom = 216.5
 theme = ExtResource( 8 )
 popup_exclusive = true
+window_title = "Export SVG"
 access = 2
 current_dir = "/Projects/Other/Lorien/lorien"
 current_path = "/Projects/Other/Lorien/lorien/"

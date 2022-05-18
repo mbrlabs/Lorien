@@ -152,7 +152,7 @@ _global_script_classes=[ {
 "base": "Reference",
 "class": "SvgExporter",
 "language": "GDScript",
-"path": "res://SvgExporter.gd"
+"path": "res://Misc/SvgExporter.gd"
 }, {
 "base": "Panel",
 "class": "Toolbar",
@@ -421,9 +421,9 @@ center_canvas_to_mouse={
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":67,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
  ]
 }
-export_svg={
+shortcut_export_project={
 "deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":16777244,"unicode":0,"echo":false,"script":null)
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":true,"meta":false,"command":true,"pressed":false,"scancode":69,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
  ]
 }
 

@@ -3,13 +3,14 @@ extends Reference
 
 # TODOs
 # - Stroke width / pressue data
-# - UI: Proper export dialog
 
 # -------------------------------------------------------------------------------------------------
-func export_svg(strokes: Array, margin: float = 0.025) -> void:
+const EDGE_MARGIN := 0.025
+
+# -------------------------------------------------------------------------------------------------
+func export_svg(strokes: Array, background: Color, path: String) -> void:
 	# Open file
 	var file := File.new()
-	var path := OS.get_user_data_dir() + "/lorien.svg"
 	var err := file.open(path, File.WRITE)
 	if err != OK:
 		printerr("Failed to open file for writing")
@@ -24,23 +25,37 @@ func export_svg(strokes: Array, margin: float = 0.025) -> void:
 		max_dim.x = max(max_dim.x, stroke.bottom_right_pos.x)
 		max_dim.y = max(max_dim.y, stroke.bottom_right_pos.y)
 	var size := max_dim - min_dim
-	var margin_size := size * margin
+	var margin_size := size * EDGE_MARGIN
 	size += margin_size*2.0
 	var origin := min_dim - margin_size
 	
 	# Write svg to file
-	var dims := [origin.x, origin.y, size.x, size.y]
-	var svg := "<svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"%.1f %.1f %.1f %.1f\">\n" % dims
-	svg += "<rect x=\"%.1f\" y=\"%.1f\" width=\"%.1f\" height=\"%.1f\" fill=\"#202124\" />\n" % dims
-	file.store_string(svg)
+	_render_start(file, origin, size)
+	_render_rect(file, origin, size, background)
 	for stroke in strokes:
 		_render_polyline(file, stroke)
-	file.store_string("</svg>")
+	_render_end(file)
 	
 	# Flush and close the file
 	file.flush()
 	file.close()
 	print("Exported svg to %s" % path)
+
+# -------------------------------------------------------------------------------------------------
+func _render_start(file: File, origin: Vector2, size: Vector2) -> void:
+	var params := [origin.x, origin.y, size.x, size.y]
+	var svg := "<svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"%.1f %.1f %.1f %.1f\">\n" % params
+	file.store_string(svg)
+
+# -------------------------------------------------------------------------------------------------
+func _render_end(file: File) -> void:
+	file.store_string("</svg>") 
+
+# -------------------------------------------------------------------------------------------------
+func _render_rect(file: File, origin: Vector2, size: Vector2, color: Color) -> void:
+	var params := [origin.x, origin.y, size.x, size.y, color.to_html(false)]
+	var rect := "<rect x=\"%.1f\" y=\"%.1f\" width=\"%.1f\" height=\"%.1f\" fill=\"#%s\" />\n" % params
+	file.store_string(rect)
 
 # -------------------------------------------------------------------------------------------------
 func _render_polyline(file: File, stroke: BrushStroke) -> void:
