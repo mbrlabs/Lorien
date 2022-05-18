@@ -122,8 +122,8 @@ EDIT_PALETTE_DIALOG_TITLE 		Modifica tavolozza 										# TODO
 # -----------------------------------------------------------------------------
 ERROR_NOT_IMPLEMENTED               Non ancora implementato.
 ERROR_AUTOSAVE_NOT_IMPLEMENTED      Salvataggio automatico non ancora implementato per il file "Senza nome". Si prega di salvarlo manualmente.
-ALERT_EDITING_BUITIN_PALETTE        Non è possibile modificare le tavolozze integrate. Se desideri personalizzare questa tavolozza, puoi crearne una copia e modificarla. # TODO
-ALERT_DELETING_BUITIN_PALETTE       Non è possibile eliminare le tavolozze integrate. # TODO
+ALERT_EDITING_BUILTIN_PALETTE       Non è possibile modificare le tavolozze integrate. Se desideri personalizzare questa tavolozza, puoi crearne una copia e modificarla. # TODO
+ALERT_DELETING_BUILTIN_PALETTE      Non è possibile eliminare le tavolozze integrate. # TODO
 
 # -----------------------------------------------------------------------------
 # Generic strings

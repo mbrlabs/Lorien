@@ -122,8 +122,8 @@ EDIT_PALETTE_DIALOG_TITLE 		팔레트 수정
 
 ERROR_NOT_IMPLEMENTED               아직 구현되지 않음
 ERROR_AUTOSAVE_NOT_IMPLEMENTED      "Untitled" 파일을 위한 자동저장 기능은 구현되지 않았습니다. 수동으로 저장해주세요.
-ALERT_EDITING_BUITIN_PALETTE        Editing built-in palettes is not possible. If you want to customize this palette you can make a copy and edit that instead. # TODO
-ALERT_DELETING_BUITIN_PALETTE       Deleting built-in palettes is not possible. # TODO
+ALERT_EDITING_BUILTIN_PALETTE       Editing built-in palettes is not possible. If you want to customize this palette you can make a copy and edit that instead. # TODO
+ALERT_DELETING_BUILTIN_PALETTE      Deleting built-in palettes is not possible. # TODO
 
 # -----------------------------------------------------------------------------
 # Generic strings

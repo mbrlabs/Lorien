@@ -126,8 +126,8 @@ EDIT_PALETTE_DIALOG_TITLE 		Edit Palette
 
 ERROR_NOT_IMPLEMENTED               Not implemented yet.
 ERROR_AUTOSAVE_NOT_IMPLEMENTED      Auto-saving not yet implemented for file "Untitled". Please save it manually.
-ALERT_EDITING_BUITIN_PALETTE        Editing built-in palettes is not possible. If you want to customize this palette you can make a copy and edit that instead. # TODO
-ALERT_DELETING_BUITIN_PALETTE       Deleting built-in palettes is not possible.
+ALERT_EDITING_BUILTIN_PALETTE       Editing built-in palettes is not possible. If you want to customize this palette you can make a copy and edit that instead. # TODO
+ALERT_DELETING_BUILTIN_PALETTE      Deleting built-in palettes is not possible.
 
 # -----------------------------------------------------------------------------
 # Generic strings

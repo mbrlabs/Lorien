@@ -121,8 +121,8 @@ EDIT_PALETTE_DIALOG_TITLE 		Edit Palette 										# TODO
 # -----------------------------------------------------------------------------
 ERROR_NOT_IMPLEMENTED               Еще не реализовано.
 ERROR_AUTOSAVE_NOT_IMPLEMENTED      Автосохранение еще не реализовано для файла "Untitled". Пожалуйста, сохраните его вручную.
-ALERT_EDITING_BUITIN_PALETTE        Editing built-in palettes is not possible. If you want to customize this palette you can make a copy and edit that instead. # TODO
-ALERT_DELETING_BUITIN_PALETTE       Deleting built-in palettes is not possible. # TODO
+ALERT_EDITING_BUILTIN_PALETTE       Editing built-in palettes is not possible. If you want to customize this palette you can make a copy and edit that instead. # TODO
+ALERT_DELETING_BUILTIN_PALETTE      Deleting built-in palettes is not possible. # TODO
 
 # -----------------------------------------------------------------------------
 # Generic strings

@@ -126,8 +126,8 @@ EDIT_PALETTE_DIALOG_TITLE 		Paleti Düzenle
 
 ERROR_NOT_IMPLEMENTED               Daha eklenmedi.
 ERROR_AUTOSAVE_NOT_IMPLEMENTED      "Adsız" dosyası için otomatik kaydetme henüz uygulanmadı. Lütfen manuel olarak kaydedin.
-ALERT_EDITING_BUITIN_PALETTE        Yerleşik paletleri düzenlemek mümkün değildir. Bu paleti özelleştirmek istiyorsanız, bunun yerine bir kopya oluşturabilir ve düzenleyebilirsiniz.. # TODO
-ALERT_DELETING_BUITIN_PALETTE       Yerleşik paletleri silmek mümkün değildir.
+ALERT_EDITING_BUILTIN_PALETTE       Yerleşik paletleri düzenlemek mümkün değildir. Bu paleti özelleştirmek istiyorsanız, bunun yerine bir kopya oluşturabilir ve düzenleyebilirsiniz.. # TODO
+ALERT_DELETING_BUILTIN_PALETTE      Yerleşik paletleri silmek mümkün değildir.
 
 # -----------------------------------------------------------------------------
 # Generic strings
