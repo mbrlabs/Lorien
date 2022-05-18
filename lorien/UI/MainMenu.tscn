@@ -17,9 +17,4 @@ __meta__ = {
 margin_right = 16.0
 margin_bottom = 16.0
 
-[node name="ExportMenu" type="PopupMenu" parent="."]
-margin_right = 16.0
-margin_bottom = 16.0
-
 [connection signal="id_pressed" from="." to="." method="_on_MainMenu_id_pressed"]
-[connection signal="id_pressed" from="ExportMenu" to="." method="_on_SaveAsMenu_id_pressed"]

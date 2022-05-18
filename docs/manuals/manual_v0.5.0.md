@@ -49,6 +49,7 @@ Lorien provides you with different tools which you can find in the toolbar. If y
 - <kbd>Ctrl</kbd> + <kbd>S</kbd>: Saves the current file
 - <kbd>Ctrl</kbd> + <kbd>N</kbd>: Open a new file
 - <kbd>Ctrl</kbd> + <kbd>O</kbd>: Open a new empty tab
+- <kbd>Ctrl</kbd> + <kbd>E</kbd>: Opens the SVG export dialog
 - <kbd>Ctrl</kbd> + <kbd>Z</kbd>: Undo a brush stroke
 - <kbd>Ctrl</kbd> + <kbd>Y</kbd>: Redo a brush stroke
 - <kbd>Ctrl</kbd> + <kbd>C</kbd>: Copy selected brush strokes
