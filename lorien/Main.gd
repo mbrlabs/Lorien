@@ -157,6 +157,8 @@ func _handle_input_actions() -> void:
 				_toolbar.enable_tool(Types.Tool.BRUSH)
 			elif Input.is_action_just_pressed("shortcut_rectangle_tool"):
 				_toolbar.enable_tool(Types.Tool.RECTANGLE)
+			elif Input.is_action_just_pressed("shortcut_circle_tool"):
+				_toolbar.enable_tool(Types.Tool.CIRCLE)
 			elif Input.is_action_just_pressed("shortcut_line_tool"):
 				_toolbar.enable_tool(Types.Tool.LINE)
 			elif Input.is_action_just_pressed("shortcut_eraser_tool"):

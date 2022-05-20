@@ -9,6 +9,7 @@ const ERASER_SIZE_FACTOR = 1.25
 # -------------------------------------------------------------------------------------------------
 onready var _brush_tool: BrushTool = $BrushTool
 onready var _rectangle_tool: RectangleTool = $RectangleTool
+onready var _circle_tool: CircleTool = $CircleTool
 onready var _line_tool: LineTool = $LineTool
 onready var _selection_tool: SelectionTool = $SelectionTool
 onready var _active_tool: CanvasTool = _brush_tool
@@ -79,6 +80,9 @@ func use_tool(tool_type: int) -> void:
 			_use_optimizer = true
 		Types.Tool.RECTANGLE:
 			_active_tool = _rectangle_tool
+			_use_optimizer = false
+		Types.Tool.CIRCLE:
+			_active_tool = _circle_tool
 			_use_optimizer = false
 		Types.Tool.LINE:
 			_active_tool = _line_tool
