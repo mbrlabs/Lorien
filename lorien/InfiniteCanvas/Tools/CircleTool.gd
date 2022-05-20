@@ -3,23 +3,36 @@ extends CanvasTool
 
 # -------------------------------------------------------------------------------------------------
 const PRESSURE := 0.5
-const STEP_IN_MOTION = 15
-const STEP_STATIC = 4
+const STEP_IN_MOTION := 15
+const STEP_STATIC := 4
 
 # -------------------------------------------------------------------------------------------------
 export var pressure_curve: Curve
 var _start_position_top_left: Vector2
 
 # -------------------------------------------------------------------------------------------------
+var sin_arr : Array
+var cos_arr : Array
+
+func _init():
+	sin_arr.resize(360)
+	cos_arr.resize(360)
+	for i in 360:
+		sin_arr[i] = sin(deg2rad(i))
+		cos_arr[i] = cos(deg2rad(i))
+
+# -------------------------------------------------------------------------------------------------
 func _input(event: InputEvent) -> void:
 	_cursor.set_pressure(1.0)
+	
+	var should_draw_circle := Input.is_key_pressed(KEY_SHIFT)
 	
 	if event is InputEventMouseMotion:
 		_cursor.global_position = xform_vector2(event.global_position)
 		if performing_stroke:
 			_cursor.set_pressure(event.pressure)
 			remove_all_stroke_points()
-			_make_circle(PRESSURE, STEP_IN_MOTION)
+			_make_ellipse(PRESSURE, STEP_IN_MOTION, should_draw_circle)
 		
 	# Start + End
 	elif event is InputEventMouseButton:
@@ -27,58 +40,50 @@ func _input(event: InputEvent) -> void:
 			if event.pressed:
 				start_stroke(false)
 				_start_position_top_left = _cursor.global_position
-				_make_circle(PRESSURE, STEP_IN_MOTION)
+				remove_all_stroke_points()
+				_make_ellipse(PRESSURE, STEP_IN_MOTION, should_draw_circle)
 			elif !event.pressed && performing_stroke:
 				remove_all_stroke_points()
-				_make_circle(PRESSURE, STEP_STATIC)
+				_make_ellipse(PRESSURE, STEP_STATIC, should_draw_circle)
 				end_stroke()
 
-var sin_arr : Array
-var cos_arr : Array
-
-func _init():
-	sin_arr.resize(360)
-	cos_arr.resize(360)
-	for i in range(0, 360):
-		sin_arr[i] = sin(deg2rad(i))
-		cos_arr[i] = cos(deg2rad(i))
-
-
 # -------------------------------------------------------------------------------------------------
-func _make_circle(pressure: float, step: int) -> void:
-
-	remove_all_stroke_points()
+func _make_ellipse(pressure: float, step: int, should_draw_circle: bool) -> void:
+	
 	pressure = pressure_curve.interpolate(pressure)
 
-	var radius := 0.5 * max(
-		abs(_cursor.global_position.y - _start_position_top_left.y),
-		abs(_cursor.global_position.x - _start_position_top_left.x)
-	);
+	var r1 := 0.5 * abs(_cursor.global_position.x - _start_position_top_left.x)
+	var r2 := 0.5 * abs(_cursor.global_position.y - _start_position_top_left.y)
+
+	if(should_draw_circle):
+		r1 = max(r1, r2)
+		r2 = r1
 
 	var dir := (_cursor.global_position -_start_position_top_left);
 	var center : Vector2
 
 	if dir.x >= 0 && dir.y >= 0:
-		center = _start_position_top_left + Vector2(radius, radius)
+		center = _start_position_top_left + Vector2(r1, r2)
 	elif dir.x <= 0 && dir.y >= 0:
-		center = _start_position_top_left + Vector2(-radius, radius)
+		center = _start_position_top_left + Vector2(-r1, r2)
 	elif dir.x <= 0 && dir.y <= 0:
-		center = _start_position_top_left + Vector2(-radius, -radius)
+		center = _start_position_top_left + Vector2(-r1, -r2)
 	else:
-		center = _start_position_top_left + Vector2(radius, -radius)
+		center = _start_position_top_left + Vector2(r1, -r2)
 
 	for i in range(0, 360, step):
 		var point := Vector2(
-			center.x + radius * sin_arr[i],
-			center.y + radius * cos_arr[i]
+			center.x + r1 * sin_arr[i],
+			center.y + r2 * cos_arr[i]
 		)
 		add_stroke_point(point, pressure)
 
-	add_stroke_point(Vector2(center.x, center.y + radius), pressure)
+	add_stroke_point(Vector2(center.x, center.y + r2), pressure)
+
 	add_stroke_point(
 		Vector2(
-			center.x + radius * sin_arr[1], 
-			center.y + radius * cos_arr[1]
+			center.x + r1 * sin_arr[1],
+			center.y + r2 * cos_arr[1]
 		), 
 		pressure
 	)
