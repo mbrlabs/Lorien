@@ -1,0 +1,140 @@
+LANGUAGE_NAME Português Brasil
+
+# -----------------------------------------------------------------------------
+# Menu strings
+# -----------------------------------------------------------------------------
+
+MENU_OPEN           Abrir
+MENU_SAVE           Salvar
+MENU_SAVE_AS        Salvar como..
+MENU_SETTINGS       Configuração
+MENU_MANUAL         Manual
+MENU_BUG_TRACKER    Reportar um bug
+MENU_ABOUT          Sobre
+MENU_EXPORT         Exportar
+MENU_EXPORT_PNG     Exportar Canvas como PNG
+
+# -----------------------------------------------------------------------------
+# Toolbar
+# -----------------------------------------------------------------------------
+TOOLBAR_TOOLTIP_NEW_FILE        Criar Novo Arquivo (CTRL+N)
+TOOLBAR_TOOLTIP_OPEN_FILE       Abrir Arquivo (CTRL+O)
+TOOLBAR_TOOLTIP_SAVE_FILE       Salvar Arquivo (CTRL+S)
+TOOLBAR_TOOLTIP_UNDO            Desfazer Ação (CTRL+Z)
+TOOLBAR_TOOLTIP_REDO            Refazer Ação (CTRL+Y)
+TOOLBAR_TOOLTIP_BRUSH_TOOL      Pincel (B)
+TOOLBAR_TOOLTIP_RECTANGLE_TOOL  Ferramenta de Retângulo (R)
+TOOLBAR_TOOLTIP_CIRCLE_TOOL     Ferramenta de Círculo (C)
+TOOLBAR_TOOLTIP_LINE_TOOL       Ferramenta de Linha (L)
+TOOLBAR_TOOLTIP_ERASER_TOOL     Borracha (E)
+TOOLBAR_TOOLTIP_SELECT_TOOL     Ferramenta de Seleção (S)
+TOOLBAR_TOOLTIP_BRUSH_COLOR     Cor do Pincel 
+TOOLBAR_TOOLTIP_BRUSH_SIZE      Tamanho do Pincel 
+TOOLBAR_TOOLTIP_CANVAS_COLOR    Cor do Canvas
+TOOLBAR_TOOLTIP_GRID 			      Exibir Grade
+TOOLBAR_FULLSCREEN_TOGGLE       Alternar Tela Cheia
+
+# -----------------------------------------------------------------------------
+# Color Palette Picker
+# -----------------------------------------------------------------------------
+COLOR_PALETTE_PICKER_HINT_NEW        Criar nova paleta de cores
+COLOR_PALETTE_PICKER_HINT_EDIT       Editar a paleta de cores atual
+COLOR_PALETTE_PICKER_HINT_DUPLICATE  Duplicar a paleta de cores atual
+COLOR_PALETTE_PICKER_HINT_DELETE     Remover a paleta de cores atual permanentemente
+
+# -----------------------------------------------------------------------------
+# Statusbar strings
+# -----------------------------------------------------------------------------
+
+STATUSBAR_POSITION              Posição
+STATUSBAR_ZOOM                  Zoom
+STATUSBAR_PRESSURE              Pressão
+STATUSBAR_FPS                   FPS
+STATUSBAR_STROKES               Traços
+STATUSBAR_POINTS                Pontos
+
+# -----------------------------------------------------------------------------
+# Settings strings
+# -----------------------------------------------------------------------------
+
+SETTINGS_TITLE                  Configurações
+SETTINGS_GENERAL                Geral
+SETTINGS_APPEARANCE             Aparência
+SETTINGS_RENDERING              Renderização
+SETTINGS_PRESSURE_SENSITIVITY   Sensibilidade à Pressão
+SETTINGS_BRUSH_SIZE             Tamanho Padrão do Pincel
+SETTINGS_CANVAS_COLOR           Cor Padrão do Canvas
+SETTINGS_PROJECT_FOLDER         Pasta de Projeto Padrão
+SETTINGS_LANGUAGE               Idioma
+SETTINGS_THEME                  Tema
+SETTINGS_UI_SCALE               Escala da Interface
+SETTINGS_UI_SCALE_AUTO          Automática
+SETTINGS_UI_SCALE_CUSTOM        Personalizada              
+SETTINGS_AA_METHOD              Método anti-aliasing
+SETTINGS_AA_METHOD_NONE         Nenhum
+SETTINGS_FPS_FOREGROUND         Fps em primeiro plano
+SETTINGS_FPS_BACKGROUND         Fps em segundo plano
+SETTINGS_BRUSH_CAPS             Modo de arredondamento do pincel
+SETTINGS_BRUSH_CAPS_FLAT        Liso
+SETTINGS_BRUSH_CAPS_ROUND       Redondo
+SETTINGS_RESTART_NOTICE  		É necessário reiniciar para aplicar as novas configurações
+
+# -----------------------------------------------------------------------------
+# About dialog strings
+# -----------------------------------------------------------------------------
+
+ABOUT_DIALOG_TITLE              Sobre
+ABOUT_DIALOG_COPYRIGHT          © 2021-2022 Marcus Brummer & contribuidores 
+ABOUT_DIALOG_LICSENSE           Lorien está licenciado sob:
+ABOUT_DIALOG_BASED_ON           Lorien é baseado em:
+ABOUT_DIALOG_EASTEREGG          Personagem do easteregg:
+
+# -----------------------------------------------------------------------------
+# Unsaved changes dialog
+# -----------------------------------------------------------------------------
+
+UNSAVED_CHANGES_DIALOG_TITLE    Salvar alterações?
+UNSAVED_CHANGES_DIALOG_TEXT     Deseja salvar suas alterações antes de fechar o arquivo?
+
+# -----------------------------------------------------------------------------
+# Exit dialog
+# -----------------------------------------------------------------------------
+
+EXIT_DIALOG_TITLE    Salvar alterações?
+EXIT_DIALOG_TEXT     Deseja salvar suas alterações antes de sair do Lorien?
+
+# -----------------------------------------------------------------------------
+# New palette dialog
+# -----------------------------------------------------------------------------
+NEW_PALETTE_DIALOG_CREATE_TITLE 		  Nova Paleta
+NEW_PALETTE_DIALOG_DUPLICATE_TITLE 		Duplicar Paleta
+NEW_PALETTE_DIALOG_PLACEHOLDER 			  Nome da Paleta
+
+# -----------------------------------------------------------------------------
+# Delete palette dialog
+# -----------------------------------------------------------------------------
+DELETE_PALETTE_DIALOG_TITLE 			Remover Paleta
+DELETE_PALETTE_DIALOG_TEXT 				Tem certeza que deseja remover permanentemente:
+
+# -----------------------------------------------------------------------------
+# Edit palette dialog
+# -----------------------------------------------------------------------------
+EDIT_PALETTE_DIALOG_TITLE 		Editar Paleta
+
+# -----------------------------------------------------------------------------
+# Error/Alert messages
+# -----------------------------------------------------------------------------
+
+ERROR_NOT_IMPLEMENTED               Ainda não implementado.
+ERROR_AUTOSAVE_NOT_IMPLEMENTED      Auto-salvamento ainda não foi implementado para arquivos "Untitled" (Sem título). Por favor salve-o manualmente.
+ALERT_EDITING_BUITIN_PALETTE        A edição de paletas predefinidas não é possível. Se você quiser personalizar esta paleta, poderá fazer uma cópia e editá-la. # TODO
+ALERT_DELETING_BUITIN_PALETTE       A exclusão de paletas predefinidas não é possível.
+
+# -----------------------------------------------------------------------------
+# Generic strings
+# -----------------------------------------------------------------------------
+
+SAVE            Salvar
+DISCARD         Descartar
+CANCEL          Cancelar
+DELETE          Deletar
