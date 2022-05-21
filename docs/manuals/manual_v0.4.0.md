@@ -21,7 +21,6 @@ Lorien provides you with different tools which you can find in the toolbar. If y
 - You can use the rectangle tool to create perfect (unfilled) rectagles
 - Not pressure sensitive 
 
-
 ### Line Tool
 - Allows you to draw perfect lines
 - You can hold down <kbd>Shift</kbd> while using the line tool to snap the line in 15° increments 

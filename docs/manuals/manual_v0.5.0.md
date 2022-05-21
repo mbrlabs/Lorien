@@ -21,11 +21,13 @@ Lorien provides you with different tools which you can find in the toolbar. If y
 - You can use the rectangle tool to create perfect (unfilled) rectagles
 - Not pressure sensitive 
 
-
 ### Line Tool
 - Allows you to draw perfect lines
 - You can hold down <kbd>Shift</kbd> while using the line tool to snap the line in 15° increments 
 - Not pressure sensitve
+
+### Circle Tool
+TBD
 
 ### Eraser Tool
 - Allows you to erease any brush stroke
@@ -55,11 +57,12 @@ Lorien provides you with different tools which you can find in the toolbar. If y
 - <kbd>Ctrl</kbd> + <kbd>C</kbd>: Copy selected brush strokes
 - <kbd>Ctrl</kbd> + <kbd>V</kbd>: Paste copied brush strokes
 - <kbd>Ctrl</kbd> + <kbd>D</kbd>: Duplicate selected brush strokes
-- <kbd>C</kbd>: Center the canvas based on current mouse position
+- <kbd>SPACE</kbd>: Center the canvas based on current mouse position
 - <kbd>B</kbd>: Brush tool
 - <kbd>R</kbd>: Rectangle tool
 - <kbd>E</kbd>: Eraser tool
 - <kbd>L</kbd>: Line tool
+- <kbd>C</kbd>: Circle tool
 - <kbd>S</kbd>: Selection tool
 - <kbd>Esc</kbd> or <kbd>RMB</kbd>: Deselect everything
 - <kbd>Delete</kbd>: Deletes selected brush strokes

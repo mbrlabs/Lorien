@@ -11,11 +11,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Automatically remembering and auto-opening .lorien files upon exit & launch
 - Fullscreen support
 - Basic SVG exporter
+- Circle/Ellipse tool
 - The window size will be saved and restored across program restarts
-- Center the canvas based on current mouse position (shortcut: `C`)
+- Center the canvas based on current mouse position (shortcut: `SPACE`)
 - UI scaling for high-dpi monitors
 - Changing the brush color while having strokes actively selected changes the color of these strokes
-- Translations: Turkish
+- Translations: Turkish, Brazilian Portuguese
 
 ### Fixed
 - Fixed misplaced color picker after window resize
