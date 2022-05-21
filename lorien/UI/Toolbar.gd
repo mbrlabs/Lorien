@@ -37,6 +37,7 @@ onready var _grid_button: TextureButton = $Right/GridButton
 onready var _fullscreen_btn: TextureButton = $Right/FullscreenButton
 onready var _tool_btn_brush: TextureButton = $Left/BrushToolButton
 onready var _tool_btn_rectangle: TextureButton = $Left/RectangleToolButton
+onready var _tool_btn_circle: TextureButton = $Left/CircleToolButton
 onready var _tool_btn_line: TextureButton = $Left/LineToolButton
 onready var _tool_btn_eraser: TextureButton = $Left/EraserToolButton
 onready var _tool_btn_selection: TextureButton = $Left/SelectionToolButton
@@ -68,6 +69,7 @@ func enable_tool(tool_type: int) -> void:
 		Types.Tool.ERASER: btn = _tool_btn_eraser
 		Types.Tool.SELECT: btn = _tool_btn_selection
 		Types.Tool.RECTANGLE: btn = _tool_btn_rectangle
+		Types.Tool.CIRCLE: btn = _tool_btn_circle
 	
 	btn.toggle()
 	_change_active_tool_button(btn)
@@ -134,6 +136,11 @@ func _on_RectangleToolButton_pressed() -> void:
 	_change_active_tool_button(_tool_btn_rectangle)
 	emit_signal("tool_changed", Types.Tool.RECTANGLE)
 
+# -------------------------------------------------------------------------------------------------
+func _on_CircleToolButton_pressed():
+	_change_active_tool_button(_tool_btn_circle)
+	emit_signal("tool_changed", Types.Tool.CIRCLE)	
+	
 # -------------------------------------------------------------------------------------------------
 func _on_LineToolButton_pressed():
 	_change_active_tool_button(_tool_btn_line)
