@@ -35,8 +35,7 @@ theme = ExtResource( 8 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_lock_": true,
-"_edit_use_anchors_": false,
-"_edit_vertical_guides_": [  ]
+"_edit_use_anchors_": false
 }
 
 [node name="InfiniteCanvas" parent="." instance=ExtResource( 2 )]
@@ -111,10 +110,10 @@ __meta__ = {
 
 [node name="BrushColorPicker" parent="." instance=ExtResource( 13 )]
 visible = false
-margin_left = 357.797
-margin_top = 80.5
-margin_right = 715.797
-margin_bottom = 195.5
+margin_left = 386.102
+margin_top = 79.6751
+margin_right = 744.102
+margin_bottom = 194.675
 add_new_palette_dialog_path = NodePath("../NewPaletteDialog")
 edit_palette_dialog = NodePath("../EditPaletteDialog")
 delete_palette_dialog = NodePath("../DeletePaletteDialog")

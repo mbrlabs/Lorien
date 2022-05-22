@@ -1,10 +1,12 @@
-[gd_resource type="Theme" load_steps=30 format=2]
+[gd_resource type="Theme" load_steps=32 format=2]
 
 [ext_resource path="res://Assets/Fonts/font_big_bold.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Assets/Fonts/font_normal.tres" type="DynamicFont" id=2]
 [ext_resource path="res://Assets/Icons/close.png" type="Texture" id=3]
 [ext_resource path="res://Assets/Icons/arrow_right.png" type="Texture" id=4]
 [ext_resource path="res://Assets/Icons/slider_knob_white.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Icons/switch_off.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Icons/switch_on.png" type="Texture" id=7]
 
 [sub_resource type="StyleBoxFlat" id=1]
 content_margin_left = 6.0
@@ -209,10 +211,10 @@ CheckButton/colors/font_color_pressed = Color( 1, 1, 1, 1 )
 CheckButton/constants/check_vadjust = 0
 CheckButton/constants/hseparation = 4
 CheckButton/fonts/font = null
-CheckButton/icons/off = null
-CheckButton/icons/off_disabled = null
-CheckButton/icons/on = null
-CheckButton/icons/on_disabled = null
+CheckButton/icons/off = ExtResource( 6 )
+CheckButton/icons/off_disabled = ExtResource( 6 )
+CheckButton/icons/on = ExtResource( 7 )
+CheckButton/icons/on_disabled = ExtResource( 7 )
 CheckButton/styles/disabled = null
 CheckButton/styles/focus = null
 CheckButton/styles/hover = null
