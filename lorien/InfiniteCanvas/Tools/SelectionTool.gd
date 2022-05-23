@@ -40,7 +40,7 @@ func _input(event: InputEvent) -> void:
 		if event.button_index == BUTTON_LEFT:
 			# LMB down - decide if we should select/multiselect or move the selection
 			if event.pressed:
-				_selecting_start_pos = xform_vector2_relative(event.global_position)
+				_selecting_start_pos = xform_vector2(event.global_position)
 				if event.shift:
 					_state = State.SELECTING
 					_multi_selecting = true
@@ -82,7 +82,7 @@ func _input(event: InputEvent) -> void:
 	elif event is InputEventMouseMotion:
 		_cursor.global_position = xform_vector2(event.global_position)
 		if _state == State.SELECTING:
-			_selecting_end_pos = xform_vector2_relative(event.global_position)
+			_selecting_end_pos = xform_vector2(event.global_position)
 			compute_selection(_selecting_start_pos, _selecting_end_pos)
 			_selection_rectangle.start_position = _selecting_start_pos
 			_selection_rectangle.end_position = _selecting_end_pos
@@ -126,7 +126,7 @@ func compute_selection(start_pos: Vector2, end_pos: Vector2) -> void:
 		var is_inside_selection_rect := false
 		if selection_rect.intersects(bounding_box):
 			for point in stroke.points:
-				var abs_point: Vector2 = stroke.calculte_absolute_position_of_point(point, _canvas.get_camera())
+				var abs_point: Vector2 = stroke.position + point
 				if selection_rect.has_point(abs_point):
 					is_inside_selection_rect = true
 					break
@@ -176,8 +176,9 @@ func _modify_strokes_colors(strokes: Array, color: Color) -> void:
 # ------------------------------------------------------------------------------------------------
 func _build_bounding_boxes() -> void:
 	_bounding_box_cache.clear()
-	_bounding_box_cache = Utils.calculte_bounding_boxes(_canvas.get_all_strokes(), _canvas.get_camera())
-
+	_bounding_box_cache = Utils.calculte_bounding_boxes_new(_canvas.get_all_strokes())
+	#$"../Viewport/DebugDraw".set_bounding_boxes(_bounding_box_cache.values())
+	
 # ------------------------------------------------------------------------------------------------
 func _set_stroke_selected(stroke: BrushStroke, is_inside_rect: bool = true) -> void:
 	if is_inside_rect:

@@ -163,10 +163,6 @@ func get_color() -> Color:
 	return color
 
 # -------------------------------------------------------------------------------------------------
-func calculte_absolute_position_of_point(point: Vector2, camera: Camera2D) -> Vector2:
-	return (point + position - camera.offset) / camera.zoom
-
-# -------------------------------------------------------------------------------------------------
 func clear() -> void:
 	points.clear()
 	pressures.clear()

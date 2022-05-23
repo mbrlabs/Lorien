@@ -35,12 +35,14 @@ func calculate_rect(start_pos: Vector2, end_pos: Vector2) -> Rect2:
 	return area
 
 # -------------------------------------------------------------------------------------------------
-func calculte_bounding_boxes(strokes: Array, camera: Camera2D) -> Dictionary:
+func calculte_bounding_boxes_new(strokes: Array, margin: float = 0.0) -> Dictionary:
 	var result := {}
 	for stroke in strokes:
-		var top_left: Vector2 = stroke.calculte_absolute_position_of_point(stroke.top_left_pos, camera)
-		var bottom_right: Vector2 = stroke.calculte_absolute_position_of_point(stroke.bottom_right_pos, camera)
+		var top_left: Vector2 = stroke.position + stroke.top_left_pos
+		var bottom_right: Vector2 = stroke.position + stroke.bottom_right_pos
 		var bounding_box := calculate_rect(top_left, bottom_right)
+		if margin > 0:
+			bounding_box = bounding_box.grow(margin)
 		result[stroke] = bounding_box
 	return result
 	

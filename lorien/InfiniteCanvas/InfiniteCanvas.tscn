@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://InfiniteCanvas/InfiniteCanvas.gd" type="Script" id=1]
 [ext_resource path="res://InfiniteCanvas/PanZoomCamera.gd" type="Script" id=2]
@@ -14,6 +14,7 @@
 [ext_resource path="res://InfiniteCanvas/InfiniteCanvasGrid.gd" type="Script" id=12]
 [ext_resource path="res://InfiniteCanvas/Tools/CircleTool.gd" type="Script" id=13]
 [ext_resource path="res://InfiniteCanvas/Tools/EraserTool.gd" type="Script" id=14]
+[ext_resource path="res://InfiniteCanvas/DebugDraw.gd" type="Script" id=15]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 10 )
@@ -51,11 +52,7 @@ pressure_curve = ExtResource( 3 )
 [node name="SelectionTool" type="Node" parent="."]
 script = ExtResource( 7 )
 cursor_path = NodePath("../Viewport/SelectionCursor")
-selection_rectangle_path = NodePath("../SelectionRectangle")
-
-[node name="SelectionRectangle" type="Node2D" parent="."]
-material = SubResource( 1 )
-script = ExtResource( 9 )
+selection_rectangle_path = NodePath("../Viewport/SelectionRectangle")
 
 [node name="Viewport" type="Viewport" parent="."]
 size = Vector2( 1920, 1080 )
@@ -74,6 +71,13 @@ script = ExtResource( 12 )
 camera_path = NodePath("../Camera2D")
 
 [node name="Strokes" type="Node2D" parent="Viewport"]
+
+[node name="DebugDraw" type="Node2D" parent="Viewport"]
+script = ExtResource( 15 )
+
+[node name="SelectionRectangle" type="Node2D" parent="Viewport"]
+material = SubResource( 1 )
+script = ExtResource( 9 )
 
 [node name="BrushCursor" parent="Viewport" instance=ExtResource( 4 )]
 
