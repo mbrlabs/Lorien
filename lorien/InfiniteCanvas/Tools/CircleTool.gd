@@ -38,7 +38,7 @@ func _input(event: InputEvent) -> void:
 	elif event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT:
 			if event.pressed:
-				start_stroke(false)
+				start_stroke()
 				_start_position_top_left = _cursor.global_position
 				remove_all_stroke_points()
 				_make_ellipse(PRESSURE, STEP_IN_MOTION, should_draw_circle)

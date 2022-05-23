@@ -2,14 +2,7 @@ class_name BrushTool
 extends CanvasTool
 
 # -------------------------------------------------------------------------------------------------
-enum Mode {
-	DRAW,
-	ERASE
-}
-
-# -------------------------------------------------------------------------------------------------
 export var pressure_curve: Curve
-var mode: int = Mode.DRAW
 var _last_mouse_motion: InputEventMouseMotion
 
 # -------------------------------------------------------------------------------------------------
@@ -27,7 +20,7 @@ func _input(event: InputEvent) -> void:
 			if event.pressed && _last_mouse_motion != null:
 				_last_mouse_motion.global_position = event.global_position
 				_last_mouse_motion.position = event.position
-				start_stroke(mode == Mode.ERASE)
+				start_stroke()
 			elif !event.pressed && performing_stroke:
 				end_stroke()
 
@@ -45,5 +38,5 @@ func _process(delta: float) -> void:
 		# of indices in a Line2D/Polygon
 		if get_current_brush_stroke().points.size() >= BrushStroke.MAX_POINTS:
 			end_stroke()
-			start_stroke(mode == Mode.ERASE)
+			start_stroke()
 			add_stroke_point(brush_position, pressure)

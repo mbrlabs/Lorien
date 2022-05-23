@@ -1,4 +1,4 @@
-class_name SuperEraserTool
+class_name EraserTool
 extends CanvasTool
 
 # -------------------------------------------------------------------------------------------------

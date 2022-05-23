@@ -34,7 +34,7 @@ func _input(event: InputEvent) -> void:
 	elif event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT:
 			if event.pressed:
-				start_stroke(false)
+				start_stroke()
 				_head = _add_point_at_mouse_pos(0.5)
 				_tail = _add_point_at_mouse_pos(0.5)
 			elif !event.pressed && performing_stroke:

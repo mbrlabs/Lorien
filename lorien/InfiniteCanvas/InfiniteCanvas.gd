@@ -10,7 +10,7 @@ onready var _brush_tool: BrushTool = $BrushTool
 onready var _rectangle_tool: RectangleTool = $RectangleTool
 onready var _line_tool: LineTool = $LineTool
 onready var _circle_tool: CircleTool = $CircleTool
-onready var _eraser_tool: SuperEraserTool = $EraserTool
+onready var _eraser_tool: EraserTool = $EraserTool
 onready var _selection_tool: SelectionTool = $SelectionTool
 onready var _active_tool: CanvasTool = _brush_tool
 onready var _strokes_parent: Node2D = $Viewport/Strokes
@@ -75,7 +75,6 @@ func use_tool(tool_type: int) -> void:
 	
 	match tool_type:
 		Types.Tool.BRUSH:
-			_brush_tool.mode = BrushTool.Mode.DRAW
 			_active_tool = _brush_tool
 			_use_optimizer = true
 		Types.Tool.RECTANGLE:
@@ -100,15 +99,8 @@ func use_tool(tool_type: int) -> void:
 # -------------------------------------------------------------------------------------------------
 func set_background_color(color: Color) -> void:
 	_background_color = color
-	
 	VisualServer.set_default_clear_color(_background_color)
 	_grid.set_canvas_color(_background_color)
-	
-	if _current_project != null:
-		# Make the eraser brush strokes have the same color as the background
-		for eraser_index in _current_project.eraser_stroke_indices:
-			if eraser_index < _strokes_parent.get_child_count():
-				_strokes_parent.get_child(eraser_index).color = _background_color
 
 # -------------------------------------------------------------------------------------------------
 func enable_colliders(enable: bool) -> void:
@@ -168,16 +160,10 @@ func take_screenshot() -> Image:
 	return _viewport.get_texture().get_data()
 
 # -------------------------------------------------------------------------------------------------
-func start_stroke(eraser: bool = false) -> void:
+func start_stroke() -> void:
 	_current_stroke = BRUSH_STROKE.instance()
-	_current_stroke.eraser = eraser
 	_current_stroke.size = _brush_size
-	
-	if eraser:
-		_current_stroke.color = _background_color
-		_current_stroke.size *= ERASER_SIZE_FACTOR
-	else:
-		_current_stroke.color = _brush_color
+	_current_stroke.color = _brush_color
 	
 	_strokes_parent.add_child(_current_stroke)
 	_optimizer.reset()

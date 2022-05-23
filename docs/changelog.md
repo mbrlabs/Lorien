@@ -6,12 +6,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [0.5.0] - Unreleased
 
+### Breaking Changes
+Version `v0.5` of Lorien features a new SuperEraser, which erases brush strokes as soon as it inserects with them. The previous implementation just painted over new brush strokes, which always had the same color as the background - giving you the illusion of a traditional eraser like in bitmap-based programs (Gimp, Photoshop, etc.). The old implementation has been completely removed in favor of the SuperEraser.
+The savefile format did not change. However previously made eraser-strokes will be skipped when loading `.lorien` files. Moreover when saving these files, the eraser-strokes will be permanently lost. 
+
+If you rely on these eraser-strokes: DO NOT UPDATE to this version or BACKUP you `.lorien` files before opening them in the new version.
+
 ### Added
 - Zooming with CTRL+MMB
 - Automatically remembering and auto-opening .lorien files upon exit & launch
 - Fullscreen support
 - Basic SVG exporter
 - Circle/Ellipse tool
+- New eraser tool behaviour (SuperEraser): intersecting a brush stroke with the eraser brush removes the entiry brush stroke 
 - The window size will be saved and restored across program restarts
 - Center the canvas based on current mouse position (shortcut: `SPACE`)
 - UI scaling for high-dpi monitors
@@ -25,6 +32,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Updated to Godot 3.4.4
 - Enabled low-energy mode
 - Improved brush stroke antialiasing
+- Removed old fake-eraser in favor of new SuperEraser
 - Removed rudimentary png export in favor of the new SVG exporter 
 - Made the brush stroke optimizer less aggresive, which results in smoother lines at the expense of slightly bigger savefiles
 - Increased the default pressure sensitvity from 1.0 to 1.5

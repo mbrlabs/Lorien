@@ -17,7 +17,6 @@ const MIN_VECTOR2 := -MAX_VECTOR2
 # ------------------------------------------------------------------------------------------------
 onready var _line2d: Line2D = $Line2D
 onready var _visibility_notifier: VisibilityNotifier2D = $VisibilityNotifier2D
-var eraser := false
 var color: Color setget set_color, get_color
 var size: int
 var points: Array # Array<Vector2>
@@ -66,27 +65,26 @@ func _to_string() -> String:
 
 # -------------------------------------------------------------------------------------------------
 func enable_collider(enable: bool) -> void:
-	if !eraser:
-		# Remove current collider
-		var collider = get_node_or_null(COLLIDER_NODE_NAME)
-		if collider != null:
-			remove_child(collider)
-			collider.queue_free()
-		
-		# Create new collider
-		if enable:
-			var body := StaticBody2D.new()
-			body.name = COLLIDER_NODE_NAME
-			var idx := 0
-			while idx < points.size()-1:
-				var col := CollisionShape2D.new()
-				var shape := SegmentShape2D.new()
-				shape.a = points[idx]
-				shape.b = points[idx + 1]
-				col.shape = shape
-				body.add_child(col)
-				idx += 1
-			add_child(body)
+	# Remove current collider
+	var collider = get_node_or_null(COLLIDER_NODE_NAME)
+	if collider != null:
+		remove_child(collider)
+		collider.queue_free()
+	
+	# Create new collider
+	if enable:
+		var body := StaticBody2D.new()
+		body.name = COLLIDER_NODE_NAME
+		var idx := 0
+		while idx < points.size()-1:
+			var col := CollisionShape2D.new()
+			var shape := SegmentShape2D.new()
+			shape.a = points[idx]
+			shape.b = points[idx + 1]
+			col.shape = shape
+			body.add_child(col)
+			idx += 1
+		add_child(body)
 
 # -------------------------------------------------------------------------------------------------
 func add_point(point: Vector2, pressure: float) -> void:
@@ -129,7 +127,6 @@ func refresh() -> void:
 	if points.empty():
 		return
 	
-	# FIXME: eraser color !!!
 	_line2d.default_color = color
 	_line2d.width = size
 	
@@ -164,6 +161,10 @@ func set_color(c: Color) -> void:
 # -------------------------------------------------------------------------------------------------
 func get_color() -> Color:
 	return color
+
+# -------------------------------------------------------------------------------------------------
+func calculte_absolute_position_of_point(point: Vector2, camera: Camera2D) -> Vector2:
+	return (point + position - camera.offset) / camera.zoom
 
 # -------------------------------------------------------------------------------------------------
 func clear() -> void:

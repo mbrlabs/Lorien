@@ -9,6 +9,7 @@ export var camera_path: NodePath
 var _enabled: bool
 var _camera: Camera2D
 var _grid_size := Config.DEFAULT_GRID_SIZE
+var _grid_color: Color
 
 # -------------------------------------------------------------------------------------------------
 func _ready():
@@ -29,7 +30,7 @@ func _on_viewport_size_changed() -> void: update()
 
 # -------------------------------------------------------------------------------------------------
 func set_canvas_color(c: Color) -> void:
-	material.set_shader_param("canvas_color", c)
+	_grid_color = c * 1.25
 
 # -------------------------------------------------------------------------------------------------
 func set_grid_scale(size: float):
@@ -56,10 +57,10 @@ func _draw() -> void:
 	var start_index := int((offset.x - size.x) / grid_size) - 1
 	var end_index := int((size.x + offset.x) / grid_size) + 1
 	for i in range(start_index, end_index):
-		draw_line(Vector2(i * grid_size, offset.y + size.y), Vector2(i * grid_size, offset.y - size.y), COLOR)
+		draw_line(Vector2(i * grid_size, offset.y + size.y), Vector2(i * grid_size, offset.y - size.y), _grid_color)
 	
 	# Horizontal lines
 	start_index = int((offset.y - size.y) / grid_size) - 1
 	end_index = int((size.y + offset.y) / grid_size) + 1
 	for i in range(start_index, end_index):
-		draw_line(Vector2(offset.x + size.x, i * grid_size), Vector2(offset.x - size.x, i * grid_size), COLOR)
+		draw_line(Vector2(offset.x + size.x, i * grid_size), Vector2(offset.x - size.x, i * grid_size), _grid_color)

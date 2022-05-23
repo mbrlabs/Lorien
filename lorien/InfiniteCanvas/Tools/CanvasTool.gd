@@ -45,8 +45,8 @@ func get_enabled() -> bool:
 	return enabled
 
 # -------------------------------------------------------------------------------------------------
-func start_stroke(eraser: bool = false) -> void:
-	_canvas.start_stroke(eraser)
+func start_stroke() -> void:
+	_canvas.start_stroke()
 	performing_stroke = true
 
 # -------------------------------------------------------------------------------------------------

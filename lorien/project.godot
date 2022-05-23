@@ -64,6 +64,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://UI/Dialogs/EditPaletteDialog.gd"
 }, {
+"base": "CanvasTool",
+"class": "EraserTool",
+"language": "GDScript",
+"path": "res://InfiniteCanvas/Tools/EraserTool.gd"
+}, {
 "base": "Reference",
 "class": "I18nParser",
 "language": "GDScript",
@@ -154,11 +159,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://UI/Statusbar.gd"
 }, {
-"base": "CanvasTool",
-"class": "SuperEraserTool",
-"language": "GDScript",
-"path": "res://InfiniteCanvas/Tools/SuperEraserTool.gd"
-}, {
 "base": "Reference",
 "class": "SvgExporter",
 "language": "GDScript",
@@ -186,6 +186,7 @@ _global_script_class_icons={
 "Config": "",
 "DeletePaletteDialog": "",
 "EditPaletteDialog": "",
+"EraserTool": "",
 "I18nParser": "",
 "InfiniteCanvas": "",
 "InfiniteCanvasGrid": "",
@@ -204,7 +205,6 @@ _global_script_class_icons={
 "SelectionTool": "",
 "Serializer": "",
 "Statusbar": "",
-"SuperEraserTool": "",
 "SvgExporter": "",
 "Toolbar": "",
 "Types": ""

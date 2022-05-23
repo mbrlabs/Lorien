@@ -16,8 +16,8 @@ func optimize(s: BrushStroke) -> void:
 	if s.points.size() < 3:
 		return
 	
-	var max_angle_diff := ANGLE_THRESHOLD*2.0 if s.eraser else ANGLE_THRESHOLD
-	var max_distance := DISTANCE_THRESHOLD*2.0 if s.eraser else DISTANCE_THRESHOLD
+	var max_angle_diff := ANGLE_THRESHOLD
+	var max_distance := DISTANCE_THRESHOLD
 	
 	var filtered_points := []
 	var filtered_pressures := []
