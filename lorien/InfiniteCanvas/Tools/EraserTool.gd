@@ -2,6 +2,9 @@ class_name EraserTool
 extends CanvasTool
 
 # -------------------------------------------------------------------------------------------------
+const OVERLAP_THRESHOLD := 0.95
+
+# -------------------------------------------------------------------------------------------------
 var _last_mouse_motion: InputEventMouseMotion
 var _removed_strokes := [] # BrushStroke -> Vector2
 var _bounding_box_cache = {} # BrushStroke -> Rect2
@@ -39,12 +42,14 @@ func _stroke_intersects_circle(stroke: BrushStroke, circle_position: Vector2) ->
 		return false
 	
 	# Check every segment of the brush stroke for an intersection with the curser
-	var brush_size := float(_cursor._brush_size)
+	var eraser_brush_radius := float(_cursor._brush_size) * 0.5
+	var camera: Camera2D = _canvas.get_camera()
 	for i in stroke.points.size() - 1:
-		var radius: float = (float(stroke.pressures[i]) / 255.0) * brush_size
-		var start = stroke.calculte_absolute_position_of_point(stroke.points[i], _canvas.get_camera())
-		var end = stroke.calculte_absolute_position_of_point(stroke.points[i+1], _canvas.get_camera())
-		if Geometry.segment_intersects_circle(start, end, circle_position, radius) >= 0:
+		var segment_radius: float = (stroke.pressures[i] / float(BrushStroke.MAX_PRESSURE_VALUE)) * float(stroke.size) * 0.5
+		var radius: float = (segment_radius + eraser_brush_radius) / camera.zoom.x
+		var start = stroke.calculte_absolute_position_of_point(stroke.points[i], camera)
+		var end = stroke.calculte_absolute_position_of_point(stroke.points[i+1], camera)
+		if Geometry.segment_intersects_circle(start, end, circle_position, radius*OVERLAP_THRESHOLD) >= 0:
 			return true
 	return false
 
