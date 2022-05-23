@@ -4,13 +4,13 @@ class_name InfiniteCanvas
 # -------------------------------------------------------------------------------------------------
 const BRUSH_STROKE = preload("res://BrushStroke/BrushStroke.tscn")
 const PLAYER = preload("res://Misc/Player/Player.tscn")
-const ERASER_SIZE_FACTOR = 1.25
 
 # -------------------------------------------------------------------------------------------------
 onready var _brush_tool: BrushTool = $BrushTool
 onready var _rectangle_tool: RectangleTool = $RectangleTool
-onready var _circle_tool: CircleTool = $CircleTool
 onready var _line_tool: LineTool = $LineTool
+onready var _circle_tool: CircleTool = $CircleTool
+onready var _eraser_tool: SuperEraserTool = $EraserTool
 onready var _selection_tool: SelectionTool = $SelectionTool
 onready var _active_tool: CanvasTool = _brush_tool
 onready var _strokes_parent: Node2D = $Viewport/Strokes
@@ -88,9 +88,8 @@ func use_tool(tool_type: int) -> void:
 			_active_tool = _line_tool
 			_use_optimizer = false
 		Types.Tool.ERASER:
-			_brush_tool.mode = BrushTool.Mode.ERASE
-			_active_tool = _brush_tool
-			_use_optimizer = true
+			_active_tool = _eraser_tool
+			_use_optimizer = false
 		Types.Tool.SELECT:
 			_active_tool = _selection_tool
 			_use_optimizer = false

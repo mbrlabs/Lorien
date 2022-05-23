@@ -35,6 +35,16 @@ func calculate_rect(start_pos: Vector2, end_pos: Vector2) -> Rect2:
 	return area
 
 # -------------------------------------------------------------------------------------------------
+func calculte_bounding_boxes(strokes: Array, camera: Camera2D) -> Dictionary:
+	var result := {}
+	for stroke in strokes:
+		var top_left: Vector2 = stroke.calculte_absolute_position_of_point(stroke.top_left_pos, camera)
+		var bottom_right: Vector2 = stroke.calculte_absolute_position_of_point(stroke.bottom_right_pos, camera)
+		var bounding_box := calculate_rect(top_left, bottom_right)
+		result[stroke] = bounding_box
+	return result
+	
+# -------------------------------------------------------------------------------------------------
 func return_timestamp_string() -> String:
 	var today := OS.get_datetime()
 	return "%s%s%s_%s%s%s" % [today.day, today.month, today.year, today.hour, today.minute, today.second]

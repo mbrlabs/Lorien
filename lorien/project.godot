@@ -154,6 +154,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://UI/Statusbar.gd"
 }, {
+"base": "CanvasTool",
+"class": "SuperEraserTool",
+"language": "GDScript",
+"path": "res://InfiniteCanvas/Tools/SuperEraserTool.gd"
+}, {
 "base": "Reference",
 "class": "SvgExporter",
 "language": "GDScript",
@@ -199,6 +204,7 @@ _global_script_class_icons={
 "SelectionTool": "",
 "Serializer": "",
 "Statusbar": "",
+"SuperEraserTool": "",
 "SvgExporter": "",
 "Toolbar": "",
 "Types": ""

@@ -126,7 +126,8 @@ func compute_selection(start_pos: Vector2, end_pos: Vector2) -> void:
 		var is_inside_selection_rect := false
 		if selection_rect.intersects(bounding_box):
 			for point in stroke.points:
-				if selection_rect.has_point(_calc_abs_stroke_point(point, stroke)):
+				var abs_point: Vector2 = stroke.calculte_absolute_position_of_point(point, _canvas.get_camera())
+				if selection_rect.has_point(abs_point):
 					is_inside_selection_rect = true
 					break
 		_set_stroke_selected(stroke, is_inside_selection_rect)
@@ -160,7 +161,6 @@ func _paste_strokes(strokes: Array) -> void:
 func _duplicate_stroke(stroke: BrushStroke, offset: Vector2) -> BrushStroke:	
 	var dup: BrushStroke = BRUSH_STROKE.instance()
 	dup.global_position = stroke.global_position
-	dup.eraser = stroke.eraser
 	dup.size = stroke.size
 	dup.color = stroke.color
 	dup.pressures = stroke.pressures.duplicate()
@@ -176,15 +176,7 @@ func _modify_strokes_colors(strokes: Array, color: Color) -> void:
 # ------------------------------------------------------------------------------------------------
 func _build_bounding_boxes() -> void:
 	_bounding_box_cache.clear()
-	for stroke in _canvas.get_all_strokes():
-		var top_left := _calc_abs_stroke_point(stroke.top_left_pos, stroke)
-		var bottom_right := _calc_abs_stroke_point(stroke.bottom_right_pos, stroke)
-		var bounding_box := Utils.calculate_rect(top_left, bottom_right)
-		_bounding_box_cache[stroke] = bounding_box
-
-# ------------------------------------------------------------------------------------------------
-func _calc_abs_stroke_point(p: Vector2, stroke: BrushStroke) -> Vector2:
-	return (p + stroke.position - _canvas.get_camera_offset()) / _canvas.get_camera_zoom()
+	_bounding_box_cache = Utils.calculte_bounding_boxes(_canvas.get_all_strokes(), _canvas.get_camera())
 
 # ------------------------------------------------------------------------------------------------
 func _set_stroke_selected(stroke: BrushStroke, is_inside_rect: bool = true) -> void:
