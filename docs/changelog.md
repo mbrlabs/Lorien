@@ -32,6 +32,7 @@ If you rely on these eraser-strokes: DO NOT UPDATE to this version or BACKUP you
 - Updated to Godot 3.4.4
 - Enabled low-energy mode
 - Improved brush stroke antialiasing
+- Improved selection tool performance on large documents
 - Removed old fake-eraser in favor of new SuperEraser
 - Removed rudimentary png export in favor of the new SVG exporter 
 - Made the brush stroke optimizer less aggresive, which results in smoother lines at the expense of slightly bigger savefiles

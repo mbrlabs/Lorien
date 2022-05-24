@@ -71,6 +71,5 @@ func _add_undoredo_action_for_erased_strokes() -> void:
 # ------------------------------------------------------------------------------------------------
 func _update_bounding_boxes() -> void:
 	var strokes: Array = _canvas.get_all_strokes()
-	var camera: Camera2D = _canvas.get_camera()
-	_bounding_box_cache = Utils.calculte_bounding_boxes_new(strokes, BOUNDING_BOX_MARGIN)
+	_bounding_box_cache = Utils.calculte_bounding_boxes(strokes, BOUNDING_BOX_MARGIN)
 	#$"../Viewport/DebugDraw".set_bounding_boxes(_bounding_box_cache.values())

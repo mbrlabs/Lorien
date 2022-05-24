@@ -80,9 +80,10 @@ func _input(event: InputEvent) -> void:
 	
 	# Mouse movement: move the selection
 	elif event is InputEventMouseMotion:
-		_cursor.global_position = xform_vector2(event.global_position)
+		var event_pos := xform_vector2(event.global_position)
+		_cursor.global_position = event_pos
 		if _state == State.SELECTING:
-			_selecting_end_pos = xform_vector2(event.global_position)
+			_selecting_end_pos = event_pos
 			compute_selection(_selecting_start_pos, _selecting_end_pos)
 			_selection_rectangle.start_position = _selecting_start_pos
 			_selection_rectangle.end_position = _selecting_end_pos
@@ -123,14 +124,12 @@ func compute_selection(start_pos: Vector2, end_pos: Vector2) -> void:
 	var selection_rect : Rect2 = Utils.calculate_rect(start_pos, end_pos)
 	for stroke in _canvas.get_strokes_in_camera_frustrum():
 		var bounding_box: Rect2 = _bounding_box_cache[stroke]
-		var is_inside_selection_rect := false
 		if selection_rect.intersects(bounding_box):
 			for point in stroke.points:
 				var abs_point: Vector2 = stroke.position + point
 				if selection_rect.has_point(abs_point):
-					is_inside_selection_rect = true
+					_set_stroke_selected(stroke)
 					break
-		_set_stroke_selected(stroke, is_inside_selection_rect)
 	_canvas.info.selected_lines = get_selected_strokes().size()
 
 # ------------------------------------------------------------------------------------------------
@@ -176,27 +175,18 @@ func _modify_strokes_colors(strokes: Array, color: Color) -> void:
 # ------------------------------------------------------------------------------------------------
 func _build_bounding_boxes() -> void:
 	_bounding_box_cache.clear()
-	_bounding_box_cache = Utils.calculte_bounding_boxes_new(_canvas.get_all_strokes())
+	_bounding_box_cache = Utils.calculte_bounding_boxes(_canvas.get_all_strokes())
 	#$"../Viewport/DebugDraw".set_bounding_boxes(_bounding_box_cache.values())
 	
 # ------------------------------------------------------------------------------------------------
-func _set_stroke_selected(stroke: BrushStroke, is_inside_rect: bool = true) -> void:
-	if is_inside_rect:
-		if stroke.is_in_group(GROUP_SELECTED_STROKES):
-			stroke.modulate = Color.white
-			stroke.add_to_group(GROUP_MARKED_FOR_DESELECTION)
-		else:
-			stroke.modulate = Config.DEFAULT_SELECTION_COLOR
-			stroke.add_to_group(GROUP_STROKES_IN_SELECTION_RECTANGLE)
+func _set_stroke_selected(stroke: BrushStroke) -> void:
+	if stroke.is_in_group(GROUP_SELECTED_STROKES):
+		stroke.modulate = Color.white
+		stroke.add_to_group(GROUP_MARKED_FOR_DESELECTION)
 	else:
-		if stroke.is_in_group(GROUP_MARKED_FOR_DESELECTION):
-			stroke.modulate = Config.DEFAULT_SELECTION_COLOR
-			stroke.remove_from_group(GROUP_MARKED_FOR_DESELECTION)
-		
-		if stroke.is_in_group(GROUP_STROKES_IN_SELECTION_RECTANGLE) && !stroke.is_in_group(GROUP_SELECTED_STROKES):
-			stroke.remove_from_group(GROUP_STROKES_IN_SELECTION_RECTANGLE)
-			stroke.modulate = Color.white
-
+		stroke.modulate = Config.DEFAULT_SELECTION_COLOR
+		stroke.add_to_group(GROUP_STROKES_IN_SELECTION_RECTANGLE)
+			
 # ------------------------------------------------------------------------------------------------
 func _add_undoredo_action_for_moved_strokes() -> void:
 	var project: Project = ProjectManager.get_active_project()
