@@ -149,3 +149,27 @@ func _on_DeletePaletteButton_pressed() -> void:
 	else:
 		var dialog: DeletePaletteDialog = get_node(delete_palette_dialog)
 		dialog.popup_centered()
+
+# -------------------------------------------------------------------------------------------------
+func toggle() -> void:
+	visible = !visible
+	_adjust_position()
+
+# -------------------------------------------------------------------------------------------------
+func _adjust_position() -> void:
+	var color_button_position: float = _toolbar.get_brush_color_button().rect_position.x
+	# If palette extends beyond the window
+	if color_button_position + rect_size.x > _toolbar.rect_size.x:
+		var size_offset: int = _toolbar.rect_size.x - rect_size.x
+		# If window size is big enough to show the entire palette (horizontally)
+		if size_offset >= 0:
+			rect_position.x = size_offset
+		else:
+			var color_button_size: float = _toolbar.get_brush_color_button().rect_size.x
+			# Brackets = Distance of window center from left side of color button
+			# Distance / size = ratio where (0 <= ratio <= 1) scrolls through color picker
+			# (ratio < 0) clamps to left side of color picker, (ratio > 1) clamps to right side
+			var interval_position: float = (_toolbar.scroll_horizontal + _toolbar.rect_size.x / 2 - color_button_position) / color_button_size * size_offset
+			rect_position.x = clamp(interval_position, size_offset, 0)
+	elif rect_position.x != color_button_position:
+		rect_position.x = color_button_position - _toolbar.scroll_horizontal
