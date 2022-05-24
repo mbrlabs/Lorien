@@ -36,6 +36,7 @@ If you rely on these eraser-strokes: DO NOT UPDATE to this version or BACKUP you
 - Removed rudimentary png export in favor of the new SVG exporter 
 - Made the brush stroke optimizer less aggresive, which results in smoother lines at the expense of slightly bigger savefiles
 - Increased the default pressure sensitvity from 1.0 to 1.5
+- Made toolbar scrollable
 
 ## [0.4.0] - 2021-10-10
 
