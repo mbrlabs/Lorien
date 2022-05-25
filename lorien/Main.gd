@@ -198,8 +198,9 @@ func _save_state() -> void:
 func _apply_state() -> void:
 	# Window related stuff
 	var is_maximized: bool = StatePersistence.get_value(StatePersistence.WINDOW_MAXIMIZED, false)
-	var default_win_size := Vector2(1920, 1080)*0.4
+	var default_win_size := Vector2(1440, 810)
 	var win_size: Vector2 = StatePersistence.get_value(StatePersistence.WINDOW_SIZE, default_win_size)
+	
 	if is_maximized:
 		OS.window_maximized = true
 	else:
