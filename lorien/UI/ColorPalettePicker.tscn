@@ -22,9 +22,6 @@ margin_bottom = 78.0
 rect_min_size = Vector2( 358, 78 )
 theme = ExtResource( 1 )
 script = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 margin_right = 358.0
@@ -111,8 +108,8 @@ pressed_tint = Color( 1, 0.266667, 0.266667, 1 )
 margin_top = 29.0
 margin_right = 346.0
 margin_bottom = 31.0
-custom_styles/separator = SubResource( 2 )
 custom_constants/separation = 2
+custom_styles/separator = SubResource( 2 )
 
 [node name="ColorGrid" type="GridContainer" parent="MarginContainer/VBoxContainer"]
 margin_top = 35.0

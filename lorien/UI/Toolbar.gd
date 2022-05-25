@@ -39,8 +39,8 @@ onready var _tool_btn_brush: TextureButton = $Console/Left/BrushToolButton
 onready var _tool_btn_rectangle: TextureButton = $Console/Left/RectangleToolButton
 onready var _tool_btn_circle: TextureButton = $Console/Left/CircleToolButton
 onready var _tool_btn_line: TextureButton = $Console/Left/LineToolButton
-onready var _tool_btn_eraser: TextureButton = $ConsoleLeft/EraserToolButton
-onready var _tool_btn_selection: TextureButton = $ConsoleLeft/SelectionToolButton
+onready var _tool_btn_eraser: TextureButton = $Console/Left/EraserToolButton
+onready var _tool_btn_selection: TextureButton = $Console/Left/SelectionToolButton
 
 var _last_active_tool_button: TextureButton
 

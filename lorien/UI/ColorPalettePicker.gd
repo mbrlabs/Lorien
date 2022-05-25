@@ -116,6 +116,7 @@ func _on_PaletteSelectionButton_item_selected(index: int) -> void:
 	var palette := PaletteManager.get_active_palette()
 	_create_buttons(palette)
 	_activate_palette_button(_color_grid.get_child(0), 0)
+	_adjust_position()
 
 # -------------------------------------------------------------------------------------------------
 func _on_AddPaletteButton_pressed() -> void:
@@ -164,6 +165,8 @@ func _adjust_position() -> void:
 		# If window size is big enough to show the entire palette (horizontally)
 		if size_offset >= 0:
 			rect_position.x = size_offset
+		elif _color_grid.get_combined_minimum_size().x < _toolbar.rect_size.x:
+			rect_position.x = 0
 		else:
 			var color_button_size: float = _toolbar.get_brush_color_button().rect_size.x
 			# Brackets = Distance of window center from left side of color button

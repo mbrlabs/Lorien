@@ -10,6 +10,7 @@ const PALETTES_PATH					:= "user://palettes.cfg"
 const STATE_PATH					:= "user://state.cfg"
 const MAX_PALETTE_SIZE 				:= 40
 const MIN_PALETTE_SIZE 				:= 1
+const MIN_WINDOW_SIZE				:= Vector2(320, 256)
 const DEFAULT_CANVAS_COLOR 			:= Color("202124")
 const DEFAULT_BRUSH_COLOR 			:= Color.white
 const DEFAULT_BRUSH_SIZE			:= 12
