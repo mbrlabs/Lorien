@@ -93,6 +93,8 @@ func _notification(what):
 				_exit_dialog.call_deferred("popup")
 			else:
 				_save_state()
+				 # we have to wait a bit before exiting; otherwise the changes might not be persisted correctly.
+				yield(get_tree().create_timer(0.12), "timeout")
 				get_tree().quit()
 
 	elif NOTIFICATION_WM_FOCUS_IN == what:
@@ -182,22 +184,22 @@ func _save_state() -> void:
 	var open_projects := Array()
 	for project in ProjectManager.get_open_projects():
 		open_projects.append(project.filepath)
-	StatePersistance.set_value(StatePersistance.OPEN_PROJECTS, open_projects)
+	StatePersistence.set_value(StatePersistence.OPEN_PROJECTS, open_projects)
 	
 	# Active project
 	var active_project_path := ProjectManager.get_active_project().filepath
-	StatePersistance.set_value(StatePersistance.ACTIVE_PROJECT, active_project_path)
+	StatePersistence.set_value(StatePersistence.ACTIVE_PROJECT, active_project_path)
 	
 	# Window related stuff
-	StatePersistance.set_value(StatePersistance.WINDOW_SIZE, OS.window_size)
-	StatePersistance.set_value(StatePersistance.WINDOW_MAXIMIZED, OS.window_maximized)
+	StatePersistence.set_value(StatePersistence.WINDOW_SIZE, OS.window_size)
+	StatePersistence.set_value(StatePersistence.WINDOW_MAXIMIZED, OS.window_maximized)
 
 # -------------------------------------------------------------------------------------------------
 func _apply_state() -> void:
 	# Window related stuff
-	var is_maximized: bool = StatePersistance.get_value(StatePersistance.WINDOW_MAXIMIZED, false)
+	var is_maximized: bool = StatePersistence.get_value(StatePersistence.WINDOW_MAXIMIZED, false)
 	var default_win_size := Vector2(1920, 1080)*0.4
-	var win_size: Vector2 = StatePersistance.get_value(StatePersistance.WINDOW_SIZE, default_win_size)
+	var win_size: Vector2 = StatePersistence.get_value(StatePersistence.WINDOW_SIZE, default_win_size)
 	if is_maximized:
 		OS.window_maximized = true
 	else:
@@ -206,13 +208,13 @@ func _apply_state() -> void:
 	yield(get_tree().create_timer(0.12), "timeout")
 	
 	# Open projects
-	var open_projects: Array = StatePersistance.get_value(StatePersistance.OPEN_PROJECTS, Array())
+	var open_projects: Array = StatePersistence.get_value(StatePersistence.OPEN_PROJECTS, Array())
 	for path in open_projects:
 		if path is String:
 			_on_open_project(path)
 			
 	# Active project
-	var active_project_path: String = StatePersistance.get_value(StatePersistance.ACTIVE_PROJECT, "")
+	var active_project_path: String = StatePersistence.get_value(StatePersistence.ACTIVE_PROJECT, "")
 	var active_project := ProjectManager.get_open_project_by_filepath(active_project_path)
 	if active_project != null:
 		_make_project_active(active_project)
