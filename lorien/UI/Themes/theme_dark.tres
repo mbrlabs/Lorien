@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=32 format=2]
+[gd_resource type="Theme" load_steps=39 format=2]
 
 [ext_resource path="res://Assets/Fonts/font_big_bold.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Assets/Fonts/font_normal.tres" type="DynamicFont" id=2]
@@ -7,6 +7,9 @@
 [ext_resource path="res://Assets/Icons/slider_knob_white.png" type="Texture" id=5]
 [ext_resource path="res://Assets/Icons/switch_off.png" type="Texture" id=6]
 [ext_resource path="res://Assets/Icons/switch_on.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Icons/scrollbar.png" type="Texture" id=8]
+[ext_resource path="res://Assets/Icons/scrollbar_hl.png" type="Texture" id=9]
+[ext_resource path="res://Assets/Icons/scrollbar_bg.png" type="Texture" id=10]
 
 [sub_resource type="StyleBoxFlat" id=1]
 content_margin_left = 6.0
@@ -46,6 +49,30 @@ corner_radius_top_left = 1
 corner_radius_top_right = 1
 corner_radius_bottom_right = 1
 corner_radius_bottom_left = 1
+
+[sub_resource type="StyleBoxTexture" id=26]
+texture = ExtResource( 8 )
+region_rect = Rect2( 0, 0, 12, 12 )
+margin_left = 6.0
+margin_right = 6.0
+expand_margin_left = 2.0
+expand_margin_right = 2.0
+
+[sub_resource type="StyleBoxTexture" id=28]
+texture = ExtResource( 9 )
+region_rect = Rect2( 0, 0, 12, 12 )
+margin_left = 6.0
+margin_right = 6.0
+expand_margin_left = 2.0
+expand_margin_right = 2.0
+
+[sub_resource type="StyleBoxTexture" id=29]
+texture = ExtResource( 10 )
+region_rect = Rect2( 0, 0, 12, 12 )
+margin_left = 4.0
+margin_right = 4.0
+expand_margin_left = 3.0
+expand_margin_right = 3.0
 
 [sub_resource type="StyleBoxLine" id=5]
 color = Color( 0.2821, 0.28768, 0.31, 1 )
@@ -126,6 +153,9 @@ shadow_size = 4
 color = Color( 1, 1, 1, 0.1 )
 grow_begin = 7.0
 grow_end = 7.0
+
+[sub_resource type="StyleBoxFlat" id=25]
+bg_color = Color( 0.207843, 0.211765, 0.227451, 1 )
 
 [sub_resource type="StyleBoxFlat" id=17]
 bg_color = Color( 0.207843, 0.211765, 0.227451, 1 )
@@ -244,6 +274,10 @@ ColorPickerButton/styles/focus = SubResource( 4 )
 ColorPickerButton/styles/hover = SubResource( 4 )
 ColorPickerButton/styles/normal = SubResource( 4 )
 ColorPickerButton/styles/pressed = SubResource( 4 )
+HScrollBar/styles/grabber = SubResource( 26 )
+HScrollBar/styles/grabber_highlight = SubResource( 26 )
+HScrollBar/styles/grabber_pressed = SubResource( 28 )
+HScrollBar/styles/scroll = SubResource( 29 )
 HSeparator/constants/separation = 4
 HSeparator/styles/separator = SubResource( 5 )
 HSlider/icons/grabber = ExtResource( 5 )
@@ -310,6 +344,7 @@ PopupMenu/styles/labeled_separator_right = null
 PopupMenu/styles/panel = SubResource( 15 )
 PopupMenu/styles/panel_disabled = null
 PopupMenu/styles/separator = SubResource( 16 )
+ScrollContainer/styles/bg = SubResource( 25 )
 TabContainer/colors/font_color_bg = Color( 0.780392, 0.780392, 0.780392, 1 )
 TabContainer/colors/font_color_disabled = Color( 0.9, 0.9, 0.9, 0.2 )
 TabContainer/colors/font_color_fg = Color( 1, 1, 1, 1 )

@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://Assets/Icons/save_file.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Icons/open_file.png" type="Texture" id=2]
@@ -20,9 +20,6 @@
 [ext_resource path="res://Assets/Icons/fullscreen.png" type="Texture" id=18]
 [ext_resource path="res://Assets/Icons/circle_tool.png" type="Texture" id=19]
 
-[sub_resource type="StyleBoxFlat" id=1]
-bg_color = Color( 0.207843, 0.211765, 0.227451, 1 )
-
 [sub_resource type="StyleBoxEmpty" id=2]
 
 [sub_resource type="StyleBoxLine" id=3]
@@ -38,27 +35,33 @@ corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
-[node name="Toolbar" type="Panel"]
+[node name="Toolbar" type="ScrollContainer"]
 anchor_right = 1.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 0, 40 )
 theme = ExtResource( 15 )
-custom_styles/panel = SubResource( 1 )
+scroll_vertical_enabled = false
 script = ExtResource( 3 )
 
-[node name="Left" type="HBoxContainer" parent="."]
-anchor_bottom = 1.0
-margin_right = 578.0
+[node name="Console" type="HBoxContainer" parent="."]
+margin_right = 1920.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 715, 40 )
+size_flags_horizontal = 3
+
+[node name="Left" type="HBoxContainer" parent="Console"]
+margin_right = 958.0
+margin_bottom = 40.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 12
 
-[node name="VSeparator" type="VSeparator" parent="Left"]
+[node name="VSeparator" type="VSeparator" parent="Console/Left"]
 margin_right = 4.0
 margin_bottom = 40.0
 custom_styles/separator = SubResource( 2 )
 
-[node name="NewFileButton" type="TextureButton" parent="Left"]
+[node name="NewFileButton" type="TextureButton" parent="Console/Left"]
 margin_left = 16.0
 margin_top = 11.0
 margin_right = 34.0
@@ -71,7 +74,7 @@ script = ExtResource( 13 )
 hover_tint = Color( 0.662745, 0.945098, 0.87451, 1 )
 pressed_tint = Color( 0.572549, 1, 0.894118, 1 )
 
-[node name="OpenFileButton" type="TextureButton" parent="Left"]
+[node name="OpenFileButton" type="TextureButton" parent="Console/Left"]
 margin_left = 46.0
 margin_top = 11.0
 margin_right = 64.0
@@ -84,7 +87,7 @@ script = ExtResource( 13 )
 hover_tint = Color( 0.662745, 0.945098, 0.87451, 1 )
 pressed_tint = Color( 0.572549, 1, 0.894118, 1 )
 
-[node name="SaveFileButton" type="TextureButton" parent="Left"]
+[node name="SaveFileButton" type="TextureButton" parent="Console/Left"]
 margin_left = 76.0
 margin_top = 11.0
 margin_right = 94.0
@@ -97,7 +100,7 @@ script = ExtResource( 13 )
 hover_tint = Color( 0.662745, 0.945098, 0.87451, 1 )
 pressed_tint = Color( 0.572549, 1, 0.894118, 1 )
 
-[node name="ClearCanvasButton" type="TextureButton" parent="Left"]
+[node name="ClearCanvasButton" type="TextureButton" parent="Console/Left"]
 visible = false
 margin_left = 106.0
 margin_top = 11.0
@@ -111,7 +114,7 @@ script = ExtResource( 13 )
 hover_tint = Color( 0.662745, 0.945098, 0.87451, 1 )
 pressed_tint = Color( 0.572549, 1, 0.894118, 1 )
 
-[node name="VSeparator2" type="VSeparator" parent="Left"]
+[node name="VSeparator2" type="VSeparator" parent="Console/Left"]
 margin_left = 106.0
 margin_right = 110.0
 margin_bottom = 40.0
@@ -120,7 +123,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="UndoButton" type="TextureButton" parent="Left"]
+[node name="UndoButton" type="TextureButton" parent="Console/Left"]
 margin_left = 122.0
 margin_top = 11.0
 margin_right = 140.0
@@ -133,7 +136,7 @@ script = ExtResource( 13 )
 hover_tint = Color( 0.662745, 0.945098, 0.87451, 1 )
 pressed_tint = Color( 0.572549, 1, 0.894118, 1 )
 
-[node name="RedoButton" type="TextureButton" parent="Left"]
+[node name="RedoButton" type="TextureButton" parent="Console/Left"]
 margin_left = 152.0
 margin_top = 11.0
 margin_right = 170.0
@@ -146,7 +149,7 @@ script = ExtResource( 13 )
 hover_tint = Color( 0.662745, 0.945098, 0.87451, 1 )
 pressed_tint = Color( 0.572549, 1, 0.894118, 1 )
 
-[node name="VSeparator3" type="VSeparator" parent="Left"]
+[node name="VSeparator3" type="VSeparator" parent="Console/Left"]
 margin_left = 182.0
 margin_right = 186.0
 margin_bottom = 40.0
@@ -155,7 +158,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="BrushToolButton" type="TextureButton" parent="Left"]
+[node name="BrushToolButton" type="TextureButton" parent="Console/Left"]
 margin_left = 198.0
 margin_top = 11.0
 margin_right = 216.0
@@ -170,7 +173,7 @@ script = ExtResource( 13 )
 hover_tint = Color( 0.662745, 0.945098, 0.87451, 1 )
 pressed_tint = Color( 0.572549, 1, 0.894118, 1 )
 
-[node name="RectangleToolButton" type="TextureButton" parent="Left"]
+[node name="RectangleToolButton" type="TextureButton" parent="Console/Left"]
 margin_left = 228.0
 margin_top = 12.0
 margin_right = 244.0
@@ -185,7 +188,7 @@ script = ExtResource( 13 )
 hover_tint = Color( 0.662745, 0.945098, 0.87451, 1 )
 pressed_tint = Color( 0.572549, 1, 0.894118, 1 )
 
-[node name="CircleToolButton" type="TextureButton" parent="Left"]
+[node name="CircleToolButton" type="TextureButton" parent="Console/Left"]
 margin_left = 256.0
 margin_top = 12.0
 margin_right = 272.0
@@ -199,7 +202,7 @@ script = ExtResource( 13 )
 hover_tint = Color( 0.662745, 0.945098, 0.87451, 1 )
 pressed_tint = Color( 0.572549, 1, 0.894118, 1 )
 
-[node name="LineToolButton" type="TextureButton" parent="Left"]
+[node name="LineToolButton" type="TextureButton" parent="Console/Left"]
 margin_left = 284.0
 margin_top = 12.0
 margin_right = 300.0
@@ -213,7 +216,7 @@ script = ExtResource( 13 )
 hover_tint = Color( 0.662745, 0.945098, 0.87451, 1 )
 pressed_tint = Color( 0.572549, 1, 0.894118, 1 )
 
-[node name="EraserToolButton" type="TextureButton" parent="Left"]
+[node name="EraserToolButton" type="TextureButton" parent="Console/Left"]
 margin_left = 312.0
 margin_top = 11.0
 margin_right = 330.0
@@ -227,7 +230,7 @@ script = ExtResource( 13 )
 hover_tint = Color( 0.662745, 0.945098, 0.87451, 1 )
 pressed_tint = Color( 0.572549, 1, 0.894118, 1 )
 
-[node name="SelectionToolButton" type="TextureButton" parent="Left"]
+[node name="SelectionToolButton" type="TextureButton" parent="Console/Left"]
 margin_left = 342.0
 margin_top = 12.0
 margin_right = 358.0
@@ -241,7 +244,7 @@ script = ExtResource( 13 )
 hover_tint = Color( 0.662745, 0.945098, 0.87451, 1 )
 pressed_tint = Color( 0.572549, 1, 0.894118, 1 )
 
-[node name="VSeparator4" type="VSeparator" parent="Left"]
+[node name="VSeparator4" type="VSeparator" parent="Console/Left"]
 margin_left = 370.0
 margin_right = 374.0
 margin_bottom = 40.0
@@ -250,7 +253,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ColorButton" type="Button" parent="Left"]
+[node name="ColorButton" type="Button" parent="Console/Left"]
 margin_left = 386.0
 margin_top = 10.0
 margin_right = 446.0
@@ -274,7 +277,7 @@ __meta__ = {
 "_edit_group_": true
 }
 
-[node name="BrushSizeSlider" type="HSlider" parent="Left"]
+[node name="BrushSizeSlider" type="HSlider" parent="Console/Left"]
 margin_left = 458.0
 margin_top = 10.0
 margin_right = 578.0
@@ -287,7 +290,7 @@ min_value = 1.0
 max_value = 50.0
 value = 5.0
 
-[node name="BrushSizeLabel" type="Label" parent="Left"]
+[node name="BrushSizeLabel" type="Label" parent="Console/Left"]
 margin_left = 590.0
 margin_top = 13.0
 margin_right = 606.0
@@ -295,22 +298,23 @@ margin_bottom = 27.0
 custom_fonts/font = ExtResource( 14 )
 text = "12"
 
-[node name="Right" type="HBoxContainer" parent="."]
-anchor_left = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = -88.0
+[node name="Right" type="HBoxContainer" parent="Console"]
+margin_left = 962.0
+margin_right = 1920.0
+margin_bottom = 40.0
 grow_horizontal = 0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 12
+alignment = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="BackgroundColorButton" type="TextureButton" parent="Right"]
+[node name="BackgroundColorButton" type="TextureButton" parent="Console/Right"]
+margin_left = 868.0
 margin_top = 12.0
-margin_right = 16.0
+margin_right = 884.0
 margin_bottom = 28.0
 hint_tooltip = "TOOLBAR_TOOLTIP_CANVAS_COLOR"
 size_flags_horizontal = 4
@@ -321,10 +325,10 @@ script = ExtResource( 13 )
 hover_tint = Color( 0.662745, 0.945098, 0.87451, 1 )
 pressed_tint = Color( 0.572549, 1, 0.894118, 1 )
 
-[node name="GridButton" type="TextureButton" parent="Right"]
-margin_left = 28.0
+[node name="GridButton" type="TextureButton" parent="Console/Right"]
+margin_left = 896.0
 margin_top = 12.0
-margin_right = 44.0
+margin_right = 912.0
 margin_bottom = 28.0
 hint_tooltip = "TOOLBAR_TOOLTIP_GRID"
 size_flags_horizontal = 4
@@ -337,10 +341,10 @@ script = ExtResource( 13 )
 hover_tint = Color( 0.662745, 0.945098, 0.87451, 1 )
 pressed_tint = Color( 0.572549, 1, 0.894118, 1 )
 
-[node name="FullscreenButton" type="TextureButton" parent="Right"]
-margin_left = 56.0
+[node name="FullscreenButton" type="TextureButton" parent="Console/Right"]
+margin_left = 924.0
 margin_top = 11.0
-margin_right = 74.0
+margin_right = 942.0
 margin_bottom = 29.0
 hint_tooltip = "TOOLBAR_FULLSCREEN_TOGGLE"
 size_flags_horizontal = 4
@@ -352,26 +356,26 @@ script = ExtResource( 13 )
 hover_tint = Color( 0.662745, 0.945098, 0.87451, 1 )
 pressed_tint = Color( 0.572549, 1, 0.894118, 1 )
 
-[node name="VSeparator" type="VSeparator" parent="Right"]
-margin_left = 86.0
-margin_right = 90.0
+[node name="VSeparator" type="VSeparator" parent="Console/Right"]
+margin_left = 954.0
+margin_right = 958.0
 margin_bottom = 40.0
 custom_styles/separator = SubResource( 2 )
 
-[connection signal="pressed" from="Left/NewFileButton" to="." method="_on_NewFileButton_pressed"]
-[connection signal="pressed" from="Left/OpenFileButton" to="." method="_on_OpenFileButton_pressed"]
-[connection signal="pressed" from="Left/SaveFileButton" to="." method="_on_SaveFileButton_pressed"]
-[connection signal="pressed" from="Left/ClearCanvasButton" to="." method="_on_ClearCanvasButton_pressed"]
-[connection signal="pressed" from="Left/UndoButton" to="." method="_on_UndoButton_pressed"]
-[connection signal="pressed" from="Left/RedoButton" to="." method="_on_RedoButton_pressed"]
-[connection signal="pressed" from="Left/BrushToolButton" to="." method="_on_BrushToolButton_pressed"]
-[connection signal="pressed" from="Left/RectangleToolButton" to="." method="_on_RectangleToolButton_pressed"]
-[connection signal="pressed" from="Left/CircleToolButton" to="." method="_on_CircleToolButton_pressed"]
-[connection signal="pressed" from="Left/LineToolButton" to="." method="_on_LineToolButton_pressed"]
-[connection signal="pressed" from="Left/EraserToolButton" to="." method="_on_EraserToolButton_pressed"]
-[connection signal="pressed" from="Left/SelectionToolButton" to="." method="_on_SelectToolButton_pressed"]
-[connection signal="pressed" from="Left/ColorButton" to="." method="_on_ColorButton_pressed"]
-[connection signal="value_changed" from="Left/BrushSizeSlider" to="." method="_on_BrushSizeSlider_value_changed"]
-[connection signal="pressed" from="Right/BackgroundColorButton" to="." method="_on_BackgroundColorButton_pressed"]
-[connection signal="toggled" from="Right/GridButton" to="." method="_on_GridButton_toggled"]
-[connection signal="toggled" from="Right/FullscreenButton" to="." method="_on_FullscreenButton_toggled"]
+[connection signal="pressed" from="Console/Left/NewFileButton" to="." method="_on_NewFileButton_pressed"]
+[connection signal="pressed" from="Console/Left/OpenFileButton" to="." method="_on_OpenFileButton_pressed"]
+[connection signal="pressed" from="Console/Left/SaveFileButton" to="." method="_on_SaveFileButton_pressed"]
+[connection signal="pressed" from="Console/Left/ClearCanvasButton" to="." method="_on_ClearCanvasButton_pressed"]
+[connection signal="pressed" from="Console/Left/UndoButton" to="." method="_on_UndoButton_pressed"]
+[connection signal="pressed" from="Console/Left/RedoButton" to="." method="_on_RedoButton_pressed"]
+[connection signal="pressed" from="Console/Left/BrushToolButton" to="." method="_on_BrushToolButton_pressed"]
+[connection signal="pressed" from="Console/Left/RectangleToolButton" to="." method="_on_RectangleToolButton_pressed"]
+[connection signal="pressed" from="Console/Left/CircleToolButton" to="." method="_on_CircleToolButton_pressed"]
+[connection signal="pressed" from="Console/Left/LineToolButton" to="." method="_on_LineToolButton_pressed"]
+[connection signal="pressed" from="Console/Left/EraserToolButton" to="." method="_on_EraserToolButton_pressed"]
+[connection signal="pressed" from="Console/Left/SelectionToolButton" to="." method="_on_SelectToolButton_pressed"]
+[connection signal="pressed" from="Console/Left/ColorButton" to="." method="_on_ColorButton_pressed"]
+[connection signal="value_changed" from="Console/Left/BrushSizeSlider" to="." method="_on_BrushSizeSlider_value_changed"]
+[connection signal="pressed" from="Console/Right/BackgroundColorButton" to="." method="_on_BackgroundColorButton_pressed"]
+[connection signal="toggled" from="Console/Right/GridButton" to="." method="_on_GridButton_toggled"]
+[connection signal="toggled" from="Console/Right/FullscreenButton" to="." method="_on_FullscreenButton_toggled"]

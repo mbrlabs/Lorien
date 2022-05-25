@@ -498,7 +498,7 @@ func _export_svg() -> void:
 
 # --------------------------------------------------------------------------------------------------
 func _on_toggle_brush_color_picker() -> void:
-	_brush_color_picker.visible = !_brush_color_picker.visible
+	_brush_color_picker.toggle()
 
 # --------------------------------------------------------------------------------------------------
 func _on_BrushColorPicker_color_changed(color: Color) -> void:
@@ -541,3 +541,4 @@ func _on_scale_changed() -> void:
 	# Canvas has to be set first to make it the correct scale on startup
 	_canvas.set_canvas_scale(scale)
 	get_tree().set_screen_stretch(SceneTree.STRETCH_MODE_DISABLED, SceneTree.STRETCH_ASPECT_IGNORE, Vector2(0,0), scale)
+	OS.min_window_size = Config.MIN_WINDOW_SIZE * scale
