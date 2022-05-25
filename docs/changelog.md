@@ -22,6 +22,7 @@ If you rely on these eraser-strokes: DO NOT UPDATE to this version or BACKUP you
 - The window size will be saved and restored across program restarts
 - Center the canvas based on current mouse position (shortcut: `SPACE`)
 - UI scaling for high-dpi monitors
+- Toolbar can be scrolled through when the entire toolbar cannot be shown
 - Changing the brush color while having strokes actively selected changes the color of these strokes
 - Translations: Turkish, Brazilian Portuguese
 
@@ -37,6 +38,7 @@ If you rely on these eraser-strokes: DO NOT UPDATE to this version or BACKUP you
 - Removed rudimentary png export in favor of the new SVG exporter 
 - Made the brush stroke optimizer less aggresive, which results in smoother lines at the expense of slightly bigger savefiles
 - Increased the default pressure sensitvity from 1.0 to 1.5
+- Lowered minimum window size
 
 ## [0.4.0] - 2021-10-10
 

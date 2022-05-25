@@ -1,4 +1,4 @@
-extends Panel
+extends ScrollContainer
 class_name Toolbar
 
 signal new_project
@@ -22,25 +22,25 @@ const BUTTON_NORMAL_COLOR = Color.white
 export var file_dialog_path: NodePath
 export var background_color_picker_path: NodePath
 
-onready var _new_button: TextureButton = $Left/NewFileButton
-onready var _save_button: TextureButton = $Left/SaveFileButton
-onready var _open_button: TextureButton = $Left/OpenFileButton
-onready var _clear_canvas_button: TextureButton = $Left/ClearCanvasButton
-onready var _undo_button: TextureButton = $Left/UndoButton
-onready var _redo_button: TextureButton = $Left/RedoButton
-onready var _color_button: Button = $Left/ColorButton
-onready var _brush_size_label: Label = $Left/BrushSizeLabel
-onready var _brush_size_slider: HSlider = $Left/BrushSizeSlider
+onready var _new_button: TextureButton = $Console/Left/NewFileButton
+onready var _save_button: TextureButton = $Console/Left/SaveFileButton
+onready var _open_button: TextureButton = $Console/Left/OpenFileButton
+onready var _clear_canvas_button: TextureButton = $Console/Left/ClearCanvasButton
+onready var _undo_button: TextureButton = $Console/Left/UndoButton
+onready var _redo_button: TextureButton = $Console/Left/RedoButton
+onready var _color_button: Button = $Console/Left/ColorButton
+onready var _brush_size_label: Label = $Console/Left/BrushSizeLabel
+onready var _brush_size_slider: HSlider = $Console/Left/BrushSizeSlider
 onready var _background_color_picker: ColorPicker = get_node(background_color_picker_path)
 onready var _background_color_picker_popup: Popup = get_node(background_color_picker_path).get_parent().get_parent() # meh...
-onready var _grid_button: TextureButton = $Right/GridButton
-onready var _fullscreen_btn: TextureButton = $Right/FullscreenButton
-onready var _tool_btn_brush: TextureButton = $Left/BrushToolButton
-onready var _tool_btn_rectangle: TextureButton = $Left/RectangleToolButton
-onready var _tool_btn_circle: TextureButton = $Left/CircleToolButton
-onready var _tool_btn_line: TextureButton = $Left/LineToolButton
-onready var _tool_btn_eraser: TextureButton = $Left/EraserToolButton
-onready var _tool_btn_selection: TextureButton = $Left/SelectionToolButton
+onready var _grid_button: TextureButton = $Console/Right/GridButton
+onready var _fullscreen_btn: TextureButton = $Console/Right/FullscreenButton
+onready var _tool_btn_brush: TextureButton = $Console/Left/BrushToolButton
+onready var _tool_btn_rectangle: TextureButton = $Console/Left/RectangleToolButton
+onready var _tool_btn_circle: TextureButton = $Console/Left/CircleToolButton
+onready var _tool_btn_line: TextureButton = $Console/Left/LineToolButton
+onready var _tool_btn_eraser: TextureButton = $Console/Left/EraserToolButton
+onready var _tool_btn_selection: TextureButton = $Console/Left/SelectionToolButton
 
 var _last_active_tool_button: TextureButton
 
