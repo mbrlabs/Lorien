@@ -262,6 +262,7 @@ rect_min_size = Vector2( 60, 20 )
 hint_tooltip = "TOOLBAR_TOOLTIP_BRUSH_COLOR"
 size_flags_vertical = 4
 custom_colors/font_color_disabled = Color( 0, 0, 0, 1 )
+custom_colors/font_color_focus = Color( 0, 0, 0, 1 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_colors/font_color_hover = Color( 0, 0, 0, 1 )
 custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )

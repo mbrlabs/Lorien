@@ -83,6 +83,7 @@ func set_brush_color(color: Color) -> void:
 	_color_button.set("custom_colors/font_color", text_color)
 	_color_button.set("custom_colors/font_color_hover", text_color)
 	_color_button.set("custom_colors/font_color_pressed", text_color)
+	_color_button.set("custom_colors/font_color_focus", text_color)
 	_color_button.text = "#" + color.to_html(false)
 
 # -------------------------------------------------------------------------------------------------
