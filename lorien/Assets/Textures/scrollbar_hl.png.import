@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/switch_on.png-42ef878bf1a5f17ea1126342c54f1c03.stex"
+path="res://.import/scrollbar_hl.png-8a162faa1f983be213b07295471fc0ec.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Icons/switch_on.png"
-dest_files=[ "res://.import/switch_on.png-42ef878bf1a5f17ea1126342c54f1c03.stex" ]
+source_file="res://Assets/Textures/scrollbar_hl.png"
+dest_files=[ "res://.import/scrollbar_hl.png-8a162faa1f983be213b07295471fc0ec.stex" ]
 
 [params]
 
@@ -28,6 +28,7 @@ process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false
+process/normal_map_invert_y=false
 stream=false
 size_limit=0
 detect_3d=true

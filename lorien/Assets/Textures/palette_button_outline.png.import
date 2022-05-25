@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/slider_knob_white.png-e16a2c23c7e52f8ded4e3410ad1e338f.stex"
+path="res://.import/palette_button_outline.png-1dde46a159e7ac04bf8f4d8211981e2d.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Icons/slider_knob_white.png"
-dest_files=[ "res://.import/slider_knob_white.png-e16a2c23c7e52f8ded4e3410ad1e338f.stex" ]
+source_file="res://Assets/Textures/palette_button_outline.png"
+dest_files=[ "res://.import/palette_button_outline.png-1dde46a159e7ac04bf8f4d8211981e2d.stex" ]
 
 [params]
 
@@ -28,6 +28,7 @@ process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false
+process/normal_map_invert_y=false
 stream=false
 size_limit=0
 detect_3d=true

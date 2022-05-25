@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/palette_button_outline.png-bf90034231c4b9c00b109415e4eb6eef.stex"
+path="res://.import/switch_off.png-3338dccdaecfa98b3d52f0fdbc42a09f.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Icons/palette_button_outline.png"
-dest_files=[ "res://.import/palette_button_outline.png-bf90034231c4b9c00b109415e4eb6eef.stex" ]
+source_file="res://Assets/Textures/switch_off.png"
+dest_files=[ "res://.import/switch_off.png-3338dccdaecfa98b3d52f0fdbc42a09f.stex" ]
 
 [params]
 
@@ -28,6 +28,7 @@ process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false
+process/normal_map_invert_y=false
 stream=false
 size_limit=0
 detect_3d=true

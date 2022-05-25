@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/arrow_right.png-e25e5dd0d307b4b344da18a1acdb173d.stex"
+path="res://.import/arrow_right.png-10caef975eb4713cb62e858128e8aa09.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Icons/arrow_right.png"
-dest_files=[ "res://.import/arrow_right.png-e25e5dd0d307b4b344da18a1acdb173d.stex" ]
+source_file="res://Assets/Textures/arrow_right.png"
+dest_files=[ "res://.import/arrow_right.png-10caef975eb4713cb62e858128e8aa09.stex" ]
 
 [params]
 
@@ -28,6 +28,7 @@ process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false
+process/normal_map_invert_y=false
 stream=false
 size_limit=0
 detect_3d=true

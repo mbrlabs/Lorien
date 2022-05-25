@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/scrollbar_hl.png-df4c91e9f5949a37b86f8a860604de6f.stex"
+path="res://.import/selection_cursor.png-c4d243d49e4bdda5af5ac45f72f7778f.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Icons/scrollbar_hl.png"
-dest_files=[ "res://.import/scrollbar_hl.png-df4c91e9f5949a37b86f8a860604de6f.stex" ]
+source_file="res://Assets/Textures/selection_cursor.png"
+dest_files=[ "res://.import/selection_cursor.png-c4d243d49e4bdda5af5ac45f72f7778f.stex" ]
 
 [params]
 

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/dot.png-3d75826a174bf3b6886e7d506bc07802.stex"
+path="res://.import/palette_button.png-fd335e0dbb703bd94af22f96bfff0f31.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Icons/dot.png"
-dest_files=[ "res://.import/dot.png-3d75826a174bf3b6886e7d506bc07802.stex" ]
+source_file="res://Assets/Textures/palette_button.png"
+dest_files=[ "res://.import/palette_button.png-fd335e0dbb703bd94af22f96bfff0f31.stex" ]
 
 [params]
 
@@ -28,6 +28,7 @@ process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false
+process/normal_map_invert_y=false
 stream=false
 size_limit=0
 detect_3d=true

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/scrollbar.png-8bec685792922bdf1e79cc2e29d18027.stex"
+path="res://.import/scrollbar_bg.png-3cbfdbe3f3545d9e0b439db7f8ef5b9f.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Icons/scrollbar.png"
-dest_files=[ "res://.import/scrollbar.png-8bec685792922bdf1e79cc2e29d18027.stex" ]
+source_file="res://Assets/Textures/scrollbar_bg.png"
+dest_files=[ "res://.import/scrollbar_bg.png-3cbfdbe3f3545d9e0b439db7f8ef5b9f.stex" ]
 
 [params]
 
