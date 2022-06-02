@@ -9,7 +9,7 @@ MENU_SAVE           Salva
 MENU_SAVE_AS        Salva come..
 MENU_SETTINGS       Impostazioni
 MENU_MANUAL         Manuale
-MENU_BUG_TRACKER    Bug Tracker
+MENU_BUG_TRACKER    Monitoraggio dei bug
 MENU_ABOUT          Informazioni
 MENU_EXPORT         Esporta
 MENU_EXPORT_PNG     Esporta Tela come PNG
