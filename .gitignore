@@ -4,3 +4,7 @@
 # Mono-specific ignores
 .mono/
 data_*/
+
+#Flatpak ignores
+.flatpak-builder
+.build-dir

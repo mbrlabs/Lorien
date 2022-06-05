@@ -1,0 +1,32 @@
+app-id: com.mrlabs.Lorien
+runtime: org.freedesktop.Platform
+runtime-version: '21.08'
+base: org.godotengine.godot.BaseApp
+base-version: '3.4'
+sdk: org.freedesktop.Sdk
+command: Lorien
+
+finish-args:
+  - --share=ipc
+  - --socket=x11
+  - --filesystem=home
+  - --device=dri
+
+modules:
+  - name: Lorien
+    buildsystem: simple
+
+    sources:
+      - type: archive
+        url: https://github.com/mbrlabs/Lorien/releases/download/v0.4.0/Lorien_v0.4.0_Linux.tar.xz
+        sha256: a7795d8d61d49629c56ee87f97d66473ff46c18e521f879634357a1e321e1d2a
+
+      - type: script
+        dest-filename: Lorien.sh
+        commands:        
+          # Use the `Dummy` audio driver to avoid error messages when starting the application from a terminal.
+          - /app/bin/godot-runner --audio-driver Dummy --main-pack /app/bin/Lorien.pck "$@"
+
+    build-commands:
+      - install -Dm755 Lorien.sh /app/bin/Lorien
+      - install -Dm644 Lorien.pck /app/bin/Lorien.pck
