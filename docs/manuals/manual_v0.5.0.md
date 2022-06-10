@@ -27,7 +27,9 @@ Lorien provides you with different tools which you can find in the toolbar. If y
 - Not pressure sensitve
 
 ### Circle Tool
-TBD
+- Allows you to draw perfect ellipses and circles
+- You can hold down <kbd>Shift</kbd> while using the circle tool to draw perfect circles. Otherwise it defaults to ellipses
+- Not pressure sensitve
 
 ### Eraser Tool
 - Allows you to erease brush strokes by drawing over it. Once the eraser intersects with a brush stroke, the whole brush stroke will be removed

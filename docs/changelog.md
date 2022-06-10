@@ -28,6 +28,7 @@ If you rely on these eraser-strokes: DO NOT UPDATE to this version or BACKUP you
 
 ### Fixed
 - Fixed misplaced color picker after window resize
+- Fixed keyboard shortcuts for MacOS
 
 ### Changed
 - Updated to Godot 3.4.4
@@ -39,7 +40,6 @@ If you rely on these eraser-strokes: DO NOT UPDATE to this version or BACKUP you
 - Made the brush stroke optimizer less aggresive, which results in smoother lines at the expense of slightly bigger savefiles
 - Increased the default pressure sensitvity from 1.0 to 1.5
 - Lowered minimum window size
-- Update keyboard shortcuts for MacOS
 
 ## [0.4.0] - 2021-10-10
 
