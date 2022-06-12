@@ -4,7 +4,9 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
-## [0.5.0] - Unreleased
+## [0.6.0] - Unreleased
+
+## [0.5.0] - 2022-06-12
 
 ### Breaking Changes
 Version `v0.5` of Lorien features a new SuperEraser, which erases brush strokes as soon as it inserects with them. The previous implementation just painted over new brush strokes, which always had the same color as the background - giving you the illusion of a traditional eraser like in bitmap-based programs (Gimp, Photoshop, etc.). The old implementation has been completely removed in favor of the SuperEraser.
@@ -40,6 +42,7 @@ If you rely on these eraser-strokes: DO NOT UPDATE to this version or BACKUP you
 - Made the brush stroke optimizer less aggresive, which results in smoother lines at the expense of slightly bigger savefiles
 - Increased the default pressure sensitvity from 1.0 to 1.5
 - Lowered minimum window size
+- Default to rounded brush stoke caps
 
 ## [0.4.0] - 2021-10-10
 

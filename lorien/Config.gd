@@ -3,7 +3,7 @@ class_name Config
 const VERSION_MAJOR					:= 0
 const VERSION_MINOR					:= 5
 const VERSION_PATCH					:= 0
-const VERSION_STATUS				:= "-dev"
+const VERSION_STATUS				:= ""
 const VERSION_STRING				:= "%d.%d.%d%s" % [VERSION_MAJOR, VERSION_MINOR, VERSION_PATCH, VERSION_STATUS]
 const CONFIG_PATH 					:= "user://settings.cfg"
 const PALETTES_PATH					:= "user://palettes.cfg"
@@ -19,7 +19,7 @@ const DEFAULT_AA_MODE				:= Types.AAMode.TEXTURE_FILL
 const DEFAULT_SELECTION_COLOR 		:= Color("#2a967c")
 const DEFAULT_FOREGROUND_FPS 		:= 144
 const DEFAULT_BACKGROUND_FPS		:= 10
-const DEFAULT_BRUSH_ROUNDING		:= Types.BrushRoundingType.FLAT
+const DEFAULT_BRUSH_ROUNDING		:= Types.BrushRoundingType.ROUNDED
 const DEFAULT_UI_SCALE_MODE 		:= Types.UIScale.AUTO
 const DEFAULT_UI_SCALE  			:= 1.0
 const DEFAULT_GRID_SIZE 			:= 25.0
