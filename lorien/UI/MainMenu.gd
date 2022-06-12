@@ -54,7 +54,7 @@ func _on_MainMenu_id_pressed(id: int):
 		ITEM_SAVE_AS: emit_signal("save_project_as")
 		ITEM_EXPORT: emit_signal("export_svg")
 		ITEM_SETTINGS: emit_signal("open_settings_dialog")
-		ITEM_MANUAL: emit_signal("open_url", "https://github.com/mbrlabs/lorien/blob/main/docs/manuals/manual_v0.5.0.md")
+		ITEM_MANUAL: emit_signal("open_url", "https://github.com/mbrlabs/lorien/blob/main/docs/manuals/manual_v0.6.0.md")
 		ITEM_BUG_TRACKER: emit_signal("open_url", "https://github.com/mbrlabs/lorien/issues")
 		ITEM_ABOUT: emit_signal("open_about_dialog")
 
