@@ -19,6 +19,11 @@ onready var _new_palette_dialog: NewPaletteDialog = $NewPaletteDialog
 onready var _delete_palette_dialog: DeletePaletteDialog = $DeletePaletteDialog
 onready var _edit_palette_dialog: EditPaletteDialog = $EditPaletteDialog
 
+onready var is_resizing: bool = false
+onready var start: Vector2
+onready var end: Vector2
+onready var resizing_start_size: int
+
 var _ui_visible := true 
 var _player_enabled := false
 
@@ -126,6 +131,9 @@ func _process(delta):
 	var active_project: Project = ProjectManager.get_active_project()
 	if active_project != null:
 		_menubar.update_tab_title(active_project)
+	
+	if is_resizing:
+		_on_resizing()
 
 # -------------------------------------------------------------------------------------------------
 func _handle_input_actions() -> void:
@@ -171,6 +179,14 @@ func _handle_input_actions() -> void:
 				_toggle_distraction_free_mode()
 			elif Input.is_action_just_pressed("toggle_fullscreen"):
 				_toggle_fullscreen()
+			elif Input.is_action_just_pressed("shortcut_brush_size_decrease"):
+				_on_brush_size_decrease()
+			elif Input.is_action_just_pressed("shortcut_brush_size_increase"):
+				_on_brush_size_increase()
+			elif Input.is_action_just_pressed("shortcut_brush_size_resize_enable"):
+				_on_brush_size_resize_start()
+			elif Input.is_action_just_released("shortcut_brush_size_resize_enable"):
+				_on_brush_size_resize_end()
 
 # -------------------------------------------------------------------------------------------------
 func _toggle_player() -> void:
@@ -545,3 +561,43 @@ func _on_scale_changed() -> void:
 	_canvas.set_canvas_scale(scale)
 	get_tree().set_screen_stretch(SceneTree.STRETCH_MODE_DISABLED, SceneTree.STRETCH_ASPECT_IGNORE, Vector2(0,0), scale)
 	OS.min_window_size = Config.MIN_WINDOW_SIZE * scale
+
+# --------------------------------------------------------------------------------------------------
+func _on_brush_size_decrease() -> void:
+	if _canvas._brush_size > 1:
+		var new_size = _canvas._brush_size - Settings.get_value(Settings.GENERAL_BRUSH_ADJUST_AMOUNT)
+		_canvas._brush_size = new_size
+		_toolbar.get_node("Console/Left/BrushSizeSlider").value = new_size
+		_on_brush_size_changed(new_size)
+
+# --------------------------------------------------------------------------------------------------
+func _on_brush_size_increase() -> void:
+	if _canvas._brush_size < 50:
+		var new_size = _canvas._brush_size + Settings.get_value(Settings.GENERAL_BRUSH_ADJUST_AMOUNT)
+		_canvas._brush_size = new_size
+		_toolbar.get_node("Console/Left/BrushSizeSlider").value = new_size
+		_on_brush_size_changed(new_size)	
+
+# --------------------------------------------------------------------------------------------------
+func _on_brush_size_resize_start() -> void:
+	start = get_viewport().get_mouse_position()
+	resizing_start_size = _canvas._brush_size
+	is_resizing = true
+
+# --------------------------------------------------------------------------------------------------
+func _on_brush_size_resize_end() -> void:
+	is_resizing = false
+
+# --------------------------------------------------------------------------------------------------
+func _on_resizing() -> void:
+	end = get_viewport().get_mouse_position()
+	var dist_x: float = start.x - end.x
+	var size_multiplier: float = Settings.get_value(Settings.GENERAL_BRUSH_RESIZE_MULTIPLIER)
+	var change: float = dist_x * -size_multiplier
+	if _canvas._brush_size <= 50 && _canvas._brush_size >= 1:
+		var new_size = clamp(resizing_start_size + change, 1, 50)
+		_canvas._brush_size = new_size
+		_toolbar.get_node("Console/Left/BrushSizeSlider").value = new_size
+		_on_brush_size_changed(new_size)	
+	else:
+		_on_brush_size_resize_end()

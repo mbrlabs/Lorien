@@ -34,12 +34,15 @@ onready var _language_options: OptionButton = $MarginContainer/TabContainer/Gene
 onready var _brush_rounding_options: OptionButton = $MarginContainer/TabContainer/Rendering/VBoxContainer/BrushRounding/OptionButton
 onready var _ui_scale_options: OptionButton = $MarginContainer/TabContainer/Appearance/VBoxContainer/UIScale/HBoxContainer/UIScaleOptions
 onready var _ui_scale: SpinBox = $MarginContainer/TabContainer/Appearance/VBoxContainer/UIScale/HBoxContainer/UIScale
+onready var _brush_adjust_amount: SpinBox = $MarginContainer/TabContainer/BrushTools/VBoxContainer/BrushAdjustAmount/BrushAdjustAmount
+onready var _brush_resize_multiplier: SpinBox = $MarginContainer/TabContainer/BrushTools/VBoxContainer/BrushResizeMultiplier/BrushResizeMultiplier
 
 # -------------------------------------------------------------------------------------------------
 func _ready():
 	_tab_container.set_tab_title(0, tr("SETTINGS_GENERAL"))
 	_tab_container.set_tab_title(1, tr("SETTINGS_APPEARANCE"))
 	_tab_container.set_tab_title(2, tr("SETTINGS_RENDERING"))
+	_tab_container.set_tab_title(3, tr("SETTINGS_BRUSH_TOOLS"))
 	_set_values()
 
 # -------------------------------------------------------------------------------------------------
@@ -55,6 +58,8 @@ func _set_values() -> void:
 	var pressure_sensitivity = Settings.get_value(Settings.GENERAL_PRESSURE_SENSITIVITY, Config.DEFAULT_PRESSURE_SENSITIVITY)
 	var ui_scale_mode = Settings.get_value(Settings.APPEARANCE_UI_SCALE_MODE, Config.DEFAULT_UI_SCALE_MODE)
 	var ui_scale = Settings.get_value(Settings.APPEARANCE_UI_SCALE, Config.DEFAULT_UI_SCALE)
+	var brush_adjust_amount = Settings.get_value(Settings.GENERAL_BRUSH_ADJUST_AMOUNT, Config.DEFAULT_BRUSH_ADJUST_AMOUNT)
+	var brush_resize_multiplier = Settings.get_value(Settings.GENERAL_BRUSH_RESIZE_MULTIPLIER, Config.DEFAULT_BRUSH_RESIZE_MULTIPLIER)
 	
 	match theme:
 		Types.UITheme.DARK: _theme.selected = THEME_DARK_INDEX
@@ -80,7 +85,9 @@ func _set_values() -> void:
 	_foreground_fps.value = foreground_fps
 	_background_fps.value = background_fps
 	_ui_scale.value = ui_scale
-
+	_brush_adjust_amount.value = brush_adjust_amount
+	_brush_resize_multiplier.value = brush_resize_multiplier
+	
 # -------------------------------------------------------------------------------------------------
 func _set_rounding():
 	_brush_rounding_options.selected = Settings.get_value(Settings.RENDERING_BRUSH_ROUNDING, Config.DEFAULT_BRUSH_ROUNDING)
@@ -204,3 +211,11 @@ func _on_UIScale_value_changed(value: float):
 		Settings.set_value(Settings.APPEARANCE_UI_SCALE, value)
 		emit_signal("ui_scale_changed")
 		popup_centered()
+
+# -------------------------------------------------------------------------------------------------
+func _on_Brush_Adjust_Amount_changed(value: float) -> void:
+	Settings.set_value(Settings.GENERAL_BRUSH_ADJUST_AMOUNT, value)		
+
+# -------------------------------------------------------------------------------------------------
+func _on_Brush_Resize_Multiplier_changed(value: float) -> void:
+	Settings.set_value(Settings.GENERAL_BRUSH_RESIZE_MULTIPLIER, value)	
