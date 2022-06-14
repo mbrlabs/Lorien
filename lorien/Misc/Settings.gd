@@ -15,6 +15,8 @@ const RENDERING_FOREGROUND_FPS			:= "rendering_foreground_fps"
 const RENDERING_BACKGROUND_FPS			:= "rendering_background_fps"
 const RENDERING_BRUSH_ROUNDING			:= "rendering_brush_rounding"
 const COLOR_PALETTE_UUID_LAST_USED		:= "color_palette_uuid_last_used"
+const GENERAL_BRUSH_ADJUST_AMOUNT		:= "general_brush_adjust_amount"
+const GENERAL_BRUSH_RESIZE_MULTIPLIER	:= "general_brush_resize_multiplier"
 
 # -------------------------------------------------------------------------------------------------
 var _config_file := ConfigFile.new()

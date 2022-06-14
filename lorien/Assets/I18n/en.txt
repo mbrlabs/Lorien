@@ -78,6 +78,9 @@ SETTINGS_BRUSH_CAPS             Brush Rounding Mode
 SETTINGS_BRUSH_CAPS_FLAT        Flat
 SETTINGS_BRUSH_CAPS_ROUND       Round
 SETTINGS_RESTART_NOTICE  		Restart required to apply the new settings
+SETTINGS_BRUSH_ADJUST_AMOUNT    Brush Adjustment Amount
+SETTINGS_BRUSH_RESIZE_MULTIPLIER    Brush Resize Multiplier
+SETTINGS_BRUSH_TOOLS            Brush Tools
 
 # -----------------------------------------------------------------------------
 # About dialog strings

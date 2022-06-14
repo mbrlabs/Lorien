@@ -434,6 +434,71 @@ custom_colors/font_color = Color( 1, 0.470588, 0.470588, 1 )
 text = "SETTINGS_RESTART_NOTICE"
 align = 1
 
+[node name="BrushTools" type="Control" parent="MarginContainer/TabContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 27.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/TabContainer/BrushTools"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="HSeparator3" type="HSeparator" parent="MarginContainer/TabContainer/BrushTools/VBoxContainer"]
+margin_right = 496.0
+margin_bottom = 12.0
+custom_constants/separation = 12
+custom_styles/separator = SubResource( 1 )
+
+[node name="BrushAdjustAmount" type="HBoxContainer" parent="MarginContainer/TabContainer/BrushTools/VBoxContainer"]
+margin_top = 16.0
+margin_right = 496.0
+margin_bottom = 37.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="MarginContainer/TabContainer/BrushTools/VBoxContainer/BrushAdjustAmount"]
+margin_top = 2.0
+margin_right = 246.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+text = "SETTINGS_BRUSH_ADJUST_AMOUNT"
+
+[node name="BrushAdjustAmount" type="SpinBox" parent="MarginContainer/TabContainer/BrushTools/VBoxContainer/BrushAdjustAmount"]
+margin_left = 250.0
+margin_right = 496.0
+margin_bottom = 21.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+min_value = 1.0
+max_value = 50.0
+value = 1.0
+rounded = true
+
+[node name="BrushResizeMultiplier" type="HBoxContainer" parent="MarginContainer/TabContainer/BrushTools/VBoxContainer"]
+margin_top = 41.0
+margin_right = 496.0
+margin_bottom = 62.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="MarginContainer/TabContainer/BrushTools/VBoxContainer/BrushResizeMultiplier"]
+margin_top = 2.0
+margin_right = 246.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+text = "SETTINGS_BRUSH_RESIZE_MULTIPLIER"
+
+[node name="BrushResizeMultiplier" type="SpinBox" parent="MarginContainer/TabContainer/BrushTools/VBoxContainer/BrushResizeMultiplier"]
+margin_left = 250.0
+margin_right = 496.0
+margin_bottom = 21.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+min_value = 0.001
+max_value = 5.0
+step = 0.01
+value = 0.001
+
 [connection signal="value_changed" from="MarginContainer/TabContainer/General/VBoxContainer/PressureSensitivity/PressureSensitivity" to="." method="_on_PressureSensitivity_value_changed"]
 [connection signal="value_changed" from="MarginContainer/TabContainer/General/VBoxContainer/DefaultBrushSize/DefaultBrushSize" to="." method="_on_DefaultBrushSize_value_changed"]
 [connection signal="color_changed" from="MarginContainer/TabContainer/General/VBoxContainer/DefaultCanvasColor/DefaultCanvasColor" to="." method="_on_DefaultCanvasColor_color_changed"]
@@ -447,3 +512,5 @@ align = 1
 [connection signal="item_selected" from="MarginContainer/TabContainer/Rendering/VBoxContainer/BrushRounding/OptionButton" to="." method="_on_Brush_rounding_item_selected"]
 [connection signal="value_changed" from="MarginContainer/TabContainer/Rendering/VBoxContainer/TargetFramerate/TargetFramerate" to="." method="_on_Target_Fps_Foreground_changed"]
 [connection signal="value_changed" from="MarginContainer/TabContainer/Rendering/VBoxContainer/BackgroundFramerate/BackgroundFramerate" to="." method="_on_Target_Fps_Background_changed"]
+[connection signal="value_changed" from="MarginContainer/TabContainer/BrushTools/VBoxContainer/BrushAdjustAmount/BrushAdjustAmount" to="." method="_on_Brush_Adjust_Amount_changed"]
+[connection signal="value_changed" from="MarginContainer/TabContainer/BrushTools/VBoxContainer/BrushResizeMultiplier/BrushResizeMultiplier" to="." method="_on_Brush_Resize_Multiplier_changed"]
