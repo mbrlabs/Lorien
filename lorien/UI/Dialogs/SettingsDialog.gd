@@ -190,7 +190,6 @@ func _on_OptionButton_item_selected(idx: int):
 	Settings.set_value(Settings.GENERAL_LANGUAGE, locale)
 	TranslationServer.set_locale(locale)
 	$"/root/GlobalSignals".emit_signal("language_changed")
-	_general_restart_label.show()
 
 # -------------------------------------------------------------------------------------------------
 func _on_UIScaleOptions_item_selected(index: int):
