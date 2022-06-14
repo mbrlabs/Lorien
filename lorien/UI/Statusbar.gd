@@ -9,12 +9,26 @@ onready var _position_label: Label = $MarginContainer/HBoxContainer/Left/Positio
 onready var _zoom_label: Label = $MarginContainer/HBoxContainer/Left/ZoomLabel
 onready var _fps_label: Label = $MarginContainer/HBoxContainer/Left/FpsLabel
 
-onready var _str_position = tr("STATUSBAR_POSITION")
-onready var _str_zoom = tr("STATUSBAR_ZOOM")
-onready var _str_pressure = tr("STATUSBAR_PRESSURE")
-onready var _str_fps = tr("STATUSBAR_FPS")
-onready var _str_stroke_count = tr("STATUSBAR_STROKES")
-onready var _str_point_count = tr("STATUSBAR_POINTS")
+var _str_position: String
+var _str_zoom: String
+var _str_pressure: String
+var _str_fps: String
+var _str_stroke_count: String
+var _str_point_count: String
+
+# -------------------------------------------------------------------------------------------------
+func _ready() -> void:
+	_apply_language()
+	$"/root/GlobalSignals".connect("language_changed", self, "_apply_language")
+
+# -------------------------------------------------------------------------------------------------
+func _apply_language() -> void:
+	_str_position = tr("STATUSBAR_POSITION")
+	_str_zoom = tr("STATUSBAR_ZOOM")
+	_str_pressure = tr("STATUSBAR_PRESSURE")
+	_str_fps = tr("STATUSBAR_FPS")
+	_str_stroke_count = tr("STATUSBAR_STROKES")
+	_str_point_count = tr("STATUSBAR_POINTS")
 
 # -------------------------------------------------------------------------------------------------
 func set_camera_position(pos: Vector2) -> void:

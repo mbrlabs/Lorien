@@ -29,13 +29,19 @@ export var file_dialog_path: NodePath
 onready var _submenu_views: PopupMenu = $ViewsMenu
 
 # -------------------------------------------------------------------------------------------------
-func _ready():
+func _ready() -> void:
 	# Views submenu
 	_submenu_views.name = "Views"
 	_submenu_views.add_item("View 1", ITEM_VIEW_1)
 	_submenu_views.add_item("View 2", ITEM_VIEW_2)
-	
+
 	# main menu
+	_apply_language()
+	$"/root/GlobalSignals".connect("language_changed", self, "_apply_language")
+
+# -------------------------------------------------------------------------------------------------
+func _apply_language() -> void:
+	clear()
 	add_item(tr("MENU_OPEN"), ITEM_OPEN)
 	add_item(tr("MENU_SAVE"), ITEM_SAVE)
 	add_item(tr("MENU_SAVE_AS"), ITEM_SAVE_AS)

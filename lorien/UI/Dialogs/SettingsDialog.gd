@@ -37,10 +37,15 @@ onready var _ui_scale: SpinBox = $MarginContainer/TabContainer/Appearance/VBoxCo
 
 # -------------------------------------------------------------------------------------------------
 func _ready():
+	_set_values()
+	_apply_language()
+	$"/root/GlobalSignals".connect("language_changed", self, "_apply_language")
+
+# -------------------------------------------------------------------------------------------------
+func _apply_language() -> void:
 	_tab_container.set_tab_title(0, tr("SETTINGS_GENERAL"))
 	_tab_container.set_tab_title(1, tr("SETTINGS_APPEARANCE"))
 	_tab_container.set_tab_title(2, tr("SETTINGS_RENDERING"))
-	_set_values()
 
 # -------------------------------------------------------------------------------------------------
 func _set_values() -> void:
@@ -184,6 +189,7 @@ func _on_OptionButton_item_selected(idx: int):
 	
 	Settings.set_value(Settings.GENERAL_LANGUAGE, locale)
 	TranslationServer.set_locale(locale)
+	$"/root/GlobalSignals".emit_signal("language_changed")
 	_general_restart_label.show()
 
 # -------------------------------------------------------------------------------------------------
