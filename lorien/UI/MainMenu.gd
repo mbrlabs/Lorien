@@ -37,7 +37,7 @@ func _ready() -> void:
 
 	# main menu
 	_apply_language()
-	$"/root/GlobalSignals".connect("language_changed", self, "_apply_language")
+	GlobalSignals.connect("language_changed", self, "_apply_language")
 
 # -------------------------------------------------------------------------------------------------
 func _apply_language() -> void:
