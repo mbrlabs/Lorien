@@ -1,4 +1,4 @@
-LANGUAGE_NAME 简体中文
+LANGUAGE_NAME Simplified Chinese
 
 # -----------------------------------------------------------------------------
 # Menu strings
