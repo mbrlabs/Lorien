@@ -231,6 +231,7 @@ ProjectMetadata="*res://ProjectManager/ProjectMetadata.gd"
 PaletteManager="*res://Palette/PaletteManager.gd"
 StatePersistence="*res://Misc/StatePersistence.gd"
 AlertDialog="*res://UI/Dialogs/AlertDialog.tscn"
+GlobalSignals="*res://Misc/GlobalSignals.gd"
 
 [debug]
 
