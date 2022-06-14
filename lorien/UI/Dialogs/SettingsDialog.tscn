@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://UI/Themes/theme_dark.tres" type="Theme" id=1]
 [ext_resource path="res://UI/Dialogs/SettingsDialog.gd" type="Script" id=2]
 [ext_resource path="res://UI/Components/DelayedSpinBox.gd" type="Script" id=3]
+[ext_resource path="res://UI/Dialogs/KeyBindingsList.gd" type="Script" id=4]
 
 [sub_resource type="StyleBoxEmpty" id=1]
 
@@ -11,6 +12,7 @@
 [sub_resource type="StyleBoxEmpty" id=3]
 
 [node name="SettingsDialog" type="WindowDialog"]
+visible = true
 margin_right = 520.0
 margin_bottom = 250.0
 rect_min_size = Vector2( 520, 270 )
@@ -57,8 +59,8 @@ __meta__ = {
 [node name="HSeparator3" type="HSeparator" parent="MarginContainer/TabContainer/General/VBoxContainer"]
 margin_right = 496.0
 margin_bottom = 12.0
-custom_constants/separation = 12
 custom_styles/separator = SubResource( 1 )
+custom_constants/separation = 12
 
 [node name="PressureSensitivity" type="HBoxContainer" parent="MarginContainer/TabContainer/General/VBoxContainer"]
 margin_top = 16.0
@@ -190,8 +192,8 @@ text = "English"
 margin_top = 169.0
 margin_right = 496.0
 margin_bottom = 181.0
-custom_constants/separation = 12
 custom_styles/separator = SubResource( 3 )
+custom_constants/separation = 12
 
 [node name="RestartLabel" type="Label" parent="MarginContainer/TabContainer/General/VBoxContainer"]
 visible = false
@@ -218,8 +220,8 @@ __meta__ = {
 [node name="HSeparator3" type="HSeparator" parent="MarginContainer/TabContainer/Appearance/VBoxContainer"]
 margin_right = 496.0
 margin_bottom = 12.0
-custom_constants/separation = 12
 custom_styles/separator = SubResource( 1 )
+custom_constants/separation = 12
 
 [node name="Theme" type="HBoxContainer" parent="MarginContainer/TabContainer/Appearance/VBoxContainer"]
 margin_top = 16.0
@@ -290,8 +292,8 @@ script = ExtResource( 3 )
 margin_top = 74.0
 margin_right = 496.0
 margin_bottom = 86.0
-custom_constants/separation = 12
 custom_styles/separator = SubResource( 1 )
+custom_constants/separation = 12
 
 [node name="RestartLabel" type="Label" parent="MarginContainer/TabContainer/Appearance/VBoxContainer"]
 visible = false
@@ -318,8 +320,8 @@ __meta__ = {
 [node name="HSeparator3" type="HSeparator" parent="MarginContainer/TabContainer/Rendering/VBoxContainer"]
 margin_right = 496.0
 margin_bottom = 12.0
-custom_constants/separation = 12
 custom_styles/separator = SubResource( 1 )
+custom_constants/separation = 12
 
 [node name="AntiAliasing" type="HBoxContainer" parent="MarginContainer/TabContainer/Rendering/VBoxContainer"]
 margin_top = 16.0
@@ -422,8 +424,8 @@ allow_greater = true
 margin_top = 124.0
 margin_right = 496.0
 margin_bottom = 136.0
-custom_constants/separation = 12
 custom_styles/separator = SubResource( 1 )
+custom_constants/separation = 12
 
 [node name="RestartLabel" type="Label" parent="MarginContainer/TabContainer/Rendering/VBoxContainer"]
 visible = false
@@ -433,6 +435,23 @@ margin_bottom = 157.0
 custom_colors/font_color = Color( 1, 0.470588, 0.470588, 1 )
 text = "SETTINGS_RESTART_NOTICE"
 align = 1
+
+[node name="Keybindings" type="Control" parent="MarginContainer/TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 27.0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/TabContainer/Keybindings"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="KeyBindingsList" type="GridContainer" parent="MarginContainer/TabContainer/Keybindings/ScrollContainer"]
+columns = 3
+script = ExtResource( 4 )
 
 [connection signal="value_changed" from="MarginContainer/TabContainer/General/VBoxContainer/PressureSensitivity/PressureSensitivity" to="." method="_on_PressureSensitivity_value_changed"]
 [connection signal="value_changed" from="MarginContainer/TabContainer/General/VBoxContainer/DefaultBrushSize/DefaultBrushSize" to="." method="_on_DefaultBrushSize_value_changed"]
