@@ -1,0 +1,140 @@
+LANGUAGE_NAME Traditional Chinese
+
+# -----------------------------------------------------------------------------
+# Menu strings
+# -----------------------------------------------------------------------------
+
+MENU_OPEN           開啟
+MENU_SAVE           存檔
+MENU_SAVE_AS        另存為..
+MENU_SETTINGS       設定
+MENU_MANUAL         線上說明
+MENU_BUG_TRACKER    問題追蹤
+MENU_ABOUT          關於
+MENU_EXPORT         匯出
+MENU_EXPORT_PNG     將畫布匯出成 PNG 圖檔
+
+# -----------------------------------------------------------------------------
+# Toolbar
+# -----------------------------------------------------------------------------
+TOOLBAR_TOOLTIP_NEW_FILE        建立新檔 (CTRL+N)
+TOOLBAR_TOOLTIP_OPEN_FILE       開啟舊檔 (CTRL+O)
+TOOLBAR_TOOLTIP_SAVE_FILE       儲存檔案 (CTRL+S)
+TOOLBAR_TOOLTIP_UNDO            回上一步 (CTRL+Z)
+TOOLBAR_TOOLTIP_REDO            取消上一步 (CTRL+Y)
+TOOLBAR_TOOLTIP_BRUSH_TOOL      畫筆工具 (B)
+TOOLBAR_TOOLTIP_RECTANGLE_TOOL  矩形工具 (R)
+TOOLBAR_TOOLTIP_CIRCLE_TOOL     圓形工具 (C)
+TOOLBAR_TOOLTIP_LINE_TOOL       線條工具 (L)
+TOOLBAR_TOOLTIP_ERASER_TOOL     橡皮擦 (E)
+TOOLBAR_TOOLTIP_SELECT_TOOL     選擇工具 (S)
+TOOLBAR_TOOLTIP_BRUSH_COLOR     畫筆顏色
+TOOLBAR_TOOLTIP_BRUSH_SIZE      畫筆大小
+TOOLBAR_TOOLTIP_CANVAS_COLOR    畫布底色
+TOOLBAR_TOOLTIP_GRID 			顯示格線
+TOOLBAR_FULLSCREEN_TOGGLE       全螢幕切換
+
+# -----------------------------------------------------------------------------
+# Color Palette Picker
+# -----------------------------------------------------------------------------
+COLOR_PALETTE_PICKER_HINT_NEW        建立新的調色板
+COLOR_PALETTE_PICKER_HINT_EDIT       編輯目前調色板
+COLOR_PALETTE_PICKER_HINT_DUPLICATE  從目前調色板建立副本
+COLOR_PALETTE_PICKER_HINT_DELETE     刪除目前調色板
+
+# -----------------------------------------------------------------------------
+# Statusbar strings
+# -----------------------------------------------------------------------------
+
+STATUSBAR_POSITION              位置
+STATUSBAR_ZOOM                  縮放
+STATUSBAR_PRESSURE              筆壓
+STATUSBAR_FPS                   FPS
+STATUSBAR_STROKES               筆劃數
+STATUSBAR_POINTS                點數
+
+# -----------------------------------------------------------------------------
+# Settings strings
+# -----------------------------------------------------------------------------
+
+SETTINGS_TITLE                  設定
+SETTINGS_GENERAL                一般
+SETTINGS_APPEARANCE             外觀
+SETTINGS_RENDERING              渲染
+SETTINGS_PRESSURE_SENSITIVITY   筆壓敏感度
+SETTINGS_BRUSH_SIZE             預設畫筆大小
+SETTINGS_CANVAS_COLOR           預設畫布底色
+SETTINGS_PROJECT_FOLDER         預設專案目錄
+SETTINGS_LANGUAGE               語言
+SETTINGS_THEME                  佈景主題
+SETTINGS_UI_SCALE               UI 縮放
+SETTINGS_UI_SCALE_AUTO          自動
+SETTINGS_UI_SCALE_CUSTOM        自定義
+SETTINGS_AA_METHOD              啟用反鋸齒
+SETTINGS_AA_METHOD_NONE         不啟用
+SETTINGS_FPS_FOREGROUND         前景 FPS
+SETTINGS_FPS_BACKGROUND         背景 FPS
+SETTINGS_BRUSH_CAPS             畫筆圓角模式
+SETTINGS_BRUSH_CAPS_FLAT        方形
+SETTINGS_BRUSH_CAPS_ROUND       圓形
+SETTINGS_RESTART_NOTICE  		重新啟動應用程式以套用新的設定
+
+# -----------------------------------------------------------------------------
+# About dialog strings
+# -----------------------------------------------------------------------------
+
+ABOUT_DIALOG_TITLE              關於
+ABOUT_DIALOG_COPYRIGHT          © 2021-2022 Marcus Brummer & contributors 
+ABOUT_DIALOG_LICSENSE           Lorien 所採用的授權條：
+ABOUT_DIALOG_BASED_ON           Lorien 是基於：
+ABOUT_DIALOG_EASTEREGG          復活節彩蛋角色：
+
+# -----------------------------------------------------------------------------
+# Unsaved changes dialog
+# -----------------------------------------------------------------------------
+
+UNSAVED_CHANGES_DIALOG_TITLE    是否儲存變更？
+UNSAVED_CHANGES_DIALOG_TEXT     關閉檔案前是否要儲存此次的變更？
+
+# -----------------------------------------------------------------------------
+# Exit dialog
+# -----------------------------------------------------------------------------
+
+EXIT_DIALOG_TITLE    是否儲存變更？
+EXIT_DIALOG_TEXT     離開 Lorien 前是否要儲存此次的變更？
+
+# -----------------------------------------------------------------------------
+# New palette dialog
+# -----------------------------------------------------------------------------
+NEW_PALETTE_DIALOG_CREATE_TITLE 		建立新的調色板
+NEW_PALETTE_DIALOG_DUPLICATE_TITLE 		以目前調色板建立副本
+NEW_PALETTE_DIALOG_PLACEHOLDER 			新的調色板名稱
+
+# -----------------------------------------------------------------------------
+# Delete palette dialog
+# -----------------------------------------------------------------------------
+DELETE_PALETTE_DIALOG_TITLE 			刪除調色板
+DELETE_PALETTE_DIALOG_TEXT 				確定要刪除調色板：
+
+# -----------------------------------------------------------------------------
+# Edit palette dialog
+# -----------------------------------------------------------------------------
+EDIT_PALETTE_DIALOG_TITLE 		編輯調色板
+
+# -----------------------------------------------------------------------------
+# Error/Alert messages
+# -----------------------------------------------------------------------------
+
+ERROR_NOT_IMPLEMENTED               尚未實作。
+ERROR_AUTOSAVE_NOT_IMPLEMENTED      "Untitled" 檔案的自動儲存功能目前尚未實作，請先手動儲存。
+ALERT_EDITING_BUILTIN_PALETTE       不能編輯預設的調色板。如果你想自訂目前的調色板，可以先新建副本再進行編輯。
+ALERT_DELETING_BUILTIN_PALETTE      不能刪除預設的調色板。
+
+# -----------------------------------------------------------------------------
+# Generic strings
+# -----------------------------------------------------------------------------
+
+SAVE            儲存
+DISCARD         放棄
+CANCEL          取消
+DELETE          删除
