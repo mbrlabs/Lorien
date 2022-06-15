@@ -160,6 +160,11 @@ _global_script_classes=[ {
 "path": "res://UI/Statusbar.gd"
 }, {
 "base": "Reference",
+"class": "StringTemplating",
+"language": "GDScript",
+"path": "res://Misc/StringTemplating.gd"
+}, {
+"base": "Reference",
 "class": "SvgExporter",
 "language": "GDScript",
 "path": "res://Misc/SvgExporter.gd"
@@ -205,6 +210,7 @@ _global_script_class_icons={
 "SelectionTool": "",
 "Serializer": "",
 "Statusbar": "",
+"StringTemplating": "",
 "SvgExporter": "",
 "Toolbar": "",
 "Types": ""

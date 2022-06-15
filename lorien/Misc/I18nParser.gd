@@ -2,6 +2,7 @@ class_name I18nParser
 
 # -------------------------------------------------------------------------------------------------
 const I18N_FOLDER := "res://Assets/I18n/"
+const StringTemplating := preload("res://Misc/StringTemplating.gd")
 
 # -------------------------------------------------------------------------------------------------
 class ParseResult:
@@ -14,6 +15,8 @@ class ParseResult:
 
 # -------------------------------------------------------------------------------------------------
 func load_files() -> ParseResult:
+	var templater = StringTemplating.new({})
+	
 	var result = ParseResult.new()
 	for f in _get_i18n_files():
 		var file := File.new()
@@ -45,6 +48,7 @@ func load_files() -> ParseResult:
 						value = value.substr(0, comment_index)
 					
 					value = value.strip_edges()
+					value = templater.process_string(value)
 					translation.add_message(key, value)
 				else:
 					printerr("Key not found (make sure to use spaces; not tabs): %s" % line)
