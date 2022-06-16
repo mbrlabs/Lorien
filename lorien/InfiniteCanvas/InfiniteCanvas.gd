@@ -71,25 +71,25 @@ func center_to_mouse() -> void:
 # -------------------------------------------------------------------------------------------------
 func use_tool(tool_type: int) -> void:
 	_active_tool.enabled = false
-	_selection_tool.deselect_all_strokes()
+	_selection_tool.deselect_all_strokes()	
 	
 	match tool_type:
-		Types.Tool.BRUSH:
+		Types.Tool.BRUSH, Types.ToolNames.BrushTool:
 			_active_tool = _brush_tool
 			_use_optimizer = true
-		Types.Tool.RECTANGLE:
+		Types.Tool.RECTANGLE, Types.ToolNames.RectangleTool:
 			_active_tool = _rectangle_tool
 			_use_optimizer = false
-		Types.Tool.CIRCLE:
+		Types.Tool.CIRCLE, Types.ToolNames.CircleTool:
 			_active_tool = _circle_tool
 			_use_optimizer = false
-		Types.Tool.LINE:
+		Types.Tool.LINE, Types.ToolNames.LineTool:
 			_active_tool = _line_tool
 			_use_optimizer = false
-		Types.Tool.ERASER:
+		Types.Tool.ERASER, Types.ToolNames.EraserTool:
 			_active_tool = _eraser_tool
 			_use_optimizer = false
-		Types.Tool.SELECT:
+		Types.Tool.SELECT, Types.ToolNames.SelectionTool:
 			_active_tool = _selection_tool
 			_use_optimizer = false
 			

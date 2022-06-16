@@ -21,6 +21,9 @@ onready var _edit_palette_dialog: EditPaletteDialog = $EditPaletteDialog
 
 var _ui_visible := true 
 var _player_enabled := false
+var _eraser_pressed_start: float
+var _eraser_last_tool_active
+var _eraser_swap_min_time: float = 400
 
 # -------------------------------------------------------------------------------------------------
 func _ready():
@@ -163,10 +166,13 @@ func _handle_input_actions() -> void:
 				_toolbar.enable_tool(Types.Tool.CIRCLE)
 			elif Input.is_action_just_pressed("shortcut_line_tool"):
 				_toolbar.enable_tool(Types.Tool.LINE)
-			elif Input.is_action_just_pressed("shortcut_eraser_tool"):
-				_toolbar.enable_tool(Types.Tool.ERASER)
 			elif Input.is_action_just_pressed("shortcut_select_tool"):
-				_toolbar.enable_tool(Types.Tool.SELECT)
+				_toolbar.enable_tool(Types.Tool.SELECT)	
+			elif Input.is_action_just_pressed("shortcut_eraser_tool"):
+				_on_eraser_pressed()
+				_toolbar.enable_tool(Types.Tool.ERASER)	
+			elif Input.is_action_just_released("shortcut_eraser_tool"):
+				_on_eraser_released()				
 			elif Input.is_action_just_pressed("toggle_distraction_free_mode"):
 				_toggle_distraction_free_mode()
 			elif Input.is_action_just_pressed("toggle_fullscreen"):
@@ -545,3 +551,13 @@ func _on_scale_changed() -> void:
 	_canvas.set_canvas_scale(scale)
 	get_tree().set_screen_stretch(SceneTree.STRETCH_MODE_DISABLED, SceneTree.STRETCH_ASPECT_IGNORE, Vector2(0,0), scale)
 	OS.min_window_size = Config.MIN_WINDOW_SIZE * scale
+
+# --------------------------------------------------------------------------------------------------
+func _on_eraser_pressed():
+	_eraser_last_tool_active = _canvas._active_tool.get_class()
+	_eraser_pressed_start = OS.get_ticks_msec()
+
+# --------------------------------------------------------------------------------------------------
+func _on_eraser_released():
+	if ((OS.get_ticks_msec() - _eraser_pressed_start) >= _eraser_swap_min_time):
+		_toolbar.enable_tool(Types.ToolNames[_eraser_last_tool_active])

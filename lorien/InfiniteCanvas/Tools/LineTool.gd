@@ -58,3 +58,6 @@ func _add_point_at_snap_pos(pressure: float) -> Vector2:
 	pressure = pressure_curve.interpolate(pressure)
 	add_stroke_point(new_tail, pressure)
 	return new_tail
+
+# -------------------------------------------------------------------------------------------------
+func get_class(): return "LineTool"

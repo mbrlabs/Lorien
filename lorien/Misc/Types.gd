@@ -11,6 +11,15 @@ enum Tool {
 	SELECT,
 }
 
+enum ToolNames {
+	BrushTool,
+	RectangleTool,
+	CircleTool,
+	LineTool,
+	EraserTool,
+	SelectionTool,
+}
+
 # -------------------------------------------------------------------------------------------------
 enum AAMode {
 	NONE,
