@@ -17,17 +17,17 @@ MENU_EXPORT_PNG     將畫布匯出成 PNG 圖檔
 # -----------------------------------------------------------------------------
 # Toolbar
 # -----------------------------------------------------------------------------
-TOOLBAR_TOOLTIP_NEW_FILE        建立新檔 (CTRL+N)
-TOOLBAR_TOOLTIP_OPEN_FILE       開啟舊檔 (CTRL+O)
-TOOLBAR_TOOLTIP_SAVE_FILE       儲存檔案 (CTRL+S)
-TOOLBAR_TOOLTIP_UNDO            回上一步 (CTRL+Z)
-TOOLBAR_TOOLTIP_REDO            取消上一步 (CTRL+Y)
-TOOLBAR_TOOLTIP_BRUSH_TOOL      畫筆工具 (B)
-TOOLBAR_TOOLTIP_RECTANGLE_TOOL  矩形工具 (R)
-TOOLBAR_TOOLTIP_CIRCLE_TOOL     圓形工具 (C)
-TOOLBAR_TOOLTIP_LINE_TOOL       線條工具 (L)
-TOOLBAR_TOOLTIP_ERASER_TOOL     橡皮擦 (E)
-TOOLBAR_TOOLTIP_SELECT_TOOL     選擇工具 (S)
+TOOLBAR_TOOLTIP_NEW_FILE        建立新檔 {{ shortcut_list("shortcut_new_project") }}
+TOOLBAR_TOOLTIP_OPEN_FILE       開啟舊檔 {{ shortcut_list("shortcut_new_project") }}
+TOOLBAR_TOOLTIP_SAVE_FILE       儲存檔案 {{ shortcut_list("shortcut_save_project") }}
+TOOLBAR_TOOLTIP_UNDO            回上一步 {{ shortcut_list("shortcut_undo") }}
+TOOLBAR_TOOLTIP_REDO            取消上一步 {{ shortcut_list("shortcut_redo") }}
+TOOLBAR_TOOLTIP_BRUSH_TOOL      畫筆工具 {{ shortcut_list("shortcut_brush_tool") }}
+TOOLBAR_TOOLTIP_RECTANGLE_TOOL  矩形工具 {{ shortcut_list("shortcut_rectangle_tool") }}
+TOOLBAR_TOOLTIP_CIRCLE_TOOL     圓形工具 {{ shortcut_list("shortcut_circle_tool") }}
+TOOLBAR_TOOLTIP_LINE_TOOL       線條工具 {{ shortcut_list("shortcut_line_tool") }}
+TOOLBAR_TOOLTIP_ERASER_TOOL     橡皮擦 {{ shortcut_list("shortcut_eraser_tool") }}
+TOOLBAR_TOOLTIP_SELECT_TOOL     選擇工具 {{ shortcut_list("shortcut_select_tool") }}
 TOOLBAR_TOOLTIP_BRUSH_COLOR     畫筆顏色
 TOOLBAR_TOOLTIP_BRUSH_SIZE      畫筆大小
 TOOLBAR_TOOLTIP_CANVAS_COLOR    畫布底色

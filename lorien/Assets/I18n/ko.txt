@@ -17,17 +17,17 @@ MENU_EXPORT_PNG     PNG 파일로 내보내기
 # -----------------------------------------------------------------------------
 # Toolbar
 # -----------------------------------------------------------------------------
-TOOLBAR_TOOLTIP_NEW_FILE        새 파일 만들기 (CTRL+N)
-TOOLBAR_TOOLTIP_OPEN_FILE       파일 열기 (CTRL+O)
-TOOLBAR_TOOLTIP_SAVE_FILE       파일 저장하기 (CTRL+S)
-TOOLBAR_TOOLTIP_UNDO            되돌리기 (CTRL+Z)
-TOOLBAR_TOOLTIP_REDO            다시하기 (CTRL+Y)
-TOOLBAR_TOOLTIP_BRUSH_TOOL      브러쉬 (B)
-TOOLBAR_TOOLTIP_RECTANGLE_TOOL  사각형 (R)
-TOOLBAR_TOOLTIP_CIRCLE_TOOL     원 (C)
-TOOLBAR_TOOLTIP_LINE_TOOL       직선 (L)
-TOOLBAR_TOOLTIP_ERASER_TOOL     지우개 (E)
-TOOLBAR_TOOLTIP_SELECT_TOOL     범위 선택 (S)
+TOOLBAR_TOOLTIP_NEW_FILE        새 파일 만들기 {{ shortcut_list("shortcut_new_project") }}
+TOOLBAR_TOOLTIP_OPEN_FILE       파일 열기 {{ shortcut_list("shortcut_new_project") }}
+TOOLBAR_TOOLTIP_SAVE_FILE       파일 저장하기 {{ shortcut_list("shortcut_save_project") }}
+TOOLBAR_TOOLTIP_UNDO            되돌리기 {{ shortcut_list("shortcut_undo") }}
+TOOLBAR_TOOLTIP_REDO            다시하기 {{ shortcut_list("shortcut_redo") }}
+TOOLBAR_TOOLTIP_BRUSH_TOOL      브러쉬 {{ shortcut_list("shortcut_brush_tool") }}
+TOOLBAR_TOOLTIP_RECTANGLE_TOOL  사각형 {{ shortcut_list("shortcut_rectangle_tool") }}
+TOOLBAR_TOOLTIP_CIRCLE_TOOL     원 {{ shortcut_list("shortcut_circle_tool") }}
+TOOLBAR_TOOLTIP_LINE_TOOL       직선 {{ shortcut_list("shortcut_line_tool") }}
+TOOLBAR_TOOLTIP_ERASER_TOOL     지우개 {{ shortcut_list("shortcut_eraser_tool") }}
+TOOLBAR_TOOLTIP_SELECT_TOOL     범위 선택 {{ shortcut_list("shortcut_select_tool") }}
 TOOLBAR_TOOLTIP_BRUSH_COLOR     브러쉬 색깔
 TOOLBAR_TOOLTIP_BRUSH_SIZE      브러쉬 크기
 TOOLBAR_TOOLTIP_CANVAS_COLOR    배경 색깔
