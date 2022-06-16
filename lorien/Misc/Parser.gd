@@ -13,6 +13,12 @@ class DetectedToken:
 		subtokens = _subtokens
 		value = _value
 	
+	func find_first_subtoken(token_name: String):
+		for st in subtokens:
+			if st.name == token_name:
+				return st
+		return null
+	
 	func _to_string():
 		var subtoken_strings = PoolStringArray([])
 		for st in subtokens:

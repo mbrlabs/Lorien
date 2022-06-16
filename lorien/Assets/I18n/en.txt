@@ -30,7 +30,7 @@ TOOLBAR_TOOLTIP_ERASER_TOOL     Eraser {{shortcut_list("shortcut_eraser_tool")}}
 TOOLBAR_TOOLTIP_SELECT_TOOL     Selection Tool {{shortcut_list("shortcut_select_tool")}}
 TOOLBAR_TOOLTIP_BRUSH_COLOR     Brush Color
 TOOLBAR_TOOLTIP_BRUSH_SIZE      Brush Size
-TOOLBAR_TOOLTIP_CANVAS_COLOR    Canvas Color {{ adsf("value")   }}
+TOOLBAR_TOOLTIP_CANVAS_COLOR    Canvas Color
 TOOLBAR_TOOLTIP_GRID 			Show Grid
 TOOLBAR_FULLSCREEN_TOGGLE       Toggle fullscreen
 

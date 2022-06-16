@@ -9,6 +9,10 @@ var Parser = preload("res://Misc/Parser.gd")
 var parse_grammar: Parser.Grammar
 
 # -------------------------------------------------------------------------------------------------
+func _log_error(message):
+	printerr("String templating error: %s" % message)
+
+# -------------------------------------------------------------------------------------------------
 class TemplateLocation:
 	var template_text: String
 	var start: int
@@ -24,10 +28,11 @@ class TemplateLocation:
 # -------------------------------------------------------------------------------------------------
 func _init(_filters: Dictionary):
 	filters = _filters
-	_init_parser()
+	_init_grammar()
+	_selftest()
 
 # -------------------------------------------------------------------------------------------------
-func _init_parser():
+func _init_grammar():
 	var g_string = Parser.Grammar.new()
 	g_string.elements.append_array([
 		Parser.GrammarRegexMatch.new("string", "'([^']*)'"),
@@ -58,21 +63,28 @@ func _init_parser():
 	parse_grammar.elements.append(g_func_call)
 	parse_grammar.elements.append(g_string)
 	
-	_selftest()
-	
 # -------------------------------------------------------------------------------------------------
-func process_string(s: String) -> String:
+func process_string(template: String) -> String:
+	var offset := 0
 	while true:
-		var found = _find_template_location(s)
-		if found:
-			found = found as TemplateLocation
-			var parsed = _parse(found.template_text.strip_edges())
-			if parsed == null:
-				_log_error("Cannot parse template '%s'" % found.template_text)
-				break
-		break
-	return s
-	
+		var found = _find_template_location(template.substr(offset))
+		if not found:
+			break
+		found = found as TemplateLocation
+
+		var substitution = "TEMPLATE_ERROR"
+		var parsed = _parse(found.template_text.strip_edges())
+		if parsed == null:
+			_log_error("Cannot parse template '%s'" % found.template_text)
+		else:
+			var s = _apply_filter(parsed)
+			if s is String:
+				substitution = s
+
+		template = template.substr(0, found.start) + substitution + template.substr(found.end)
+		offset = found.start + len(substitution)
+	return template
+
 # -------------------------------------------------------------------------------------------------
 func _find_template_location(s: String):
 	var start = s.find(TEMPLATE_START)
@@ -100,13 +112,6 @@ func _find_template_location(s: String):
 	_log_error("String '%s' does contain unreadable template" % s)
 
 # -------------------------------------------------------------------------------------------------
-func _log_error(message):
-	print("{class_name} error: {message}".format({
-		"class_name": get_class(),
-		"message": message,
-	}))
-
-# -------------------------------------------------------------------------------------------------
 func _parse(s: String):
 	var parsed = parse_grammar.detect(s)
 	if parsed is Parser.DetectedToken:
@@ -114,6 +119,27 @@ func _parse(s: String):
 		if s.substr(parsed.last_position).strip_edges() != "":
 			return null
 	return parsed
+
+# -------------------------------------------------------------------------------------------------
+func _apply_filter(parsed: Parser.DetectedToken):
+	if parsed.name == "string":
+		return parsed.value
+	elif parsed.name == "func_call":
+		var func_name: String = parsed.subtokens[0].value
+		if ! func_name in filters:
+			_log_error("Filter '%s' does not exist" % func_name)
+			return null
+		
+		parsed = parsed as Parser.DetectedToken
+		var parsed_args_list: Parser.DetectedToken = parsed.find_first_subtoken("args")
+		var arg_values = []
+		for a in parsed_args_list.subtokens:
+			if a.name in ["(", ")", ","]:
+				continue
+			arg_values.append(_apply_filter(a))
+		return filters[func_name].call_funcv(arg_values)
+	else:
+		return null
 
 # -------------------------------------------------------------------------------------------------
 func _selftest():

@@ -15,7 +15,9 @@ class ParseResult:
 
 # -------------------------------------------------------------------------------------------------
 func load_files() -> ParseResult:
-	var templater = StringTemplating.new({})
+	var templater = StringTemplating.new({
+		"shortcut_list": funcref(self, "_i18n_filter_shortcut_list")
+	})
 	
 	var result = ParseResult.new()
 	for f in _get_i18n_files():
@@ -56,6 +58,10 @@ func load_files() -> ParseResult:
 			result.append(translation.locale, name)
 			print("Loaded i18n file: %s" % f)
 	return result
+
+# -------------------------------------------------------------------------------------------------
+func _i18n_filter_shortcut_list(action_name: String) -> String:
+	return "(NOT YET IMPLEMENTED)"
 
 # -------------------------------------------------------------------------------------------------
 func _get_i18n_files() -> Array:
