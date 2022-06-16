@@ -87,3 +87,6 @@ func _make_ellipse(pressure: float, step: int, should_draw_circle: bool) -> void
 		), 
 		pressure
 	)
+
+# -------------------------------------------------------------------------------------------------
+func get_class(): return "CircleTool"

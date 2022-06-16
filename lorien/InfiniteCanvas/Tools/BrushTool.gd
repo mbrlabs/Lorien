@@ -59,3 +59,5 @@ func _process(delta: float) -> void:
 			
 		_last_accepted_position = _current_position
 
+# -------------------------------------------------------------------------------------------------
+func get_class(): return "BrushTool"

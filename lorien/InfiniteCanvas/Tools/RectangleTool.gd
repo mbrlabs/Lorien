@@ -47,3 +47,6 @@ func _make_rectangle(pressure: float) -> void:
 	add_subdivided_line(bottom_right_point, bottom_left_point + Vector2(w_offset, 0), pressure)
 	add_subdivided_line(bottom_left_point, _start_position_top_left + Vector2(0, h_offset), pressure)
 	add_subdivided_line(_start_position_top_left, _start_position_top_left + Vector2(w_offset, 0), pressure)
+
+# -------------------------------------------------------------------------------------------------
+func get_class(): return "RectangleTool"

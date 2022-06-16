@@ -64,12 +64,12 @@ func _on_RedoButton_pressed(): emit_signal("redo_action")
 func enable_tool(tool_type: int) -> void:
 	var btn: TextureButton
 	match tool_type:
-		Types.Tool.BRUSH: btn = _tool_btn_brush
-		Types.Tool.LINE: btn = _tool_btn_line
-		Types.Tool.ERASER: btn = _tool_btn_eraser
-		Types.Tool.SELECT: btn = _tool_btn_selection
-		Types.Tool.RECTANGLE: btn = _tool_btn_rectangle
-		Types.Tool.CIRCLE: btn = _tool_btn_circle
+		Types.Tool.BRUSH, Types.ToolNames.BrushTool: btn = _tool_btn_brush
+		Types.Tool.LINE, Types.ToolNames.LineTool: btn = _tool_btn_line
+		Types.Tool.ERASER,Types.ToolNames.EraserTool: btn = _tool_btn_eraser
+		Types.Tool.SELECT, Types.ToolNames.SelectionTool: btn = _tool_btn_selection
+		Types.Tool.RECTANGLE, Types.ToolNames.RectangleTool: btn = _tool_btn_rectangle
+		Types.Tool.CIRCLE, Types.ToolNames.CircleTool: btn = _tool_btn_circle
 	
 	btn.toggle()
 	_change_active_tool_button(btn)

@@ -245,3 +245,6 @@ func get_selected_strokes() -> Array:
 func _on_brush_color_changed(color: Color) -> void:
 	var strokes := get_selected_strokes()
 	_modify_strokes_colors(strokes, color)
+
+# -------------------------------------------------------------------------------------------------
+func get_class(): return "SelectionTool"
