@@ -22,8 +22,7 @@ func _input(event: InputEvent) -> void:
 					_update_bounding_boxes()
 				performing_stroke = true
 			elif !event.pressed:
-				_bounding_box_cache.clear()
-				performing_stroke = false
+				reset()
 
 # -------------------------------------------------------------------------------------------------
 func _process(delta: float) -> void:
@@ -73,3 +72,8 @@ func _update_bounding_boxes() -> void:
 	var strokes: Array = _canvas.get_all_strokes()
 	_bounding_box_cache = Utils.calculte_bounding_boxes(strokes, BOUNDING_BOX_MARGIN)
 	#$"../Viewport/DebugDraw".set_bounding_boxes(_bounding_box_cache.values())
+
+# ------------------------------------------------------------------------------------------------
+func reset() -> void:
+	_bounding_box_cache.clear()
+	performing_stroke = false

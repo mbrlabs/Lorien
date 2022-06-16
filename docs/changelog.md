@@ -6,6 +6,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [0.6.0] - Unreleased
 
+### Added
+- Translations: Simplified Chinese
+
+### Fixed
+- Completed Spanish translation
+
+### Changed
+- Changing the application language does not require a restart now
+
 ## [0.5.0] - 2022-06-12
 
 ### Breaking Changes
@@ -133,7 +142,8 @@ If you rely on these eraser-strokes: DO NOT UPDATE to this version or BACKUP you
 - Designed to be used with a drawing tablet (Wacom, etc.). It also supports pressure sensitivity
 - Runs on Windows, Linux & Mac
 
-[0.5.0]: https://github.com/mbrlabs/lorien/compare/v0.4.0...HEAD
+[0.6.0-dev]: https://github.com/mbrlabs/lorien/compare/v0.5.0...HEAD
+[0.5.0]: https://github.com/mbrlabs/lorien/compare/v0.4.0...v0.5.0
 [0.4.0]: https://github.com/mbrlabs/lorien/compare/v0.3.0...v0.4.0
 [0.3.0]: https://github.com/mbrlabs/lorien/compare/v0.2.0...v0.3.0
 [0.2.0]: https://github.com/mbrlabs/lorien/compare/v0.1.0...v0.2.0
