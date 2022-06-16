@@ -1,5 +1,30 @@
 class_name StringTemplating
 
+# This class implements a more advanced, extensible string templating engine
+# than Godot nativelyprovides. It is loosely based on the syntax used by the 
+# Python library jinja2 (https://jinja.palletsprojects.com/en/2.11.x/templates/)
+# but a lot simpler.
+# 
+# It provides string substitution of templates strings of the form
+# > var template = "this {{ filter('param1', 'param2') }} was processed"
+#
+# The {{ ... }} bit denotes a section of the string that will be processed by
+# the StringTemplating engine. filter() is a reference to a filter-list that can
+# be provided when a StringTemplating object is created.
+# 
+# Example:
+#
+# > func _filter(arg1, arg2):
+# > 	return arg1 + "," + arg2
+# >
+# > var templating = StringTemplating.new({"filter": funcref(self, "_filter")})
+# 
+# This would define a filter-function called "filter" than when used on the
+# example template shown earlier would produce:
+#
+# > templating.process_string(template)
+# >> "this param1,param2 was processed"
+
 const TEMPLATE_START := "{{"
 const TEMPLATE_END := "}}"
 
@@ -114,27 +139,27 @@ func _find_template_location(s: String):
 # -------------------------------------------------------------------------------------------------
 func _parse(s: String):
 	s = s.strip_edges()
-	var parsed = parse_grammar.detect(s)
-	if parsed is Parser.DetectedToken:
+	var parsed = parse_grammar.parse(s)
+	if parsed is Parser.ParsedSymbol:
 		# Check that everything got consumed
 		if parsed.last_position != len(s):
 			return null
 	return parsed
 
 # -------------------------------------------------------------------------------------------------
-func _apply_filter(parsed: Parser.DetectedToken):
+func _apply_filter(parsed: Parser.ParsedSymbol):
 	if parsed.name == "string":
 		return parsed.value
 	elif parsed.name == "func_call":
-		var func_name: String = parsed.subtokens[0].value
+		var func_name: String = parsed.subsymbols[0].value
 		if ! func_name in filters:
 			_log_error("Filter '%s' does not exist" % func_name)
 			return null
 		
-		parsed = parsed as Parser.DetectedToken
-		var parsed_args_list: Parser.DetectedToken = parsed.find_first_subtoken("args")
+		parsed = parsed as Parser.ParsedSymbol
+		var parsed_args_list: Parser.ParsedSymbol = parsed.find_first_subsymbol("args")
 		var arg_values = []
-		for a in parsed_args_list.subtokens:
+		for a in parsed_args_list.subsymbols:
 			if a.name in ["(", ")", ","]:
 				continue
 			arg_values.append(_apply_filter(a))
