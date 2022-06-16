@@ -97,10 +97,10 @@ __meta__ = {
 }
 
 [node name="ColorPicker" type="ColorPicker" parent="BackgroundColorPickerPopup/PanelContainer"]
-margin_left = 32.0
-margin_top = 32.0
-margin_right = 341.0
-margin_bottom = 436.0
+margin_left = 24.0
+margin_top = 24.0
+margin_right = 333.0
+margin_bottom = 428.0
 edit_alpha = false
 presets_enabled = false
 presets_visible = false
@@ -139,8 +139,8 @@ theme = ExtResource( 8 )
 popup_exclusive = true
 access = 2
 filters = PoolStringArray( "*.lorien" )
-current_dir = "/Projects/Lorien/lorien"
-current_path = "/Projects/Lorien/lorien/"
+current_dir = "/Projects/Other/Lorien/lorien"
+current_path = "/Projects/Other/Lorien/lorien/"
 __meta__ = {
 "_edit_lock_": true
 }
@@ -200,8 +200,8 @@ theme = ExtResource( 8 )
 popup_exclusive = true
 window_title = "Export SVG"
 access = 2
-current_dir = "/Projects/Lorien/lorien"
-current_path = "/Projects/Lorien/lorien/"
+current_dir = "/Projects/Other/Lorien/lorien"
+current_path = "/Projects/Other/Lorien/lorien/"
 
 [node name="UnsavedChangesDialog" parent="." instance=ExtResource( 7 )]
 visible = false
