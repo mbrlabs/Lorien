@@ -1,4 +1,4 @@
-class_name Parser
+class_name DSLParser
 
 # This class provides a set of inner subclasses that allow the definition
 # of a parser for a custom language. The language is defined through the means
@@ -174,8 +174,8 @@ class GrammarRegexMatch:
 	extends GrammarElement
 	
 	var name: String
-	var regex := RegEx.new()
-	var ignore_whitespace = true
+	var regex: RegEx
+	var ignore_whitespace := true
 	
 	func _init(_name: String, pattern: String):
 		name = _name

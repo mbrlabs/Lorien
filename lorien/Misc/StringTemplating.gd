@@ -1,7 +1,7 @@
 class_name StringTemplating
 
 # This class implements a more advanced, extensible string templating engine
-# than Godot nativelyprovides. It is loosely based on the syntax used by the 
+# than Godot natively provides. It is loosely based on the syntax used by the 
 # Python library jinja2 (https://jinja.palletsprojects.com/en/2.11.x/templates/)
 # but a lot simpler.
 # 
@@ -29,12 +29,10 @@ const TEMPLATE_START := "{{"
 const TEMPLATE_END := "}}"
 
 var filters: Dictionary
-
-var Parser = preload("res://Misc/Parser.gd")
-var parse_grammar: Parser.Grammar
+var parse_grammar: DSLParser.Grammar
 
 # -------------------------------------------------------------------------------------------------
-func _log_error(message):
+func _log_error(message: String) -> void:
 	printerr("String templating error: %s" % message)
 
 # -------------------------------------------------------------------------------------------------
@@ -57,34 +55,34 @@ func _init(_filters: Dictionary):
 	_selftest()
 
 # -------------------------------------------------------------------------------------------------
-func _init_grammar():
-	var g_string = Parser.Grammar.new()
+func _init_grammar() -> void:
+	var g_string = DSLParser.Grammar.new()
 	g_string.elements.append_array([
-		Parser.GrammarRegexMatch.new("string", "'([^']*)'"),
-		Parser.GrammarRegexMatch.new("string", '"([^"]*)"')
+		DSLParser.GrammarRegexMatch.new("string", "'([^']*)'"),
+		DSLParser.GrammarRegexMatch.new("string", '"([^"]*)"')
 	])
 	
-	var g_arg_list = Parser.Grammar.new()
-	g_arg_list.elements.append(Parser.GrammarSequence.new("args", []))
-	g_arg_list.elements.append(Parser.GrammarSequence.new("args", [g_string]))
-	g_arg_list.elements.append(Parser.GrammarSequence.new(
+	var g_arg_list = DSLParser.Grammar.new()
+	g_arg_list.elements.append(DSLParser.GrammarSequence.new("args", []))
+	g_arg_list.elements.append(DSLParser.GrammarSequence.new("args", [g_string]))
+	g_arg_list.elements.append(DSLParser.GrammarSequence.new(
 		"args",
-		[g_string, Parser.GrammarLiteral.new(","), g_arg_list],
+		[g_string, DSLParser.GrammarLiteral.new(","), g_arg_list],
 		true
 	))
 	
-	var g_func_name = Parser.GrammarRegexMatch.new("func_name", "[a-zA-Z0-9_]+")
-	var g_func_call = Parser.GrammarSequence.new(
+	var g_func_name = DSLParser.GrammarRegexMatch.new("func_name", "[a-zA-Z0-9_]+")
+	var g_func_call = DSLParser.GrammarSequence.new(
 		"func_call", 
 		[
 			g_func_name,
-			Parser.GrammarLiteral.new("("),
+			DSLParser.GrammarLiteral.new("("),
 			g_arg_list,
-			Parser.GrammarLiteral.new(")")
+			DSLParser.GrammarLiteral.new(")")
 		]
 	)
 
-	parse_grammar = Parser.Grammar.new()
+	parse_grammar = DSLParser.Grammar.new()
 	parse_grammar.elements.append(g_func_call)
 	parse_grammar.elements.append(g_string)
 	
@@ -140,14 +138,14 @@ func _find_template_location(s: String):
 func _parse(s: String):
 	s = s.strip_edges()
 	var parsed = parse_grammar.parse(s)
-	if parsed is Parser.ParsedSymbol:
+	if parsed is DSLParser.ParsedSymbol:
 		# Check that everything got consumed
 		if parsed.last_position != len(s):
 			return null
 	return parsed
 
 # -------------------------------------------------------------------------------------------------
-func _apply_filter(parsed: Parser.ParsedSymbol):
+func _apply_filter(parsed: DSLParser.ParsedSymbol):
 	if parsed.name == "string":
 		return parsed.value
 	elif parsed.name == "func_call":
@@ -156,8 +154,8 @@ func _apply_filter(parsed: Parser.ParsedSymbol):
 			_log_error("Filter '%s' does not exist" % func_name)
 			return null
 		
-		parsed = parsed as Parser.ParsedSymbol
-		var parsed_args_list: Parser.ParsedSymbol = parsed.find_first_subsymbol("args")
+		parsed = parsed as DSLParser.ParsedSymbol
+		var parsed_args_list: DSLParser.ParsedSymbol = parsed.find_first_subsymbol("args")
 		var arg_values = []
 		for a in parsed_args_list.subsymbols:
 			if a.name in ["(", ")", ","]:
@@ -168,6 +166,7 @@ func _apply_filter(parsed: Parser.ParsedSymbol):
 		return null
 
 # -------------------------------------------------------------------------------------------------
+# TODO: Replace with unittests when available
 func _selftest():
 	# Test template detection
 	var found_template

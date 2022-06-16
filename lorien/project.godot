@@ -54,6 +54,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Config.gd"
 }, {
+"base": "Reference",
+"class": "DSLParser",
+"language": "GDScript",
+"path": "res://Misc/DSLParser.gd"
+}, {
 "base": "WindowDialog",
 "class": "DeletePaletteDialog",
 "language": "GDScript",
@@ -113,11 +118,6 @@ _global_script_classes=[ {
 "class": "PaletteButton",
 "language": "GDScript",
 "path": "res://UI/Components/PaletteButton.gd"
-}, {
-"base": "Reference",
-"class": "Parser",
-"language": "GDScript",
-"path": "res://Misc/Parser.gd"
 }, {
 "base": "KinematicBody2D",
 "class": "Player",
@@ -194,6 +194,7 @@ _global_script_class_icons={
 "CircleTool": "",
 "ColorPalettePicker": "",
 "Config": "",
+"DSLParser": "",
 "DeletePaletteDialog": "",
 "EditPaletteDialog": "",
 "EraserTool": "",
@@ -206,7 +207,6 @@ _global_script_class_icons={
 "NewPaletteDialog": "",
 "Palette": "",
 "PaletteButton": "",
-"Parser": "",
 "Player": "",
 "Project": "",
 "ProjectTab": "",
