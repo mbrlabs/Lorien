@@ -113,10 +113,11 @@ func _find_template_location(s: String):
 
 # -------------------------------------------------------------------------------------------------
 func _parse(s: String):
+	s = s.strip_edges()
 	var parsed = parse_grammar.detect(s)
 	if parsed is Parser.DetectedToken:
 		# Check that everything got consumed
-		if s.substr(parsed.last_position).strip_edges() != "":
+		if parsed.last_position != len(s):
 			return null
 	return parsed
 
@@ -143,9 +144,17 @@ func _apply_filter(parsed: Parser.DetectedToken):
 
 # -------------------------------------------------------------------------------------------------
 func _selftest():
+	# Test template detection
+	var found_template
+	found_template = _find_template_location("AAAAAA{{ '{{}}}}{{' }}AAAAAAAAA}}")
+	assert(found_template != null)
+	assert(found_template.start == 6)
+	assert(found_template.template_text == " '{{}}}}{{' ")
+
+	# Test templating language
 	var ref: String
 	var parsed: String
-	
+
 	ref = "<T name=string 'Hello world' []>"
 	parsed = str(_parse('"Hello world"'))
 	assert(parsed == ref)
