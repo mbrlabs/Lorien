@@ -61,7 +61,20 @@ func load_files() -> ParseResult:
 
 # -------------------------------------------------------------------------------------------------
 func _i18n_filter_shortcut_list(action_name: String) -> String:
-	return "(NOT YET IMPLEMENTED)"
+	if ! InputMap.has_action(action_name):
+		printerr("_i18n_filter_shortcut_list: substituiton of invlaid action name: '%s'" % action_name)
+		return "INVALID_ACTION %s" % action_name
+	
+	var keybindings := PoolStringArray()
+	for e in InputMap.get_action_list(action_name):
+		if e is InputEventKey:
+			e = e as InputEventKey
+			keybindings.append(OS.get_scancode_string(e.get_scancode_with_modifiers()))
+
+	if len(keybindings) == 0:
+		return ""
+	else:
+		return "(%s)" % keybindings.join(", ")
 
 # -------------------------------------------------------------------------------------------------
 func _get_i18n_files() -> Array:
