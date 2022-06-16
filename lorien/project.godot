@@ -114,6 +114,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://UI/Components/PaletteButton.gd"
 }, {
+"base": "Reference",
+"class": "Parser",
+"language": "GDScript",
+"path": "res://Misc/Parser.gd"
+}, {
 "base": "KinematicBody2D",
 "class": "Player",
 "language": "GDScript",
@@ -201,6 +206,7 @@ _global_script_class_icons={
 "NewPaletteDialog": "",
 "Palette": "",
 "PaletteButton": "",
+"Parser": "",
 "Player": "",
 "Project": "",
 "ProjectTab": "",
