@@ -9,7 +9,7 @@ on:
 env:
   GODOT_VERSION: 3.4.4
   EXPORT_NAME: Lorien
-  LORIEN_VERSION: v0.5.0-dev
+  LORIEN_VERSION: v0.6.0-dev
 
 jobs:
   windows-export:

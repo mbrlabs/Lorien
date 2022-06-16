@@ -17,17 +17,17 @@ MENU_EXPORT_PNG     Exportar Canvas como PNG
 # -----------------------------------------------------------------------------
 # Toolbar
 # -----------------------------------------------------------------------------
-TOOLBAR_TOOLTIP_NEW_FILE        Criar Novo Arquivo (CTRL+N)
-TOOLBAR_TOOLTIP_OPEN_FILE       Abrir Arquivo (CTRL+O)
-TOOLBAR_TOOLTIP_SAVE_FILE       Salvar Arquivo (CTRL+S)
-TOOLBAR_TOOLTIP_UNDO            Desfazer Ação (CTRL+Z)
-TOOLBAR_TOOLTIP_REDO            Refazer Ação (CTRL+Y)
-TOOLBAR_TOOLTIP_BRUSH_TOOL      Pincel (B)
-TOOLBAR_TOOLTIP_RECTANGLE_TOOL  Ferramenta de Retângulo (R)
-TOOLBAR_TOOLTIP_CIRCLE_TOOL     Ferramenta de Círculo (C)
-TOOLBAR_TOOLTIP_LINE_TOOL       Ferramenta de Linha (L)
-TOOLBAR_TOOLTIP_ERASER_TOOL     Borracha (E)
-TOOLBAR_TOOLTIP_SELECT_TOOL     Ferramenta de Seleção (S)
+TOOLBAR_TOOLTIP_NEW_FILE        Criar Novo Arquivo {{ shortcut_list("shortcut_new_project") }}
+TOOLBAR_TOOLTIP_OPEN_FILE       Abrir Arquivo {{ shortcut_list("shortcut_open_project") }}
+TOOLBAR_TOOLTIP_SAVE_FILE       Salvar Arquivo {{ shortcut_list("shortcut_save_project") }}
+TOOLBAR_TOOLTIP_UNDO            Desfazer Ação {{ shortcut_list("shortcut_undo") }}
+TOOLBAR_TOOLTIP_REDO            Refazer Ação {{ shortcut_list("shortcut_redo") }}
+TOOLBAR_TOOLTIP_BRUSH_TOOL      Pincel {{ shortcut_list("shortcut_brush_tool") }}
+TOOLBAR_TOOLTIP_RECTANGLE_TOOL  Ferramenta de Retângulo {{ shortcut_list("shortcut_rectangle_tool") }}
+TOOLBAR_TOOLTIP_CIRCLE_TOOL     Ferramenta de Círculo {{ shortcut_list("shortcut_circle_tool") }}
+TOOLBAR_TOOLTIP_LINE_TOOL       Ferramenta de Linha {{ shortcut_list("shortcut_line_tool") }}
+TOOLBAR_TOOLTIP_ERASER_TOOL     Borracha {{ shortcut_list("shortcut_eraser_tool") }}
+TOOLBAR_TOOLTIP_SELECT_TOOL     Ferramenta de Seleção {{ shortcut_list("shortcut_select_tool") }}
 TOOLBAR_TOOLTIP_BRUSH_COLOR     Cor do Pincel 
 TOOLBAR_TOOLTIP_BRUSH_SIZE      Tamanho do Pincel 
 TOOLBAR_TOOLTIP_CANVAS_COLOR    Cor do Canvas

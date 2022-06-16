@@ -17,16 +17,16 @@ MENU_EXPORT_PNG     Exporter la zone visible en PNG
 # -----------------------------------------------------------------------------
 # Toolbar
 # -----------------------------------------------------------------------------
-TOOLBAR_TOOLTIP_NEW_FILE        Créer un nouveau fichier (CTRL+N)
-TOOLBAR_TOOLTIP_OPEN_FILE       Ouvrir un fichier (CTRL+O)
-TOOLBAR_TOOLTIP_SAVE_FILE       Enregistrer un fichier (CTRL+S)
-TOOLBAR_TOOLTIP_UNDO            Annuler l'action (CTRL+Z)
-TOOLBAR_TOOLTIP_REDO            Rétablir l'action (CTRL+Y)
-TOOLBAR_TOOLTIP_BRUSH_TOOL      Pinceau (B)
-TOOLBAR_TOOLTIP_RECTANGLE_TOOL  Rectangle Tool (R) 									# TODO
-TOOLBAR_TOOLTIP_LINE_TOOL       Ligne (L)
-TOOLBAR_TOOLTIP_ERASER_TOOL     Gomme (E)
-TOOLBAR_TOOLTIP_SELECT_TOOL     Outil de sélection (S)
+TOOLBAR_TOOLTIP_NEW_FILE        Créer un nouveau fichier {{ shortcut_list("shortcut_new_project") }}
+TOOLBAR_TOOLTIP_OPEN_FILE       Ouvrir un fichier {{ shortcut_list("shortcut_open_project") }}
+TOOLBAR_TOOLTIP_SAVE_FILE       Enregistrer un fichier {{ shortcut_list("shortcut_save_project") }}
+TOOLBAR_TOOLTIP_UNDO            Annuler l'action {{ shortcut_list("shortcut_undo") }}
+TOOLBAR_TOOLTIP_REDO            Rétablir l'action {{ shortcut_list("shortcut_redo") }}
+TOOLBAR_TOOLTIP_BRUSH_TOOL      Pinceau {{ shortcut_list("shortcut_brush_tool") }}
+TOOLBAR_TOOLTIP_RECTANGLE_TOOL  Rectangle Tool {{ shortcut_list("shortcut_rectangle_tool") }} 									# TODO
+TOOLBAR_TOOLTIP_LINE_TOOL       Ligne {{ shortcut_list("shortcut_line_tool") }}
+TOOLBAR_TOOLTIP_ERASER_TOOL     Gomme {{ shortcut_list("shortcut_eraser_tool") }}
+TOOLBAR_TOOLTIP_SELECT_TOOL     Outil de sélection {{ shortcut_list("shortcut_select_tool") }}
 TOOLBAR_TOOLTIP_BRUSH_COLOR     Couleur de la brosse
 TOOLBAR_TOOLTIP_BRUSH_SIZE      Épaisseur de la brosse
 TOOLBAR_TOOLTIP_CANVAS_COLOR    Couleur du canevas

@@ -1,4 +1,4 @@
-LANGUAGE_NAME 简体中文
+LANGUAGE_NAME Simplified Chinese
 
 # -----------------------------------------------------------------------------
 # Menu strings
@@ -17,17 +17,17 @@ MENU_EXPORT_PNG     将画布导出为PNG
 # -----------------------------------------------------------------------------
 # Toolbar
 # -----------------------------------------------------------------------------
-TOOLBAR_TOOLTIP_NEW_FILE        创建新文件 (CTRL+N)
-TOOLBAR_TOOLTIP_OPEN_FILE       打开文件 (CTRL+O)
-TOOLBAR_TOOLTIP_SAVE_FILE       保存文件 (CTRL+S)
-TOOLBAR_TOOLTIP_UNDO            撤销操作 (CTRL+Z)
-TOOLBAR_TOOLTIP_REDO            重做操作 (CTRL+Y)
-TOOLBAR_TOOLTIP_BRUSH_TOOL      画笔工具 (B)
-TOOLBAR_TOOLTIP_RECTANGLE_TOOL  矩形工具 (R)
-TOOLBAR_TOOLTIP_CIRCLE_TOOL     圆形工具 (C)
-TOOLBAR_TOOLTIP_LINE_TOOL       直线工具 (L)
-TOOLBAR_TOOLTIP_ERASER_TOOL     橡皮擦 (E)
-TOOLBAR_TOOLTIP_SELECT_TOOL     选择工具 (S)
+TOOLBAR_TOOLTIP_NEW_FILE        创建新文件 {{ shortcut_list("shortcut_new_project") }}
+TOOLBAR_TOOLTIP_OPEN_FILE       打开文件 {{ shortcut_list("shortcut_open_project") }}
+TOOLBAR_TOOLTIP_SAVE_FILE       保存文件 {{ shortcut_list("shortcut_save_project") }}
+TOOLBAR_TOOLTIP_UNDO            撤销操作 {{ shortcut_list("shortcut_undo") }}
+TOOLBAR_TOOLTIP_REDO            重做操作 {{ shortcut_list("shortcut_redo") }}
+TOOLBAR_TOOLTIP_BRUSH_TOOL      画笔工具 {{ shortcut_list("shortcut_brush_tool") }}
+TOOLBAR_TOOLTIP_RECTANGLE_TOOL  矩形工具 {{ shortcut_list("shortcut_rectangle_tool") }}
+TOOLBAR_TOOLTIP_CIRCLE_TOOL     圆形工具 {{ shortcut_list("shortcut_circle_tool") }}
+TOOLBAR_TOOLTIP_LINE_TOOL       直线工具 {{ shortcut_list("shortcut_line_tool") }}
+TOOLBAR_TOOLTIP_ERASER_TOOL     橡皮擦 {{ shortcut_list("shortcut_eraser_tool") }}
+TOOLBAR_TOOLTIP_SELECT_TOOL     选择工具 {{ shortcut_list("shortcut_select_tool") }}
 TOOLBAR_TOOLTIP_BRUSH_COLOR     画笔颜色
 TOOLBAR_TOOLTIP_BRUSH_SIZE      画笔大小
 TOOLBAR_TOOLTIP_CANVAS_COLOR    画布颜色
@@ -87,7 +87,7 @@ ABOUT_DIALOG_TITLE              关于
 ABOUT_DIALOG_COPYRIGHT          © 2021-2022 Marcus Brummer & contributors 
 ABOUT_DIALOG_LICSENSE           Lorien 采用以下协议授权:
 ABOUT_DIALOG_BASED_ON           Lorien 基于：
-ABOUT_DIALOG_EASTEREGG          复活节彩蛋字符:
+ABOUT_DIALOG_EASTEREGG          复活节彩蛋角色:
 
 # -----------------------------------------------------------------------------
 # Unsaved changes dialog

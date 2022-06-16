@@ -17,17 +17,17 @@ MENU_EXPORT_PNG     Tuvali PNG Olarak Dışa Aktar
 # -----------------------------------------------------------------------------
 # Toolbar
 # -----------------------------------------------------------------------------
-TOOLBAR_TOOLTIP_NEW_FILE        Yeni Dosya Oluştur (CTRL+N)
-TOOLBAR_TOOLTIP_OPEN_FILE       Dosya Aç (CTRL+O)
-TOOLBAR_TOOLTIP_SAVE_FILE       Dosya Kaydet (CTRL+S)
-TOOLBAR_TOOLTIP_UNDO            Geri Al (CTRL+Z)
-TOOLBAR_TOOLTIP_REDO            İleri Al (CTRL+Y)
-TOOLBAR_TOOLTIP_BRUSH_TOOL      Fırça (B)
-TOOLBAR_TOOLTIP_RECTANGLE_TOOL  Dikdörtgen Aracı (R)
-TOOLBAR_TOOLTIP_CIRCLE_TOOL     Çember Aracı (C) 
-TOOLBAR_TOOLTIP_LINE_TOOL       Çizgi Aracı (L)
-TOOLBAR_TOOLTIP_ERASER_TOOL     Silgi (E)
-TOOLBAR_TOOLTIP_SELECT_TOOL     Seçim Aracı (S)
+TOOLBAR_TOOLTIP_NEW_FILE        Yeni Dosya Oluştur {{ shortcut_list("shortcut_new_project") }}
+TOOLBAR_TOOLTIP_OPEN_FILE       Dosya Aç {{ shortcut_list("shortcut_open_project") }}
+TOOLBAR_TOOLTIP_SAVE_FILE       Dosya Kaydet {{ shortcut_list("shortcut_save_project") }}
+TOOLBAR_TOOLTIP_UNDO            Geri Al {{ shortcut_list("shortcut_undo") }}
+TOOLBAR_TOOLTIP_REDO            İleri Al {{ shortcut_list("shortcut_redo") }}
+TOOLBAR_TOOLTIP_BRUSH_TOOL      Fırça {{ shortcut_list("shortcut_brush_tool") }}
+TOOLBAR_TOOLTIP_RECTANGLE_TOOL  Dikdörtgen Aracı {{ shortcut_list("shortcut_rectangle_tool") }}
+TOOLBAR_TOOLTIP_CIRCLE_TOOL     Çember Aracı {{ shortcut_list("shortcut_circle_tool") }} 
+TOOLBAR_TOOLTIP_LINE_TOOL       Çizgi Aracı {{ shortcut_list("shortcut_line_tool") }}
+TOOLBAR_TOOLTIP_ERASER_TOOL     Silgi {{ shortcut_list("shortcut_eraser_tool") }}
+TOOLBAR_TOOLTIP_SELECT_TOOL     Seçim Aracı {{ shortcut_list("shortcut_select_tool") }}
 TOOLBAR_TOOLTIP_BRUSH_COLOR     Fırça Rengi
 TOOLBAR_TOOLTIP_BRUSH_SIZE      Fırça Boyutu
 TOOLBAR_TOOLTIP_CANVAS_COLOR    Tuval Rengi

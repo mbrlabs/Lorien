@@ -71,8 +71,8 @@ func center_to_mouse() -> void:
 # -------------------------------------------------------------------------------------------------
 func use_tool(tool_type: int) -> void:
 	_active_tool.enabled = false
-	_selection_tool.deselect_all_strokes()
-	
+	var prev_tool := _active_tool
+
 	match tool_type:
 		Types.Tool.BRUSH:
 			_active_tool = _brush_tool
@@ -92,7 +92,9 @@ func use_tool(tool_type: int) -> void:
 		Types.Tool.SELECT:
 			_active_tool = _selection_tool
 			_use_optimizer = false
-			
+
+	if prev_tool != _active_tool:
+		prev_tool.reset()
 	_active_tool.enabled = true
 	_active_tool.get_cursor()._on_zoom_changed(_camera.zoom.x)
 

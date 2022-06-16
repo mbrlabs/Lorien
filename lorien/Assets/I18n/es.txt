@@ -4,13 +4,13 @@ LANGUAGE_NAME Español
 # Menu strings
 # -----------------------------------------------------------------------------
 
-MENU_OPEN           Open # TODO 
+MENU_OPEN           Abrir
 MENU_SAVE           Guardar
 MENU_SAVE_AS        Guardar como..
 MENU_SETTINGS       Configuración
 MENU_MANUAL         Manual
 # Changed from "Bug tracker" to "Report a bug"
-MENU_BUG_TRACKER    Reportar un bug
+MENU_BUG_TRACKER    Reportar un error
 # Changed from "About" to "About Lorien"
 MENU_ABOUT          Acerca de Lorien
 MENU_EXPORT         Exportar
@@ -19,28 +19,28 @@ MENU_EXPORT_PNG     Exportar Canvas como PNG
 # -----------------------------------------------------------------------------
 # Toolbar
 # -----------------------------------------------------------------------------
-TOOLBAR_TOOLTIP_NEW_FILE        Crear Nuevo Archivo (CTRL+N)
-TOOLBAR_TOOLTIP_OPEN_FILE       Abrir Archivo (CTRL+O)
-TOOLBAR_TOOLTIP_SAVE_FILE       Guardar Archivo (CTRL+S)
-TOOLBAR_TOOLTIP_UNDO            Deshacer Acción (CTRL+Z)
-TOOLBAR_TOOLTIP_REDO            Rehacer Acción (CTRL+Y)
-TOOLBAR_TOOLTIP_BRUSH_TOOL      Herramienta de Pincel (B)
-TOOLBAR_TOOLTIP_RECTANGLE_TOOL  Rectangle Tool (R) 									# TODO
-TOOLBAR_TOOLTIP_LINE_TOOL       Herramienta de Línea (L)
-TOOLBAR_TOOLTIP_ERASER_TOOL     Borrador (E)
-TOOLBAR_TOOLTIP_SELECT_TOOL     Herramienta de Selección (S)
+TOOLBAR_TOOLTIP_NEW_FILE        Crear Nuevo Archivo {{ shortcut_list("shortcut_new_project") }}
+TOOLBAR_TOOLTIP_OPEN_FILE       Abrir Archivo {{ shortcut_list("shortcut_open_project") }}
+TOOLBAR_TOOLTIP_SAVE_FILE       Guardar Archivo {{ shortcut_list("shortcut_save_project") }}
+TOOLBAR_TOOLTIP_UNDO            Deshacer Acción {{ shortcut_list("shortcut_undo") }}
+TOOLBAR_TOOLTIP_REDO            Rehacer Acción {{ shortcut_list("shortcut_redo") }}
+TOOLBAR_TOOLTIP_BRUSH_TOOL      Herramienta de Pincel {{ shortcut_list("shortcut_brush_tool") }}
+TOOLBAR_TOOLTIP_RECTANGLE_TOOL  Rectángulo {{ shortcut_list("shortcut_rectangle_tool") }}
+TOOLBAR_TOOLTIP_LINE_TOOL       Herramienta de Línea {{ shortcut_list("shortcut_line_tool") }}
+TOOLBAR_TOOLTIP_ERASER_TOOL     Borrador {{ shortcut_list("shortcut_eraser_tool") }}
+TOOLBAR_TOOLTIP_SELECT_TOOL     Herramienta de Selección {{ shortcut_list("shortcut_select_tool") }}
 TOOLBAR_TOOLTIP_BRUSH_COLOR     Color de Pincel
 TOOLBAR_TOOLTIP_BRUSH_SIZE      Tamaño de Pincel
 TOOLBAR_TOOLTIP_CANVAS_COLOR    Color de Canvas
-TOOLBAR_TOOLTIP_GRID 			Show Grid											# TODO
+TOOLBAR_TOOLTIP_GRID            Mostrar cuadrícula
 
 # -----------------------------------------------------------------------------
 # Color Palette Picker
 # -----------------------------------------------------------------------------
-COLOR_PALETTE_PICKER_HINT_NEW        Create new color palette						# TODO
-COLOR_PALETTE_PICKER_HINT_EDIT       Edit the current color palette					# TODO
-COLOR_PALETTE_PICKER_HINT_DUPLICATE  Duplicate the current color palette 			# TODO
-COLOR_PALETTE_PICKER_HINT_DELETE     Delete the current color palette permanently 	# TODO
+COLOR_PALETTE_PICKER_HINT_NEW        Crear una nueva paleta de colores
+COLOR_PALETTE_PICKER_HINT_EDIT       Editar la paleta de colores
+COLOR_PALETTE_PICKER_HINT_DUPLICATE  Duplicar la paleta de colores
+COLOR_PALETTE_PICKER_HINT_DELETE     Borrar permanentemente la paleta de colores
 
 # -----------------------------------------------------------------------------
 # Statusbar strings
@@ -61,7 +61,7 @@ SETTINGS_TITLE                  Configuración
 SETTINGS_GENERAL                General
 SETTINGS_APPEARANCE             Apariencia
 SETTINGS_RENDERING              Renderizado
-SETTINGS_PRESSURE_SENSITIVITY   Pressure Sensitivity # TODO
+SETTINGS_PRESSURE_SENSITIVITY   Sensibilidad de Presión
 SETTINGS_BRUSH_SIZE             Tamaño de Pincel Predeterminado
 SETTINGS_CANVAS_COLOR           Color de Canvas Predeterminado
 SETTINGS_PROJECT_FOLDER         Carpeta de Proyectos Predeterminada
@@ -69,62 +69,62 @@ SETTINGS_LANGUAGE               Idioma
 SETTINGS_THEME                  Tema
 SETTINGS_AA_METHOD              Método de Anti Aliasing
 SETTINGS_AA_METHOD_NONE         Ninguno
-SETTINGS_FPS_FOREGROUND         Foreground Fps 										# TODO
-SETTINGS_FPS_BACKGROUND         Background Fps 										# TODO
-SETTINGS_BRUSH_CAPS             Brush Rounding Mode 								# TODO
-SETTINGS_BRUSH_CAPS_FLAT        Flat 												# TODO
-SETTINGS_BRUSH_CAPS_ROUND       Round 												# TODO
-SETTINGS_RESTART_NOTICE  		Restart required to apply the new settings 			# TODO
+SETTINGS_FPS_FOREGROUND         Color de texto de FPS
+SETTINGS_FPS_BACKGROUND         Color de fondo de FPS
+SETTINGS_BRUSH_CAPS             Modo de Redondeado de Pincel
+SETTINGS_BRUSH_CAPS_FLAT        Plano
+SETTINGS_BRUSH_CAPS_ROUND       Redondo
+SETTINGS_RESTART_NOTICE         Se requiere reiniciar para aplicar las nuevas opciones
 
 # -----------------------------------------------------------------------------
 # About dialog strings
 # -----------------------------------------------------------------------------
 
-ABOUT_DIALOG_TITLE              Acerca de Lorien
-ABOUT_DIALOG_COPYRIGHT          © 2021-2022 Marcus Brummer & colaboradores 
-ABOUT_DIALOG_LICSENSE           Lorien está licenciado bajo:
-ABOUT_DIALOG_BASED_ON           Lorien está basado en:
-ABOUT_DIALOG_EASTEREGG          Easteregg character: 								# TODO
+ABOUT_DIALOG_TITLE      Acerca de Lorien
+ABOUT_DIALOG_COPYRIGHT  © 2021-2022 Marcus Brummer & colaboradores 
+ABOUT_DIALOG_LICSENSE   Lorien está licenciado bajo:
+ABOUT_DIALOG_BASED_ON   Lorien está basado en:
+ABOUT_DIALOG_EASTEREGG  Personaje secreto: 
 
 # -----------------------------------------------------------------------------
 # Unsaved changes dialog
 # -----------------------------------------------------------------------------
 
-UNSAVED_CHANGES_DIALOG_TITLE    Guardar cambios?
-UNSAVED_CHANGES_DIALOG_TEXT     Guardar tus cambios antes de cerrar el archivo?
+UNSAVED_CHANGES_DIALOG_TITLE    ¿Guardar cambios?
+UNSAVED_CHANGES_DIALOG_TEXT     ¿Guardar tus cambios antes de cerrar el archivo?
 
 # -----------------------------------------------------------------------------
 # Exit dialog
 # -----------------------------------------------------------------------------
 
-EXIT_DIALOG_TITLE    Guardar cambios?
-EXIT_DIALOG_TEXT     Guardar tus cambios antes de salir?
+EXIT_DIALOG_TITLE   ¿Guardar cambios?
+EXIT_DIALOG_TEXT    ¿Guardar tus cambios antes de salir?
 
 # -----------------------------------------------------------------------------
 # New palette dialog
 # -----------------------------------------------------------------------------
-NEW_PALETTE_DIALOG_CREATE_TITLE 		New Palette  								# TODO
-NEW_PALETTE_DIALOG_DUPLICATE_TITLE 		Duplicate Palette 							# TODO
-NEW_PALETTE_DIALOG_PLACEHOLDER 			Palette name  								# TODO
+NEW_PALETTE_DIALOG_CREATE_TITLE    Nueva Paleta
+NEW_PALETTE_DIALOG_DUPLICATE_TITLE Duplicar Paleta
+NEW_PALETTE_DIALOG_PLACEHOLDER     Nombre de Paleta
 
 # -----------------------------------------------------------------------------
 # Delete palette dialog
 # -----------------------------------------------------------------------------
-DELETE_PALETTE_DIALOG_TITLE 			Delete palette 									# TODO
-DELETE_PALETTE_DIALOG_TEXT 				Are you sure you want to permanently delete:    # TODO
+DELETE_PALETTE_DIALOG_TITLE     Borrar Paleta
+DELETE_PALETTE_DIALOG_TEXT      ¿Seguro que desea borrar esta paleta permanentemente?:    
 
 # -----------------------------------------------------------------------------
 # Edit palette dialog
 # -----------------------------------------------------------------------------
-EDIT_PALETTE_DIALOG_TITLE 		Edit Palette 										# TODO
+EDIT_PALETTE_DIALOG_TITLE       Editar paleta
 
 # -----------------------------------------------------------------------------
 # Error/Alert messages
 # -----------------------------------------------------------------------------
-ERROR_NOT_IMPLEMENTED               Aún no ha sido implementado.
-ERROR_AUTOSAVE_NOT_IMPLEMENTED      El guardado automático aún no ha sido implementado para el archivo "Untitled". Por favor, guárdalo manualmente.
-ALERT_EDITING_BUILTIN_PALETTE       Editing built-in palettes is not possible. If you want to customize this palette you can make a copy and edit that instead. # TODO
-ALERT_DELETING_BUILTIN_PALETTE      Deleting built-in palettes is not possible. # TODO
+ERROR_NOT_IMPLEMENTED           Aún no ha sido implementado.
+ERROR_AUTOSAVE_NOT_IMPLEMENTED  El guardado automático aún no ha sido implementado para el archivo "Untitled". Por favor, guárdalo manualmente.
+ALERT_EDITING_BUILTIN_PALETTE   No se pueden editar las paletas del sistema. Si deseas personalizarla, puedes duplicarla y editarla en su lugar.
+ALERT_DELETING_BUILTIN_PALETTE  No se pueden borrar las paletas del sistema.
 
 # -----------------------------------------------------------------------------
 # Generic strings
@@ -133,4 +133,4 @@ ALERT_DELETING_BUILTIN_PALETTE      Deleting built-in palettes is not possible. 
 SAVE            Guardar
 DISCARD         Descartar
 CANCEL          Cancelar
-DELETE          Delete 			# TODO
+DELETE          Borrar

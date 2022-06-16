@@ -17,16 +17,16 @@ MENU_EXPORT_PNG     Экспортировать холст как PNG
 # -----------------------------------------------------------------------------
 # Toolbar
 # -----------------------------------------------------------------------------
-TOOLBAR_TOOLTIP_NEW_FILE        Создать новый файл (CTRL+N)
-TOOLBAR_TOOLTIP_OPEN_FILE       Открыть файл (CTRL+O)
-TOOLBAR_TOOLTIP_SAVE_FILE       Сохранить файл (CTRL+S)
-TOOLBAR_TOOLTIP_UNDO            Отменить действие (CTRL+Z)
-TOOLBAR_TOOLTIP_REDO            Повторить действие (CTRL+Y)
-TOOLBAR_TOOLTIP_BRUSH_TOOL      Кисть (B)
-TOOLBAR_TOOLTIP_RECTANGLE_TOOL  Rectangle Tool (R) 									# TODO
-TOOLBAR_TOOLTIP_LINE_TOOL       Линия (L)
-TOOLBAR_TOOLTIP_ERASER_TOOL     Стерка (E)
-TOOLBAR_TOOLTIP_SELECT_TOOL     Выделить  (S)
+TOOLBAR_TOOLTIP_NEW_FILE        Создать новый файл {{ shortcut_list("shortcut_new_project") }}
+TOOLBAR_TOOLTIP_OPEN_FILE       Открыть файл {{ shortcut_list("shortcut_open_project") }}
+TOOLBAR_TOOLTIP_SAVE_FILE       Сохранить файл {{ shortcut_list("shortcut_save_project") }}
+TOOLBAR_TOOLTIP_UNDO            Отменить действие {{ shortcut_list("shortcut_undo") }}
+TOOLBAR_TOOLTIP_REDO            Повторить действие {{ shortcut_list("shortcut_redo") }}
+TOOLBAR_TOOLTIP_BRUSH_TOOL      Кисть {{ shortcut_list("shortcut_brush_tool") }}
+TOOLBAR_TOOLTIP_RECTANGLE_TOOL  Rectangle Tool {{ shortcut_list("shortcut_rectangle_tool") }} 									# TODO
+TOOLBAR_TOOLTIP_LINE_TOOL       Линия {{ shortcut_list("shortcut_line_tool") }}
+TOOLBAR_TOOLTIP_ERASER_TOOL     Стерка {{ shortcut_list("shortcut_eraser_tool") }}
+TOOLBAR_TOOLTIP_SELECT_TOOL     Выделить  {{ shortcut_list("shortcut_select_tool") }}
 TOOLBAR_TOOLTIP_BRUSH_COLOR     Цвет кисти
 TOOLBAR_TOOLTIP_BRUSH_SIZE      Размер кисти
 TOOLBAR_TOOLTIP_CANVAS_COLOR    Цвет холста
