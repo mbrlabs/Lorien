@@ -245,3 +245,11 @@ func get_selected_strokes() -> Array:
 func _on_brush_color_changed(color: Color) -> void:
 	var strokes := get_selected_strokes()
 	_modify_strokes_colors(strokes, color)
+
+# ------------------------------------------------------------------------------------------------
+func reset() -> void:
+	_state = State.NONE
+	_selection_rectangle.reset()
+	_selection_rectangle.update()
+	_commit_strokes_under_selection_rectangle()
+	deselect_all_strokes()
