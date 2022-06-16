@@ -1,4 +1,4 @@
-LANGUAGE_NAME 简体中文
+LANGUAGE_NAME Simplified Chinese
 
 # -----------------------------------------------------------------------------
 # Menu strings
@@ -87,7 +87,7 @@ ABOUT_DIALOG_TITLE              关于
 ABOUT_DIALOG_COPYRIGHT          © 2021-2022 Marcus Brummer & contributors 
 ABOUT_DIALOG_LICSENSE           Lorien 采用以下协议授权:
 ABOUT_DIALOG_BASED_ON           Lorien 基于：
-ABOUT_DIALOG_EASTEREGG          复活节彩蛋字符:
+ABOUT_DIALOG_EASTEREGG          复活节彩蛋角色:
 
 # -----------------------------------------------------------------------------
 # Unsaved changes dialog
