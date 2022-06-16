@@ -82,7 +82,6 @@ func _find_template_location(s: String):
 	var result := TemplateLocation.new()
 	result.start = start
 
-	var end = null
 	var in_string = null
 	for i in range(start, len(s)):
 		if in_string is String:

@@ -7,11 +7,11 @@ class DetectedToken:
 	var subtokens: Array
 	var value
 	
-	func _init(name: String, last_position: int, subtokens: Array, value):
-		self.name = name
-		self.last_position = last_position
-		self.subtokens = subtokens
-		self.value = value
+	func _init(_name: String, _last_position: int, _subtokens: Array, _value):
+		name = _name
+		last_position = _last_position
+		subtokens = _subtokens
+		value = _value
 	
 	func _to_string():
 		var subtoken_strings = PoolStringArray([])
@@ -53,10 +53,10 @@ class GrammarSequence:
 	var elements: Array
 	var flatten_same_name := false
 	
-	func _init(name: String, elements: Array = [], flatten_same_name = false):
-		self.name = name
-		self.elements = elements
-		self.flatten_same_name = flatten_same_name
+	func _init(_name: String, _elements: Array = [], _flatten_same_name = false):
+		name = _name
+		elements = _elements
+		flatten_same_name = _flatten_same_name
 
 	func detect(s: String):
 		var position := 0
@@ -90,11 +90,11 @@ class GrammarLiteral:
 	var value: String
 	var ignore_whitespace := true
 	
-	func _init(name: String, value = null):
-		if value == null:
-			value = name
-		self.name = name
-		self.value = value
+	func _init(_name: String, _value = null):
+		if _value == null:
+			_value = _name
+		name = _name
+		value = _value
 	
 	func detect(s: String):
 		var test_in := s
@@ -113,8 +113,8 @@ class GrammarRegexMatch:
 	var regex := RegEx.new()
 	var ignore_whitespace = true
 	
-	func _init(name: String, pattern: String):
-		self.name = name
+	func _init(_name: String, pattern: String):
+		name = _name
 		regex = RegEx.new()
 		regex.compile(pattern)
 	
