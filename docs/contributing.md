@@ -8,7 +8,8 @@ This guide is loosly based on [Godot's contributing guidelines](https://github.c
 
 
 ## Codestyle
+
 - Adapt to the project's coding style
-- Use C-style logical operators: `&&`, `||`, `!` instdead of `and`, `or`, `not`
-- Use function seperators (see any `.gd` file in this repository for examples)
+- Use C-style logical operators: `&&`, `||`, `!` instead of `and`, `or`, `not`
+- Use function separators (see any `.gd` file in this repository for examples)
 - Always use static typing

@@ -2,6 +2,7 @@ class_name I18nParser
 
 # -------------------------------------------------------------------------------------------------
 const I18N_FOLDER := "res://Assets/I18n/"
+const StringTemplating := preload("res://Misc/StringTemplating.gd")
 
 # -------------------------------------------------------------------------------------------------
 class ParseResult:
@@ -14,6 +15,10 @@ class ParseResult:
 
 # -------------------------------------------------------------------------------------------------
 func load_files() -> ParseResult:
+	var templater = StringTemplating.new({
+		"shortcut_list": funcref(self, "_i18n_filter_shortcut_list")
+	})
+	
 	var result = ParseResult.new()
 	for f in _get_i18n_files():
 		var file := File.new()
@@ -45,6 +50,7 @@ func load_files() -> ParseResult:
 						value = value.substr(0, comment_index)
 					
 					value = value.strip_edges()
+					value = templater.process_string(value)
 					translation.add_message(key, value)
 				else:
 					printerr("Key not found (make sure to use spaces; not tabs): %s" % line)
@@ -52,6 +58,23 @@ func load_files() -> ParseResult:
 			result.append(translation.locale, name)
 			print("Loaded i18n file: %s" % f)
 	return result
+
+# -------------------------------------------------------------------------------------------------
+func _i18n_filter_shortcut_list(action_name: String) -> String:
+	if ! InputMap.has_action(action_name):
+		printerr("_i18n_filter_shortcut_list: substituiton of invlaid action name: '%s'" % action_name)
+		return "INVALID_ACTION %s" % action_name
+	
+	var keybindings := PoolStringArray()
+	for e in InputMap.get_action_list(action_name):
+		if e is InputEventKey:
+			e = e as InputEventKey
+			keybindings.append(OS.get_scancode_string(e.get_scancode_with_modifiers()))
+
+	if len(keybindings) == 0:
+		return ""
+	else:
+		return "(%s)" % keybindings.join(", ")
 
 # -------------------------------------------------------------------------------------------------
 func _get_i18n_files() -> Array:
