@@ -63,59 +63,75 @@ func set_value(key: String, value = null):
 	_save_settings()
 	
 # -------------------------------------------------------------------------------------------------
-func _set_default_shortcuts():	
+func _set_default_shortcuts():
 	for action_name in InputMap.get_actions():
-		for event in InputMap.get_action_list(action_name): 
-			if typeof(event) == TYPE_OBJECT && event.is_class("InputEventJoypadButton"):
-				continue
-			if _config_file.has_section_key("shortcuts", action_name):
-				continue
-			var shortcut = OS.get_scancode_string(event.get_scancode_with_modifiers())
-			_config_file.set_value("shortcuts", action_name, shortcut)
-			continue # for now every action can have only one shortcut
-			# parsing multiple shortcuts should be ease -  this is just a concept
+		if _config_file.has_section_key("shortcuts", action_name):
+			continue
 			
-	_save_settings()	
+		var shortcuts = []
+		for event in InputMap.get_action_list(action_name): 
+			if event is InputEventKey:
+				var shortcut = OS.get_scancode_string(event.get_scancode_with_modifiers())
+				shortcuts.append("KB:" + shortcut)
+			elif event is InputEventJoypadButton:
+				var shortcut = Input.get_joy_button_string(event.button_index)
+				shortcuts.append("JOY:" + shortcut)
+			else:
+				printerr("[DEV] unimplemented input event type: ", event.get_class())
+			
+		_config_file.set_value("shortcuts", action_name, shortcuts)
+	_save_settings()
 
 # -------------------------------------------------------------------------------------------------
-func _load_shortcuts():	
+func _load_shortcuts():
 	if !_config_file.get_section_keys("shortcuts"):
 		print("Cannot find 'shortcuts' section in 'settings.cfg'. Creating default one.")
 		_set_default_shortcuts()
 		return
 	
 	for action_name in InputMap.get_actions():
-		for event in InputMap.get_action_list(action_name): 
-			if typeof(event) == TYPE_OBJECT && event.is_class("InputEventJoypadButton"):
-				continue
-			if !_config_file.has_section_key("shortcuts", action_name):
-				continue
-			var shortcut = _config_file.get_value("shortcuts", action_name)
-			
-			var key = shortcut.split("+", false)[-1]
-			# OS.find_scancode_from_string don't work with modifiier keys like control, meta etc.
-			var scancode = OS.find_scancode_from_string(key)
-			
-			if scancode == 0:
-				print("invalid key name '", key, "' in '", action_name, "' of shortcuts section")
-				continue
-			
-			event.control = false
-			event.meta = false
-			event.alt = false
-			event.shift = false
-			event.command = false
-			if "Control" in shortcut:
-				event.control = true
-			if "Meta" in shortcut:
-				event.meta = true
-			if "Alt" in shortcut:
-				event.alt = true
-			if "Shift" in shortcut:
-				event.shift = true
-			if "Command" in shortcut:
-				event.command = true
-			
-			event.scancode = scancode
+		if !_config_file.has_section_key("shortcuts", action_name):
 			continue
+		var shortcuts = _config_file.get_value("shortcuts", action_name)
+		InputMap.action_erase_events(action_name)
+		
+		for shortcut in shortcuts:
+			if shortcut.begins_with("KB:"):
+				shortcut.erase(0, 3)
+				var key = shortcut.split("+", false)[-1]
+				
+				var scancode = OS.find_scancode_from_string(key)
+				if scancode == 0:
+					printerr("invalid key name '", key, "' in '", action_name, "' of shortcuts section")
+					continue
+				
+				var event = InputEventKey.new()
+				event.scancode = scancode
+				
+				if "Shift" in shortcut:
+					event.shift = true
+				if "Control" in shortcut:
+					event.control = true
+				if "Meta" in shortcut:
+					event.meta = true
+				if "Alt" in shortcut:
+					event.alt = true
+				if "Command" in shortcut:
+					event.command = true
+				
+				InputMap.action_add_event(action_name, event)
+			elif shortcut.begins_with("JOY:"):
+				shortcut.erase(0, 4)
+				
+				var index = Input.get_joy_button_index_from_string(shortcut)
+				var event = InputEventJoypadButton.new()
+				event.button_index = index
+				
+				InputMap.action_add_event(action_name, event)
+			else:
+				printerr("undefined shortcut type")
+				continue
+			
+				
+			
 
