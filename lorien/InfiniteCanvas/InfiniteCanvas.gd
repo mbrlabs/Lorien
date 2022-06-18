@@ -46,21 +46,23 @@ func _ready():
 	_viewport.size = OS.window_size
 
 # -------------------------------------------------------------------------------------------------
-func _input(event: InputEvent) -> void:
+func _gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		info.current_pressure = event.pressure
 
-# -------------------------------------------------------------------------------------------------
-func _process(delta: float) -> void:
-	# Deselect selected strokes with shortcut key
-	if Input.is_action_just_pressed("deselect_all_strokes"):
+	if event.is_action("deselect_all_strokes"):
 		if _active_tool == _selection_tool:
 			_selection_tool.deselect_all_strokes()
-	
-	# Delete selected strokes with shortcut key
-	if Input.is_action_just_pressed("delete_selected_strokes"):
+
+	if event.is_action("delete_selected_strokes"):
 		if _active_tool == _selection_tool:
 			_delete_selected_strokes()
+	
+	if ! get_tree().is_input_handled():
+		_camera.tool_event(event)
+	if ! get_tree().is_input_handled():
+		if _active_tool.enabled:
+			_active_tool.tool_event(event)
 
 # -------------------------------------------------------------------------------------------------
 func center_to_mouse() -> void:

@@ -35,7 +35,23 @@ func _ready():
 	_selection_rectangle = get_node(selection_rectangle_path)
 
 # ------------------------------------------------------------------------------------------------
-func _input(event: InputEvent) -> void:
+func tool_event(event: InputEvent) -> void:
+	if event.is_action_pressed("copy_strokes") || event.is_action_pressed("duplicate_strokes"):
+		var strokes := get_selected_strokes()
+		if strokes.size() > 0:
+			Utils.remove_group_from_all_nodes(GROUP_COPIED_STROKES)
+			for stroke in strokes:
+				stroke.add_to_group(GROUP_COPIED_STROKES)
+			print("Copied %d strokes" % strokes.size())
+	
+	# Paste strokes
+	if event.is_action_pressed("paste_strokes") || event.is_action_pressed("duplicate_strokes"):
+		var strokes := get_tree().get_nodes_in_group(GROUP_COPIED_STROKES)
+		if !strokes.empty():
+			deselect_all_strokes()
+			_cursor.mode = SelectionCursor.Mode.MOVE
+			_paste_strokes(strokes)
+
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT:
 			# LMB down - decide if we should select/multiselect or move the selection
@@ -99,25 +115,6 @@ func _input(event: InputEvent) -> void:
 				_cursor.mode = SelectionCursor.Mode.SELECT
 			elif get_selected_strokes().size() > 0:
 				_cursor.mode = SelectionCursor.Mode.MOVE
-
-# ------------------------------------------------------------------------------------------------
-func _process(delta: float) -> void:
-	# Copy selected strokes
-	if Input.is_action_just_pressed("copy_strokes") || Input.is_action_just_pressed("duplicate_strokes"):
-		var strokes := get_selected_strokes()
-		if strokes.size() > 0:
-			Utils.remove_group_from_all_nodes(GROUP_COPIED_STROKES)
-			for stroke in strokes:
-				stroke.add_to_group(GROUP_COPIED_STROKES)
-			print("Copied %d strokes" % strokes.size())
-	
-	# Paste strokes
-	if Input.is_action_just_pressed("paste_strokes") || Input.is_action_just_pressed("duplicate_strokes"):
-		var strokes := get_tree().get_nodes_in_group(GROUP_COPIED_STROKES)
-		if !strokes.empty():
-			deselect_all_strokes()
-			_cursor.mode = SelectionCursor.Mode.MOVE
-			_paste_strokes(strokes)
 
 # ------------------------------------------------------------------------------------------------
 func compute_selection(start_pos: Vector2, end_pos: Vector2) -> void:

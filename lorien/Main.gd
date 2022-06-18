@@ -114,7 +114,6 @@ func _exit_tree():
 
 # -------------------------------------------------------------------------------------------------
 func _process(delta):
-	_handle_input_actions()
 	_statusbar.set_stroke_count(_canvas.info.stroke_count)
 	_statusbar.set_point_count(_canvas.info.point_count)
 	_statusbar.set_pressure(_canvas.info.current_pressure)
@@ -128,8 +127,8 @@ func _process(delta):
 		_menubar.update_tab_title(active_project)
 
 # -------------------------------------------------------------------------------------------------
-func _handle_input_actions() -> void:
-	if !is_dialog_open():
+func _unhandled_input(event):
+	if ! is_dialog_open():
 		var copy := Input.is_action_just_pressed("copy_strokes")
 		var paste := Input.is_action_just_pressed("paste_strokes")
 		var duplicate := Input.is_action_just_pressed("duplicate_strokes")
@@ -140,7 +139,6 @@ func _handle_input_actions() -> void:
 			_toggle_player()
 		
 		if !_player_enabled:
-
 			if Input.is_action_just_pressed("shortcut_new_project"):
 				_on_create_new_project()
 			elif Input.is_action_just_pressed("shortcut_open_project"):
