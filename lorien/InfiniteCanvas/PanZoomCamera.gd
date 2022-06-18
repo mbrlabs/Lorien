@@ -28,7 +28,7 @@ func do_center(screen_space_center_point: Vector2) -> void:
 	_do_pan(delta)
 	
 # -------------------------------------------------------------------------------------------------
-func _input(event: InputEvent) -> void:
+func tool_event(event: InputEvent) -> void:
 	if _is_input_enabled:
 		if event is InputEventMouseButton:
 			

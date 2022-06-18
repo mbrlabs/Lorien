@@ -11,7 +11,7 @@ var _removed_strokes := [] # BrushStroke -> Vector2
 var _bounding_box_cache = {} # BrushStroke -> Rect2
 
 # -------------------------------------------------------------------------------------------------
-func _input(event: InputEvent) -> void:
+func tool_event(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		_last_mouse_position = xform_vector2(event.global_position)
 		_cursor.global_position = _last_mouse_position
