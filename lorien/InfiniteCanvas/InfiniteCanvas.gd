@@ -70,8 +70,8 @@ func center_to_mouse() -> void:
 
 # -------------------------------------------------------------------------------------------------
 func use_tool(tool_type: int) -> void:
-	_active_tool.enabled = false
 	var prev_tool := _active_tool
+	var prev_status := prev_tool.enabled
 
 	match tool_type:
 		Types.Tool.BRUSH:
@@ -94,9 +94,11 @@ func use_tool(tool_type: int) -> void:
 			_use_optimizer = false
 
 	if prev_tool != _active_tool:
+		prev_tool.enabled = false
 		prev_tool.reset()
-	_active_tool.enabled = true
+	_active_tool.enabled = prev_status
 	_active_tool.get_cursor()._on_zoom_changed(_camera.zoom.x)
+
 
 # -------------------------------------------------------------------------------------------------
 func set_background_color(color: Color) -> void:
