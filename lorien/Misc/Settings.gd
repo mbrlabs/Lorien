@@ -76,15 +76,8 @@ func _setup_shortcuts(override = false) -> void:
 func set_default_shortcut(action_name: String, save = false) -> void:
 	var shortcuts = []
 	for event in InputMap.get_action_list(action_name):
-		if event is InputEventKey:
-			var shortcut = OS.get_scancode_string(event.get_scancode_with_modifiers())
-			shortcuts.append("KB:" + shortcut)
-		elif event is InputEventJoypadButton:
-			var shortcut = Input.get_joy_button_string(event.button_index)
-			shortcuts.append("JOY:" + shortcut)
-		else:
-			print_debug("[DEV] unimplemented input event type: ", event.get_class())
-	
+		shortcuts.append(event)
+
 	_config_file.set_value("shortcuts", action_name, shortcuts)
 	if save:
 		_save_settings()
@@ -98,37 +91,4 @@ func _load_shortcuts() -> void:
 		InputMap.action_erase_events(action_name)
 
 		for shortcut in shortcuts:
-			if shortcut.begins_with("KB:"):
-				shortcut.erase(0, 3)
-				var key = shortcut.split("+", false)[-1]
-
-				var scancode = OS.find_scancode_from_string(key)
-				if scancode == 0:
-					printerr("invalid key name '", key, "' in '", action_name, "' of shortcuts section")
-					continue
-
-				var event = InputEventKey.new()
-				event.scancode = scancode
-
-				if "Shift" in shortcut:
-					event.shift = true
-				if "Control" in shortcut:
-					event.control = true
-				if "Meta" in shortcut:
-					event.meta = true
-				if "Alt" in shortcut:
-					event.alt = true
-				if "Command" in shortcut:
-					event.command = true
-
-				InputMap.action_add_event(action_name, event)
-			elif shortcut.begins_with("JOY:"):
-				shortcut.erase(0, 4)
-
-				var index = Input.get_joy_button_index_from_string(shortcut)
-				var event = InputEventJoypadButton.new()
-				event.button_index = index
-
-				InputMap.action_add_event(action_name, event)
-			else:
-				printerr("undefined shortcut type")
+			InputMap.action_add_event(action_name, shortcut)
