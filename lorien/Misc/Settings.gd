@@ -25,6 +25,7 @@ var language_names: PoolStringArray
 func _ready():
 	_config_file = ConfigFile.new()
 	_load_settings()
+	_setup_shortcuts()
 	_load_shortcuts()
 
 	var i18n := I18nParser.new()
@@ -63,51 +64,52 @@ func set_value(key: String, value = null):
 	_save_settings()
 	
 # -------------------------------------------------------------------------------------------------
-func _set_default_shortcuts():
+func _setup_shortcuts(override = false) -> void:
 	for action_name in InputMap.get_actions():
-		if _config_file.has_section_key("shortcuts", action_name):
+		if !override && _config_file.has_section_key("shortcuts", action_name):
 			continue
-			
-		var shortcuts = []
-		for event in InputMap.get_action_list(action_name): 
-			if event is InputEventKey:
-				var shortcut = OS.get_scancode_string(event.get_scancode_with_modifiers())
-				shortcuts.append("KB:" + shortcut)
-			elif event is InputEventJoypadButton:
-				var shortcut = Input.get_joy_button_string(event.button_index)
-				shortcuts.append("JOY:" + shortcut)
-			else:
-				printerr("[DEV] unimplemented input event type: ", event.get_class())
-			
-		_config_file.set_value("shortcuts", action_name, shortcuts)
+
+		set_default_shortcut(action_name)
 	_save_settings()
 
 # -------------------------------------------------------------------------------------------------
-func _load_shortcuts():
-	if !_config_file.get_section_keys("shortcuts"):
-		print("Cannot find 'shortcuts' section in 'settings.cfg'. Creating default one.")
-		_set_default_shortcuts()
-		return
+func set_default_shortcut(action_name: String, save = false) -> void:
+	var shortcuts = []
+	for event in InputMap.get_action_list(action_name):
+		if event is InputEventKey:
+			var shortcut = OS.get_scancode_string(event.get_scancode_with_modifiers())
+			shortcuts.append("KB:" + shortcut)
+		elif event is InputEventJoypadButton:
+			var shortcut = Input.get_joy_button_string(event.button_index)
+			shortcuts.append("JOY:" + shortcut)
+		else:
+			print_debug("[DEV] unimplemented input event type: ", event.get_class())
 	
+	_config_file.set_value("shortcuts", action_name, shortcuts)
+	if save:
+		_save_settings()
+
+# -------------------------------------------------------------------------------------------------
+func _load_shortcuts() -> void:	
 	for action_name in InputMap.get_actions():
 		if !_config_file.has_section_key("shortcuts", action_name):
 			continue
 		var shortcuts = _config_file.get_value("shortcuts", action_name)
 		InputMap.action_erase_events(action_name)
-		
+
 		for shortcut in shortcuts:
 			if shortcut.begins_with("KB:"):
 				shortcut.erase(0, 3)
 				var key = shortcut.split("+", false)[-1]
-				
+
 				var scancode = OS.find_scancode_from_string(key)
 				if scancode == 0:
 					printerr("invalid key name '", key, "' in '", action_name, "' of shortcuts section")
 					continue
-				
+
 				var event = InputEventKey.new()
 				event.scancode = scancode
-				
+
 				if "Shift" in shortcut:
 					event.shift = true
 				if "Control" in shortcut:
@@ -118,20 +120,15 @@ func _load_shortcuts():
 					event.alt = true
 				if "Command" in shortcut:
 					event.command = true
-				
+
 				InputMap.action_add_event(action_name, event)
 			elif shortcut.begins_with("JOY:"):
 				shortcut.erase(0, 4)
-				
+
 				var index = Input.get_joy_button_index_from_string(shortcut)
 				var event = InputEventJoypadButton.new()
 				event.button_index = index
-				
+
 				InputMap.action_add_event(action_name, event)
 			else:
 				printerr("undefined shortcut type")
-				continue
-			
-				
-			
-
