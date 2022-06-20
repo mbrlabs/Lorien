@@ -35,7 +35,10 @@ func export_svg(strokes: Array, background: Color, path: String) -> void:
 	_svg_start(file, origin, size)
 	_svg_rect(file, origin, size, background)
 	for stroke in strokes:
-		_svg_polyline(file, stroke)
+		if "BrushStroke" in stroke.name:
+			_svg_polyline(file, stroke)
+		elif "ImageStroke" in stroke.name:
+			_svg_raster_image(file, stroke)
 	_svg_end(file)
 	
 	# Flush and close the file
@@ -46,7 +49,7 @@ func export_svg(strokes: Array, background: Color, path: String) -> void:
 # -------------------------------------------------------------------------------------------------
 func _svg_start(file: File, origin: Vector2, size: Vector2) -> void:
 	var params := [origin.x, origin.y, size.x, size.y]
-	var svg := "<svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"%.1f %.1f %.1f %.1f\">\n" % params
+	var svg := "<svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" viewBox=\"%.1f %.1f %.1f %.1f\">\n" % params
 	file.store_string(svg)
 
 # -------------------------------------------------------------------------------------------------
@@ -71,3 +74,11 @@ func _svg_polyline(file: File, stroke: BrushStroke) -> void:
 			file.store_string("%.1f %.1f" % [point.x, point.y])
 		idx += 1
 	file.store_string("\" style=\"fill:none;stroke:#%s;stroke-width:2\"/>\n" % stroke.color.to_html(false))
+
+# -------------------------------------------------------------------------------------------------
+func _svg_raster_image(file: File, stroke: ImageStroke) -> void:
+	var params := [stroke.position.x + stroke.top_left_pos.x, stroke.position.y + stroke.top_left_pos.y,
+			stroke.get_rect().size.x, stroke.get_rect().size.y,
+			Marshalls.raw_to_base64(stroke.texture.get_data().save_png_to_buffer())]
+	var image := "<image x=\"%.1f\" y=\"%.1f\" width=\"%d\" height=\"%d\" xlink:href=\"data:image/png;base64,%s\" />\n" % params
+	file.store_string(image)
