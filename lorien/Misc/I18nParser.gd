@@ -5,6 +5,11 @@ const I18N_FOLDER := "res://Assets/I18n/"
 const StringTemplating := preload("res://Misc/StringTemplating.gd")
 
 # -------------------------------------------------------------------------------------------------
+func reload_locales() -> ParseResult:
+	TranslationServer.clear()
+	return load_files()
+
+# -------------------------------------------------------------------------------------------------
 class ParseResult:
 	var locales := PoolStringArray()
 	var language_names := PoolStringArray()
