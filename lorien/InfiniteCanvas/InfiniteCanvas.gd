@@ -46,7 +46,15 @@ func _ready():
 	_viewport.size = OS.window_size
 
 # -------------------------------------------------------------------------------------------------
+func _unhandled_key_input(event: InputEventKey) -> void:
+	_process_event(event)
+
+# -------------------------------------------------------------------------------------------------
 func _gui_input(event: InputEvent) -> void:
+	_process_event(event)
+
+# -------------------------------------------------------------------------------------------------
+func _process_event(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		info.current_pressure = event.pressure
 
