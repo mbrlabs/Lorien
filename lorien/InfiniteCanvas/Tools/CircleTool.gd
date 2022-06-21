@@ -22,7 +22,7 @@ func _init():
 		cos_arr[i] = cos(deg2rad(i))
 
 # -------------------------------------------------------------------------------------------------
-func _input(event: InputEvent) -> void:
+func tool_event(event: InputEvent) -> void:
 	_cursor.set_pressure(1.0)
 	
 	var should_draw_circle := Input.is_key_pressed(KEY_SHIFT)

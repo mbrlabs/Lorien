@@ -11,7 +11,7 @@ var _head: Vector2
 var _tail: Vector2
 
 # -------------------------------------------------------------------------------------------------
-func _input(event: InputEvent) -> void:
+func tool_event(event: InputEvent) -> void:
 	_cursor.set_pressure(1.0)
 	
 	# Snap modifier

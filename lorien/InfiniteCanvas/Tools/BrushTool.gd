@@ -15,7 +15,7 @@ var _last_accepted_position: Vector2
 var _first_point := false
 
 # -------------------------------------------------------------------------------------------------
-func _input(event: InputEvent) -> void:
+func tool_event(event: InputEvent) -> void:
 	_cursor.set_pressure(1.0)
 	
 	if event is InputEventMouseMotion:
