@@ -4,15 +4,14 @@ LANGUAGE_NAME 한국어
 # Menu strings
 # -----------------------------------------------------------------------------
 
-MENU_OPEN           열기
+MENU_OPEN           열기...
 MENU_SAVE           저장
-MENU_SAVE_AS        다른 이름으로 저장..
+MENU_SAVE_AS        다른 이름으로 저장...
 MENU_SETTINGS       설정
 MENU_MANUAL         설명서
 MENU_BUG_TRACKER    버그 제보
 MENU_ABOUT          정보
-MENU_EXPORT         내보내기
-MENU_EXPORT_PNG     PNG 파일로 내보내기
+MENU_EXPORT         내보내기...
 
 # -----------------------------------------------------------------------------
 # Toolbar
