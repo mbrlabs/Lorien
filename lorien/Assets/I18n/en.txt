@@ -149,7 +149,7 @@ ACTION_shortcut_open_project       Open Project
 ACTION_shortcut_undo               Undo
 ACTION_shortcut_redo               Redo
 ACTION_shortcut_brush_tool         Brush tool
-ACTION_shortcut_line_tool          Line too
+ACTION_shortcut_line_tool          Line tool
 ACTION_shortcut_eraser_tool        Eraser tool
 ACTION_shortcut_select_tool        Selection tool
 ACTION_shortcut_move_tool          Move tool

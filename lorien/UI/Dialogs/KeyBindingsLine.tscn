@@ -8,6 +8,9 @@
 anchor_right = 1.0
 anchor_bottom = 1.0
 columns = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Name" type="Label" parent="."]
 margin_top = 3.0
@@ -31,3 +34,5 @@ margin_right = 66.0
 margin_bottom = 20.0
 text = "+"
 script = ExtResource( 3 )
+
+[connection signal="pressed" from="AddButton" to="AddButton" method="_on_AddButton_pressed"]

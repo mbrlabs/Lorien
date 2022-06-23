@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://UI/Themes/theme_dark.tres" type="Theme" id=1]
 [ext_resource path="res://UI/Dialogs/SettingsDialog.gd" type="Script" id=2]
 [ext_resource path="res://UI/Components/DelayedSpinBox.gd" type="Script" id=3]
 [ext_resource path="res://UI/Dialogs/KeyBindingsList.gd" type="Script" id=4]
+[ext_resource path="res://UI/Dialogs/AddKeyDialog.tscn" type="PackedScene" id=5]
 
 [sub_resource type="StyleBoxEmpty" id=1]
 
@@ -12,7 +13,6 @@
 [sub_resource type="StyleBoxEmpty" id=3]
 
 [node name="SettingsDialog" type="WindowDialog"]
-visible = true
 margin_right = 520.0
 margin_bottom = 250.0
 rect_min_size = Vector2( 520, 270 )
@@ -452,6 +452,8 @@ __meta__ = {
 [node name="KeyBindingsList" type="GridContainer" parent="MarginContainer/TabContainer/Keybindings/ScrollContainer"]
 columns = 3
 script = ExtResource( 4 )
+
+[node name="AddKeyDialog" parent="MarginContainer/TabContainer/Keybindings" instance=ExtResource( 5 )]
 
 [connection signal="value_changed" from="MarginContainer/TabContainer/General/VBoxContainer/PressureSensitivity/PressureSensitivity" to="." method="_on_PressureSensitivity_value_changed"]
 [connection signal="value_changed" from="MarginContainer/TabContainer/General/VBoxContainer/DefaultBrushSize/DefaultBrushSize" to="." method="_on_DefaultBrushSize_value_changed"]

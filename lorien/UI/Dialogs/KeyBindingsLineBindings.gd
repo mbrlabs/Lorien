@@ -1,10 +1,13 @@
 extends HBoxContainer
 
+# -------------------------------------------------------------------------------------------------
 signal modified_binding(bindings_data)
 
+# -------------------------------------------------------------------------------------------------
 var bindings_data := {}
 
-# Keybindings data: {"readable_name": "str", "events": [...]}
+# -------------------------------------------------------------------------------------------------
+# Keybindings data: {"action": "str", "readable_name": "str", "events": [...]}
 func set_keybindings_data(_bindings_data):
 	for child in get_children():
 		remove_child(child)
@@ -34,6 +37,7 @@ func set_keybindings_data(_bindings_data):
 			remove_button.connect("pressed", self, "_remove_pressed", [event])
 			add_child(remove_button)
 
+# -------------------------------------------------------------------------------------------------
 func _remove_pressed(event):
 	bindings_data["events"].erase(event)
 	print("BBB ", get_signal_connection_list("modified_binding"))

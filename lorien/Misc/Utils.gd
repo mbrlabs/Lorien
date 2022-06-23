@@ -68,3 +68,16 @@ func generate_uuid(length: int) -> String:
 		s += UUID_ALPHABET[idx]
 	return s
 
+# -------------------------------------------------------------------------------------------------
+func translate_action(action_name: String) -> String:
+	return TranslationServer.translate("ACTION_" + action_name)
+
+# -------------------------------------------------------------------------------------------------
+func bindable_actions() -> Array:
+	var result := []
+	for action in InputMap.get_actions():
+		# Suppress default keybindings for using menus etc and EFF TWELVE
+		if action.begins_with("ui_") or action.begins_with("player_"):
+			continue
+		result.append(action)
+	return result
