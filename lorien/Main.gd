@@ -129,45 +129,39 @@ func _process(delta):
 # -------------------------------------------------------------------------------------------------
 func _unhandled_input(event):
 	if ! is_dialog_open():
-		var copy := Input.is_action_just_pressed("copy_strokes")
-		var paste := Input.is_action_just_pressed("paste_strokes")
-		var duplicate := Input.is_action_just_pressed("duplicate_strokes")
-		if copy || paste || duplicate:
-			return
-
-		if Input.is_action_just_pressed("toggle_player"):
+		if Input.is_action_pressed("toggle_player", true):
 			_toggle_player()
 		
 		if !_player_enabled:
-			if Input.is_action_just_pressed("shortcut_new_project"):
+			if Input.is_action_pressed("shortcut_new_project", true):
 				_on_create_new_project()
-			elif Input.is_action_just_pressed("shortcut_open_project"):
+			elif Input.is_action_pressed("shortcut_open_project", true):
 				_toolbar._on_OpenFileButton_pressed()
-			elif Input.is_action_just_pressed("shortcut_save_project"):
+			elif Input.is_action_pressed("shortcut_save_project", true):
 				_on_save_project()
-			elif Input.is_action_just_pressed("shortcut_export_project"):
+			elif Input.is_action_pressed("shortcut_export_project", true):
 				_export_svg()
-			elif Input.is_action_just_pressed("shortcut_undo"):
+			elif Input.is_action_pressed("shortcut_undo", true):
 				_on_undo_action()
-			elif Input.is_action_just_pressed("shortcut_redo"):
+			elif Input.is_action_pressed("shortcut_redo", true):
 				_on_redo_action()
-			elif Input.is_action_just_pressed("center_canvas_to_mouse"):
+			elif Input.is_action_pressed("center_canvas_to_mouse", true):
 				_canvas.center_to_mouse()
-			elif Input.is_action_just_pressed("shortcut_brush_tool"):
+			elif Input.is_action_pressed("shortcut_brush_tool", true):
 				_toolbar.enable_tool(Types.Tool.BRUSH)
-			elif Input.is_action_just_pressed("shortcut_rectangle_tool"):
+			elif Input.is_action_pressed("shortcut_rectangle_tool", true):
 				_toolbar.enable_tool(Types.Tool.RECTANGLE)
-			elif Input.is_action_just_pressed("shortcut_circle_tool"):
+			elif Input.is_action_pressed("shortcut_circle_tool", true):
 				_toolbar.enable_tool(Types.Tool.CIRCLE)
-			elif Input.is_action_just_pressed("shortcut_line_tool"):
+			elif Input.is_action_pressed("shortcut_line_tool", true):
 				_toolbar.enable_tool(Types.Tool.LINE)
-			elif Input.is_action_just_pressed("shortcut_eraser_tool"):
+			elif Input.is_action_pressed("shortcut_eraser_tool", true):
 				_toolbar.enable_tool(Types.Tool.ERASER)
-			elif Input.is_action_just_pressed("shortcut_select_tool"):
+			elif Input.is_action_pressed("shortcut_select_tool", true):
 				_toolbar.enable_tool(Types.Tool.SELECT)
-			elif Input.is_action_just_pressed("toggle_distraction_free_mode"):
+			elif Input.is_action_pressed("toggle_distraction_free_mode", true):
 				_toggle_distraction_free_mode()
-			elif Input.is_action_just_pressed("toggle_fullscreen"):
+			elif Input.is_action_pressed("toggle_fullscreen", true):
 				_toggle_fullscreen()
 
 # -------------------------------------------------------------------------------------------------
