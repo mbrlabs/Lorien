@@ -4,15 +4,14 @@ LANGUAGE_NAME 한국어
 # Menu strings
 # -----------------------------------------------------------------------------
 
-MENU_OPEN           열기
+MENU_OPEN           열기...
 MENU_SAVE           저장
-MENU_SAVE_AS        다른 이름으로 저장..
+MENU_SAVE_AS        다른 이름으로 저장...
 MENU_SETTINGS       설정
 MENU_MANUAL         설명서
 MENU_BUG_TRACKER    버그 제보
 MENU_ABOUT          정보
-MENU_EXPORT         내보내기
-MENU_EXPORT_PNG     PNG 파일로 내보내기
+MENU_EXPORT         내보내기...
 
 # -----------------------------------------------------------------------------
 # Toolbar
@@ -94,14 +93,14 @@ ABOUT_DIALOG_EASTEREGG          이스터에그:
 # -----------------------------------------------------------------------------
 
 UNSAVED_CHANGES_DIALOG_TITLE    변경사항을 저장할까요?
-UNSAVED_CHANGES_DIALOG_TEXT     파일을 닫기전에 저장할까요?
+UNSAVED_CHANGES_DIALOG_TEXT     파일을 닫기 전에 저장할까요?
 
 # -----------------------------------------------------------------------------
 # Exit dialog
 # -----------------------------------------------------------------------------
 
 EXIT_DIALOG_TITLE    변경사항을 저장할까요?
-EXIT_DIALOG_TEXT     Lorien을 나가지전에 저장할까요?
+EXIT_DIALOG_TEXT     Lorien을 나가기 전에 저장할까요?
 
 # -----------------------------------------------------------------------------
 # New palette dialog

@@ -4,15 +4,14 @@ LANGUAGE_NAME Русский
 # Menu strings
 # -----------------------------------------------------------------------------
 
-MENU_OPEN           Open # TODO 
+MENU_OPEN           Open... # TODO 
 MENU_SAVE           Сохранить
-MENU_SAVE_AS        Сохранить как..
+MENU_SAVE_AS        Сохранить как...
 MENU_SETTINGS       Настройки
 MENU_MANUAL         Руководство
 MENU_BUG_TRACKER    Баг трекер
 MENU_ABOUT          О Lorien
-MENU_EXPORT         Экспортировать
-MENU_EXPORT_PNG     Экспортировать холст как PNG
+MENU_EXPORT         Экспортировать...
 
 # -----------------------------------------------------------------------------
 # Toolbar

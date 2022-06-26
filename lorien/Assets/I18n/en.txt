@@ -4,15 +4,14 @@ LANGUAGE_NAME English
 # Menu strings
 # -----------------------------------------------------------------------------
 
-MENU_OPEN           Open
+MENU_OPEN           Open...
 MENU_SAVE           Save
-MENU_SAVE_AS        Save as..
+MENU_SAVE_AS        Save as...
 MENU_SETTINGS       Settings
 MENU_MANUAL         Manual
 MENU_BUG_TRACKER    Bug Tracker
 MENU_ABOUT          About
-MENU_EXPORT         Export
-MENU_EXPORT_PNG     Export Canvas as PNG
+MENU_EXPORT         Export...
 
 # -----------------------------------------------------------------------------
 # Toolbar

@@ -4,17 +4,14 @@ LANGUAGE_NAME Español
 # Menu strings
 # -----------------------------------------------------------------------------
 
-MENU_OPEN           Abrir
+MENU_OPEN           Abrir...
 MENU_SAVE           Guardar
-MENU_SAVE_AS        Guardar como..
+MENU_SAVE_AS        Guardar como...
 MENU_SETTINGS       Configuración
 MENU_MANUAL         Manual
-# Changed from "Bug tracker" to "Report a bug"
 MENU_BUG_TRACKER    Reportar un error
-# Changed from "About" to "About Lorien"
 MENU_ABOUT          Acerca de Lorien
-MENU_EXPORT         Exportar
-MENU_EXPORT_PNG     Exportar Canvas como PNG
+MENU_EXPORT         Exportar...
 
 # -----------------------------------------------------------------------------
 # Toolbar

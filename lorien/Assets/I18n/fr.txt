@@ -4,15 +4,14 @@ LANGUAGE_NAME Français
 # Menu strings
 # -----------------------------------------------------------------------------
 
-MENU_OPEN           Ouvrir
+MENU_OPEN           Ouvrir...
 MENU_SAVE           Enregistrer
 MENU_SAVE_AS        Enregistrer sous...
 MENU_SETTINGS       Paramètres
 MENU_MANUAL         Documentation
 MENU_BUG_TRACKER    Suivi des bogues
 MENU_ABOUT          À propos
-MENU_EXPORT         Exporter
-MENU_EXPORT_PNG     Exporter la zone visible en PNG
+MENU_EXPORT         Exporter...
 
 # -----------------------------------------------------------------------------
 # Toolbar

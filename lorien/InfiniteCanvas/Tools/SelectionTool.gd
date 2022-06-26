@@ -36,7 +36,7 @@ func _ready():
 
 # ------------------------------------------------------------------------------------------------
 func tool_event(event: InputEvent) -> void:
-	if event.is_action_pressed("copy_strokes") || event.is_action_pressed("duplicate_strokes"):
+	if event.is_action_pressed("copy_strokes", true) || event.is_action_pressed("duplicate_strokes", true):
 		var strokes := get_selected_strokes()
 		if strokes.size() > 0:
 			Utils.remove_group_from_all_nodes(GROUP_COPIED_STROKES)
@@ -45,7 +45,7 @@ func tool_event(event: InputEvent) -> void:
 			print("Copied %d strokes" % strokes.size())
 	
 	# Paste strokes
-	if event.is_action_pressed("paste_strokes") || event.is_action_pressed("duplicate_strokes"):
+	if event.is_action_pressed("paste_strokes", true) || event.is_action_pressed("duplicate_strokes", true):
 		var strokes := get_tree().get_nodes_in_group(GROUP_COPIED_STROKES)
 		if !strokes.empty():
 			deselect_all_strokes()

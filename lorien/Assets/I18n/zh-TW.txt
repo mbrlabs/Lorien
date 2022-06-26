@@ -4,15 +4,14 @@ LANGUAGE_NAME Traditional Chinese
 # Menu strings
 # -----------------------------------------------------------------------------
 
-MENU_OPEN           開啟
+MENU_OPEN           開啟...
 MENU_SAVE           存檔
-MENU_SAVE_AS        另存為..
+MENU_SAVE_AS        另存為...
 MENU_SETTINGS       設定
 MENU_MANUAL         線上說明
 MENU_BUG_TRACKER    問題追蹤
 MENU_ABOUT          關於
-MENU_EXPORT         匯出
-MENU_EXPORT_PNG     將畫布匯出成 PNG 圖檔
+MENU_EXPORT         匯出...
 
 # -----------------------------------------------------------------------------
 # Toolbar
