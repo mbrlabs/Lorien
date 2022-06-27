@@ -1,19 +1,22 @@
-extends GridContainer
+extends Node
 
-const KEYBINDINGS_LINE_SCENE = preload("res://UI/Dialogs/KeyBindingsLine.tscn")
+# -------------------------------------------------------------------------------------------------
+const KEYBINDINGS_LINE_SCENE = preload("res://UI/Components/KeyBindingsLine.tscn")
 
-var lines := []
+# -------------------------------------------------------------------------------------------------
+onready var _GRID := $ScrollContainer/KeyBindingsList
+onready var _ADD_KEY_DIALOG := $AddKeyDialog
 
 # -------------------------------------------------------------------------------------------------
 func _ready():
-	$"../../AddKeyDialog".connect("hide", self, "_bind_key_dialog_hidden")
 	_populate_input_list()
+	_ADD_KEY_DIALOG.connect("hide", self, "_bind_key_dialog_hidden")
 	GlobalSignals.connect("language_changed", self, "_populate_input_list")
 
 # -------------------------------------------------------------------------------------------------
 func _populate_input_list():
-	for c in get_children():
-		remove_child(c)
+	for c in _GRID.get_children():
+		_GRID.remove_child(c)
 	
 	for action in Utils.bindable_actions():
 		var translated_action = Utils.translate_action(action)
@@ -29,7 +32,6 @@ func _populate_input_list():
 func _new_keybinding_entry(action_name: String, readable_name: String, events: Array) -> void:
 	var new_line: Node = KEYBINDINGS_LINE_SCENE.instance()
 
-	lines.append({"action_name": action_name})
 	for child in new_line.get_children():
 		child = child as Node
 		
@@ -39,7 +41,7 @@ func _new_keybinding_entry(action_name: String, readable_name: String, events: A
 			"events": events,
 		})
 		new_line.remove_child(child)
-		add_child(child)
+		_GRID.add_child(child)
 		
 		child.connect("modified_binding", self, "_modify_keybinding", [action_name])
 		child.connect("bind_new_key", self, "_bind_new_key", [action_name])
@@ -54,9 +56,9 @@ func _modify_keybinding(bindings_data: Dictionary, action_name: String) -> void:
 
 # -------------------------------------------------------------------------------------------------
 func _bind_new_key(action_name: String) -> void:
-	$"../../AddKeyDialog".action_name = action_name
-	$"../../AddKeyDialog".readable_action_name = Utils.translate_action(action_name)
-	$"../../AddKeyDialog".popup_centered()
+	_ADD_KEY_DIALOG.action_name = action_name
+	_ADD_KEY_DIALOG.readable_action_name = Utils.translate_action(action_name)
+	_ADD_KEY_DIALOG.popup_centered()
 
 # -------------------------------------------------------------------------------------------------
 func _bind_key_dialog_hidden() -> void:

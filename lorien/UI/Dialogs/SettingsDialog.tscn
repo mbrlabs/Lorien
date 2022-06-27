@@ -441,6 +441,7 @@ visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = 27.0
+script = ExtResource( 4 )
 
 [node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/TabContainer/Keybindings"]
 anchor_right = 1.0
@@ -451,7 +452,6 @@ __meta__ = {
 
 [node name="KeyBindingsList" type="GridContainer" parent="MarginContainer/TabContainer/Keybindings/ScrollContainer"]
 columns = 3
-script = ExtResource( 4 )
 
 [node name="AddKeyDialog" parent="MarginContainer/TabContainer/Keybindings" instance=ExtResource( 5 )]
 
