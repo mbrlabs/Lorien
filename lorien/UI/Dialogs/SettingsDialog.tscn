@@ -59,8 +59,8 @@ __meta__ = {
 [node name="HSeparator3" type="HSeparator" parent="MarginContainer/TabContainer/General/VBoxContainer"]
 margin_right = 496.0
 margin_bottom = 12.0
-custom_styles/separator = SubResource( 1 )
 custom_constants/separation = 12
+custom_styles/separator = SubResource( 1 )
 
 [node name="PressureSensitivity" type="HBoxContainer" parent="MarginContainer/TabContainer/General/VBoxContainer"]
 margin_top = 16.0
@@ -192,8 +192,8 @@ text = "English"
 margin_top = 169.0
 margin_right = 496.0
 margin_bottom = 181.0
-custom_styles/separator = SubResource( 3 )
 custom_constants/separation = 12
+custom_styles/separator = SubResource( 3 )
 
 [node name="RestartLabel" type="Label" parent="MarginContainer/TabContainer/General/VBoxContainer"]
 visible = false
@@ -220,8 +220,8 @@ __meta__ = {
 [node name="HSeparator3" type="HSeparator" parent="MarginContainer/TabContainer/Appearance/VBoxContainer"]
 margin_right = 496.0
 margin_bottom = 12.0
-custom_styles/separator = SubResource( 1 )
 custom_constants/separation = 12
+custom_styles/separator = SubResource( 1 )
 
 [node name="Theme" type="HBoxContainer" parent="MarginContainer/TabContainer/Appearance/VBoxContainer"]
 margin_top = 16.0
@@ -292,8 +292,8 @@ script = ExtResource( 3 )
 margin_top = 74.0
 margin_right = 496.0
 margin_bottom = 86.0
-custom_styles/separator = SubResource( 1 )
 custom_constants/separation = 12
+custom_styles/separator = SubResource( 1 )
 
 [node name="RestartLabel" type="Label" parent="MarginContainer/TabContainer/Appearance/VBoxContainer"]
 visible = false
@@ -320,8 +320,8 @@ __meta__ = {
 [node name="HSeparator3" type="HSeparator" parent="MarginContainer/TabContainer/Rendering/VBoxContainer"]
 margin_right = 496.0
 margin_bottom = 12.0
-custom_styles/separator = SubResource( 1 )
 custom_constants/separation = 12
+custom_styles/separator = SubResource( 1 )
 
 [node name="AntiAliasing" type="HBoxContainer" parent="MarginContainer/TabContainer/Rendering/VBoxContainer"]
 margin_top = 16.0
@@ -424,8 +424,8 @@ allow_greater = true
 margin_top = 124.0
 margin_right = 496.0
 margin_bottom = 136.0
-custom_styles/separator = SubResource( 1 )
 custom_constants/separation = 12
+custom_styles/separator = SubResource( 1 )
 
 [node name="RestartLabel" type="Label" parent="MarginContainer/TabContainer/Rendering/VBoxContainer"]
 visible = false
@@ -455,6 +455,13 @@ script = ExtResource( 4 )
 
 [node name="AddKeyDialog" parent="MarginContainer/TabContainer/Keybindings" instance=ExtResource( 5 )]
 
+[node name="ConfirmRebind" type="ConfirmationDialog" parent="MarginContainer/TabContainer/Keybindings/AddKeyDialog"]
+margin_right = 200.0
+margin_bottom = 70.0
+popup_exclusive = true
+window_title = "Rebind key?"
+dialog_autowrap = true
+
 [connection signal="value_changed" from="MarginContainer/TabContainer/General/VBoxContainer/PressureSensitivity/PressureSensitivity" to="." method="_on_PressureSensitivity_value_changed"]
 [connection signal="value_changed" from="MarginContainer/TabContainer/General/VBoxContainer/DefaultBrushSize/DefaultBrushSize" to="." method="_on_DefaultBrushSize_value_changed"]
 [connection signal="color_changed" from="MarginContainer/TabContainer/General/VBoxContainer/DefaultCanvasColor/DefaultCanvasColor" to="." method="_on_DefaultCanvasColor_color_changed"]
@@ -468,3 +475,4 @@ script = ExtResource( 4 )
 [connection signal="item_selected" from="MarginContainer/TabContainer/Rendering/VBoxContainer/BrushRounding/OptionButton" to="." method="_on_Brush_rounding_item_selected"]
 [connection signal="value_changed" from="MarginContainer/TabContainer/Rendering/VBoxContainer/TargetFramerate/TargetFramerate" to="." method="_on_Target_Fps_Foreground_changed"]
 [connection signal="value_changed" from="MarginContainer/TabContainer/Rendering/VBoxContainer/BackgroundFramerate/BackgroundFramerate" to="." method="_on_Target_Fps_Background_changed"]
+[connection signal="confirmed" from="MarginContainer/TabContainer/Keybindings/AddKeyDialog/ConfirmRebind" to="MarginContainer/TabContainer/Keybindings/AddKeyDialog" method="_on_ConfirmRebind_confirmed"]
