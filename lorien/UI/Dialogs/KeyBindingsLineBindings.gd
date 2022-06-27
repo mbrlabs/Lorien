@@ -8,7 +8,7 @@ var bindings_data := {}
 
 # -------------------------------------------------------------------------------------------------
 # Keybindings data: {"action": "str", "readable_name": "str", "events": [...]}
-func set_keybindings_data(_bindings_data):
+func set_keybindings_data(_bindings_data: Dictionary) -> void:
 	for child in get_children():
 		remove_child(child)
 
@@ -38,9 +38,6 @@ func set_keybindings_data(_bindings_data):
 			add_child(remove_button)
 
 # -------------------------------------------------------------------------------------------------
-func _remove_pressed(event):
+func _remove_pressed(event: InputEvent) -> void:
 	bindings_data["events"].erase(event)
-	print("BBB ", get_signal_connection_list("modified_binding"))
-	
-	
 	emit_signal("modified_binding", bindings_data)
