@@ -42,7 +42,7 @@ func set_enabled(e: bool) -> void:
 	set_process_input(enabled)
 	_cursor.set_visible(enabled)
 	if enabled && _canvas:
-		_cursor.global_position = xform_vector2(get_viewport().get_mouse_position()) * _canvas.get_canvas_scale()
+		_cursor.global_position = xform_vector2(get_viewport().get_mouse_position())
 
 # -------------------------------------------------------------------------------------------------
 func get_enabled() -> bool:
@@ -92,7 +92,7 @@ func end_stroke() -> void:
 
 # -------------------------------------------------------------------------------------------------
 func xform_vector2(v: Vector2) -> Vector2:
-	return _canvas.get_camera().xform(v)
+	return _canvas.get_camera().xform(v * _canvas.get_canvas_scale())
 
 # -------------------------------------------------------------------------------------------------
 func reset() -> void:

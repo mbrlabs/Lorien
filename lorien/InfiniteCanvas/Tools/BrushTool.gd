@@ -20,7 +20,7 @@ func tool_event(event: InputEvent) -> void:
 	
 	if event is InputEventMouseMotion:
 		_cursor.global_position = xform_vector2(event.global_position)
-		_current_position = event.position * _canvas.get_canvas_scale()
+		_current_position = event.position
 		_current_pressure = event.pressure
 		if performing_stroke:
 			_cursor.set_pressure(event.pressure)

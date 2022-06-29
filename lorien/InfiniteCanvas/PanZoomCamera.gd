@@ -22,7 +22,7 @@ func set_zoom_level(zoom_level: float) -> void:
 
 # -------------------------------------------------------------------------------------------------
 func do_center(screen_space_center_point: Vector2) -> void:
-	var screen_space_center := get_viewport().size / 2
+	var screen_space_center := get_viewport().get_size() / 2
 	var delta := screen_space_center - screen_space_center_point
 	get_viewport().warp_mouse(screen_space_center)
 	_do_pan(delta)
