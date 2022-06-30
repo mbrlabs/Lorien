@@ -87,4 +87,3 @@ func bindable_actions() -> Array:
 # Does an _exact_ match for the given key stroke.
 func event_pressed_bug_workaround(action_name: String, event: InputEvent) -> bool:
 	return InputMap.action_has_event(action_name, event) && event.is_pressed()
-
