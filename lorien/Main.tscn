@@ -39,15 +39,13 @@ __meta__ = {
 }
 
 [node name="InfiniteCanvas" parent="." instance=ExtResource( 2 )]
+stretch = true
 
 [node name="Topbar" type="VBoxContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 0.0759259
 margin_bottom = -3.99998
 custom_constants/separation = 0
-__meta__ = {
-"_edit_use_anchors_": true
-}
 
 [node name="Menubar" parent="Topbar" instance=ExtResource( 4 )]
 anchor_right = 0.0
@@ -92,9 +90,6 @@ margin_top = -202.0
 margin_right = 154.5
 margin_bottom = 202.0
 custom_styles/panel = SubResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="ColorPicker" type="ColorPicker" parent="BackgroundColorPickerPopup/PanelContainer"]
 margin_left = 24.0

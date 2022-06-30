@@ -533,7 +533,6 @@ func _on_scale_changed() -> void:
 		Types.UIScale.AUTO:   scale = OS.get_screen_size().x / ProjectSettings.get_setting("display/window/size/width")
 		Types.UIScale.CUSTOM: scale = Settings.get_value(Settings.APPEARANCE_UI_SCALE, Config.DEFAULT_UI_SCALE)
 
-	# Canvas has to be set first to make it the correct scale on startup
 	_canvas.set_canvas_scale(scale)
 	get_tree().set_screen_stretch(SceneTree.STRETCH_MODE_DISABLED, SceneTree.STRETCH_ASPECT_IGNORE, Vector2(0,0), scale)
 	OS.min_window_size = Config.MIN_WINDOW_SIZE * scale
