@@ -61,6 +61,7 @@ func load_files() -> ParseResult:
 					
 					value = value.strip_edges()
 					value = templater.process_string(value)
+					value = value.replace("\\n", "\n")
 					translation.add_message(key, value)
 				else:
 					printerr("Key not found (make sure to use spaces; not tabs): %s" % line)

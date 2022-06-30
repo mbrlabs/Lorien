@@ -60,6 +60,7 @@ SETTINGS_TITLE                  Settings
 SETTINGS_GENERAL                General
 SETTINGS_APPEARANCE             Appearance
 SETTINGS_RENDERING              Rendering
+SETTINGS_KEYBINDINGS            Keybindings
 SETTINGS_PRESSURE_SENSITIVITY   Pressure Sensitivity
 SETTINGS_BRUSH_SIZE             Default Brush Size
 SETTINGS_CANVAS_COLOR           Default Canvas Color
@@ -164,3 +165,15 @@ ACTION_duplicate_strokes           Duplicate strokes
 ACTION_toggle_distraction_free_mode Toggle distraction free mode
 ACTION_toggle_player               EFF TWELVE
 ACTION_toggle_fullscreen           Toggle fullscreen
+
+# -----------------------------------------------------------------------------
+# Kebindings dialog messages
+# -----------------------------------------------------------------------------
+
+# Bind key dialog
+KEYBINDING_DIALOG_BIND_WINDOW_NAME     Bind key
+KEYBINDING_DIALOG_BIND_ACTION          Action: {action}
+
+# Rebind already bound key dialog
+KEYBINDING_DIALOG_REBIND_WINDOW_NAME   Rebind key?
+KEYBINDING_DIALOG_REBIND_MESSAGE       '{event}' already is bound to {action}.\n\nDo you want to rebind?

@@ -46,6 +46,7 @@ func _apply_language() -> void:
 	_tab_container.set_tab_title(0, tr("SETTINGS_GENERAL"))
 	_tab_container.set_tab_title(1, tr("SETTINGS_APPEARANCE"))
 	_tab_container.set_tab_title(2, tr("SETTINGS_RENDERING"))
+	_tab_container.set_tab_title(3, tr("SETTINGS_KEYBINDINGS"))
 
 # -------------------------------------------------------------------------------------------------
 func _set_values() -> void:

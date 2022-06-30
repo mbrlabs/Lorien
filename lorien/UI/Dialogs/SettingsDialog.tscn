@@ -454,12 +454,13 @@ __meta__ = {
 columns = 3
 
 [node name="AddKeyDialog" parent="MarginContainer/TabContainer/Keybindings" instance=ExtResource( 5 )]
+window_title = "KEYBINDING_DIALOG_BIND_WINDOW_NAME"
 
 [node name="ConfirmRebind" type="ConfirmationDialog" parent="MarginContainer/TabContainer/Keybindings/AddKeyDialog"]
 margin_right = 200.0
 margin_bottom = 70.0
 popup_exclusive = true
-window_title = "Rebind key?"
+window_title = "KEYBINDING_DIALOG_REBIND_WINDOW_NAME"
 dialog_autowrap = true
 
 [connection signal="value_changed" from="MarginContainer/TabContainer/General/VBoxContainer/PressureSensitivity/PressureSensitivity" to="." method="_on_PressureSensitivity_value_changed"]
