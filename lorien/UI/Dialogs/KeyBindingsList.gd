@@ -52,6 +52,7 @@ func _modify_keybinding(bindings_data: Dictionary, action_name: String) -> void:
 	for e in bindings_data["events"]:
 		InputMap.action_add_event(action_name, e)
 	_populate_input_list()
+	Settings.store_shortcuts()
 	Settings.reload_locales()
 
 # -------------------------------------------------------------------------------------------------
@@ -63,4 +64,5 @@ func _bind_new_key(action_name: String) -> void:
 # -------------------------------------------------------------------------------------------------
 func _bind_key_dialog_hidden() -> void:
 	_populate_input_list()
+	Settings.store_shortcuts()
 	Settings.reload_locales()

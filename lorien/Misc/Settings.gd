@@ -2,6 +2,7 @@ extends Node
 
 # -------------------------------------------------------------------------------------------------
 const DEFAULT_SECTION 					:= "settings"
+const SHORTCUTS_SECTION 				:= "shortcuts"
 const GENERAL_PRESSURE_SENSITIVITY 		:= "general_pressure_sensitvity"
 const GENERAL_DEFAULT_CANVAS_COLOR 		:= "general_default_canvas_color"
 const GENERAL_DEFAULT_BRUSH_SIZE 		:= "general_default_brush_size"
@@ -26,8 +27,7 @@ var language_names: PoolStringArray
 func _ready():
 	_config_file = ConfigFile.new()
 	_load_settings()
-	reload_locales()
-	_setup_shortcuts()
+	_setup_default_shortcuts()
 	_load_shortcuts()
 
 # -------------------------------------------------------------------------------------------------
@@ -67,31 +67,25 @@ func set_value(key: String, value = null):
 	_save_settings()
 	
 # -------------------------------------------------------------------------------------------------
-func _setup_shortcuts(override = false) -> void:
-	for action_name in InputMap.get_actions():
-		if !override && _config_file.has_section_key("shortcuts", action_name):
-			continue
-
-		set_default_shortcut(action_name)
+func _setup_default_shortcuts() -> void:
+	for action_name in Utils.bindable_actions():
+		if ! _config_file.has_section_key(SHORTCUTS_SECTION, action_name):
+			_config_file.set_value(SHORTCUTS_SECTION, action_name, InputMap.get_action_list(action_name))
 	_save_settings()
 
 # -------------------------------------------------------------------------------------------------
-func set_default_shortcut(action_name: String, save = false) -> void:
-	var shortcuts = []
-	for event in InputMap.get_action_list(action_name):
-		shortcuts.append(event)
-
-	_config_file.set_value("shortcuts", action_name, shortcuts)
-	if save:
-		_save_settings()
-
-# -------------------------------------------------------------------------------------------------
 func _load_shortcuts() -> void:	
-	for action_name in InputMap.get_actions():
-		if !_config_file.has_section_key("shortcuts", action_name):
+	for action_name in Utils.bindable_actions():
+		if !_config_file.has_section_key(SHORTCUTS_SECTION, action_name):
 			continue
-		var shortcuts = _config_file.get_value("shortcuts", action_name)
-		InputMap.action_erase_events(action_name)
 
+		var shortcuts = _config_file.get_value(SHORTCUTS_SECTION, action_name)
+		InputMap.action_erase_events(action_name)
 		for shortcut in shortcuts:
 			InputMap.action_add_event(action_name, shortcut)
+
+# -------------------------------------------------------------------------------------------------
+func store_shortcuts() -> void:	
+	for action_name in Utils.bindable_actions():
+		_config_file.set_value(SHORTCUTS_SECTION, action_name, InputMap.get_action_list(action_name))
+	_save_settings()
