@@ -27,8 +27,9 @@ var language_names: PoolStringArray
 func _ready():
 	_config_file = ConfigFile.new()
 	_load_settings()
-	_setup_default_shortcuts()
 	_load_shortcuts()
+	_setup_default_shortcuts()
+	reload_locales()
 
 # -------------------------------------------------------------------------------------------------
 func reload_locales():
@@ -68,10 +69,27 @@ func set_value(key: String, value = null):
 	
 # -------------------------------------------------------------------------------------------------
 func _setup_default_shortcuts() -> void:
+	var new_actions := []
 	for action_name in Utils.bindable_actions():
 		if ! _config_file.has_section_key(SHORTCUTS_SECTION, action_name):
-			_config_file.set_value(SHORTCUTS_SECTION, action_name, InputMap.get_action_list(action_name))
-	_save_settings()
+			new_actions.append(action_name)
+	
+	if len(new_actions) > 0:
+		var old_actions := []
+		for action_name in Utils.bindable_actions():
+			if ! action_name in new_actions:
+				old_actions.append(action_name)
+
+		for new_action in new_actions:
+			var event_list := InputMap.get_action_list(new_action)
+			for event in event_list:
+				for old_action in old_actions:
+					if InputMap.action_has_event(old_action, event):
+						event_list.erase(event)
+						break
+			_config_file.set_value(SHORTCUTS_SECTION, new_action, event_list)
+		_save_settings()
+		_load_shortcuts()
 
 # -------------------------------------------------------------------------------------------------
 func _load_shortcuts() -> void:	
