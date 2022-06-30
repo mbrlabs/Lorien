@@ -8,13 +8,13 @@ onready var _GRID := $ScrollContainer/KeyBindingsList
 onready var _ADD_KEY_DIALOG := $AddKeyDialog
 
 # -------------------------------------------------------------------------------------------------
-func _ready():
+func _ready() -> void:
 	_populate_input_list()
 	_ADD_KEY_DIALOG.connect("hide", self, "_bind_key_dialog_hidden")
 	GlobalSignals.connect("language_changed", self, "_populate_input_list")
 
 # -------------------------------------------------------------------------------------------------
-func _populate_input_list():
+func _populate_input_list() -> void:
 	for c in _GRID.get_children():
 		_GRID.remove_child(c)
 	
