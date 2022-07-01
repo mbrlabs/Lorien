@@ -38,7 +38,6 @@ func _action_for_event(event: InputEvent):
 func _input(event: InputEvent) -> void:
 	if ! visible || _confirm_rebind_dialog.visible:
 		return
-	var _mask = KEY_MASK_ALT | KEY_MASK_SHIFT | KEY_MASK_CMD | KEY_MASK_CTRL
 	if event is InputEventKey && event.is_pressed():
 		get_tree().set_input_as_handled()
 		
