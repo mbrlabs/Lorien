@@ -56,6 +56,12 @@ func tool_event(event: InputEvent) -> void:
 				_do_pan(event.relative)
 			elif _zoom_active:
 				_do_zoom_drag(event.relative.y)
+		
+		elif Utils.event_pressed_bug_workaround("canvas_zoom_in", event):
+			_do_zoom_scroll(-1)
+		
+		elif Utils.event_pressed_bug_workaround("canvas_zoom_out", event):
+			_do_zoom_scroll(1)
 
 # -------------------------------------------------------------------------------------------------
 func _do_pan(pan: Vector2) -> void:
