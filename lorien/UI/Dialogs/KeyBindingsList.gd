@@ -4,19 +4,19 @@ extends Node
 const KEYBINDINGS_LINE_SCENE = preload("res://UI/Components/KeyBindingsLine.tscn")
 
 # -------------------------------------------------------------------------------------------------
-onready var _GRID := $ScrollContainer/KeyBindingsList
-onready var _ADD_KEY_DIALOG := $AddKeyDialog
+onready var _grid := $ScrollContainer/KeyBindingsList
+onready var _add_key_dialog := $AddKeyDialog
 
 # -------------------------------------------------------------------------------------------------
 func _ready() -> void:
 	_populate_input_list()
-	_ADD_KEY_DIALOG.connect("hide", self, "_bind_key_dialog_hidden")
+	_add_key_dialog.connect("hide", self, "_bind_key_dialog_hidden")
 	GlobalSignals.connect("language_changed", self, "_populate_input_list")
 
 # -------------------------------------------------------------------------------------------------
 func _populate_input_list() -> void:
-	for c in _GRID.get_children():
-		_GRID.remove_child(c)
+	for c in _grid.get_children():
+		_grid.remove_child(c)
 	
 	for action in Utils.bindable_actions():
 		var translated_action = Utils.translate_action(action)
@@ -41,7 +41,7 @@ func _new_keybinding_entry(action_name: String, readable_name: String, events: A
 			"events": events,
 		})
 		new_line.remove_child(child)
-		_GRID.add_child(child)
+		_grid.add_child(child)
 		
 		child.connect("modified_binding", self, "_modify_keybinding", [action_name])
 		child.connect("bind_new_key", self, "_bind_new_key", [action_name])
@@ -56,9 +56,9 @@ func _modify_keybinding(bindings_data: Dictionary, action_name: String) -> void:
 
 # -------------------------------------------------------------------------------------------------
 func _bind_new_key(action_name: String) -> void:
-	_ADD_KEY_DIALOG.action_name = action_name
-	_ADD_KEY_DIALOG.readable_action_name = Utils.translate_action(action_name)
-	_ADD_KEY_DIALOG.popup_centered()
+	_add_key_dialog.action_name = action_name
+	_add_key_dialog.readable_action_name = Utils.translate_action(action_name)
+	_add_key_dialog.popup_centered()
 
 # -------------------------------------------------------------------------------------------------
 func _bind_key_dialog_hidden() -> void:

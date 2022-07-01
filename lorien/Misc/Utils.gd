@@ -77,7 +77,7 @@ func bindable_actions() -> Array:
 	var result := []
 	for action in InputMap.get_actions():
 		# Suppress default keybindings for using menus etc and EFF TWELVE
-		if action.begins_with("ui_") or action.begins_with("player_"):
+		if action.begins_with("ui_") || action.begins_with("player_"):
 			continue
 		result.append(action)
 	return result

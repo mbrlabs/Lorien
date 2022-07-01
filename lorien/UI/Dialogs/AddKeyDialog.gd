@@ -4,6 +4,8 @@ extends WindowDialog
 export var action_name: String
 export var readable_action_name: String
 
+onready var _confirm_rebind_dialog := $ConfirmRebind
+
 # -------------------------------------------------------------------------------------------------
 var _pending_bind_event = null
 
@@ -22,7 +24,7 @@ func _action_for_event(event: InputEvent):
 
 # -------------------------------------------------------------------------------------------------
 func _input(event: InputEvent) -> void:
-	if ! visible or $ConfirmRebind.visible:
+	if ! visible || _confirm_rebind_dialog.visible:
 		return
 	
 	if event is InputEventKey && event.is_pressed():
@@ -39,15 +41,15 @@ func _input(event: InputEvent) -> void:
 		event_type.meta = event.meta
 		event_type.command = event.command
 		
-		var _conflicting_action = _action_for_event(event_type)
+		var _conflicting_action := _action_for_event(event_type)
 		
 		_pending_bind_event = event_type
 		if _conflicting_action && _conflicting_action != action_name:
-			$ConfirmRebind.dialog_text = tr("KEYBINDING_DIALOG_REBIND_MESSAGE").format({
+			_confirm_rebind_dialog.dialog_text = tr("KEYBINDING_DIALOG_REBIND_MESSAGE").format({
 				"event": OS.get_scancode_string(event_type.get_scancode_with_modifiers()),
 				"action": Utils.translate_action(_conflicting_action)
 			})
-			$ConfirmRebind.popup_centered()
+			_confirm_rebind_dialog.popup_centered()
 		else:
 			_finish_rebind()
 
