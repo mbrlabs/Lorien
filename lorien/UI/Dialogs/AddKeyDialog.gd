@@ -1,16 +1,28 @@
 extends WindowDialog
 
 # -------------------------------------------------------------------------------------------------
-export var action_name: String
-export var readable_action_name: String
+const _MODIFIER_KEYS := [KEY_SUPER_L, KEY_SUPER_R, KEY_CONTROL, KEY_SHIFT, KEY_META, KEY_ALT]
+
+# -------------------------------------------------------------------------------------------------
+export var action_name := ""
+export var readable_action_name := "" setget _set_readable_action_name
 
 onready var _confirm_rebind_dialog := $ConfirmRebind
 
-# -------------------------------------------------------------------------------------------------
 var _pending_bind_event = null
 
 # -------------------------------------------------------------------------------------------------
-func _process(delta) -> void:
+func _ready() -> void:
+	_update_event_text()
+	GlobalSignals.connect("language_changed", self, "_update_event_text")
+
+# -------------------------------------------------------------------------------------------------
+func _set_readable_action_name(s: String):
+	readable_action_name = s
+	_update_event_text()
+
+# -------------------------------------------------------------------------------------------------
+func _update_event_text() -> void:
 	$VBoxContainer/EventText.text = tr(
 		"KEYBINDING_DIALOG_BIND_ACTION"
 	).format({"action": readable_action_name})
@@ -26,11 +38,11 @@ func _action_for_event(event: InputEvent):
 func _input(event: InputEvent) -> void:
 	if ! visible || _confirm_rebind_dialog.visible:
 		return
-	
+	var _mask = KEY_MASK_ALT | KEY_MASK_SHIFT | KEY_MASK_CMD | KEY_MASK_CTRL
 	if event is InputEventKey && event.is_pressed():
 		get_tree().set_input_as_handled()
 		
-		if KEY_MODIFIER_MASK & event.scancode != 0:
+		if event.scancode in _MODIFIER_KEYS:
 			return
 
 		var event_type := InputEventKey.new()
@@ -41,10 +53,10 @@ func _input(event: InputEvent) -> void:
 		event_type.meta = event.meta
 		event_type.command = event.command
 		
-		var _conflicting_action := _action_for_event(event_type)
+		var _conflicting_action = _action_for_event(event_type)
 		
 		_pending_bind_event = event_type
-		if _conflicting_action && _conflicting_action != action_name:
+		if _conflicting_action is String && _conflicting_action != action_name:
 			_confirm_rebind_dialog.dialog_text = tr("KEYBINDING_DIALOG_REBIND_MESSAGE").format({
 				"event": OS.get_scancode_string(event_type.get_scancode_with_modifiers()),
 				"action": Utils.translate_action(_conflicting_action)
