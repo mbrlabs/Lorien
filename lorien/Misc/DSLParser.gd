@@ -89,6 +89,8 @@ class ParsedSymbol:
 
 # -------------------------------------------------------------------------------------------------
 class GrammarElement:
+	extends Reference
+
 	func parse(s: String):
 		pass
 	
@@ -117,7 +119,7 @@ class GrammarSequence:
 	var elements: Array
 	var flatten_same_name := false
 	
-	func _init(_name: String, _elements: Array = [], _flatten_same_name = false):
+	func _init(_name: String, _elements: Array = [], _flatten_same_name = false).():
 		name = _name
 		elements = _elements
 		flatten_same_name = _flatten_same_name
@@ -154,7 +156,7 @@ class GrammarLiteral:
 	var value: String
 	var ignore_whitespace := true
 	
-	func _init(_name: String, _value = null):
+	func _init(_name: String, _value = null).():
 		if _value == null:
 			_value = _name
 		name = _name
@@ -177,7 +179,7 @@ class GrammarRegexMatch:
 	var regex: RegEx
 	var ignore_whitespace := true
 	
-	func _init(_name: String, pattern: String):
+	func _init(_name: String, pattern: String).():
 		name = _name
 		regex = RegEx.new()
 		regex.compile(pattern)

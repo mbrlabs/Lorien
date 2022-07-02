@@ -68,9 +68,22 @@ func generate_uuid(length: int) -> String:
 		s += UUID_ALPHABET[idx]
 	return s
 
+# -------------------------------------------------------------------------------------------------
+func translate_action(action_name: String) -> String:
+	return TranslationServer.translate("ACTION_" + action_name)
+
+# -------------------------------------------------------------------------------------------------
+func bindable_actions() -> Array:
+	var result := []
+	for action in InputMap.get_actions():
+		# Suppress default keybindings for using menus etc and EFF TWELVE
+		if action.begins_with("ui_") || action.begins_with("player_"):
+			continue
+		result.append(action)
+	return result
+
 # ------------------------------------------------------------------------------------------------
 # See: https://github.com/mbrlabs/Lorien/pull/168#discussion_r908251372 for details
 # Does an _exact_ match for the given key stroke.
 func event_pressed_bug_workaround(action_name: String, event: InputEvent) -> bool:
 	return InputMap.action_has_event(action_name, event) && event.is_pressed()
-
