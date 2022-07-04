@@ -1,8 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://UI/Themes/theme_dark.tres" type="Theme" id=1]
 [ext_resource path="res://UI/Dialogs/SettingsDialog.gd" type="Script" id=2]
 [ext_resource path="res://UI/Components/DelayedSpinBox.gd" type="Script" id=3]
+[ext_resource path="res://UI/Dialogs/KeyBindingsList.gd" type="Script" id=4]
+[ext_resource path="res://UI/Dialogs/AddKeyDialog.tscn" type="PackedScene" id=5]
 
 [sub_resource type="StyleBoxEmpty" id=1]
 
@@ -11,6 +13,7 @@
 [sub_resource type="StyleBoxEmpty" id=3]
 
 [node name="SettingsDialog" type="WindowDialog"]
+visible = true
 margin_right = 520.0
 margin_bottom = 250.0
 rect_min_size = Vector2( 520, 270 )
@@ -43,6 +46,7 @@ __meta__ = {
 }
 
 [node name="General" type="Control" parent="MarginContainer/TabContainer"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = 27.0
@@ -311,9 +315,6 @@ margin_top = 27.0
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/TabContainer/Rendering"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="HSeparator3" type="HSeparator" parent="MarginContainer/TabContainer/Rendering/VBoxContainer"]
 margin_right = 496.0
@@ -434,6 +435,30 @@ custom_colors/font_color = Color( 1, 0.470588, 0.470588, 1 )
 text = "SETTINGS_RESTART_NOTICE"
 align = 1
 
+[node name="Keybindings" type="Control" parent="MarginContainer/TabContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 27.0
+script = ExtResource( 4 )
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/TabContainer/Keybindings"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 12.0
+
+[node name="KeyBindingsList" type="GridContainer" parent="MarginContainer/TabContainer/Keybindings/ScrollContainer"]
+columns = 3
+
+[node name="AddKeyDialog" parent="MarginContainer/TabContainer/Keybindings" instance=ExtResource( 5 )]
+window_title = "KEYBINDING_DIALOG_BIND_WINDOW_NAME"
+
+[node name="ConfirmRebind" type="ConfirmationDialog" parent="MarginContainer/TabContainer/Keybindings/AddKeyDialog"]
+margin_right = 200.0
+margin_bottom = 70.0
+popup_exclusive = true
+window_title = "KEYBINDING_DIALOG_REBIND_WINDOW_NAME"
+dialog_autowrap = true
+
 [connection signal="value_changed" from="MarginContainer/TabContainer/General/VBoxContainer/PressureSensitivity/PressureSensitivity" to="." method="_on_PressureSensitivity_value_changed"]
 [connection signal="value_changed" from="MarginContainer/TabContainer/General/VBoxContainer/DefaultBrushSize/DefaultBrushSize" to="." method="_on_DefaultBrushSize_value_changed"]
 [connection signal="color_changed" from="MarginContainer/TabContainer/General/VBoxContainer/DefaultCanvasColor/DefaultCanvasColor" to="." method="_on_DefaultCanvasColor_color_changed"]
@@ -447,3 +472,4 @@ align = 1
 [connection signal="item_selected" from="MarginContainer/TabContainer/Rendering/VBoxContainer/BrushRounding/OptionButton" to="." method="_on_Brush_rounding_item_selected"]
 [connection signal="value_changed" from="MarginContainer/TabContainer/Rendering/VBoxContainer/TargetFramerate/TargetFramerate" to="." method="_on_Target_Fps_Foreground_changed"]
 [connection signal="value_changed" from="MarginContainer/TabContainer/Rendering/VBoxContainer/BackgroundFramerate/BackgroundFramerate" to="." method="_on_Target_Fps_Background_changed"]
+[connection signal="confirmed" from="MarginContainer/TabContainer/Keybindings/AddKeyDialog/ConfirmRebind" to="MarginContainer/TabContainer/Keybindings/AddKeyDialog" method="_on_ConfirmRebind_confirmed"]

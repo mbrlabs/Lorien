@@ -5,7 +5,17 @@ const I18N_FOLDER := "res://Assets/I18n/"
 const StringTemplating := preload("res://Misc/StringTemplating.gd")
 
 # -------------------------------------------------------------------------------------------------
+var _first_load := true
+
+# -------------------------------------------------------------------------------------------------
+func reload_locales() -> ParseResult:
+	TranslationServer.clear()
+	return load_files()
+
+# -------------------------------------------------------------------------------------------------
 class ParseResult:
+	extends Reference
+
 	var locales := PoolStringArray()
 	var language_names := PoolStringArray()
 	
@@ -51,12 +61,15 @@ func load_files() -> ParseResult:
 					
 					value = value.strip_edges()
 					value = templater.process_string(value)
+					value = value.replace("\\n", "\n")
 					translation.add_message(key, value)
 				else:
 					printerr("Key not found (make sure to use spaces; not tabs): %s" % line)
 			TranslationServer.add_translation(translation)
 			result.append(translation.locale, name)
-			print("Loaded i18n file: %s" % f)
+			if _first_load:
+				print("Loaded i18n file: %s" % f)
+	_first_load = false
 	return result
 
 # -------------------------------------------------------------------------------------------------

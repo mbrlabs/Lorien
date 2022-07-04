@@ -4,15 +4,14 @@ LANGUAGE_NAME Português Brasil
 # Menu strings
 # -----------------------------------------------------------------------------
 
-MENU_OPEN           Abrir
+MENU_OPEN           Abrir...
 MENU_SAVE           Salvar
-MENU_SAVE_AS        Salvar como..
+MENU_SAVE_AS        Salvar como...
 MENU_SETTINGS       Configuração
 MENU_MANUAL         Manual
 MENU_BUG_TRACKER    Reportar um bug
 MENU_ABOUT          Sobre
-MENU_EXPORT         Exportar
-MENU_EXPORT_PNG     Exportar Canvas como PNG
+MENU_EXPORT         Exportar...
 
 # -----------------------------------------------------------------------------
 # Toolbar

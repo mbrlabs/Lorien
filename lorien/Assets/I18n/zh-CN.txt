@@ -4,15 +4,14 @@ LANGUAGE_NAME Simplified Chinese
 # Menu strings
 # -----------------------------------------------------------------------------
 
-MENU_OPEN           打开
+MENU_OPEN           打开...
 MENU_SAVE           保存
-MENU_SAVE_AS        另存为..
+MENU_SAVE_AS        另存为...
 MENU_SETTINGS       设置
 MENU_MANUAL         手册
 MENU_BUG_TRACKER    Bug 追踪器
 MENU_ABOUT          关于
-MENU_EXPORT         导出
-MENU_EXPORT_PNG     将画布导出为PNG
+MENU_EXPORT         导出...
 
 # -----------------------------------------------------------------------------
 # Toolbar

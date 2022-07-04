@@ -4,15 +4,14 @@ LANGUAGE_NAME Deutsch
 # Menu
 # --------------------------------------------------------------------------------
 
-MENU_OPEN           Öffnen
+MENU_OPEN           Öffnen...
 MENU_SAVE           Speichern
-MENU_SAVE_AS        Speichern als..
+MENU_SAVE_AS        Speichern als...
 MENU_SETTINGS       Einstellungen
 MENU_MANUAL         Benutzeranleitung
 MENU_BUG_TRACKER    Bug Tracker
 MENU_ABOUT          Über
-MENU_EXPORT         Exportieren
-MENU_EXPORT_PNG     Exportieren als PNG
+MENU_EXPORT         Exportieren...
 
 # -----------------------------------------------------------------------------
 # Toolbar

@@ -18,6 +18,7 @@ const COLOR_PALETTE_UUID_LAST_USED		:= "color_palette_uuid_last_used"
 
 # -------------------------------------------------------------------------------------------------
 var _config_file := ConfigFile.new()
+var _i18n := I18nParser.new()
 var locales: PoolStringArray
 var language_names: PoolStringArray
 
@@ -25,11 +26,13 @@ var language_names: PoolStringArray
 func _ready():
 	_config_file = ConfigFile.new()
 	_load_settings()
+  reload_locales()
 	_setup_shortcuts()
 	_load_shortcuts()
 
-	var i18n := I18nParser.new()
-	var parse_result := i18n.load_files()
+# -------------------------------------------------------------------------------------------------
+func reload_locales():
+	var parse_result := _i18n.reload_locales()
 	TranslationServer.set_locale(get_value(GENERAL_LANGUAGE, "en"))
 	locales = parse_result.locales
 	language_names = parse_result.language_names

@@ -4,15 +4,14 @@ LANGUAGE_NAME Türkçe
 # Menu strings
 # -----------------------------------------------------------------------------
 
-MENU_OPEN           Aç
+MENU_OPEN           ... Aç
 MENU_SAVE           Kaydet
 MENU_SAVE_AS        ... Olarak Kaydet
 MENU_SETTINGS       Ayarlar
 MENU_MANUAL         Kullanım Kılauzu
 MENU_BUG_TRACKER    Hata İzleyici
 MENU_ABOUT          Hakkında
-MENU_EXPORT         Dışa Aktar
-MENU_EXPORT_PNG     Tuvali PNG Olarak Dışa Aktar
+MENU_EXPORT         ... Dışa Aktar
 
 # -----------------------------------------------------------------------------
 # Toolbar
