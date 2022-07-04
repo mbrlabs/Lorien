@@ -82,7 +82,7 @@ func _on_NameLineEdit_text_changed(new_text: String) -> void:
 func _on_AddColorButton_pressed() -> void:
 	if _palette.colors.size() < Config.MAX_PALETTE_SIZE:
 		_palette_edited = true
-		var new_color := Color.white
+		var new_color := _palette.colors[_active_button_index]
 		
 		# Create a new color array with the new color
 		var arr := []
