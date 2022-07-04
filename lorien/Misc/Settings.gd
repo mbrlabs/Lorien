@@ -26,7 +26,7 @@ var language_names: PoolStringArray
 func _ready():
 	_config_file = ConfigFile.new()
 	_load_settings()
-  reload_locales()
+	reload_locales()
 	_setup_shortcuts()
 	_load_shortcuts()
 
