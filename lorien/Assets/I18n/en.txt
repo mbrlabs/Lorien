@@ -167,6 +167,10 @@ ACTION_toggle_player               EFF TWELVE
 ACTION_toggle_fullscreen           Toggle fullscreen
 ACTION_canvas_zoom_in              Zoom in
 ACTION_canvas_zoom_out             Zoom out
+ACTION_canvas_pan_up               Pan up
+ACTION_canvas_pan_down             Pan down
+ACTION_canvas_pan_right            Pan right
+ACTION_canvas_pan_left             Pan left
 
 # -----------------------------------------------------------------------------
 # Kebindings dialog messages

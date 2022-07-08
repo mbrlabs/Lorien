@@ -67,19 +67,19 @@ func tool_event(event: InputEvent) -> void:
 			get_tree().set_input_as_handled()
 		
 		elif Utils.event_pressed_bug_workaround("canvas_pan_left", event):
-			_do_pan(Vector2.LEFT * KEYBOARD_PAN_CONSTANT)
+			_do_pan(-Vector2.LEFT * KEYBOARD_PAN_CONSTANT)
 			get_tree().set_input_as_handled()
 
 		elif Utils.event_pressed_bug_workaround("canvas_pan_right", event):
-			_do_pan(Vector2.RIGHT * KEYBOARD_PAN_CONSTANT)
+			_do_pan(-Vector2.RIGHT * KEYBOARD_PAN_CONSTANT)
 			get_tree().set_input_as_handled()
 
 		elif Utils.event_pressed_bug_workaround("canvas_pan_up", event):
-			_do_pan(Vector2.UP * KEYBOARD_PAN_CONSTANT)
+			_do_pan(-Vector2.UP * KEYBOARD_PAN_CONSTANT)
 			get_tree().set_input_as_handled()
 
 		elif Utils.event_pressed_bug_workaround("canvas_pan_down", event):
-			_do_pan(Vector2.DOWN * KEYBOARD_PAN_CONSTANT)
+			_do_pan(-Vector2.DOWN * KEYBOARD_PAN_CONSTANT)
 			get_tree().set_input_as_handled()
 
 # -------------------------------------------------------------------------------------------------
