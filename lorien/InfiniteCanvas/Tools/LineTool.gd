@@ -21,7 +21,6 @@ func tool_event(event: InputEvent) -> void:
 	
 	# Moving the tail
 	elif event is InputEventMouseMotion:
-		_cursor.global_position = xform_vector2(event.global_position)
 		if performing_stroke:
 			_cursor.set_pressure(event.pressure)
 			remove_last_stroke_point()
