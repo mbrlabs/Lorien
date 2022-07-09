@@ -13,7 +13,6 @@ func tool_event(event: InputEvent) -> void:
 	_cursor.set_pressure(1.0)
 	
 	if event is InputEventMouseMotion:
-		_cursor.global_position = xform_vector2(event.global_position)
 		if performing_stroke:
 			_cursor.set_pressure(event.pressure)
 			remove_all_stroke_points()

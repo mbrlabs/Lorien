@@ -41,8 +41,6 @@ func set_enabled(e: bool) -> void:
 	set_process(enabled)
 	set_process_input(enabled)
 	_cursor.set_visible(enabled)
-	if enabled && _canvas:
-		_cursor.global_position = xform_vector2(get_viewport().get_mouse_position())
 
 # -------------------------------------------------------------------------------------------------
 func get_enabled() -> bool:

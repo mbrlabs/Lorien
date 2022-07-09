@@ -100,7 +100,6 @@ func tool_event(event: InputEvent) -> void:
 	# Mouse movement: move the selection
 	elif event is InputEventMouseMotion:
 		var event_pos := xform_vector2(event.global_position)
-		_cursor.global_position = event_pos
 		if _state == State.SELECTING:
 			_selecting_end_pos = event_pos
 			compute_selection(_selecting_start_pos, _selecting_end_pos)

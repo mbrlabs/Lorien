@@ -28,7 +28,6 @@ func tool_event(event: InputEvent) -> void:
 	var should_draw_circle := Input.is_key_pressed(KEY_SHIFT)
 	
 	if event is InputEventMouseMotion:
-		_cursor.global_position = xform_vector2(event.global_position)
 		if performing_stroke:
 			_cursor.set_pressure(event.pressure)
 			remove_all_stroke_points()

@@ -6,6 +6,7 @@ signal position_changed(value)
 const ZOOM_INCREMENT := 1.1 	# Feel free to modify (Krita uses sqrt(2))
 const MIN_ZOOM_LEVEL := 0.1
 const MAX_ZOOM_LEVEL := 100
+const KEYBOARD_PAN_CONSTANT := 20
 
 var _is_input_enabled := true
 
@@ -56,6 +57,30 @@ func tool_event(event: InputEvent) -> void:
 				_do_pan(event.relative)
 			elif _zoom_active:
 				_do_zoom_drag(event.relative.y)
+		
+		elif Utils.event_pressed_bug_workaround("canvas_zoom_in", event):
+			_do_zoom_scroll(-1)
+			get_tree().set_input_as_handled()
+		
+		elif Utils.event_pressed_bug_workaround("canvas_zoom_out", event):
+			_do_zoom_scroll(1)
+			get_tree().set_input_as_handled()
+		
+		elif Utils.event_pressed_bug_workaround("canvas_pan_left", event):
+			_do_pan(-Vector2.LEFT * KEYBOARD_PAN_CONSTANT)
+			get_tree().set_input_as_handled()
+
+		elif Utils.event_pressed_bug_workaround("canvas_pan_right", event):
+			_do_pan(-Vector2.RIGHT * KEYBOARD_PAN_CONSTANT)
+			get_tree().set_input_as_handled()
+
+		elif Utils.event_pressed_bug_workaround("canvas_pan_up", event):
+			_do_pan(-Vector2.UP * KEYBOARD_PAN_CONSTANT)
+			get_tree().set_input_as_handled()
+
+		elif Utils.event_pressed_bug_workaround("canvas_pan_down", event):
+			_do_pan(-Vector2.DOWN * KEYBOARD_PAN_CONSTANT)
+			get_tree().set_input_as_handled()
 
 # -------------------------------------------------------------------------------------------------
 func _do_pan(pan: Vector2) -> void:

@@ -40,7 +40,12 @@ func _ready():
 	_active_tool.enabled = false
 	
 	get_tree().get_root().connect("size_changed", self, "_on_window_resized")
-	_camera.connect("zoom_changed", $Viewport/SelectionCursor, "_on_zoom_changed")
+	
+	for child in $Viewport.get_children():
+		if child is BaseCursor:
+			_camera.connect("zoom_changed", child, "_on_zoom_changed")
+			_camera.connect("position_changed", child, "_on_canvas_position_changed")
+	
 	_camera.connect("zoom_changed", self, "_on_zoom_changed")
 	_camera.connect("position_changed", self, "_on_camera_moved")
 	_viewport.size = OS.window_size
