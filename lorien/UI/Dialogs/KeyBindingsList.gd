@@ -43,8 +43,10 @@ func _new_keybinding_entry(action_name: String, readable_name: String, events: A
 		new_line.remove_child(child)
 		_grid.add_child(child)
 		
-		child.connect("modified_binding", self, "_modify_keybinding", [action_name])
-		child.connect("bind_new_key", self, "_bind_new_key", [action_name])
+		if child.has_signal("modified_binding"):
+			child.connect("modified_binding", self, "_modify_keybinding", [action_name])
+		if child.has_signal("bind_new_key"):
+			child.connect("bind_new_key", self, "_bind_new_key", [action_name])
 
 # -------------------------------------------------------------------------------------------------
 func _modify_keybinding(bindings_data: Dictionary, action_name: String) -> void:
