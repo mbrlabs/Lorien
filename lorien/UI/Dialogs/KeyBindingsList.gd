@@ -14,7 +14,7 @@ func _ready() -> void:
 	GlobalSignals.connect("language_changed", self, "_populate_input_list")
 
 # -------------------------------------------------------------------------------------------------
-func _second_element(a: Array, b: Array) -> bool:
+func _compare_second_element(a: Array, b: Array) -> bool:
 	return a[1] < b[1] 
 
 # -------------------------------------------------------------------------------------------------
@@ -33,7 +33,7 @@ func _populate_input_list() -> void:
 		
 		collected_keybinding_args.append([action, translated_action, shortcuts])
 
-	collected_keybinding_args.sort_custom(self, "_second_element")
+	collected_keybinding_args.sort_custom(self, "_compare_second_element")
 	for args in collected_keybinding_args:
 		callv("_new_keybinding_entry", args)
 
