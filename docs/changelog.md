@@ -7,13 +7,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ## [0.6.0] - Unreleased
 
 ### Added
-- Translations: Simplified Chinese
+- Rebindable keyboard shortcuts
+- Translations: Simplified Chinese, Traditional Chinese
 
 ### Fixed
-- Completed Spanish translation
+- Fixed blurry interface on some macOS devices
 
 ### Changed
 - Changing the application language does not require a restart now
+- Completed Spanish translation
 
 ## [0.5.0] - 2022-06-12
 
