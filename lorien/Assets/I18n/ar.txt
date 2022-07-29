@@ -1,0 +1,140 @@
+LANGUAGE_NAME العربية
+
+# -----------------------------------------------------------------------------
+# Menu strings
+# -----------------------------------------------------------------------------
+
+MENU_OPEN           فتح
+MENU_SAVE           حفظ
+MENU_SAVE_AS        حفظ باسم
+MENU_SETTINGS       إعدادات
+MENU_MANUAL         الدليل
+MENU_BUG_TRACKER    مراقب الأخطاء
+MENU_ABOUT          حول
+MENU_EXPORT         إخراج
+MENU_EXPORT_PNG     إخراج اللوحة PNG
+
+# -----------------------------------------------------------------------------
+# Toolbar
+# -----------------------------------------------------------------------------
+TOOLBAR_TOOLTIP_NEW_FILE        إنشاء ملف جديد (CTRL+N)
+TOOLBAR_TOOLTIP_OPEN_FILE       فتح ملف (CTRL+O)
+TOOLBAR_TOOLTIP_SAVE_FILE       حفظ ملف (CTRL+S)
+TOOLBAR_TOOLTIP_UNDO            تراجع عن الإجراء (CTRL+Z)
+TOOLBAR_TOOLTIP_REDO            إعادة الإجراء (CTRL+Y)
+TOOLBAR_TOOLTIP_BRUSH_TOOL      الفرشاة (B)
+TOOLBAR_TOOLTIP_RECTANGLE_TOOL  المستطيل (R)
+TOOLBAR_TOOLTIP_CIRCLE_TOOL     الدائرة (C)
+TOOLBAR_TOOLTIP_LINE_TOOL       سطر (L)
+TOOLBAR_TOOLTIP_ERASER_TOOL     ممحاة (E)
+TOOLBAR_TOOLTIP_SELECT_TOOL     أداة الاختيار (S)
+TOOLBAR_TOOLTIP_BRUSH_COLOR     لون الفرشاة
+TOOLBAR_TOOLTIP_BRUSH_SIZE      مقاس الفرشاة
+TOOLBAR_TOOLTIP_CANVAS_COLOR    لون اللوحة
+TOOLBAR_TOOLTIP_GRID 			إظهار الشبكة
+TOOLBAR_FULLSCREEN_TOGGLE       تبديل ملء الشاشة
+
+# -----------------------------------------------------------------------------
+# Color Palette Picker
+# -----------------------------------------------------------------------------
+COLOR_PALETTE_PICKER_HINT_NEW        إنشاء لوح ألوان جديد
+COLOR_PALETTE_PICKER_HINT_EDIT       تعديل لوح الألوان الحالي
+COLOR_PALETTE_PICKER_HINT_DUPLICATE  كرر لوح الألوان الحالي
+COLOR_PALETTE_PICKER_HINT_DELETE     حذف لوح الألوان الحالي نهائيًا
+
+# -----------------------------------------------------------------------------
+# Statusbar strings
+# -----------------------------------------------------------------------------
+
+STATUSBAR_POSITION              موقع
+STATUSBAR_ZOOM                  تكبير
+STATUSBAR_PRESSURE              ضغط
+STATUSBAR_FPS                   عدد الأطر في الثانية
+STATUSBAR_STROKES               خطوط
+STATUSBAR_POINTS                نقاط
+
+# -----------------------------------------------------------------------------
+# Settings strings
+# -----------------------------------------------------------------------------
+
+SETTINGS_TITLE                  إعدادات
+SETTINGS_GENERAL                عام
+SETTINGS_APPEARANCE             مظهر
+SETTINGS_RENDERING              العرض
+SETTINGS_PRESSURE_SENSITIVITY   حساسية الضغط
+SETTINGS_BRUSH_SIZE             مقاس الفرشاة الافتراضي
+SETTINGS_CANVAS_COLOR           لون اللوحة الافتراضي
+SETTINGS_PROJECT_FOLDER         ملف المشروع الافتراضي
+SETTINGS_LANGUAGE               اللغة
+SETTINGS_THEME                  الشكل
+SETTINGS_UI_SCALE               حجم واجهة المستخدم
+SETTINGS_UI_SCALE_AUTO          تلقائي
+SETTINGS_UI_SCALE_CUSTOM        مخصص              
+SETTINGS_AA_METHOD              طريقة تنعيم الحافات
+SETTINGS_AA_METHOD_NONE         لا شيئ
+SETTINGS_FPS_FOREGROUND         عدد الأطر في الثانية(الأمامية)
+SETTINGS_FPS_BACKGROUND         عدد الأطر في الثانية(الخلفية)
+SETTINGS_BRUSH_CAPS             وضع تدوير الفرشاة
+SETTINGS_BRUSH_CAPS_FLAT        مسطح
+SETTINGS_BRUSH_CAPS_ROUND       دائري
+SETTINGS_RESTART_NOTICE  		    مطلوب إعادة التشغيل لتطبيق الإعدادات الجديدة
+
+# -----------------------------------------------------------------------------
+# About dialog strings
+# -----------------------------------------------------------------------------
+
+ABOUT_DIALOG_TITLE              حول
+ABOUT_DIALOG_COPYRIGHT          © 2021-2022 Marcus Brummer & contributors 
+ABOUT_DIALOG_LICSENSE           Lorien is licensed under:
+ABOUT_DIALOG_BASED_ON           Lorien is based on:
+ABOUT_DIALOG_EASTEREGG          Easteregg character:
+
+# -----------------------------------------------------------------------------
+# Unsaved changes dialog
+# -----------------------------------------------------------------------------
+
+UNSAVED_CHANGES_DIALOG_TITLE    حفظ التغييرات؟
+UNSAVED_CHANGES_DIALOG_TEXT     هل تريد حفظ التغييرات قبل إغلاق الملف؟
+
+# -----------------------------------------------------------------------------
+# Exit dialog
+# -----------------------------------------------------------------------------
+
+EXIT_DIALOG_TITLE    حفظ التغييرات؟
+EXIT_DIALOG_TEXT     هل تريد حفظ التغييرات قبل الخروج من Lorien؟
+
+# -----------------------------------------------------------------------------
+# New palette dialog
+# -----------------------------------------------------------------------------
+NEW_PALETTE_DIALOG_CREATE_TITLE 		لوح ألوان جديد
+NEW_PALETTE_DIALOG_DUPLICATE_TITLE 		كرر لوح الألوان
+NEW_PALETTE_DIALOG_PLACEHOLDER 			اسم لوح الألوان 
+
+# -----------------------------------------------------------------------------
+# Delete palette dialog
+# -----------------------------------------------------------------------------
+DELETE_PALETTE_DIALOG_TITLE 			مسح لوح الألوان
+DELETE_PALETTE_DIALOG_TEXT 				هل أنت متأكد أنك تريد حذف نهائيًا:
+
+# -----------------------------------------------------------------------------
+# Edit palette dialog
+# -----------------------------------------------------------------------------
+EDIT_PALETTE_DIALOG_TITLE 		تعديل لوح الألوان
+
+# -----------------------------------------------------------------------------
+# Error/Alert messages
+# -----------------------------------------------------------------------------
+
+ERROR_NOT_IMPLEMENTED               لم تنفذ بعد.
+ERROR_AUTOSAVE_NOT_IMPLEMENTED      لم يتم تنفيذ "الحفظ التلقائي" لملف "بدون عنوان". يرجى حفظه يدويًا.
+ALERT_EDITING_BUILTIN_PALETTE       تعديل لوحات الألوان المدمجة غير ممكن. إذا كنت ترغب في تخصيص هذه اللوحة ، يمكنك عمل نسخة و تعديلها بدلاً من ذلك. # TODO
+ALERT_DELETING_BUILTIN_PALETTE      لا يمكن حذف لوحات الألوان المدمجة في البرنامج.
+
+# -----------------------------------------------------------------------------
+# Generic strings
+# -----------------------------------------------------------------------------
+
+SAVE            حفظ
+DISCARD         رفض
+CANCEL          إلغاء
+DELETE          مسح
