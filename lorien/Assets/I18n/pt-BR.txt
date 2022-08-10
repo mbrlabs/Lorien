@@ -1,4 +1,4 @@
-LANGUAGE_NAME Português Brasil
+LANGUAGE_NAME Português Brasileiro
 
 # -----------------------------------------------------------------------------
 # Menu strings
@@ -7,46 +7,46 @@ LANGUAGE_NAME Português Brasil
 MENU_OPEN           Abrir...
 MENU_SAVE           Salvar
 MENU_SAVE_AS        Salvar como...
-MENU_SETTINGS       Configuração
+MENU_SETTINGS       Configurações
 MENU_MANUAL         Manual
-MENU_BUG_TRACKER    Reportar um bug
+MENU_BUG_TRACKER    Rastreador de Bugs
 MENU_ABOUT          Sobre
 MENU_EXPORT         Exportar...
 
 # -----------------------------------------------------------------------------
 # Toolbar
 # -----------------------------------------------------------------------------
-TOOLBAR_TOOLTIP_NEW_FILE        Criar Novo Arquivo {{ shortcut_list("shortcut_new_project") }}
+TOOLBAR_TOOLTIP_NEW_FILE        Novo Arquivo {{ shortcut_list("shortcut_new_project") }}
 TOOLBAR_TOOLTIP_OPEN_FILE       Abrir Arquivo {{ shortcut_list("shortcut_open_project") }}
 TOOLBAR_TOOLTIP_SAVE_FILE       Salvar Arquivo {{ shortcut_list("shortcut_save_project") }}
 TOOLBAR_TOOLTIP_UNDO            Desfazer Ação {{ shortcut_list("shortcut_undo") }}
 TOOLBAR_TOOLTIP_REDO            Refazer Ação {{ shortcut_list("shortcut_redo") }}
 TOOLBAR_TOOLTIP_BRUSH_TOOL      Pincel {{ shortcut_list("shortcut_brush_tool") }}
-TOOLBAR_TOOLTIP_RECTANGLE_TOOL  Ferramenta de Retângulo {{ shortcut_list("shortcut_rectangle_tool") }}
-TOOLBAR_TOOLTIP_CIRCLE_TOOL     Ferramenta de Círculo {{ shortcut_list("shortcut_circle_tool") }}
-TOOLBAR_TOOLTIP_LINE_TOOL       Ferramenta de Linha {{ shortcut_list("shortcut_line_tool") }}
+TOOLBAR_TOOLTIP_RECTANGLE_TOOL  Ferramenta Retângulo {{ shortcut_list("shortcut_rectangle_tool") }}
+TOOLBAR_TOOLTIP_CIRCLE_TOOL     Ferramenta Círculo {{ shortcut_list("shortcut_circle_tool") }}
+TOOLBAR_TOOLTIP_LINE_TOOL       Ferramenta Linha {{ shortcut_list("shortcut_line_tool") }}
 TOOLBAR_TOOLTIP_ERASER_TOOL     Borracha {{ shortcut_list("shortcut_eraser_tool") }}
 TOOLBAR_TOOLTIP_SELECT_TOOL     Ferramenta de Seleção {{ shortcut_list("shortcut_select_tool") }}
-TOOLBAR_TOOLTIP_BRUSH_COLOR     Cor do Pincel 
-TOOLBAR_TOOLTIP_BRUSH_SIZE      Tamanho do Pincel 
-TOOLBAR_TOOLTIP_CANVAS_COLOR    Cor do Canvas
+TOOLBAR_TOOLTIP_BRUSH_COLOR     Cor do Pincel
+TOOLBAR_TOOLTIP_BRUSH_SIZE      Tamanho do Pincel
+TOOLBAR_TOOLTIP_CANVAS_COLOR    Cor da Área de Desenho
 TOOLBAR_TOOLTIP_GRID 			Exibir Grade
-TOOLBAR_FULLSCREEN_TOGGLE       Alternar Tela Cheia
+TOOLBAR_FULLSCREEN_TOGGLE       (Des)ativar Tela Cheia
 
 # -----------------------------------------------------------------------------
 # Color Palette Picker
 # -----------------------------------------------------------------------------
-COLOR_PALETTE_PICKER_HINT_NEW        Criar nova paleta de cores
+COLOR_PALETTE_PICKER_HINT_NEW        Nova paleta de cores
 COLOR_PALETTE_PICKER_HINT_EDIT       Editar a paleta de cores atual
 COLOR_PALETTE_PICKER_HINT_DUPLICATE  Duplicar a paleta de cores atual
-COLOR_PALETTE_PICKER_HINT_DELETE     Remover a paleta de cores atual permanentemente
+COLOR_PALETTE_PICKER_HINT_DELETE     Deletar a paleta de cores atual permanentemente
 
 # -----------------------------------------------------------------------------
 # Statusbar strings
 # -----------------------------------------------------------------------------
 
 STATUSBAR_POSITION              Posição
-STATUSBAR_ZOOM                  Zoom
+STATUSBAR_ZOOM                  Ampliação
 STATUSBAR_PRESSURE              Pressão
 STATUSBAR_FPS                   FPS
 STATUSBAR_STROKES               Traços
@@ -60,21 +60,22 @@ SETTINGS_TITLE                  Configurações
 SETTINGS_GENERAL                Geral
 SETTINGS_APPEARANCE             Aparência
 SETTINGS_RENDERING              Renderização
+SETTINGS_KEYBINDINGS            Teclas de Atalho
 SETTINGS_PRESSURE_SENSITIVITY   Sensibilidade à Pressão
 SETTINGS_BRUSH_SIZE             Tamanho Padrão do Pincel
-SETTINGS_CANVAS_COLOR           Cor Padrão do Canvas
-SETTINGS_PROJECT_FOLDER         Pasta de Projeto Padrão
+SETTINGS_CANVAS_COLOR           Cor Padrão da Área de Desenho
+SETTINGS_PROJECT_FOLDER         Pasta Padrão do Projeto
 SETTINGS_LANGUAGE               Idioma
 SETTINGS_THEME                  Tema
 SETTINGS_UI_SCALE               Escala da Interface
 SETTINGS_UI_SCALE_AUTO          Automática
-SETTINGS_UI_SCALE_CUSTOM        Personalizada              
-SETTINGS_AA_METHOD              Método anti-aliasing
+SETTINGS_UI_SCALE_CUSTOM        Personalizada
+SETTINGS_AA_METHOD              Método de Anti-aliasing
 SETTINGS_AA_METHOD_NONE         Nenhum
-SETTINGS_FPS_FOREGROUND         Fps em primeiro plano
-SETTINGS_FPS_BACKGROUND         Fps em segundo plano
-SETTINGS_BRUSH_CAPS             Modo de arredondamento do pincel
-SETTINGS_BRUSH_CAPS_FLAT        Liso
+SETTINGS_FPS_FOREGROUND         FPS em Primeiro Plano
+SETTINGS_FPS_BACKGROUND         FPS em Segundo Plano
+SETTINGS_BRUSH_CAPS             Modo de Arredondamento do Pincel
+SETTINGS_BRUSH_CAPS_FLAT        Uniforme
 SETTINGS_BRUSH_CAPS_ROUND       Redondo
 SETTINGS_RESTART_NOTICE  		É necessário reiniciar para aplicar as novas configurações
 
@@ -84,41 +85,41 @@ SETTINGS_RESTART_NOTICE  		É necessário reiniciar para aplicar as novas config
 
 ABOUT_DIALOG_TITLE              Sobre
 ABOUT_DIALOG_COPYRIGHT          © 2021-2022 Marcus Brummer & contribuidores 
-ABOUT_DIALOG_LICSENSE           Lorien está licenciado sob:
+ABOUT_DIALOG_LICSENSE           Lorien é licenciado sob:
 ABOUT_DIALOG_BASED_ON           Lorien é baseado em:
-ABOUT_DIALOG_EASTEREGG          Personagem do easteregg:
+ABOUT_DIALOG_EASTEREGG          Personagem secreto:
 
 # -----------------------------------------------------------------------------
 # Unsaved changes dialog
 # -----------------------------------------------------------------------------
 
 UNSAVED_CHANGES_DIALOG_TITLE    Salvar alterações?
-UNSAVED_CHANGES_DIALOG_TEXT     Deseja salvar suas alterações antes de fechar o arquivo?
+UNSAVED_CHANGES_DIALOG_TEXT     Quer salvar suas alterações antes de fechar o arquivo?
 
 # -----------------------------------------------------------------------------
 # Exit dialog
 # -----------------------------------------------------------------------------
 
 EXIT_DIALOG_TITLE    Salvar alterações?
-EXIT_DIALOG_TEXT     Deseja salvar suas alterações antes de sair do Lorien?
+EXIT_DIALOG_TEXT     Quer salvar suas alterações antes de sair do Lorien?
 
 # -----------------------------------------------------------------------------
 # New palette dialog
 # -----------------------------------------------------------------------------
-NEW_PALETTE_DIALOG_CREATE_TITLE 		Nova Paleta
-NEW_PALETTE_DIALOG_DUPLICATE_TITLE 		Duplicar Paleta
-NEW_PALETTE_DIALOG_PLACEHOLDER 			Nome da Paleta
+NEW_PALETTE_DIALOG_CREATE_TITLE 		Nova paleta
+NEW_PALETTE_DIALOG_DUPLICATE_TITLE 		Duplicar paleta
+NEW_PALETTE_DIALOG_PLACEHOLDER 			Nome da paleta
 
 # -----------------------------------------------------------------------------
 # Delete palette dialog
 # -----------------------------------------------------------------------------
-DELETE_PALETTE_DIALOG_TITLE 			Remover Paleta
-DELETE_PALETTE_DIALOG_TEXT 				Tem certeza que deseja remover permanentemente:
+DELETE_PALETTE_DIALOG_TITLE 			Deletar paleta
+DELETE_PALETTE_DIALOG_TEXT 				Tem certeza que quer remover permanentemente:
 
 # -----------------------------------------------------------------------------
 # Edit palette dialog
 # -----------------------------------------------------------------------------
-EDIT_PALETTE_DIALOG_TITLE 		Editar Paleta
+EDIT_PALETTE_DIALOG_TITLE 		Editar paleta
 
 # -----------------------------------------------------------------------------
 # Error/Alert messages
@@ -126,8 +127,8 @@ EDIT_PALETTE_DIALOG_TITLE 		Editar Paleta
 
 ERROR_NOT_IMPLEMENTED               Ainda não implementado.
 ERROR_AUTOSAVE_NOT_IMPLEMENTED      Auto-salvamento ainda não foi implementado para arquivos "Untitled" (Sem título). Por favor salve-o manualmente.
-ALERT_EDITING_BUILTIN_PALETTE       A edição de paletas predefinidas não é possível. Se você quiser personalizar esta paleta, poderá fazer uma cópia e editá-la. # TODO
-ALERT_DELETING_BUILTIN_PALETTE      A exclusão de paletas predefinidas não é possível.
+ALERT_EDITING_BUILTIN_PALETTE       Não é possível editar paletas predefinidas, pode fazer uma cópia e editá-la em vez disso. # TODO
+ALERT_DELETING_BUILTIN_PALETTE      Não é possível deletar paletas predefinidas.
 
 # -----------------------------------------------------------------------------
 # Generic strings
@@ -137,3 +138,48 @@ SAVE            Salvar
 DISCARD         Descartar
 CANCEL          Cancelar
 DELETE          Deletar
+
+# -----------------------------------------------------------------------------
+# Action names
+# -----------------------------------------------------------------------------
+
+ACTION_shortcut_save_project       Salvar Projeto
+ACTION_shortcut_new_project        Novo Projeto
+ACTION_shortcut_open_project       Abrir Projeto
+ACTION_shortcut_undo               Desfazer
+ACTION_shortcut_redo               Refazer
+ACTION_shortcut_brush_tool         Pincel
+ACTION_shortcut_line_tool          Ferramenta Linha
+ACTION_shortcut_eraser_tool        Borracha
+ACTION_shortcut_select_tool        Ferramenta de Seleção
+ACTION_shortcut_move_tool          Ferramenta de Movimento
+ACTION_shortcut_rectangle_tool     Ferramenta Retângulo
+ACTION_shortcut_circle_tool        Ferramenta Círculo
+ACTION_shortcut_export_project     Exportar Projeto
+ACTION_deselect_all_strokes        Desmarcar todos os traços
+ACTION_center_canvas_to_mouse      Centralizar no mouse
+ACTION_delete_selected_strokes     Deletar traços selecionados
+ACTION_copy_strokes                Copiar traços
+ACTION_paste_strokes               Colar traços
+ACTION_duplicate_strokes           Duplicar traços
+ACTION_toggle_distraction_free_mode (Des)ativar modo livre de distrações
+ACTION_toggle_player               (Des)ativar jogador
+ACTION_toggle_fullscreen           (Des)ativar Tela Cheia
+ACTION_canvas_zoom_in              Ampliar Imagem#Zoom in
+ACTION_canvas_zoom_out             Retrair Imagem#Zoom out
+ACTION_canvas_pan_up               Mover para cima
+ACTION_canvas_pan_down             Mover para baixo
+ACTION_canvas_pan_right            Mover para a direita
+ACTION_canvas_pan_left             Mover para a esquerda
+
+# -----------------------------------------------------------------------------
+# Kebindings dialog messages
+# -----------------------------------------------------------------------------
+
+# Bind key dialog
+KEYBINDING_DIALOG_BIND_WINDOW_NAME     Vincular tecla
+KEYBINDING_DIALOG_BIND_ACTION          Ação: {action}
+
+# Rebind already bound key dialog
+KEYBINDING_DIALOG_REBIND_WINDOW_NAME   Redefinir tecla?
+KEYBINDING_DIALOG_REBIND_MESSAGE       '{event}' já está vinculado com {action}.\n\nQuer redefinir?
