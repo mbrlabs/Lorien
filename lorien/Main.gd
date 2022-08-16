@@ -400,6 +400,7 @@ func _on_canvas_background_changed(color: Color) -> void:
 	_canvas.set_background_color(color)
 	var project: Project = ProjectManager.get_active_project()
 	if project != null:
+		project.meta_data[ProjectMetadata.CANVAS_COLOR] = color.to_html()
 		project.dirty = true
 
 # -------------------------------------------------------------------------------------------------
