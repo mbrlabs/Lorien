@@ -8,7 +8,7 @@ const COLOR := Color.red
 export var camera_path: NodePath
 var _enabled: bool
 var _camera: Camera2D
-var _grid_size := Config.DEFAULT_GRID_SIZE
+var _grid_size : int
 var _grid_color: Color
 
 # -------------------------------------------------------------------------------------------------
@@ -16,6 +16,7 @@ func _ready():
 	_camera = get_node(camera_path)
 	_camera.connect("zoom_changed", self, "_on_zoom_changed")
 	_camera.connect("position_changed", self, "_on_position_changed")
+	_grid_size = Settings.get_value(Settings.GENERAL_DEFAULT_GRID_SIZE, Config.DEFAULT_GRID_SIZE)
 	get_viewport().connect("size_changed", self, "_on_viewport_size_changed")
 
 # -------------------------------------------------------------------------------------------------
@@ -29,12 +30,17 @@ func _on_position_changed(pos: Vector2) -> void: update()
 func _on_viewport_size_changed() -> void: update()
 
 # -------------------------------------------------------------------------------------------------
+func set_grid_size(size: int) -> void:
+	_grid_size = size
+	update()
+
+# -------------------------------------------------------------------------------------------------
 func set_canvas_color(c: Color) -> void:
 	_grid_color = c * 1.25
 
 # -------------------------------------------------------------------------------------------------
 func set_grid_scale(size: float):
-	_grid_size = Config.DEFAULT_GRID_SIZE * size
+	_grid_size *= size
 	update()
 
 # -------------------------------------------------------------------------------------------------

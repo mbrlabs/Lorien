@@ -46,9 +46,11 @@ func add_project(filepath: String = "") -> Project:
 			return p
 	
 	var canvas_color: Color = Settings.get_value(Settings.GENERAL_DEFAULT_CANVAS_COLOR, Config.DEFAULT_CANVAS_COLOR)
+	var grid_size: int = Settings.get_value(Settings.GENERAL_DEFAULT_GRID_SIZE, Config.DEFAULT_GRID_SIZE)
 	
 	var project := Project.new()
 	project.meta_data[ProjectMetadata.CANVAS_COLOR] = canvas_color.to_html(false)
+	project.meta_data[ProjectMetadata.GRID_SIZE] = grid_size
 	project.id = _open_projects.size()
 	project.filepath = filepath
 	project.loaded = project.filepath.empty() # empty/unsaved/new projects are loaded by definition
