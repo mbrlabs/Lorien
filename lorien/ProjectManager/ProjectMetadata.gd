@@ -5,7 +5,6 @@ const CAMERA_ZOOM := "camera_zoom"
 const CAMERA_OFFSET_X := "camera_offset_x"
 const CAMERA_OFFSET_Y := "camera_offset_y"
 const CANVAS_COLOR := "canvas_color"
-const GRID_SIZE := "grid_size"
 
 # -------------------------------------------------------------------------------------------------
 func make_dict(canvas: InfiniteCanvas) -> Dictionary:
