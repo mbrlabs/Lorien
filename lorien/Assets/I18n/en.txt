@@ -65,6 +65,7 @@ SETTINGS_PRESSURE_SENSITIVITY   Pressure Sensitivity
 SETTINGS_BRUSH_SIZE             Default Brush Size
 SETTINGS_CANVAS_COLOR           Default Canvas Color
 SETTINGS_PROJECT_FOLDER         Default Project Folder
+SETTINGS_GRID_SIZE              Grid Size
 SETTINGS_LANGUAGE               Language
 SETTINGS_THEME                  Theme
 SETTINGS_UI_SCALE               UI Scale
