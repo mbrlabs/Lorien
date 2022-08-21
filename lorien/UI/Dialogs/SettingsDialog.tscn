@@ -13,7 +13,6 @@
 [sub_resource type="StyleBoxEmpty" id=3]
 
 [node name="SettingsDialog" type="WindowDialog"]
-visible = true
 margin_right = 520.0
 margin_bottom = 250.0
 rect_min_size = Vector2( 520, 270 )
@@ -46,7 +45,6 @@ __meta__ = {
 }
 
 [node name="General" type="Control" parent="MarginContainer/TabContainer"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = 27.0
@@ -140,30 +138,6 @@ flat = true
 color = Color( 0.12549, 0.129412, 0.141176, 1 )
 edit_alpha = false
 
-[node name="DefaultGridSize" type="HBoxContainer" parent="MarginContainer/TabContainer/General/VBoxContainer"]
-margin_top = 87.0
-margin_right = 496.0
-margin_bottom = 108.0
-size_flags_horizontal = 3
-
-[node name="Label" type="Label" parent="MarginContainer/TabContainer/General/VBoxContainer/DefaultGridSize"]
-margin_top = 2.0
-margin_right = 246.0
-margin_bottom = 19.0
-size_flags_horizontal = 3
-size_flags_vertical = 6
-text = "SETTINGS_DEFAULT_GRID_SIZE"
-
-[node name="DefaultGridSize" type="SpinBox" parent="MarginContainer/TabContainer/General/VBoxContainer/DefaultGridSize"]
-margin_left = 250.0
-margin_right = 496.0
-margin_bottom = 21.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-min_value = 1.0
-value = 12.0
-allow_greater = true
-
 [node name="DefaultSaveDir" type="HBoxContainer" parent="MarginContainer/TabContainer/General/VBoxContainer"]
 margin_top = 112.0
 margin_right = 496.0
@@ -231,6 +205,7 @@ text = "SETTINGS_RESTART_NOTICE"
 align = 1
 
 [node name="Appearance" type="Control" parent="MarginContainer/TabContainer"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = 27.0
@@ -511,7 +486,6 @@ dialog_autowrap = true
 [connection signal="value_changed" from="MarginContainer/TabContainer/General/VBoxContainer/PressureSensitivity/PressureSensitivity" to="." method="_on_PressureSensitivity_value_changed"]
 [connection signal="value_changed" from="MarginContainer/TabContainer/General/VBoxContainer/DefaultBrushSize/DefaultBrushSize" to="." method="_on_DefaultBrushSize_value_changed"]
 [connection signal="color_changed" from="MarginContainer/TabContainer/General/VBoxContainer/DefaultCanvasColor/DefaultCanvasColor" to="." method="_on_DefaultCanvasColor_color_changed"]
-[connection signal="value_changed" from="MarginContainer/TabContainer/General/VBoxContainer/DefaultGridSize/DefaultGridSize" to="." method="_on_DefaultGridSize_value_changed"]
 [connection signal="text_changed" from="MarginContainer/TabContainer/General/VBoxContainer/DefaultSaveDir/DefaultSaveDir" to="." method="_on_DefaultSaveDir_text_changed"]
 [connection signal="item_selected" from="MarginContainer/TabContainer/General/VBoxContainer/Language/OptionButton" to="." method="_on_OptionButton_item_selected"]
 [connection signal="item_selected" from="MarginContainer/TabContainer/Appearance/VBoxContainer/Theme/Theme" to="." method="_on_Theme_item_selected"]

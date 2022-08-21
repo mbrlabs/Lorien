@@ -16,7 +16,7 @@ func _ready():
 	_camera = get_node(camera_path)
 	_camera.connect("zoom_changed", self, "_on_zoom_changed")
 	_camera.connect("position_changed", self, "_on_position_changed")
-	_grid_size = Settings.get_value(Settings.GENERAL_DEFAULT_GRID_SIZE, Config.DEFAULT_GRID_SIZE)
+	_grid_size = Config.DEFAULT_GRID_SIZE
 	get_viewport().connect("size_changed", self, "_on_viewport_size_changed")
 
 # -------------------------------------------------------------------------------------------------

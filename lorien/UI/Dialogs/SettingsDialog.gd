@@ -23,7 +23,6 @@ onready var _tab_rendering: Control = $MarginContainer/TabContainer/Rendering
 onready var _pressure_sensitivity: SpinBox = $MarginContainer/TabContainer/General/VBoxContainer/PressureSensitivity/PressureSensitivity
 onready var _brush_size: SpinBox = $MarginContainer/TabContainer/General/VBoxContainer/DefaultBrushSize/DefaultBrushSize
 onready var _canvas_color: ColorPickerButton = $MarginContainer/TabContainer/General/VBoxContainer/DefaultCanvasColor/DefaultCanvasColor
-onready var _default_grid_size: SpinBox = $MarginContainer/TabContainer/General/VBoxContainer/DefaultGridSize/DefaultGridSize
 onready var _project_dir: LineEdit = $MarginContainer/TabContainer/General/VBoxContainer/DefaultSaveDir/DefaultSaveDir
 onready var _theme: OptionButton = $MarginContainer/TabContainer/Appearance/VBoxContainer/Theme/Theme
 onready var _aa_mode: OptionButton = $MarginContainer/TabContainer/Rendering/VBoxContainer/AntiAliasing/AntiAliasing
@@ -55,8 +54,7 @@ func _apply_language() -> void:
 func _set_values() -> void:
 	var brush_size = Settings.get_value(Settings.GENERAL_DEFAULT_BRUSH_SIZE, Config.DEFAULT_BRUSH_SIZE)
 	var canvas_color = Settings.get_value(Settings.GENERAL_DEFAULT_CANVAS_COLOR, Config.DEFAULT_CANVAS_COLOR)
-	var deafult_grid_size = Settings.get_value(Settings.GENERAL_DEFAULT_GRID_SIZE, Config.DEFAULT_GRID_SIZE)
-	var grid_size = Settings.get_value(Settings.GENERAL_DEFAULT_GRID_SIZE, Config.DEFAULT_GRID_SIZE)
+	var grid_size = Config.DEFAULT_GRID_SIZE
 	var project_dir = Settings.get_value(Settings.GENERAL_DEFAULT_PROJECT_DIR, "")
 	var theme = Settings.get_value(Settings.APPEARANCE_THEME, Types.UITheme.DARK)
 	var aa_mode = Settings.get_value(Settings.RENDERING_AA_MODE, Config.DEFAULT_AA_MODE)
@@ -87,7 +85,6 @@ func _set_values() -> void:
 	_pressure_sensitivity.value = pressure_sensitivity
 	_brush_size.value = brush_size
 	_canvas_color.color = canvas_color
-	_default_grid_size.value = deafult_grid_size
 	_grid_size.value = grid_size
 	_project_dir.text = project_dir
 	_foreground_fps.value = foreground_fps
@@ -132,9 +129,6 @@ func _on_DefaultBrushSize_value_changed(value: int) -> void:
 func _on_DefaultCanvasColor_color_changed(color: Color) -> void:
 	Settings.set_value(Settings.GENERAL_DEFAULT_CANVAS_COLOR, color)
 	
-# -------------------------------------------------------------------------------------------------
-func _on_DefaultGridSize_value_changed(value: int) -> void:
-	Settings.set_value(Settings.GENERAL_DEFAULT_GRID_SIZE, int(value))
 
 # -------------------------------------------------------------------------------------------------
 func _on_GridSize_value_changed(value: int) -> void:
