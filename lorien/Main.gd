@@ -533,6 +533,7 @@ func _on_scale_changed() -> void:
 	match auto_scale:
 		Types.UIScale.AUTO:   scale = _get_platform_ui_scale()
 		Types.UIScale.CUSTOM: scale = Settings.get_value(Settings.APPEARANCE_UI_SCALE, Config.DEFAULT_UI_SCALE)
+	scale = clamp(scale, _settings_dialog.get_min_ui_scale(), _settings_dialog.get_max_ui_scale())
 
 	_canvas.set_canvas_scale(scale)
 	get_tree().set_screen_stretch(SceneTree.STRETCH_MODE_DISABLED, SceneTree.STRETCH_ASPECT_IGNORE, Vector2(0,0), scale)
@@ -545,18 +546,5 @@ func _get_platform_ui_scale() -> float:
 	match platform:
 		"OSX": scale = OS.get_screen_scale()
 		"Windows": scale = OS.get_screen_dpi() / 96.0
-		"X11": scale = _get_general_scale()
+		_: scale = Config.DEFAULT_UI_SCALE
 	return scale
-
-# --------------------------------------------------------------------------------------------------
-func _get_general_scale() -> float:
-	# Copied from Godot EditorSettings::get_auto_display_scale()
-	# https://github.com/godotengine/godot/blob/3.x/editor/editor_settings.cpp
-	var smallest_dimension: int = min(OS.get_screen_size().x, OS.get_screen_size().y)
-	if OS.get_screen_dpi() >= 192 && smallest_dimension >= 1400:
-		return 2.0
-	elif smallest_dimension >= 1700:
-		return 1.5
-	elif smallest_dimension <= 800:
-		return 0.75
-	return 1.0
