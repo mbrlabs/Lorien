@@ -546,5 +546,5 @@ func _get_platform_ui_scale() -> float:
 	match platform:
 		"OSX":     scale = OS.get_screen_scale()
 		"Windows": scale = OS.get_screen_dpi() / 96.0
-		_:         scale = max(stepify(OS.get_screen_size().x / ProjectSettings.get_setting("display/window/size/width"), 0.1), 1)
+		_:         scale = max(stepify(OS.get_screen_size().x / ProjectSettings.get_setting("display/window/size/width"), 0.1), Config.DEFAULT_UI_SCALE)
 	return scale
