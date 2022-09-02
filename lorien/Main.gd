@@ -546,5 +546,16 @@ func _get_platform_ui_scale() -> float:
 	match platform:
 		"OSX":     scale = OS.get_screen_scale()
 		"Windows": scale = OS.get_screen_dpi() / 96.0
-		_:         scale = max(stepify(OS.get_screen_size().x / ProjectSettings.get_setting("display/window/size/width"), 0.1), Config.DEFAULT_UI_SCALE)
+		_:         scale = _get_general_ui_scale()
 	return scale
+
+# --------------------------------------------------------------------------------------------------
+func _get_general_ui_scale() -> float:
+	# Adapted from Godot EditorSettings::get_auto_display_scale()
+	# https://github.com/godotengine/godot/blob/3.x/editor/editor_settings.cpp
+	var smallest_dimension: int = min(OS.get_screen_size().x, OS.get_screen_size().y)
+	if OS.get_screen_dpi() >= 192 && smallest_dimension >= 1400:
+		return Config.DEFAULT_UI_SCALE * 2
+	elif smallest_dimension >= 1700:
+		return Config.DEFAULT_UI_SCALE * 1.5
+	return Config.DEFAULT_UI_SCALE
