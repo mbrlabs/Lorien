@@ -113,9 +113,18 @@ func _set_languages(current_locale: String) -> void:
 
 #--------------------------------------------------------------------------------------------------
 func _set_UIScale_range():
-	var screen_scale: float = OS.get_screen_size().x / ProjectSettings.get_setting("display/window/size/width")
-	_ui_scale.min_value = screen_scale / 2
-	_ui_scale.max_value = screen_scale + 1.5
+	var screen_scale_max: float = (OS.get_screen_size().x * OS.get_screen_size().y) / (ProjectSettings.get_setting("display/window/size/width") * ProjectSettings.get_setting("display/window/size/height"))
+	var screen_scale_min: float = OS.get_screen_size().x / ProjectSettings.get_setting("display/window/size/width")
+	_ui_scale.min_value = max(screen_scale_min / 2, 0.5)
+	_ui_scale.max_value = screen_scale_max + 1.5
+
+#--------------------------------------------------------------------------------------------------
+func get_max_ui_scale() -> float:
+	return _ui_scale.max_value
+
+#--------------------------------------------------------------------------------------------------
+func get_min_ui_scale() -> float:
+	return _ui_scale.min_value
 
 # -------------------------------------------------------------------------------------------------
 func _on_DefaultBrushSize_value_changed(value: int) -> void:

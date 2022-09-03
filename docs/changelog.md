@@ -16,6 +16,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Changed
 - Changing the application language does not require a restart now
 - Completed Spanish translation
+- Improved UI auto scaling, especially for Windows and OSX
 
 ## [0.5.0] - 2022-06-12
 
