@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>com.github.mbrlabs.Lorien</id>
+
+  <name>Lorien</name>
+  <summary>Infinite canvas drawing/whiteboarding app. Made with Godot.</summary>
+  <summary xml:lang="de_DE">Unbegrenzte Zeichen- und Whiteboard-App. Erstellt mit Godot.</summary>
+
+  <url type="homepage">https://github.com/mbrlabs/Lorien</url>
+  <url type="bugtracker">https://github.com/mbrlabs/Lorien/issues</url>
+  <url type="help">https://github.com/mbrlabs/Lorien/blob/main/docs/manuals</url>
+  <url type="donation">https://ko-fi.com/mbrlabs</url>
+  <url type="translate">https://github.com/mbrlabs/Lorien/blob/main/docs/i18n.md</url>
+
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>MIT</project_license>
+  <content_rating type="oars-1.1"/>
+
+  <launchable type="desktop-id">com.github.mbrlabs.Lorien.desktop</launchable>
+
+  <description>
+    <p>Lorien is an infinite canvas drawing/note-taking app that is focused on performance, small savefiles and simplicity.</p>
+    <p>It's not based on bitmap images like Krita, Gimp or Photoshop; it rather saves brush strokes as a collection of points and renders them at runtime (kind of like SVG).</p>
+    <p>It's primarily designed to be used as a digital notebook and as brainstorming tool.</p>
+    <p>While it can totally be used to make small sketches and diagrams, it is not meant to replace traditional art programs that operate on bitmap images.</p>
+    <p>It is entirely written in the Godot Game Engine.</p>
+  </description>
+
+  <screenshots>
+    <screenshot type="default">
+      <image>https://raw.githubusercontent.com/mbrlabs/Lorien/main/images/lorien_demo.png</image>
+    </screenshot>
+  </screenshots>
+
+  <releases>
+    <release version="0.5.0" date="2022-06-12"/>
+  </releases>
+</component>
