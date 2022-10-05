@@ -2,8 +2,8 @@
 Type=Application
 Name=Lorien
 GenericName=Note Taking
-Comment=Infinite canvas drawing/whiteboarding app. Made with Godot.
-Comment[de]=Unbegrenzte Zeichen- und Whiteboard-App. Erstellt mit Godot.
+Comment=Infinite canvas drawing/whiteboarding app
+Comment[de]=Freie Zeichen- und Whiteboard-App
 Icon=com.github.mbrlabs.Lorien
 Exec=Lorien %U
 Terminal=false

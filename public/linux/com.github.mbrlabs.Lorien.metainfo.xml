@@ -3,8 +3,8 @@
   <id>com.github.mbrlabs.Lorien</id>
 
   <name>Lorien</name>
-  <summary>Infinite canvas drawing/whiteboarding app. Made with Godot.</summary>
-  <summary xml:lang="de_DE">Unbegrenzte Zeichen- und Whiteboard-App. Erstellt mit Godot.</summary>
+  <summary>Infinite canvas drawing/whiteboarding app</summary>
+  <summary xml:lang="de_DE">Freie Zeichen- und Whiteboard-App</summary>
 
   <url type="homepage">https://github.com/mbrlabs/Lorien</url>
   <url type="bugtracker">https://github.com/mbrlabs/Lorien/issues</url>
