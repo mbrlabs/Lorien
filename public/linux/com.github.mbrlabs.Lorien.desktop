@@ -1,0 +1,13 @@
+[Desktop Entry]
+Type=Application
+Name=Lorien
+GenericName=Note Taking
+Comment=Infinite canvas drawing/whiteboarding app
+Comment[de]=Freie Zeichen- und Whiteboard-App
+Icon=com.github.mbrlabs.Lorien
+Exec=Lorien %U
+Terminal=false
+MimeType=application/lorien
+Categories=Graphics;
+Keywords=Drawing;Handwriting;Whiteboard
+StartupWMClass=Lorien
