@@ -131,7 +131,7 @@ ALERT_DELETING_BUILTIN_PALETTE      Non è possibile eliminare le tavolozze inte
 SAVE            Salva
 DISCARD         Abbandona
 CANCEL          Cancella
-DELETE          Elimina 			# TODO
+DELETE          Elimina
 
 #----------------------------------------------------------------------------
 # Action names
@@ -157,7 +157,7 @@ ACTION_copy_strokes            Copia i tratti
 ACTION_paste_strokes           Incolla i tratti
 ACTION_duplicate_strokes       Duplica i tratti
 ACTION_toggle_distraction_free_mode  Abilita la modalità senza distrazioni
-ACTION_toggle_player           #TODO think about how to transale this
+ACTION_toggle_player          EFF TWELVE
 ACTION_toggle_fullscreen      Schermo intero
 ACTION_canvas_zoom_in         Aumenta lo zoom
 ACTION_canvas_zoom_out        Diminuisci lo zoom
@@ -179,6 +179,6 @@ KEYBINDING_DIALOG_BIND_ACTION      Scorciatoia: {action}
 #Rebin already bound key dialog 
 KEYBINDING_DIALOG_REBIND_WINDOW_NAME Riassegnare la scorciatoia?
 KEYBINDING_DIALOG_REBIND_MESSAGE 'event' è già assegnata to {action}.\n\nSei sicuro di volerla riassegnare?
-  
+
 
 
