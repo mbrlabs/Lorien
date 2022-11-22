@@ -132,3 +132,53 @@ SAVE            Salva
 DISCARD         Abbandona
 CANCEL          Cancella
 DELETE          Elimina 			# TODO
+
+#----------------------------------------------------------------------------
+# Action names
+#----------------------------------------------------------------------------
+
+ACTION_shortcut_save_project  Salva il progetto
+ACTION_shortcut_new_project   Nuovo progetto
+ACTION_shortcut_open_project  Apri il progetto
+ACTION_shortcut_undo          Torna indietro
+ACTION_shortcut_redo          Ripeti azione
+ACTION_shortcut_brush_tool    Strumento Pennello
+ACTION_shortcut_line_tool     Strumento Linea 
+ACTION_shortcut_eraser_tool   Strumento Gomma
+ACTION_shortcut_select_tool   Seleziona Strumento
+ACTION_shortcut_move_tool     Muovi elemnti 
+ACTION_shortcut_rectangle_tool Strumento Rettangolo 
+ACTION_shortcut_circle_tool   Strumento Cerchio
+ACTION_shortcut_export_project Esporta progetto
+ACTION_deselect_all_strokes   Deseleziona tutti i tratti
+ACTION_center_canvas_to_mouse Centra lo spazio di lavoro in base al cursore
+ACTION_delete_selected_strokes Elimina i tratti selezionati
+ACTION_copy_strokes            Copia i tratti
+ACTION_paste_strokes           Incolla i tratti
+ACTION_duplicate_strokes       Duplica i tratti
+ACTION_toggle_distraction_free_mode  Abilita la modalità senza distrazioni
+ACTION_toggle_player           #TODO think about how to transale this
+ACTION_toggle_fullscreen      Schermo intero
+ACTION_canvas_zoom_in         Aumenta lo zoom
+ACTION_canvas_zoom_out        Diminuisci lo zoom
+ACTION_canvas_pan_up          Aumenta la panoramica
+ACTION_canvas_pan_down        Diminuisci la panoramica
+ACTION_canvas_pan_right       Mostra la panoramica destra
+ACTION_canvas_pan_left        Mostra la panoramica sinistra
+
+
+#---------------------------------------------------------------------------
+# Keybindings dialog messages
+#---------------------------------------------------------------------------
+
+#Bind key dialog
+
+KEYBINDING_DIALOG_BIND_WINDOW_NAME Assegna scorciatoia
+KEYBINDING_DIALOG_BIND_ACTION      Scorciatoia: {action}
+
+#Rebin already bound key dialog 
+KEYBINDING_DIALOG_REBIND_WINDOW_NAME Riassegnare la scorciatoia?
+KEYBINDING_DIALOG_REBIND_MESSAGE 'event' è già assegnata to {action}.\n\nSei sicuro di volerla riassegnare?
+  
+
+
