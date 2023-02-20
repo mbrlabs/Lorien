@@ -1,0 +1,3 @@
+[submodule "lorien/InfiniteCanvas/GDClip"]
+	path = lorien/InfiniteCanvas/GDClip
+	url = https://github.com/hansemro/GDClip.git

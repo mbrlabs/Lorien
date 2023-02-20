@@ -15,6 +15,7 @@
 [ext_resource path="res://InfiniteCanvas/Tools/CircleTool.gd" type="Script" id=13]
 [ext_resource path="res://InfiniteCanvas/Tools/EraserTool.gd" type="Script" id=14]
 [ext_resource path="res://InfiniteCanvas/DebugDraw.gd" type="Script" id=15]
+[ext_resource path="res://InfiniteCanvas/gdclip.gdns" type="Script" id=16]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 10 )
@@ -53,6 +54,9 @@ pressure_curve = ExtResource( 3 )
 script = ExtResource( 7 )
 cursor_path = NodePath("../Viewport/SelectionCursor")
 selection_rectangle_path = NodePath("../Viewport/SelectionRectangle")
+
+[node name="GDClip" type="Node" parent="."]
+script = ExtResource( 16 )
 
 [node name="Viewport" type="Viewport" parent="."]
 size = Vector2( 1920, 1080 )

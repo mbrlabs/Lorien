@@ -3,6 +3,7 @@ class_name InfiniteCanvas
 
 # -------------------------------------------------------------------------------------------------
 const BRUSH_STROKE = preload("res://BrushStroke/BrushStroke.tscn")
+const IMAGE_STROKE = preload("res://BrushStroke/ImageStroke.tscn")
 const PLAYER = preload("res://Misc/Player/Player.tscn")
 
 # -------------------------------------------------------------------------------------------------
@@ -23,7 +24,7 @@ var _is_enabled := false
 var _background_color: Color
 var _brush_color := Config.DEFAULT_BRUSH_COLOR
 var _brush_size := Config.DEFAULT_BRUSH_SIZE setget set_brush_size
-var _current_stroke: BrushStroke
+var _current_stroke
 var _current_project: Project
 var _use_optimizer := true
 var _player: Player = null
@@ -31,6 +32,21 @@ var _player_enabled := false
 var _colliders_enabled := false
 var _optimizer: BrushStrokeOptimizer
 var _scale := Config.DEFAULT_UI_SCALE
+
+# -------------------------------------------------------------------------------------------------
+enum GDCLIP_STATE {
+	IDLE,
+	SIZE_LOAD,
+	SIZE_READY,
+	IMAGE_LOAD,
+	IMAGE_READY
+}
+
+onready var _gdclip: Node = $GDClip
+onready var _gdclip_thread: Thread = Thread.new()
+var _gdclip_state = GDCLIP_STATE.IDLE
+var _image_size: PoolIntArray
+var _image_pos: Vector2
 
 # -------------------------------------------------------------------------------------------------
 func _ready():
@@ -76,6 +92,68 @@ func _process_event(event: InputEvent) -> void:
 	if ! get_tree().is_input_handled():
 		if _active_tool.enabled:
 			_active_tool.tool_event(event)
+
+	if Input.is_action_just_pressed("paste_strokes"):
+		if _active_tool != _selection_tool:
+			paste_image()
+
+	if _gdclip_state == GDCLIP_STATE.SIZE_LOAD:
+		if _gdclip_thread.is_active() and not _gdclip_thread.is_alive():
+			_gdclip_state = GDCLIP_STATE.SIZE_READY
+	elif _gdclip_state == GDCLIP_STATE.SIZE_READY:
+		_image_size = _gdclip_thread.wait_to_finish()
+		_gdclip_state = GDCLIP_STATE.IMAGE_LOAD
+		_gdclip_thread.start(_gdclip, "get_image_as_pbarray")
+	elif _gdclip_state == GDCLIP_STATE.IMAGE_LOAD:
+		if _gdclip_thread.is_active() and not _gdclip_thread.is_alive():
+			_gdclip_state = GDCLIP_STATE.IMAGE_READY
+	elif _gdclip_state == GDCLIP_STATE.IMAGE_READY:
+		var sprite = IMAGE_STROKE.instance()
+		var texture = ImageTexture.new()
+		var image = Image.new()
+		_gdclip_state = GDCLIP_STATE.IDLE
+		var image_byte_array = _gdclip_thread.wait_to_finish()
+		image.create_from_data(_image_size[0], _image_size[1], false, Image.FORMAT_RGBA8, image_byte_array)
+		print("Size from image: %s" % str(image.get_size()))
+		texture.create_from_image(image)
+		sprite.set_texture(texture)
+		sprite.position = _image_pos
+		_add_undoredo_action_for_image_paste(sprite)
+
+# -------------------------------------------------------------------------------------------------
+func paste_image() -> void:
+	assert(_gdclip)
+	if _gdclip_state == GDCLIP_STATE.IDLE:
+		print("GDClip Paste Action")
+		print("GDClip Library Version: " + _gdclip.get_version())
+		if _gdclip.has_image():
+			_image_pos = _brush_tool._cursor.global_position
+			_gdclip_state = GDCLIP_STATE.SIZE_LOAD
+			_gdclip_thread.start(_gdclip, "get_image_size")
+		else:
+			print("No image in clipboard")
+	else:
+		print("There is already an active paste process")
+
+# -------------------------------------------------------------------------------------------------
+func add_image(image_sprite: Sprite) -> void:
+	_strokes_parent.add_child(image_sprite)
+	_current_project.strokes.append(image_sprite)
+
+# -------------------------------------------------------------------------------------------------
+func delete_image(image_sprite: Sprite) -> void:
+	var index = _current_project.strokes.find(image_sprite)
+	_current_project.strokes.remove(index)
+	_strokes_parent.remove_child(image_sprite)
+
+# ------------------------------------------------------------------------------------------------
+func _add_undoredo_action_for_image_paste(image_sprite: Sprite) -> void:
+	var project: Project = ProjectManager.get_active_project()
+	project.undo_redo.create_action("Paste Image")
+	project.undo_redo.add_do_method(self, "add_image", image_sprite)
+	project.undo_redo.add_undo_method(self, "delete_image", image_sprite)
+	project.undo_redo.commit_action()
+	project.dirty = true
 
 # -------------------------------------------------------------------------------------------------
 func center_to_mouse() -> void:
@@ -336,7 +414,7 @@ func _delete_selected_strokes() -> void:
 		_current_project.dirty = true
 
 # -------------------------------------------------------------------------------------------------
-func _do_delete_stroke(stroke: BrushStroke) -> void:
+func _do_delete_stroke(stroke) -> void:
 	var index := _current_project.strokes.find(stroke)
 	_current_project.strokes.remove(index)
 	_strokes_parent.remove_child(stroke)
@@ -346,7 +424,7 @@ func _do_delete_stroke(stroke: BrushStroke) -> void:
 # FIXME: this adds strokes at the back and does not preserve stroke order; not sure how to do that except saving before
 # and after versions of the stroke arrays which is a nogo.
 # -------------------------------------------------------------------------------------------------
-func _undo_delete_stroke(stroke: BrushStroke) -> void:
+func _undo_delete_stroke(stroke) -> void:
 	_current_project.strokes.append(stroke)
 	_strokes_parent.add_child(stroke)
 	info.point_count += stroke.points.size()

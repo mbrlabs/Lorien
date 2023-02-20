@@ -10,6 +10,7 @@ env:
   GODOT_VERSION: 3.5
   EXPORT_NAME: Lorien
   LORIEN_VERSION: v0.6.0-dev
+  GDCLIP_VERSION: v0.2
 
 jobs:
   windows-export:
@@ -25,6 +26,10 @@ jobs:
           mkdir -v -p build/${EXPORT_NAME}_${LORIEN_VERSION}_Windows
           mkdir -v -p ~/.local/share/godot/templates
           mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable ~/.local/share/godot/templates/${GODOT_VERSION}.stable
+          mkdir -p lorien/InfiniteCanvas/GDClip/bin
+          cd lorien/InfiniteCanvas/GDClip/bin
+          wget https://github.com/hansemro/GDClip/releases/download/${GDCLIP_VERSION}/libgdclip-windows-x86_64-release.zip
+          unzip libgdclip-windows-x86_64-release.zip
       - name: Windows Build
         run: | 
           cd lorien
@@ -49,6 +54,10 @@ jobs:
           mkdir -v -p build/${EXPORT_NAME}_${LORIEN_VERSION}_Linux
           mkdir -v -p ~/.local/share/godot/templates
           mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable ~/.local/share/godot/templates/${GODOT_VERSION}.stable
+          mkdir -p lorien/InfiniteCanvas/GDClip/bin
+          cd lorien/InfiniteCanvas/GDClip/bin
+          wget https://github.com/hansemro/GDClip/releases/download/${GDCLIP_VERSION}/libgdclip-linux-x86_64-release.zip
+          unzip libgdclip-linux-x86_64-release.zip
       - name: Linux Build
         run: | 
           cd lorien
@@ -73,7 +82,11 @@ jobs:
           mkdir -v -p build/${EXPORT_NAME}_${LORIEN_VERSION}_Mac
           mkdir -v -p ~/.local/share/godot/templates
           mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable ~/.local/share/godot/templates/${GODOT_VERSION}.stable
-      - name: Windows Build
+          mkdir -p lorien/InfiniteCanvas/GDClip/bin
+          cd lorien/InfiniteCanvas/GDClip/bin
+          wget https://github.com/hansemro/GDClip/releases/download/${GDCLIP_VERSION}/libgdclip-macos-x86_64-release.zip
+          unzip libgdclip-macos-x86_64-release.zip
+      - name: Mac Build
         run: | 
           cd lorien
           godot -v --export "Mac OSX" ../build/${EXPORT_NAME}_${LORIEN_VERSION}_Mac/${EXPORT_NAME}_${LORIEN_VERSION}.zip

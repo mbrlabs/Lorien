@@ -3,6 +3,7 @@ extends CanvasTool
 
 # -------------------------------------------------------------------------------------------------
 const BRUSH_STROKE = preload("res://BrushStroke/BrushStroke.tscn")
+const IMAGE_STROKE = preload("res://BrushStroke/ImageStroke.tscn")
 
 const MAX_FLOAT := 2147483646.0
 const MIN_FLOAT := -2147483646.0
@@ -124,11 +125,14 @@ func compute_selection(start_pos: Vector2, end_pos: Vector2) -> void:
 	for stroke in _canvas.get_strokes_in_camera_frustrum():
 		var bounding_box: Rect2 = _bounding_box_cache[stroke]
 		if selection_rect.intersects(bounding_box):
-			for point in stroke.points:
-				var abs_point: Vector2 = stroke.position + point
-				if selection_rect.has_point(abs_point):
-					_set_stroke_selected(stroke)
-					break
+			if "BrushStroke" in stroke.name:
+				for point in stroke.points:
+					var abs_point: Vector2 = stroke.position + point
+					if selection_rect.has_point(abs_point):
+						_set_stroke_selected(stroke)
+						break
+			elif "ImageStroke" in stroke.name:
+				_set_stroke_selected(stroke)
 	_canvas.info.selected_lines = get_selected_strokes().size()
 
 # ------------------------------------------------------------------------------------------------
@@ -147,7 +151,7 @@ func _paste_strokes(strokes: Array) -> void:
 	# Duplicate the strokes 
 	var duplicates := []
 	for stroke in strokes:
-		var dup := _duplicate_stroke(stroke, offset)
+		var dup = _duplicate_stroke(stroke, offset)
 		dup.add_to_group(GROUP_SELECTED_STROKES)
 		dup.modulate = Config.DEFAULT_SELECTION_COLOR
 		duplicates.append(dup)
@@ -156,20 +160,29 @@ func _paste_strokes(strokes: Array) -> void:
 	print("Pasted %d strokes (offset: %s)" % [strokes.size(), offset])
 
 # ------------------------------------------------------------------------------------------------
-func _duplicate_stroke(stroke: BrushStroke, offset: Vector2) -> BrushStroke:	
-	var dup: BrushStroke = BRUSH_STROKE.instance()
-	dup.global_position = stroke.global_position
-	dup.size = stroke.size
-	dup.color = stroke.color
-	dup.pressures = stroke.pressures.duplicate()
-	for point in stroke.points:
-		dup.points.append(point + offset)
-	return dup
+func _duplicate_stroke(stroke, offset: Vector2):
+	if "BrushStroke" in stroke.name:
+		var dup = BRUSH_STROKE.instance()
+		dup.global_position = stroke.global_position
+		dup.size = stroke.size
+		dup.color = stroke.color
+		dup.pressures = stroke.pressures.duplicate()
+		for point in stroke.points:
+			dup.points.append(point + offset)
+		return dup
+	elif "ImageStroke" in stroke.name:
+		var dup = IMAGE_STROKE.instance()
+		dup.global_position = stroke.global_position + offset
+		dup.texture = stroke.texture
+		dup.top_left_pos = stroke.top_left_pos
+		dup.bottom_right_pos = stroke.bottom_right_pos
+		return dup
 
 # ------------------------------------------------------------------------------------------------
 func _modify_strokes_colors(strokes: Array, color: Color) -> void:	
 	for stroke in strokes:
-		stroke.color = color
+		if "BrushStroke" in stroke.name:
+			stroke.color = color
 
 # ------------------------------------------------------------------------------------------------
 func _build_bounding_boxes() -> void:
@@ -178,7 +191,7 @@ func _build_bounding_boxes() -> void:
 	#$"../Viewport/DebugDraw".set_bounding_boxes(_bounding_box_cache.values())
 	
 # ------------------------------------------------------------------------------------------------
-func _set_stroke_selected(stroke: BrushStroke) -> void:
+func _set_stroke_selected(stroke) -> void:
 	if stroke.is_in_group(GROUP_SELECTED_STROKES):
 		stroke.modulate = Color.white
 		stroke.add_to_group(GROUP_MARKED_FOR_DESELECTION)
