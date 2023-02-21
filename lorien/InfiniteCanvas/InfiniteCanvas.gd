@@ -13,6 +13,7 @@ onready var _circle_tool: CircleTool = $CircleTool
 onready var _eraser_tool: EraserTool = $EraserTool
 onready var _selection_tool: SelectionTool = $SelectionTool
 onready var _active_tool: CanvasTool = _brush_tool
+onready var _active_tool_type: int = Types.Tool.BRUSH
 onready var _strokes_parent: Node2D = $Viewport/Strokes
 onready var _camera: Camera2D = $Viewport/Camera2D
 onready var _viewport: Viewport = $Viewport
@@ -50,6 +51,8 @@ func _ready():
 	_camera.connect("position_changed", self, "_on_camera_moved")
 	_viewport.size = OS.window_size
 
+	info.pen_inverted = false
+
 # -------------------------------------------------------------------------------------------------
 func _unhandled_key_input(event: InputEventKey) -> void:
 	_process_event(event)
@@ -62,6 +65,16 @@ func _gui_input(event: InputEvent) -> void:
 func _process_event(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		info.current_pressure = event.pressure
+		if info.pen_inverted != event.pen_inverted:
+			info.pen_inverted = event.pen_inverted
+			if info.pen_inverted:
+				var tool_type := _active_tool_type
+				use_tool(Types.Tool.ERASER)
+				# keep active tool type
+				_active_tool_type = tool_type
+			else:
+				# restore tool from type
+				use_tool(_active_tool_type)
 
 	if event.is_action("deselect_all_strokes"):
 		if _active_tool == _selection_tool:
@@ -112,8 +125,8 @@ func use_tool(tool_type: int) -> void:
 		prev_tool.enabled = false
 		prev_tool.reset()
 	_active_tool.enabled = prev_status
+	_active_tool_type = tool_type
 	_active_tool.get_cursor()._on_zoom_changed(_camera.zoom.x)
-
 
 # -------------------------------------------------------------------------------------------------
 func set_background_color(color: Color) -> void:
