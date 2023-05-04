@@ -24,12 +24,12 @@ func tool_event(event: InputEvent) -> void:
 		if performing_stroke:
 			_cursor.set_pressure(event.pressure)
 
-	if event is InputEventMouseButton:
+	elif event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT:
 			if event.pressed:
 				start_stroke()
 				_first_point = true
-			elif !event.pressed && performing_stroke:
+			elif performing_stroke:
 				end_stroke()
 
 # -------------------------------------------------------------------------------------------------
