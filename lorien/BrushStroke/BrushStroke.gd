@@ -10,6 +10,7 @@ const MAX_PRESSURE_VALUE 	:= 255
 const MIN_PRESSURE_VALUE 	:= 30
 const MAX_PRESSURE_DIFF 	:= 20
 const GROUP_ONSCREEN 		:= "onscreen_stroke"
+const META_OFFSET := "offset"
 
 const MAX_VECTOR2 := Vector2(2147483647, 2147483647)
 const MIN_VECTOR2 := -MAX_VECTOR2
@@ -23,6 +24,8 @@ var points: Array # Array<Vector2>
 var pressures: Array # Array<float>
 var top_left_pos: Vector2
 var bottom_right_pos: Vector2
+var _box_size : Vector2
+var layer: int
 
 # ------------------------------------------------------------------------------------------------
 func _ready():
@@ -150,7 +153,20 @@ func refresh() -> void:
 	_line2d.width_curve.bake()
 	top_left_pos = top_left
 	bottom_right_pos = bottom_right
+	_box_size = Vector2(bottom_right.x-top_left.x,bottom_right.y-top_left.y)
 	_visibility_notifier.rect = Utils.calculate_rect(top_left, bottom_right)
+
+# -------------------------------------------------------------------------------------------------
+func offset(pos:Vector2):
+	set_meta(META_OFFSET, pos)
+
+# -------------------------------------------------------------------------------------------------
+func move(pos:Vector2):
+	global_position = get_meta(META_OFFSET) + pos
+
+# -------------------------------------------------------------------------------------------------
+func box() -> Rect2 :
+	return Rect2(global_position.x+top_left_pos.x,global_position.y+top_left_pos.y,_box_size.x,_box_size.y)
 
 # -------------------------------------------------------------------------------------------------
 func set_color(c: Color) -> void:

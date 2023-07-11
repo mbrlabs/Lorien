@@ -6,7 +6,6 @@ const BRUSH_STROKE = preload("res://BrushStroke/BrushStroke.tscn")
 
 const MAX_FLOAT := 2147483646.0
 const MIN_FLOAT := -2147483646.0
-const META_OFFSET := "offset"
 const GROUP_SELECTED_STROKES := "selected_strokes" # selected strokes
 const GROUP_STROKES_IN_SELECTION_RECTANGLE := "strokes_in_selection_rectangle" # strokes that are in selection rectangle but not commit (i.e. the user is still selecting)
 const GROUP_MARKED_FOR_DESELECTION := "strokes_marked_for_deselection" # strokes that need to be deslected once LMB is released
@@ -33,6 +32,7 @@ var _bounding_box_cache = {} # BrushStroke -> Rect2
 # ------------------------------------------------------------------------------------------------
 func _ready():
 	_selection_rectangle = get_node(selection_rectangle_path)
+	_cursor.mode = SelectionCursor.Mode.SELECT
 
 # ------------------------------------------------------------------------------------------------
 func tool_event(event: InputEvent) -> void:
@@ -69,11 +69,16 @@ func tool_event(event: InputEvent) -> void:
 					_multi_selecting = false
 					_build_bounding_boxes()
 				else:
-					_state = State.MOVING
-					_mouse_moved_during_pressed = false
-					_offset_selected_strokes(_cursor.global_position)
-					for s in get_selected_strokes():
-						_stroke_positions_before_move[s] = s.global_position
+					if is_in_selection_box(event.global_position) :
+						_state = State.MOVING
+						_mouse_moved_during_pressed = false
+						_offset_selected_strokes(_cursor.global_position)
+						for s in get_selected_strokes():
+							_stroke_positions_before_move[s] = s.global_position
+					else:
+						_state = State.NONE
+						deselect_all_strokes()
+
 			# LMB up - stop selection or movement
 			else:
 				if _state == State.SELECTING:
@@ -130,6 +135,15 @@ func compute_selection(start_pos: Vector2, end_pos: Vector2) -> void:
 					_set_stroke_selected(stroke)
 					break
 	_canvas.info.selected_lines = get_selected_strokes().size()
+	
+# ------------------------------------------------------------------------------------------------
+func is_in_selection_box(pos: Vector2) -> bool:
+	var box = Rect2(pos.x,pos.y,1,1)
+	for stroke in get_selected_strokes():
+		var boxed = stroke.box()
+		if boxed.has_point(pos) :
+			return true
+	return false
 
 # ------------------------------------------------------------------------------------------------
 func _paste_strokes(strokes: Array) -> void:
@@ -199,12 +213,12 @@ func _add_undoredo_action_for_moved_strokes() -> void:
 # -------------------------------------------------------------------------------------------------
 func _offset_selected_strokes(offset: Vector2) -> void:
 	for stroke in get_selected_strokes():
-		stroke.set_meta(META_OFFSET, stroke.position - offset)
+		stroke.offset(stroke.position - offset)
 
 # -------------------------------------------------------------------------------------------------
 func _move_selected_strokes() -> void:
 	for stroke in get_selected_strokes():
-		stroke.global_position = stroke.get_meta(META_OFFSET) + _cursor.global_position
+		stroke.move(_cursor.global_position)
 
 # ------------------------------------------------------------------------------------------------
 func _commit_strokes_under_selection_rectangle() -> void:
