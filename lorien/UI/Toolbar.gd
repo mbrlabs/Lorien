@@ -36,6 +36,7 @@ onready var _background_color_picker_popup: Popup = get_node(background_color_pi
 onready var _grid_button: TextureButton = $Console/Right/GridButton
 onready var _fullscreen_btn: TextureButton = $Console/Right/FullscreenButton
 onready var _tool_btn_brush: TextureButton = $Console/Left/BrushToolButton
+onready var _tool_btn_highlighter: TextureButton = $Console/Left/HighlighterToolButton
 onready var _tool_btn_rectangle: TextureButton = $Console/Left/RectangleToolButton
 onready var _tool_btn_circle: TextureButton = $Console/Left/CircleToolButton
 onready var _tool_btn_line: TextureButton = $Console/Left/LineToolButton
@@ -65,6 +66,7 @@ func enable_tool(tool_type: int) -> void:
 	var btn: TextureButton
 	match tool_type:
 		Types.Tool.BRUSH: btn = _tool_btn_brush
+		Types.Tool.HIGHLIGHTER: btn = _tool_btn_highlighter		
 		Types.Tool.LINE: btn = _tool_btn_line
 		Types.Tool.ERASER: btn = _tool_btn_eraser
 		Types.Tool.SELECT: btn = _tool_btn_selection
@@ -131,6 +133,12 @@ func _on_BrushSizeSlider_value_changed(value: float):
 func _on_BrushToolButton_pressed():
 	_change_active_tool_button(_tool_btn_brush)
 	emit_signal("tool_changed", Types.Tool.BRUSH)
+
+# -------------------------------------------------------------------------------------------------
+func _on_HighlighterToolButton_pressed():
+	_change_active_tool_button(_tool_btn_highlighter)
+	emit_signal("tool_changed", Types.Tool.HIGHLIGHTER)
+
 
 # -------------------------------------------------------------------------------------------------
 func _on_RectangleToolButton_pressed() -> void:

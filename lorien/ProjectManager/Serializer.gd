@@ -9,7 +9,7 @@ const BRUSH_STROKE = preload("res://BrushStroke/BrushStroke.tscn")
 const COMPRESSION_METHOD = File.COMPRESSION_DEFLATE
 const POINT_ELEM_SIZE := 3
 
-const VERSION_NUMBER := 1
+const VERSION_NUMBER := 3
 const TYPE_BRUSH_STROKE := 0
 const TYPE_ERASER_STROKE_DEPRECATED := 1 # Deprecated since v0; will be ignored when read; structually the same as normal brush stroke
 
@@ -27,32 +27,9 @@ static func save_project(project: Project) -> void:
 	# Meta data
 	file.store_32(VERSION_NUMBER)
 	file.store_pascal_string(_dict_to_metadata_str(project.meta_data))
-	
-	# Stroke data
-	for stroke in project.strokes:
-		# Type
-		file.store_8(TYPE_BRUSH_STROKE)
-		
-		# Color
-		file.store_8(stroke.color.r8)
-		file.store_8(stroke.color.g8)
-		file.store_8(stroke.color.b8)
-		
-		# Brush size
-		file.store_16(int(stroke.size))
-		
-		# Number of points
-		file.store_16(stroke.points.size())
-		
-		# Points
-		var p_idx := 0
-		for p in stroke.points:
-			# Add global_position offset which is != 0 when moved by move tool; but mostly it should just add 0
-			file.store_float(p.x + stroke.global_position.x)
-			file.store_float(p.y + stroke.global_position.y)
-			file.store_8(stroke.pressures[p_idx])
-			p_idx += 1
 
+	_save_strokes(file,project.strokes)	
+	
 	# Done
 	file.close()
 	print("Saved %s in %d ms" % [project.filepath, (OS.get_ticks_msec() - start_time)])
@@ -79,18 +56,27 @@ static func load_project(project: Project) -> void:
 	
 	# Brush strokes
 	while true:
+		
+		var layer := 0
+		if _version_number >= 2 :
+			layer = 	file.get_8()
+		
 		# Type
 		var type := file.get_8()
 		
 		match type:
 			TYPE_BRUSH_STROKE, TYPE_ERASER_STROKE_DEPRECATED:
 				var brush_stroke: BrushStroke = BRUSH_STROKE.instance()
-				
+				brush_stroke.layer = layer
 				# Color
 				var r := file.get_8()
 				var g := file.get_8()
 				var b := file.get_8()
-				brush_stroke.color = Color(r/255.0, g/255.0, b/255.0, 1.0)
+				var a := 255.0
+				if _version_number >= 3 :
+					a = file.get_8()
+					
+				brush_stroke.color = Color(r/255.0, g/255.0, b/255.0, a/255.0)
 				
 				# Brush size
 				brush_stroke.size = file.get_16()
@@ -142,3 +128,35 @@ static func _metadata_str_to_dict(s: String) -> Dictionary:
 		else:
 			meta_dict[kv_split[0]] = kv_split[1]
 	return meta_dict
+
+# -------------------------------------------------------------------------------------------------
+static func _save_strokes(file: File, strokes: Array) -> void:
+		# Stroke data
+	for stroke in strokes:
+		
+		# Layer
+		file.store_8(stroke.layer)
+		
+		# Type
+		file.store_8(TYPE_BRUSH_STROKE)
+		
+		# Color
+		file.store_8(stroke.color.r8)
+		file.store_8(stroke.color.g8)
+		file.store_8(stroke.color.b8)
+		file.store_8(stroke.color.a8)
+		
+		# Brush size
+		file.store_16(int(stroke.size))
+		
+		# Number of points
+		file.store_16(stroke.points.size())
+		
+		# Points
+		var p_idx := 0
+		for p in stroke.points:
+			# Add global_position offset which is != 0 when moved by move tool; but mostly it should just add 0
+			file.store_float(p.x + stroke.global_position.x)
+			file.store_float(p.y + stroke.global_position.y)
+			file.store_8(stroke.pressures[p_idx])
+			p_idx += 1

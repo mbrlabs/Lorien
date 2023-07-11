@@ -30,6 +30,11 @@ script = ExtResource( 5 )
 cursor_path = NodePath("../Viewport/BrushCursor")
 pressure_curve = ExtResource( 3 )
 
+[node name="HighlighterTool" type="Node" parent="."]
+script = ExtResource( 5 )
+cursor_path = NodePath("../Viewport/BrushCursor")
+pressure_curve = ExtResource( 3 )
+
 [node name="RectangleTool" type="Node" parent="."]
 script = ExtResource( 11 )
 cursor_path = NodePath("../Viewport/BrushCursor")
@@ -70,7 +75,9 @@ script = ExtResource( 2 )
 script = ExtResource( 12 )
 camera_path = NodePath("../Camera2D")
 
-[node name="Strokes" type="Node2D" parent="Viewport"]
+[node name="Strokes_Highlighter" type="Node2D" parent="Viewport"]
+
+[node name="Strokes_Brush" type="Node2D" parent="Viewport"]
 
 [node name="DebugDraw" type="Node2D" parent="Viewport"]
 script = ExtResource( 15 )

@@ -12,12 +12,21 @@ var _cursor: Sprite # This is a BaseCursor. Can't type it.
 var _canvas: Node # This is an InfinteCanvas. Can't type it though because of cyclic dependency bugs...
 var enabled := false setget set_enabled, get_enabled
 var performing_stroke := false
+var _layer := 2
 
 # -------------------------------------------------------------------------------------------------
 func _ready():
 	_cursor = get_node(cursor_path)
 	_canvas = get_parent()
 	set_enabled(false)
+
+# -------------------------------------------------------------------------------------------------
+func set_layer(layer: int) -> void:
+	self._layer = layer
+
+# -------------------------------------------------------------------------------------------------
+func get_layer() -> int:
+	return self._layer
 
 # -------------------------------------------------------------------------------------------------
 func tool_event(event: InputEvent) -> void:

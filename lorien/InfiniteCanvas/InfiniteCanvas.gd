@@ -7,13 +7,15 @@ const PLAYER = preload("res://Misc/Player/Player.tscn")
 
 # -------------------------------------------------------------------------------------------------
 onready var _brush_tool: BrushTool = $BrushTool
+onready var _highlighter_tool: BrushTool = $HighlighterTool
 onready var _rectangle_tool: RectangleTool = $RectangleTool
 onready var _line_tool: LineTool = $LineTool
 onready var _circle_tool: CircleTool = $CircleTool
 onready var _eraser_tool: EraserTool = $EraserTool
 onready var _selection_tool: SelectionTool = $SelectionTool
 onready var _active_tool: CanvasTool = _brush_tool
-onready var _strokes_parent: Node2D = $Viewport/Strokes
+onready var _strokes_brush: Node2D = $Viewport/Strokes_Brush
+onready var _strokes_highlighter: Node2D = $Viewport/Strokes_Highlighter
 onready var _camera: Camera2D = $Viewport/Camera2D
 onready var _viewport: Viewport = $Viewport
 onready var _grid: InfiniteCanvasGrid = $Viewport/Grid
@@ -38,7 +40,9 @@ func _ready():
 	_brush_size = Settings.get_value(Settings.GENERAL_DEFAULT_BRUSH_SIZE, Config.DEFAULT_BRUSH_SIZE)
 	_active_tool._on_brush_size_changed(_brush_size)
 	_active_tool.enabled = false
-	
+		
+	_highlighter_tool.set_layer(1)
+		
 	get_tree().get_root().connect("size_changed", self, "_on_window_resized")
 	
 	for child in $Viewport.get_children():
@@ -92,6 +96,9 @@ func use_tool(tool_type: int) -> void:
 		Types.Tool.BRUSH:
 			_active_tool = _brush_tool
 			_use_optimizer = true
+		Types.Tool.HIGHLIGHTER:
+			_active_tool = _highlighter_tool
+			_use_optimizer = true
 		Types.Tool.RECTANGLE:
 			_active_tool = _rectangle_tool
 			_use_optimizer = false
@@ -125,7 +132,7 @@ func set_background_color(color: Color) -> void:
 func enable_colliders(enable: bool) -> void:
 	if _colliders_enabled != enable:
 		_colliders_enabled = enable
-		for stroke in _strokes_parent.get_children():
+		for stroke in _strokes_brush.get_children():
 			stroke.enable_collider(enable)
 
 # -------------------------------------------------------------------------------------------------
@@ -180,18 +187,29 @@ func take_screenshot() -> Image:
 
 # -------------------------------------------------------------------------------------------------
 func start_stroke() -> void:
+	var _selected_layer := _active_tool.get_layer()
 	_current_stroke = BRUSH_STROKE.instance()
-	_current_stroke.size = _brush_size
-	_current_stroke.color = _brush_color
+	_current_stroke.layer = _selected_layer
 	
-	_strokes_parent.add_child(_current_stroke)
+	if _selected_layer == 1 :
+		_current_stroke.size = _brush_size * 10
+		_current_stroke.color = Color(_brush_color.r,_brush_color.g,_brush_color.b,0.8)
+		_strokes_highlighter.add_child(_current_stroke)
+	else :
+		_current_stroke.size = _brush_size
+		_current_stroke.color = _brush_color
+		_strokes_brush.add_child(_current_stroke)
+		
 	_optimizer.reset()
 	
 # -------------------------------------------------------------------------------------------------
 func add_stroke(stroke: BrushStroke) -> void:
 	if _current_project != null:
 		_current_project.strokes.append(stroke)
-		_strokes_parent.add_child(stroke)
+		if stroke.layer == 1 :
+			_strokes_highlighter.add_child(stroke)
+		else :
+			_strokes_brush.add_child(stroke)
 		info.point_count += stroke.points.size()
 		info.stroke_count += 1
 
@@ -215,7 +233,11 @@ func end_stroke() -> void:
 	if _current_stroke != null:
 		var points: Array = _current_stroke.points
 		if points.size() <= 1 || (points.size() == 2 && points.front().is_equal_approx(points.back())):
-			_strokes_parent.remove_child(_current_stroke)
+			if _current_stroke.layer == 1 :
+				_strokes_highlighter.remove_child(_current_stroke)
+			else :
+				_strokes_brush.remove_child(_current_stroke)
+			
 			_current_stroke.queue_free()
 		else:
 			if _use_optimizer:
@@ -234,15 +256,23 @@ func end_stroke() -> void:
 				_current_stroke.enable_collider(true)
 			
 			# Remove the line temporally from the node tree, so the adding is registered in the undo-redo histrory below
-			_strokes_parent.remove_child(_current_stroke)
+			if _current_stroke.layer == 1 :
+				_strokes_highlighter.remove_child(_current_stroke)
+			else :
+				_strokes_brush.remove_child(_current_stroke)
 			
 			_current_project.undo_redo.create_action("Stroke")
 			_current_project.undo_redo.add_undo_method(self, "undo_last_stroke")
 			_current_project.undo_redo.add_undo_reference(_current_stroke)
-			_current_project.undo_redo.add_do_method(_strokes_parent, "add_child", _current_stroke)
 			_current_project.undo_redo.add_do_property(info, "stroke_count", info.stroke_count + 1)
 			_current_project.undo_redo.add_do_property(info, "point_count", info.point_count + _current_stroke.points.size())
-			_current_project.undo_redo.add_do_method(_current_project, "add_stroke", _current_stroke)
+			if _current_stroke.layer == 1 :
+				_current_project.undo_redo.add_do_method(_strokes_highlighter, "add_child", _current_stroke)
+				_current_project.undo_redo.add_do_method(_current_project, "add_stroke", _current_stroke)
+			else :
+				_current_project.undo_redo.add_do_method(_strokes_brush, "add_child", _current_stroke)
+				_current_project.undo_redo.add_do_method(_current_project, "add_stroke", _current_stroke)
+
 			_current_project.undo_redo.commit_action()
 		
 		_current_stroke = null
@@ -255,8 +285,13 @@ func add_strokes(strokes: Array) -> void:
 		point_count += stroke.points.size()
 		_current_project.undo_redo.add_undo_method(self, "undo_last_stroke")
 		_current_project.undo_redo.add_undo_reference(stroke)
-		_current_project.undo_redo.add_do_method(_strokes_parent, "add_child", stroke)
-		_current_project.undo_redo.add_do_method(_current_project, "add_stroke", stroke)
+		if 	stroke.layer == 1 :
+			_current_project.undo_redo.add_do_method(_strokes_highlighter, "add_child", stroke)
+			_current_project.undo_redo.add_do_method(_current_project, "add_stroke", stroke)
+		else :
+			_current_project.undo_redo.add_do_method(_strokes_brush, "add_child", stroke)
+			_current_project.undo_redo.add_do_method(_current_project, "add_stroke", stroke)
+
 	_current_project.undo_redo.add_do_property(info, "stroke_count", info.stroke_count + strokes.size())
 	_current_project.undo_redo.add_do_property(info, "point_count", info.point_count + point_count)
 	_current_project.undo_redo.commit_action()
@@ -264,8 +299,10 @@ func add_strokes(strokes: Array) -> void:
 # -------------------------------------------------------------------------------------------------
 func use_project(project: Project) -> void:
 	# Cleanup old data
-	for stroke in _strokes_parent.get_children():
-		_strokes_parent.remove_child(stroke)
+	for stroke in _strokes_brush.get_children():
+		_strokes_brush.remove_child(stroke)
+	for stroke in _strokes_highlighter.get_children():
+		_strokes_highlighter.remove_child(stroke)
 	info.point_count = 0
 	info.stroke_count = 0
 	
@@ -276,7 +313,10 @@ func use_project(project: Project) -> void:
 	# Add new data
 	_current_project = project
 	for stroke in _current_project.strokes:
-		_strokes_parent.add_child(stroke)
+		if stroke.layer==1:
+			_strokes_highlighter.add_child(stroke)
+		else:
+			_strokes_brush.add_child(stroke)
 		info.stroke_count += 1
 		info.point_count += stroke.points.size()
 	
@@ -285,8 +325,11 @@ func use_project(project: Project) -> void:
 # -------------------------------------------------------------------------------------------------
 func undo_last_stroke() -> void:
 	if _current_stroke == null && !_current_project.strokes.empty():
-		var stroke = _strokes_parent.get_child(_strokes_parent.get_child_count() - 1)
-		_strokes_parent.remove_child(stroke)
+		var stroke = _current_project.strokes.back()
+		if stroke.layer == 1 :
+			_strokes_highlighter.remove_child(stroke)
+		else :
+			_strokes_brush.remove_child(stroke)
 		_current_project.remove_last_stroke()
 		info.point_count -= stroke.points.size()
 		info.stroke_count -= 1
@@ -339,7 +382,10 @@ func _delete_selected_strokes() -> void:
 func _do_delete_stroke(stroke: BrushStroke) -> void:
 	var index := _current_project.strokes.find(stroke)
 	_current_project.strokes.remove(index)
-	_strokes_parent.remove_child(stroke)
+	if stroke.layer==1 :
+		_strokes_highlighter.remove_child(stroke)
+	else :
+		_strokes_brush.remove_child(stroke)
 	info.point_count -= stroke.points.size()
 	info.stroke_count -= 1
 
@@ -348,7 +394,11 @@ func _do_delete_stroke(stroke: BrushStroke) -> void:
 # -------------------------------------------------------------------------------------------------
 func _undo_delete_stroke(stroke: BrushStroke) -> void:
 	_current_project.strokes.append(stroke)
-	_strokes_parent.add_child(stroke)
+	if stroke.layer == 1 :
+		_strokes_highlighter.add_child(stroke)		
+	else :
+		_strokes_brush.add_child(stroke)
+		
 	info.point_count += stroke.points.size()
 	info.stroke_count += 1
 
