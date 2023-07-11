@@ -149,6 +149,8 @@ func _unhandled_input(event):
 				_canvas.center_to_mouse()
 			elif Utils.event_pressed_bug_workaround("shortcut_brush_tool", event):
 				_toolbar.enable_tool(Types.Tool.BRUSH)
+			elif Utils.event_pressed_bug_workaround("shortcut_highlighter_tool", event):
+				_toolbar.enable_tool(Types.Tool.HIGHLIGHTER)
 			elif Utils.event_pressed_bug_workaround("shortcut_rectangle_tool", event):
 				_toolbar.enable_tool(Types.Tool.RECTANGLE)
 			elif Utils.event_pressed_bug_workaround("shortcut_circle_tool", event):
