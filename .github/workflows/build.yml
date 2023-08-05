@@ -7,7 +7,7 @@ on:
     branches: [ main ]
 
 env:
-  GODOT_VERSION: 3.5
+  GODOT_VERSION: 3.5.2
   EXPORT_NAME: Lorien
   LORIEN_VERSION: v0.6.0-dev
 
@@ -16,7 +16,7 @@ jobs:
     name: Windows Export
     runs-on: ubuntu-latest
     container:
-      image: docker://barichello/godot-ci:3.5
+      image: docker://barichello/godot-ci:3.5.2
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -40,7 +40,7 @@ jobs:
     name: Linux Export
     runs-on: ubuntu-latest
     container:
-      image: docker://barichello/godot-ci:3.5
+      image: docker://barichello/godot-ci:3.5.2
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -64,7 +64,7 @@ jobs:
     name: Mac Export
     runs-on: ubuntu-latest
     container:
-      image: docker://barichello/godot-ci:3.5
+      image: docker://barichello/godot-ci:3.5.2
     steps:
       - name: Checkout
         uses: actions/checkout@v2
