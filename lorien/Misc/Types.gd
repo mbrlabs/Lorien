@@ -42,3 +42,4 @@ class CanvasInfo:
 	var stroke_count: int
 	var current_pressure: float
 	var selected_lines : int
+	var pen_inverted : bool
