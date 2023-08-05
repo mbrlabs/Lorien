@@ -21,6 +21,7 @@ func _compare_second_element(a: Array, b: Array) -> bool:
 func _populate_input_list() -> void:
 	for c in _grid.get_children():
 		_grid.remove_child(c)
+		c.queue_free()
 	
 	var collected_keybinding_args := []
 	for action in Utils.bindable_actions():

@@ -19,6 +19,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Changing the application language does not require a restart now
 - Improved translations: Spanish, Brasilian Portuguese
 - Improved UI auto scaling, especially for Windows and OSX
+- Updated to Godot 3.5.2
 
 ## [0.5.0] - 2022-06-12
 

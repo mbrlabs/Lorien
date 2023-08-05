@@ -3,7 +3,7 @@
 [ext_resource path="res://UI/Themes/theme_dark.tres" type="Theme" id=1]
 [ext_resource path="res://UI/Dialogs/SettingsDialog.gd" type="Script" id=2]
 [ext_resource path="res://UI/Components/DelayedSpinBox.gd" type="Script" id=3]
-[ext_resource path="res://UI/Dialogs/KeyBindingsList.gd" type="Script" id=4]
+[ext_resource path="res://UI/Components/KeyBindingsList.gd" type="Script" id=4]
 [ext_resource path="res://UI/Dialogs/AddKeyDialog.tscn" type="PackedScene" id=5]
 
 [sub_resource type="StyleBoxEmpty" id=1]
@@ -13,7 +13,6 @@
 [sub_resource type="StyleBoxEmpty" id=3]
 
 [node name="SettingsDialog" type="WindowDialog"]
-visible = true
 margin_right = 520.0
 margin_bottom = 250.0
 rect_min_size = Vector2( 520, 270 )
@@ -46,7 +45,6 @@ __meta__ = {
 }
 
 [node name="General" type="Control" parent="MarginContainer/TabContainer"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = 27.0
@@ -436,6 +434,7 @@ text = "SETTINGS_RESTART_NOTICE"
 align = 1
 
 [node name="Keybindings" type="Control" parent="MarginContainer/TabContainer"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = 27.0
