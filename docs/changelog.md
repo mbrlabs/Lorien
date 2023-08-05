@@ -8,14 +8,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Added
 - Rebindable keyboard shortcuts
+- Use eraser tool while tablet pen is inverted
 - Translations: Simplified Chinese, Traditional Chinese
 
 ### Fixed
 - Fixed blurry interface on some macOS devices
+- Fixed invisible cursor in some situations
 
 ### Changed
 - Changing the application language does not require a restart now
-- Completed Spanish translation
+- Improved translations: Spanish, Brasilian Portuguese
 - Improved UI auto scaling, especially for Windows and OSX
 
 ## [0.5.0] - 2022-06-12
