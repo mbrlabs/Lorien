@@ -77,11 +77,22 @@ func _ready():
 	# Create the default project
 	_create_active_default_project()
 	
-	# Open project passed as CLI argument
+
+	
+	# Open project passed as CLI argument and CLI export
+	var export_next_arg_as_file_name = false
 	for arg in OS.get_cmdline_args():
+		#Opening provided docuemnt if valid
 		if Utils.is_valid_lorien_file(arg):
 			_on_open_project(arg)
-	
+		
+		#Exporting loaded document
+		if export_next_arg_as_file_name:
+			print("Exporting " + arg)
+			_on_export_confirmed(arg)
+			export_next_arg_as_file_name = false
+		if arg == "--export" && !export_next_arg_as_file_name:
+			export_next_arg_as_file_name = true
 	# Apply state from previous session
 	_apply_state()
 

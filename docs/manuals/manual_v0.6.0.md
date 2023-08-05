@@ -70,3 +70,7 @@ Lorien provides you with different tools which you can find in the toolbar. If y
 - <kbd>Delete</kbd>: Deletes selected brush strokes
 - <kbd>Tab</kbd>: enter/exit distraction free mode (no UI)
 - <kbd>F12</kbd>: Spwans a playable character at the mouse position who can walk on the drawn lines (easteregg)
+
+## CLI Args
+- Files can be loaded by providing one or more files ending in .lorien in the programs arguments <kbd>lorien [FILENAME.lorien]</kbd>. The location in the arguments is mostly irrelevant so long as they don't dirrectly follow other flags. e.g. <kbd>lorien demo1.lorien demo2.lorien</kbd>. Note files are loaded in chronological order.
+- You can export files via CLI with <kbd>\-\-export [OUTPUT.svg]</kbd>. Each occurance of the flag promts Lorien to export the current document. e.g. <kbd>lorien demo.lorien -\-export demo-export.svg demo3.lorien -\-export other-demo.svg</kbd>. See godot manpage for<kbd>-q</kbd> and <kbd>-\-no-window</kbd> for scripting.
