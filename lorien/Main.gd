@@ -2,6 +2,7 @@ extends Control
 
 # -------------------------------------------------------------------------------------------------
 onready var _canvas: InfiniteCanvas = $InfiniteCanvas
+onready var _canvas_grid: InfiniteCanvasGrid = $InfiniteCanvas/Viewport/Grid
 onready var _statusbar: Statusbar = $Statusbar
 onready var _menubar: Menubar = $Topbar/Menubar
 onready var _toolbar: Toolbar = $Topbar/Toolbar
@@ -70,6 +71,8 @@ func _ready():
 	_export_dialog.connect("file_selected", self, "_on_export_confirmed")
 	
 	_settings_dialog.connect("ui_scale_changed", self, "_on_scale_changed")
+	_settings_dialog.connect("grid_size_changed", self, "_on_grid_size_changed")
+	
 	
 	# Initialize scale
 	_on_scale_changed()
@@ -328,6 +331,10 @@ func _on_brush_color_changed(color: Color) -> void:
 # -------------------------------------------------------------------------------------------------
 func _on_brush_size_changed(size: int) -> void:
 	_canvas.set_brush_size(size)
+
+# -------------------------------------------------------------------------------------------------
+func _on_grid_size_changed(size: int) -> void:
+	_canvas_grid.set_grid_size(size)
 
 # -------------------------------------------------------------------------------------------------
 func _on_clear_canvas() -> void:

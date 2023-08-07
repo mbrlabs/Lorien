@@ -29,12 +29,17 @@ func _on_position_changed(pos: Vector2) -> void: update()
 func _on_viewport_size_changed() -> void: update()
 
 # -------------------------------------------------------------------------------------------------
+func set_grid_size(size: int) -> void:
+	_grid_size = size
+	update()
+
+# -------------------------------------------------------------------------------------------------
 func set_canvas_color(c: Color) -> void:
 	_grid_color = c * 1.25
 
 # -------------------------------------------------------------------------------------------------
 func set_grid_scale(size: float):
-	_grid_size = Config.DEFAULT_GRID_SIZE * size
+	_grid_size *= size
 	update()
 
 # -------------------------------------------------------------------------------------------------

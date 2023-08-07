@@ -16,9 +16,6 @@ margin_bottom = 38.0
 rect_min_size = Vector2( 0, 38 )
 theme = ExtResource( 1 )
 script = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Left" type="HBoxContainer" parent="."]
 anchor_right = 1.0
@@ -26,17 +23,14 @@ anchor_bottom = 1.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 4
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="VSeparator3" type="VSeparator" parent="Left"]
 margin_right = 12.0
 margin_bottom = 38.0
 mouse_filter = 2
 size_flags_horizontal = 4
-custom_styles/separator = SubResource( 1 )
 custom_constants/separation = 12
+custom_styles/separator = SubResource( 1 )
 
 [node name="MenuButton" type="TextureButton" parent="Left"]
 modulate = Color( 0.776471, 0.776471, 0.776471, 1 )
@@ -58,8 +52,8 @@ margin_right = 50.0
 margin_bottom = 38.0
 mouse_filter = 2
 size_flags_horizontal = 4
-custom_styles/separator = SubResource( 2 )
 custom_constants/separation = 12
+custom_styles/separator = SubResource( 2 )
 
 [node name="Tabs" type="HBoxContainer" parent="Left"]
 margin_left = 54.0

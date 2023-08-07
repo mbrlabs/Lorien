@@ -173,7 +173,7 @@ func _on_window_resized() -> void:
 # -------------------------------------------------------------------------------------------------
 func _on_GridButton_toggled(toggled: bool):
 	emit_signal("grid_enabled", toggled)
-
+	
 # -------------------------------------------------------------------------------------------------
 func _on_FullscreenButton_toggled(button_pressed):
 	OS.set_window_fullscreen(button_pressed)
