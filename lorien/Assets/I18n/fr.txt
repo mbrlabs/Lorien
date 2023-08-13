@@ -22,22 +22,22 @@ TOOLBAR_TOOLTIP_SAVE_FILE       Enregistrer un fichier {{ shortcut_list("shortcu
 TOOLBAR_TOOLTIP_UNDO            Annuler l'action {{ shortcut_list("shortcut_undo") }}
 TOOLBAR_TOOLTIP_REDO            Rétablir l'action {{ shortcut_list("shortcut_redo") }}
 TOOLBAR_TOOLTIP_BRUSH_TOOL      Pinceau {{ shortcut_list("shortcut_brush_tool") }}
-TOOLBAR_TOOLTIP_RECTANGLE_TOOL  Rectangle Tool {{ shortcut_list("shortcut_rectangle_tool") }} 									# TODO
+TOOLBAR_TOOLTIP_RECTANGLE_TOOL  Rectangle {{ shortcut_list("shortcut_rectangle_tool") }}
 TOOLBAR_TOOLTIP_LINE_TOOL       Ligne {{ shortcut_list("shortcut_line_tool") }}
 TOOLBAR_TOOLTIP_ERASER_TOOL     Gomme {{ shortcut_list("shortcut_eraser_tool") }}
 TOOLBAR_TOOLTIP_SELECT_TOOL     Outil de sélection {{ shortcut_list("shortcut_select_tool") }}
 TOOLBAR_TOOLTIP_BRUSH_COLOR     Couleur de la brosse
 TOOLBAR_TOOLTIP_BRUSH_SIZE      Épaisseur de la brosse
 TOOLBAR_TOOLTIP_CANVAS_COLOR    Couleur du canevas
-TOOLBAR_TOOLTIP_GRID 			Afficher la grille
+TOOLBAR_TOOLTIP_GRID 			      Afficher la grille
 
 # -----------------------------------------------------------------------------
 # Color Palette Picker
 # -----------------------------------------------------------------------------
-COLOR_PALETTE_PICKER_HINT_NEW        Create new color palette 							# TODO
-COLOR_PALETTE_PICKER_HINT_EDIT       Edit the current color palette						# TODO
-COLOR_PALETTE_PICKER_HINT_DUPLICATE  Duplicate the current color palette 				# TODO
-COLOR_PALETTE_PICKER_HINT_DELETE     Delete the current color palette permanently 		# TODO
+COLOR_PALETTE_PICKER_HINT_NEW        Créer une nouvelle palette de couleurs
+COLOR_PALETTE_PICKER_HINT_EDIT       Editer la palette de couleurs active
+COLOR_PALETTE_PICKER_HINT_DUPLICATE  Dupliquer la palette de couleurs active
+COLOR_PALETTE_PICKER_HINT_DELETE     Supprimer la palette de couleurs active de façon permanente
 
 # -----------------------------------------------------------------------------
 # Statusbar strings
@@ -71,7 +71,7 @@ SETTINGS_FPS_BACKGROUND         Fps lorsque inactif
 SETTINGS_BRUSH_CAPS             Extrémités des tracés
 SETTINGS_BRUSH_CAPS_FLAT        Plates
 SETTINGS_BRUSH_CAPS_ROUND       Arrondies
-SETTINGS_RESTART_NOTICE  		Un redémarrage est nécessaire pour appliquer les changements
+SETTINGS_RESTART_NOTICE  		    Un redémarrage est nécessaire pour appliquer les changements
 
 # -----------------------------------------------------------------------------
 # About dialog strings
@@ -100,29 +100,29 @@ EXIT_DIALOG_TEXT     Voulez-vous enregistrer les changements avant de quitter ?
 # -----------------------------------------------------------------------------
 # New palette dialog
 # -----------------------------------------------------------------------------
-NEW_PALETTE_DIALOG_CREATE_TITLE 		Nouvelle palette
-NEW_PALETTE_DIALOG_DUPLICATE_TITLE 		Duplicate Palette 							# TODO
-NEW_PALETTE_DIALOG_PLACEHOLDER 			Nom de la palette
+NEW_PALETTE_DIALOG_CREATE_TITLE 		  Nouvelle palette
+NEW_PALETTE_DIALOG_DUPLICATE_TITLE 		Dupliquer palette
+NEW_PALETTE_DIALOG_PLACEHOLDER 			  Nom de la palette
 
 # -----------------------------------------------------------------------------
 # Delete palette dialog
 # -----------------------------------------------------------------------------
-DELETE_PALETTE_DIALOG_TITLE 			Delete palette 									# TODO
-DELETE_PALETTE_DIALOG_TEXT 				Are you sure you want to permanently delete:    # TODO
+DELETE_PALETTE_DIALOG_TITLE 			Supprimer palette
+DELETE_PALETTE_DIALOG_TEXT 				Êtes-vous sûr de vouloir supprimer de façon permanente la palette ?
 
 # -----------------------------------------------------------------------------
 # Edit palette dialog
 # -----------------------------------------------------------------------------
-EDIT_PALETTE_DIALOG_TITLE 		Modifier la palette
+EDIT_PALETTE_DIALOG_TITLE 		    Modifier la palette
 
 # -----------------------------------------------------------------------------
 # Error/Alert messages
 # -----------------------------------------------------------------------------
 
-ERROR_NOT_IMPLEMENTED               Implémentation manquante.
-ERROR_AUTOSAVE_NOT_IMPLEMENTED      La sauvegarde automatique n'existe pas encore pour les fichiers "Untitled". Veuillez enregistrer manuellement. # TODO : add an option to translate "Untitled" by "Sans nom"
-ALERT_EDITING_BUILTIN_PALETTE       Editing built-in palettes is not possible. If you want to customize this palette you can make a copy and edit that instead. # TODO
-ALERT_DELETING_BUILTIN_PALETTE      Deleting built-in palettes is not possible. # TODO
+ERROR_NOT_IMPLEMENTED              Implémentation manquante.
+ERROR_AUTOSAVE_NOT_IMPLEMENTED     La sauvegarde automatique n'existe pas encore pour les fichiers "Untitled". Veuillez enregistrer manuellement. # TODO : add an option to translate "Untitled" by "Sans nom"
+ALERT_EDITING_BUILTIN_PALETTE      L'édition de palettes pré-existances n'est pas possible. Si vous souhaitez la modifier, vous pouvez en faire une copie et l'éditer.
+ALERT_DELETING_BUILTIN_PALETTE     La suppression de palettes pré-existantes n'est pas possible.
 
 # -----------------------------------------------------------------------------
 # Generic strings
@@ -131,4 +131,4 @@ ALERT_DELETING_BUILTIN_PALETTE      Deleting built-in palettes is not possible. 
 SAVE            Enregistrer
 DISCARD         Ignorer
 CANCEL          Annuler
-DELETE          Delete 			# TODO
+DELETE          Supprimer
