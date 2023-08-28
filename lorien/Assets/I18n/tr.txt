@@ -65,6 +65,7 @@ SETTINGS_PRESSURE_SENSITIVITY   Basınç Hassaslığı
 SETTINGS_BRUSH_SIZE             Varsayılan Fırça Boyutu
 SETTINGS_CANVAS_COLOR           Varsayılan Tuval Rengi
 SETTINGS_PROJECT_FOLDER         Varsayılan Proje Klasörü
+SETTINGS_GRID_SIZE              Izgara Boyutu
 SETTINGS_LANGUAGE               Dil
 SETTINGS_THEME                  Tema
 SETTINGS_UI_SCALE               UI Boyutu
