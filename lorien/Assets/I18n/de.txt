@@ -29,7 +29,6 @@ TOOLBAR_TOOLTIP_SELECT_TOOL     Auswahl Werkzeug {{ shortcut_list("shortcut_sele
 TOOLBAR_TOOLTIP_BRUSH_COLOR     Pinsel Farbe
 TOOLBAR_TOOLTIP_BRUSH_SIZE      Pinsel Größe
 TOOLBAR_TOOLTIP_CANVAS_COLOR    Canvas Farbe
-TOOLBAR_TOOLTIP_GRID 			Gitter anzeigen
 
 # -----------------------------------------------------------------------------
 # Color Palette Picker
@@ -65,6 +64,8 @@ SETTINGS_CANVAS_COLOR           Default Canvas Farbe
 SETTINGS_PROJECT_FOLDER         Default Project Ordner
 SETTINGS_LANGUAGE               Sprache
 SETTINGS_THEME                  Theme
+SETTINGS_GRID_SIZE              Grid Größe
+SETTINGS_GRID_PATTERN           Grid Pattern
 SETTINGS_AA_METHOD              Anti Aliasing Methode
 SETTINGS_AA_METHOD_NONE         Keine
 SETTINGS_FPS_FOREGROUND         Vordergrund Fps

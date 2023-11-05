@@ -30,7 +30,6 @@ TOOLBAR_TOOLTIP_SELECT_TOOL     범위 선택 {{ shortcut_list("shortcut_select_
 TOOLBAR_TOOLTIP_BRUSH_COLOR     브러쉬 색깔
 TOOLBAR_TOOLTIP_BRUSH_SIZE      브러쉬 크기
 TOOLBAR_TOOLTIP_CANVAS_COLOR    배경 색깔
-TOOLBAR_TOOLTIP_GRID 			눈금
 TOOLBAR_FULLSCREEN_TOGGLE       전체화면/원래대로
 
 # -----------------------------------------------------------------------------

@@ -30,7 +30,6 @@ TOOLBAR_TOOLTIP_SELECT_TOOL     Selection Tool {{ shortcut_list("shortcut_select
 TOOLBAR_TOOLTIP_BRUSH_COLOR     Brush Color
 TOOLBAR_TOOLTIP_BRUSH_SIZE      Brush Size
 TOOLBAR_TOOLTIP_CANVAS_COLOR    Canvas Color
-TOOLBAR_TOOLTIP_GRID 			Show Grid
 TOOLBAR_FULLSCREEN_TOGGLE       Toggle fullscreen
 
 # -----------------------------------------------------------------------------
@@ -70,7 +69,9 @@ SETTINGS_LANGUAGE               Language
 SETTINGS_THEME                  Theme
 SETTINGS_UI_SCALE               UI Scale
 SETTINGS_UI_SCALE_AUTO          Auto
-SETTINGS_UI_SCALE_CUSTOM        Custom              
+SETTINGS_UI_SCALE_CUSTOM        Custom
+SETTINGS_GRID_SIZE              Grid Size
+SETTINGS_GRID_PATTERN           Grid Pattern
 SETTINGS_AA_METHOD              Anti Aliasing Method
 SETTINGS_AA_METHOD_NONE         None
 SETTINGS_FPS_FOREGROUND         Foreground Fps

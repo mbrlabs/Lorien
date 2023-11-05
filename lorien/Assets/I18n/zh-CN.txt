@@ -30,7 +30,6 @@ TOOLBAR_TOOLTIP_SELECT_TOOL     选择工具 {{ shortcut_list("shortcut_select_t
 TOOLBAR_TOOLTIP_BRUSH_COLOR     画笔颜色
 TOOLBAR_TOOLTIP_BRUSH_SIZE      画笔大小
 TOOLBAR_TOOLTIP_CANVAS_COLOR    画布颜色
-TOOLBAR_TOOLTIP_GRID 			显示网格
 TOOLBAR_FULLSCREEN_TOGGLE       切换全屏
 
 # -----------------------------------------------------------------------------

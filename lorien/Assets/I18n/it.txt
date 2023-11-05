@@ -28,8 +28,7 @@ TOOLBAR_TOOLTIP_ERASER_TOOL     Gomma per cancellare {{ shortcut_list("shortcut_
 TOOLBAR_TOOLTIP_SELECT_TOOL     Seleziona strumento {{ shortcut_list("shortcut_select_tool") }}
 TOOLBAR_TOOLTIP_BRUSH_COLOR     Colore Pennello
 TOOLBAR_TOOLTIP_BRUSH_SIZE      Dimensione del Pennello
-TOOLBAR_TOOLTIP_CANVAS_COLOR    Colore della Tela
-TOOLBAR_TOOLTIP_GRID 			Mostra Griglia							
+TOOLBAR_TOOLTIP_CANVAS_COLOR    Colore della Tela						
 TOOLBAR_FULLSCREEN_TOGGLE       Commuta la modalità a schermo intero
 
 # -----------------------------------------------------------------------------

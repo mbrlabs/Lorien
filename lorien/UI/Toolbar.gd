@@ -8,7 +8,6 @@ signal clear_canvas
 signal undo_action
 signal redo_action
 signal toggle_brush_color_picker
-signal grid_enabled(enabled)
 signal brush_size_changed(size)
 signal canvas_background_changed(color)
 signal tool_changed(t)
@@ -33,7 +32,6 @@ onready var _brush_size_label: Label = $Console/Left/BrushSizeLabel
 onready var _brush_size_slider: HSlider = $Console/Left/BrushSizeSlider
 onready var _background_color_picker: ColorPicker = get_node(background_color_picker_path)
 onready var _background_color_picker_popup: Popup = get_node(background_color_picker_path).get_parent().get_parent() # meh...
-onready var _grid_button: TextureButton = $Console/Right/GridButton
 onready var _fullscreen_btn: TextureButton = $Console/Right/FullscreenButton
 onready var _tool_btn_brush: TextureButton = $Console/Left/BrushToolButton
 onready var _tool_btn_rectangle: TextureButton = $Console/Left/RectangleToolButton
@@ -169,10 +167,6 @@ func _on_BackgroundColorButton_pressed():
 func _on_window_resized() -> void:
 	if _background_color_picker_popup.visible:
 		_background_color_picker_popup.rect_position.x = rect_size.x - _background_color_picker_popup.rect_size.x
-
-# -------------------------------------------------------------------------------------------------
-func _on_GridButton_toggled(toggled: bool):
-	emit_signal("grid_enabled", toggled)
 	
 # -------------------------------------------------------------------------------------------------
 func _on_FullscreenButton_toggled(button_pressed):

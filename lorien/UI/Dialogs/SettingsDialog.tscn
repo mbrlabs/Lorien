@@ -139,9 +139,9 @@ color = Color( 0.12549, 0.129412, 0.141176, 1 )
 edit_alpha = false
 
 [node name="DefaultSaveDir" type="HBoxContainer" parent="MarginContainer/TabContainer/General/VBoxContainer"]
-margin_top = 112.0
+margin_top = 87.0
 margin_right = 496.0
-margin_bottom = 133.0
+margin_bottom = 108.0
 size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="MarginContainer/TabContainer/General/VBoxContainer/DefaultSaveDir"]
@@ -162,15 +162,15 @@ placeholder_text = "e.g. C:/Users/me/Lorien"
 placeholder_alpha = 0.5
 
 [node name="HSeparator4" type="HSeparator" parent="MarginContainer/TabContainer/General/VBoxContainer"]
-margin_top = 137.0
+margin_top = 112.0
 margin_right = 496.0
-margin_bottom = 161.0
+margin_bottom = 136.0
 custom_constants/separation = 24
 
 [node name="Language" type="HBoxContainer" parent="MarginContainer/TabContainer/General/VBoxContainer"]
-margin_top = 165.0
+margin_top = 140.0
 margin_right = 496.0
-margin_bottom = 190.0
+margin_bottom = 165.0
 size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="MarginContainer/TabContainer/General/VBoxContainer/Language"]
@@ -189,9 +189,9 @@ size_flags_horizontal = 3
 text = "English"
 
 [node name="HSeparator" type="HSeparator" parent="MarginContainer/TabContainer/General/VBoxContainer"]
-margin_top = 194.0
+margin_top = 169.0
 margin_right = 496.0
-margin_bottom = 206.0
+margin_bottom = 181.0
 custom_constants/separation = 12
 custom_styles/separator = SubResource( 3 )
 
@@ -288,26 +288,34 @@ step = 0.1
 value = 1.0
 script = ExtResource( 3 )
 
-[node name="HSeparator5" type="HSeparator" parent="MarginContainer/TabContainer/Appearance/VBoxContainer"]
+[node name="GridPattern" type="HBoxContainer" parent="MarginContainer/TabContainer/Appearance/VBoxContainer"]
 margin_top = 74.0
 margin_right = 496.0
-margin_bottom = 86.0
-custom_constants/separation = 12
-custom_styles/separator = SubResource( 1 )
+margin_bottom = 99.0
+size_flags_horizontal = 3
 
-[node name="RestartLabel" type="Label" parent="MarginContainer/TabContainer/Appearance/VBoxContainer"]
-visible = false
-margin_top = 61.0
+[node name="Label" type="Label" parent="MarginContainer/TabContainer/Appearance/VBoxContainer/GridPattern"]
+margin_top = 4.0
+margin_right = 246.0
+margin_bottom = 21.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+text = "SETTINGS_GRID_PATTERN"
+
+[node name="GridPattern" type="OptionButton" parent="MarginContainer/TabContainer/Appearance/VBoxContainer/GridPattern"]
+margin_left = 250.0
 margin_right = 496.0
-margin_bottom = 78.0
-custom_colors/font_color = Color( 1, 0.470588, 0.470588, 1 )
-text = "SETTINGS_RESTART_NOTICE"
-align = 1
+margin_bottom = 25.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Dots"
+items = [ "Dots", null, false, 0, null, "Lines", null, false, 1, null, "None", null, false, 2, null ]
+selected = 0
 
 [node name="GridSize" type="HBoxContainer" parent="MarginContainer/TabContainer/Appearance/VBoxContainer"]
-margin_top = 90.0
+margin_top = 103.0
 margin_right = 496.0
-margin_bottom = 111.0
+margin_bottom = 124.0
 size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="MarginContainer/TabContainer/Appearance/VBoxContainer/GridSize"]
@@ -328,6 +336,22 @@ min_value = 8.0
 max_value = 256.0
 value = 12.0
 allow_greater = true
+
+[node name="HSeparator5" type="HSeparator" parent="MarginContainer/TabContainer/Appearance/VBoxContainer"]
+margin_top = 128.0
+margin_right = 496.0
+margin_bottom = 140.0
+custom_constants/separation = 12
+custom_styles/separator = SubResource( 1 )
+
+[node name="RestartLabel" type="Label" parent="MarginContainer/TabContainer/Appearance/VBoxContainer"]
+visible = false
+margin_top = 90.0
+margin_right = 496.0
+margin_bottom = 107.0
+custom_colors/font_color = Color( 1, 0.470588, 0.470588, 1 )
+text = "SETTINGS_RESTART_NOTICE"
+align = 1
 
 [node name="Rendering" type="Control" parent="MarginContainer/TabContainer"]
 visible = false
@@ -492,6 +516,7 @@ dialog_autowrap = true
 [connection signal="item_selected" from="MarginContainer/TabContainer/Appearance/VBoxContainer/UIScale/HBoxContainer/UIScaleOptions" to="." method="_on_UIScaleOptions_item_selected"]
 [connection signal="gui_input" from="MarginContainer/TabContainer/Appearance/VBoxContainer/UIScale/HBoxContainer/UIScale" to="MarginContainer/TabContainer/Appearance/VBoxContainer/UIScale/HBoxContainer/UIScale" method="_on_UIScale_gui_input"]
 [connection signal="value_changed" from="MarginContainer/TabContainer/Appearance/VBoxContainer/UIScale/HBoxContainer/UIScale" to="." method="_on_UIScale_value_changed"]
+[connection signal="item_selected" from="MarginContainer/TabContainer/Appearance/VBoxContainer/GridPattern/GridPattern" to="." method="_on_GridPattern_item_selected"]
 [connection signal="value_changed" from="MarginContainer/TabContainer/Appearance/VBoxContainer/GridSize/GridSize" to="." method="_on_GridSize_value_changed"]
 [connection signal="item_selected" from="MarginContainer/TabContainer/Rendering/VBoxContainer/AntiAliasing/AntiAliasing" to="." method="_on_AntiAliasing_item_selected"]
 [connection signal="item_selected" from="MarginContainer/TabContainer/Rendering/VBoxContainer/BrushRounding/OptionButton" to="." method="_on_Brush_rounding_item_selected"]

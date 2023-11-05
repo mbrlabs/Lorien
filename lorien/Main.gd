@@ -49,7 +49,6 @@ func _ready():
 	_toolbar.connect("brush_size_changed", self, "_on_brush_size_changed")
 	_toolbar.connect("canvas_background_changed", self, "_on_canvas_background_changed")
 	_toolbar.connect("tool_changed", self, "_on_tool_changed")
-	_toolbar.connect("grid_enabled", self, "_on_grid_enabled")
 	
 	_menubar.connect("create_new_project", self, "_on_create_new_project")
 	_menubar.connect("project_selected", self, "_on_project_selected")
@@ -72,7 +71,7 @@ func _ready():
 	
 	_settings_dialog.connect("ui_scale_changed", self, "_on_scale_changed")
 	_settings_dialog.connect("grid_size_changed", self, "_on_grid_size_changed")
-	
+	_settings_dialog.connect("grid_pattern_changed", self, "_on_grid_pattern_changed")
 	
 	# Initialize scale
 	_on_scale_changed()
@@ -337,6 +336,10 @@ func _on_grid_size_changed(size: int) -> void:
 	_canvas_grid.set_grid_size(size)
 
 # -------------------------------------------------------------------------------------------------
+func _on_grid_pattern_changed(pattern: int) -> void:
+	_canvas_grid.set_grid_pattern(pattern)
+
+# -------------------------------------------------------------------------------------------------
 func _on_clear_canvas() -> void:
 	_canvas.clear() 
 
@@ -409,10 +412,6 @@ func _on_canvas_background_changed(color: Color) -> void:
 	if project != null:
 		project.meta_data[ProjectMetadata.CANVAS_COLOR] = color.to_html()
 		project.dirty = true
-
-# -------------------------------------------------------------------------------------------------
-func _on_grid_enabled(enabled: bool) -> void:
-	_canvas.enable_grid(enabled)
 
 # -------------------------------------------------------------------------------------------------
 func _on_undo_action() -> void:

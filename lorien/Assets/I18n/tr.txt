@@ -30,7 +30,6 @@ TOOLBAR_TOOLTIP_SELECT_TOOL     Seçim Aracı {{ shortcut_list("shortcut_select_
 TOOLBAR_TOOLTIP_BRUSH_COLOR     Fırça Rengi
 TOOLBAR_TOOLTIP_BRUSH_SIZE      Fırça Boyutu
 TOOLBAR_TOOLTIP_CANVAS_COLOR    Tuval Rengi
-TOOLBAR_TOOLTIP_GRID 			Izgarayı Göster
 TOOLBAR_FULLSCREEN_TOGGLE       Tam Ekran
 
 # -----------------------------------------------------------------------------

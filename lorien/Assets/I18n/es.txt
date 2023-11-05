@@ -29,7 +29,6 @@ TOOLBAR_TOOLTIP_SELECT_TOOL     Herramienta de Selección {{ shortcut_list("shor
 TOOLBAR_TOOLTIP_BRUSH_COLOR     Color de Pincel
 TOOLBAR_TOOLTIP_BRUSH_SIZE      Tamaño de Pincel
 TOOLBAR_TOOLTIP_CANVAS_COLOR    Color de Canvas
-TOOLBAR_TOOLTIP_GRID            Mostrar cuadrícula
 
 # -----------------------------------------------------------------------------
 # Color Palette Picker

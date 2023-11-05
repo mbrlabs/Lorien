@@ -4,6 +4,10 @@ extends WindowDialog
 const THEME_DARK_INDEX 	:= 0
 const THEME_LIGHT_INDEX := 1
 
+const GRID_PATTERN_DOTS_INDEX 	:= 0
+const GRID_PATTERN_LINES_INDEX 	:= 1
+const GRID_PATTERN_NONE_INDEX 	:= 2
+
 const AA_NONE_INDEX 		:= 0
 const AA_OPENGL_HINT_INDEX 	:= 1
 const AA_TEXTURE_FILL_INDEX := 2
@@ -14,6 +18,7 @@ const UI_SCALE_CUSTOM_INDEX := 1
 # -------------------------------------------------------------------------------------------------
 signal ui_scale_changed
 signal grid_size_changed(size)
+signal grid_pattern_changed(pattern)
 
 # -------------------------------------------------------------------------------------------------
 onready var _tab_container: TabContainer = $MarginContainer/TabContainer
@@ -36,6 +41,7 @@ onready var _brush_rounding_options: OptionButton = $MarginContainer/TabContaine
 onready var _ui_scale_options: OptionButton = $MarginContainer/TabContainer/Appearance/VBoxContainer/UIScale/HBoxContainer/UIScaleOptions
 onready var _ui_scale: SpinBox = $MarginContainer/TabContainer/Appearance/VBoxContainer/UIScale/HBoxContainer/UIScale
 onready var _grid_size: SpinBox = $MarginContainer/TabContainer/Appearance/VBoxContainer/GridSize/GridSize
+onready var _grid_pattern: OptionButton = $MarginContainer/TabContainer/Appearance/VBoxContainer/GridPattern/GridPattern
 
 # -------------------------------------------------------------------------------------------------
 func _ready():
@@ -54,7 +60,6 @@ func _apply_language() -> void:
 func _set_values() -> void:
 	var brush_size = Settings.get_value(Settings.GENERAL_DEFAULT_BRUSH_SIZE, Config.DEFAULT_BRUSH_SIZE)
 	var canvas_color = Settings.get_value(Settings.GENERAL_DEFAULT_CANVAS_COLOR, Config.DEFAULT_CANVAS_COLOR)
-	var grid_size = Config.DEFAULT_GRID_SIZE
 	var project_dir = Settings.get_value(Settings.GENERAL_DEFAULT_PROJECT_DIR, "")
 	var theme = Settings.get_value(Settings.APPEARANCE_THEME, Types.UITheme.DARK)
 	var aa_mode = Settings.get_value(Settings.RENDERING_AA_MODE, Config.DEFAULT_AA_MODE)
@@ -64,6 +69,8 @@ func _set_values() -> void:
 	var pressure_sensitivity = Settings.get_value(Settings.GENERAL_PRESSURE_SENSITIVITY, Config.DEFAULT_PRESSURE_SENSITIVITY)
 	var ui_scale_mode = Settings.get_value(Settings.APPEARANCE_UI_SCALE_MODE, Config.DEFAULT_UI_SCALE_MODE)
 	var ui_scale = Settings.get_value(Settings.APPEARANCE_UI_SCALE, Config.DEFAULT_UI_SCALE)
+	var grid_pattern = Settings.get_value(Settings.APPEARANCE_GRID_PATTERN, Config.DEFAULT_GRID_PATTERN)
+	var grid_size = Settings.get_value(Settings.APPEARANCE_GRID_SIZE, Config.DEFAULT_GRID_SIZE)
 	
 	match theme:
 		Types.UITheme.DARK: _theme.selected = THEME_DARK_INDEX
@@ -86,6 +93,10 @@ func _set_values() -> void:
 	_brush_size.value = brush_size
 	_canvas_color.color = canvas_color
 	_grid_size.value = grid_size
+	match grid_pattern:
+		Types.GridPattern.DOTS: _grid_pattern.selected = GRID_PATTERN_DOTS_INDEX
+		Types.GridPattern.LINES: _grid_pattern.selected = GRID_PATTERN_LINES_INDEX
+		Types.GridPattern.NONE: _grid_pattern.selected = GRID_PATTERN_NONE_INDEX		
 	_project_dir.text = project_dir
 	_foreground_fps.value = foreground_fps
 	_background_fps.value = background_fps
@@ -137,12 +148,21 @@ func _on_DefaultBrushSize_value_changed(value: int) -> void:
 # -------------------------------------------------------------------------------------------------
 func _on_DefaultCanvasColor_color_changed(color: Color) -> void:
 	Settings.set_value(Settings.GENERAL_DEFAULT_CANVAS_COLOR, color)
-	
 
 # -------------------------------------------------------------------------------------------------
 func _on_GridSize_value_changed(value: int) -> void:
-	emit_signal("grid_size_changed", int(value))
+	Settings.set_value(Settings.APPEARANCE_GRID_SIZE, value)
+	emit_signal("grid_size_changed", value)
 	
+# -------------------------------------------------------------------------------------------------
+func _on_GridPattern_item_selected(index: int) -> void:
+	var pattern: int = Types.GridPattern.NONE
+	match index:
+		GRID_PATTERN_DOTS_INDEX: 	pattern = Types.GridPattern.DOTS
+		GRID_PATTERN_LINES_INDEX: 	pattern = Types.GridPattern.LINES
+	Settings.set_value(Settings.APPEARANCE_GRID_PATTERN, pattern)
+	emit_signal("grid_pattern_changed", pattern)
+
 # -------------------------------------------------------------------------------------------------
 func _on_PressureSensitivity_value_changed(value: float):
 	Settings.set_value(Settings.GENERAL_PRESSURE_SENSITIVITY, value)

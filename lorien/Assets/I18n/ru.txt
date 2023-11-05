@@ -29,7 +29,6 @@ TOOLBAR_TOOLTIP_SELECT_TOOL     Выделить  {{ shortcut_list("shortcut_sel
 TOOLBAR_TOOLTIP_BRUSH_COLOR     Цвет кисти
 TOOLBAR_TOOLTIP_BRUSH_SIZE      Размер кисти
 TOOLBAR_TOOLTIP_CANVAS_COLOR    Цвет холста
-TOOLBAR_TOOLTIP_GRID 			Show Grid											# TODO
 
 # -----------------------------------------------------------------------------
 # Color Palette Picker

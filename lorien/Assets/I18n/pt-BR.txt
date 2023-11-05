@@ -30,7 +30,6 @@ TOOLBAR_TOOLTIP_SELECT_TOOL     Ferramenta de Seleção {{ shortcut_list("shortc
 TOOLBAR_TOOLTIP_BRUSH_COLOR     Cor do Pincel
 TOOLBAR_TOOLTIP_BRUSH_SIZE      Tamanho do Pincel
 TOOLBAR_TOOLTIP_CANVAS_COLOR    Cor da Área de Desenho
-TOOLBAR_TOOLTIP_GRID 			Exibir Grade
 TOOLBAR_FULLSCREEN_TOGGLE       (Des)ativar Tela Cheia
 
 # -----------------------------------------------------------------------------

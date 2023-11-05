@@ -29,7 +29,6 @@ TOOLBAR_TOOLTIP_SELECT_TOOL     Outil de sélection {{ shortcut_list("shortcut_s
 TOOLBAR_TOOLTIP_BRUSH_COLOR     Couleur de la brosse
 TOOLBAR_TOOLTIP_BRUSH_SIZE      Épaisseur de la brosse
 TOOLBAR_TOOLTIP_CANVAS_COLOR    Couleur du canevas
-TOOLBAR_TOOLTIP_GRID 			      Afficher la grille
 
 # -----------------------------------------------------------------------------
 # Color Palette Picker

@@ -9,17 +9,20 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Added
 - Rebindable keyboard shortcuts
 - Use eraser tool while tablet pen is inverted
+- Dotted grid pattern; can be changed back to lines (or none at all) in the settings
 - Translations: Simplified Chinese, Traditional Chinese
 
 ### Fixed
 - Fixed blurry interface on some macOS devices
 - Fixed invisible cursor in some situations
+- Fixed issue where moved brush strokes stayed in their original positions after exporting to SVG
 
 ### Changed
 - Changing the application language does not require a restart now
 - Improved translations: Spanish, Brasilian Portuguese
 - Improved UI auto scaling, especially for Windows and OSX
-- Updated to Godot 3.5.2
+- Moved to grid toggle button from the toolbar to the settings
+- Updated to Godot 3.5.3
 
 ## [0.5.0] - 2022-06-12
 
