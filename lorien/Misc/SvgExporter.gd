@@ -65,6 +65,7 @@ func _svg_polyline(file: File, stroke: BrushStroke) -> void:
 	var idx := 0
 	var point_count := stroke.points.size()
 	for point in stroke.points:
+		point += stroke.global_position
 		if idx < point_count-1:
 			file.store_string("%.1f %.1f," % [point.x, point.y])
 		else:
