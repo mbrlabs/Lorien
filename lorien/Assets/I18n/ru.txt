@@ -26,7 +26,6 @@ TOOLBAR_TOOLTIP_RECTANGLE_TOOL  Rectangle Tool {{ shortcut_list("shortcut_rectan
 TOOLBAR_TOOLTIP_LINE_TOOL       Линия {{ shortcut_list("shortcut_line_tool") }}
 TOOLBAR_TOOLTIP_ERASER_TOOL     Стерка {{ shortcut_list("shortcut_eraser_tool") }}
 TOOLBAR_TOOLTIP_SELECT_TOOL     Выделить  {{ shortcut_list("shortcut_select_tool") }}
-TOOLBAR_TOOLTIP_BRUSH_COLOR     Цвет кисти
 TOOLBAR_TOOLTIP_BRUSH_SIZE      Размер кисти
 TOOLBAR_TOOLTIP_CANVAS_COLOR    Цвет холста
 
@@ -59,7 +58,7 @@ SETTINGS_APPEARANCE             Внешний вид
 SETTINGS_RENDERING              Рендеринг
 SETTINGS_PRESSURE_SENSITIVITY   Pressure Sensitivity # TODO
 SETTINGS_BRUSH_SIZE             Размер кисти по умолчанию
-SETTINGS_CANVAS_COLOR           Цвет холста по умолчанию
+SETTINGS_CANVAS_COLOR           Цвет кисти
 SETTINGS_PROJECT_FOLDER         Папка проекта по умолчанию
 SETTINGS_LANGUAGE               Язык
 SETTINGS_THEME                  Тема

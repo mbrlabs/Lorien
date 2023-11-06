@@ -29,7 +29,6 @@ TOOLBAR_TOOLTIP_ERASER_TOOL     지우개 {{ shortcut_list("shortcut_eraser_tool
 TOOLBAR_TOOLTIP_SELECT_TOOL     범위 선택 {{ shortcut_list("shortcut_select_tool") }}
 TOOLBAR_TOOLTIP_BRUSH_COLOR     브러쉬 색깔
 TOOLBAR_TOOLTIP_BRUSH_SIZE      브러쉬 크기
-TOOLBAR_TOOLTIP_CANVAS_COLOR    배경 색깔
 TOOLBAR_FULLSCREEN_TOGGLE       전체화면/원래대로
 
 # -----------------------------------------------------------------------------
@@ -61,7 +60,6 @@ SETTINGS_APPEARANCE             모양
 SETTINGS_RENDERING              렌더링
 SETTINGS_PRESSURE_SENSITIVITY   필압 민감도
 SETTINGS_BRUSH_SIZE             기본 브러쉬 크기
-SETTINGS_CANVAS_COLOR           기본 배경 색깔
 SETTINGS_PROJECT_FOLDER         기본 프로젝트 풀더
 SETTINGS_LANGUAGE               언어
 SETTINGS_THEME                  테마
@@ -72,6 +70,7 @@ SETTINGS_AA_METHOD              안티에일리어싱
 SETTINGS_AA_METHOD_NONE         없음
 SETTINGS_FPS_FOREGROUND         필기 프레임
 SETTINGS_FPS_BACKGROUND         배경 프레임
+SETTINGS_CANVAS_COLOR           배경 색깔
 SETTINGS_BRUSH_CAPS             브러쉬 끝 부분 모양
 SETTINGS_BRUSH_CAPS_FLAT        평평하게
 SETTINGS_BRUSH_CAPS_ROUND       둥굴게

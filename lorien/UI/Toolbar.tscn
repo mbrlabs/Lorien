@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Assets/Icons/save_file.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Icons/open_file.png" type="Texture" id=2]
@@ -11,7 +11,6 @@
 [ext_resource path="res://Assets/Icons/eraser_tool.png" type="Texture" id=9]
 [ext_resource path="res://Assets/Icons/rectangle_tool.png" type="Texture" id=10]
 [ext_resource path="res://Assets/Icons/line_tool.png" type="Texture" id=11]
-[ext_resource path="res://Assets/Icons/canvas_color_tool.png" type="Texture" id=12]
 [ext_resource path="res://UI/Components/FlatTextureButton.gd" type="Script" id=13]
 [ext_resource path="res://Assets/Fonts/font_small.tres" type="DynamicFont" id=14]
 [ext_resource path="res://UI/Themes/theme_dark.tres" type="Theme" id=15]
@@ -311,20 +310,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="BackgroundColorButton" type="TextureButton" parent="Console/Right"]
-margin_left = 896.0
-margin_top = 12.0
-margin_right = 912.0
-margin_bottom = 28.0
-hint_tooltip = "TOOLBAR_TOOLTIP_CANVAS_COLOR"
-size_flags_horizontal = 4
-size_flags_vertical = 4
-action_mode = 0
-texture_normal = ExtResource( 12 )
-script = ExtResource( 13 )
-hover_tint = Color( 0.662745, 0.945098, 0.87451, 1 )
-pressed_tint = Color( 0.572549, 1, 0.894118, 1 )
-
 [node name="FullscreenButton" type="TextureButton" parent="Console/Right"]
 margin_left = 924.0
 margin_top = 11.0
@@ -360,5 +345,4 @@ custom_styles/separator = SubResource( 2 )
 [connection signal="pressed" from="Console/Left/SelectionToolButton" to="." method="_on_SelectToolButton_pressed"]
 [connection signal="pressed" from="Console/Left/ColorButton" to="." method="_on_ColorButton_pressed"]
 [connection signal="value_changed" from="Console/Left/BrushSizeSlider" to="." method="_on_BrushSizeSlider_value_changed"]
-[connection signal="pressed" from="Console/Right/BackgroundColorButton" to="." method="_on_BackgroundColorButton_pressed"]
 [connection signal="toggled" from="Console/Right/FullscreenButton" to="." method="_on_FullscreenButton_toggled"]

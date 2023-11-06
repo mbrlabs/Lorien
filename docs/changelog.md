@@ -27,6 +27,8 @@ This will be the last "major" version using Godot 3. After this release i will s
 - Improved translations: Spanish, Brasilian Portuguese
 - Improved UI auto scaling, especially for Windows and OSX
 - Moved to grid toggle button from the toolbar to the settings
+- Removed the canvas background color from the toolbar and moved it to Settings > Canvas Color. The previous setting (Appearance > Default canvas color was removed)
+- `.lorien` files do no longer store the canvas background color
 - Updated to Godot 3.5.3
 
 ## [0.5.0] - 2022-06-12

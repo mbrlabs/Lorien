@@ -29,7 +29,6 @@ TOOLBAR_TOOLTIP_ERASER_TOOL     橡皮擦 {{ shortcut_list("shortcut_eraser_tool
 TOOLBAR_TOOLTIP_SELECT_TOOL     选择工具 {{ shortcut_list("shortcut_select_tool") }}
 TOOLBAR_TOOLTIP_BRUSH_COLOR     画笔颜色
 TOOLBAR_TOOLTIP_BRUSH_SIZE      画笔大小
-TOOLBAR_TOOLTIP_CANVAS_COLOR    画布颜色
 TOOLBAR_FULLSCREEN_TOGGLE       切换全屏
 
 # -----------------------------------------------------------------------------
@@ -61,7 +60,7 @@ SETTINGS_APPEARANCE             外观
 SETTINGS_RENDERING              渲染
 SETTINGS_PRESSURE_SENSITIVITY   压力敏感度
 SETTINGS_BRUSH_SIZE             默认画笔大小
-SETTINGS_CANVAS_COLOR           默认画布颜色
+SETTINGS_CANVAS_COLOR           画布颜色
 SETTINGS_PROJECT_FOLDER         默认项目路径
 SETTINGS_LANGUAGE               语言
 SETTINGS_THEME                  主题

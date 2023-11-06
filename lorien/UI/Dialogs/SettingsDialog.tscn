@@ -8,11 +8,12 @@
 
 [sub_resource type="StyleBoxEmpty" id=1]
 
-[sub_resource type="StyleBoxEmpty" id=2]
-
 [sub_resource type="StyleBoxEmpty" id=3]
 
+[sub_resource type="StyleBoxEmpty" id=2]
+
 [node name="SettingsDialog" type="WindowDialog"]
+visible = true
 margin_right = 520.0
 margin_bottom = 250.0
 rect_min_size = Vector2( 520, 270 )
@@ -42,6 +43,7 @@ __meta__ = {
 }
 
 [node name="General" type="Control" parent="MarginContainer/TabContainer"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = 27.0
@@ -108,37 +110,10 @@ min_value = 1.0
 value = 12.0
 allow_greater = true
 
-[node name="DefaultCanvasColor" type="HBoxContainer" parent="MarginContainer/TabContainer/General/VBoxContainer"]
+[node name="DefaultSaveDir" type="HBoxContainer" parent="MarginContainer/TabContainer/General/VBoxContainer"]
 margin_top = 66.0
 margin_right = 496.0
-margin_bottom = 83.0
-size_flags_horizontal = 3
-
-[node name="Label" type="Label" parent="MarginContainer/TabContainer/General/VBoxContainer/DefaultCanvasColor"]
-margin_right = 246.0
-margin_bottom = 17.0
-size_flags_horizontal = 3
-size_flags_vertical = 6
-text = "SETTINGS_CANVAS_COLOR"
-
-[node name="DefaultCanvasColor" type="ColorPickerButton" parent="MarginContainer/TabContainer/General/VBoxContainer/DefaultCanvasColor"]
-margin_left = 250.0
-margin_right = 496.0
-margin_bottom = 17.0
-size_flags_horizontal = 3
-custom_styles/hover = SubResource( 2 )
-custom_styles/pressed = SubResource( 2 )
-custom_styles/focus = SubResource( 2 )
-custom_styles/disabled = SubResource( 2 )
-custom_styles/normal = SubResource( 2 )
-flat = true
-color = Color( 0.12549, 0.129412, 0.141176, 1 )
-edit_alpha = false
-
-[node name="DefaultSaveDir" type="HBoxContainer" parent="MarginContainer/TabContainer/General/VBoxContainer"]
-margin_top = 87.0
-margin_right = 496.0
-margin_bottom = 108.0
+margin_bottom = 87.0
 size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="MarginContainer/TabContainer/General/VBoxContainer/DefaultSaveDir"]
@@ -159,15 +134,15 @@ placeholder_text = "e.g. C:/Users/me/Lorien"
 placeholder_alpha = 0.5
 
 [node name="HSeparator4" type="HSeparator" parent="MarginContainer/TabContainer/General/VBoxContainer"]
-margin_top = 112.0
+margin_top = 91.0
 margin_right = 496.0
-margin_bottom = 136.0
+margin_bottom = 115.0
 custom_constants/separation = 24
 
 [node name="Language" type="HBoxContainer" parent="MarginContainer/TabContainer/General/VBoxContainer"]
-margin_top = 140.0
+margin_top = 119.0
 margin_right = 496.0
-margin_bottom = 165.0
+margin_bottom = 144.0
 size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="MarginContainer/TabContainer/General/VBoxContainer/Language"]
@@ -186,9 +161,9 @@ size_flags_horizontal = 3
 text = "English"
 
 [node name="HSeparator" type="HSeparator" parent="MarginContainer/TabContainer/General/VBoxContainer"]
-margin_top = 169.0
+margin_top = 148.0
 margin_right = 496.0
-margin_bottom = 181.0
+margin_bottom = 160.0
 custom_constants/separation = 12
 custom_styles/separator = SubResource( 3 )
 
@@ -202,7 +177,6 @@ text = "SETTINGS_RESTART_NOTICE"
 align = 1
 
 [node name="Appearance" type="Control" parent="MarginContainer/TabContainer"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = 27.0
@@ -285,10 +259,37 @@ step = 0.1
 value = 1.0
 script = ExtResource( 3 )
 
-[node name="GridPattern" type="HBoxContainer" parent="MarginContainer/TabContainer/Appearance/VBoxContainer"]
+[node name="CanvasColor" type="HBoxContainer" parent="MarginContainer/TabContainer/Appearance/VBoxContainer"]
 margin_top = 74.0
 margin_right = 496.0
-margin_bottom = 99.0
+margin_bottom = 91.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="MarginContainer/TabContainer/Appearance/VBoxContainer/CanvasColor"]
+margin_right = 246.0
+margin_bottom = 17.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+text = "SETTINGS_CANVAS_COLOR"
+
+[node name="CanvasColor" type="ColorPickerButton" parent="MarginContainer/TabContainer/Appearance/VBoxContainer/CanvasColor"]
+margin_left = 250.0
+margin_right = 496.0
+margin_bottom = 17.0
+size_flags_horizontal = 3
+custom_styles/hover = SubResource( 2 )
+custom_styles/pressed = SubResource( 2 )
+custom_styles/focus = SubResource( 2 )
+custom_styles/disabled = SubResource( 2 )
+custom_styles/normal = SubResource( 2 )
+flat = true
+color = Color( 0.12549, 0.129412, 0.141176, 1 )
+edit_alpha = false
+
+[node name="GridPattern" type="HBoxContainer" parent="MarginContainer/TabContainer/Appearance/VBoxContainer"]
+margin_top = 95.0
+margin_right = 496.0
+margin_bottom = 120.0
 size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="MarginContainer/TabContainer/Appearance/VBoxContainer/GridPattern"]
@@ -310,9 +311,9 @@ items = [ "Dots", null, false, 0, null, "Lines", null, false, 1, null, "None", n
 selected = 0
 
 [node name="GridSize" type="HBoxContainer" parent="MarginContainer/TabContainer/Appearance/VBoxContainer"]
-margin_top = 103.0
+margin_top = 124.0
 margin_right = 496.0
-margin_bottom = 124.0
+margin_bottom = 145.0
 size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="MarginContainer/TabContainer/Appearance/VBoxContainer/GridSize"]
@@ -335,9 +336,9 @@ value = 12.0
 allow_greater = true
 
 [node name="HSeparator5" type="HSeparator" parent="MarginContainer/TabContainer/Appearance/VBoxContainer"]
-margin_top = 128.0
+margin_top = 149.0
 margin_right = 496.0
-margin_bottom = 140.0
+margin_bottom = 161.0
 custom_constants/separation = 12
 custom_styles/separator = SubResource( 1 )
 
@@ -506,13 +507,13 @@ dialog_autowrap = true
 
 [connection signal="value_changed" from="MarginContainer/TabContainer/General/VBoxContainer/PressureSensitivity/PressureSensitivity" to="." method="_on_PressureSensitivity_value_changed"]
 [connection signal="value_changed" from="MarginContainer/TabContainer/General/VBoxContainer/DefaultBrushSize/DefaultBrushSize" to="." method="_on_DefaultBrushSize_value_changed"]
-[connection signal="color_changed" from="MarginContainer/TabContainer/General/VBoxContainer/DefaultCanvasColor/DefaultCanvasColor" to="." method="_on_DefaultCanvasColor_color_changed"]
 [connection signal="text_changed" from="MarginContainer/TabContainer/General/VBoxContainer/DefaultSaveDir/DefaultSaveDir" to="." method="_on_DefaultSaveDir_text_changed"]
 [connection signal="item_selected" from="MarginContainer/TabContainer/General/VBoxContainer/Language/OptionButton" to="." method="_on_OptionButton_item_selected"]
 [connection signal="item_selected" from="MarginContainer/TabContainer/Appearance/VBoxContainer/Theme/Theme" to="." method="_on_Theme_item_selected"]
 [connection signal="item_selected" from="MarginContainer/TabContainer/Appearance/VBoxContainer/UIScale/HBoxContainer/UIScaleOptions" to="." method="_on_UIScaleOptions_item_selected"]
 [connection signal="gui_input" from="MarginContainer/TabContainer/Appearance/VBoxContainer/UIScale/HBoxContainer/UIScale" to="MarginContainer/TabContainer/Appearance/VBoxContainer/UIScale/HBoxContainer/UIScale" method="_on_UIScale_gui_input"]
 [connection signal="value_changed" from="MarginContainer/TabContainer/Appearance/VBoxContainer/UIScale/HBoxContainer/UIScale" to="." method="_on_UIScale_value_changed"]
+[connection signal="color_changed" from="MarginContainer/TabContainer/Appearance/VBoxContainer/CanvasColor/CanvasColor" to="." method="_on_CanvasColor_color_changed"]
 [connection signal="item_selected" from="MarginContainer/TabContainer/Appearance/VBoxContainer/GridPattern/GridPattern" to="." method="_on_GridPattern_item_selected"]
 [connection signal="value_changed" from="MarginContainer/TabContainer/Appearance/VBoxContainer/GridSize/GridSize" to="." method="_on_GridSize_value_changed"]
 [connection signal="item_selected" from="MarginContainer/TabContainer/Rendering/VBoxContainer/AntiAliasing/AntiAliasing" to="." method="_on_AntiAliasing_item_selected"]

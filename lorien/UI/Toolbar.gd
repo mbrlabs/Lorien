@@ -9,7 +9,6 @@ signal undo_action
 signal redo_action
 signal toggle_brush_color_picker
 signal brush_size_changed(size)
-signal canvas_background_changed(color)
 signal tool_changed(t)
 
 # -------------------------------------------------------------------------------------------------
@@ -19,7 +18,6 @@ const BUTTON_NORMAL_COLOR = Color.white
 
 # -------------------------------------------------------------------------------------------------
 export var file_dialog_path: NodePath
-export var background_color_picker_path: NodePath
 
 onready var _new_button: TextureButton = $Console/Left/NewFileButton
 onready var _save_button: TextureButton = $Console/Left/SaveFileButton
@@ -30,8 +28,6 @@ onready var _redo_button: TextureButton = $Console/Left/RedoButton
 onready var _color_button: Button = $Console/Left/ColorButton
 onready var _brush_size_label: Label = $Console/Left/BrushSizeLabel
 onready var _brush_size_slider: HSlider = $Console/Left/BrushSizeSlider
-onready var _background_color_picker: ColorPicker = get_node(background_color_picker_path)
-onready var _background_color_picker_popup: Popup = get_node(background_color_picker_path).get_parent().get_parent() # meh...
 onready var _fullscreen_btn: TextureButton = $Console/Right/FullscreenButton
 onready var _tool_btn_brush: TextureButton = $Console/Left/BrushToolButton
 onready var _tool_btn_rectangle: TextureButton = $Console/Left/RectangleToolButton
@@ -45,8 +41,6 @@ var _last_active_tool_button: TextureButton
 # -------------------------------------------------------------------------------------------------
 func _ready():
 	var brush_size: int = Settings.get_value(Settings.GENERAL_DEFAULT_BRUSH_SIZE, Config.DEFAULT_BRUSH_SIZE)
-	get_tree().get_root().connect("size_changed", self, "_on_window_resized")
-	_background_color_picker.connect("color_changed", self, "_on_background_color_changed")
 	_brush_size_label.text = str(brush_size)
 	_brush_size_slider.value = brush_size
 	_last_active_tool_button = _tool_btn_brush
@@ -155,19 +149,6 @@ func _on_SelectToolButton_pressed():
 	_change_active_tool_button(_tool_btn_selection)
 	emit_signal("tool_changed", Types.Tool.SELECT)
 
-# -------------------------------------------------------------------------------------------------
-func _on_BackgroundColorButton_pressed():
-	_background_color_picker_popup.popup()
-	
-	# Stop popup from automatically adjusting position
-	_background_color_picker_popup.rect_position.y = get_parent().rect_size.y
-
-# Workaround for a bug in godot: https://github.com/godotengine/godot/issues/38171
-# -------------------------------------------------------------------------------------------------
-func _on_window_resized() -> void:
-	if _background_color_picker_popup.visible:
-		_background_color_picker_popup.rect_position.x = rect_size.x - _background_color_picker_popup.rect_size.x
-	
 # -------------------------------------------------------------------------------------------------
 func _on_FullscreenButton_toggled(button_pressed):
 	OS.set_window_fullscreen(button_pressed)

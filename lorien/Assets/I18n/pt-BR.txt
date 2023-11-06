@@ -29,7 +29,6 @@ TOOLBAR_TOOLTIP_ERASER_TOOL     Borracha {{ shortcut_list("shortcut_eraser_tool"
 TOOLBAR_TOOLTIP_SELECT_TOOL     Ferramenta de Seleção {{ shortcut_list("shortcut_select_tool") }}
 TOOLBAR_TOOLTIP_BRUSH_COLOR     Cor do Pincel
 TOOLBAR_TOOLTIP_BRUSH_SIZE      Tamanho do Pincel
-TOOLBAR_TOOLTIP_CANVAS_COLOR    Cor da Área de Desenho
 TOOLBAR_FULLSCREEN_TOGGLE       (Des)ativar Tela Cheia
 
 # -----------------------------------------------------------------------------
@@ -62,7 +61,7 @@ SETTINGS_RENDERING              Renderização
 SETTINGS_KEYBINDINGS            Teclas de Atalho
 SETTINGS_PRESSURE_SENSITIVITY   Sensibilidade à Pressão
 SETTINGS_BRUSH_SIZE             Tamanho Padrão do Pincel
-SETTINGS_CANVAS_COLOR           Cor Padrão da Área de Desenho
+SETTINGS_CANVAS_COLOR           Cor da Área de Desenho
 SETTINGS_PROJECT_FOLDER         Pasta Padrão do Projeto
 SETTINGS_LANGUAGE               Idioma
 SETTINGS_THEME                  Tema

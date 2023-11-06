@@ -37,6 +37,7 @@ var _scale := Config.DEFAULT_UI_SCALE
 func _ready():
 	_optimizer = BrushStrokeOptimizer.new()
 	_brush_size = Settings.get_value(Settings.GENERAL_DEFAULT_BRUSH_SIZE, Config.DEFAULT_BRUSH_SIZE)
+	set_background_color(Settings.get_value(Settings.APPEARANCE_CANVAS_COLOR, Config.DEFAULT_CANVAS_COLOR))
 	_active_tool._on_brush_size_changed(_brush_size)
 	_active_tool.enabled = false
 	

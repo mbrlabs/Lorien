@@ -59,7 +59,7 @@ SETTINGS_APPEARANCE             Apariencia
 SETTINGS_RENDERING              Renderizado
 SETTINGS_PRESSURE_SENSITIVITY   Sensibilidad de Presión
 SETTINGS_BRUSH_SIZE             Tamaño de Pincel Predeterminado
-SETTINGS_CANVAS_COLOR           Color de Canvas Predeterminado
+SETTINGS_CANVAS_COLOR           Color de Canvas
 SETTINGS_PROJECT_FOLDER         Carpeta de Proyectos Predeterminada
 SETTINGS_LANGUAGE               Idioma
 SETTINGS_THEME                  Tema

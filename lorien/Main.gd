@@ -31,7 +31,6 @@ func _ready():
 	OS.set_window_title("Lorien v%s" % Config.VERSION_STRING)
 	get_tree().set_auto_accept_quit(false)
 
-	_canvas.set_background_color(Config.DEFAULT_CANVAS_COLOR)
 	var docs_folder = OS.get_system_dir(OS.SYSTEM_DIR_DOCUMENTS)
 	_file_dialog.current_dir = Settings.get_value(Settings.GENERAL_DEFAULT_PROJECT_DIR, docs_folder)
 	_export_dialog.current_dir = Settings.get_value(Settings.GENERAL_DEFAULT_PROJECT_DIR, docs_folder)
@@ -47,7 +46,6 @@ func _ready():
 	_toolbar.connect("new_project", self, "_on_create_new_project")
 	_toolbar.connect("save_project", self, "_on_save_project")
 	_toolbar.connect("brush_size_changed", self, "_on_brush_size_changed")
-	_toolbar.connect("canvas_background_changed", self, "_on_canvas_background_changed")
 	_toolbar.connect("tool_changed", self, "_on_tool_changed")
 	
 	_menubar.connect("create_new_project", self, "_on_create_new_project")
@@ -72,6 +70,7 @@ func _ready():
 	_settings_dialog.connect("ui_scale_changed", self, "_on_scale_changed")
 	_settings_dialog.connect("grid_size_changed", self, "_on_grid_size_changed")
 	_settings_dialog.connect("grid_pattern_changed", self, "_on_grid_pattern_changed")
+	_settings_dialog.connect("canvas_color_changed", self, "_on_canvas_color_changed")
 	
 	# Initialize scale
 	_on_scale_changed()
@@ -237,10 +236,6 @@ func _make_project_active(project: Project) -> void:
 		_menubar.make_tab(project)
 	_menubar.set_tab_active(project)
 	
-	# TODO: find a better way to apply the color to the picker
-	var default_canvas_color = Config.DEFAULT_CANVAS_COLOR.to_html()
-	_background_color_picker.color = Color(project.meta_data.get(ProjectMetadata.CANVAS_COLOR, default_canvas_color))
-
 # -------------------------------------------------------------------------------------------------
 func _is_mouse_on_ui() -> bool:
 	var on_ui := Utils.is_mouse_in_control(_menubar)
@@ -340,6 +335,11 @@ func _on_grid_pattern_changed(pattern: int) -> void:
 	_canvas_grid.set_grid_pattern(pattern)
 
 # -------------------------------------------------------------------------------------------------
+func _on_canvas_color_changed(color: Color) -> void:
+	_canvas.set_background_color(color)
+	_canvas_grid.set_canvas_color(color)
+
+# -------------------------------------------------------------------------------------------------
 func _on_clear_canvas() -> void:
 	_canvas.clear() 
 
@@ -408,10 +408,6 @@ func _on_file_selected_to_save_project(filepath: String) -> void:
 # -------------------------------------------------------------------------------------------------
 func _on_canvas_background_changed(color: Color) -> void:
 	_canvas.set_background_color(color)
-	var project: Project = ProjectManager.get_active_project()
-	if project != null:
-		project.meta_data[ProjectMetadata.CANVAS_COLOR] = color.to_html()
-		project.dirty = true
 
 # -------------------------------------------------------------------------------------------------
 func _on_undo_action() -> void:

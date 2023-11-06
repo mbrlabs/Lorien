@@ -60,12 +60,12 @@ SETTINGS_APPEARANCE             Ansicht
 SETTINGS_RENDERING              Rendering
 SETTINGS_PRESSURE_SENSITIVITY   Druckempfindlichkeit
 SETTINGS_BRUSH_SIZE             Default Pinsel Größe
-SETTINGS_CANVAS_COLOR           Default Canvas Farbe
 SETTINGS_PROJECT_FOLDER         Default Project Ordner
 SETTINGS_LANGUAGE               Sprache
 SETTINGS_THEME                  Theme
 SETTINGS_GRID_SIZE              Grid Größe
 SETTINGS_GRID_PATTERN           Grid Pattern
+SETTINGS_CANVAS_COLOR           Canvas Farbe
 SETTINGS_AA_METHOD              Anti Aliasing Methode
 SETTINGS_AA_METHOD_NONE         Keine
 SETTINGS_FPS_FOREGROUND         Vordergrund Fps

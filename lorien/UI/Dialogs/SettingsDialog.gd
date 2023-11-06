@@ -17,6 +17,7 @@ const UI_SCALE_CUSTOM_INDEX := 1
 
 # -------------------------------------------------------------------------------------------------
 signal ui_scale_changed
+signal canvas_color_changed(color)
 signal grid_size_changed(size)
 signal grid_pattern_changed(pattern)
 
@@ -27,7 +28,7 @@ onready var _tab_appearance: Control = $MarginContainer/TabContainer/Appearance
 onready var _tab_rendering: Control = $MarginContainer/TabContainer/Rendering
 onready var _pressure_sensitivity: SpinBox = $MarginContainer/TabContainer/General/VBoxContainer/PressureSensitivity/PressureSensitivity
 onready var _brush_size: SpinBox = $MarginContainer/TabContainer/General/VBoxContainer/DefaultBrushSize/DefaultBrushSize
-onready var _canvas_color: ColorPickerButton = $MarginContainer/TabContainer/General/VBoxContainer/DefaultCanvasColor/DefaultCanvasColor
+onready var _canvas_color: ColorPickerButton = $MarginContainer/TabContainer/Appearance/VBoxContainer/CanvasColor/CanvasColor
 onready var _project_dir: LineEdit = $MarginContainer/TabContainer/General/VBoxContainer/DefaultSaveDir/DefaultSaveDir
 onready var _theme: OptionButton = $MarginContainer/TabContainer/Appearance/VBoxContainer/Theme/Theme
 onready var _aa_mode: OptionButton = $MarginContainer/TabContainer/Rendering/VBoxContainer/AntiAliasing/AntiAliasing
@@ -59,7 +60,7 @@ func _apply_language() -> void:
 # -------------------------------------------------------------------------------------------------
 func _set_values() -> void:
 	var brush_size = Settings.get_value(Settings.GENERAL_DEFAULT_BRUSH_SIZE, Config.DEFAULT_BRUSH_SIZE)
-	var canvas_color = Settings.get_value(Settings.GENERAL_DEFAULT_CANVAS_COLOR, Config.DEFAULT_CANVAS_COLOR)
+	var canvas_color = Settings.get_value(Settings.APPEARANCE_CANVAS_COLOR, Config.DEFAULT_CANVAS_COLOR)
 	var project_dir = Settings.get_value(Settings.GENERAL_DEFAULT_PROJECT_DIR, "")
 	var theme = Settings.get_value(Settings.APPEARANCE_THEME, Types.UITheme.DARK)
 	var aa_mode = Settings.get_value(Settings.RENDERING_AA_MODE, Config.DEFAULT_AA_MODE)
@@ -96,7 +97,7 @@ func _set_values() -> void:
 	match grid_pattern:
 		Types.GridPattern.DOTS: _grid_pattern.selected = GRID_PATTERN_DOTS_INDEX
 		Types.GridPattern.LINES: _grid_pattern.selected = GRID_PATTERN_LINES_INDEX
-		Types.GridPattern.NONE: _grid_pattern.selected = GRID_PATTERN_NONE_INDEX		
+		Types.GridPattern.NONE: _grid_pattern.selected = GRID_PATTERN_NONE_INDEX
 	_project_dir.text = project_dir
 	_foreground_fps.value = foreground_fps
 	_background_fps.value = background_fps
@@ -146,8 +147,9 @@ func _on_DefaultBrushSize_value_changed(value: int) -> void:
 	Settings.set_value(Settings.GENERAL_DEFAULT_BRUSH_SIZE, int(value))
 
 # -------------------------------------------------------------------------------------------------
-func _on_DefaultCanvasColor_color_changed(color: Color) -> void:
-	Settings.set_value(Settings.GENERAL_DEFAULT_CANVAS_COLOR, color)
+func _on_CanvasColor_color_changed(color: Color) -> void:
+	Settings.set_value(Settings.APPEARANCE_CANVAS_COLOR, color)
+	emit_signal("canvas_color_changed", color)
 
 # -------------------------------------------------------------------------------------------------
 func _on_GridSize_value_changed(value: int) -> void:

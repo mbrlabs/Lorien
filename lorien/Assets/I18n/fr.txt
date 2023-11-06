@@ -59,7 +59,6 @@ SETTINGS_APPEARANCE             Apparence
 SETTINGS_RENDERING              Affichage
 SETTINGS_PRESSURE_SENSITIVITY   Sensibilité de la pression
 SETTINGS_BRUSH_SIZE             Épaisseur par défaut de la brosse
-SETTINGS_CANVAS_COLOR           Couleur par défaut du canevas
 SETTINGS_PROJECT_FOLDER         Dossier par défaut du projet
 SETTINGS_LANGUAGE               Langue
 SETTINGS_THEME                  Thème
@@ -67,6 +66,7 @@ SETTINGS_AA_METHOD              Méthode d'anticrénelage
 SETTINGS_AA_METHOD_NONE         Aucun
 SETTINGS_FPS_FOREGROUND         Fps lorsque actif
 SETTINGS_FPS_BACKGROUND         Fps lorsque inactif
+SETTINGS_CANVAS_COLOR           Couleur du canevas
 SETTINGS_BRUSH_CAPS             Extrémités des tracés
 SETTINGS_BRUSH_CAPS_FLAT        Plates
 SETTINGS_BRUSH_CAPS_ROUND       Arrondies
