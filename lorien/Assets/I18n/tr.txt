@@ -84,7 +84,7 @@ SETTINGS_RESTART_NOTICE  		Yeni ayarların uygulanması için yeniden başlatma 
 # -----------------------------------------------------------------------------
 
 ABOUT_DIALOG_TITLE              Hakkında
-ABOUT_DIALOG_COPYRIGHT          © 2021-2022 Marcus Brummer & katkıda bulunanlar 
+ABOUT_DIALOG_COPYRIGHT          © 2021-2023 Marcus Brummer & katkıda bulunanlar 
 ABOUT_DIALOG_LICSENSE           Lorien, altında lisanslanmıştır:
 ABOUT_DIALOG_BASED_ON           Lorien, tabanlıdır:
 ABOUT_DIALOG_EASTEREGG          Easteregg karakteri:

@@ -78,7 +78,7 @@ SETTINGS_RESTART_NOTICE  		È necessario riavviare per applicare le nuove impost
 # -----------------------------------------------------------------------------
 
 ABOUT_DIALOG_TITLE              Informazioni
-ABOUT_DIALOG_COPYRIGHT          © 2021-2022 Marcus Brummer & contributori 
+ABOUT_DIALOG_COPYRIGHT          © 2021-2023 Marcus Brummer & contributori 
 ABOUT_DIALOG_LICSENSE           Lorien è concesso in licenza sotto:
 ABOUT_DIALOG_BASED_ON           Lorien si basa su:
 ABOUT_DIALOG_EASTEREGG          Carattere Easteregg: 								

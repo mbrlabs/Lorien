@@ -77,7 +77,7 @@ SETTINGS_RESTART_NOTICE  		Restart required to apply the new settings 			# TODO
 # -----------------------------------------------------------------------------
 
 ABOUT_DIALOG_TITLE              О Lorien
-ABOUT_DIALOG_COPYRIGHT          © 2021-2022 Marcus Brummer и контрибютеры
+ABOUT_DIALOG_COPYRIGHT          © 2021-2023 Marcus Brummer и контрибютеры
 ABOUT_DIALOG_LICSENSE           Lorien находится под лицензией:
 ABOUT_DIALOG_BASED_ON           Lorien основан на:
 ABOUT_DIALOG_EASTEREGG          Easteregg character: 								# TODO

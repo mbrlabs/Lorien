@@ -82,7 +82,7 @@ SETTINGS_RESTART_NOTICE  		변경된 설정을 적용하려면 재시작이 필�
 # -----------------------------------------------------------------------------
 
 ABOUT_DIALOG_TITLE              정보
-ABOUT_DIALOG_COPYRIGHT          © 2021-2022 Marcus Brummer 와 기여자들
+ABOUT_DIALOG_COPYRIGHT          © 2021-2023 Marcus Brummer 와 기여자들
 ABOUT_DIALOG_LICSENSE           Lorien은 다음의 라이센스를 따릅니다:
 ABOUT_DIALOG_BASED_ON           Lorien은 다음의 기술을 기반으로 합니다:
 ABOUT_DIALOG_EASTEREGG          이스터에그:

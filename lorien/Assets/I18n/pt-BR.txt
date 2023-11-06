@@ -83,7 +83,7 @@ SETTINGS_RESTART_NOTICE  		É necessário reiniciar para aplicar as novas config
 # -----------------------------------------------------------------------------
 
 ABOUT_DIALOG_TITLE              Sobre
-ABOUT_DIALOG_COPYRIGHT          © 2021-2022 Marcus Brummer & contribuidores 
+ABOUT_DIALOG_COPYRIGHT          © 2021-2023 Marcus Brummer & contribuidores 
 ABOUT_DIALOG_LICSENSE           Lorien é licenciado sob:
 ABOUT_DIALOG_BASED_ON           Lorien é baseado em:
 ABOUT_DIALOG_EASTEREGG          Personagem secreto:

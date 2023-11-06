@@ -70,14 +70,14 @@ SETTINGS_FPS_BACKGROUND         Fps lorsque inactif
 SETTINGS_BRUSH_CAPS             Extrémités des tracés
 SETTINGS_BRUSH_CAPS_FLAT        Plates
 SETTINGS_BRUSH_CAPS_ROUND       Arrondies
-SETTINGS_RESTART_NOTICE  		    Un redémarrage est nécessaire pour appliquer les changements
+SETTINGS_RESTART_NOTICE  		Un redémarrage est nécessaire pour appliquer les changements
 
 # -----------------------------------------------------------------------------
 # About dialog strings
 # -----------------------------------------------------------------------------
 
 ABOUT_DIALOG_TITLE              A propos
-ABOUT_DIALOG_COPYRIGHT          © 2021-2022 Marcus Brummer & contributeurs 
+ABOUT_DIALOG_COPYRIGHT          © 2021-2023 Marcus Brummer & contributeurs 
 ABOUT_DIALOG_LICSENSE           Lorien est sous licence :
 ABOUT_DIALOG_BASED_ON           Lorien est basé sur :
 ABOUT_DIALOG_EASTEREGG          Personnage Easter egg :

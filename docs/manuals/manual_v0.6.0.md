@@ -34,6 +34,7 @@ Lorien provides you with different tools which you can find in the toolbar. If y
 ### Eraser Tool
 - Allows you to erease brush strokes by drawing over it. Once the eraser intersects with a brush stroke, the whole brush stroke will be removed
 - The brush size affects the area of effect
+- When using a stylus/pen that supports erasing with the other side, Lorien automatically switches into the eraser mode  
 
 ### Selection Tool
 - With the Selection tool you can select a number of brush strokes by dragging across the screen with your <kbd>LMB</kbd> pressed. Brush strokes which are considered inside the selection recatangle will be added to the current selection. You can add more strokes to your current selection by holding down <kbd>Shift</kbd> while dragging.

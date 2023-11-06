@@ -80,7 +80,7 @@ SETTINGS_RESTART_NOTICE  		Ein Neustart ist notwendig um die Einstellungen zu ü
 # -----------------------------------------------------------------------------
 
 ABOUT_DIALOG_TITLE              Über
-ABOUT_DIALOG_COPYRIGHT          © 2021-2022 Marcus Brummer & Mitwirkende
+ABOUT_DIALOG_COPYRIGHT          © 2021-2023 Marcus Brummer & Mitwirkende
 ABOUT_DIALOG_LICSENSE           Lorien ist lizenziert unter:
 ABOUT_DIALOG_BASED_ON           Lorien basiert auf:
 ABOUT_DIALOG_EASTEREGG          Easteregg Charakter:
