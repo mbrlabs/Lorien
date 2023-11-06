@@ -13,7 +13,7 @@ func reset() -> void:
 
 # -------------------------------------------------------------------------------------------------
 func optimize(s: BrushStroke) -> void:
-	if s.points.size() < 3:
+	if s.points.size() < 8:
 		return
 	
 	var max_angle_diff := ANGLE_THRESHOLD

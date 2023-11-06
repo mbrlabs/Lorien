@@ -16,6 +16,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Fixed blurry interface on some macOS devices
 - Fixed invisible cursor in some situations
 - Fixed issue where moved brush strokes stayed in their original positions after exporting to SVG
+- Fixed not being able to draw simple dots by just clicking/tapping the brush once
 
 ### Changed
 - Changing the application language does not require a restart now
