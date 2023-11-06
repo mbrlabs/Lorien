@@ -6,7 +6,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [0.6.0] - 2023-11-06
 
-It's been a while - but here is a another release! Special thanks goes to [@MrApplejuice](https://github.com/MrApplejuice) for adding support for rebindable keyboard shortcuts and (@hansemro)[https://github.com/hansemro] for enabling the eraser mode when the pen is inverted!
+It's been a while - but here is a another release! Special thanks goes to [@MrApplejuice](https://github.com/MrApplejuice) for adding support for rebindable keyboard shortcuts and [@hansemro](https://github.com/hansemro) for enabling the eraser mode when the pen is inverted!
 
 This will be the last "major" version using Godot 3. After this release i will start porting Lorien to Godot 4.
 
