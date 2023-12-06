@@ -229,6 +229,11 @@ func _on_files_dropped(files: PoolStringArray, screen: int) -> void:
 
 # -------------------------------------------------------------------------------------------------
 func _make_project_active(project: Project) -> void:
+	# Disconnect signals from previous project
+	var previous_project: Project = ProjectManager.get_active_project()
+	if previous_project:
+		previous_project.disconnect("new_action_committed", self, "_on_new_action_committed")
+	
 	ProjectManager.make_project_active(project)
 	_canvas.use_project(project)
 	
@@ -236,6 +241,13 @@ func _make_project_active(project: Project) -> void:
 		_menubar.make_tab(project)
 	_menubar.set_tab_active(project)
 	
+	# Connect signals from new project
+	project.connect("new_action_committed", self, "_on_new_action_committed")
+	
+	# Disable the undo and redo buttons, when applicable
+	_toolbar.disable_undo_button(!project.undo_redo.has_undo())
+	_toolbar.disable_redo_button(!project.undo_redo.has_redo())
+
 # -------------------------------------------------------------------------------------------------
 func _is_mouse_on_ui() -> bool:
 	var on_ui := Utils.is_mouse_in_control(_menubar)
@@ -410,16 +422,35 @@ func _on_canvas_background_changed(color: Color) -> void:
 	_canvas.set_background_color(color)
 
 # -------------------------------------------------------------------------------------------------
+func _on_new_action_committed() -> void:
+	_toolbar.disable_undo_button(false)
+	
+	var undo_redo: UndoRedo = ProjectManager.get_active_project().undo_redo
+	if !undo_redo.has_redo():
+		_toolbar.disable_redo_button()
+
+# -------------------------------------------------------------------------------------------------
 func _on_undo_action() -> void:
-	var project: Project = ProjectManager.get_active_project()
-	if project.undo_redo.has_undo():
-		project.undo_redo.undo()
-		
+	var undo_redo: UndoRedo = ProjectManager.get_active_project().undo_redo
+	
+	if !undo_redo.has_undo():
+		return
+	
+	undo_redo.undo()
+	_toolbar.disable_redo_button(false)
+	if !undo_redo.has_undo():
+		_toolbar.disable_undo_button()
+
 # -------------------------------------------------------------------------------------------------
 func _on_redo_action() -> void:
-	var project: Project = ProjectManager.get_active_project()
-	if project.undo_redo.has_redo():
-		project.undo_redo.redo() 
+	var undo_redo: UndoRedo = ProjectManager.get_active_project().undo_redo
+	
+	if !undo_redo.has_redo():
+		return
+	
+	undo_redo.redo()
+	if !undo_redo.has_redo():
+		_toolbar.disable_redo_button()
 
 # -------------------------------------------------------------------------------------------------
 func _on_tool_changed(tool_type: int) -> void:
