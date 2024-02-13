@@ -491,6 +491,10 @@ canvas_pan_right={
  ]
 }
 
+[input_devices]
+
+pointing/emulate_mouse_from_touch=false
+
 [locale]
 
 translation_remaps={
