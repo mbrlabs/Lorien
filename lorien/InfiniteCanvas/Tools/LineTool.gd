@@ -25,20 +25,20 @@ func tool_event(event: InputEvent) -> void:
 			_cursor.set_pressure(event.pressure)
 			remove_last_stroke_point()
 			if _snapping_enabled:
-				_tail = _add_point_at_snap_pos(0.5)
+				_tail = _add_point_at_snap_pos(Settings.get_value(Settings.GENERAL_TOOL_PRESSURE))
 			else:
-				_tail = _add_point_at_mouse_pos(0.5)
+				_tail = _add_point_at_mouse_pos(Settings.get_value(Settings.GENERAL_TOOL_PRESSURE))
 	
 	# Start + End
 	elif event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT:
 			if event.pressed:
 				start_stroke()
-				_head = _add_point_at_mouse_pos(0.5)
-				_tail = _add_point_at_mouse_pos(0.5)
+				_head = _add_point_at_mouse_pos(Settings.get_value(Settings.GENERAL_TOOL_PRESSURE))
+				_tail = _add_point_at_mouse_pos(Settings.get_value(Settings.GENERAL_TOOL_PRESSURE))
 			elif !event.pressed && performing_stroke:
 				remove_last_stroke_point()
-				add_subdivided_line(_head, _tail, pressure_curve.interpolate(0.5))
+				add_subdivided_line(_head, _tail, pressure_curve.interpolate(Settings.get_value(Settings.GENERAL_TOOL_PRESSURE)))
 				end_stroke()
 
 # -------------------------------------------------------------------------------------------------

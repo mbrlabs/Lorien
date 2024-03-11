@@ -2,9 +2,6 @@ class_name RectangleTool
 extends CanvasTool
 
 # -------------------------------------------------------------------------------------------------
-const PRESSURE := 0.5
-
-# -------------------------------------------------------------------------------------------------
 export var pressure_curve: Curve
 var _start_position_top_left: Vector2
 
@@ -16,7 +13,7 @@ func tool_event(event: InputEvent) -> void:
 		if performing_stroke:
 			_cursor.set_pressure(event.pressure)
 			remove_all_stroke_points()
-			_make_rectangle(PRESSURE)
+			_make_rectangle(Settings.get_value(Settings.GENERAL_TOOL_PRESSURE))
 		
 	# Start + End
 	elif event is InputEventMouseButton:
@@ -24,10 +21,10 @@ func tool_event(event: InputEvent) -> void:
 			if event.pressed:
 				start_stroke()
 				_start_position_top_left = _cursor.global_position
-				_make_rectangle(PRESSURE)
+				_make_rectangle(Settings.get_value(Settings.GENERAL_TOOL_PRESSURE))
 			elif !event.pressed && performing_stroke:
 				remove_all_stroke_points()
-				_make_rectangle(PRESSURE)
+				_make_rectangle(Settings.get_value(Settings.GENERAL_TOOL_PRESSURE))
 				end_stroke()
 
 # -------------------------------------------------------------------------------------------------

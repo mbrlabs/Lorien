@@ -110,10 +110,34 @@ min_value = 1.0
 value = 12.0
 allow_greater = true
 
-[node name="DefaultSaveDir" type="HBoxContainer" parent="MarginContainer/TabContainer/General/VBoxContainer"]
+[node name="DefaultToolPressure" type="HBoxContainer" parent="MarginContainer/TabContainer/General/VBoxContainer"]
 margin_top = 66.0
 margin_right = 496.0
 margin_bottom = 87.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="MarginContainer/TabContainer/General/VBoxContainer/DefaultToolPressure"]
+margin_top = 2.0
+margin_right = 246.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+text = "SETTINGS_TOOL_PRESSURE"
+
+[node name="DefaultToolPressure" type="SpinBox" parent="MarginContainer/TabContainer/General/VBoxContainer/DefaultToolPressure"]
+margin_left = 250.0
+margin_right = 496.0
+margin_bottom = 21.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+max_value = 1.0
+step = 0.05
+value = 1.0
+
+[node name="DefaultSaveDir" type="HBoxContainer" parent="MarginContainer/TabContainer/General/VBoxContainer"]
+margin_top = 91.0
+margin_right = 496.0
+margin_bottom = 112.0
 size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="MarginContainer/TabContainer/General/VBoxContainer/DefaultSaveDir"]
@@ -134,15 +158,15 @@ placeholder_text = "e.g. C:/Users/me/Lorien"
 placeholder_alpha = 0.5
 
 [node name="HSeparator4" type="HSeparator" parent="MarginContainer/TabContainer/General/VBoxContainer"]
-margin_top = 91.0
+margin_top = 116.0
 margin_right = 496.0
-margin_bottom = 115.0
+margin_bottom = 140.0
 custom_constants/separation = 24
 
 [node name="Language" type="HBoxContainer" parent="MarginContainer/TabContainer/General/VBoxContainer"]
-margin_top = 119.0
+margin_top = 144.0
 margin_right = 496.0
-margin_bottom = 144.0
+margin_bottom = 169.0
 size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="MarginContainer/TabContainer/General/VBoxContainer/Language"]
@@ -161,9 +185,9 @@ size_flags_horizontal = 3
 text = "English"
 
 [node name="HSeparator" type="HSeparator" parent="MarginContainer/TabContainer/General/VBoxContainer"]
-margin_top = 148.0
+margin_top = 173.0
 margin_right = 496.0
-margin_bottom = 160.0
+margin_bottom = 185.0
 custom_constants/separation = 12
 custom_styles/separator = SubResource( 3 )
 
@@ -177,6 +201,7 @@ text = "SETTINGS_RESTART_NOTICE"
 align = 1
 
 [node name="Appearance" type="Control" parent="MarginContainer/TabContainer"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = 27.0
@@ -507,6 +532,7 @@ dialog_autowrap = true
 
 [connection signal="value_changed" from="MarginContainer/TabContainer/General/VBoxContainer/PressureSensitivity/PressureSensitivity" to="." method="_on_PressureSensitivity_value_changed"]
 [connection signal="value_changed" from="MarginContainer/TabContainer/General/VBoxContainer/DefaultBrushSize/DefaultBrushSize" to="." method="_on_DefaultBrushSize_value_changed"]
+[connection signal="value_changed" from="MarginContainer/TabContainer/General/VBoxContainer/DefaultToolPressure/DefaultToolPressure" to="." method="_on_DefaultToolPressure_value_changed"]
 [connection signal="text_changed" from="MarginContainer/TabContainer/General/VBoxContainer/DefaultSaveDir/DefaultSaveDir" to="." method="_on_DefaultSaveDir_text_changed"]
 [connection signal="item_selected" from="MarginContainer/TabContainer/General/VBoxContainer/Language/OptionButton" to="." method="_on_OptionButton_item_selected"]
 [connection signal="item_selected" from="MarginContainer/TabContainer/Appearance/VBoxContainer/Theme/Theme" to="." method="_on_Theme_item_selected"]
