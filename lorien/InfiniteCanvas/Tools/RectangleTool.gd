@@ -9,11 +9,13 @@ var _start_position_top_left: Vector2
 func tool_event(event: InputEvent) -> void:
 	_cursor.set_pressure(1.0)
 	
+	var tool_pressure = Settings.get_value(Settings.GENERAL_TOOL_PRESSURE)
+	
 	if event is InputEventMouseMotion:
 		if performing_stroke:
 			_cursor.set_pressure(event.pressure)
 			remove_all_stroke_points()
-			_make_rectangle(Settings.get_value(Settings.GENERAL_TOOL_PRESSURE))
+			_make_rectangle(tool_pressure)
 		
 	# Start + End
 	elif event is InputEventMouseButton:
@@ -21,10 +23,10 @@ func tool_event(event: InputEvent) -> void:
 			if event.pressed:
 				start_stroke()
 				_start_position_top_left = _cursor.global_position
-				_make_rectangle(Settings.get_value(Settings.GENERAL_TOOL_PRESSURE))
+				_make_rectangle(tool_pressure)
 			elif !event.pressed && performing_stroke:
 				remove_all_stroke_points()
-				_make_rectangle(Settings.get_value(Settings.GENERAL_TOOL_PRESSURE))
+				_make_rectangle(tool_pressure)
 				end_stroke()
 
 # -------------------------------------------------------------------------------------------------
