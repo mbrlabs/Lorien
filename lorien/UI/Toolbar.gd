@@ -162,3 +162,11 @@ func _change_active_tool_button(btn: TextureButton) -> void:
 # -------------------------------------------------------------------------------------------------
 func get_brush_color_button() -> Control:
 	return _color_button
+
+# -------------------------------------------------------------------------------------------------
+func disable_undo_button(is_disabled: bool = true) -> void:
+	_undo_button.is_disabled = is_disabled
+
+# -------------------------------------------------------------------------------------------------
+func disable_redo_button(is_disabled: bool = true) -> void:
+	_redo_button.is_disabled = is_disabled

@@ -3,7 +3,10 @@ extends TextureButton
 # -------------------------------------------------------------------------------------------------
 export var hover_tint := Color.white
 export var pressed_tint := Color.white
+var disabled_tint := Color(0.4, 0.4, 0.4)
 var _normal_tint: Color
+
+var is_disabled: bool = false setget set_is_disabled
 
 # -------------------------------------------------------------------------------------------------
 func _ready() -> void:
@@ -23,16 +26,19 @@ func _exit_tree() -> void:
 
 # -------------------------------------------------------------------------------------------------
 func _on_mouse_entered() -> void:
-	if !pressed:
+	if !(is_disabled || pressed):
 		self_modulate = hover_tint
 
 # -------------------------------------------------------------------------------------------------
 func _on_mouse_exited() -> void:
-	if !pressed:
+	if !(is_disabled || pressed):
 		self_modulate = _normal_tint
 
 # -------------------------------------------------------------------------------------------------
 func toggle() -> void:
+	if is_disabled:
+		return
+	
 	if pressed:
 		self_modulate = _normal_tint
 	else:
@@ -51,3 +57,17 @@ func _on_pressed() -> void:
 			self_modulate = pressed_tint
 		else:
 			self_modulate = _normal_tint
+
+# -------------------------------------------------------------------------------------------------
+func set_is_disabled(value: bool) -> void:
+	is_disabled = value
+	
+	# Prevent this function from overriding the "normal tint"
+	if !is_inside_tree():
+		return
+	
+	if is_disabled:
+		self_modulate = disabled_tint
+	else:
+		self_modulate = _normal_tint
+

@@ -1,9 +1,12 @@
 class_name Project
 
+
+signal new_action_committed()
+
 var id: int # this is used at runtime only and will not be persisted; project ids are not garanteed to be the same between restarts
 var undo_redo: UndoRedo
 
-var dirty := false
+var dirty := false setget set_is_dirty
 var loaded := false
 
 var filepath: String
@@ -21,6 +24,11 @@ func _notification(what):
 			undo_redo.free()
 
 # -------------------------------------------------------------------------------------------------
+func set_is_dirty(new_value: bool) -> void:
+	dirty = new_value
+	emit_signal("new_action_committed")
+
+# -------------------------------------------------------------------------------------------------
 func clear() -> void:
 	undo_redo.free()
 	undo_redo = null
@@ -30,7 +38,7 @@ func clear() -> void:
 # -------------------------------------------------------------------------------------------------
 func add_stroke(stroke: BrushStroke) -> void:
 	strokes.append(stroke)
-	dirty = true
+	set_is_dirty(true)
 
 # -------------------------------------------------------------------------------------------------
 func remove_last_stroke() -> void:
