@@ -2,7 +2,6 @@ class_name CircleTool
 extends CanvasTool
 
 # -------------------------------------------------------------------------------------------------
-const PRESSURE := 0.5
 const STEP_IN_MOTION := 15
 const STEP_STATIC := 4
 
@@ -27,11 +26,13 @@ func tool_event(event: InputEvent) -> void:
 	
 	var should_draw_circle := Input.is_key_pressed(KEY_SHIFT)
 	
+	var tool_pressure : float = Settings.get_value(Settings.GENERAL_TOOL_PRESSURE)
+	
 	if event is InputEventMouseMotion:
 		if performing_stroke:
 			_cursor.set_pressure(event.pressure)
 			remove_all_stroke_points()
-			_make_ellipse(PRESSURE, STEP_IN_MOTION, should_draw_circle)
+			_make_ellipse(tool_pressure, STEP_IN_MOTION, should_draw_circle)
 		
 	# Start + End
 	elif event is InputEventMouseButton:
@@ -40,10 +41,10 @@ func tool_event(event: InputEvent) -> void:
 				start_stroke()
 				_start_position_top_left = _cursor.global_position
 				remove_all_stroke_points()
-				_make_ellipse(PRESSURE, STEP_IN_MOTION, should_draw_circle)
+				_make_ellipse(tool_pressure, STEP_IN_MOTION, should_draw_circle)
 			elif !event.pressed && performing_stroke:
 				remove_all_stroke_points()
-				_make_ellipse(PRESSURE, STEP_STATIC, should_draw_circle)
+				_make_ellipse(tool_pressure, STEP_STATIC, should_draw_circle)
 				end_stroke()
 
 # -------------------------------------------------------------------------------------------------

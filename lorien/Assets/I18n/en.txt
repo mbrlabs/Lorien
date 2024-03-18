@@ -80,6 +80,7 @@ SETTINGS_BRUSH_CAPS             Brush Rounding Mode
 SETTINGS_BRUSH_CAPS_FLAT        Flat
 SETTINGS_BRUSH_CAPS_ROUND       Round
 SETTINGS_RESTART_NOTICE  		Restart required to apply the new settings
+SETTINGS_TOOL_PRESSURE          Default Tools Pressure
 
 # -----------------------------------------------------------------------------
 # About dialog strings

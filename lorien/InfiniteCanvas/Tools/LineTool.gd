@@ -14,6 +14,8 @@ var _tail: Vector2
 func tool_event(event: InputEvent) -> void:
 	_cursor.set_pressure(1.0)
 	
+	var tool_pressure = Settings.get_value(Settings.GENERAL_TOOL_PRESSURE)
+	
 	# Snap modifier
 	if event is InputEventKey:
 		if event.scancode == KEY_SHIFT:
@@ -25,20 +27,20 @@ func tool_event(event: InputEvent) -> void:
 			_cursor.set_pressure(event.pressure)
 			remove_last_stroke_point()
 			if _snapping_enabled:
-				_tail = _add_point_at_snap_pos(0.5)
+				_tail = _add_point_at_snap_pos(tool_pressure)
 			else:
-				_tail = _add_point_at_mouse_pos(0.5)
+				_tail = _add_point_at_mouse_pos(tool_pressure)
 	
 	# Start + End
 	elif event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT:
 			if event.pressed:
 				start_stroke()
-				_head = _add_point_at_mouse_pos(0.5)
-				_tail = _add_point_at_mouse_pos(0.5)
+				_head = _add_point_at_mouse_pos(tool_pressure)
+				_tail = _add_point_at_mouse_pos(tool_pressure)
 			elif !event.pressed && performing_stroke:
 				remove_last_stroke_point()
-				add_subdivided_line(_head, _tail, pressure_curve.interpolate(0.5))
+				add_subdivided_line(_head, _tail, pressure_curve.interpolate(tool_pressure))
 				end_stroke()
 
 # -------------------------------------------------------------------------------------------------

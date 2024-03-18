@@ -43,6 +43,7 @@ onready var _ui_scale_options: OptionButton = $MarginContainer/TabContainer/Appe
 onready var _ui_scale: SpinBox = $MarginContainer/TabContainer/Appearance/VBoxContainer/UIScale/HBoxContainer/UIScale
 onready var _grid_size: SpinBox = $MarginContainer/TabContainer/Appearance/VBoxContainer/GridSize/GridSize
 onready var _grid_pattern: OptionButton = $MarginContainer/TabContainer/Appearance/VBoxContainer/GridPattern/GridPattern
+onready var _tool_pressure: SpinBox = $MarginContainer/TabContainer/General/VBoxContainer/DefaultToolPressure/DefaultToolPressure
 
 # -------------------------------------------------------------------------------------------------
 func _ready():
@@ -72,6 +73,7 @@ func _set_values() -> void:
 	var ui_scale = Settings.get_value(Settings.APPEARANCE_UI_SCALE, Config.DEFAULT_UI_SCALE)
 	var grid_pattern = Settings.get_value(Settings.APPEARANCE_GRID_PATTERN, Config.DEFAULT_GRID_PATTERN)
 	var grid_size = Settings.get_value(Settings.APPEARANCE_GRID_SIZE, Config.DEFAULT_GRID_SIZE)
+	var tool_pressure = Settings.get_value(Settings.GENERAL_TOOL_PRESSURE, Config.DEFAULT_TOOL_PRESSURE)
 	
 	match theme:
 		Types.UITheme.DARK: _theme.selected = THEME_DARK_INDEX
@@ -92,6 +94,7 @@ func _set_values() -> void:
 	
 	_pressure_sensitivity.value = pressure_sensitivity
 	_brush_size.value = brush_size
+	_tool_pressure.value = tool_pressure
 	_canvas_color.color = canvas_color
 	_grid_size.value = grid_size
 	match grid_pattern:
@@ -250,3 +253,7 @@ func _on_UIScale_value_changed(value: float):
 		Settings.set_value(Settings.APPEARANCE_UI_SCALE, value)
 		emit_signal("ui_scale_changed")
 		popup_centered()
+
+# -------------------------------------------------------------------------------------------------
+func _on_DefaultToolPressure_value_changed(value):
+	Settings.set_value(Settings.GENERAL_TOOL_PRESSURE, value)
