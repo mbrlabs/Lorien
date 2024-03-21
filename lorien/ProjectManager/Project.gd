@@ -28,7 +28,7 @@ func clear() -> void:
 	strokes.clear()
 
 # -------------------------------------------------------------------------------------------------
-func add_stroke(stroke: BrushStroke) -> void:
+func add_stroke(stroke) -> void:
 	strokes.append(stroke)
 	dirty = true
 

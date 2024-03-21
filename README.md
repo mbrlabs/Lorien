@@ -28,6 +28,7 @@ Lorien is an **infinite canvas drawing/note-taking app that is focused on perfor
 - Move and delete selected brush strokes
 - SVG export
 - Rebindable keyboard shortcuts
+- Paste image from clipboard
 - Built-in and custom color palettes
 - Designed to be used with a drawing tablet (Wacom, etc.). It also supports pressure sensitivity
 - A little Surprise Mechanic™ when pressing F12
@@ -49,3 +50,4 @@ If you want to check out the bleeding edge main branch without building the proj
 - Brush stroke antialiasing: [godot-antialiased-line2d](https://github.com/godot-extended-libraries/godot-antialiased-line2d)
 - Icons used for the UI: [Remix Icon](https://remixicon.com/)
 - Blurred background image of demo screenshot: https://unsplash.com/photos/nO0V_T0g2fM
+- Godot clipboard library: [GDClip](https://github.com/hansemro/GDClip)

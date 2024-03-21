@@ -51,8 +51,15 @@ func _stroke_intersects_circle(stroke: BrushStroke, circle_position: Vector2) ->
 # -------------------------------------------------------------------------------------------------
 func _remove_stroke(brush_position: Vector2) -> void:
 	for stroke in _canvas.get_strokes_in_camera_frustrum():
-		if !_removed_strokes.has(stroke) && _stroke_intersects_circle(stroke, brush_position):
-			_removed_strokes.append(stroke)
+		if !_removed_strokes.has(stroke):
+			if "BrushStroke" in stroke.name && _stroke_intersects_circle(stroke, brush_position):
+				_removed_strokes.append(stroke)
+			elif "ImageStroke" in stroke.name:
+				var top_left :Vector2 = stroke.position + stroke.top_left_pos
+				var bottom_right :Vector2 = stroke.position + stroke.bottom_right_pos
+				var bounding_box := Utils.calculate_rect(top_left, bottom_right)
+				if bounding_box.has_point(brush_position):
+					_removed_strokes.append(stroke)
 		
 # ------------------------------------------------------------------------------------------------
 func _add_undoredo_action_for_erased_strokes() -> void:
