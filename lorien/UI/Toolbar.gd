@@ -10,6 +10,8 @@ signal redo_action
 signal toggle_brush_color_picker
 signal brush_size_changed(size)
 signal tool_changed(t)
+signal reset_to_center_action
+signal zoom_to_drawing_action
 
 # -------------------------------------------------------------------------------------------------
 const BUTTON_HOVER_COLOR = Color("50ffd6")
@@ -51,6 +53,8 @@ func _on_NewFileButton_pressed(): emit_signal("new_project")
 func _on_ClearCanvasButton_pressed(): emit_signal("clear_canvas")
 func _on_UndoButton_pressed(): emit_signal("undo_action")
 func _on_RedoButton_pressed(): emit_signal("redo_action")
+func _on_ResetToCenterButton_pressed(): emit_signal("reset_to_center_action")
+func _on_ZoomToDrawingButton_pressed(): emit_signal("zoom_to_drawing_action")
 
 # -------------------------------------------------------------------------------------------------
 func enable_tool(tool_type: int) -> void:

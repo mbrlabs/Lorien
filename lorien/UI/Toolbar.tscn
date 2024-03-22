@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://Assets/Icons/save_file.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Icons/open_file.png" type="Texture" id=2]
@@ -11,10 +11,12 @@
 [ext_resource path="res://Assets/Icons/eraser_tool.png" type="Texture" id=9]
 [ext_resource path="res://Assets/Icons/rectangle_tool.png" type="Texture" id=10]
 [ext_resource path="res://Assets/Icons/line_tool.png" type="Texture" id=11]
+[ext_resource path="res://Assets/Textures/reset_to_center.png" type="Texture" id=12]
 [ext_resource path="res://UI/Components/FlatTextureButton.gd" type="Script" id=13]
 [ext_resource path="res://Assets/Fonts/font_small.tres" type="DynamicFont" id=14]
 [ext_resource path="res://UI/Themes/theme_dark.tres" type="Theme" id=15]
 [ext_resource path="res://Assets/Icons/selection_tool.png" type="Texture" id=16]
+[ext_resource path="res://Assets/Textures/zoom_to_drawing.png" type="Texture" id=17]
 [ext_resource path="res://Assets/Icons/fullscreen.png" type="Texture" id=18]
 [ext_resource path="res://Assets/Icons/circle_tool.png" type="Texture" id=19]
 
@@ -297,6 +299,38 @@ margin_bottom = 27.0
 custom_fonts/font = ExtResource( 14 )
 text = "12"
 
+[node name="VSeparator5" type="VSeparator" parent="Console/Left"]
+margin_left = 618.0
+margin_right = 622.0
+margin_bottom = 40.0
+custom_styles/separator = SubResource( 3 )
+
+[node name="ResetToCenterButton" type="TextureButton" parent="Console/Left"]
+margin_left = 634.0
+margin_top = 11.0
+margin_right = 652.0
+margin_bottom = 29.0
+hint_tooltip = "TOOLBAR_TOOLTIP_UNDO"
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource( 12 )
+script = ExtResource( 13 )
+hover_tint = Color( 0.662745, 0.945098, 0.87451, 1 )
+pressed_tint = Color( 0.572549, 1, 0.894118, 1 )
+
+[node name="ZoomToDrawingButton" type="TextureButton" parent="Console/Left"]
+margin_left = 664.0
+margin_top = 11.0
+margin_right = 682.0
+margin_bottom = 29.0
+hint_tooltip = "TOOLBAR_TOOLTIP_UNDO"
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource( 17 )
+script = ExtResource( 13 )
+hover_tint = Color( 0.662745, 0.945098, 0.87451, 1 )
+pressed_tint = Color( 0.572549, 1, 0.894118, 1 )
+
 [node name="Right" type="HBoxContainer" parent="Console"]
 margin_left = 962.0
 margin_right = 1920.0
@@ -345,4 +379,6 @@ custom_styles/separator = SubResource( 2 )
 [connection signal="pressed" from="Console/Left/SelectionToolButton" to="." method="_on_SelectToolButton_pressed"]
 [connection signal="pressed" from="Console/Left/ColorButton" to="." method="_on_ColorButton_pressed"]
 [connection signal="value_changed" from="Console/Left/BrushSizeSlider" to="." method="_on_BrushSizeSlider_value_changed"]
+[connection signal="pressed" from="Console/Left/ResetToCenterButton" to="." method="_on_ResetToCenterButton_pressed"]
+[connection signal="pressed" from="Console/Left/ZoomToDrawingButton" to="." method="_on_ZoomToDrawingButton_pressed"]
 [connection signal="toggled" from="Console/Right/FullscreenButton" to="." method="_on_FullscreenButton_toggled"]

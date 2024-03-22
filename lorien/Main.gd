@@ -47,6 +47,8 @@ func _ready():
 	_toolbar.connect("save_project", self, "_on_save_project")
 	_toolbar.connect("brush_size_changed", self, "_on_brush_size_changed")
 	_toolbar.connect("tool_changed", self, "_on_tool_changed")
+	_toolbar.connect("reset_to_center_action", self, "_on_reset_to_center_action")
+	_toolbar.connect("zoom_to_drawing_action", self, "_on_zoom_to_drawing_action")
 	
 	_menubar.connect("create_new_project", self, "_on_create_new_project")
 	_menubar.connect("project_selected", self, "_on_project_selected")
@@ -164,6 +166,10 @@ func _unhandled_input(event):
 				_toggle_distraction_free_mode()
 			elif Utils.event_pressed_bug_workaround("toggle_fullscreen", event):
 				_toggle_fullscreen()
+			elif Utils.event_pressed_bug_workaround("canvas_reset_to_center", event):
+				_on_reset_to_center_action()
+			elif Utils.event_pressed_bug_workaround("canvas_zoom_to_drawing", event):
+				_on_zoom_to_drawing_action()
 
 # -------------------------------------------------------------------------------------------------
 func _toggle_player() -> void:
@@ -561,3 +567,14 @@ func _get_general_ui_scale() -> float:
 	elif smallest_dimension >= 1700:
 		return Config.DEFAULT_UI_SCALE * 1.5
 	return Config.DEFAULT_UI_SCALE
+	
+# --------------------------------------------------------------------------------------------------
+func _on_reset_to_center_action() -> void:
+	print("On Reset To Camera Action")
+	_canvas.reset_to_center()
+
+# --------------------------------------------------------------------------------------------------
+func _on_zoom_to_drawing_action() -> void:
+	print("On Zoom To Drawing Action")
+	_canvas.zoom_to_drawing()
+	

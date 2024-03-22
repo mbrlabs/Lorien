@@ -90,6 +90,7 @@ func end_stroke() -> void:
 
 # -------------------------------------------------------------------------------------------------
 func xform_vector2(v: Vector2) -> Vector2:
+	print(_canvas.get_camera().xform(v * _canvas.get_canvas_scale()))
 	return _canvas.get_camera().xform(v * _canvas.get_canvas_scale())
 
 # -------------------------------------------------------------------------------------------------
