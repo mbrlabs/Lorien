@@ -166,6 +166,30 @@ func _unhandled_input(event):
 				_toggle_fullscreen()
 			elif Utils.event_pressed_bug_workaround("shortcut_palette_tool", event):
 				_brush_color_picker.toggle()
+			elif Utils.event_pressed_bug_workaround("shortcut_palette_color_0", event):
+				_change_color(0)
+			elif Utils.event_pressed_bug_workaround("shortcut_palette_color_1", event):
+				_change_color(1)
+			elif Utils.event_pressed_bug_workaround("shortcut_palette_color_2", event):
+				_change_color(2)
+			elif Utils.event_pressed_bug_workaround("shortcut_palette_color_3", event):
+				_change_color(3)
+			elif Utils.event_pressed_bug_workaround("shortcut_palette_color_4", event):
+				_change_color(4)
+			elif Utils.event_pressed_bug_workaround("shortcut_palette_color_5", event):
+				_change_color(5)
+			elif Utils.event_pressed_bug_workaround("shortcut_palette_color_6", event):
+				_change_color(6)
+			elif Utils.event_pressed_bug_workaround("shortcut_palette_color_7", event):
+				_change_color(7)
+			elif Utils.event_pressed_bug_workaround("shortcut_palette_color_8", event):
+				_change_color(8)
+			elif Utils.event_pressed_bug_workaround("shortcut_palette_color_9", event):
+				_change_color(9)
+
+func _change_color(key) -> void:
+	var index := min(key, PaletteManager.get_active_palette().colors.size()-1)
+	_brush_color_picker._on_platte_button_pressed(_brush_color_picker._color_grid.get_child(index), index)	
 
 # -------------------------------------------------------------------------------------------------
 func _toggle_player() -> void:
