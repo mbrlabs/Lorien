@@ -158,6 +158,17 @@ ACTION_shortcut_select_tool        Selection tool
 ACTION_shortcut_move_tool          Move tool
 ACTION_shortcut_rectangle_tool     Rectangle tool
 ACTION_shortcut_circle_tool        Circle tool
+ACTION_shortcut_palette_tool       Palette tool
+ACTION_shortcut_palette_color_0    Select palette color 0
+ACTION_shortcut_palette_color_1    Select palette color 1
+ACTION_shortcut_palette_color_2    Select palette color 2
+ACTION_shortcut_palette_color_3    Select palette color 3
+ACTION_shortcut_palette_color_4    Select palette color 4
+ACTION_shortcut_palette_color_5    Select palette color 5
+ACTION_shortcut_palette_color_6    Select palette color 6
+ACTION_shortcut_palette_color_7    Select palette color 7
+ACTION_shortcut_palette_color_8    Select palette color 8
+ACTION_shortcut_palette_color_9    Select palette color 9
 ACTION_shortcut_export_project     Export project
 ACTION_deselect_all_strokes        Deselect all strokes
 ACTION_center_canvas_to_mouse      Space
