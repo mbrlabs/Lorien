@@ -164,6 +164,8 @@ func _unhandled_input(event):
 				_toggle_distraction_free_mode()
 			elif Utils.event_pressed_bug_workaround("toggle_fullscreen", event):
 				_toggle_fullscreen()
+			elif Utils.event_pressed_bug_workaround("shortcut_palette_tool", event):
+				_brush_color_picker.toggle()
 
 # -------------------------------------------------------------------------------------------------
 func _toggle_player() -> void:

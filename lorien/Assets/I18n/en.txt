@@ -158,6 +158,7 @@ ACTION_shortcut_select_tool        Selection tool
 ACTION_shortcut_move_tool          Move tool
 ACTION_shortcut_rectangle_tool     Rectangle tool
 ACTION_shortcut_circle_tool        Circle tool
+ACTION_shortcut_palette_tool       Palette tool
 ACTION_shortcut_export_project     Export project
 ACTION_deselect_all_strokes        Deselect all strokes
 ACTION_center_canvas_to_mouse      Space
