@@ -157,6 +157,29 @@ size_flags_vertical = 3
 placeholder_text = "e.g. C:/Users/me/Lorien"
 placeholder_alpha = 0.5
 
+[node name="PaletteLocation" type="HBoxContainer" parent="MarginContainer/TabContainer/General/VBoxContainer"]
+margin_right = 496.0
+margin_bottom = 40.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="MarginContainer/TabContainer/General/VBoxContainer/PaletteLocation"]
+margin_top = 2.0
+margin_right = 246.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+text = "SETTINGS_PALETTE_LOCATION"
+
+[node name="PaletteLocation" type="OptionButton" parent="MarginContainer/TabContainer/General/VBoxContainer/PaletteLocation"]
+margin_left = 250.0
+margin_right = 496.0
+margin_bottom = 21.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+text = "Toolbar"
+items = [ "Toolbar", null, false, 0, null, "Mouse", null, false, 1, null ]
+selected = 0
+
 [node name="HSeparator4" type="HSeparator" parent="MarginContainer/TabContainer/General/VBoxContainer"]
 margin_top = 116.0
 margin_right = 496.0
@@ -534,6 +557,7 @@ dialog_autowrap = true
 [connection signal="value_changed" from="MarginContainer/TabContainer/General/VBoxContainer/DefaultBrushSize/DefaultBrushSize" to="." method="_on_DefaultBrushSize_value_changed"]
 [connection signal="value_changed" from="MarginContainer/TabContainer/General/VBoxContainer/DefaultToolPressure/DefaultToolPressure" to="." method="_on_DefaultToolPressure_value_changed"]
 [connection signal="text_changed" from="MarginContainer/TabContainer/General/VBoxContainer/DefaultSaveDir/DefaultSaveDir" to="." method="_on_DefaultSaveDir_text_changed"]
+[connection signal="item_selected" from="MarginContainer/TabContainer/General/VBoxContainer/PaletteLocation/PaletteLocation" to="." method="_on_PaletteLocation_item_selected"]
 [connection signal="item_selected" from="MarginContainer/TabContainer/General/VBoxContainer/Language/OptionButton" to="." method="_on_OptionButton_item_selected"]
 [connection signal="item_selected" from="MarginContainer/TabContainer/Appearance/VBoxContainer/Theme/Theme" to="." method="_on_Theme_item_selected"]
 [connection signal="item_selected" from="MarginContainer/TabContainer/Appearance/VBoxContainer/UIScale/HBoxContainer/UIScaleOptions" to="." method="_on_UIScaleOptions_item_selected"]

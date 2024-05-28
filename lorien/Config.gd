@@ -25,4 +25,5 @@ const DEFAULT_UI_SCALE  			:= 1.0
 const DEFAULT_GRID_PATTERN 			:= Types.GridPattern.DOTS
 const DEFAULT_GRID_SIZE 			:= 25.0
 const DEFAULT_TOOL_PRESSURE			:= 0.5
+const DEFAULT_PALETTE_LOCATION		:= Types.PaletteLocation.TOOLBAR
 
