@@ -226,7 +226,6 @@ _global_script_class_icons={
 
 config/name="Lorien"
 run/main_scene="res://Main.tscn"
-run/low_processor_mode=true
 boot_splash/image="res://Assets/Textures/boot.png"
 boot_splash/fullsize=false
 boot_splash/use_filter=false
