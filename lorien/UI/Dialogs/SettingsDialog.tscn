@@ -13,7 +13,6 @@
 [sub_resource type="StyleBoxEmpty" id=2]
 
 [node name="SettingsDialog" type="WindowDialog"]
-visible = true
 margin_right = 520.0
 margin_bottom = 250.0
 rect_min_size = Vector2( 520, 270 )
@@ -43,7 +42,6 @@ __meta__ = {
 }
 
 [node name="General" type="Control" parent="MarginContainer/TabContainer"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = 27.0
@@ -86,10 +84,30 @@ max_value = 2.0
 step = 0.01
 value = 1.0
 
-[node name="DefaultBrushSize" type="HBoxContainer" parent="MarginContainer/TabContainer/General/VBoxContainer"]
+[node name="ConstantPressure" type="HBoxContainer" parent="MarginContainer/TabContainer/General/VBoxContainer"]
 margin_top = 41.0
 margin_right = 496.0
-margin_bottom = 62.0
+margin_bottom = 66.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="MarginContainer/TabContainer/General/VBoxContainer/ConstantPressure"]
+margin_top = 4.0
+margin_right = 246.0
+margin_bottom = 21.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+text = "SETTINGS_CONSTANT_PRESSURE"
+
+[node name="ConstantPressure" type="CheckBox" parent="MarginContainer/TabContainer/General/VBoxContainer/ConstantPressure"]
+margin_left = 250.0
+margin_right = 278.0
+margin_bottom = 25.0
+size_flags_horizontal = 3
+
+[node name="DefaultBrushSize" type="HBoxContainer" parent="MarginContainer/TabContainer/General/VBoxContainer"]
+margin_top = 70.0
+margin_right = 496.0
+margin_bottom = 91.0
 size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="MarginContainer/TabContainer/General/VBoxContainer/DefaultBrushSize"]
@@ -111,9 +129,9 @@ value = 12.0
 allow_greater = true
 
 [node name="DefaultToolPressure" type="HBoxContainer" parent="MarginContainer/TabContainer/General/VBoxContainer"]
-margin_top = 66.0
+margin_top = 95.0
 margin_right = 496.0
-margin_bottom = 87.0
+margin_bottom = 116.0
 size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="MarginContainer/TabContainer/General/VBoxContainer/DefaultToolPressure"]
@@ -135,9 +153,9 @@ step = 0.05
 value = 1.0
 
 [node name="DefaultSaveDir" type="HBoxContainer" parent="MarginContainer/TabContainer/General/VBoxContainer"]
-margin_top = 91.0
+margin_top = 120.0
 margin_right = 496.0
-margin_bottom = 112.0
+margin_bottom = 141.0
 size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="MarginContainer/TabContainer/General/VBoxContainer/DefaultSaveDir"]
@@ -158,15 +176,15 @@ placeholder_text = "e.g. C:/Users/me/Lorien"
 placeholder_alpha = 0.5
 
 [node name="HSeparator4" type="HSeparator" parent="MarginContainer/TabContainer/General/VBoxContainer"]
-margin_top = 116.0
+margin_top = 145.0
 margin_right = 496.0
-margin_bottom = 140.0
+margin_bottom = 169.0
 custom_constants/separation = 24
 
 [node name="Language" type="HBoxContainer" parent="MarginContainer/TabContainer/General/VBoxContainer"]
-margin_top = 144.0
+margin_top = 173.0
 margin_right = 496.0
-margin_bottom = 169.0
+margin_bottom = 198.0
 size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="MarginContainer/TabContainer/General/VBoxContainer/Language"]
@@ -185,9 +203,9 @@ size_flags_horizontal = 3
 text = "English"
 
 [node name="HSeparator" type="HSeparator" parent="MarginContainer/TabContainer/General/VBoxContainer"]
-margin_top = 173.0
+margin_top = 202.0
 margin_right = 496.0
-margin_bottom = 185.0
+margin_bottom = 214.0
 custom_constants/separation = 12
 custom_styles/separator = SubResource( 3 )
 
@@ -531,6 +549,7 @@ window_title = "KEYBINDING_DIALOG_REBIND_WINDOW_NAME"
 dialog_autowrap = true
 
 [connection signal="value_changed" from="MarginContainer/TabContainer/General/VBoxContainer/PressureSensitivity/PressureSensitivity" to="." method="_on_PressureSensitivity_value_changed"]
+[connection signal="toggled" from="MarginContainer/TabContainer/General/VBoxContainer/ConstantPressure/ConstantPressure" to="." method="_on_ConstantPressure_toggled"]
 [connection signal="value_changed" from="MarginContainer/TabContainer/General/VBoxContainer/DefaultBrushSize/DefaultBrushSize" to="." method="_on_DefaultBrushSize_value_changed"]
 [connection signal="value_changed" from="MarginContainer/TabContainer/General/VBoxContainer/DefaultToolPressure/DefaultToolPressure" to="." method="_on_DefaultToolPressure_value_changed"]
 [connection signal="text_changed" from="MarginContainer/TabContainer/General/VBoxContainer/DefaultSaveDir/DefaultSaveDir" to="." method="_on_DefaultSaveDir_text_changed"]

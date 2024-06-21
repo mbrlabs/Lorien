@@ -4,6 +4,7 @@ extends Node
 const DEFAULT_SECTION 					:= "settings"
 const SHORTCUTS_SECTION 				:= "shortcuts"
 const GENERAL_PRESSURE_SENSITIVITY 		:= "general_pressure_sensitvity"
+const GENERAL_CONSTANT_PRESSURE			:= "general_constant_pressure"
 const GENERAL_DEFAULT_BRUSH_SIZE 		:= "general_default_brush_size"
 const GENERAL_DEFAULT_PROJECT_DIR		:= "general_default_project_dir"
 const GENERAL_LANGUAGE					:= "general_language"

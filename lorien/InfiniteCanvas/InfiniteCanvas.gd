@@ -19,6 +19,9 @@ onready var _camera: Camera2D = $Viewport/Camera2D
 onready var _viewport: Viewport = $Viewport
 onready var _grid: InfiniteCanvasGrid = $Viewport/Grid
 
+onready var _constant_pressure_curve := load("res://InfiniteCanvas/constant_pressure_curve.tres")
+onready var _default_pressure_curve := load("res://InfiniteCanvas/default_pressure_curve.tres")
+
 var info := Types.CanvasInfo.new()
 var _is_enabled := false
 var _background_color: Color
@@ -40,6 +43,11 @@ func _ready():
 	set_background_color(Settings.get_value(Settings.APPEARANCE_CANVAS_COLOR, Config.DEFAULT_CANVAS_COLOR))
 	_active_tool._on_brush_size_changed(_brush_size)
 	_active_tool.enabled = false
+	
+	if Settings.get_value(Settings.GENERAL_CONSTANT_PRESSURE, false):
+		_brush_tool.pressure_curve = _constant_pressure_curve
+	else:
+		_brush_tool.pressure_curve = _default_pressure_curve
 	
 	get_tree().get_root().connect("size_changed", self, "_on_window_resized")
 	
@@ -381,3 +389,10 @@ func set_canvas_scale(scale: float) -> void:
 # -------------------------------------------------------------------------------------------------
 func get_canvas_scale() -> float:
 	return _scale
+
+
+func _on_SettingsDialog_constant_pressure_changed(state: bool):
+	if state:
+		_brush_tool.pressure_curve = _constant_pressure_curve
+	else:
+		_brush_tool.pressure_curve = _default_pressure_curve
