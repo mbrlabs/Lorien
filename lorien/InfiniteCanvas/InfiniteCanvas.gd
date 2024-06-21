@@ -44,7 +44,8 @@ func _ready():
 	_active_tool._on_brush_size_changed(_brush_size)
 	_active_tool.enabled = false
 	
-	if Settings.get_value(Settings.GENERAL_CONSTANT_PRESSURE, false):
+	var constant_pressure = Settings.get_value(Settings.GENERAL_CONSTANT_PRESSURE, Config.DEFAULT_CONSTANT_PRESSURE)
+	if constant_pressure:
 		_brush_tool.pressure_curve = _constant_pressure_curve
 	else:
 		_brush_tool.pressure_curve = _default_pressure_curve
