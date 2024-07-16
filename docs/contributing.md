@@ -2,7 +2,7 @@
 
 ## General
 This guide is loosly based on [Godot's contributing guidelines](https://github.com/godotengine/godot/blob/master/CONTRIBUTING.md):
-- Use the latest stable release: Godot 3.4.4
+- Use the latest stable release: Godot 3.5.x
 - If you want to implement a big feature, open an issue or a [Github discussion](https://github.com/mbrlabs/Lorien/discussions) so we can talk about it first
 - Format your commit messages with readability in mind
 
