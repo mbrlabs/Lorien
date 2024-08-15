@@ -61,6 +61,7 @@ SETTINGS_APPEARANCE             Appearance
 SETTINGS_RENDERING              Rendering
 SETTINGS_KEYBINDINGS            Keybindings
 SETTINGS_PRESSURE_SENSITIVITY   Pressure Sensitivity
+SETTINGS_CONSTANT_PRESSURE      Constant Pressure?
 SETTINGS_BRUSH_SIZE             Default Brush Size
 SETTINGS_PROJECT_FOLDER         Default Project Folder
 SETTINGS_GRID_SIZE              Grid Size

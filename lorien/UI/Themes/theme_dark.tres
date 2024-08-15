@@ -1,14 +1,7 @@
-[gd_resource type="Theme" load_steps=38 format=2]
+[gd_resource type="Theme" load_steps=31 format=2]
 
 [ext_resource path="res://Assets/Fonts/font_big_bold.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Assets/Fonts/font_normal.tres" type="DynamicFont" id=2]
-[ext_resource path="res://Assets/Textures/slider_knob_white.png" type="Texture" id=3]
-[ext_resource path="res://Assets/Icons/close.png" type="Texture" id=4]
-[ext_resource path="res://Assets/Textures/switch_off.png" type="Texture" id=5]
-[ext_resource path="res://Assets/Textures/switch_on.png" type="Texture" id=6]
-[ext_resource path="res://Assets/Textures/scrollbar_hl.png" type="Texture" id=7]
-[ext_resource path="res://Assets/Textures/scrollbar.png" type="Texture" id=8]
-[ext_resource path="res://Assets/Textures/scrollbar_bg.png" type="Texture" id=9]
 
 [sub_resource type="StyleBoxFlat" id=1]
 content_margin_left = 6.0
@@ -50,7 +43,6 @@ corner_radius_bottom_right = 1
 corner_radius_bottom_left = 1
 
 [sub_resource type="StyleBoxTexture" id=26]
-texture = ExtResource( 8 )
 region_rect = Rect2( 0, 0, 12, 12 )
 margin_left = 6.0
 margin_right = 6.0
@@ -58,7 +50,6 @@ expand_margin_left = 2.0
 expand_margin_right = 2.0
 
 [sub_resource type="StyleBoxTexture" id=28]
-texture = ExtResource( 7 )
 region_rect = Rect2( 0, 0, 12, 12 )
 margin_left = 6.0
 margin_right = 6.0
@@ -66,7 +57,6 @@ expand_margin_left = 2.0
 expand_margin_right = 2.0
 
 [sub_resource type="StyleBoxTexture" id=29]
-texture = ExtResource( 9 )
 region_rect = Rect2( 0, 0, 12, 12 )
 margin_left = 4.0
 margin_right = 4.0
@@ -240,10 +230,10 @@ CheckButton/colors/font_color_pressed = Color( 1, 1, 1, 1 )
 CheckButton/constants/check_vadjust = 0
 CheckButton/constants/hseparation = 4
 CheckButton/fonts/font = ExtResource( 2 )
-CheckButton/icons/off = ExtResource( 5 )
-CheckButton/icons/off_disabled = ExtResource( 5 )
-CheckButton/icons/on = ExtResource( 6 )
-CheckButton/icons/on_disabled = ExtResource( 6 )
+CheckButton/icons/off = null
+CheckButton/icons/off_disabled = null
+CheckButton/icons/on = null
+CheckButton/icons/on_disabled = null
 CheckButton/styles/disabled = null
 CheckButton/styles/focus = null
 CheckButton/styles/hover = null
@@ -279,10 +269,10 @@ HScrollBar/styles/grabber_pressed = SubResource( 28 )
 HScrollBar/styles/scroll = SubResource( 29 )
 HSeparator/constants/separation = 4
 HSeparator/styles/separator = SubResource( 5 )
-HSlider/icons/grabber = ExtResource( 3 )
-HSlider/icons/grabber_disabled = ExtResource( 3 )
-HSlider/icons/grabber_highlight = ExtResource( 3 )
-HSlider/icons/tick = ExtResource( 3 )
+HSlider/icons/grabber = null
+HSlider/icons/grabber_disabled = null
+HSlider/icons/grabber_highlight = null
+HSlider/icons/tick = null
 HSlider/styles/grabber_area = SubResource( 6 )
 HSlider/styles/grabber_area_highlight = SubResource( 6 )
 HSlider/styles/slider = SubResource( 7 )
@@ -406,6 +396,6 @@ WindowDialog/constants/close_v_ofs = 18
 WindowDialog/constants/scaleborder_size = 4
 WindowDialog/constants/title_height = 20
 WindowDialog/fonts/title_font = ExtResource( 1 )
-WindowDialog/icons/close = ExtResource( 4 )
-WindowDialog/icons/close_highlight = ExtResource( 4 )
+WindowDialog/icons/close = null
+WindowDialog/icons/close_highlight = null
 WindowDialog/styles/panel = SubResource( 23 )

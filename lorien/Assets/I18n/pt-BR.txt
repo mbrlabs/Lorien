@@ -60,6 +60,7 @@ SETTINGS_APPEARANCE             Aparência
 SETTINGS_RENDERING              Renderização
 SETTINGS_KEYBINDINGS            Teclas de Atalho
 SETTINGS_PRESSURE_SENSITIVITY   Sensibilidade à Pressão
+SETTINGS_CONSTANT_PRESSURE      Pressão Constante?
 SETTINGS_BRUSH_SIZE             Tamanho Padrão do Pincel
 SETTINGS_CANVAS_COLOR           Cor da Área de Desenho
 SETTINGS_PROJECT_FOLDER         Pasta Padrão do Projeto

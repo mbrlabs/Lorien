@@ -91,10 +91,10 @@ margin_bottom = 202.0
 custom_styles/panel = SubResource( 1 )
 
 [node name="ColorPicker" type="ColorPicker" parent="BackgroundColorPickerPopup/PanelContainer"]
-margin_left = 84.0
-margin_top = 84.0
-margin_right = 393.0
-margin_bottom = 488.0
+margin_left = 100.0
+margin_top = 100.0
+margin_right = 409.0
+margin_bottom = 504.0
 edit_alpha = false
 presets_enabled = false
 presets_visible = false
@@ -131,6 +131,7 @@ margin_right = 385.0
 margin_bottom = 216.5
 theme = ExtResource( 8 )
 popup_exclusive = true
+window_title = "Salvar um Arquivo"
 access = 2
 filters = PoolStringArray( "*.lorien" )
 __meta__ = {
@@ -237,6 +238,7 @@ margin_right = 68.5
 margin_bottom = 35.0
 theme = ExtResource( 8 )
 popup_exclusive = true
+window_title = "Alerta!"
 dialog_text = "Generic message. "
 __meta__ = {
 "_edit_lock_": true
@@ -249,3 +251,4 @@ __meta__ = {
 [connection signal="new_palette_created" from="NewPaletteDialog" to="." method="_on_NewPaletteDialog_new_palette_created"]
 [connection signal="palette_deleted" from="DeletePaletteDialog" to="." method="_on_DeletePaletteDialog_palette_deleted"]
 [connection signal="palette_changed" from="EditPaletteDialog" to="." method="_on_EditPaletteDialog_palette_changed"]
+[connection signal="constant_pressure_changed" from="SettingsDialog" to="InfiniteCanvas" method="_on_SettingsDialog_constant_pressure_changed"]
