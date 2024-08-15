@@ -4,6 +4,17 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [0.7.0] 
+
+### Added
+- Setting to disable pressure sensitivity and always draw with a constant brush width
+- Translations: Ukrainian
+
+### Fixed
+
+### Changed
+- Improved icon resolution on Windows
+
 ## [0.6.0] - 2023-11-06
 
 It's been a while - but here is a another release! Special thanks goes to [@MrApplejuice](https://github.com/MrApplejuice) for adding support for rebindable keyboard shortcuts and [@hansemro](https://github.com/hansemro) for enabling the eraser mode when the pen is inverted!
