@@ -175,6 +175,17 @@ ACTION_canvas_pan_up               Pan up
 ACTION_canvas_pan_down             Pan down
 ACTION_canvas_pan_right            Pan right
 ACTION_canvas_pan_left             Pan left
+ACTION_shortcut_palette_ui_toggle  Palette UI toggle
+ACTION_shortcut_palette_select_color_0  Select palette color 0
+ACTION_shortcut_palette_select_color_1  Select palette color 1
+ACTION_shortcut_palette_select_color_2  Select palette color 2
+ACTION_shortcut_palette_select_color_3  Select palette color 3
+ACTION_shortcut_palette_select_color_4  Select palette color 4
+ACTION_shortcut_palette_select_color_5  Select palette color 5
+ACTION_shortcut_palette_select_color_6  Select palette color 6
+ACTION_shortcut_palette_select_color_7  Select palette color 7
+ACTION_shortcut_palette_select_color_8  Select palette color 8
+ACTION_shortcut_palette_select_color_9  Select palette color 9
 
 # -----------------------------------------------------------------------------
 # Kebindings dialog messages

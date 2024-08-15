@@ -165,6 +165,28 @@ func _unhandled_input(event):
 				_toggle_distraction_free_mode()
 			elif Utils.event_pressed_bug_workaround("toggle_fullscreen", event):
 				_toggle_fullscreen()
+			elif Utils.event_pressed_bug_workaround("shortcut_palette_ui_toggle", event):
+				_brush_color_picker.toggle()
+			elif Utils.event_pressed_bug_workaround("shortcut_palette_select_color_0", event):
+				_brush_color_picker._change_brush_color(0)
+			elif Utils.event_pressed_bug_workaround("shortcut_palette_select_color_1", event):
+				_brush_color_picker._change_brush_color(1)
+			elif Utils.event_pressed_bug_workaround("shortcut_palette_select_color_2", event):
+				_brush_color_picker._change_brush_color(2)
+			elif Utils.event_pressed_bug_workaround("shortcut_palette_select_color_3", event):
+				_brush_color_picker._change_brush_color(3)
+			elif Utils.event_pressed_bug_workaround("shortcut_palette_select_color_4", event):
+				_brush_color_picker._change_brush_color(4)
+			elif Utils.event_pressed_bug_workaround("shortcut_palette_select_color_5", event):
+				_brush_color_picker._change_brush_color(5)
+			elif Utils.event_pressed_bug_workaround("shortcut_palette_select_color_6", event):
+				_brush_color_picker._change_brush_color(6)
+			elif Utils.event_pressed_bug_workaround("shortcut_palette_select_color_7", event):
+				_brush_color_picker._change_brush_color(7)
+			elif Utils.event_pressed_bug_workaround("shortcut_palette_select_color_8", event):
+				_brush_color_picker._change_brush_color(8)
+			elif Utils.event_pressed_bug_workaround("shortcut_palette_select_color_9", event):
+				_brush_color_picker._change_brush_color(9)
 
 # -------------------------------------------------------------------------------------------------
 func _toggle_player() -> void:
