@@ -71,6 +71,7 @@ func _ready():
 	_settings_dialog.connect("grid_size_changed", self, "_on_grid_size_changed")
 	_settings_dialog.connect("grid_pattern_changed", self, "_on_grid_pattern_changed")
 	_settings_dialog.connect("canvas_color_changed", self, "_on_canvas_color_changed")
+	_settings_dialog.connect("constant_pressure_changed", self, "_on_constant_pressure_changed")
 	
 	# Initialize scale
 	_on_scale_changed()
@@ -541,6 +542,10 @@ func _on_scale_changed() -> void:
 	get_tree().set_screen_stretch(SceneTree.STRETCH_MODE_DISABLED, SceneTree.STRETCH_ASPECT_IGNORE, Vector2(0,0), scale)
 	OS.min_window_size = Config.MIN_WINDOW_SIZE * scale
 
+# --------------------------------------------------------------------------------------------------
+func _on_constant_pressure_changed(enable: bool) -> void:
+	_canvas.enable_constant_pressure(enable)
+		
 # --------------------------------------------------------------------------------------------------
 func _get_platform_ui_scale() -> float:
 	var platform: String = OS.get_name()

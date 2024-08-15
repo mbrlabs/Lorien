@@ -327,6 +327,13 @@ func set_brush_color(color: Color) -> void:
 		_active_tool._on_brush_color_changed(_brush_color)
 
 # -------------------------------------------------------------------------------------------------
+func enable_constant_pressure(enable: bool):
+	if enable:
+		_brush_tool.pressure_curve = _constant_pressure_curve
+	else:
+		_brush_tool.pressure_curve = _default_pressure_curve
+
+# -------------------------------------------------------------------------------------------------
 func get_camera_zoom() -> float:
 	return _camera.zoom.x
 
@@ -390,10 +397,3 @@ func set_canvas_scale(scale: float) -> void:
 # -------------------------------------------------------------------------------------------------
 func get_canvas_scale() -> float:
 	return _scale
-
-
-func _on_SettingsDialog_constant_pressure_changed(state: bool):
-	if state:
-		_brush_tool.pressure_curve = _constant_pressure_curve
-	else:
-		_brush_tool.pressure_curve = _default_pressure_curve

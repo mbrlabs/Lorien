@@ -263,8 +263,7 @@ func _on_UIScale_value_changed(value: float):
 func _on_DefaultToolPressure_value_changed(value):
 	Settings.set_value(Settings.GENERAL_TOOL_PRESSURE, value)
 
-
+# -------------------------------------------------------------------------------------------------
 func _on_ConstantPressure_toggled(button_pressed: bool):
 	Settings.set_value(Settings.GENERAL_CONSTANT_PRESSURE, button_pressed)
 	emit_signal("constant_pressure_changed", button_pressed)
-	pass # Replace with function body.
