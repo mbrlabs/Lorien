@@ -158,7 +158,24 @@ func toggle() -> void:
 
 # -------------------------------------------------------------------------------------------------
 func _adjust_position() -> void:
+	if Settings.get_value(Settings.PALETTE_LOCATION) == Types.PaletteLocation.MOUSE:
+		var mouse_x := get_global_mouse_position().x
+		if mouse_x + rect_size.x > get_viewport_rect().size.x:
+			# Adjust x position to fit in window
+			rect_position.x = mouse_x - rect_size.x
+		else:
+			rect_position.x = mouse_x
+
+		var mouse_y := get_global_mouse_position().y
+		if mouse_y + rect_size.y > get_viewport_rect().size.y:
+			# Adjust y position to fit in window
+			rect_position.y = mouse_y - rect_size.y
+		else:
+			rect_position.y = mouse_y
+		return
+
 	var color_button_position: float = _toolbar.get_brush_color_button().rect_position.x
+	rect_position.y = _toolbar.rect_position.y + _toolbar.rect_size.y + 2
 	# If palette extends beyond the window
 	if color_button_position + rect_size.x > _toolbar.rect_size.x:
 		var size_offset: int = _toolbar.rect_size.x - rect_size.x

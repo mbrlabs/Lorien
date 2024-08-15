@@ -19,6 +19,7 @@ const RENDERING_BACKGROUND_FPS			:= "rendering_background_fps"
 const RENDERING_BRUSH_ROUNDING			:= "rendering_brush_rounding"
 const COLOR_PALETTE_UUID_LAST_USED		:= "color_palette_uuid_last_used"
 const GENERAL_TOOL_PRESSURE				:= "general_tool_pressure"
+const PALETTE_LOCATION					:= "palette_location"
 
 # -------------------------------------------------------------------------------------------------
 var _config_file := ConfigFile.new()

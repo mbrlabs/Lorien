@@ -15,6 +15,9 @@ const AA_TEXTURE_FILL_INDEX := 2
 const UI_SCALE_AUTO_INDEX := 0
 const UI_SCALE_CUSTOM_INDEX := 1
 
+const RENDER_PALETTE_AT_TOOLBAR_INDEX := 0
+const RENDER_PALETTE_AT_MOUSE_INDEX := 1
+
 # -------------------------------------------------------------------------------------------------
 signal ui_scale_changed
 signal canvas_color_changed(color)
@@ -30,6 +33,7 @@ onready var _pressure_sensitivity: SpinBox = $MarginContainer/TabContainer/Gener
 onready var _brush_size: SpinBox = $MarginContainer/TabContainer/General/VBoxContainer/DefaultBrushSize/DefaultBrushSize
 onready var _canvas_color: ColorPickerButton = $MarginContainer/TabContainer/Appearance/VBoxContainer/CanvasColor/CanvasColor
 onready var _project_dir: LineEdit = $MarginContainer/TabContainer/General/VBoxContainer/DefaultSaveDir/DefaultSaveDir
+onready var _palette_location: OptionButton = $MarginContainer/TabContainer/General/VBoxContainer/PaletteLocation/PaletteLocation
 onready var _theme: OptionButton = $MarginContainer/TabContainer/Appearance/VBoxContainer/Theme/Theme
 onready var _aa_mode: OptionButton = $MarginContainer/TabContainer/Rendering/VBoxContainer/AntiAliasing/AntiAliasing
 onready var _foreground_fps: SpinBox = $MarginContainer/TabContainer/Rendering/VBoxContainer/TargetFramerate/TargetFramerate
@@ -63,6 +67,7 @@ func _set_values() -> void:
 	var brush_size = Settings.get_value(Settings.GENERAL_DEFAULT_BRUSH_SIZE, Config.DEFAULT_BRUSH_SIZE)
 	var canvas_color = Settings.get_value(Settings.APPEARANCE_CANVAS_COLOR, Config.DEFAULT_CANVAS_COLOR)
 	var project_dir = Settings.get_value(Settings.GENERAL_DEFAULT_PROJECT_DIR, "")
+	var palette_location = Settings.get_value(Settings.PALETTE_LOCATION, Config.DEFAULT_PALETTE_LOCATION)
 	var theme = Settings.get_value(Settings.APPEARANCE_THEME, Types.UITheme.DARK)
 	var aa_mode = Settings.get_value(Settings.RENDERING_AA_MODE, Config.DEFAULT_AA_MODE)
 	var locale = Settings.get_value(Settings.GENERAL_LANGUAGE, "en")
@@ -87,7 +92,10 @@ func _set_values() -> void:
 			_ui_scale_options.selected = UI_SCALE_AUTO_INDEX
 			_ui_scale.set_editable(false)
 		Types.UIScale.CUSTOM: _ui_scale_options.selected = UI_SCALE_CUSTOM_INDEX
-		
+	match palette_location:
+		Types.PaletteLocation.TOOLBAR: _palette_location.selected = RENDER_PALETTE_AT_TOOLBAR_INDEX
+		Types.PaletteLocation.MOUSE: _palette_location.selected = RENDER_PALETTE_AT_MOUSE_INDEX
+
 	_set_languages(locale)
 	_set_rounding()
 	_set_UIScale_range()
@@ -257,3 +265,12 @@ func _on_UIScale_value_changed(value: float):
 # -------------------------------------------------------------------------------------------------
 func _on_DefaultToolPressure_value_changed(value):
 	Settings.set_value(Settings.GENERAL_TOOL_PRESSURE, value)
+
+# -------------------------------------------------------------------------------------------------
+func _on_PaletteLocation_item_selected(index):
+	var location: int
+	match index:
+		RENDER_PALETTE_AT_TOOLBAR_INDEX: location = Types.PaletteLocation.TOOLBAR
+		RENDER_PALETTE_AT_MOUSE_INDEX: location = Types.PaletteLocation.MOUSE
+
+	Settings.set_value(Settings.PALETTE_LOCATION, location)
