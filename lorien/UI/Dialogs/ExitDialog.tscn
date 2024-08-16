@@ -5,6 +5,7 @@
 [ext_resource type="Theme" uid="uid://u5qnpgxqykiv" path="res://UI/Themes/theme_dark.tres" id="3"]
 
 [node name="ExitDialog" type="Window"]
+title = "Unsaved Changes"
 initial_position = 2
 size = Vector2i(405, 100)
 theme = ExtResource("3")

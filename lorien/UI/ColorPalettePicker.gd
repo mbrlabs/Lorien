@@ -128,7 +128,7 @@ func _on_PaletteSelectionButton_item_selected(index: int) -> void:
 func _on_AddPaletteButton_pressed() -> void:
 	var dialog: NewPaletteDialog = get_node(add_new_palette_dialog_path)
 	dialog.duplicate_current_palette = false
-	dialog.popup_centered()
+	dialog.get_parent().popup_centered()
 
 # -------------------------------------------------------------------------------------------------
 func _on_EditColorButton_pressed() -> void:
@@ -140,13 +140,13 @@ func _on_EditColorButton_pressed() -> void:
 		hide()
 		var edit_popup: EditPaletteDialog = get_node(edit_palette_dialog)
 		edit_popup.setup(PaletteManager.get_active_palette(), _active_color_index)
-		edit_popup.popup_centered()
+		edit_popup.get_parent().popup_centered()
 
 # -------------------------------------------------------------------------------------------------
 func _on_DuplicatePaletteButton_pressed() -> void:
 	var dialog: NewPaletteDialog = get_node(add_new_palette_dialog_path)
 	dialog.duplicate_current_palette = true
-	dialog.popup_centered()
+	dialog.get_parent().popup_centered()
 
 # -------------------------------------------------------------------------------------------------
 func _on_DeletePaletteButton_pressed() -> void:
@@ -155,7 +155,7 @@ func _on_DeletePaletteButton_pressed() -> void:
 		AlertDialog.popup_centered()
 	else:
 		var dialog: DeletePaletteDialog = get_node(delete_palette_dialog)
-		dialog.popup_centered()
+		dialog.get_parent().popup_centered()
 
 # -------------------------------------------------------------------------------------------------
 func toggle() -> void:

@@ -1,5 +1,5 @@
 class_name SettingsDialog
-extends Window
+extends MarginContainer
 
 # -------------------------------------------------------------------------------------------------
 const THEME_DARK_INDEX 	:= 0
@@ -13,6 +13,10 @@ const UI_SCALE_AUTO_INDEX := 0
 const UI_SCALE_CUSTOM_INDEX := 1
 
 # -------------------------------------------------------------------------------------------------
+const BRUSH_STROKE_CAP_FLAT 	:= 0
+const BRUSH_STROKE_CAP_ROUND 	:= 1
+
+# -------------------------------------------------------------------------------------------------
 signal ui_scale_changed
 signal canvas_color_changed(color)
 signal grid_size_changed(size)
@@ -20,7 +24,7 @@ signal grid_pattern_changed(pattern)
 signal constant_pressure_changed(state)
 
 # -------------------------------------------------------------------------------------------------
-@onready var _tab_container: TabContainer = $MarginContainer/TabContainer
+@onready var _tab_container: TabContainer = $TabContainer
 @onready var _pressure_sensitivity: SpinBox = %PressureSensitivity
 @onready var _constant_pressure: CheckBox = %ConstantPressure
 @onready var _brush_size: SpinBox = %DefaultBrushSize
@@ -46,7 +50,7 @@ func _ready():
 	_apply_language()
 	GlobalSignals.language_changed.connect(_apply_language)
 	
-	close_requested.connect(hide)
+	get_parent().close_requested.connect(get_parent().hide)
 	_pressure_sensitivity.value_changed.connect(_on_pressure_sensitivity_changed)
 	_constant_pressure.toggled.connect(_on_constant_pressure_toggled)
 	_brush_size.value_changed.connect(_on_default_brush_size_changed)
@@ -223,15 +227,12 @@ func _on_theme_selected(index: int):
 # -------------------------------------------------------------------------------------------------
 func _on_brush_rounding_selected(index: int):
 	match index:
-		0:
+		BRUSH_STROKE_CAP_FLAT:
 			Settings.set_value(Settings.RENDERING_BRUSH_ROUNDING, Types.BrushRoundingType.FLAT)
-		1:
+		BRUSH_STROKE_CAP_ROUND:
 			Settings.set_value(Settings.RENDERING_BRUSH_ROUNDING, Types.BrushRoundingType.ROUNDED)
 	
-	# The Changes do work even without restarting but if the user doesn't restart old strokes remain
-	# the same (Don't wanna implement saving of the cap roundings per line since that would break file
-	# Compatibility)
-	_general_restart_label.show()
+	_rendering_restart_label.show()
 
 # -------------------------------------------------------------------------------------------------
 func _on_language_selected(idx: int):
@@ -252,14 +253,14 @@ func _on_ui_scale_mode_selected(index: int):
 			_ui_scale.set_editable(true)
 			Settings.set_value(Settings.APPEARANCE_UI_SCALE_MODE, Types.UIScale.CUSTOM)
 	emit_signal("ui_scale_changed")
-	popup_centered()
+	#popup_centered()
 
 # -------------------------------------------------------------------------------------------------
 func _on_ui_scale_changed(value: float):
 	print("UI scale changed")
 	Settings.set_value(Settings.APPEARANCE_UI_SCALE, value)
 	emit_signal("ui_scale_changed")
-	popup_centered()
+	#popup_centered()
 
 # -------------------------------------------------------------------------------------------------
 func _on_default_tool_pressure_changed(value):

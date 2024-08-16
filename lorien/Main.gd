@@ -8,16 +8,20 @@ extends Control
 @onready var _toolbar: Toolbar = $Topbar/Toolbar
 @onready var _file_dialog: FileDialog = $FileDialog
 @onready var _export_dialog : FileDialog = $ExportDialog
-@onready var _about_dialog: AboutDialog = $AboutDialog
-@onready var _settings_dialog: SettingsDialog = $SettingsDialog
+@onready var _about_window: Window = $AboutWindow
+@onready var _settings_window: Window = $SettingsWindow
+@onready var _settings_dialog: SettingsDialog = $SettingsWindow/SettingsDialog
 @onready var _brush_color_picker: ColorPalettePicker = $BrushColorPicker
 @onready var _main_menu: MainMenu = $MainMenu
 @onready var _generic_alert_dialog: AcceptDialog = $GenericAlertDialog
 @onready var _exit_dialog: Window = $ExitDialog
 @onready var _unsaved_changes_dialog: Window = $UnsavedChangesDialog
-@onready var _new_palette_dialog: NewPaletteDialog = $NewPaletteDialog
-@onready var _delete_palette_dialog: DeletePaletteDialog = $DeletePaletteDialog
-@onready var _edit_palette_dialog: EditPaletteDialog = $EditPaletteDialog
+@onready var _new_palette_window: Window = $NewPaletteWindow
+@onready var _new_palette_dialog: NewPaletteDialog = $NewPaletteWindow/NewPaletteDialog
+@onready var _delete_palette_dialog: DeletePaletteDialog = $DeletePaletteWindow/DeletePaletteDialog
+@onready var _delete_palette_window: Window = $DeletePaletteWindow
+@onready var _edit_palette_window: Window = $EditPaletteWindow
+@onready var _edit_palette_dialog: EditPaletteDialog = $EditPaletteWindow/EditPaletteDialog
 
 var _ui_visible := true 
 
@@ -252,7 +256,7 @@ func _is_mouse_on_ui() -> bool:
 
 # -------------------------------------------------------------------------------------------------
 func is_dialog_open() -> bool:
-	var open := _file_dialog.visible || _about_dialog.visible
+	var open := _file_dialog.visible || _about_window.visible
 	open = open || (_settings_dialog.visible || _generic_alert_dialog.visible)
 	open = open || (_new_palette_dialog.visible || _edit_palette_dialog.visible || _delete_palette_dialog.visible)
 	return open
@@ -454,11 +458,11 @@ func _on_close_file_with_changes_discarded(project_ids: Array) -> void:
 
 # -------------------------------------------------------------------------------------------------
 func _on_open_about_dialog() -> void:
-	_about_dialog.popup()
+	_about_window.popup()
 
 # -------------------------------------------------------------------------------------------------
 func _on_open_settings_dialog() -> void:
-	_settings_dialog.popup()
+	_settings_window.popup()
 
 # -------------------------------------------------------------------------------------------------
 func _on_open_url(url: String) -> void:

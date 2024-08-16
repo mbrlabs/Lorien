@@ -69,6 +69,18 @@ grow_horizontal = 2
 grow_vertical = 0
 scale = Vector2(1, 1.00112)
 
+[node name="BrushColorPicker" parent="." instance=ExtResource("13")]
+visible = false
+layout_mode = 0
+offset_left = 386.102
+offset_top = 79.6751
+offset_right = 744.102
+offset_bottom = 194.675
+add_new_palette_dialog_path = NodePath("../NewPaletteWindow/NewPaletteDialog")
+edit_palette_dialog = NodePath("../EditPaletteWindow/EditPaletteDialog")
+delete_palette_dialog = NodePath("../DeletePaletteWindow/DeletePaletteDialog")
+toolbar_path = NodePath("../Topbar/Toolbar")
+
 [node name="BackgroundColorPickerPopup" type="Popup" parent="."]
 theme = ExtResource("8")
 
@@ -89,21 +101,62 @@ layout_mode = 2
 edit_alpha = false
 presets_visible = false
 
-[node name="BrushColorPicker" parent="." instance=ExtResource("13")]
-visible = false
-layout_mode = 0
-offset_left = 386.102
-offset_top = 79.6751
-offset_right = 744.102
-offset_bottom = 194.675
-add_new_palette_dialog_path = NodePath("../NewPaletteDialog")
-edit_palette_dialog = NodePath("../EditPaletteDialog")
-delete_palette_dialog = NodePath("../DeletePaletteDialog")
-toolbar_path = NodePath("../Topbar/Toolbar")
-
 [node name="MainMenu" parent="." instance=ExtResource("5")]
 submenu_popup_delay = 0.1
 file_dialog_path = NodePath("../FileDialog")
+
+[node name="NewPaletteWindow" type="Window" parent="."]
+auto_translate_mode = 1
+title = "New Palette"
+initial_position = 2
+size = Vector2i(420, 100)
+visible = false
+exclusive = true
+unresizable = true
+
+[node name="NewPaletteDialog" parent="NewPaletteWindow" instance=ExtResource("12")]
+
+[node name="DeletePaletteWindow" type="Window" parent="."]
+title = "Delete Palette"
+initial_position = 2
+size = Vector2i(420, 100)
+visible = false
+exclusive = true
+unresizable = true
+
+[node name="DeletePaletteDialog" parent="DeletePaletteWindow" instance=ExtResource("15")]
+
+[node name="EditPaletteWindow" type="Window" parent="."]
+auto_translate_mode = 1
+title = "Edit Palette"
+initial_position = 2
+size = Vector2i(495, 495)
+visible = false
+exclusive = true
+
+[node name="EditPaletteDialog" parent="EditPaletteWindow" instance=ExtResource("14")]
+
+[node name="AboutWindow" type="Window" parent="."]
+title = "About"
+initial_position = 2
+size = Vector2i(440, 205)
+visible = false
+exclusive = true
+unresizable = true
+
+[node name="AboutDialog" parent="AboutWindow" instance=ExtResource("9")]
+offset_right = 297.0
+offset_bottom = 104.0
+
+[node name="SettingsWindow" type="Window" parent="."]
+auto_translate_mode = 1
+title = "Settings"
+initial_position = 2
+size = Vector2i(600, 320)
+visible = false
+exclusive = true
+
+[node name="SettingsDialog" parent="SettingsWindow" instance=ExtResource("10")]
 
 [node name="FileDialog" type="FileDialog" parent="."]
 initial_position = 2
@@ -113,34 +166,19 @@ access = 2
 filters = PackedStringArray("*.lorien")
 use_native_dialog = true
 
-[node name="ExitDialog" parent="." instance=ExtResource("11")]
-visible = false
-exclusive = true
-
-[node name="NewPaletteDialog" parent="." instance=ExtResource("12")]
-visible = false
-
-[node name="DeletePaletteDialog" parent="." instance=ExtResource("15")]
-visible = false
-
-[node name="EditPaletteDialog" parent="." instance=ExtResource("14")]
-visible = false
-
 [node name="ExportDialog" type="FileDialog" parent="."]
 initial_position = 2
 theme = ExtResource("8")
 access = 2
 use_native_dialog = true
 
-[node name="UnsavedChangesDialog" parent="." instance=ExtResource("7")]
+[node name="ExitDialog" parent="." instance=ExtResource("11")]
 visible = false
 exclusive = true
 
-[node name="AboutDialog" parent="." instance=ExtResource("9")]
+[node name="UnsavedChangesDialog" parent="." instance=ExtResource("7")]
 visible = false
-
-[node name="SettingsDialog" parent="." instance=ExtResource("10")]
-visible = false
+exclusive = true
 
 [node name="GenericAlertDialog" type="AcceptDialog" parent="."]
 position = Vector2i(880, 490)

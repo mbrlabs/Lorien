@@ -1,16 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bl2x4yif2wrml"]
+[gd_scene load_steps=2 format=3 uid="uid://bl2x4yif2wrml"]
 
-[ext_resource type="Theme" uid="uid://u5qnpgxqykiv" path="res://UI/Themes/theme_dark.tres" id="1"]
 [ext_resource type="Script" path="res://UI/Dialogs/DeletePaletteDialog.gd" id="2"]
 
-[node name="DeletePaletteDialog" type="Window"]
-initial_position = 2
-size = Vector2i(355, 100)
-exclusive = true
-theme = ExtResource("1")
-script = ExtResource("2")
-
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="DeletePaletteDialog" type="MarginContainer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -18,17 +10,18 @@ theme_override_constants/margin_left = 12
 theme_override_constants/margin_top = 12
 theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 12
+script = ExtResource("2")
 
-[node name="Container" type="Control" parent="MarginContainer"]
+[node name="Container" type="Control" parent="."]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/Container"]
+[node name="Label" type="Label" parent="Container"]
 layout_mode = 0
 anchor_right = 1.0
 offset_bottom = 21.0
 text = "DELETE_PALETTE_DIALOG_TEXT"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/Container"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Container"]
 layout_mode = 0
 anchor_top = 1.0
 anchor_right = 1.0
@@ -36,12 +29,12 @@ anchor_bottom = 1.0
 offset_top = -25.0
 size_flags_vertical = 0
 
-[node name="DeleteButton" type="Button" parent="MarginContainer/Container/HBoxContainer"]
+[node name="DeleteButton" type="Button" parent="Container/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "DELETE"
 
-[node name="CancelButton" type="Button" parent="MarginContainer/Container/HBoxContainer"]
+[node name="CancelButton" type="Button" parent="Container/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "CANCEL"

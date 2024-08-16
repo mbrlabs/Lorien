@@ -1,5 +1,5 @@
 class_name EditPaletteDialog
-extends Window
+extends MarginContainer
 
 # -------------------------------------------------------------------------------------------------
 const PALETTE_BUTTON = preload("res://UI/Components/PaletteButton.tscn")
@@ -8,11 +8,11 @@ const PALETTE_BUTTON = preload("res://UI/Components/PaletteButton.tscn")
 signal palette_changed
 
 # -------------------------------------------------------------------------------------------------
-@onready var _name_line_edit: LineEdit = $MarginContainer/HBoxContainer/VBoxContainer/NameLineEdit
-@onready var _color_picker: ColorPicker = $MarginContainer/HBoxContainer/ColorPicker
-@onready var _color_grid: GridContainer = $MarginContainer/HBoxContainer/VBoxContainer/ColorGrid
-@onready var _add_color_button: Button = $MarginContainer/HBoxContainer/VBoxContainer/AddColorButton
-@onready var _remove_color_button: Button = $MarginContainer/HBoxContainer/VBoxContainer/RemoveColorButton
+@onready var _name_line_edit: LineEdit = $HBoxContainer/VBoxContainer/NameLineEdit
+@onready var _color_picker: ColorPicker = $HBoxContainer/ColorPicker
+@onready var _color_grid: GridContainer = $HBoxContainer/VBoxContainer/ColorGrid
+@onready var _add_color_button: Button = $HBoxContainer/VBoxContainer/AddColorButton
+@onready var _remove_color_button: Button = $HBoxContainer/VBoxContainer/RemoveColorButton
 
 var _palette: Palette
 var _active_button: PaletteButton = null
@@ -22,7 +22,7 @@ var _palette_edited := false
 
 # -------------------------------------------------------------------------------------------------
 func _ready() -> void:
-	close_requested.connect(_on_EditPaletteDialog_close_requested)
+	get_parent().close_requested.connect(_on_EditPaletteDialog_close_requested)
 	_color_picker.color_changed.connect(_on_ColorPicker_color_changed)
 	_name_line_edit.text_changed.connect(_on_NameLineEdit_text_changed)
 	_add_color_button.pressed.connect(_on_AddColorButton_pressed)
@@ -82,6 +82,7 @@ func _on_EditPaletteDialog_close_requested() -> void:
 	if _palette_edited:
 		PaletteManager.save()
 		emit_signal("palette_changed")
+		get_parent().hide()
 
 # -------------------------------------------------------------------------------------------------
 func _on_NameLineEdit_text_changed(new_text: String) -> void:
