@@ -55,7 +55,7 @@ func _ready():
 	
 	_camera.zoom_changed.connect(_on_zoom_changed)
 	_camera.position_changed.connect(_on_camera_moved)
-	_viewport.size = get_window().size
+	#_viewport.size = get_window().size
 
 	info.pen_inverted = false
 
@@ -289,8 +289,8 @@ func undo_last_stroke() -> void:
 		info.stroke_count -= 1
 
 # -------------------------------------------------------------------------------------------------
-func set_brush_size(size: int) -> void:
-	_brush_size = size
+func set_brush_size(s: int) -> void:
+	_brush_size = s
 	if _active_tool != null:
 		_active_tool._on_brush_size_changed(_brush_size)
 
@@ -301,8 +301,8 @@ func set_brush_color(color: Color) -> void:
 		_active_tool._on_brush_color_changed(_brush_color)
 
 # -------------------------------------------------------------------------------------------------
-func enable_constant_pressure(enable: bool):
-	if enable:
+func enable_constant_pressure(e: bool):
+	if e:
 		_brush_tool.pressure_curve = _constant_pressure_curve
 	else:
 		_brush_tool.pressure_curve = _default_pressure_curve
@@ -362,11 +362,13 @@ func _on_window_resized() -> void:
 	set_canvas_scale(_scale)
 
 # -------------------------------------------------------------------------------------------------
-func set_canvas_scale(scale: float) -> void:
-	_scale = scale
-	_grid.set_grid_scale(scale)
+func set_canvas_scale(scl: float) -> void:
+	_scale = scl
+	_grid.set_grid_scale(scl)
+	
+	# TODO(gd4): this throws a warning; it seems like this is not needed anyway though
 	# Needed to stop stretching of the canvas
-	_viewport.set_size(get_viewport().get_size())
+	#_viewport.set_size(get_viewport().get_size())
 	
 # -------------------------------------------------------------------------------------------------
 func get_canvas_scale() -> float:

@@ -15,7 +15,6 @@ extends Control
 @onready var _generic_alert_dialog: AcceptDialog = $GenericAlertDialog
 @onready var _exit_dialog: Window = $ExitDialog
 @onready var _unsaved_changes_dialog: Window = $UnsavedChangesDialog
-@onready var _background_color_picker: ColorPicker = $BackgroundColorPickerPopup/PanelContainer/ColorPicker
 @onready var _new_palette_dialog: NewPaletteDialog = $NewPaletteDialog
 @onready var _delete_palette_dialog: DeletePaletteDialog = $DeletePaletteDialog
 @onready var _edit_palette_dialog: EditPaletteDialog = $EditPaletteDialog
@@ -320,25 +319,25 @@ func _toggle_fullscreen():
 	get_window().mode = Window.MODE_EXCLUSIVE_FULLSCREEN if (!((get_window().mode == Window.MODE_EXCLUSIVE_FULLSCREEN) or (get_window().mode == Window.MODE_FULLSCREEN))) else Window.MODE_WINDOWED
 
 # -------------------------------------------------------------------------------------------------
-func _on_brush_color_changed(color: Color) -> void:
-	_canvas.set_brush_color(color)
+func _on_brush_color_changed(brush_color: Color) -> void:
+	_canvas.set_brush_color(brush_color)
 
 # -------------------------------------------------------------------------------------------------
-func _on_brush_size_changed(size: int) -> void:
-	_canvas.set_brush_size(size)
+func _on_brush_size_changed(brush_size: int) -> void:
+	_canvas.set_brush_size(brush_size)
 
 # -------------------------------------------------------------------------------------------------
-func _on_grid_size_changed(size: int) -> void:
-	_canvas_grid.set_grid_size(size)
+func _on_grid_size_changed(grid_size: int) -> void:
+	_canvas_grid.set_grid_size(grid_size)
 
 # -------------------------------------------------------------------------------------------------
 func _on_grid_pattern_changed(pattern: int) -> void:
 	_canvas_grid.set_grid_pattern(pattern)
 
 # -------------------------------------------------------------------------------------------------
-func _on_canvas_color_changed(color: Color) -> void:
-	_canvas.set_background_color(color)
-	_canvas_grid.set_canvas_color(color)
+func _on_canvas_color_changed(canvas_color: Color) -> void:
+	_canvas.set_background_color(canvas_color)
+	_canvas_grid.set_canvas_color(canvas_color)
 
 # -------------------------------------------------------------------------------------------------
 func _on_clear_canvas() -> void:
@@ -531,19 +530,19 @@ func _on_DeletePaletteDialog_palette_deleted() -> void:
 # --------------------------------------------------------------------------------------------------
 func _on_scale_changed() -> void:
 	var auto_scale: int = Settings.get_value(Settings.APPEARANCE_UI_SCALE_MODE, Config.DEFAULT_UI_SCALE_MODE)
-	var scale: float
+	var new_scale: float
 	match auto_scale:
-		Types.UIScale.AUTO:   scale = _get_platform_ui_scale()
-		Types.UIScale.CUSTOM: scale = Settings.get_value(Settings.APPEARANCE_UI_SCALE, Config.DEFAULT_UI_SCALE)
-	scale = clamp(scale, _settings_dialog.get_min_ui_scale(), _settings_dialog.get_max_ui_scale())
+		Types.UIScale.AUTO:   new_scale = _get_platform_ui_scale()
+		Types.UIScale.CUSTOM: new_scale = Settings.get_value(Settings.APPEARANCE_UI_SCALE, Config.DEFAULT_UI_SCALE)
+	new_scale = clamp(new_scale, _settings_dialog.get_min_ui_scale(), _settings_dialog.get_max_ui_scale())
 
-	_canvas.set_canvas_scale(scale)
+	_canvas.set_canvas_scale(new_scale)
 	
 	# TODO(gd4): the whole scaling stuff changed a lot in Godot 4; need to figure this out later.
 	# See: https://www.reddit.com/r/godot/comments/14h4iir/how_can_i_set_the_stretch_mode_and_aspect_in/
 	#get_tree().set_screen_stretch(SceneTree.STRETCH_MODE_DISABLED, SceneTree.STRETCH_ASPECT_IGNORE, Vector2(0,0), scale)
 	
-	get_window().min_size = Config.MIN_WINDOW_SIZE * scale
+	get_window().min_size = Config.MIN_WINDOW_SIZE * new_scale
 
 # --------------------------------------------------------------------------------------------------
 func _on_constant_pressure_changed(enable: bool) -> void:
@@ -552,12 +551,12 @@ func _on_constant_pressure_changed(enable: bool) -> void:
 # --------------------------------------------------------------------------------------------------
 func _get_platform_ui_scale() -> float:
 	var platform: String = OS.get_name()
-	var scale: float
+	var scl: float
 	match platform:
-		"OSX":     scale = DisplayServer.screen_get_scale()
-		"Windows": scale = DisplayServer.screen_get_dpi() / 96.0
-		_:         scale = _get_general_ui_scale()
-	return scale
+		"OSX":     scl = DisplayServer.screen_get_scale()
+		"Windows": scl = DisplayServer.screen_get_dpi() / 96.0
+		_:         scl = _get_general_ui_scale()
+	return scl
 
 # --------------------------------------------------------------------------------------------------
 func _get_general_ui_scale() -> float:

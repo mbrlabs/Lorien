@@ -21,13 +21,13 @@ func _ready() -> void:
 	
 # -------------------------------------------------------------------------------------------------
 func _on_SaveButton_pressed() -> void:
-	var name := _line_edit.text
-	if !name.is_empty():
+	var pallete_name := _line_edit.text
+	if !pallete_name.is_empty():
 		var palette: Palette
 		if duplicate_current_palette:
-			palette = PaletteManager.duplicate_palette(PaletteManager.get_active_palette(), name)
+			palette = PaletteManager.duplicate_palette(PaletteManager.get_active_palette(), pallete_name)
 		else:
-			palette = PaletteManager.create_custom_palette(name)
+			palette = PaletteManager.create_custom_palette(pallete_name)
 		
 		if palette != null:
 			PaletteManager.save()

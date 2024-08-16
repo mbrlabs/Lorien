@@ -92,25 +92,25 @@ func process_string(template: String) -> String:
 	# Needs some rework
 	return template
 	
-	var offset := 0
-	while true:
-		var found = _find_template_location(template.substr(offset))
-		if not found:
-			break
-		found = found as TemplateLocation
-
-		var substitution = "TEMPLATE_ERROR"
-		var parsed = _parse(found.template_text.strip_edges())
-		if parsed == null:
-			_log_error("Cannot parse template '%s'" % found.template_text)
-		else:
-			var s = _apply_filter(parsed)
-			if s is String:
-				substitution = s
-
-		template = template.substr(0, found.start) + substitution + template.substr(found.end)
-		offset = found.start + len(substitution)
-	return template
+	#var offset := 0
+	#while true:
+		#var found = _find_template_location(template.substr(offset))
+		#if not found:
+			#break
+		#found = found as TemplateLocation
+#
+		#var substitution = "TEMPLATE_ERROR"
+		#var parsed = _parse(found.template_text.strip_edges())
+		#if parsed == null:
+			#_log_error("Cannot parse template '%s'" % found.template_text)
+		#else:
+			#var s = _apply_filter(parsed)
+			#if s is String:
+				#substitution = s
+#
+		#template = template.substr(0, found.start) + substitution + template.substr(found.end)
+		#offset = found.start + len(substitution)
+	#return template
 
 # -------------------------------------------------------------------------------------------------
 func _find_template_location(s: String):

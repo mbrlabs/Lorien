@@ -4,7 +4,6 @@ extends Node2D
 # -------------------------------------------------------------------------------------------------
 @export var camera_path: NodePath
 
-var _enabled: bool
 var _pattern: int = Types.GridPattern.DOTS
 var _camera: Camera2D
 var _grid_size := Config.DEFAULT_GRID_SIZE

@@ -2,7 +2,6 @@ class_name I18nParser
 
 # -------------------------------------------------------------------------------------------------
 const I18N_FOLDER := "res://Assets/I18n/"
-const StringTemplating := preload("res://Misc/StringTemplating.gd")
 
 # -------------------------------------------------------------------------------------------------
 var _first_load := true

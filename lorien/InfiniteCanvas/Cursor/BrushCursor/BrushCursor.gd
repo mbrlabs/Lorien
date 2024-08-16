@@ -15,5 +15,5 @@ func set_pressure(pressure: float) -> void:
 
 # -------------------------------------------------------------------------------------------------
 func change_size(brush_size: int) -> void:
-	_brush_size = brush_size
+	super(brush_size)
 	queue_redraw()

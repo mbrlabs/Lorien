@@ -51,6 +51,7 @@ func _new_keybinding_entry(action_name: String, readable_name: String, events: A
 			"events": events,
 		})
 		new_line.remove_child(child)
+		child.owner = null
 		_grid.add_child(child)
 		
 		if child.has_signal("modified_binding"):

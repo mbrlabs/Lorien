@@ -86,6 +86,6 @@ func _on_file_dialog_closed() -> void:
 	Utils.remove_signal_connections(file_dialog, "close_requested")
 
 # -------------------------------------------------------------------------------------------------
-func add_item_with_shortcut(target: PopupMenu, name: String, id: int, shortcut_action: String) -> void:
+func add_item_with_shortcut(target: PopupMenu, p_name: String, id: int, shortcut_action: String) -> void:
 	var shortcut = InputMap.action_get_events(shortcut_action)[0].get_keycode_with_modifiers()
-	target.add_item(name, id, shortcut)
+	target.add_item(p_name, id, shortcut)

@@ -58,10 +58,10 @@ func remove_all_tabs() -> void:
 # ------------------------------------------------------------------------------------------------
 func update_tab_title(project: Project) -> void:
 	if _tabs_map.has(project.id):
-		var name = project.get_scene_file_path()
+		var new_title := project.get_scene_file_path()
 		if project.dirty:
-			name += " (*)"
-		_tabs_map[project.id].title = name
+			new_title += " (*)"
+		_tabs_map[project.id].title = new_title
 
 # ------------------------------------------------------------------------------------------------
 func set_tab_active(project: Project) -> void:

@@ -24,9 +24,6 @@ signal constant_pressure_changed(state)
 
 # -------------------------------------------------------------------------------------------------
 @onready var _tab_container: TabContainer = $MarginContainer/TabContainer
-@onready var _tab_general: Control = $MarginContainer/TabContainer/General
-@onready var _tab_appearance: Control = $MarginContainer/TabContainer/Appearance
-@onready var _tab_rendering: Control = $MarginContainer/TabContainer/Rendering
 @onready var _pressure_sensitivity: SpinBox = $MarginContainer/TabContainer/General/VBoxContainer/PressureSensitivity/PressureSensitivity
 @onready var _constant_pressure: CheckBox = $MarginContainer/TabContainer/General/VBoxContainer/ConstantPressure/ConstantPressure
 @onready var _brush_size: SpinBox = $MarginContainer/TabContainer/General/VBoxContainer/DefaultBrushSize/DefaultBrushSize
@@ -82,7 +79,7 @@ func _set_values() -> void:
 	var brush_size = Settings.get_value(Settings.GENERAL_DEFAULT_BRUSH_SIZE, Config.DEFAULT_BRUSH_SIZE)
 	var canvas_color = Settings.get_value(Settings.APPEARANCE_CANVAS_COLOR, Config.DEFAULT_CANVAS_COLOR)
 	var project_dir = Settings.get_value(Settings.GENERAL_DEFAULT_PROJECT_DIR, "")
-	var theme = Settings.get_value(Settings.APPEARANCE_THEME, Types.UITheme.DARK)
+	var ui_theme = Settings.get_value(Settings.APPEARANCE_THEME, Types.UITheme.DARK)
 	var aa_mode = Settings.get_value(Settings.RENDERING_AA_MODE, Config.DEFAULT_AA_MODE)
 	var locale = Settings.get_value(Settings.GENERAL_LANGUAGE, "en")
 	var foreground_fps = Settings.get_value(Settings.RENDERING_FOREGROUND_FPS, Config.DEFAULT_FOREGROUND_FPS)
@@ -97,7 +94,7 @@ func _set_values() -> void:
 	var constant_pressure = Settings.get_value(Settings.GENERAL_CONSTANT_PRESSURE, Config.DEFAULT_CONSTANT_PRESSURE)
 	_constant_pressure.button_pressed = constant_pressure
 	
-	match theme:
+	match ui_theme:
 		Types.UITheme.DARK: _theme.selected = THEME_DARK_INDEX
 		Types.UITheme.LIGHT: _theme.selected = THEME_LIGHT_INDEX
 	match aa_mode:
@@ -145,8 +142,7 @@ func _set_languages(current_locale: String) -> void:
 	_language_options.add_item("English", unsorted_languages.find("English"))
 	_language_options.add_separator()
 	for lang in sorted_languages:
-		var id := unsorted_languages.find(lang)
-		_language_options.add_item(lang, id)
+		_language_options.add_item(lang, unsorted_languages.find(lang))
 	
 	# Set selected
 	var id := Array(Settings.locales).find(current_locale)
@@ -215,12 +211,12 @@ func _on_Target_Fps_Background_changed(value: int) -> void:
 
 # -------------------------------------------------------------------------------------------------
 func _on_Theme_item_selected(index: int):
-	var theme: int
+	var ui_theme: Types.UITheme
 	match index:
-		THEME_DARK_INDEX: theme = Types.UITheme.DARK
-		THEME_LIGHT_INDEX: theme = Types.UITheme.LIGHT
+		THEME_DARK_INDEX: ui_theme = Types.UITheme.DARK
+		THEME_LIGHT_INDEX: ui_theme = Types.UITheme.LIGHT
 	
-	Settings.set_value(Settings.APPEARANCE_THEME, theme)
+	Settings.set_value(Settings.APPEARANCE_THEME, ui_theme)
 	_appearence_restart_label.show()
 
 # -------------------------------------------------------------------------------------------------
