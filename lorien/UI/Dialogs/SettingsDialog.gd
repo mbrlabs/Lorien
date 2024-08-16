@@ -52,7 +52,23 @@ func _ready():
 	_set_values()
 	_apply_language()
 	GlobalSignals.connect("language_changed", self, "_apply_language")
-
+	
+	_pressure_sensitivity.connect("value_changed", self, "_on_PressureSensitivity_value_changed")
+	_constant_pressure.connect("toggled", self, "_on_ConstantPressure_toggled")
+	_brush_size.connect("value_changed", self, "_on_DefaultBrushSize_value_changed")
+	_tool_pressure.connect("value_changed", self, "_on_DefaultToolPressure_value_changed")
+	_project_dir.connect("text_changed", self, "_on_DefaultSaveDir_text_changed")
+	_language_options.connect("item_selected", self, "_on_Language_OptionButton_item_selected")
+	_theme.connect("item_selected", self, "_on_Theme_item_selected")
+	_ui_scale_options.connect("item_selected", self, "_on_UIScaleOptions_item_selected")
+	_canvas_color.connect("color_changed", self, "_on_CanvasColor_color_changed")
+	_grid_pattern.connect("item_selected", self, "_on_GridPattern_item_selected")
+	_grid_size.connect("value_changed", self, "_on_GridSize_value_changed")
+	_aa_mode.connect("item_selected", self, "_on_AntiAliasing_item_selected")
+	_brush_rounding_options.connect("item_selected", self, "_on_Brush_rounding_item_selected")
+	_foreground_fps.connect("value_changed", self, "_on_Target_Fps_Foreground_changed")
+	_background_fps.connect("value_changed", self, "_on_Target_Fps_Background_changed")
+	
 # -------------------------------------------------------------------------------------------------
 func _apply_language() -> void:
 	_tab_container.set_tab_title(0, tr("SETTINGS_GENERAL"))
@@ -232,7 +248,7 @@ func _on_Brush_rounding_item_selected(index: int):
 	_general_restart_label.show()
 
 # -------------------------------------------------------------------------------------------------
-func _on_OptionButton_item_selected(idx: int):
+func _on_Language_OptionButton_item_selected(idx: int):
 	var id := _language_options.get_item_id(idx)
 	var locale: String = Settings.locales[id]
 	

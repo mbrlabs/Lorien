@@ -6,9 +6,19 @@ signal new_palette_created(palette)
 
 # -------------------------------------------------------------------------------------------------
 onready var _line_edit: LineEdit = $MarginContainer/Container/LineEdit
+onready var _save_button: Button = $MarginContainer/Container/HBoxContainer/SaveButton
+onready var _cancel_button: Button = $MarginContainer/Container/HBoxContainer/CancelButton
 
 var duplicate_current_palette := false
 
+# -------------------------------------------------------------------------------------------------
+func _ready() -> void:
+	_save_button.connect("pressed", self, "_on_SaveButton_pressed")
+	_cancel_button.connect("pressed", self, "_on_CancelButton_pressed")
+	
+	connect("about_to_show", self, "_on_NewPaletteDialog_about_to_show")
+	connect("popup_hide", self, "_on_NewPaletteDialog_popup_hide")
+	
 # -------------------------------------------------------------------------------------------------
 func _on_SaveButton_pressed() -> void:
 	var name := _line_edit.text

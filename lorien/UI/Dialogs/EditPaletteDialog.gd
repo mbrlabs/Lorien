@@ -11,12 +11,22 @@ signal palette_changed
 onready var _name_line_edit: LineEdit = $MarginContainer/HBoxContainer/VBoxContainer/NameLineEdit
 onready var _color_picker: ColorPicker = $MarginContainer/HBoxContainer/ColorPicker
 onready var _color_grid: GridContainer = $MarginContainer/HBoxContainer/VBoxContainer/ColorGrid
+onready var _add_color_button: Button = $MarginContainer/HBoxContainer/VBoxContainer/AddColorButton
+onready var _remove_color_button: Button = $MarginContainer/HBoxContainer/VBoxContainer/RemoveColorButton
 
 var _palette: Palette
 var _active_button: PaletteButton = null
 var _active_button_index := -1
 var _disable_color_picker_callback := false
 var _palette_edited := false
+
+# -------------------------------------------------------------------------------------------------
+func _ready() -> void:
+	connect("popup_hide", self, "_on_EditPaletteDialog_popup_hide")
+	_color_picker.connect("color_changed", self, "_on_ColorPicker_color_changed")
+	_name_line_edit.connect("text_changed", self, "_on_NameLineEdit_text_changed")
+	_add_color_button.connect("pressed", self, "_on_AddColorButton_pressed")
+	_remove_color_button.connect("pressed", self, "_on_RemoveColorButton_pressed")
 
 # -------------------------------------------------------------------------------------------------
 func setup(palette: Palette, color_index: int) -> void:

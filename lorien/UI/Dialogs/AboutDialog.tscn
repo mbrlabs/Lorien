@@ -73,6 +73,7 @@ margin_bottom = 64.0
 alignment = 1
 
 [node name="VersionLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
 margin_top = 1.0
 margin_right = 334.0
 margin_bottom = 18.0
@@ -85,6 +86,7 @@ margin_bottom = 39.0
 text = "ABOUT_DIALOG_COPYRIGHT"
 
 [node name="GithubLinkButton" type="LinkButton" parent="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
 margin_top = 43.0
 margin_right = 168.0
 margin_bottom = 60.0
@@ -95,8 +97,8 @@ text = "github.com/mbrlabs/Lorien"
 margin_top = 68.0
 margin_right = 426.0
 margin_bottom = 72.0
-custom_styles/separator = SubResource( 1 )
 custom_constants/separation = 4
+custom_styles/separator = SubResource( 1 )
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 margin_top = 76.0
@@ -109,6 +111,7 @@ margin_bottom = 17.0
 text = "ABOUT_DIALOG_LICSENSE"
 
 [node name="LicenseButton" type="LinkButton" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
 margin_left = 174.0
 margin_right = 249.0
 margin_bottom = 17.0
@@ -131,6 +134,7 @@ margin_bottom = 17.0
 text = "ABOUT_DIALOG_BASED_ON"
 
 [node name="GodotButton" type="LinkButton" parent="MarginContainer/VBoxContainer/HBoxContainer3"]
+unique_name_in_owner = true
 margin_left = 181.0
 margin_right = 307.0
 margin_bottom = 17.0
@@ -148,6 +152,7 @@ margin_bottom = 17.0
 text = "ABOUT_DIALOG_EASTEREGG"
 
 [node name="KennyButton" type="LinkButton" parent="MarginContainer/VBoxContainer/HBoxContainer5"]
+unique_name_in_owner = true
 margin_left = 190.0
 margin_right = 378.0
 margin_bottom = 17.0
@@ -165,14 +170,9 @@ margin_bottom = 17.0
 text = "Icon set:"
 
 [node name="RemixIconsButton" type="LinkButton" parent="MarginContainer/VBoxContainer/HBoxContainer4"]
+unique_name_in_owner = true
 margin_left = 62.0
 margin_right = 129.0
 margin_bottom = 17.0
 focus_mode = 2
 text = "Remix Icon"
-
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/VBoxContainer/GithubLinkButton" to="." method="_on_GithubLinkButton_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer2/LicenseButton" to="." method="_on_LicenseButton_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer3/GodotButton" to="." method="_on_GodotButton_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer5/KennyButton" to="." method="_on_KennyButton_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer4/RemixIconsButton" to="." method="_on_RemixIconsButton_pressed"]

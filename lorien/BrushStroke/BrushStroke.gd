@@ -14,6 +14,7 @@ const MIN_VECTOR2 := -MAX_VECTOR2
 # ------------------------------------------------------------------------------------------------
 onready var _line2d: Line2D = $Line2D
 onready var _visibility_notifier: VisibilityNotifier2D = $VisibilityNotifier2D
+
 var color: Color setget set_color, get_color
 var size: int
 var points: Array # Array<Vector2>
@@ -25,6 +26,9 @@ var bottom_right_pos: Vector2
 func _ready():
 	_line2d.width_curve = Curve.new()
 	_line2d.joint_mode = Line2D.LINE_JOINT_ROUND
+	
+	_visibility_notifier.connect("viewport_entered", self, "_on_VisibilityNotifier2D_viewport_entered")
+	_visibility_notifier.connect("viewport_exited", self, "_on_VisibilityNotifier2D_viewport_exited")
 	
 	# Anti aliasing
 	var aa_mode: int = Settings.get_value(Settings.RENDERING_AA_MODE, Config.DEFAULT_AA_MODE)

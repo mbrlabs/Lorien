@@ -37,6 +37,16 @@ func _ready():
 	# Signals
 	get_tree().connect("files_dropped", self, "_on_files_dropped")
 	
+	_canvas.connect("mouse_entered", self, "_on_InfiniteCanvas_mouse_entered")
+	_canvas.connect("mouse_exited", self, "_on_InfiniteCanvas_mouse_exited")
+	
+	_brush_color_picker.connect("closed", self, "_on_BrushColorPicker_closed")
+	_brush_color_picker.connect("color_changed", self, "_on_BrushColorPicker_color_changed")
+	
+	_new_palette_dialog.connect("new_palette_created", self, "_on_NewPaletteDialog_new_palette_created")
+	_delete_palette_dialog.connect("palette_deleted", self, "_on_DeletePaletteDialog_palette_deleted")
+	_edit_palette_dialog.connect("palette_changed", self, "_on_EditPaletteDialog_palette_changed")
+	
 	_toolbar.connect("undo_action", self, "_on_undo_action")
 	_toolbar.connect("redo_action", self, "_on_redo_action")
 	_toolbar.connect("clear_canvas", self, "_on_clear_canvas")
@@ -306,7 +316,6 @@ func _show_autosave_not_implemented_alert() -> void:
 # -------------------------------------------------------------------------------------------------
 func _toggle_fullscreen():
 	OS.set_window_fullscreen(!OS.window_fullscreen)
-	_toolbar.set_fullscreen_toggle(OS.window_fullscreen)
 
 # -------------------------------------------------------------------------------------------------
 func _on_brush_color_changed(color: Color) -> void:

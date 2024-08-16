@@ -4,7 +4,6 @@
 [ext_resource path="res://UI/Statusbar.gd" type="Script" id=2]
 [ext_resource path="res://Assets/Fonts/font_small.tres" type="DynamicFont" id=3]
 
-
 [node name="Statusbar" type="Panel"]
 anchor_right = 1.0
 margin_bottom = 24.0

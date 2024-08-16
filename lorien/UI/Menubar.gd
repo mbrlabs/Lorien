@@ -10,10 +10,18 @@ signal project_closed(project_id)
 signal create_new_project
 
 # -------------------------------------------------------------------------------------------------
+onready var _menu_button: TextureButton = $Left/MenuButton
+onready var _new_file_button: Button = $Left/NewFileButton
 onready var _file_tabs_container: HBoxContainer = $Left/Tabs
+
 export var _main_menu_path: NodePath
 var _active_file_tab: ProjectTab
 var _tabs_map: Dictionary # Dictonary<project_id, ProjectTab>
+
+# -------------------------------------------------------------------------------------------------
+func _ready() -> void:
+	_menu_button.connect("pressed", self, "_on_MenuButton_pressed")
+	_new_file_button.connect("pressed", self, "_on_NewFileButton_pressed")
 
 # -------------------------------------------------------------------------------------------------
 func make_tab(project: Project) -> void:

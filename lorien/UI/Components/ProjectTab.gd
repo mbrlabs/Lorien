@@ -21,6 +21,9 @@ var project_id: int
 func _ready():
 	set_active(false)
 	_filename_button.text = title
+	
+	_filename_button.connect("pressed", self, "_on_FilenameButton_pressed")
+	_close_button.connect("pressed", self, "_on_CloseButton_pressed")
 
 # -------------------------------------------------------------------------------------------------
 func set_title(t: String) -> void:

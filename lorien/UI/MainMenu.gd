@@ -30,6 +30,8 @@ onready var _submenu_views: PopupMenu = $ViewsMenu
 
 # -------------------------------------------------------------------------------------------------
 func _ready() -> void:
+	connect("id_pressed", self, "_on_MainMenu_id_pressed")
+	
 	# Views submenu
 	_submenu_views.name = "Views"
 	_submenu_views.add_item("View 1", ITEM_VIEW_1)

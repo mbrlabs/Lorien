@@ -22,13 +22,11 @@ export var file_dialog_path: NodePath
 onready var _new_button: TextureButton = $Console/Left/NewFileButton
 onready var _save_button: TextureButton = $Console/Left/SaveFileButton
 onready var _open_button: TextureButton = $Console/Left/OpenFileButton
-onready var _clear_canvas_button: TextureButton = $Console/Left/ClearCanvasButton
 onready var _undo_button: TextureButton = $Console/Left/UndoButton
 onready var _redo_button: TextureButton = $Console/Left/RedoButton
 onready var _color_button: Button = $Console/Left/ColorButton
 onready var _brush_size_label: Label = $Console/Left/BrushSizeLabel
 onready var _brush_size_slider: HSlider = $Console/Left/BrushSizeSlider
-onready var _fullscreen_btn: TextureButton = $Console/Right/FullscreenButton
 onready var _tool_btn_brush: TextureButton = $Console/Left/BrushToolButton
 onready var _tool_btn_rectangle: TextureButton = $Console/Left/RectangleToolButton
 onready var _tool_btn_circle: TextureButton = $Console/Left/CircleToolButton
@@ -44,11 +42,24 @@ func _ready():
 	_brush_size_label.text = str(brush_size)
 	_brush_size_slider.value = brush_size
 	_last_active_tool_button = _tool_btn_brush
-
+	
+	_new_button.connect("pressed", self, "_on_NewFileButton_pressed")
+	_undo_button.connect("pressed", self, "_on_UndoButton_pressed")
+	_redo_button.connect("pressed", self, "_on_RedoButton_pressed")
+	_open_button.connect("pressed", self, "_on_OpenFileButton_pressed")
+	_save_button.connect("pressed", self, "_on_SaveFileButton_pressed")
+	_color_button.connect("pressed", self, "_on_ColorButton_pressed")
+	_brush_size_slider.connect("value_changed", self, "_on_BrushSizeSlider_value_changed")
+	_tool_btn_brush.connect("pressed", self, "_on_BrushToolButton_pressed")
+	_tool_btn_rectangle.connect("pressed", self, "_on_RectangleToolButton_pressed")
+	_tool_btn_circle.connect("pressed", self, "_on_CircleToolButton_pressed")
+	_tool_btn_line.connect("pressed", self, "_on_LineToolButton_pressed")
+	_tool_btn_eraser.connect("pressed", self, "_on_EraserToolButton_pressed")
+	_tool_btn_selection.connect("pressed", self, "_on_SelectToolButton_pressed")
+	
 # Button clicked callbacks
 # -------------------------------------------------------------------------------------------------
 func _on_NewFileButton_pressed(): emit_signal("new_project")
-func _on_ClearCanvasButton_pressed(): emit_signal("clear_canvas")
 func _on_UndoButton_pressed(): emit_signal("undo_action")
 func _on_RedoButton_pressed(): emit_signal("redo_action")
 
@@ -77,10 +88,6 @@ func set_brush_color(color: Color) -> void:
 	_color_button.set("custom_colors/font_color_pressed", text_color)
 	_color_button.set("custom_colors/font_color_focus", text_color)
 	_color_button.text = "#" + color.to_html(false)
-
-# -------------------------------------------------------------------------------------------------
-func set_fullscreen_toggle(pressed):
-	_fullscreen_btn.set_pressed(pressed)
 
 # -------------------------------------------------------------------------------------------------
 func _on_OpenFileButton_pressed():
@@ -148,10 +155,6 @@ func _on_EraserToolButton_pressed():
 func _on_SelectToolButton_pressed():
 	_change_active_tool_button(_tool_btn_selection)
 	emit_signal("tool_changed", Types.Tool.SELECT)
-
-# -------------------------------------------------------------------------------------------------
-func _on_FullscreenButton_toggled(button_pressed):
-	OS.set_window_fullscreen(button_pressed)
 
 # -------------------------------------------------------------------------------------------------
 func _change_active_tool_button(btn: TextureButton) -> void:

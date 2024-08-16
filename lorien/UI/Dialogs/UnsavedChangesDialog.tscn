@@ -4,9 +4,7 @@
 [ext_resource path="res://Assets/Fonts/font_normal.tres" type="DynamicFont" id=2]
 [ext_resource path="res://UI/Themes/theme_dark.tres" type="Theme" id=3]
 
-
 [node name="UnsavedChangesDialog" type="WindowDialog"]
-visible = true
 margin_right = 310.0
 margin_bottom = 90.0
 rect_min_size = Vector2( 310, 90 )
@@ -64,7 +62,3 @@ autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[connection signal="pressed" from="HBoxContainer/SaveButton" to="." method="_on_SaveButton_pressed"]
-[connection signal="pressed" from="HBoxContainer/DiscardButton" to="." method="_on_DiscardButton_pressed"]
-[connection signal="pressed" from="HBoxContainer/CancelButton" to="." method="_on_CancelButton_pressed"]

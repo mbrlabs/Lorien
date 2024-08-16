@@ -28,7 +28,13 @@ var _active_color_index := -1
 # -------------------------------------------------------------------------------------------------
 func _ready() -> void:
 	update_palettes()
-
+	
+	_palette_selection_button.connect("item_selected", self, "_on_PaletteSelectionButton_item_selected")
+	_new_button.connect("pressed", self, "_on_AddPaletteButton_pressed")
+	_edit_button.connect("pressed", self, "_on_EditColorButton_pressed")
+	_duplicate_button.connect("pressed", self, "_on_DuplicatePaletteButton_pressed")
+	_delete_button.connect("pressed", self, "_on_DeletePaletteButton_pressed")
+	
 # -------------------------------------------------------------------------------------------------
 func _input(event: InputEvent) -> void:
 	if !visible:

@@ -4,7 +4,6 @@
 [ext_resource path="res://UI/Dialogs/DeletePaletteDialog.gd" type="Script" id=2]
 
 [node name="DeletePaletteDialog" type="WindowDialog"]
-visible = true
 margin_right = 259.0
 margin_bottom = 80.0
 rect_min_size = Vector2( 300, 100 )
@@ -64,8 +63,3 @@ margin_right = 276.0
 margin_bottom = 25.0
 size_flags_horizontal = 3
 text = "CANCEL"
-
-[connection signal="about_to_show" from="." to="." method="_on_DeletePaletteDialog_about_to_show"]
-[connection signal="popup_hide" from="." to="." method="_on_DeletePaletteDialog_popup_hide"]
-[connection signal="pressed" from="MarginContainer/Container/HBoxContainer/DeleteButton" to="." method="_on_DeleteButton_pressed"]
-[connection signal="pressed" from="MarginContainer/Container/HBoxContainer/CancelButton" to="." method="_on_CancelButton_pressed"]

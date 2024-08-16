@@ -1,12 +1,15 @@
 extends WindowDialog
 
 # -------------------------------------------------------------------------------------------------
-onready var _version_label: Label = $MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/VBoxContainer/VersionLabel
-
-# -------------------------------------------------------------------------------------------------
 func _ready():
-	_version_label.text = "Lorien v%s" % Config.VERSION_STRING
 	rect_size.y = $MarginContainer.rect_size.y + 5
+	$"%VersionLabel".text = "Lorien v%s" % Config.VERSION_STRING
+	
+	$"%GithubLinkButton".connect("pressed", self, "_on_GithubLinkButton_pressed")
+	$"%LicenseButton".connect("pressed", self, "_on_LicenseButton_pressed")
+	$"%GodotButton".connect("pressed", self, "_on_GodotButton_pressed")
+	$"%KennyButton".connect("pressed", self, "_on_KennyButton_pressed")
+	$"%RemixIconsButton".connect("pressed", self, "_on_RemixIconsButton_pressed")
 
 # -------------------------------------------------------------------------------------------------
 func _on_GithubLinkButton_pressed():

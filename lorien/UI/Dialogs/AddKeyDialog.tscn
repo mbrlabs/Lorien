@@ -46,8 +46,8 @@ __meta__ = {
 margin_top = 52.0
 margin_right = 211.0
 margin_bottom = 91.0
-custom_styles/separator = SubResource( 1 )
 custom_constants/separation = 39
+custom_styles/separator = SubResource( 1 )
 
 [node name="PressKeyMessage" type="Label" parent="VBoxContainer"]
 margin_top = 95.0

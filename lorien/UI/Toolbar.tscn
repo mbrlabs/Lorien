@@ -1,10 +1,9 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Assets/Icons/save_file.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Icons/open_file.png" type="Texture" id=2]
 [ext_resource path="res://UI/Toolbar.gd" type="Script" id=3]
 [ext_resource path="res://Assets/Icons/new_file.png" type="Texture" id=4]
-[ext_resource path="res://Assets/Icons/clear_canvas.png" type="Texture" id=5]
 [ext_resource path="res://Assets/Icons/redo.png" type="Texture" id=6]
 [ext_resource path="res://Assets/Icons/undo.png" type="Texture" id=7]
 [ext_resource path="res://Assets/Icons/brush_tool.png" type="Texture" id=8]
@@ -15,7 +14,6 @@
 [ext_resource path="res://Assets/Fonts/font_small.tres" type="DynamicFont" id=14]
 [ext_resource path="res://UI/Themes/theme_dark.tres" type="Theme" id=15]
 [ext_resource path="res://Assets/Icons/selection_tool.png" type="Texture" id=16]
-[ext_resource path="res://Assets/Icons/fullscreen.png" type="Texture" id=18]
 [ext_resource path="res://Assets/Icons/circle_tool.png" type="Texture" id=19]
 
 [sub_resource type="StyleBoxEmpty" id=2]
@@ -94,20 +92,6 @@ hint_tooltip = "TOOLBAR_TOOLTIP_SAVE_FILE"
 size_flags_horizontal = 4
 size_flags_vertical = 4
 texture_normal = ExtResource( 1 )
-script = ExtResource( 13 )
-hover_tint = Color( 0.662745, 0.945098, 0.87451, 1 )
-pressed_tint = Color( 0.572549, 1, 0.894118, 1 )
-
-[node name="ClearCanvasButton" type="TextureButton" parent="Console/Left"]
-visible = false
-margin_left = 106.0
-margin_top = 11.0
-margin_right = 124.0
-margin_bottom = 29.0
-hint_tooltip = "Clear Canvas"
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture_normal = ExtResource( 5 )
 script = ExtResource( 13 )
 hover_tint = Color( 0.662745, 0.945098, 0.87451, 1 )
 pressed_tint = Color( 0.572549, 1, 0.894118, 1 )
@@ -310,39 +294,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="FullscreenButton" type="TextureButton" parent="Console/Right"]
-margin_left = 924.0
-margin_top = 11.0
-margin_right = 942.0
-margin_bottom = 29.0
-hint_tooltip = "TOOLBAR_FULLSCREEN_TOGGLE"
-size_flags_horizontal = 4
-size_flags_vertical = 4
-toggle_mode = true
-action_mode = 0
-texture_normal = ExtResource( 18 )
-script = ExtResource( 13 )
-hover_tint = Color( 0.662745, 0.945098, 0.87451, 1 )
-pressed_tint = Color( 0.572549, 1, 0.894118, 1 )
-
-[node name="VSeparator" type="VSeparator" parent="Console/Right"]
-margin_left = 954.0
+[node name="KeepMe" type="Control" parent="Console/Right"]
+margin_left = 958.0
 margin_right = 958.0
 margin_bottom = 40.0
-custom_styles/separator = SubResource( 2 )
-
-[connection signal="pressed" from="Console/Left/NewFileButton" to="." method="_on_NewFileButton_pressed"]
-[connection signal="pressed" from="Console/Left/OpenFileButton" to="." method="_on_OpenFileButton_pressed"]
-[connection signal="pressed" from="Console/Left/SaveFileButton" to="." method="_on_SaveFileButton_pressed"]
-[connection signal="pressed" from="Console/Left/ClearCanvasButton" to="." method="_on_ClearCanvasButton_pressed"]
-[connection signal="pressed" from="Console/Left/UndoButton" to="." method="_on_UndoButton_pressed"]
-[connection signal="pressed" from="Console/Left/RedoButton" to="." method="_on_RedoButton_pressed"]
-[connection signal="pressed" from="Console/Left/BrushToolButton" to="." method="_on_BrushToolButton_pressed"]
-[connection signal="pressed" from="Console/Left/RectangleToolButton" to="." method="_on_RectangleToolButton_pressed"]
-[connection signal="pressed" from="Console/Left/CircleToolButton" to="." method="_on_CircleToolButton_pressed"]
-[connection signal="pressed" from="Console/Left/LineToolButton" to="." method="_on_LineToolButton_pressed"]
-[connection signal="pressed" from="Console/Left/EraserToolButton" to="." method="_on_EraserToolButton_pressed"]
-[connection signal="pressed" from="Console/Left/SelectionToolButton" to="." method="_on_SelectToolButton_pressed"]
-[connection signal="pressed" from="Console/Left/ColorButton" to="." method="_on_ColorButton_pressed"]
-[connection signal="value_changed" from="Console/Left/BrushSizeSlider" to="." method="_on_BrushSizeSlider_value_changed"]
-[connection signal="toggled" from="Console/Right/FullscreenButton" to="." method="_on_FullscreenButton_toggled"]

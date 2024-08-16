@@ -1,4 +1,4 @@
 extends Node
 
 # -------------------------------------------------------------------------------------------------
-signal language_changed;
+signal language_changed

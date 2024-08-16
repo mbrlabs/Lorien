@@ -118,9 +118,3 @@ margin_bottom = 66.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 columns = 10
-
-[connection signal="item_selected" from="MarginContainer/VBoxContainer/Buttons/PaletteSelectionButton" to="." method="_on_PaletteSelectionButton_item_selected"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Buttons/AddPaletteButton" to="." method="_on_AddPaletteButton_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Buttons/EditColorButton" to="." method="_on_EditColorButton_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Buttons/DuplicatePaletteButton" to="." method="_on_DuplicatePaletteButton_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Buttons/DeletePaletteButton" to="." method="_on_DeletePaletteButton_pressed"]

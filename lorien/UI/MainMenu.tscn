@@ -16,5 +16,3 @@ __meta__ = {
 [node name="ViewsMenu" type="PopupMenu" parent="."]
 margin_right = 16.0
 margin_bottom = 16.0
-
-[connection signal="id_pressed" from="." to="." method="_on_MainMenu_id_pressed"]

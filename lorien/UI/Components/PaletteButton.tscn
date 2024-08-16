@@ -11,9 +11,6 @@ margin_right = -1889.0
 margin_bottom = -1049.0
 rect_min_size = Vector2( 31, 31 )
 script = ExtResource( 3 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Color" type="TextureRect" parent="."]
 anchor_left = 0.5
@@ -41,7 +38,3 @@ stretch_mode = 4
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[connection signal="gui_input" from="." to="." method="_on_PaletteButton_gui_input"]
-[connection signal="mouse_entered" from="." to="." method="_on_PaletteButton_mouse_entered"]
-[connection signal="mouse_exited" from="." to="." method="_on_PaletteButton_mouse_exited"]

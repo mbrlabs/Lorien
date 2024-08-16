@@ -27,7 +27,7 @@ __meta__ = {
 }
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
-margin_right = 78.0
+margin_right = 84.0
 margin_bottom = 28.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -39,7 +39,7 @@ __meta__ = {
 }
 
 [node name="FilenameButton" type="Button" parent="HBoxContainer"]
-margin_right = 54.0
+margin_right = 60.0
 margin_bottom = 28.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -52,8 +52,8 @@ text = "Untitled"
 flat = true
 
 [node name="CloseButton" type="TextureButton" parent="HBoxContainer"]
-margin_left = 54.0
-margin_right = 78.0
+margin_left = 60.0
+margin_right = 84.0
 margin_bottom = 28.0
 rect_min_size = Vector2( 24, 0 )
 size_flags_horizontal = 3
@@ -62,6 +62,3 @@ size_flags_stretch_ratio = 0.2
 texture_normal = ExtResource( 3 )
 expand = true
 stretch_mode = 3
-
-[connection signal="pressed" from="HBoxContainer/FilenameButton" to="." method="_on_FilenameButton_pressed"]
-[connection signal="pressed" from="HBoxContainer/CloseButton" to="." method="_on_CloseButton_pressed"]

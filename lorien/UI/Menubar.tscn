@@ -75,6 +75,3 @@ size_flags_vertical = 8
 custom_fonts/font = ExtResource( 5 )
 text = "+"
 flat = true
-
-[connection signal="pressed" from="Left/MenuButton" to="." method="_on_MenuButton_pressed"]
-[connection signal="pressed" from="Left/NewFileButton" to="." method="_on_NewFileButton_pressed"]

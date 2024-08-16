@@ -91,10 +91,10 @@ margin_bottom = 202.0
 custom_styles/panel = SubResource( 1 )
 
 [node name="ColorPicker" type="ColorPicker" parent="BackgroundColorPickerPopup/PanelContainer"]
-margin_left = 8.0
-margin_top = 8.0
-margin_right = 317.0
-margin_bottom = 412.0
+margin_left = 40.0
+margin_top = 40.0
+margin_right = 349.0
+margin_bottom = 444.0
 edit_alpha = false
 presets_enabled = false
 presets_visible = false
@@ -160,7 +160,6 @@ margin_right = 129.5
 margin_bottom = 40.0
 
 [node name="DeletePaletteDialog" parent="." instance=ExtResource( 15 )]
-visible = false
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -195,7 +194,6 @@ window_title = "Export SVG"
 access = 2
 
 [node name="UnsavedChangesDialog" parent="." instance=ExtResource( 7 )]
-visible = false
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -243,11 +241,3 @@ dialog_text = "Generic message. "
 __meta__ = {
 "_edit_lock_": true
 }
-
-[connection signal="mouse_entered" from="InfiniteCanvas" to="." method="_on_InfiniteCanvas_mouse_entered"]
-[connection signal="mouse_exited" from="InfiniteCanvas" to="." method="_on_InfiniteCanvas_mouse_exited"]
-[connection signal="closed" from="BrushColorPicker" to="." method="_on_BrushColorPicker_closed"]
-[connection signal="color_changed" from="BrushColorPicker" to="." method="_on_BrushColorPicker_color_changed"]
-[connection signal="new_palette_created" from="NewPaletteDialog" to="." method="_on_NewPaletteDialog_new_palette_created"]
-[connection signal="palette_deleted" from="DeletePaletteDialog" to="." method="_on_DeletePaletteDialog_palette_deleted"]
-[connection signal="palette_changed" from="EditPaletteDialog" to="." method="_on_EditPaletteDialog_palette_changed"]

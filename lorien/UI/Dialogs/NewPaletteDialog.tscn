@@ -63,8 +63,3 @@ placeholder_alpha = 0.5
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[connection signal="about_to_show" from="." to="." method="_on_NewPaletteDialog_about_to_show"]
-[connection signal="popup_hide" from="." to="." method="_on_NewPaletteDialog_popup_hide"]
-[connection signal="pressed" from="MarginContainer/Container/HBoxContainer/SaveButton" to="." method="_on_SaveButton_pressed"]
-[connection signal="pressed" from="MarginContainer/Container/HBoxContainer/CancelButton" to="." method="_on_CancelButton_pressed"]

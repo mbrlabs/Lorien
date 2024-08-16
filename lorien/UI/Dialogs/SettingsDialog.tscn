@@ -100,7 +100,7 @@ text = "SETTINGS_CONSTANT_PRESSURE"
 
 [node name="ConstantPressure" type="CheckBox" parent="MarginContainer/TabContainer/General/VBoxContainer/ConstantPressure"]
 margin_left = 250.0
-margin_right = 278.0
+margin_right = 496.0
 margin_bottom = 25.0
 size_flags_horizontal = 3
 
@@ -548,21 +548,4 @@ popup_exclusive = true
 window_title = "KEYBINDING_DIALOG_REBIND_WINDOW_NAME"
 dialog_autowrap = true
 
-[connection signal="value_changed" from="MarginContainer/TabContainer/General/VBoxContainer/PressureSensitivity/PressureSensitivity" to="." method="_on_PressureSensitivity_value_changed"]
-[connection signal="toggled" from="MarginContainer/TabContainer/General/VBoxContainer/ConstantPressure/ConstantPressure" to="." method="_on_ConstantPressure_toggled"]
-[connection signal="value_changed" from="MarginContainer/TabContainer/General/VBoxContainer/DefaultBrushSize/DefaultBrushSize" to="." method="_on_DefaultBrushSize_value_changed"]
-[connection signal="value_changed" from="MarginContainer/TabContainer/General/VBoxContainer/DefaultToolPressure/DefaultToolPressure" to="." method="_on_DefaultToolPressure_value_changed"]
-[connection signal="text_changed" from="MarginContainer/TabContainer/General/VBoxContainer/DefaultSaveDir/DefaultSaveDir" to="." method="_on_DefaultSaveDir_text_changed"]
-[connection signal="item_selected" from="MarginContainer/TabContainer/General/VBoxContainer/Language/OptionButton" to="." method="_on_OptionButton_item_selected"]
-[connection signal="item_selected" from="MarginContainer/TabContainer/Appearance/VBoxContainer/Theme/Theme" to="." method="_on_Theme_item_selected"]
-[connection signal="item_selected" from="MarginContainer/TabContainer/Appearance/VBoxContainer/UIScale/HBoxContainer/UIScaleOptions" to="." method="_on_UIScaleOptions_item_selected"]
-[connection signal="gui_input" from="MarginContainer/TabContainer/Appearance/VBoxContainer/UIScale/HBoxContainer/UIScale" to="MarginContainer/TabContainer/Appearance/VBoxContainer/UIScale/HBoxContainer/UIScale" method="_on_UIScale_gui_input"]
-[connection signal="value_changed" from="MarginContainer/TabContainer/Appearance/VBoxContainer/UIScale/HBoxContainer/UIScale" to="." method="_on_UIScale_value_changed"]
-[connection signal="color_changed" from="MarginContainer/TabContainer/Appearance/VBoxContainer/CanvasColor/CanvasColor" to="." method="_on_CanvasColor_color_changed"]
-[connection signal="item_selected" from="MarginContainer/TabContainer/Appearance/VBoxContainer/GridPattern/GridPattern" to="." method="_on_GridPattern_item_selected"]
-[connection signal="value_changed" from="MarginContainer/TabContainer/Appearance/VBoxContainer/GridSize/GridSize" to="." method="_on_GridSize_value_changed"]
-[connection signal="item_selected" from="MarginContainer/TabContainer/Rendering/VBoxContainer/AntiAliasing/AntiAliasing" to="." method="_on_AntiAliasing_item_selected"]
-[connection signal="item_selected" from="MarginContainer/TabContainer/Rendering/VBoxContainer/BrushRounding/OptionButton" to="." method="_on_Brush_rounding_item_selected"]
-[connection signal="value_changed" from="MarginContainer/TabContainer/Rendering/VBoxContainer/TargetFramerate/TargetFramerate" to="." method="_on_Target_Fps_Foreground_changed"]
-[connection signal="value_changed" from="MarginContainer/TabContainer/Rendering/VBoxContainer/BackgroundFramerate/BackgroundFramerate" to="." method="_on_Target_Fps_Background_changed"]
 [connection signal="confirmed" from="MarginContainer/TabContainer/Keybindings/AddKeyDialog/ConfirmRebind" to="MarginContainer/TabContainer/Keybindings/AddKeyDialog" method="_on_ConfirmRebind_confirmed"]
