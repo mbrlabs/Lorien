@@ -3,7 +3,6 @@ class_name InfiniteCanvas
 
 # -------------------------------------------------------------------------------------------------
 const BRUSH_STROKE = preload("res://BrushStroke/BrushStroke.tscn")
-const PLAYER = preload("res://Misc/Player/Player.tscn")
 
 # -------------------------------------------------------------------------------------------------
 onready var _brush_tool: BrushTool = $BrushTool
@@ -30,9 +29,6 @@ var _brush_size := Config.DEFAULT_BRUSH_SIZE setget set_brush_size
 var _current_stroke: BrushStroke
 var _current_project: Project
 var _use_optimizer := true
-var _player: Player = null
-var _player_enabled := false
-var _colliders_enabled := false
 var _optimizer: BrushStrokeOptimizer
 var _scale := Config.DEFAULT_UI_SCALE
 
@@ -145,25 +141,6 @@ func set_background_color(color: Color) -> void:
 	_grid.set_canvas_color(_background_color)
 
 # -------------------------------------------------------------------------------------------------
-func enable_colliders(enable: bool) -> void:
-	if _colliders_enabled != enable:
-		_colliders_enabled = enable
-		for stroke in _strokes_parent.get_children():
-			stroke.enable_collider(enable)
-
-# -------------------------------------------------------------------------------------------------
-func enable_player(enable: bool) -> void:
-	if _player_enabled != enable:
-		_player_enabled = enable
-		if enable:
-			if _player == null:
-				_player = PLAYER.instance()
-			_player.reset(_active_tool.get_cursor().global_position)
-			_viewport.add_child(_player)
-		else:
-			_viewport.remove_child(_player)
-
-# -------------------------------------------------------------------------------------------------
 func enable_grid(e: bool) -> void:
 	_grid.enable(e)
 
@@ -251,10 +228,6 @@ func end_stroke() -> void:
 			
 			# TODO: not sure if needed here
 			_current_stroke.refresh()
-			
-			# Colliders for the platformer easter-egg
-			if _colliders_enabled:
-				_current_stroke.enable_collider(true)
 			
 			# Remove the line temporally from the node tree, so the adding is registered in the undo-redo histrory below
 			_strokes_parent.remove_child(_current_stroke)

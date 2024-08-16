@@ -27,14 +27,9 @@ height = 10.4698
 
 [sub_resource type="SpriteFrames" id=3]
 animations = [ {
-"frames": [ ExtResource( 2 ) ],
+"frames": [ ExtResource( 16 ) ],
 "loop": false,
-"name": "idle",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 15 ) ],
-"loop": false,
-"name": "hurt",
+"name": "crouch",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 3 ) ],
@@ -42,20 +37,25 @@ animations = [ {
 "name": "falling",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 8 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 6 ), ExtResource( 11 ), ExtResource( 10 ), ExtResource( 12 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 7 ), ExtResource( 9 ) ],
-"loop": true,
-"name": "walk",
-"speed": 12.0
+"frames": [ ExtResource( 15 ) ],
+"loop": false,
+"name": "hurt",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 2 ) ],
+"loop": false,
+"name": "idle",
+"speed": 5.0
 }, {
 "frames": [ ExtResource( 3 ) ],
 "loop": false,
 "name": "jump",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 16 ) ],
-"loop": false,
-"name": "crouch",
-"speed": 5.0
+"frames": [ ExtResource( 8 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 6 ), ExtResource( 11 ), ExtResource( 10 ), ExtResource( 12 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 7 ), ExtResource( 9 ) ],
+"loop": true,
+"name": "walk",
+"speed": 12.0
 } ]
 
 [node name="Player" type="KinematicBody2D"]
