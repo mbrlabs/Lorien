@@ -88,6 +88,10 @@ func _init_grammar() -> void:
 	
 # -------------------------------------------------------------------------------------------------
 func process_string(template: String) -> String:
+	# TODO(gd4): _apply_filter does not work in Godot 4 because i'm using Callables now instead of funcrefs
+	# Needs some rework
+	return template
+	
 	var offset := 0
 	while true:
 		var found = _find_template_location(template.substr(offset))
@@ -193,12 +197,13 @@ func _selftest():
 
 	ref = "<T name=func_call [<T name=func_name 'call' []>, <T name=( '(' []>, <T name=args [<T name=string 'lots' []>, <T name=, ',' []>, <T name=string 'of' []>, <T name=, ',' []>, <T name=string 'white'space' []>]>, <T name=) ')' []>]>"
 	parsed = str(_parse(' call (  "lots", \'of\',    \t"white\'space"\n  )\n\t  '))
+	
 	assert(parsed == ref)
-
-	ref = "Null"
+	
+	ref = "<null>"
 	parsed = str(_parse("invalid("))
 	assert(parsed == ref)
 
-	ref = "Null"
+	ref = "<null>"
 	parsed = str(_parse("valid() but_now_invalid()"))
 	assert(parsed == ref)

@@ -32,6 +32,7 @@ var _bounding_box_cache = {} # BrushStroke -> Rect2
 
 # ------------------------------------------------------------------------------------------------
 func _ready():
+	super()
 	_selection_rectangle = get_node(selection_rectangle_path)
 	_cursor.mode = SelectionCursor.Mode.SELECT
 

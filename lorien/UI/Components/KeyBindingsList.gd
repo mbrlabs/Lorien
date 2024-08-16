@@ -10,7 +10,7 @@ const KEYBINDINGS_LINE_SCENE = preload("res://UI/Components/KeyBindingsLine.tscn
 # -------------------------------------------------------------------------------------------------
 func _ready() -> void:
 	_populate_input_list()
-	_add_key_dialog.connect("hide", Callable(self, "_bind_key_dialog_hidden"))
+	_add_key_dialog.connect("close_requested", Callable(self, "_bind_key_dialog_close_requested"))
 	GlobalSignals.connect("language_changed", Callable(self, "_populate_input_list"))
 
 # -------------------------------------------------------------------------------------------------
@@ -74,7 +74,7 @@ func _bind_new_key(action_name: String) -> void:
 	_add_key_dialog.popup_centered()
 
 # -------------------------------------------------------------------------------------------------
-func _bind_key_dialog_hidden() -> void:
+func _bind_key_dialog_close_requested() -> void:
 	_populate_input_list()
 	Settings.store_shortcuts()
 	Settings.reload_locales()

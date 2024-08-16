@@ -12,7 +12,7 @@ extends Node
 # for every AntialiasedLine2D node. This generation can take several dozen milliseconds,
 # so it would cause stuttering if performed during gameplay.
 
-var texture := ImageTexture.new()
+var texture: ImageTexture
 
 func _ready() -> void:
 	# Generate a texture with custom mipmaps (1-pixel feather on the top and bottom sides).
@@ -47,6 +47,5 @@ func _ready() -> void:
 					# Average of 0 and 255 (there is only one pixel).
 					data.push_back(128)
 
-	var image := Image.new()
-	image.create_from_data(256, 256, true, Image.FORMAT_LA8, data)
-	texture.create_from_image(image)
+	var image := Image.create_from_data(256, 256, true, Image.FORMAT_LA8, data)
+	texture = ImageTexture.create_from_image(image)

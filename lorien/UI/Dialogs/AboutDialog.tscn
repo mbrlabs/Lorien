@@ -1,178 +1,124 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=5 format=3 uid="uid://dug4jmvhrb3t1"]
 
-[ext_resource path="res://UI/Themes/theme_dark.tres" type="Theme" id=1]
-[ext_resource path="res://UI/Dialogs/AboutDialog.gd" type="Script" id=2]
-[ext_resource path="res://Assets/icon.png" type="Texture2D" id=3]
+[ext_resource type="Theme" uid="uid://u5qnpgxqykiv" path="res://UI/Themes/theme_dark.tres" id="1"]
+[ext_resource type="Script" path="res://UI/Dialogs/AboutDialog.gd" id="2"]
+[ext_resource type="Texture2D" uid="uid://b6io62g8b730e" path="res://Assets/icon.png" id="3"]
 
-[sub_resource type="StyleBoxEmpty" id=1]
+[sub_resource type="StyleBoxEmpty" id="1"]
 
 [node name="AboutDialog" type="Window"]
-visible = true
-offset_right = 450.0
-offset_bottom = 205.0
-custom_minimum_size = Vector2( 450, 205 )
-theme = ExtResource( 1 )
+initial_position = 2
+size = Vector2i(485, 220)
 exclusive = true
-window_title = "ABOUT_DIALOG_TITLE"
-script = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+theme = ExtResource("1")
+script = ExtResource("2")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_bottom = -1.0
 size_flags_vertical = 3
-theme_override_constants/margin_right = 12
-theme_override_constants/margin_top = 12
 theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 12
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
-offset_left = 12.0
-offset_top = 12.0
-offset_right = 438.0
-offset_bottom = 192.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
+layout_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
-offset_right = 426.0
-offset_bottom = 64.0
+layout_mode = 2
 size_flags_horizontal = 3
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer"]
-offset_right = 64.0
-offset_bottom = 64.0
-texture = ExtResource( 3 )
+layout_mode = 2
+texture = ExtResource("3")
 stretch_mode = 4
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
-offset_left = 68.0
-offset_right = 426.0
-offset_bottom = 64.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_constants/margin_right = 12
-theme_override_constants/margin_top = 2
 theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 12
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer"]
-offset_left = 12.0
-offset_top = 2.0
-offset_right = 346.0
-offset_bottom = 64.0
+layout_mode = 2
 alignment = 1
 
 [node name="VersionLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
-offset_top = 1.0
-offset_right = 334.0
-offset_bottom = 18.0
+layout_mode = 2
 text = "Lorien vX.Y.Z"
 
 [node name="CopyrightLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/VBoxContainer"]
-offset_top = 22.0
-offset_right = 334.0
-offset_bottom = 39.0
+layout_mode = 2
 text = "ABOUT_DIALOG_COPYRIGHT"
 
 [node name="GithubLinkButton" type="LinkButton" parent="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
-offset_top = 43.0
-offset_right = 168.0
-offset_bottom = 60.0
+layout_mode = 2
 size_flags_horizontal = 0
 text = "github.com/mbrlabs/Lorien"
 
 [node name="HSeparator2" type="HSeparator" parent="MarginContainer/VBoxContainer"]
-offset_top = 68.0
-offset_right = 426.0
-offset_bottom = 72.0
+layout_mode = 2
 theme_override_constants/separation = 4
-theme_override_styles/separator = SubResource( 1 )
+theme_override_styles/separator = SubResource("1")
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
-offset_top = 76.0
-offset_right = 426.0
-offset_bottom = 93.0
+layout_mode = 2
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
-offset_right = 170.0
-offset_bottom = 17.0
+layout_mode = 2
 text = "ABOUT_DIALOG_LICSENSE"
 
 [node name="LicenseButton" type="LinkButton" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
 unique_name_in_owner = true
-offset_left = 174.0
-offset_right = 249.0
-offset_bottom = 17.0
+layout_mode = 2
 text = "MIT License"
 
 [node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer"]
-offset_top = 97.0
-offset_right = 426.0
-offset_bottom = 117.0
+layout_mode = 2
 theme_override_constants/separation = 20
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
-offset_top = 121.0
-offset_right = 426.0
-offset_bottom = 138.0
+layout_mode = 2
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer3"]
-offset_right = 177.0
-offset_bottom = 17.0
+layout_mode = 2
 text = "ABOUT_DIALOG_BASED_ON"
 
 [node name="GodotButton" type="LinkButton" parent="MarginContainer/VBoxContainer/HBoxContainer3"]
 unique_name_in_owner = true
-offset_left = 181.0
-offset_right = 307.0
-offset_bottom = 17.0
+layout_mode = 2
 focus_mode = 2
 text = "Godot Game Engine"
 
 [node name="HBoxContainer5" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
-offset_top = 142.0
-offset_right = 426.0
-offset_bottom = 159.0
+layout_mode = 2
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer5"]
-offset_right = 186.0
-offset_bottom = 17.0
+layout_mode = 2
 text = "ABOUT_DIALOG_EASTEREGG"
 
 [node name="KennyButton" type="LinkButton" parent="MarginContainer/VBoxContainer/HBoxContainer5"]
 unique_name_in_owner = true
-offset_left = 190.0
-offset_right = 378.0
-offset_bottom = 17.0
+layout_mode = 2
 focus_mode = 2
 text = "Kenny's Platformer Art Deluxe"
 
 [node name="HBoxContainer4" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
-offset_top = 163.0
-offset_right = 426.0
-offset_bottom = 180.0
+layout_mode = 2
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer4"]
-offset_right = 58.0
-offset_bottom = 17.0
+layout_mode = 2
 text = "Icon set:"
 
 [node name="RemixIconsButton" type="LinkButton" parent="MarginContainer/VBoxContainer/HBoxContainer4"]
 unique_name_in_owner = true
-offset_left = 62.0
-offset_right = 129.0
-offset_bottom = 17.0
+layout_mode = 2
 focus_mode = 2
 text = "Remix Icon"

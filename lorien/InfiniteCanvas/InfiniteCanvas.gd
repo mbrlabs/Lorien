@@ -277,7 +277,7 @@ func use_project(project: Project) -> void:
 		info.stroke_count += 1
 		info.point_count += stroke.points.size()
 	
-	_grid.update()
+	_grid.queue_redraw()
 	
 # -------------------------------------------------------------------------------------------------
 func undo_last_stroke() -> void:

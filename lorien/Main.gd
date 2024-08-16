@@ -35,7 +35,7 @@ func _ready():
 	_export_dialog.current_dir = Settings.get_value(Settings.GENERAL_DEFAULT_PROJECT_DIR, docs_folder)
 	
 	# Signals
-	get_tree().connect("files_dropped", Callable(self, "_on_files_dropped"))
+	get_window().connect("files_dropped", Callable(self, "_on_files_dropped"))
 	
 	_canvas.connect("mouse_entered", Callable(self, "_on_InfiniteCanvas_mouse_entered"))
 	_canvas.connect("mouse_exited", Callable(self, "_on_InfiniteCanvas_mouse_exited"))
@@ -238,24 +238,26 @@ func _make_project_active(project: Project) -> void:
 	
 # -------------------------------------------------------------------------------------------------
 func _is_mouse_on_ui() -> bool:
-	var on_ui := Utils.is_mouse_in_control(_menubar)
-	on_ui = on_ui || Utils.is_mouse_in_control(_toolbar)
-	on_ui = on_ui || Utils.is_mouse_in_control(_statusbar)
-	on_ui = on_ui || Utils.is_mouse_on_window(_file_dialog)
-	on_ui = on_ui || Utils.is_mouse_on_window(_about_dialog)
-	on_ui = on_ui || Utils.is_mouse_on_window(_settings_dialog)
-	on_ui = on_ui || Utils.is_mouse_in_control(_brush_color_picker)
-	on_ui = on_ui || Utils.is_mouse_on_window(_new_palette_dialog)
-	on_ui = on_ui || Utils.is_mouse_on_window(_edit_palette_dialog)
-	on_ui = on_ui || Utils.is_mouse_on_window(_delete_palette_dialog)
-	return on_ui
+	return true # TODO(gd4): HEELP!!!
+	#var on_ui := Utils.is_mouse_in_control(_menubar)
+	#on_ui = on_ui || Utils.is_mouse_in_control(_toolbar)
+	#on_ui = on_ui || Utils.is_mouse_in_control(_statusbar)
+	#on_ui = on_ui || Utils.is_mouse_on_window(_file_dialog)
+	#on_ui = on_ui || Utils.is_mouse_on_window(_about_dialog)
+	#on_ui = on_ui || Utils.is_mouse_on_window(_settings_dialog)
+	#on_ui = on_ui || Utils.is_mouse_in_control(_brush_color_picker)
+	#on_ui = on_ui || Utils.is_mouse_on_window(_new_palette_dialog)
+	#on_ui = on_ui || Utils.is_mouse_on_window(_edit_palette_dialog)
+	#on_ui = on_ui || Utils.is_mouse_on_window(_delete_palette_dialog)
+	#return on_ui
 
 # -------------------------------------------------------------------------------------------------
 func is_dialog_open() -> bool:
-	var open := _file_dialog.visible || _about_dialog.visible
-	open = open || (_settings_dialog.visible || _generic_alert_dialog.visible)
-	open = open || (_new_palette_dialog.visible || _edit_palette_dialog.visible || _delete_palette_dialog.visible)
-	return open
+	return false # TODO(gd4): HEELP!!!
+	#var open := _file_dialog.visible || _about_dialog.visible
+	#open = open || (_settings_dialog.visible || _generic_alert_dialog.visible)
+	#open = open || (_new_palette_dialog.visible || _edit_palette_dialog.visible || _delete_palette_dialog.visible)
+	#return open
 
 # -------------------------------------------------------------------------------------------------
 func _create_active_default_project() -> void:
@@ -376,7 +378,7 @@ func _on_save_project_as() -> void:
 	_file_dialog.invalidate()
 	_file_dialog.current_file = active_project.filepath.get_file()
 	_file_dialog.connect("file_selected", Callable(self, "_on_file_selected_to_save_project"))
-	_file_dialog.connect("popup_hide", Callable(self, "_on_file_dialog_closed"))
+	_file_dialog.connect("close_requested", Callable(self, "_on_file_dialog_closed"))
 	_file_dialog.popup_centered()
 
 # -------------------------------------------------------------------------------------------------
@@ -387,7 +389,7 @@ func _on_save_project() -> void:
 		_file_dialog.file_mode = FileDialog.FILE_MODE_SAVE_FILE
 		_file_dialog.invalidate()
 		_file_dialog.connect("file_selected", Callable(self, "_on_file_selected_to_save_project"))
-		_file_dialog.connect("popup_hide", Callable(self, "_on_file_dialog_closed"))
+		_file_dialog.connect("close_requested", Callable(self, "_on_file_dialog_closed"))
 		_file_dialog.popup_centered()
 	else:
 		_save_project(active_project)
@@ -395,7 +397,7 @@ func _on_save_project() -> void:
 # -------------------------------------------------------------------------------------------------
 func _on_file_dialog_closed() -> void:
 	_file_dialog.disconnect("file_selected", Callable(self, "_on_file_selected_to_save_project"))
-	_file_dialog.disconnect("popup_hide", Callable(self, "_on_file_dialog_closed"))
+	_file_dialog.disconnect("close_requested", Callable(self, "_on_file_dialog_closed"))
 
 # -------------------------------------------------------------------------------------------------
 func _on_file_selected_to_save_project(filepath: String) -> void:

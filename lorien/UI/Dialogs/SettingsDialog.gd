@@ -53,6 +53,7 @@ func _ready():
 	_apply_language()
 	GlobalSignals.connect("language_changed", Callable(self, "_apply_language"))
 	
+	close_requested.connect(hide)
 	_pressure_sensitivity.connect("value_changed", Callable(self, "_on_PressureSensitivity_value_changed"))
 	_constant_pressure.connect("toggled", Callable(self, "_on_ConstantPressure_toggled"))
 	_brush_size.connect("value_changed", Callable(self, "_on_DefaultBrushSize_value_changed"))

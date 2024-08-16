@@ -17,7 +17,7 @@ func _ready() -> void:
 	_cancel_button.connect("pressed", Callable(self, "_on_CancelButton_pressed"))
 	
 	connect("about_to_popup", Callable(self, "_on_NewPaletteDialog_about_to_show"))
-	connect("popup_hide", Callable(self, "_on_NewPaletteDialog_popup_hide"))
+	connect("close_requested", Callable(self, "_on_NewPaletteDialog_close_requested"))
 	
 # -------------------------------------------------------------------------------------------------
 func _on_SaveButton_pressed() -> void:
@@ -40,7 +40,7 @@ func _on_CancelButton_pressed() -> void:
 	hide()
 
 # -------------------------------------------------------------------------------------------------
-func _on_NewPaletteDialog_popup_hide() -> void:
+func _on_NewPaletteDialog_close_requested() -> void:
 	_line_edit.clear()
 
 # -------------------------------------------------------------------------------------------------

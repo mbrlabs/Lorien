@@ -1,20 +1,20 @@
 [gd_scene load_steps=17 format=3 uid="uid://2uaupgd20h03"]
 
 [ext_resource type="Script" path="res://Main.gd" id="1"]
-[ext_resource type="PackedScene" path="res://InfiniteCanvas/InfiniteCanvas.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://c4u5gk5n2aiom" path="res://InfiniteCanvas/InfiniteCanvas.tscn" id="2"]
 [ext_resource type="PackedScene" path="res://UI/Statusbar.tscn" id="3"]
 [ext_resource type="PackedScene" path="res://UI/Menubar.tscn" id="4"]
 [ext_resource type="PackedScene" path="res://UI/MainMenu.tscn" id="5"]
 [ext_resource type="PackedScene" path="res://UI/Toolbar.tscn" id="6"]
-[ext_resource type="PackedScene" path="res://UI/Dialogs/UnsavedChangesDialog.tscn" id="7"]
+[ext_resource type="PackedScene" uid="uid://ct2b6hxxjlc6h" path="res://UI/Dialogs/UnsavedChangesDialog.tscn" id="7"]
 [ext_resource type="Theme" uid="uid://u5qnpgxqykiv" path="res://UI/Themes/theme_dark.tres" id="8"]
-[ext_resource type="PackedScene" path="res://UI/Dialogs/AboutDialog.tscn" id="9"]
-[ext_resource type="PackedScene" path="res://UI/Dialogs/SettingsDialog.tscn" id="10"]
-[ext_resource type="PackedScene" path="res://UI/Dialogs/ExitDialog.tscn" id="11"]
-[ext_resource type="PackedScene" path="res://UI/Dialogs/NewPaletteDialog.tscn" id="12"]
+[ext_resource type="PackedScene" uid="uid://dug4jmvhrb3t1" path="res://UI/Dialogs/AboutDialog.tscn" id="9"]
+[ext_resource type="PackedScene" uid="uid://cgs8d5y8yrwl0" path="res://UI/Dialogs/SettingsDialog.tscn" id="10"]
+[ext_resource type="PackedScene" uid="uid://by1hug8oa5vft" path="res://UI/Dialogs/ExitDialog.tscn" id="11"]
+[ext_resource type="PackedScene" uid="uid://jow4q8tm6qro" path="res://UI/Dialogs/NewPaletteDialog.tscn" id="12"]
 [ext_resource type="PackedScene" path="res://UI/ColorPalettePicker.tscn" id="13"]
-[ext_resource type="PackedScene" path="res://UI/Dialogs/EditPaletteDialog.tscn" id="14"]
-[ext_resource type="PackedScene" path="res://UI/Dialogs/DeletePaletteDialog.tscn" id="15"]
+[ext_resource type="PackedScene" uid="uid://6jilea2pwjuk" path="res://UI/Dialogs/EditPaletteDialog.tscn" id="14"]
+[ext_resource type="PackedScene" uid="uid://bl2x4yif2wrml" path="res://UI/Dialogs/DeletePaletteDialog.tscn" id="15"]
 
 [sub_resource type="StyleBoxFlat" id="1"]
 bg_color = Color(0.207843, 0.211765, 0.227451, 1)
@@ -40,6 +40,7 @@ script = ExtResource("1")
 
 [node name="InfiniteCanvas" parent="." instance=ExtResource("2")]
 layout_mode = 0
+anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
 stretch = true
@@ -109,32 +110,34 @@ access = 2
 filters = PackedStringArray("*.lorien")
 
 [node name="ExitDialog" parent="." instance=ExtResource("11")]
-position = Vector2i(0, 20)
+visible = false
 exclusive = true
 
 [node name="NewPaletteDialog" parent="." instance=ExtResource("12")]
-position = Vector2i(0, 20)
+visible = false
 
 [node name="DeletePaletteDialog" parent="." instance=ExtResource("15")]
-position = Vector2i(0, 20)
+visible = false
 
 [node name="EditPaletteDialog" parent="." instance=ExtResource("14")]
-position = Vector2i(0, 20)
+visible = false
 
 [node name="ExportDialog" type="FileDialog" parent="."]
 theme = ExtResource("8")
 access = 2
 
 [node name="UnsavedChangesDialog" parent="." instance=ExtResource("7")]
-position = Vector2i(0, 20)
+visible = false
 exclusive = true
 
 [node name="AboutDialog" parent="." instance=ExtResource("9")]
 visible = false
 
 [node name="SettingsDialog" parent="." instance=ExtResource("10")]
-position = Vector2i(0, 20)
+visible = false
 
 [node name="GenericAlertDialog" type="AcceptDialog" parent="."]
+position = Vector2i(880, 490)
+size = Vector2i(160, 100)
 theme = ExtResource("8")
 dialog_text = "Generic message. "

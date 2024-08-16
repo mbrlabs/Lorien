@@ -27,8 +27,8 @@ func _ready():
 	_line2d.width_curve = Curve.new()
 	_line2d.joint_mode = Line2D.LINE_JOINT_ROUND
 	
-	_visibility_notifier.connect("viewport_entered", Callable(self, "_on_VisibilityNotifier2D_viewport_entered"))
-	_visibility_notifier.connect("viewport_exited", Callable(self, "_on_VisibilityNotifier2D_viewport_exited"))
+	_visibility_notifier.connect("screen_entered", _on_VisibilityNotifier2D_screen_entered)
+	_visibility_notifier.connect("screen_exited", _on_VisibilityNotifier2D_screen_exited)
 	
 	# Anti aliasing
 	var aa_mode: int = Settings.get_value(Settings.RENDERING_AA_MODE, Config.DEFAULT_AA_MODE)
@@ -51,12 +51,12 @@ func _ready():
 	refresh()
 
 # ------------------------------------------------------------------------------------------------
-func _on_VisibilityNotifier2D_viewport_entered(viewport: SubViewport) -> void: 
+func _on_VisibilityNotifier2D_screen_entered() -> void: 
 	add_to_group(GROUP_ONSCREEN)
 	visible = true
 	
 # ------------------------------------------------------------------------------------------------
-func _on_VisibilityNotifier2D_viewport_exited(viewport: SubViewport) -> void:
+func _on_VisibilityNotifier2D_screen_exited() -> void:
 	remove_from_group(GROUP_ONSCREEN)
 	visible = false
 

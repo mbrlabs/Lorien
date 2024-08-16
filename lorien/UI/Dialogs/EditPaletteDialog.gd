@@ -22,7 +22,7 @@ var _palette_edited := false
 
 # -------------------------------------------------------------------------------------------------
 func _ready() -> void:
-	connect("popup_hide", Callable(self, "_on_EditPaletteDialog_popup_hide"))
+	connect("close_requested", Callable(self, "_on_EditPaletteDialog_close_requested"))
 	_color_picker.connect("color_changed", Callable(self, "_on_ColorPicker_color_changed"))
 	_name_line_edit.connect("text_changed", Callable(self, "_on_NameLineEdit_text_changed"))
 	_add_color_button.connect("pressed", Callable(self, "_on_AddColorButton_pressed"))
@@ -78,7 +78,7 @@ func _on_ColorPicker_color_changed(color: Color) -> void:
 		_palette.colors[_active_button_index] = color
 		
 # -------------------------------------------------------------------------------------------------
-func _on_EditPaletteDialog_popup_hide() -> void:
+func _on_EditPaletteDialog_close_requested() -> void:
 	if _palette_edited:
 		PaletteManager.save()
 		emit_signal("palette_changed")

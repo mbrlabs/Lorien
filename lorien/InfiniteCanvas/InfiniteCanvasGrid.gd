@@ -51,9 +51,9 @@ func set_grid_scale(size: float):
 
 # -------------------------------------------------------------------------------------------------
 func _draw() -> void:
-	var size = get_viewport().size  * _camera.zoom
-	var zoom = _camera.zoom.x
-	var offset = _camera.offset
+	var size := Vector2(get_viewport().size)  * _camera.zoom
+	var zoom := _camera.zoom.x
+	var offset := _camera.offset
 	var grid_size := int(ceil((_grid_size * pow(zoom, 0.75))))
 		
 	match _pattern:

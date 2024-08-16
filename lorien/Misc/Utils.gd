@@ -26,7 +26,7 @@ func is_mouse_in_control(control: Control) -> bool:
 func is_mouse_on_window(window: Window) -> bool:
 	if window.visible:
 		var pos = get_viewport().get_mouse_position()
-		var rect = window.get_global_rect()
+		var rect = window.get_viewport().get_visible_rect()
 		return rect.has_point(pos)
 	return false
 

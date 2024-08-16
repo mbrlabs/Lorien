@@ -94,7 +94,7 @@ func _on_OpenFileButton_pressed():
 	var file_dialog: FileDialog = get_node(file_dialog_path)
 	file_dialog.file_mode = FileDialog.FILE_MODE_OPEN_FILE
 	file_dialog.connect("file_selected", Callable(self, "_on_project_selected_to_open"))
-	file_dialog.connect("popup_hide", Callable(self, "_on_file_dialog_closed"))
+	file_dialog.connect("close_requested", Callable(self, "_on_file_dialog_closed"))
 	file_dialog.invalidate()
 	file_dialog.popup_centered()
 
@@ -110,7 +110,7 @@ func _on_SaveFileButton_pressed():
 func _on_file_dialog_closed() -> void:
 	var file_dialog: FileDialog = get_node(file_dialog_path)
 	Utils.remove_signal_connections(file_dialog, "file_selected")
-	Utils.remove_signal_connections(file_dialog, "popup_hide")
+	Utils.remove_signal_connections(file_dialog, "close_requested")
 
 # -------------------------------------------------------------------------------------------------
 func _on_ColorButton_pressed():
