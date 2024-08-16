@@ -5,7 +5,7 @@ const UUID_ALPHABET := "abcdefghijklmnopqrstuvwxyz0123456789"
 
 # -------------------------------------------------------------------------------------------------
 func get_native_mouse_position_on_screen() -> Vector2:
-	return get_window().position + get_viewport().get_mouse_position()
+	return Vector2(get_window().position) + get_viewport().get_mouse_position()
 
 # -------------------------------------------------------------------------------------------------
 func remove_signal_connections(node: Node, signal_name: String) -> void:
@@ -17,6 +17,16 @@ func is_mouse_in_control(control: Control) -> bool:
 	if control.visible:
 		var pos = get_viewport().get_mouse_position()
 		var rect = control.get_global_rect()
+		return rect.has_point(pos)
+	return false
+
+# TODO(gd4): this is just a copy of is_mouse_in_control() from above for Godot 4 since Windows don't 
+# inherit from Control anymore
+# -------------------------------------------------------------------------------------------------
+func is_mouse_on_window(window: Window) -> bool:
+	if window.visible:
+		var pos = get_viewport().get_mouse_position()
+		var rect = window.get_global_rect()
 		return rect.has_point(pos)
 	return false
 

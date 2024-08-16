@@ -26,7 +26,7 @@ var _ui_visible := true
 func _ready():
 	# Init stuff
 	randomize()
-	Engine.target_fps = Settings.get_value(Settings.RENDERING_FOREGROUND_FPS, Config.DEFAULT_FOREGROUND_FPS)
+	Engine.max_fps = Settings.get_value(Settings.RENDERING_FOREGROUND_FPS, Config.DEFAULT_FOREGROUND_FPS)
 	get_window().set_title("Lorien v%s" % Config.VERSION_STRING)
 	get_tree().set_auto_accept_quit(false)
 
@@ -98,7 +98,7 @@ func _ready():
 
 # -------------------------------------------------------------------------------------------------
 func _notification(what):
-	if NOTIFICATION_WM_QUIT_REQUEST == what:
+	if NOTIFICATION_WM_CLOSE_REQUEST == what:
 		if !_exit_dialog.visible:
 			if ProjectManager.has_unsaved_changes():
 				_exit_dialog.call_deferred("popup")
@@ -109,12 +109,12 @@ func _notification(what):
 				get_tree().quit()
 
 	elif NOTIFICATION_APPLICATION_FOCUS_IN == what:
-		Engine.target_fps = Settings.get_value(Settings.RENDERING_FOREGROUND_FPS, Config.DEFAULT_FOREGROUND_FPS)
+		Engine.max_fps = Settings.get_value(Settings.RENDERING_FOREGROUND_FPS, Config.DEFAULT_FOREGROUND_FPS)
 		if !_is_mouse_on_ui() && _canvas != null && !is_dialog_open():
 			await get_tree().create_timer(0.12).timeout
 			_canvas.enable()
 	elif NOTIFICATION_APPLICATION_FOCUS_OUT == what:
-		Engine.target_fps = Settings.get_value(Settings.RENDERING_BACKGROUND_FPS, Config.DEFAULT_BACKGROUND_FPS)
+		Engine.max_fps = Settings.get_value(Settings.RENDERING_BACKGROUND_FPS, Config.DEFAULT_BACKGROUND_FPS)
 		if _canvas != null:
 			_canvas.disable()
 
@@ -198,7 +198,7 @@ func _apply_state() -> void:
 		get_window().mode = Window.MODE_MAXIMIZED if (true) else Window.MODE_WINDOWED
 	else:
 		get_window().size = win_size
-		OS.center_window()
+		get_window().move_to_center()
 	await get_tree().create_timer(0.12).timeout
 	
 	# Open projects
@@ -241,13 +241,13 @@ func _is_mouse_on_ui() -> bool:
 	var on_ui := Utils.is_mouse_in_control(_menubar)
 	on_ui = on_ui || Utils.is_mouse_in_control(_toolbar)
 	on_ui = on_ui || Utils.is_mouse_in_control(_statusbar)
-	on_ui = on_ui || Utils.is_mouse_in_control(_file_dialog)
-	on_ui = on_ui || Utils.is_mouse_in_control(_about_dialog)
-	on_ui = on_ui || Utils.is_mouse_in_control(_settings_dialog)
+	on_ui = on_ui || Utils.is_mouse_on_window(_file_dialog)
+	on_ui = on_ui || Utils.is_mouse_on_window(_about_dialog)
+	on_ui = on_ui || Utils.is_mouse_on_window(_settings_dialog)
 	on_ui = on_ui || Utils.is_mouse_in_control(_brush_color_picker)
-	on_ui = on_ui || Utils.is_mouse_in_control(_new_palette_dialog)
-	on_ui = on_ui || Utils.is_mouse_in_control(_edit_palette_dialog)
-	on_ui = on_ui || Utils.is_mouse_in_control(_delete_palette_dialog)
+	on_ui = on_ui || Utils.is_mouse_on_window(_new_palette_dialog)
+	on_ui = on_ui || Utils.is_mouse_on_window(_edit_palette_dialog)
+	on_ui = on_ui || Utils.is_mouse_on_window(_delete_palette_dialog)
 	return on_ui
 
 # -------------------------------------------------------------------------------------------------
@@ -345,8 +345,7 @@ func _on_clear_canvas() -> void:
 # -------------------------------------------------------------------------------------------------
 func _on_open_project(filepath: String) -> bool:
 	# Check if file exists
-	var file := File.new()
-	if !file.file_exists(filepath):
+	if !FileAccess.file_exists(filepath):
 		return false
 	
 	var project: Project = ProjectManager.get_open_project_by_filepath(filepath)
@@ -373,7 +372,7 @@ func _on_open_project(filepath: String) -> bool:
 func _on_save_project_as() -> void:
 	var active_project: Project = ProjectManager.get_active_project()
 	_canvas.disable()
-	_file_dialog.mode = FileDialog.FILE_MODE_SAVE_FILE
+	_file_dialog.file_mode = FileDialog.FILE_MODE_SAVE_FILE
 	_file_dialog.invalidate()
 	_file_dialog.current_file = active_project.filepath.get_file()
 	_file_dialog.connect("file_selected", Callable(self, "_on_file_selected_to_save_project"))
@@ -385,7 +384,7 @@ func _on_save_project() -> void:
 	var active_project: Project = ProjectManager.get_active_project()
 	if active_project.filepath.is_empty():
 		_canvas.disable()
-		_file_dialog.mode = FileDialog.FILE_MODE_SAVE_FILE
+		_file_dialog.file_mode = FileDialog.FILE_MODE_SAVE_FILE
 		_file_dialog.invalidate()
 		_file_dialog.connect("file_selected", Callable(self, "_on_file_selected_to_save_project"))
 		_file_dialog.connect("popup_hide", Callable(self, "_on_file_dialog_closed"))
@@ -514,7 +513,7 @@ func _on_NewPaletteDialog_new_palette_created(palette: Palette) -> void:
 
 # --------------------------------------------------------------------------------------------------
 func _update_brush_color() -> void:
-	var color_index := min(_brush_color_picker.get_active_color_index(), PaletteManager.get_active_palette().colors.size()-1)
+	var color_index: int = min(_brush_color_picker.get_active_color_index(), PaletteManager.get_active_palette().colors.size()-1)
 	_brush_color_picker.update_palettes(color_index)
 	_toolbar.set_brush_color(_brush_color_picker.get_active_color())
 	_canvas.set_brush_color(_brush_color_picker.get_active_color())
@@ -537,7 +536,11 @@ func _on_scale_changed() -> void:
 	scale = clamp(scale, _settings_dialog.get_min_ui_scale(), _settings_dialog.get_max_ui_scale())
 
 	_canvas.set_canvas_scale(scale)
-	get_tree().set_screen_stretch(SceneTree.STRETCH_MODE_DISABLED, SceneTree.STRETCH_ASPECT_IGNORE, Vector2(0,0), scale)
+	
+	# TODO(gd4): the whole scaling stuff changed a lot in Godot 4; need to figure this out later.
+	# See: https://www.reddit.com/r/godot/comments/14h4iir/how_can_i_set_the_stretch_mode_and_aspect_in/
+	#get_tree().set_screen_stretch(SceneTree.STRETCH_MODE_DISABLED, SceneTree.STRETCH_ASPECT_IGNORE, Vector2(0,0), scale)
+	
 	get_window().min_size = Config.MIN_WINDOW_SIZE * scale
 
 # --------------------------------------------------------------------------------------------------

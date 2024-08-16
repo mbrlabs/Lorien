@@ -4,7 +4,7 @@ const VERSION_MAJOR					:= 0
 const VERSION_MINOR					:= 7
 const VERSION_PATCH					:= 0
 const VERSION_STATUS				:= "-dev"
-const VERSION_STRING				:= "%d.%d.%d%s" % [VERSION_MAJOR, VERSION_MINOR, VERSION_PATCH, VERSION_STATUS]
+static var VERSION_STRING			:= "%d.%d.%d%s" % [VERSION_MAJOR, VERSION_MINOR, VERSION_PATCH, VERSION_STATUS]
 const CONFIG_PATH 					:= "user://settings.cfg"
 const PALETTES_PATH					:= "user://palettes.cfg"
 const STATE_PATH					:= "user://state.cfg"
@@ -26,4 +26,3 @@ const DEFAULT_UI_SCALE  			:= 1.0
 const DEFAULT_GRID_PATTERN 			:= Types.GridPattern.DOTS
 const DEFAULT_GRID_SIZE 			:= 25.0
 const DEFAULT_TOOL_PRESSURE			:= 0.5
-

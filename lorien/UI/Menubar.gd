@@ -83,8 +83,8 @@ func _on_tab_selected(tab: ProjectTab) -> void:
 	emit_signal("project_selected", tab.project_id)
 
 # -------------------------------------------------------------------------------------------------
-func _on_NewFileButton_pressed():
-	 emit_signal("create_new_project")
+func _on_NewFileButton_pressed() -> void:
+	emit_signal("create_new_project")
 
 # -------------------------------------------------------------------------------------------------
 func _on_MenuButton_pressed():

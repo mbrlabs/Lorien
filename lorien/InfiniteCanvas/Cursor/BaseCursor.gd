@@ -1,4 +1,5 @@
-class_name BaseCursor, "res://Assets/Icons/cursor_icon.png"
+@icon("res://Assets/Icons/cursor_icon.png")
+class_name BaseCursor
 extends Sprite2D
 
 # -------------------------------------------------------------------------------------------------

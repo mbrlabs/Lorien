@@ -37,10 +37,6 @@ grow_vertical = 2
 mouse_filter = 2
 theme = ExtResource("8")
 script = ExtResource("1")
-__meta__ = {
-"_edit_lock_": true,
-"_edit_use_anchors_": false
-}
 
 [node name="InfiniteCanvas" parent="." instance=ExtResource("2")]
 layout_mode = 0
@@ -105,10 +101,6 @@ delete_palette_dialog = NodePath("../DeletePaletteDialog")
 toolbar_path = NodePath("../Topbar/Toolbar")
 
 [node name="MainMenu" parent="." instance=ExtResource("5")]
-offset_left = 1.0
-offset_top = 38.0
-offset_right = 151.0
-offset_bottom = 138.0
 file_dialog_path = NodePath("../FileDialog")
 
 [node name="FileDialog" type="FileDialog" parent="."]
@@ -122,14 +114,6 @@ exclusive = true
 
 [node name="NewPaletteDialog" parent="." instance=ExtResource("12")]
 position = Vector2i(0, 20)
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -129.5
-offset_top = -40.0
-offset_right = 129.5
-offset_bottom = 40.0
 
 [node name="DeletePaletteDialog" parent="." instance=ExtResource("15")]
 position = Vector2i(0, 20)
@@ -147,25 +131,9 @@ exclusive = true
 
 [node name="AboutDialog" parent="." instance=ExtResource("9")]
 visible = false
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -225.0
-offset_top = -102.5
-offset_right = 225.0
-offset_bottom = 102.5
 
 [node name="SettingsDialog" parent="." instance=ExtResource("10")]
 position = Vector2i(0, 20)
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -260.0
-offset_top = -135.0
-offset_right = 260.0
-offset_bottom = 135.0
 
 [node name="GenericAlertDialog" type="AcceptDialog" parent="."]
 theme = ExtResource("8")

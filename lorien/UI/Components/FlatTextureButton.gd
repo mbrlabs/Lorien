@@ -37,12 +37,14 @@ func toggle() -> void:
 		self_modulate = _normal_tint
 	else:
 		self_modulate = pressed_tint
-	pressed = !pressed
+	button_pressed = !button_pressed
 
+# TODO(gd4): they added set_pressed or something. Also pressed get renamed to button_pressed.
+# this might not be nedded; or it might be. Keep an eye on the tool buttons!!! 
 # -------------------------------------------------------------------------------------------------
-func set_pressed(is_pressed) -> void:
-	pressed = is_pressed
-	_on_pressed()
+#func set_pressed(is_pressed) -> void:
+	#button_pressed = is_pressed
+	#_on_pressed()
 
 # -------------------------------------------------------------------------------------------------
 func _on_pressed() -> void:

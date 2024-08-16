@@ -53,7 +53,7 @@ func _add_point_at_mouse_pos(pressure: float) -> Vector2:
 # -------------------------------------------------------------------------------------------------
 func _add_point_at_snap_pos(pressure: float) -> Vector2:
 	var mouse_angle := _head.angle_to_point(_cursor.global_position) + (SNAP_STEP / 2.0)
-	var snapped_angle := floor(mouse_angle / SNAP_STEP) * SNAP_STEP
+	var snapped_angle: float = floor(mouse_angle / SNAP_STEP) * SNAP_STEP
 	var line_length := _head.distance_to(_cursor.global_position)
 	var new_tail := Vector2(-line_length, 0).rotated(snapped_angle) + _head
 	pressure = pressure_curve.sample(pressure)

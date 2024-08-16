@@ -37,7 +37,7 @@ func optimize(s: BrushStroke) -> void:
 	
 		# Angle between points must be beigger than x deg
 		var angle := rad_to_deg(prev_point.angle_to_point(point))
-		var angle_diff := abs(abs(angle) - abs(previous_angle))
+		var angle_diff: float = abs(abs(angle) - abs(previous_angle))
 		var angle_cond := angle_diff >= max_angle_diff
 		previous_angle = angle
 		

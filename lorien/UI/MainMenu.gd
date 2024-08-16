@@ -69,7 +69,7 @@ func _on_MainMenu_id_pressed(id: int):
 # -------------------------------------------------------------------------------------------------
 func _on_open_project():
 	var file_dialog: FileDialog = get_node(file_dialog_path)
-	file_dialog.mode = FileDialog.FILE_MODE_OPEN_FILE
+	file_dialog.file_mode = FileDialog.FILE_MODE_OPEN_FILE
 	file_dialog.connect("file_selected", Callable(self, "_on_project_selected_to_open"))
 	file_dialog.connect("popup_hide", Callable(self, "_on_file_dialog_closed"))
 	file_dialog.invalidate()

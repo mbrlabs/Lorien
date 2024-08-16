@@ -3,8 +3,8 @@
 extends SpinBox
 
 # -------------------------------------------------------------------------------------------------
-var _pressed := false
-var _ready   := false 
+var _pressed 	:= false
+var _is_ready	:= false 
 
 # -------------------------------------------------------------------------------------------------
 func _ready() -> void:
@@ -17,11 +17,11 @@ func _on_UIScale_gui_input(event: InputEvent):
 	elif event.is_pressed():
 		_pressed = true
 	elif !event.is_pressed() && _pressed:
-		_ready = true
+		_is_ready = true
 		emit_signal("value_changed", value)
 		_pressed = false
-		_ready = false
+		_is_ready = false
 
 # -------------------------------------------------------------------------------------------------
 func is_ready() -> bool:
-	return _ready
+	return _is_ready

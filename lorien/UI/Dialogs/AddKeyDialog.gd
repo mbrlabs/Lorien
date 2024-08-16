@@ -1,7 +1,7 @@
 extends Window
 
 # -------------------------------------------------------------------------------------------------
-const _MODIFIER_KEYS := [KEY_SUPER_L, KEY_SUPER_R, KEY_CTRL, KEY_SHIFT, KEY_META, KEY_ALT]
+var _MODIFIER_KEYS := [KEY_CTRL, KEY_SHIFT, KEY_META, KEY_ALT]
 
 # -------------------------------------------------------------------------------------------------
 @export var action_name := ""

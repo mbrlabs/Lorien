@@ -6,7 +6,7 @@ class_name Serializer
 
 # -------------------------------------------------------------------------------------------------
 const BRUSH_STROKE = preload("res://BrushStroke/BrushStroke.tscn")
-const COMPRESSION_METHOD = File.COMPRESSION_DEFLATE
+const COMPRESSION_METHOD = FileAccess.COMPRESSION_DEFLATE
 const POINT_ELEM_SIZE := 3
 
 const VERSION_NUMBER := 1
@@ -18,9 +18,8 @@ static func save_project(project: Project) -> void:
 	var start_time := Time.get_ticks_msec()
 	
 	# Open file
-	var file := File.new()
-	var err = file.open_compressed(project.filepath, File.WRITE, COMPRESSION_METHOD)
-	if err != OK:
+	var file := FileAccess.open_compressed(project.filepath, FileAccess.WRITE, COMPRESSION_METHOD)
+	if file == null:
 		print_debug("Failed to open file for writing: %s" % project.filepath)
 		return
 	
@@ -62,9 +61,8 @@ static func load_project(project: Project) -> void:
 	var start_time := Time.get_ticks_msec()
 
 	# Open file
-	var file := File.new()
-	var err = file.open_compressed(project.filepath, File.READ, COMPRESSION_METHOD)
-	if err != OK:
+	var file := FileAccess.open_compressed(project.filepath, FileAccess.READ, COMPRESSION_METHOD)
+	if file == null:
 		print_debug("Failed to load file: %s" % project.filepath)
 		return
 	

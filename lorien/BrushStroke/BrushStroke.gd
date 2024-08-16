@@ -84,7 +84,7 @@ func remove_last_point() -> void:
 	if !points.is_empty():
 		points.pop_back()
 		pressures.pop_back()
-		_line2d.points.remove(_line2d.points.size() - 1)
+		_line2d.points.remove_at(_line2d.points.size() - 1)
 		_line2d.width_curve.remove_point(_line2d.width_curve.get_point_count() - 1)
 
 # ------------------------------------------------------------------------------------------------

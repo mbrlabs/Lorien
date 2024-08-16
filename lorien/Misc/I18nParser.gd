@@ -26,13 +26,14 @@ class ParseResult:
 # -------------------------------------------------------------------------------------------------
 func load_files() -> ParseResult:
 	var templater = StringTemplating.new({
-		"shortcut_list": funcref(self, "_i18n_filter_shortcut_list")
+		# TODO(gd4): this used to be a funcref, not a Callable. Must also fix code in StringTemplate
+		"shortcut_list": Callable(self, "_i18n_filter_shortcut_list")
 	})
 	
 	var result = ParseResult.new()
 	for f in _get_i18n_files():
-		var file := File.new()
-		if file.open(f, File.READ) == OK:
+		var file := FileAccess.open(f, FileAccess.READ)
+		if file != null:
 			var position := Translation.new()
 			position.locale = f.get_file().get_basename()
 			
@@ -69,6 +70,7 @@ func load_files() -> ParseResult:
 			result.append(position.locale, name)
 			if _first_load:
 				print("Loaded i18n file: %s" % f)
+			file.close()
 	_first_load = false
 	return result
 
@@ -92,13 +94,13 @@ func _i18n_filter_shortcut_list(action_name: String) -> String:
 # -------------------------------------------------------------------------------------------------
 func _get_i18n_files() -> Array:
 	var files := []
-	var dir = DirAccess.new()
-	if dir.open(I18N_FOLDER) == OK:
-		dir.list_dir_begin() # TODOConverter3To4 fill missing arguments https://github.com/godotengine/godot/pull/40547
-		var file_name = dir.get_next()
+	var dir := DirAccess.open(I18N_FOLDER)
+	if dir != null:
+		dir.list_dir_begin()
+		var file_name := dir.get_next()
 		while file_name != "":
 			if !dir.current_is_dir():
-				files.append(I18N_FOLDER.plus_file(file_name))
+				files.append(I18N_FOLDER.path_join(file_name))
 			file_name = dir.get_next()
 	else:
 		printerr("Failed to list i18n files")

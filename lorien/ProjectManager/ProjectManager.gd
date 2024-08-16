@@ -22,7 +22,7 @@ func get_active_project() -> Project:
 func remove_project(project: Project) -> void:
 	var index := _open_projects.find(project)
 	if index >= 0:
-		_open_projects.remove(index)
+		_open_projects.remove_at(index)
 	
 	if project == _active_project:
 		_active_project = null

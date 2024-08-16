@@ -67,7 +67,7 @@ func remove_palette(palette: Palette) -> bool:
 		if index >= 0:
 			if index == _active_palette_index:
 				_active_palette_index = 0
-			palettes.remove(index)
+			palettes.remove_at(index)
 			return true
 	return false
 		

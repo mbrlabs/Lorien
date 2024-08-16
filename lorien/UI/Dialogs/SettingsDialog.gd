@@ -197,8 +197,7 @@ func _on_PressureSensitivity_value_changed(value: float):
 func _on_DefaultSaveDir_text_changed(text: String) -> void:
 	text = text.replace("\\", "/")
 	
-	var dir = DirAccess.new()
-	if dir.dir_exists(text):
+	if DirAccess.dir_exists_absolute(text):
 		Settings.set_value(Settings.GENERAL_DEFAULT_PROJECT_DIR, text)
 
 # -------------------------------------------------------------------------------------------------
@@ -206,7 +205,7 @@ func _on_Target_Fps_Foreground_changed(value: int) -> void:
 	Settings.set_value(Settings.RENDERING_FOREGROUND_FPS, value)
 
 	# Settings FPS so user instantly Sees fps Change else fps only changes after unfocusing
-	Engine.target_fps = value
+	Engine.max_fps = value
 
 # -------------------------------------------------------------------------------------------------
 func _on_Target_Fps_Background_changed(value: int) -> void:

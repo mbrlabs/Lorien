@@ -52,10 +52,10 @@ func _make_ellipse(pressure: float, step: int, should_draw_circle: bool) -> void
 	
 	pressure = pressure_curve.sample(pressure)
 
-	var r1 := 0.5 * abs(_cursor.global_position.x - _start_position_top_left.x)
-	var r2 := 0.5 * abs(_cursor.global_position.y - _start_position_top_left.y)
+	var r1: float = 0.5 * abs(_cursor.global_position.x - _start_position_top_left.x)
+	var r2: float = 0.5 * abs(_cursor.global_position.y - _start_position_top_left.y)
 
-	if(should_draw_circle):
+	if should_draw_circle:
 		r1 = max(r1, r2)
 		r2 = r1
 

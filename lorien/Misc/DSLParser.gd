@@ -66,7 +66,7 @@ class ParsedSymbol:
 	var value
 	
 	func _init(_name: String, _last_position: int, _subsymbols: Array, _value):
-		super()
+		#super() TODO(gd4): is this still needed in Godot4? super() syntax changed in any case..not sure how.
 		name = _name
 		last_position = _last_position
 		subsymbols = _subsymbols
@@ -121,7 +121,7 @@ class GrammarSequence:
 	var flatten_same_name := false
 	
 	func _init(_name: String, _elements: Array = [], _flatten_same_name = false):
-		super()
+		#super() TODO(gd4): is this still needed in Godot4? super() syntax changed in any case..not sure how.
 		name = _name
 		elements = _elements
 		flatten_same_name = _flatten_same_name
@@ -159,7 +159,7 @@ class GrammarLiteral:
 	var ignore_whitespace := true
 	
 	func _init(_name: String, _value = null):
-		super()
+		#super() TODO(gd4): is this still needed in Godot4? super() syntax changed in any case..not sure how.
 		if _value == null:
 			_value = _name
 		name = _name
@@ -183,7 +183,7 @@ class GrammarRegexMatch:
 	var ignore_whitespace := true
 	
 	func _init(_name: String, pattern: String):
-		super()
+		#super() TODO(gd4): is this still needed in Godot4? super() syntax changed in any case..not sure how.
 		name = _name
 		regex = RegEx.new()
 		regex.compile(pattern)
