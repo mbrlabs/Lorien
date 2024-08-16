@@ -22,7 +22,7 @@ func set_keybindings_data(bindings_data: Dictionary) -> void:
 	
 			remove_button.add_theme_constant_override("h_separation", 6)
 	
-			remove_button.connect("pressed", Callable(self, "_remove_pressed").bind(event))
+			remove_button.pressed.connect(_remove_pressed.bind(event))
 			add_child(remove_button)
 
 # -------------------------------------------------------------------------------------------------

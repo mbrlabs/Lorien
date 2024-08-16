@@ -14,9 +14,9 @@ var project_ids: Array
 
 # -------------------------------------------------------------------------------------------------
 func _ready() -> void:
-	_save_button.connect("pressed", Callable(self, "_on_SaveButton_pressed"))
-	_discard_button.connect("pressed", Callable(self, "_on_DiscardButton_pressed"))
-	_cancel_button.connect("pressed", Callable(self, "_on_CancelButton_pressed"))
+	_save_button.pressed.connect(_on_SaveButton_pressed)
+	_discard_button.pressed.connect(_on_DiscardButton_pressed)
+	_cancel_button.pressed.connect(_on_CancelButton_pressed)
 
 # -------------------------------------------------------------------------------------------------
 func set_text(text: String) -> void:

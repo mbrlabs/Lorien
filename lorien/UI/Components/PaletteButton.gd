@@ -15,9 +15,9 @@ var color := Color.WHITE: set = set_color
 func _ready() -> void:
 	_color_texture.modulate.a = 0
 	
-	connect("gui_input", Callable(self, "_on_PaletteButton_gui_input"))
-	connect("mouse_entered", Callable(self, "_on_PaletteButton_mouse_entered"))
-	connect("mouse_exited", Callable(self, "_on_PaletteButton_mouse_exited"))
+	gui_input.connect(_on_PaletteButton_gui_input)
+	mouse_entered.connect(_on_PaletteButton_mouse_entered)
+	mouse_exited.connect(_on_PaletteButton_mouse_exited)
 
 # -------------------------------------------------------------------------------------------------
 func set_selected(s: bool) -> void:

@@ -16,9 +16,9 @@ func _ready():
 	_pattern = Settings.get_value(Settings.APPEARANCE_GRID_PATTERN, Config.DEFAULT_GRID_PATTERN)
 	
 	_camera = get_node(camera_path)
-	_camera.connect("zoom_changed", Callable(self, "_on_zoom_changed"))
-	_camera.connect("position_changed", Callable(self, "_on_position_changed"))
-	get_viewport().connect("size_changed", Callable(self, "_on_viewport_size_changed"))
+	_camera.zoom_changed.connect(_on_zoom_changed)
+	_camera.position_changed.connect(_on_position_changed)
+	get_viewport().size_changed.connect(_on_viewport_size_changed)
 
 # -------------------------------------------------------------------------------------------------
 func enable(e: bool) -> void:

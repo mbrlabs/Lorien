@@ -43,19 +43,19 @@ func _ready():
 	_brush_size_slider.value = brush_size
 	_last_active_tool_button = _tool_btn_brush
 	
-	_new_button.connect("pressed", Callable(self, "_on_NewFileButton_pressed"))
-	_undo_button.connect("pressed", Callable(self, "_on_UndoButton_pressed"))
-	_redo_button.connect("pressed", Callable(self, "_on_RedoButton_pressed"))
-	_open_button.connect("pressed", Callable(self, "_on_OpenFileButton_pressed"))
-	_save_button.connect("pressed", Callable(self, "_on_SaveFileButton_pressed"))
-	_color_button.connect("pressed", Callable(self, "_on_ColorButton_pressed"))
-	_brush_size_slider.connect("value_changed", Callable(self, "_on_BrushSizeSlider_value_changed"))
-	_tool_btn_brush.connect("pressed", Callable(self, "_on_BrushToolButton_pressed"))
-	_tool_btn_rectangle.connect("pressed", Callable(self, "_on_RectangleToolButton_pressed"))
-	_tool_btn_circle.connect("pressed", Callable(self, "_on_CircleToolButton_pressed"))
-	_tool_btn_line.connect("pressed", Callable(self, "_on_LineToolButton_pressed"))
-	_tool_btn_eraser.connect("pressed", Callable(self, "_on_EraserToolButton_pressed"))
-	_tool_btn_selection.connect("pressed", Callable(self, "_on_SelectToolButton_pressed"))
+	_new_button.pressed.connect(_on_NewFileButton_pressed)
+	_undo_button.pressed.connect(_on_UndoButton_pressed)
+	_redo_button.pressed.connect(_on_RedoButton_pressed)
+	_open_button.pressed.connect(_on_OpenFileButton_pressed)
+	_save_button.pressed.connect(_on_SaveFileButton_pressed)
+	_color_button.pressed.connect(_on_ColorButton_pressed)
+	_brush_size_slider.value_changed.connect(_on_BrushSizeSlider_value_changed)
+	_tool_btn_brush.pressed.connect(_on_BrushToolButton_pressed)
+	_tool_btn_rectangle.pressed.connect(_on_RectangleToolButton_pressed)
+	_tool_btn_circle.pressed.connect(_on_CircleToolButton_pressed)
+	_tool_btn_line.pressed.connect(_on_LineToolButton_pressed)
+	_tool_btn_eraser.pressed.connect(_on_EraserToolButton_pressed)
+	_tool_btn_selection.pressed.connect(_on_SelectToolButton_pressed)
 	
 # Button clicked callbacks
 # -------------------------------------------------------------------------------------------------
@@ -93,8 +93,8 @@ func set_brush_color(color: Color) -> void:
 func _on_OpenFileButton_pressed():
 	var file_dialog: FileDialog = get_node(file_dialog_path)
 	file_dialog.file_mode = FileDialog.FILE_MODE_OPEN_FILE
-	file_dialog.connect("file_selected", Callable(self, "_on_project_selected_to_open"))
-	file_dialog.connect("close_requested", Callable(self, "_on_file_dialog_closed"))
+	file_dialog.file_selected.connect(_on_project_selected_to_open)
+	file_dialog.close_requested.connect(_on_file_dialog_closed)
 	file_dialog.invalidate()
 	file_dialog.popup_centered()
 

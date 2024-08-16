@@ -22,8 +22,8 @@ func _ready():
 	set_active(false)
 	_filename_button.text = title
 	
-	_filename_button.connect("pressed", Callable(self, "_on_FilenameButton_pressed"))
-	_close_button.connect("pressed", Callable(self, "_on_CloseButton_pressed"))
+	_filename_button.pressed.connect(_on_FilenameButton_pressed)
+	_close_button.pressed.connect(_on_CloseButton_pressed)
 
 # -------------------------------------------------------------------------------------------------
 func set_title(t: String) -> void:
@@ -46,4 +46,3 @@ func set_active(active: bool) -> void:
 	if is_active:
 		new_style = STYLE_ACTIVE
 	set("theme_override_styles/panel", new_style)
-

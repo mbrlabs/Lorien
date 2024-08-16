@@ -8,18 +8,18 @@ var _normal_tint: Color
 # -------------------------------------------------------------------------------------------------
 func _ready() -> void:
 	_normal_tint = self_modulate
-	connect("mouse_entered", Callable(self, "_on_mouse_entered"))
-	connect("mouse_exited", Callable(self, "_on_mouse_exited"))
-	connect("pressed", Callable(self, "_on_pressed"))
+	mouse_entered.connect(_on_mouse_entered)
+	mouse_exited.connect(_on_mouse_exited)
+	pressed.connect(_on_pressed)
 
 	if toggle_mode && pressed:
 		self_modulate = pressed_tint
 
 # -------------------------------------------------------------------------------------------------
 func _exit_tree() -> void:
-	disconnect("mouse_entered", Callable(self, "_on_mouse_entered"))
-	disconnect("mouse_exited", Callable(self, "_on_mouse_exited"))
-	disconnect("pressed", Callable(self, "_on_pressed"))
+	mouse_entered.disconnect(_on_mouse_entered)
+	mouse_exited.disconnect(_on_mouse_exited)
+	pressed.disconnect(_on_pressed)
 
 # -------------------------------------------------------------------------------------------------
 func _on_mouse_entered() -> void:

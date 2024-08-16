@@ -22,11 +22,11 @@ var _palette_edited := false
 
 # -------------------------------------------------------------------------------------------------
 func _ready() -> void:
-	connect("close_requested", Callable(self, "_on_EditPaletteDialog_close_requested"))
-	_color_picker.connect("color_changed", Callable(self, "_on_ColorPicker_color_changed"))
-	_name_line_edit.connect("text_changed", Callable(self, "_on_NameLineEdit_text_changed"))
-	_add_color_button.connect("pressed", Callable(self, "_on_AddColorButton_pressed"))
-	_remove_color_button.connect("pressed", Callable(self, "_on_RemoveColorButton_pressed"))
+	close_requested.connect(_on_EditPaletteDialog_close_requested)
+	_color_picker.color_changed.connect(_on_ColorPicker_color_changed)
+	_name_line_edit.text_changed.connect(_on_NameLineEdit_text_changed)
+	_add_color_button.pressed.connect(_on_AddColorButton_pressed)
+	_remove_color_button.pressed.connect(_on_RemoveColorButton_pressed)
 
 # -------------------------------------------------------------------------------------------------
 func setup(palette: Palette, color_index: int) -> void:
@@ -46,7 +46,7 @@ func setup(palette: Palette, color_index: int) -> void:
 		var button: PaletteButton = PALETTE_BUTTON.instantiate()
 		_color_grid.add_child(button)
 		button.color = color
-		button.connect("pressed", Callable(self, "_on_platte_button_pressed").bind(button, index))
+		button.pressed.connect(_on_platte_button_pressed.bind(button, index))
 		index += 1
 	
 	# Set name
@@ -105,7 +105,7 @@ func _on_AddColorButton_pressed() -> void:
 		var button: PaletteButton = PALETTE_BUTTON.instantiate()
 		_color_grid.add_child(button)
 		button.color = new_color
-		button.connect("pressed", Callable(self, "_on_platte_button_pressed").bind(button, _color_grid.get_child_count() - 1))
+		button.pressed.connect(_on_platte_button_pressed.bind(button, _color_grid.get_child_count() - 1))
 		_on_platte_button_pressed(button, _color_grid.get_child_count() - 1)
 	
 # -------------------------------------------------------------------------------------------------

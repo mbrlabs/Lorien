@@ -13,11 +13,11 @@ var duplicate_current_palette := false
 
 # -------------------------------------------------------------------------------------------------
 func _ready() -> void:
-	_save_button.connect("pressed", Callable(self, "_on_SaveButton_pressed"))
-	_cancel_button.connect("pressed", Callable(self, "_on_CancelButton_pressed"))
+	_save_button.pressed.connect(_on_SaveButton_pressed)
+	_cancel_button.pressed.connect(_on_CancelButton_pressed)
 	
-	connect("about_to_popup", Callable(self, "_on_NewPaletteDialog_about_to_show"))
-	connect("close_requested", Callable(self, "_on_NewPaletteDialog_close_requested"))
+	about_to_popup.connect(_on_NewPaletteDialog_about_to_show)
+	close_requested.connect(_on_NewPaletteDialog_close_requested)
 	
 # -------------------------------------------------------------------------------------------------
 func _on_SaveButton_pressed() -> void:

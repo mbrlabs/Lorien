@@ -10,8 +10,8 @@ const KEYBINDINGS_LINE_SCENE = preload("res://UI/Components/KeyBindingsLine.tscn
 # -------------------------------------------------------------------------------------------------
 func _ready() -> void:
 	_populate_input_list()
-	_add_key_dialog.connect("close_requested", Callable(self, "_bind_key_dialog_close_requested"))
-	GlobalSignals.connect("language_changed", Callable(self, "_populate_input_list"))
+	_add_key_dialog.close_requested.connect(_bind_key_dialog_close_requested)
+	GlobalSignals.language_changed.connect(_populate_input_list)
 
 # -------------------------------------------------------------------------------------------------
 func _compare_second_element(a: Array, b: Array) -> bool:
@@ -34,7 +34,7 @@ func _populate_input_list() -> void:
 		
 		collected_keybinding_args.append([action, translated_action, shortcuts])
 
-	collected_keybinding_args.sort_custom(Callable(self, "_compare_second_element"))
+	collected_keybinding_args.sort_custom(_compare_second_element)
 	for args in collected_keybinding_args:
 		callv("_new_keybinding_entry", args)
 
@@ -54,9 +54,9 @@ func _new_keybinding_entry(action_name: String, readable_name: String, events: A
 		_grid.add_child(child)
 		
 		if child.has_signal("modified_binding"):
-			child.connect("modified_binding", Callable(self, "_modify_keybinding").bind(action_name))
+			child.modified_binding.connect(_modify_keybinding.bind(action_name))
 		if child.has_signal("bind_new_key"):
-			child.connect("bind_new_key", Callable(self, "_bind_new_key").bind(action_name))
+			child.bind_new_key.connect(_bind_new_key.bind(action_name))
 
 # -------------------------------------------------------------------------------------------------
 func _modify_keybinding(bindings_data: Dictionary, action_name: String) -> void:

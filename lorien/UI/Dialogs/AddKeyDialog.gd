@@ -14,7 +14,7 @@ var _pending_bind_event = null
 # -------------------------------------------------------------------------------------------------
 func _ready() -> void:
 	_update_event_text()
-	GlobalSignals.connect("language_changed", Callable(self, "_update_event_text"))
+	GlobalSignals.language_changed.connect(_update_event_text)
 
 # -------------------------------------------------------------------------------------------------
 func _set_readable_action_name(s: String):

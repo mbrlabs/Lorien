@@ -11,9 +11,9 @@ signal palette_deleted
 
 # -------------------------------------------------------------------------------------------------
 func _ready() -> void:
-	connect("about_to_popup", Callable(self, "_on_DeletePaletteDialog_about_to_show"))
-	_delete_button.connect("pressed", Callable(self, "_on_DeleteButton_pressed"))
-	_cancel_button.connect("pressed", Callable(self, "_on_CancelButton_pressed"))
+	about_to_popup.connect(_on_DeletePaletteDialog_about_to_show)
+	_delete_button.pressed.connect(_on_DeleteButton_pressed)
+	_cancel_button.pressed.connect(_on_CancelButton_pressed)
 	
 # -------------------------------------------------------------------------------------------------
 func _on_DeletePaletteDialog_about_to_show() -> void:

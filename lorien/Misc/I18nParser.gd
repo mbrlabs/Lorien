@@ -27,7 +27,7 @@ class ParseResult:
 func load_files() -> ParseResult:
 	var templater = StringTemplating.new({
 		# TODO(gd4): this used to be a funcref, not a Callable. Must also fix code in StringTemplate
-		"shortcut_list": Callable(self, "_i18n_filter_shortcut_list")
+		"shortcut_list": _i18n_filter_shortcut_list
 	})
 	
 	var result = ParseResult.new()

@@ -46,15 +46,15 @@ func _ready():
 	else:
 		_brush_tool.pressure_curve = _default_pressure_curve
 	
-	get_tree().get_root().connect("size_changed", Callable(self, "_on_window_resized"))
+	get_tree().get_root().size_changed.connect(_on_window_resized)
 	
 	for child in $SubViewport.get_children():
 		if child is BaseCursor:
-			_camera.connect("zoom_changed", Callable(child, "_on_zoom_changed"))
-			_camera.connect("position_changed", Callable(child, "_on_canvas_position_changed"))
+			_camera.zoom_changed.connect(Callable(child, "_on_zoom_changed"))
+			_camera.position_changed.connect(Callable(child, "_on_canvas_position_changed"))
 	
-	_camera.connect("zoom_changed", Callable(self, "_on_zoom_changed"))
-	_camera.connect("position_changed", Callable(self, "_on_camera_moved"))
+	_camera.zoom_changed.connect(_on_zoom_changed)
+	_camera.position_changed.connect(_on_camera_moved)
 	_viewport.size = get_window().size
 
 	info.pen_inverted = false

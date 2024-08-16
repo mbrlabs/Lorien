@@ -29,11 +29,11 @@ var _active_color_index := -1
 func _ready() -> void:
 	update_palettes()
 	
-	_palette_selection_button.connect("item_selected", Callable(self, "_on_PaletteSelectionButton_item_selected"))
-	_new_button.connect("pressed", Callable(self, "_on_AddPaletteButton_pressed"))
-	_edit_button.connect("pressed", Callable(self, "_on_EditColorButton_pressed"))
-	_duplicate_button.connect("pressed", Callable(self, "_on_DuplicatePaletteButton_pressed"))
-	_delete_button.connect("pressed", Callable(self, "_on_DeletePaletteButton_pressed"))
+	_palette_selection_button.item_selected.connect(_on_PaletteSelectionButton_item_selected)
+	_new_button.pressed.connect(_on_AddPaletteButton_pressed)
+	_edit_button.pressed.connect(_on_EditColorButton_pressed)
+	_duplicate_button.pressed.connect(_on_DuplicatePaletteButton_pressed)
+	_delete_button.pressed.connect(_on_DeletePaletteButton_pressed)
 	
 # -------------------------------------------------------------------------------------------------
 func _input(event: InputEvent) -> void:
@@ -95,7 +95,7 @@ func _create_buttons(palette: Palette) -> void:
 		var button: PaletteButton = PALETTE_BUTTON.instantiate()
 		_color_grid.add_child(button)
 		button.color = color
-		button.connect("pressed", Callable(self, "_on_platte_button_pressed").bind(button, index))
+		button.pressed.connect(_on_platte_button_pressed.bind(button, index))
 		index += 1
 	
 	# Adjust ui size

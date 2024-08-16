@@ -7,11 +7,11 @@ func _ready():
 	
 	close_requested.connect(hide)
 	
-	%GithubLinkButton.connect("pressed", _on_GithubLinkButton_pressed)
-	%LicenseButton.connect("pressed", _on_LicenseButton_pressed)
-	%GodotButton.connect("pressed", _on_GodotButton_pressed)
-	%KennyButton.connect("pressed", _on_KennyButton_pressed)
-	%RemixIconsButton.connect("pressed", _on_RemixIconsButton_pressed)
+	%GithubLinkButton.pressed.connect(_on_GithubLinkButton_pressed)
+	%LicenseButton.pressed.connect(_on_LicenseButton_pressed)
+	%GodotButton.pressed.connect(_on_GodotButton_pressed)
+	%KennyButton.pressed.connect(_on_KennyButton_pressed)
+	%RemixIconsButton.pressed.connect(_on_RemixIconsButton_pressed)
 
 # -------------------------------------------------------------------------------------------------
 func _on_GithubLinkButton_pressed():

@@ -20,16 +20,16 @@ var _tabs_map: Dictionary # Dictonary<project_id, ProjectTab>
 
 # -------------------------------------------------------------------------------------------------
 func _ready() -> void:
-	_menu_button.connect("pressed", Callable(self, "_on_MenuButton_pressed"))
-	_new_file_button.connect("pressed", Callable(self, "_on_NewFileButton_pressed"))
+	_menu_button.pressed.connect(_on_MenuButton_pressed)
+	_new_file_button.pressed.connect(_on_NewFileButton_pressed)
 
 # -------------------------------------------------------------------------------------------------
 func make_tab(project: Project) -> void:
 	var tab: ProjectTab = PROJECT_TAB.instantiate()
 	tab.title = project.get_scene_file_path()
 	tab.project_id = project.id
-	tab.connect("close_requested", Callable(self, "_on_tab_close_requested"))
-	tab.connect("selected", Callable(self, "_on_tab_selected"))
+	tab.close_requested.connect(_on_tab_close_requested)
+	tab.selected.connect(_on_tab_selected)
 	_file_tabs_container.add_child(tab)
 	_tabs_map[project.id] = tab
 
@@ -40,9 +40,9 @@ func has_tab(project: Project) -> bool:
 # ------------------------------------------------------------------------------------------------
 func remove_tab(project: Project) -> void:
 	if _tabs_map.has(project.id):
-		var tab = _tabs_map[project.id]
-		tab.disconnect("close_requested", Callable(self, "_on_tab_close_requested"))
-		tab.disconnect("selected", Callable(self, "_on_tab_selected"))
+		var tab: ProjectTab = _tabs_map[project.id]
+		tab.close_requested.disconnect(_on_tab_close_requested)
+		tab.selected.disconnect(_on_tab_selected)
 		_file_tabs_container.remove_child(tab)
 		_tabs_map.erase(project.id)
 		tab.call_deferred("free")

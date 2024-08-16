@@ -35,52 +35,52 @@ func _ready():
 	_export_dialog.current_dir = Settings.get_value(Settings.GENERAL_DEFAULT_PROJECT_DIR, docs_folder)
 	
 	# Signals
-	get_window().connect("files_dropped", Callable(self, "_on_files_dropped"))
+	get_window().files_dropped.connect(_on_files_dropped)
 	
-	_canvas.connect("mouse_entered", Callable(self, "_on_InfiniteCanvas_mouse_entered"))
-	_canvas.connect("mouse_exited", Callable(self, "_on_InfiniteCanvas_mouse_exited"))
+	_canvas.mouse_entered.connect(_on_InfiniteCanvas_mouse_entered)
+	_canvas.mouse_exited.connect(_on_InfiniteCanvas_mouse_exited)
 	
-	_brush_color_picker.connect("closed", Callable(self, "_on_BrushColorPicker_closed"))
-	_brush_color_picker.connect("color_changed", Callable(self, "_on_BrushColorPicker_color_changed"))
+	_brush_color_picker.closed.connect(_on_BrushColorPicker_closed)
+	_brush_color_picker.color_changed.connect(_on_BrushColorPicker_color_changed)
 	
-	_new_palette_dialog.connect("new_palette_created", Callable(self, "_on_NewPaletteDialog_new_palette_created"))
-	_delete_palette_dialog.connect("palette_deleted", Callable(self, "_on_DeletePaletteDialog_palette_deleted"))
-	_edit_palette_dialog.connect("palette_changed", Callable(self, "_on_EditPaletteDialog_palette_changed"))
+	_new_palette_dialog.new_palette_created.connect(_on_NewPaletteDialog_new_palette_created)
+	_delete_palette_dialog.palette_deleted.connect(_on_DeletePaletteDialog_palette_deleted)
+	_edit_palette_dialog.palette_changed.connect(_on_EditPaletteDialog_palette_changed)
 	
-	_toolbar.connect("undo_action", Callable(self, "_on_undo_action"))
-	_toolbar.connect("redo_action", Callable(self, "_on_redo_action"))
-	_toolbar.connect("clear_canvas", Callable(self, "_on_clear_canvas"))
-	_toolbar.connect("open_project", Callable(self, "_on_open_project"))
-	_toolbar.connect("toggle_brush_color_picker", Callable(self, "_on_toggle_brush_color_picker"))
-	_toolbar.connect("new_project", Callable(self, "_on_create_new_project"))
-	_toolbar.connect("save_project", Callable(self, "_on_save_project"))
-	_toolbar.connect("brush_size_changed", Callable(self, "_on_brush_size_changed"))
-	_toolbar.connect("tool_changed", Callable(self, "_on_tool_changed"))
+	_toolbar.undo_action.connect(_on_undo_action)
+	_toolbar.redo_action.connect(_on_redo_action)
+	_toolbar.clear_canvas.connect(_on_clear_canvas)
+	_toolbar.open_project.connect(_on_open_project)
+	_toolbar.toggle_brush_color_picker.connect(_on_toggle_brush_color_picker)
+	_toolbar.new_project.connect(_on_create_new_project)
+	_toolbar.save_project.connect(_on_save_project)
+	_toolbar.brush_size_changed.connect(_on_brush_size_changed)
+	_toolbar.tool_changed.connect(_on_tool_changed)
 	
-	_menubar.connect("create_new_project", Callable(self, "_on_create_new_project"))
-	_menubar.connect("project_selected", Callable(self, "_on_project_selected"))
-	_menubar.connect("project_closed", Callable(self, "_on_project_closed"))
+	_menubar.create_new_project.connect(_on_create_new_project)
+	_menubar.project_selected.connect(_on_project_selected)
+	_menubar.project_closed.connect(_on_project_closed)
 	
-	_main_menu.connect("open_about_dialog", Callable(self, "_on_open_about_dialog"))
-	_main_menu.connect("open_settings_dialog", Callable(self, "_on_open_settings_dialog"))
-	_main_menu.connect("open_url", Callable(self, "_on_open_url"))
-	_main_menu.connect("export_svg", Callable(self, "_export_svg"))
-	_main_menu.connect("open_project", Callable(self, "_on_open_project"))
-	_main_menu.connect("save_project", Callable(self, "_on_save_project"))
-	_main_menu.connect("save_project_as", Callable(self, "_on_save_project_as"))
+	_main_menu.open_about_dialog.connect(_on_open_about_dialog)
+	_main_menu.open_settings_dialog.connect(_on_open_settings_dialog)
+	_main_menu.open_url.connect(_on_open_url)
+	_main_menu.export_svg.connect(_export_svg)
+	_main_menu.open_project.connect(_on_open_project)
+	_main_menu.save_project.connect(_on_save_project)
+	_main_menu.save_project_as.connect(_on_save_project_as)
 	
-	_exit_dialog.connect("save_changes", Callable(self, "_on_exit_with_changes_saved"))
-	_exit_dialog.connect("discard_changes", Callable(self, "_on_exit_with_changes_discarded"))
-	_unsaved_changes_dialog.connect("save_changes", Callable(self, "_on_close_file_with_changes_saved"))
-	_unsaved_changes_dialog.connect("discard_changes", Callable(self, "_on_close_file_with_changes_discarded"))
+	_exit_dialog.save_changes.connect(_on_exit_with_changes_saved)
+	_exit_dialog.discard_changes.connect(_on_exit_with_changes_discarded)
+	_unsaved_changes_dialog.save_changes.connect(_on_close_file_with_changes_saved)
+	_unsaved_changes_dialog.discard_changes.connect(_on_close_file_with_changes_discarded)
 	
-	_export_dialog.connect("file_selected", Callable(self, "_on_export_confirmed"))
+	_export_dialog.file_selected.connect(_on_export_confirmed)
 	
-	_settings_dialog.connect("ui_scale_changed", Callable(self, "_on_scale_changed"))
-	_settings_dialog.connect("grid_size_changed", Callable(self, "_on_grid_size_changed"))
-	_settings_dialog.connect("grid_pattern_changed", Callable(self, "_on_grid_pattern_changed"))
-	_settings_dialog.connect("canvas_color_changed", Callable(self, "_on_canvas_color_changed"))
-	_settings_dialog.connect("constant_pressure_changed", Callable(self, "_on_constant_pressure_changed"))
+	_settings_dialog.ui_scale_changed.connect(_on_scale_changed)
+	_settings_dialog.grid_size_changed.connect(_on_grid_size_changed)
+	_settings_dialog.grid_pattern_changed.connect(_on_grid_pattern_changed)
+	_settings_dialog.canvas_color_changed.connect(_on_canvas_color_changed)
+	_settings_dialog.constant_pressure_changed.connect(_on_constant_pressure_changed)
 	
 	# Initialize scale
 	_on_scale_changed()
@@ -377,8 +377,8 @@ func _on_save_project_as() -> void:
 	_file_dialog.file_mode = FileDialog.FILE_MODE_SAVE_FILE
 	_file_dialog.invalidate()
 	_file_dialog.current_file = active_project.filepath.get_file()
-	_file_dialog.connect("file_selected", Callable(self, "_on_file_selected_to_save_project"))
-	_file_dialog.connect("close_requested", Callable(self, "_on_file_dialog_closed"))
+	_file_dialog.file_selected.connect(_on_file_selected_to_save_project)
+	_file_dialog.close_requested.connect(_on_file_dialog_closed)
 	_file_dialog.popup_centered()
 
 # -------------------------------------------------------------------------------------------------
@@ -388,16 +388,16 @@ func _on_save_project() -> void:
 		_canvas.disable()
 		_file_dialog.file_mode = FileDialog.FILE_MODE_SAVE_FILE
 		_file_dialog.invalidate()
-		_file_dialog.connect("file_selected", Callable(self, "_on_file_selected_to_save_project"))
-		_file_dialog.connect("close_requested", Callable(self, "_on_file_dialog_closed"))
+		_file_dialog.file_selected.connect(_on_file_selected_to_save_project)
+		_file_dialog.close_requested.connect(_on_file_dialog_closed)
 		_file_dialog.popup_centered()
 	else:
 		_save_project(active_project)
 
 # -------------------------------------------------------------------------------------------------
 func _on_file_dialog_closed() -> void:
-	_file_dialog.disconnect("file_selected", Callable(self, "_on_file_selected_to_save_project"))
-	_file_dialog.disconnect("close_requested", Callable(self, "_on_file_dialog_closed"))
+	_file_dialog.disfile_selected.connect(_on_file_selected_to_save_project)
+	_file_dialog.disclose_requested.connect(_on_file_dialog_closed)
 
 # -------------------------------------------------------------------------------------------------
 func _on_file_selected_to_save_project(filepath: String) -> void:

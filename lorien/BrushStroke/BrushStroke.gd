@@ -27,8 +27,8 @@ func _ready():
 	_line2d.width_curve = Curve.new()
 	_line2d.joint_mode = Line2D.LINE_JOINT_ROUND
 	
-	_visibility_notifier.connect("screen_entered", _on_VisibilityNotifier2D_screen_entered)
-	_visibility_notifier.connect("screen_exited", _on_VisibilityNotifier2D_screen_exited)
+	_visibility_notifier.screen_entered.connect(_on_VisibilityNotifier2D_screen_entered)
+	_visibility_notifier.screen_exited.connect(_on_VisibilityNotifier2D_screen_exited)
 	
 	# Anti aliasing
 	_line2d.texture = BrushStrokeTexture.texture

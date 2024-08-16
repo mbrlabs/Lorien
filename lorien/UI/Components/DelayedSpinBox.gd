@@ -8,7 +8,7 @@ var _is_ready	:= false
 
 # -------------------------------------------------------------------------------------------------
 func _ready() -> void:
-	connect("gui_input", Callable(self, "_on_UIScale_gui_input"))
+	gui_input.connect(_on_UIScale_gui_input)
 
 # -------------------------------------------------------------------------------------------------
 func _on_UIScale_gui_input(event: InputEvent):
