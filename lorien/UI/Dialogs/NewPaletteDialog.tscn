@@ -3,12 +3,12 @@
 [ext_resource path="res://UI/Themes/theme_dark.tres" type="Theme" id=1]
 [ext_resource path="res://UI/Dialogs/NewPaletteDialog.gd" type="Script" id=2]
 
-[node name="NewPaletteDialog" type="WindowDialog"]
-margin_right = 259.0
-margin_bottom = 80.0
-rect_min_size = Vector2( 200, 80 )
+[node name="NewPaletteDialog" type="Window"]
+offset_right = 259.0
+offset_bottom = 80.0
+custom_minimum_size = Vector2( 200, 80 )
 theme = ExtResource( 1 )
-popup_exclusive = true
+exclusive = true
 window_title = "NEW_PALETTE_DIALOG_TITLE"
 script = ExtResource( 2 )
 __meta__ = {
@@ -18,46 +18,46 @@ __meta__ = {
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_constants/margin_right = 12
-custom_constants/margin_top = 12
-custom_constants/margin_left = 12
-custom_constants/margin_bottom = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_bottom = 12
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Container" type="Control" parent="MarginContainer"]
-margin_left = 12.0
-margin_top = 12.0
-margin_right = 247.0
-margin_bottom = 68.0
+offset_left = 12.0
+offset_top = 12.0
+offset_right = 247.0
+offset_bottom = 68.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/Container"]
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = -25.0
+offset_top = -25.0
 size_flags_vertical = 0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="SaveButton" type="Button" parent="MarginContainer/Container/HBoxContainer"]
-margin_right = 115.0
-margin_bottom = 25.0
+offset_right = 115.0
+offset_bottom = 25.0
 size_flags_horizontal = 3
 text = "SAVE"
 
 [node name="CancelButton" type="Button" parent="MarginContainer/Container/HBoxContainer"]
-margin_left = 119.0
-margin_right = 235.0
-margin_bottom = 25.0
+offset_left = 119.0
+offset_right = 235.0
+offset_bottom = 25.0
 size_flags_horizontal = 3
 text = "CANCEL"
 
 [node name="LineEdit" type="LineEdit" parent="MarginContainer/Container"]
 anchor_right = 1.0
-margin_bottom = 21.0
+offset_bottom = 21.0
 placeholder_text = "NEW_PALETTE_DIALOG_PLACEHOLDER"
 placeholder_alpha = 0.5
 __meta__ = {

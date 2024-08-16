@@ -4,14 +4,14 @@ extends Node
 const KEYBINDINGS_LINE_SCENE = preload("res://UI/Components/KeyBindingsLine.tscn")
 
 # -------------------------------------------------------------------------------------------------
-onready var _grid := $ScrollContainer/KeyBindingsList
-onready var _add_key_dialog := $AddKeyDialog
+@onready var _grid := $ScrollContainer/KeyBindingsList
+@onready var _add_key_dialog := $AddKeyDialog
 
 # -------------------------------------------------------------------------------------------------
 func _ready() -> void:
 	_populate_input_list()
-	_add_key_dialog.connect("hide", self, "_bind_key_dialog_hidden")
-	GlobalSignals.connect("language_changed", self, "_populate_input_list")
+	_add_key_dialog.connect("hide", Callable(self, "_bind_key_dialog_hidden"))
+	GlobalSignals.connect("language_changed", Callable(self, "_populate_input_list"))
 
 # -------------------------------------------------------------------------------------------------
 func _compare_second_element(a: Array, b: Array) -> bool:
@@ -27,20 +27,20 @@ func _populate_input_list() -> void:
 	for action in Utils.bindable_actions():
 		var translated_action = Utils.translate_action(action)
 		var shortcuts = []
-		for _event in InputMap.get_action_list(action):
+		for _event in InputMap.action_get_events(action):
 			if _event is InputEventKey:
 				var event = _event as InputEventKey
 				shortcuts.append(event)
 		
 		collected_keybinding_args.append([action, translated_action, shortcuts])
 
-	collected_keybinding_args.sort_custom(self, "_compare_second_element")
+	collected_keybinding_args.sort_custom(Callable(self, "_compare_second_element"))
 	for args in collected_keybinding_args:
 		callv("_new_keybinding_entry", args)
 
 # -------------------------------------------------------------------------------------------------
 func _new_keybinding_entry(action_name: String, readable_name: String, events: Array) -> void:
-	var new_line: Node = KEYBINDINGS_LINE_SCENE.instance()
+	var new_line: Node = KEYBINDINGS_LINE_SCENE.instantiate()
 
 	for child in new_line.get_children():
 		child = child as Node
@@ -54,9 +54,9 @@ func _new_keybinding_entry(action_name: String, readable_name: String, events: A
 		_grid.add_child(child)
 		
 		if child.has_signal("modified_binding"):
-			child.connect("modified_binding", self, "_modify_keybinding", [action_name])
+			child.connect("modified_binding", Callable(self, "_modify_keybinding").bind(action_name))
 		if child.has_signal("bind_new_key"):
-			child.connect("bind_new_key", self, "_bind_new_key", [action_name])
+			child.connect("bind_new_key", Callable(self, "_bind_new_key").bind(action_name))
 
 # -------------------------------------------------------------------------------------------------
 func _modify_keybinding(bindings_data: Dictionary, action_name: String) -> void:

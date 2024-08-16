@@ -5,6 +5,6 @@
 [node name="BrushStroke" type="Node2D"]
 script = ExtResource( 1 )
 
-[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 
 [node name="Line2D" type="Line2D" parent="."]

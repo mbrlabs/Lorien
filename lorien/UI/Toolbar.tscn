@@ -1,20 +1,20 @@
 [gd_scene load_steps=19 format=2]
 
-[ext_resource path="res://Assets/Icons/save_file.png" type="Texture" id=1]
-[ext_resource path="res://Assets/Icons/open_file.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Icons/save_file.png" type="Texture2D" id=1]
+[ext_resource path="res://Assets/Icons/open_file.png" type="Texture2D" id=2]
 [ext_resource path="res://UI/Toolbar.gd" type="Script" id=3]
-[ext_resource path="res://Assets/Icons/new_file.png" type="Texture" id=4]
-[ext_resource path="res://Assets/Icons/redo.png" type="Texture" id=6]
-[ext_resource path="res://Assets/Icons/undo.png" type="Texture" id=7]
-[ext_resource path="res://Assets/Icons/brush_tool.png" type="Texture" id=8]
-[ext_resource path="res://Assets/Icons/eraser_tool.png" type="Texture" id=9]
-[ext_resource path="res://Assets/Icons/rectangle_tool.png" type="Texture" id=10]
-[ext_resource path="res://Assets/Icons/line_tool.png" type="Texture" id=11]
+[ext_resource path="res://Assets/Icons/new_file.png" type="Texture2D" id=4]
+[ext_resource path="res://Assets/Icons/redo.png" type="Texture2D" id=6]
+[ext_resource path="res://Assets/Icons/undo.png" type="Texture2D" id=7]
+[ext_resource path="res://Assets/Icons/brush_tool.png" type="Texture2D" id=8]
+[ext_resource path="res://Assets/Icons/eraser_tool.png" type="Texture2D" id=9]
+[ext_resource path="res://Assets/Icons/rectangle_tool.png" type="Texture2D" id=10]
+[ext_resource path="res://Assets/Icons/line_tool.png" type="Texture2D" id=11]
 [ext_resource path="res://UI/Components/FlatTextureButton.gd" type="Script" id=13]
-[ext_resource path="res://Assets/Fonts/font_small.tres" type="DynamicFont" id=14]
+[ext_resource path="res://Assets/Fonts/font_small.tres" type="FontFile" id=14]
 [ext_resource path="res://UI/Themes/theme_dark.tres" type="Theme" id=15]
-[ext_resource path="res://Assets/Icons/selection_tool.png" type="Texture" id=16]
-[ext_resource path="res://Assets/Icons/circle_tool.png" type="Texture" id=19]
+[ext_resource path="res://Assets/Icons/selection_tool.png" type="Texture2D" id=16]
+[ext_resource path="res://Assets/Icons/circle_tool.png" type="Texture2D" id=19]
 
 [sub_resource type="StyleBoxEmpty" id=2]
 
@@ -33,36 +33,36 @@ corner_radius_bottom_left = 4
 
 [node name="Toolbar" type="ScrollContainer"]
 anchor_right = 1.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 0, 40 )
+offset_bottom = 40.0
+custom_minimum_size = Vector2( 0, 40 )
 theme = ExtResource( 15 )
 scroll_vertical_enabled = false
 script = ExtResource( 3 )
 
 [node name="Console" type="HBoxContainer" parent="."]
-margin_right = 1920.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 715, 40 )
+offset_right = 1920.0
+offset_bottom = 40.0
+custom_minimum_size = Vector2( 715, 40 )
 size_flags_horizontal = 3
 
 [node name="Left" type="HBoxContainer" parent="Console"]
-margin_right = 958.0
-margin_bottom = 40.0
+offset_right = 958.0
+offset_bottom = 40.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_constants/separation = 12
+theme_override_constants/separation = 12
 
 [node name="VSeparator" type="VSeparator" parent="Console/Left"]
-margin_right = 4.0
-margin_bottom = 40.0
-custom_styles/separator = SubResource( 2 )
+offset_right = 4.0
+offset_bottom = 40.0
+theme_override_styles/separator = SubResource( 2 )
 
 [node name="NewFileButton" type="TextureButton" parent="Console/Left"]
-margin_left = 16.0
-margin_top = 11.0
-margin_right = 34.0
-margin_bottom = 29.0
-hint_tooltip = "TOOLBAR_TOOLTIP_NEW_FILE"
+offset_left = 16.0
+offset_top = 11.0
+offset_right = 34.0
+offset_bottom = 29.0
+tooltip_text = "TOOLBAR_TOOLTIP_NEW_FILE"
 size_flags_horizontal = 4
 size_flags_vertical = 4
 texture_normal = ExtResource( 4 )
@@ -71,11 +71,11 @@ hover_tint = Color( 0.662745, 0.945098, 0.87451, 1 )
 pressed_tint = Color( 0.572549, 1, 0.894118, 1 )
 
 [node name="OpenFileButton" type="TextureButton" parent="Console/Left"]
-margin_left = 46.0
-margin_top = 11.0
-margin_right = 64.0
-margin_bottom = 29.0
-hint_tooltip = "TOOLBAR_TOOLTIP_OPEN_FILE"
+offset_left = 46.0
+offset_top = 11.0
+offset_right = 64.0
+offset_bottom = 29.0
+tooltip_text = "TOOLBAR_TOOLTIP_OPEN_FILE"
 size_flags_horizontal = 4
 size_flags_vertical = 4
 texture_normal = ExtResource( 2 )
@@ -84,11 +84,11 @@ hover_tint = Color( 0.662745, 0.945098, 0.87451, 1 )
 pressed_tint = Color( 0.572549, 1, 0.894118, 1 )
 
 [node name="SaveFileButton" type="TextureButton" parent="Console/Left"]
-margin_left = 76.0
-margin_top = 11.0
-margin_right = 94.0
-margin_bottom = 29.0
-hint_tooltip = "TOOLBAR_TOOLTIP_SAVE_FILE"
+offset_left = 76.0
+offset_top = 11.0
+offset_right = 94.0
+offset_bottom = 29.0
+tooltip_text = "TOOLBAR_TOOLTIP_SAVE_FILE"
 size_flags_horizontal = 4
 size_flags_vertical = 4
 texture_normal = ExtResource( 1 )
@@ -97,20 +97,20 @@ hover_tint = Color( 0.662745, 0.945098, 0.87451, 1 )
 pressed_tint = Color( 0.572549, 1, 0.894118, 1 )
 
 [node name="VSeparator2" type="VSeparator" parent="Console/Left"]
-margin_left = 106.0
-margin_right = 110.0
-margin_bottom = 40.0
-custom_styles/separator = SubResource( 3 )
+offset_left = 106.0
+offset_right = 110.0
+offset_bottom = 40.0
+theme_override_styles/separator = SubResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="UndoButton" type="TextureButton" parent="Console/Left"]
-margin_left = 122.0
-margin_top = 11.0
-margin_right = 140.0
-margin_bottom = 29.0
-hint_tooltip = "TOOLBAR_TOOLTIP_UNDO"
+offset_left = 122.0
+offset_top = 11.0
+offset_right = 140.0
+offset_bottom = 29.0
+tooltip_text = "TOOLBAR_TOOLTIP_UNDO"
 size_flags_horizontal = 4
 size_flags_vertical = 4
 texture_normal = ExtResource( 7 )
@@ -119,11 +119,11 @@ hover_tint = Color( 0.662745, 0.945098, 0.87451, 1 )
 pressed_tint = Color( 0.572549, 1, 0.894118, 1 )
 
 [node name="RedoButton" type="TextureButton" parent="Console/Left"]
-margin_left = 152.0
-margin_top = 11.0
-margin_right = 170.0
-margin_bottom = 29.0
-hint_tooltip = "TOOLBAR_TOOLTIP_REDO"
+offset_left = 152.0
+offset_top = 11.0
+offset_right = 170.0
+offset_bottom = 29.0
+tooltip_text = "TOOLBAR_TOOLTIP_REDO"
 size_flags_horizontal = 4
 size_flags_vertical = 4
 texture_normal = ExtResource( 6 )
@@ -132,20 +132,20 @@ hover_tint = Color( 0.662745, 0.945098, 0.87451, 1 )
 pressed_tint = Color( 0.572549, 1, 0.894118, 1 )
 
 [node name="VSeparator3" type="VSeparator" parent="Console/Left"]
-margin_left = 182.0
-margin_right = 186.0
-margin_bottom = 40.0
-custom_styles/separator = SubResource( 3 )
+offset_left = 182.0
+offset_right = 186.0
+offset_bottom = 40.0
+theme_override_styles/separator = SubResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="BrushToolButton" type="TextureButton" parent="Console/Left"]
-margin_left = 198.0
-margin_top = 11.0
-margin_right = 216.0
-margin_bottom = 29.0
-hint_tooltip = "TOOLBAR_TOOLTIP_BRUSH_TOOL"
+offset_left = 198.0
+offset_top = 11.0
+offset_right = 216.0
+offset_bottom = 29.0
+tooltip_text = "TOOLBAR_TOOLTIP_BRUSH_TOOL"
 size_flags_horizontal = 4
 size_flags_vertical = 4
 toggle_mode = true
@@ -156,11 +156,11 @@ hover_tint = Color( 0.662745, 0.945098, 0.87451, 1 )
 pressed_tint = Color( 0.572549, 1, 0.894118, 1 )
 
 [node name="RectangleToolButton" type="TextureButton" parent="Console/Left"]
-margin_left = 228.0
-margin_top = 12.0
-margin_right = 244.0
-margin_bottom = 28.0
-hint_tooltip = "TOOLBAR_TOOLTIP_RECTANGLE_TOOL
+offset_left = 228.0
+offset_top = 12.0
+offset_right = 244.0
+offset_bottom = 28.0
+tooltip_text = "TOOLBAR_TOOLTIP_RECTANGLE_TOOL
 "
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -171,11 +171,11 @@ hover_tint = Color( 0.662745, 0.945098, 0.87451, 1 )
 pressed_tint = Color( 0.572549, 1, 0.894118, 1 )
 
 [node name="CircleToolButton" type="TextureButton" parent="Console/Left"]
-margin_left = 256.0
-margin_top = 12.0
-margin_right = 272.0
-margin_bottom = 28.0
-hint_tooltip = "TOOLBAR_TOOLTIP_CIRCLE_TOOL"
+offset_left = 256.0
+offset_top = 12.0
+offset_right = 272.0
+offset_bottom = 28.0
+tooltip_text = "TOOLBAR_TOOLTIP_CIRCLE_TOOL"
 size_flags_horizontal = 4
 size_flags_vertical = 4
 toggle_mode = true
@@ -185,11 +185,11 @@ hover_tint = Color( 0.662745, 0.945098, 0.87451, 1 )
 pressed_tint = Color( 0.572549, 1, 0.894118, 1 )
 
 [node name="LineToolButton" type="TextureButton" parent="Console/Left"]
-margin_left = 284.0
-margin_top = 12.0
-margin_right = 300.0
-margin_bottom = 28.0
-hint_tooltip = "TOOLBAR_TOOLTIP_LINE_TOOL"
+offset_left = 284.0
+offset_top = 12.0
+offset_right = 300.0
+offset_bottom = 28.0
+tooltip_text = "TOOLBAR_TOOLTIP_LINE_TOOL"
 size_flags_horizontal = 4
 size_flags_vertical = 4
 toggle_mode = true
@@ -199,11 +199,11 @@ hover_tint = Color( 0.662745, 0.945098, 0.87451, 1 )
 pressed_tint = Color( 0.572549, 1, 0.894118, 1 )
 
 [node name="EraserToolButton" type="TextureButton" parent="Console/Left"]
-margin_left = 312.0
-margin_top = 11.0
-margin_right = 330.0
-margin_bottom = 29.0
-hint_tooltip = "TOOLBAR_TOOLTIP_ERASER_TOOL"
+offset_left = 312.0
+offset_top = 11.0
+offset_right = 330.0
+offset_bottom = 29.0
+tooltip_text = "TOOLBAR_TOOLTIP_ERASER_TOOL"
 size_flags_horizontal = 4
 size_flags_vertical = 4
 toggle_mode = true
@@ -213,11 +213,11 @@ hover_tint = Color( 0.662745, 0.945098, 0.87451, 1 )
 pressed_tint = Color( 0.572549, 1, 0.894118, 1 )
 
 [node name="SelectionToolButton" type="TextureButton" parent="Console/Left"]
-margin_left = 342.0
-margin_top = 12.0
-margin_right = 358.0
-margin_bottom = 28.0
-hint_tooltip = "TOOLBAR_TOOLTIP_SELECT_TOOL"
+offset_left = 342.0
+offset_top = 12.0
+offset_right = 358.0
+offset_bottom = 28.0
+tooltip_text = "TOOLBAR_TOOLTIP_SELECT_TOOL"
 size_flags_horizontal = 4
 size_flags_vertical = 4
 toggle_mode = true
@@ -227,33 +227,33 @@ hover_tint = Color( 0.662745, 0.945098, 0.87451, 1 )
 pressed_tint = Color( 0.572549, 1, 0.894118, 1 )
 
 [node name="VSeparator4" type="VSeparator" parent="Console/Left"]
-margin_left = 370.0
-margin_right = 374.0
-margin_bottom = 40.0
-custom_styles/separator = SubResource( 3 )
+offset_left = 370.0
+offset_right = 374.0
+offset_bottom = 40.0
+theme_override_styles/separator = SubResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="ColorButton" type="Button" parent="Console/Left"]
-margin_left = 386.0
-margin_top = 10.0
-margin_right = 446.0
-margin_bottom = 30.0
-rect_min_size = Vector2( 60, 20 )
-hint_tooltip = "TOOLBAR_TOOLTIP_BRUSH_COLOR"
+offset_left = 386.0
+offset_top = 10.0
+offset_right = 446.0
+offset_bottom = 30.0
+custom_minimum_size = Vector2( 60, 20 )
+tooltip_text = "TOOLBAR_TOOLTIP_BRUSH_COLOR"
 size_flags_vertical = 4
-custom_colors/font_color_disabled = Color( 0, 0, 0, 1 )
-custom_colors/font_color_focus = Color( 0, 0, 0, 1 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-custom_colors/font_color_hover = Color( 0, 0, 0, 1 )
-custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
-custom_fonts/font = ExtResource( 14 )
-custom_styles/hover = SubResource( 4 )
-custom_styles/pressed = SubResource( 4 )
-custom_styles/focus = SubResource( 4 )
-custom_styles/disabled = SubResource( 4 )
-custom_styles/normal = SubResource( 4 )
+theme_override_colors/font_disabled_color = Color( 0, 0, 0, 1 )
+theme_override_colors/font_focus_color = Color( 0, 0, 0, 1 )
+theme_override_colors/font_color = Color( 0, 0, 0, 1 )
+theme_override_colors/font_hover_color = Color( 0, 0, 0, 1 )
+theme_override_colors/font_pressed_color = Color( 0, 0, 0, 1 )
+theme_override_fonts/font = ExtResource( 14 )
+theme_override_styles/hover = SubResource( 4 )
+theme_override_styles/pressed = SubResource( 4 )
+theme_override_styles/focus = SubResource( 4 )
+theme_override_styles/disabled = SubResource( 4 )
+theme_override_styles/normal = SubResource( 4 )
 action_mode = 0
 text = "#ffffff"
 __meta__ = {
@@ -261,12 +261,12 @@ __meta__ = {
 }
 
 [node name="BrushSizeSlider" type="HSlider" parent="Console/Left"]
-margin_left = 458.0
-margin_top = 10.0
-margin_right = 578.0
-margin_bottom = 30.0
-rect_min_size = Vector2( 120, 20 )
-hint_tooltip = "TOOLBAR_TOOLTIP_BRUSH_SIZE"
+offset_left = 458.0
+offset_top = 10.0
+offset_right = 578.0
+offset_bottom = 30.0
+custom_minimum_size = Vector2( 120, 20 )
+tooltip_text = "TOOLBAR_TOOLTIP_BRUSH_SIZE"
 size_flags_horizontal = 4
 size_flags_vertical = 4
 min_value = 1.0
@@ -274,27 +274,27 @@ max_value = 50.0
 value = 5.0
 
 [node name="BrushSizeLabel" type="Label" parent="Console/Left"]
-margin_left = 590.0
-margin_top = 13.0
-margin_right = 606.0
-margin_bottom = 27.0
-custom_fonts/font = ExtResource( 14 )
+offset_left = 590.0
+offset_top = 13.0
+offset_right = 606.0
+offset_bottom = 27.0
+theme_override_fonts/font = ExtResource( 14 )
 text = "12"
 
 [node name="Right" type="HBoxContainer" parent="Console"]
-margin_left = 962.0
-margin_right = 1920.0
-margin_bottom = 40.0
+offset_left = 962.0
+offset_right = 1920.0
+offset_bottom = 40.0
 grow_horizontal = 0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_constants/separation = 12
+theme_override_constants/separation = 12
 alignment = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="KeepMe" type="Control" parent="Console/Right"]
-margin_left = 958.0
-margin_right = 958.0
-margin_bottom = 40.0
+offset_left = 958.0
+offset_right = 958.0
+offset_bottom = 40.0

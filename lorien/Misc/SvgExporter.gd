@@ -1,5 +1,5 @@
 class_name SvgExporter
-extends Reference
+extends RefCounted
 
 # TODOs
 # - Stroke width / pressue data
@@ -9,7 +9,7 @@ const EDGE_MARGIN := 0.025
 
 # -------------------------------------------------------------------------------------------------
 func export_svg(strokes: Array, background: Color, path: String) -> void:
-	var start_time := OS.get_ticks_msec()
+	var start_time := Time.get_ticks_msec()
 	
 	# Open file
 	var file := File.new()
@@ -41,7 +41,7 @@ func export_svg(strokes: Array, background: Color, path: String) -> void:
 	# Flush and close the file
 	file.flush()
 	file.close()
-	print("Exported %s in %d ms" % [path, (OS.get_ticks_msec() - start_time)])
+	print("Exported %s in %d ms" % [path, (Time.get_ticks_msec() - start_time)])
 
 # -------------------------------------------------------------------------------------------------
 func _svg_start(file: File, origin: Vector2, size: Vector2) -> void:

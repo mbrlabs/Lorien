@@ -1,28 +1,28 @@
 class_name NewPaletteDialog
-extends WindowDialog
+extends Window
 
 # -------------------------------------------------------------------------------------------------
 signal new_palette_created(palette)
 
 # -------------------------------------------------------------------------------------------------
-onready var _line_edit: LineEdit = $MarginContainer/Container/LineEdit
-onready var _save_button: Button = $MarginContainer/Container/HBoxContainer/SaveButton
-onready var _cancel_button: Button = $MarginContainer/Container/HBoxContainer/CancelButton
+@onready var _line_edit: LineEdit = $MarginContainer/Container/LineEdit
+@onready var _save_button: Button = $MarginContainer/Container/HBoxContainer/SaveButton
+@onready var _cancel_button: Button = $MarginContainer/Container/HBoxContainer/CancelButton
 
 var duplicate_current_palette := false
 
 # -------------------------------------------------------------------------------------------------
 func _ready() -> void:
-	_save_button.connect("pressed", self, "_on_SaveButton_pressed")
-	_cancel_button.connect("pressed", self, "_on_CancelButton_pressed")
+	_save_button.connect("pressed", Callable(self, "_on_SaveButton_pressed"))
+	_cancel_button.connect("pressed", Callable(self, "_on_CancelButton_pressed"))
 	
-	connect("about_to_show", self, "_on_NewPaletteDialog_about_to_show")
-	connect("popup_hide", self, "_on_NewPaletteDialog_popup_hide")
+	connect("about_to_popup", Callable(self, "_on_NewPaletteDialog_about_to_show"))
+	connect("popup_hide", Callable(self, "_on_NewPaletteDialog_popup_hide"))
 	
 # -------------------------------------------------------------------------------------------------
 func _on_SaveButton_pressed() -> void:
 	var name := _line_edit.text
-	if !name.empty():
+	if !name.is_empty():
 		var palette: Palette
 		if duplicate_current_palette:
 			palette = PaletteManager.duplicate_palette(PaletteManager.get_active_palette(), name)
@@ -52,5 +52,5 @@ func _on_NewPaletteDialog_about_to_show() -> void:
 		window_title = tr("NEW_PALETTE_DIALOG_CREATE_TITLE")
 	
 	# Grab focus
-	yield(get_tree(), "idle_frame")
+	await get_tree().idle_frame
 	_line_edit.grab_focus()

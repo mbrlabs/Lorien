@@ -17,12 +17,12 @@ func set_keybindings_data(bindings_data: Dictionary) -> void:
 	for event in bindings_data["events"]:
 		if event is InputEventKey:
 			var remove_button = Button.new()
-			remove_button.text = OS.get_scancode_string(event.get_scancode_with_modifiers())
+			remove_button.text = OS.get_keycode_string(event.get_keycode_with_modifiers())
 			remove_button.icon = _preloaded_image
 	
-			remove_button.add_constant_override("hseparation", 6)
+			remove_button.add_theme_constant_override("h_separation", 6)
 	
-			remove_button.connect("pressed", self, "_remove_pressed", [event])
+			remove_button.connect("pressed", Callable(self, "_remove_pressed").bind(event))
 			add_child(remove_button)
 
 # -------------------------------------------------------------------------------------------------

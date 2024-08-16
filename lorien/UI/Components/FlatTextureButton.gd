@@ -1,25 +1,25 @@
 extends TextureButton
 
 # -------------------------------------------------------------------------------------------------
-export var hover_tint := Color.white
-export var pressed_tint := Color.white
+@export var hover_tint := Color.WHITE
+@export var pressed_tint := Color.WHITE
 var _normal_tint: Color
 
 # -------------------------------------------------------------------------------------------------
 func _ready() -> void:
 	_normal_tint = self_modulate
-	connect("mouse_entered", self, "_on_mouse_entered")
-	connect("mouse_exited", self, "_on_mouse_exited")
-	connect("pressed", self, "_on_pressed")
+	connect("mouse_entered", Callable(self, "_on_mouse_entered"))
+	connect("mouse_exited", Callable(self, "_on_mouse_exited"))
+	connect("pressed", Callable(self, "_on_pressed"))
 
 	if toggle_mode && pressed:
 		self_modulate = pressed_tint
 
 # -------------------------------------------------------------------------------------------------
 func _exit_tree() -> void:
-	disconnect("mouse_entered", self, "_on_mouse_entered")
-	disconnect("mouse_exited", self, "_on_mouse_exited")
-	disconnect("pressed", self, "_on_pressed")
+	disconnect("mouse_entered", Callable(self, "_on_mouse_entered"))
+	disconnect("mouse_exited", Callable(self, "_on_mouse_exited"))
+	disconnect("pressed", Callable(self, "_on_pressed"))
 
 # -------------------------------------------------------------------------------------------------
 func _on_mouse_entered() -> void:

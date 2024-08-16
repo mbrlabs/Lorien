@@ -1,243 +1,172 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=17 format=3 uid="uid://2uaupgd20h03"]
 
-[ext_resource path="res://Main.gd" type="Script" id=1]
-[ext_resource path="res://InfiniteCanvas/InfiniteCanvas.tscn" type="PackedScene" id=2]
-[ext_resource path="res://UI/Statusbar.tscn" type="PackedScene" id=3]
-[ext_resource path="res://UI/Menubar.tscn" type="PackedScene" id=4]
-[ext_resource path="res://UI/MainMenu.tscn" type="PackedScene" id=5]
-[ext_resource path="res://UI/Toolbar.tscn" type="PackedScene" id=6]
-[ext_resource path="res://UI/Dialogs/UnsavedChangesDialog.tscn" type="PackedScene" id=7]
-[ext_resource path="res://UI/Themes/theme_dark.tres" type="Theme" id=8]
-[ext_resource path="res://UI/Dialogs/AboutDialog.tscn" type="PackedScene" id=9]
-[ext_resource path="res://UI/Dialogs/SettingsDialog.tscn" type="PackedScene" id=10]
-[ext_resource path="res://UI/Dialogs/ExitDialog.tscn" type="PackedScene" id=11]
-[ext_resource path="res://UI/Dialogs/NewPaletteDialog.tscn" type="PackedScene" id=12]
-[ext_resource path="res://UI/ColorPalettePicker.tscn" type="PackedScene" id=13]
-[ext_resource path="res://UI/Dialogs/EditPaletteDialog.tscn" type="PackedScene" id=14]
-[ext_resource path="res://UI/Dialogs/DeletePaletteDialog.tscn" type="PackedScene" id=15]
+[ext_resource type="Script" path="res://Main.gd" id="1"]
+[ext_resource type="PackedScene" path="res://InfiniteCanvas/InfiniteCanvas.tscn" id="2"]
+[ext_resource type="PackedScene" path="res://UI/Statusbar.tscn" id="3"]
+[ext_resource type="PackedScene" path="res://UI/Menubar.tscn" id="4"]
+[ext_resource type="PackedScene" path="res://UI/MainMenu.tscn" id="5"]
+[ext_resource type="PackedScene" path="res://UI/Toolbar.tscn" id="6"]
+[ext_resource type="PackedScene" path="res://UI/Dialogs/UnsavedChangesDialog.tscn" id="7"]
+[ext_resource type="Theme" uid="uid://u5qnpgxqykiv" path="res://UI/Themes/theme_dark.tres" id="8"]
+[ext_resource type="PackedScene" path="res://UI/Dialogs/AboutDialog.tscn" id="9"]
+[ext_resource type="PackedScene" path="res://UI/Dialogs/SettingsDialog.tscn" id="10"]
+[ext_resource type="PackedScene" path="res://UI/Dialogs/ExitDialog.tscn" id="11"]
+[ext_resource type="PackedScene" path="res://UI/Dialogs/NewPaletteDialog.tscn" id="12"]
+[ext_resource type="PackedScene" path="res://UI/ColorPalettePicker.tscn" id="13"]
+[ext_resource type="PackedScene" path="res://UI/Dialogs/EditPaletteDialog.tscn" id="14"]
+[ext_resource type="PackedScene" path="res://UI/Dialogs/DeletePaletteDialog.tscn" id="15"]
 
-[sub_resource type="StyleBoxFlat" id=1]
-bg_color = Color( 0.207843, 0.211765, 0.227451, 1 )
+[sub_resource type="StyleBoxFlat" id="1"]
+bg_color = Color(0.207843, 0.211765, 0.227451, 1)
 corner_radius_top_left = 1
 corner_radius_top_right = 1
 corner_radius_bottom_right = 1
 corner_radius_bottom_left = 1
 expand_margin_left = 6.0
-expand_margin_right = 6.0
 expand_margin_top = 6.0
+expand_margin_right = 6.0
 expand_margin_bottom = 6.0
 
 [node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
-theme = ExtResource( 8 )
-script = ExtResource( 1 )
+theme = ExtResource("8")
+script = ExtResource("1")
 __meta__ = {
 "_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
-[node name="InfiniteCanvas" parent="." instance=ExtResource( 2 )]
+[node name="InfiniteCanvas" parent="." instance=ExtResource("2")]
+layout_mode = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
 stretch = true
 
 [node name="Topbar" type="VBoxContainer" parent="."]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 0.0759259
-margin_bottom = -3.99998
-custom_constants/separation = 0
+offset_bottom = -3.99998
+theme_override_constants/separation = 0
 
-[node name="Menubar" parent="Topbar" instance=ExtResource( 4 )]
-anchor_right = 0.0
-margin_right = 1920.0
+[node name="Menubar" parent="Topbar" instance=ExtResource("4")]
+layout_mode = 2
 _main_menu_path = NodePath("../../MainMenu")
 
-[node name="Toolbar" parent="Topbar" instance=ExtResource( 6 )]
-anchor_right = 0.0
-margin_top = 38.0
-margin_right = 1920.0
-margin_bottom = 78.0
+[node name="Toolbar" parent="Topbar" instance=ExtResource("6")]
+layout_mode = 2
 file_dialog_path = NodePath("../../FileDialog")
 
-[node name="Statusbar" parent="." instance=ExtResource( 3 )]
+[node name="Statusbar" parent="." instance=ExtResource("3")]
+layout_mode = 0
 anchor_top = 1.0
+anchor_right = 0.0
 anchor_bottom = 1.0
-margin_top = -24.0
-margin_bottom = 0.0
-rect_scale = Vector2( 1, 1.00112 )
+offset_top = -24.0
+offset_bottom = 0.0
+scale = Vector2(1, 1.00112)
 
 [node name="BackgroundColorPickerPopup" type="Popup" parent="."]
-anchor_left = 1.0
-anchor_right = 1.0
-margin_left = -326.515
-margin_top = 79.0921
-margin_right = -1.51489
-margin_bottom = 500.092
-theme = ExtResource( 8 )
-__meta__ = {
-"_edit_group_": true,
-"_edit_use_anchors_": false
-}
+theme = ExtResource("8")
 
 [node name="PanelContainer" type="PanelContainer" parent="BackgroundColorPickerPopup"]
+anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -154.5
-margin_top = -202.0
-margin_right = 154.5
-margin_bottom = 202.0
-custom_styles/panel = SubResource( 1 )
+offset_left = -154.5
+offset_top = -202.0
+offset_right = 154.5
+offset_bottom = 202.0
+theme_override_styles/panel = SubResource("1")
 
 [node name="ColorPicker" type="ColorPicker" parent="BackgroundColorPickerPopup/PanelContainer"]
-margin_left = 40.0
-margin_top = 40.0
-margin_right = 349.0
-margin_bottom = 444.0
+layout_mode = 2
 edit_alpha = false
-presets_enabled = false
 presets_visible = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="BrushColorPicker" parent="." instance=ExtResource( 13 )]
+[node name="BrushColorPicker" parent="." instance=ExtResource("13")]
 visible = false
-margin_left = 386.102
-margin_top = 79.6751
-margin_right = 744.102
-margin_bottom = 194.675
+layout_mode = 0
+offset_left = 386.102
+offset_top = 79.6751
+offset_right = 744.102
+offset_bottom = 194.675
 add_new_palette_dialog_path = NodePath("../NewPaletteDialog")
 edit_palette_dialog = NodePath("../EditPaletteDialog")
 delete_palette_dialog = NodePath("../DeletePaletteDialog")
 toolbar_path = NodePath("../Topbar/Toolbar")
 
-[node name="MainMenu" parent="." instance=ExtResource( 5 )]
-margin_left = 1.0
-margin_top = 38.0
-margin_right = 151.0
-margin_bottom = 138.0
+[node name="MainMenu" parent="." instance=ExtResource("5")]
+offset_left = 1.0
+offset_top = 38.0
+offset_right = 151.0
+offset_bottom = 138.0
 file_dialog_path = NodePath("../FileDialog")
 
 [node name="FileDialog" type="FileDialog" parent="."]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -385.0
-margin_top = -216.5
-margin_right = 385.0
-margin_bottom = 216.5
-theme = ExtResource( 8 )
-popup_exclusive = true
-window_title = ""
+theme = ExtResource("8")
 access = 2
-filters = PoolStringArray( "*.lorien" )
-__meta__ = {
-"_edit_lock_": true
-}
+filters = PackedStringArray("*.lorien")
 
-[node name="ExitDialog" parent="." instance=ExtResource( 11 )]
+[node name="ExitDialog" parent="." instance=ExtResource("11")]
+position = Vector2i(0, 20)
+exclusive = true
+
+[node name="NewPaletteDialog" parent="." instance=ExtResource("12")]
+position = Vector2i(0, 20)
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -155.0
-margin_top = -45.0
-margin_right = 155.0
-margin_bottom = 45.0
-popup_exclusive = true
+offset_left = -129.5
+offset_top = -40.0
+offset_right = 129.5
+offset_bottom = 40.0
 
-[node name="NewPaletteDialog" parent="." instance=ExtResource( 12 )]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -129.5
-margin_top = -40.0
-margin_right = 129.5
-margin_bottom = 40.0
+[node name="DeletePaletteDialog" parent="." instance=ExtResource("15")]
+position = Vector2i(0, 20)
 
-[node name="DeletePaletteDialog" parent="." instance=ExtResource( 15 )]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -150.0
-margin_top = -50.0
-margin_right = 150.0
-margin_bottom = 50.0
-
-[node name="EditPaletteDialog" parent="." instance=ExtResource( 14 )]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -239.0
-margin_top = -237.0
-margin_right = 239.0
-margin_bottom = 237.0
+[node name="EditPaletteDialog" parent="." instance=ExtResource("14")]
+position = Vector2i(0, 20)
 
 [node name="ExportDialog" type="FileDialog" parent="."]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -385.0
-margin_top = -216.5
-margin_right = 385.0
-margin_bottom = 216.5
-theme = ExtResource( 8 )
-popup_exclusive = true
-window_title = "Export SVG"
+theme = ExtResource("8")
 access = 2
 
-[node name="UnsavedChangesDialog" parent="." instance=ExtResource( 7 )]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -155.0
-margin_top = -45.0
-margin_right = 155.0
-margin_bottom = 45.0
-popup_exclusive = true
+[node name="UnsavedChangesDialog" parent="." instance=ExtResource("7")]
+position = Vector2i(0, 20)
+exclusive = true
 
-[node name="AboutDialog" parent="." instance=ExtResource( 9 )]
+[node name="AboutDialog" parent="." instance=ExtResource("9")]
 visible = false
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -225.0
-margin_top = -102.5
-margin_right = 225.0
-margin_bottom = 102.5
+offset_left = -225.0
+offset_top = -102.5
+offset_right = 225.0
+offset_bottom = 102.5
 
-[node name="SettingsDialog" parent="." instance=ExtResource( 10 )]
+[node name="SettingsDialog" parent="." instance=ExtResource("10")]
+position = Vector2i(0, 20)
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -260.0
-margin_top = -135.0
-margin_right = 260.0
-margin_bottom = 135.0
+offset_left = -260.0
+offset_top = -135.0
+offset_right = 260.0
+offset_bottom = 135.0
 
 [node name="GenericAlertDialog" type="AcceptDialog" parent="."]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -68.5
-margin_top = -35.0
-margin_right = 68.5
-margin_bottom = 35.0
-theme = ExtResource( 8 )
-popup_exclusive = true
-window_title = ""
+theme = ExtResource("8")
 dialog_text = "Generic message. "
-__meta__ = {
-"_edit_lock_": true
-}

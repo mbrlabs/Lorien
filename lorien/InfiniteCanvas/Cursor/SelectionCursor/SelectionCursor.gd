@@ -13,7 +13,7 @@ enum Mode {
 
 # -------------------------------------------------------------------------------------------------
 var _cross_length: float = CROSS_LENGTH
-var mode = Mode.SELECT setget set_mode, get_mode
+var mode = Mode.SELECT: get = get_mode, set = set_mode
 
 # -------------------------------------------------------------------------------------------------
 func _on_zoom_changed(zoom_value: float) -> void:

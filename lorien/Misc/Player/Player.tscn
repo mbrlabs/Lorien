@@ -1,21 +1,21 @@
 [gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Misc/Player/Player.gd" type="Script" id=1]
-[ext_resource path="res://Assets/Player/p1_stand.png" type="Texture" id=2]
-[ext_resource path="res://Assets/Player/p1_jump.png" type="Texture" id=3]
-[ext_resource path="res://Assets/Player/p1_walk/p1_walk08.png" type="Texture" id=4]
-[ext_resource path="res://Assets/Player/p1_walk/p1_walk09.png" type="Texture" id=5]
-[ext_resource path="res://Assets/Player/p1_walk/p1_walk04.png" type="Texture" id=6]
-[ext_resource path="res://Assets/Player/p1_walk/p1_walk10.png" type="Texture" id=7]
-[ext_resource path="res://Assets/Player/p1_walk/p1_walk01.png" type="Texture" id=8]
-[ext_resource path="res://Assets/Player/p1_walk/p1_walk11.png" type="Texture" id=9]
-[ext_resource path="res://Assets/Player/p1_walk/p1_walk06.png" type="Texture" id=10]
-[ext_resource path="res://Assets/Player/p1_walk/p1_walk05.png" type="Texture" id=11]
-[ext_resource path="res://Assets/Player/p1_walk/p1_walk07.png" type="Texture" id=12]
-[ext_resource path="res://Assets/Player/p1_walk/p1_walk02.png" type="Texture" id=13]
-[ext_resource path="res://Assets/Player/p1_walk/p1_walk03.png" type="Texture" id=14]
-[ext_resource path="res://Assets/Player/p1_hurt.png" type="Texture" id=15]
-[ext_resource path="res://Assets/Player/p1_duck.png" type="Texture" id=16]
+[ext_resource path="res://Assets/Player/p1_stand.png" type="Texture2D" id=2]
+[ext_resource path="res://Assets/Player/p1_jump.png" type="Texture2D" id=3]
+[ext_resource path="res://Assets/Player/p1_walk/p1_walk08.png" type="Texture2D" id=4]
+[ext_resource path="res://Assets/Player/p1_walk/p1_walk09.png" type="Texture2D" id=5]
+[ext_resource path="res://Assets/Player/p1_walk/p1_walk04.png" type="Texture2D" id=6]
+[ext_resource path="res://Assets/Player/p1_walk/p1_walk10.png" type="Texture2D" id=7]
+[ext_resource path="res://Assets/Player/p1_walk/p1_walk01.png" type="Texture2D" id=8]
+[ext_resource path="res://Assets/Player/p1_walk/p1_walk11.png" type="Texture2D" id=9]
+[ext_resource path="res://Assets/Player/p1_walk/p1_walk06.png" type="Texture2D" id=10]
+[ext_resource path="res://Assets/Player/p1_walk/p1_walk05.png" type="Texture2D" id=11]
+[ext_resource path="res://Assets/Player/p1_walk/p1_walk07.png" type="Texture2D" id=12]
+[ext_resource path="res://Assets/Player/p1_walk/p1_walk02.png" type="Texture2D" id=13]
+[ext_resource path="res://Assets/Player/p1_walk/p1_walk03.png" type="Texture2D" id=14]
+[ext_resource path="res://Assets/Player/p1_hurt.png" type="Texture2D" id=15]
+[ext_resource path="res://Assets/Player/p1_duck.png" type="Texture2D" id=16]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 35.7294
@@ -58,7 +58,7 @@ animations = [ {
 "speed": 12.0
 } ]
 
-[node name="Player" type="KinematicBody2D"]
+[node name="Player" type="CharacterBody2D"]
 script = ExtResource( 1 )
 
 [node name="CollisionShapeNormal" type="CollisionShape2D" parent="."]
@@ -68,7 +68,7 @@ shape = SubResource( 1 )
 shape = SubResource( 4 )
 disabled = true
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 frames = SubResource( 3 )
 animation = "crouch"
 playing = true

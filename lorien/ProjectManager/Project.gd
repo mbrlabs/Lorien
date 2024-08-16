@@ -34,12 +34,12 @@ func add_stroke(stroke: BrushStroke) -> void:
 
 # -------------------------------------------------------------------------------------------------
 func remove_last_stroke() -> void:
-	if !strokes.empty():
+	if !strokes.is_empty():
 		strokes.pop_back()
 
 # -------------------------------------------------------------------------------------------------
-func get_filename() -> String:
-	if filepath.empty():
+func get_scene_file_path() -> String:
+	if filepath.is_empty():
 		return "Untitled"
 	return filepath.get_file()
 

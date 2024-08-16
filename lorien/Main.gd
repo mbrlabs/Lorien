@@ -1,24 +1,24 @@
 extends Control
 
 # -------------------------------------------------------------------------------------------------
-onready var _canvas: InfiniteCanvas = $InfiniteCanvas
-onready var _canvas_grid: InfiniteCanvasGrid = $InfiniteCanvas/Viewport/Grid
-onready var _statusbar: Statusbar = $Statusbar
-onready var _menubar: Menubar = $Topbar/Menubar
-onready var _toolbar: Toolbar = $Topbar/Toolbar
-onready var _file_dialog: FileDialog = $FileDialog
-onready var _export_dialog : FileDialog = $ExportDialog
-onready var _about_dialog: WindowDialog = $AboutDialog
-onready var _settings_dialog: WindowDialog = $SettingsDialog
-onready var _brush_color_picker: ColorPalettePicker = $BrushColorPicker
-onready var _main_menu: MainMenu = $MainMenu
-onready var _generic_alert_dialog: AcceptDialog = $GenericAlertDialog
-onready var _exit_dialog: WindowDialog = $ExitDialog
-onready var _unsaved_changes_dialog: WindowDialog = $UnsavedChangesDialog
-onready var _background_color_picker: ColorPicker = $BackgroundColorPickerPopup/PanelContainer/ColorPicker
-onready var _new_palette_dialog: NewPaletteDialog = $NewPaletteDialog
-onready var _delete_palette_dialog: DeletePaletteDialog = $DeletePaletteDialog
-onready var _edit_palette_dialog: EditPaletteDialog = $EditPaletteDialog
+@onready var _canvas: InfiniteCanvas = $InfiniteCanvas
+@onready var _canvas_grid: InfiniteCanvasGrid = $InfiniteCanvas/SubViewport/Grid
+@onready var _statusbar: Statusbar = $Statusbar
+@onready var _menubar: Menubar = $Topbar/Menubar
+@onready var _toolbar: Toolbar = $Topbar/Toolbar
+@onready var _file_dialog: FileDialog = $FileDialog
+@onready var _export_dialog : FileDialog = $ExportDialog
+@onready var _about_dialog: Window = $AboutDialog
+@onready var _settings_dialog: Window = $SettingsDialog
+@onready var _brush_color_picker: ColorPalettePicker = $BrushColorPicker
+@onready var _main_menu: MainMenu = $MainMenu
+@onready var _generic_alert_dialog: AcceptDialog = $GenericAlertDialog
+@onready var _exit_dialog: Window = $ExitDialog
+@onready var _unsaved_changes_dialog: Window = $UnsavedChangesDialog
+@onready var _background_color_picker: ColorPicker = $BackgroundColorPickerPopup/PanelContainer/ColorPicker
+@onready var _new_palette_dialog: NewPaletteDialog = $NewPaletteDialog
+@onready var _delete_palette_dialog: DeletePaletteDialog = $DeletePaletteDialog
+@onready var _edit_palette_dialog: EditPaletteDialog = $EditPaletteDialog
 
 var _ui_visible := true 
 
@@ -27,7 +27,7 @@ func _ready():
 	# Init stuff
 	randomize()
 	Engine.target_fps = Settings.get_value(Settings.RENDERING_FOREGROUND_FPS, Config.DEFAULT_FOREGROUND_FPS)
-	OS.set_window_title("Lorien v%s" % Config.VERSION_STRING)
+	get_window().set_title("Lorien v%s" % Config.VERSION_STRING)
 	get_tree().set_auto_accept_quit(false)
 
 	var docs_folder = OS.get_system_dir(OS.SYSTEM_DIR_DOCUMENTS)
@@ -35,52 +35,52 @@ func _ready():
 	_export_dialog.current_dir = Settings.get_value(Settings.GENERAL_DEFAULT_PROJECT_DIR, docs_folder)
 	
 	# Signals
-	get_tree().connect("files_dropped", self, "_on_files_dropped")
+	get_tree().connect("files_dropped", Callable(self, "_on_files_dropped"))
 	
-	_canvas.connect("mouse_entered", self, "_on_InfiniteCanvas_mouse_entered")
-	_canvas.connect("mouse_exited", self, "_on_InfiniteCanvas_mouse_exited")
+	_canvas.connect("mouse_entered", Callable(self, "_on_InfiniteCanvas_mouse_entered"))
+	_canvas.connect("mouse_exited", Callable(self, "_on_InfiniteCanvas_mouse_exited"))
 	
-	_brush_color_picker.connect("closed", self, "_on_BrushColorPicker_closed")
-	_brush_color_picker.connect("color_changed", self, "_on_BrushColorPicker_color_changed")
+	_brush_color_picker.connect("closed", Callable(self, "_on_BrushColorPicker_closed"))
+	_brush_color_picker.connect("color_changed", Callable(self, "_on_BrushColorPicker_color_changed"))
 	
-	_new_palette_dialog.connect("new_palette_created", self, "_on_NewPaletteDialog_new_palette_created")
-	_delete_palette_dialog.connect("palette_deleted", self, "_on_DeletePaletteDialog_palette_deleted")
-	_edit_palette_dialog.connect("palette_changed", self, "_on_EditPaletteDialog_palette_changed")
+	_new_palette_dialog.connect("new_palette_created", Callable(self, "_on_NewPaletteDialog_new_palette_created"))
+	_delete_palette_dialog.connect("palette_deleted", Callable(self, "_on_DeletePaletteDialog_palette_deleted"))
+	_edit_palette_dialog.connect("palette_changed", Callable(self, "_on_EditPaletteDialog_palette_changed"))
 	
-	_toolbar.connect("undo_action", self, "_on_undo_action")
-	_toolbar.connect("redo_action", self, "_on_redo_action")
-	_toolbar.connect("clear_canvas", self, "_on_clear_canvas")
-	_toolbar.connect("open_project", self, "_on_open_project")
-	_toolbar.connect("toggle_brush_color_picker", self, "_on_toggle_brush_color_picker")
-	_toolbar.connect("new_project", self, "_on_create_new_project")
-	_toolbar.connect("save_project", self, "_on_save_project")
-	_toolbar.connect("brush_size_changed", self, "_on_brush_size_changed")
-	_toolbar.connect("tool_changed", self, "_on_tool_changed")
+	_toolbar.connect("undo_action", Callable(self, "_on_undo_action"))
+	_toolbar.connect("redo_action", Callable(self, "_on_redo_action"))
+	_toolbar.connect("clear_canvas", Callable(self, "_on_clear_canvas"))
+	_toolbar.connect("open_project", Callable(self, "_on_open_project"))
+	_toolbar.connect("toggle_brush_color_picker", Callable(self, "_on_toggle_brush_color_picker"))
+	_toolbar.connect("new_project", Callable(self, "_on_create_new_project"))
+	_toolbar.connect("save_project", Callable(self, "_on_save_project"))
+	_toolbar.connect("brush_size_changed", Callable(self, "_on_brush_size_changed"))
+	_toolbar.connect("tool_changed", Callable(self, "_on_tool_changed"))
 	
-	_menubar.connect("create_new_project", self, "_on_create_new_project")
-	_menubar.connect("project_selected", self, "_on_project_selected")
-	_menubar.connect("project_closed", self, "_on_project_closed")
+	_menubar.connect("create_new_project", Callable(self, "_on_create_new_project"))
+	_menubar.connect("project_selected", Callable(self, "_on_project_selected"))
+	_menubar.connect("project_closed", Callable(self, "_on_project_closed"))
 	
-	_main_menu.connect("open_about_dialog", self, "_on_open_about_dialog")
-	_main_menu.connect("open_settings_dialog", self, "_on_open_settings_dialog")
-	_main_menu.connect("open_url", self, "_on_open_url")
-	_main_menu.connect("export_svg", self, "_export_svg")
-	_main_menu.connect("open_project", self, "_on_open_project")
-	_main_menu.connect("save_project", self, "_on_save_project")
-	_main_menu.connect("save_project_as", self, "_on_save_project_as")
+	_main_menu.connect("open_about_dialog", Callable(self, "_on_open_about_dialog"))
+	_main_menu.connect("open_settings_dialog", Callable(self, "_on_open_settings_dialog"))
+	_main_menu.connect("open_url", Callable(self, "_on_open_url"))
+	_main_menu.connect("export_svg", Callable(self, "_export_svg"))
+	_main_menu.connect("open_project", Callable(self, "_on_open_project"))
+	_main_menu.connect("save_project", Callable(self, "_on_save_project"))
+	_main_menu.connect("save_project_as", Callable(self, "_on_save_project_as"))
 	
-	_exit_dialog.connect("save_changes", self, "_on_exit_with_changes_saved")
-	_exit_dialog.connect("discard_changes", self, "_on_exit_with_changes_discarded")
-	_unsaved_changes_dialog.connect("save_changes", self, "_on_close_file_with_changes_saved")
-	_unsaved_changes_dialog.connect("discard_changes", self, "_on_close_file_with_changes_discarded")
+	_exit_dialog.connect("save_changes", Callable(self, "_on_exit_with_changes_saved"))
+	_exit_dialog.connect("discard_changes", Callable(self, "_on_exit_with_changes_discarded"))
+	_unsaved_changes_dialog.connect("save_changes", Callable(self, "_on_close_file_with_changes_saved"))
+	_unsaved_changes_dialog.connect("discard_changes", Callable(self, "_on_close_file_with_changes_discarded"))
 	
-	_export_dialog.connect("file_selected", self, "_on_export_confirmed")
+	_export_dialog.connect("file_selected", Callable(self, "_on_export_confirmed"))
 	
-	_settings_dialog.connect("ui_scale_changed", self, "_on_scale_changed")
-	_settings_dialog.connect("grid_size_changed", self, "_on_grid_size_changed")
-	_settings_dialog.connect("grid_pattern_changed", self, "_on_grid_pattern_changed")
-	_settings_dialog.connect("canvas_color_changed", self, "_on_canvas_color_changed")
-	_settings_dialog.connect("constant_pressure_changed", self, "_on_constant_pressure_changed")
+	_settings_dialog.connect("ui_scale_changed", Callable(self, "_on_scale_changed"))
+	_settings_dialog.connect("grid_size_changed", Callable(self, "_on_grid_size_changed"))
+	_settings_dialog.connect("grid_pattern_changed", Callable(self, "_on_grid_pattern_changed"))
+	_settings_dialog.connect("canvas_color_changed", Callable(self, "_on_canvas_color_changed"))
+	_settings_dialog.connect("constant_pressure_changed", Callable(self, "_on_constant_pressure_changed"))
 	
 	# Initialize scale
 	_on_scale_changed()
@@ -105,15 +105,15 @@ func _notification(what):
 			else:
 				_save_state()
 				 # we have to wait a bit before exiting; otherwise the changes might not be persisted correctly.
-				yield(get_tree().create_timer(0.12), "timeout")
+				await get_tree().create_timer(0.12).timeout
 				get_tree().quit()
 
-	elif NOTIFICATION_WM_FOCUS_IN == what:
+	elif NOTIFICATION_APPLICATION_FOCUS_IN == what:
 		Engine.target_fps = Settings.get_value(Settings.RENDERING_FOREGROUND_FPS, Config.DEFAULT_FOREGROUND_FPS)
 		if !_is_mouse_on_ui() && _canvas != null && !is_dialog_open():
-			yield(get_tree().create_timer(0.12), "timeout")
+			await get_tree().create_timer(0.12).timeout
 			_canvas.enable()
-	elif NOTIFICATION_WM_FOCUS_OUT == what:
+	elif NOTIFICATION_APPLICATION_FOCUS_OUT == what:
 		Engine.target_fps = Settings.get_value(Settings.RENDERING_BACKGROUND_FPS, Config.DEFAULT_BACKGROUND_FPS)
 		if _canvas != null:
 			_canvas.disable()
@@ -184,8 +184,8 @@ func _save_state() -> void:
 	StatePersistence.set_value(StatePersistence.ACTIVE_PROJECT, active_project_path)
 	
 	# Window related stuff
-	StatePersistence.set_value(StatePersistence.WINDOW_SIZE, OS.window_size)
-	StatePersistence.set_value(StatePersistence.WINDOW_MAXIMIZED, OS.window_maximized)
+	StatePersistence.set_value(StatePersistence.WINDOW_SIZE, get_window().size)
+	StatePersistence.set_value(StatePersistence.WINDOW_MAXIMIZED, (get_window().mode == Window.MODE_MAXIMIZED))
 
 # -------------------------------------------------------------------------------------------------
 func _apply_state() -> void:
@@ -195,11 +195,11 @@ func _apply_state() -> void:
 	var win_size: Vector2 = StatePersistence.get_value(StatePersistence.WINDOW_SIZE, default_win_size)
 	
 	if is_maximized:
-		OS.window_maximized = true
+		get_window().mode = Window.MODE_MAXIMIZED if (true) else Window.MODE_WINDOWED
 	else:
-		OS.window_size = win_size
+		get_window().size = win_size
 		OS.center_window()
-	yield(get_tree().create_timer(0.12), "timeout")
+	await get_tree().create_timer(0.12).timeout
 	
 	# Open projects
 	var open_projects: Array = StatePersistence.get_value(StatePersistence.OPEN_PROJECTS, Array())
@@ -222,7 +222,7 @@ func _toggle_distraction_free_mode() -> void:
 	_toolbar.visible = _ui_visible
 
 # -------------------------------------------------------------------------------------------------
-func _on_files_dropped(files: PoolStringArray, screen: int) -> void:
+func _on_files_dropped(files: PackedStringArray, screen: int) -> void:
 	for file in files:
 		if Utils.is_valid_lorien_file(file):
 			_on_open_project(file)
@@ -315,7 +315,7 @@ func _show_autosave_not_implemented_alert() -> void:
 
 # -------------------------------------------------------------------------------------------------
 func _toggle_fullscreen():
-	OS.set_window_fullscreen(!OS.window_fullscreen)
+	get_window().mode = Window.MODE_EXCLUSIVE_FULLSCREEN if (!((get_window().mode == Window.MODE_EXCLUSIVE_FULLSCREEN) or (get_window().mode == Window.MODE_FULLSCREEN))) else Window.MODE_WINDOWED
 
 # -------------------------------------------------------------------------------------------------
 func _on_brush_color_changed(color: Color) -> void:
@@ -359,7 +359,7 @@ func _on_open_project(filepath: String) -> bool:
 		return true
 	
 	# Remove/Replace active project if not changed and unsaved (default project)
-	if active_project.filepath.empty() && !active_project.dirty:
+	if active_project.filepath.is_empty() && !active_project.dirty:
 		ProjectManager.remove_project(active_project)
 		_menubar.remove_tab(active_project)
 	
@@ -373,30 +373,30 @@ func _on_open_project(filepath: String) -> bool:
 func _on_save_project_as() -> void:
 	var active_project: Project = ProjectManager.get_active_project()
 	_canvas.disable()
-	_file_dialog.mode = FileDialog.MODE_SAVE_FILE
+	_file_dialog.mode = FileDialog.FILE_MODE_SAVE_FILE
 	_file_dialog.invalidate()
 	_file_dialog.current_file = active_project.filepath.get_file()
-	_file_dialog.connect("file_selected", self, "_on_file_selected_to_save_project")
-	_file_dialog.connect("popup_hide", self, "_on_file_dialog_closed")
+	_file_dialog.connect("file_selected", Callable(self, "_on_file_selected_to_save_project"))
+	_file_dialog.connect("popup_hide", Callable(self, "_on_file_dialog_closed"))
 	_file_dialog.popup_centered()
 
 # -------------------------------------------------------------------------------------------------
 func _on_save_project() -> void:
 	var active_project: Project = ProjectManager.get_active_project()
-	if active_project.filepath.empty():
+	if active_project.filepath.is_empty():
 		_canvas.disable()
-		_file_dialog.mode = FileDialog.MODE_SAVE_FILE
+		_file_dialog.mode = FileDialog.FILE_MODE_SAVE_FILE
 		_file_dialog.invalidate()
-		_file_dialog.connect("file_selected", self, "_on_file_selected_to_save_project")
-		_file_dialog.connect("popup_hide", self, "_on_file_dialog_closed")
+		_file_dialog.connect("file_selected", Callable(self, "_on_file_selected_to_save_project"))
+		_file_dialog.connect("popup_hide", Callable(self, "_on_file_dialog_closed"))
 		_file_dialog.popup_centered()
 	else:
 		_save_project(active_project)
 
 # -------------------------------------------------------------------------------------------------
 func _on_file_dialog_closed() -> void:
-	_file_dialog.disconnect("file_selected", self, "_on_file_selected_to_save_project")
-	_file_dialog.disconnect("popup_hide", self, "_on_file_dialog_closed")
+	_file_dialog.disconnect("file_selected", Callable(self, "_on_file_selected_to_save_project"))
+	_file_dialog.disconnect("popup_hide", Callable(self, "_on_file_dialog_closed"))
 
 # -------------------------------------------------------------------------------------------------
 func _on_file_selected_to_save_project(filepath: String) -> void:
@@ -440,7 +440,7 @@ func _on_exit_with_changes_discarded(project_ids: Array) -> void:
 func _on_close_file_with_changes_saved(project_ids: Array) -> void:
 	for id in project_ids:
 		var project: Project = ProjectManager.get_project_by_id(id)
-		if project.filepath.empty():
+		if project.filepath.is_empty():
 			_show_autosave_not_implemented_alert()
 		else:
 			ProjectManager.save_project(project)
@@ -464,7 +464,7 @@ func _on_open_settings_dialog() -> void:
 # -------------------------------------------------------------------------------------------------
 func _on_open_url(url: String) -> void:
 	OS.shell_open(url)
-	yield(get_tree().create_timer(0.1), "timeout")
+	await get_tree().create_timer(0.1).timeout
 	_canvas.disable()
 
 # -------------------------------------------------------------------------------------------------
@@ -538,7 +538,7 @@ func _on_scale_changed() -> void:
 
 	_canvas.set_canvas_scale(scale)
 	get_tree().set_screen_stretch(SceneTree.STRETCH_MODE_DISABLED, SceneTree.STRETCH_ASPECT_IGNORE, Vector2(0,0), scale)
-	OS.min_window_size = Config.MIN_WINDOW_SIZE * scale
+	get_window().min_size = Config.MIN_WINDOW_SIZE * scale
 
 # --------------------------------------------------------------------------------------------------
 func _on_constant_pressure_changed(enable: bool) -> void:
@@ -549,8 +549,8 @@ func _get_platform_ui_scale() -> float:
 	var platform: String = OS.get_name()
 	var scale: float
 	match platform:
-		"OSX":     scale = OS.get_screen_scale()
-		"Windows": scale = OS.get_screen_dpi() / 96.0
+		"OSX":     scale = DisplayServer.screen_get_scale()
+		"Windows": scale = DisplayServer.screen_get_dpi() / 96.0
 		_:         scale = _get_general_ui_scale()
 	return scale
 
@@ -558,8 +558,8 @@ func _get_platform_ui_scale() -> float:
 func _get_general_ui_scale() -> float:
 	# Adapted from Godot EditorSettings::get_auto_display_scale()
 	# https://github.com/godotengine/godot/blob/3.x/editor/editor_settings.cpp
-	var smallest_dimension: int = min(OS.get_screen_size().x, OS.get_screen_size().y)
-	if OS.get_screen_dpi() >= 192 && smallest_dimension >= 1400:
+	var smallest_dimension: int = min(DisplayServer.screen_get_size().x, DisplayServer.screen_get_size().y)
+	if DisplayServer.screen_get_dpi() >= 192 && smallest_dimension >= 1400:
 		return Config.DEFAULT_UI_SCALE * 2
 	elif smallest_dimension >= 1700:
 		return Config.DEFAULT_UI_SCALE * 1.5

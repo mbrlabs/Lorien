@@ -15,9 +15,9 @@ func tool_event(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		_last_mouse_position = xform_vector2(event.global_position)
 	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT:
+		if event.button_index == MOUSE_BUTTON_LEFT:
 			if event.pressed:
-				if _bounding_box_cache.empty():
+				if _bounding_box_cache.is_empty():
 					_update_bounding_boxes()
 				performing_stroke = true
 			elif !event.pressed:

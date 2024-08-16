@@ -14,12 +14,12 @@ func reload_locales() -> ParseResult:
 
 # -------------------------------------------------------------------------------------------------
 class ParseResult:
-	extends Reference
+	extends RefCounted
 
-	var locales := PoolStringArray()
-	var language_names := PoolStringArray()
+	var locales := PackedStringArray()
+	var language_names := PackedStringArray()
 	
-	func append(var locale: String, var lang_name: String) -> void:
+	func append(locale: String, lang_name: String) -> void:
 		locales.append(locale)
 		language_names.append(lang_name)
 
@@ -33,8 +33,8 @@ func load_files() -> ParseResult:
 	for f in _get_i18n_files():
 		var file := File.new()
 		if file.open(f, File.READ) == OK:
-			var translation := Translation.new()
-			translation.locale = f.get_file().get_basename()
+			var position := Translation.new()
+			position.locale = f.get_file().get_basename()
 			
 			# Language name
 			var name := file.get_line().strip_edges()
@@ -62,11 +62,11 @@ func load_files() -> ParseResult:
 					value = value.strip_edges()
 					value = templater.process_string(value)
 					value = value.replace("\\n", "\n")
-					translation.add_message(key, value)
+					position.add_message(key, value)
 				else:
 					printerr("Key not found (make sure to use spaces; not tabs): %s" % line)
-			TranslationServer.add_translation(translation)
-			result.append(translation.locale, name)
+			TranslationServer.add_translation(position)
+			result.append(position.locale, name)
 			if _first_load:
 				print("Loaded i18n file: %s" % f)
 	_first_load = false
@@ -78,23 +78,23 @@ func _i18n_filter_shortcut_list(action_name: String) -> String:
 		printerr("_i18n_filter_shortcut_list: substituiton of invlaid action name: '%s'" % action_name)
 		return "INVALID_ACTION %s" % action_name
 	
-	var keybindings := PoolStringArray()
-	for e in InputMap.get_action_list(action_name):
+	var keybindings := PackedStringArray()
+	for e in InputMap.action_get_events(action_name):
 		if e is InputEventKey:
 			e = e as InputEventKey
-			keybindings.append(OS.get_scancode_string(e.get_scancode_with_modifiers()))
+			keybindings.append(OS.get_keycode_string(e.get_keycode_with_modifiers()))
 
 	if len(keybindings) == 0:
 		return ""
 	else:
-		return "(%s)" % keybindings.join(", ")
+		return "(%s)" % ", ".join(keybindings)
 
 # -------------------------------------------------------------------------------------------------
 func _get_i18n_files() -> Array:
 	var files := []
-	var dir = Directory.new()
+	var dir = DirAccess.new()
 	if dir.open(I18N_FOLDER) == OK:
-		dir.list_dir_begin()
+		dir.list_dir_begin() # TODOConverter3To4 fill missing arguments https://github.com/godotengine/godot/pull/40547
 		var file_name = dir.get_next()
 		while file_name != "":
 			if !dir.current_is_dir():

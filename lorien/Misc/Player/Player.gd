@@ -1,5 +1,5 @@
 class_name Player
-extends KinematicBody2D
+extends CharacterBody2D
 
 # -------------------------------------------------------------------------------------------------
 #export var speed: float = 400

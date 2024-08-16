@@ -5,16 +5,16 @@
 [sub_resource type="StyleBoxLine" id=1]
 color = Color( 0, 0, 0, 0 )
 
-[node name="AddKeyDialog" type="WindowDialog"]
+[node name="AddKeyDialog" type="Window"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -196.0
-margin_top = -128.0
-margin_right = 197.0
-margin_bottom = 15.0
-popup_exclusive = true
+offset_left = -196.0
+offset_top = -128.0
+offset_right = 197.0
+offset_bottom = 15.0
+exclusive = true
 window_title = "Bind key"
 script = ExtResource( 1 )
 __meta__ = {
@@ -25,17 +25,17 @@ __meta__ = {
 anchor_left = 0.5
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -105.5
-margin_right = 105.5
+offset_left = -105.5
+offset_right = 105.5
 alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="EventText" type="Label" parent="VBoxContainer"]
-margin_top = 34.0
-margin_right = 211.0
-margin_bottom = 48.0
+offset_top = 34.0
+offset_right = 211.0
+offset_bottom = 48.0
 text = "Action: ..."
 align = 1
 __meta__ = {
@@ -43,16 +43,16 @@ __meta__ = {
 }
 
 [node name="Panel" type="HSeparator" parent="VBoxContainer"]
-margin_top = 52.0
-margin_right = 211.0
-margin_bottom = 91.0
-custom_constants/separation = 39
-custom_styles/separator = SubResource( 1 )
+offset_top = 52.0
+offset_right = 211.0
+offset_bottom = 91.0
+theme_override_constants/separation = 39
+theme_override_styles/separator = SubResource( 1 )
 
 [node name="PressKeyMessage" type="Label" parent="VBoxContainer"]
-margin_top = 95.0
-margin_right = 211.0
-margin_bottom = 109.0
+offset_top = 95.0
+offset_right = 211.0
+offset_bottom = 109.0
 text = "(Press a button to bind)"
 align = 1
 __meta__ = {

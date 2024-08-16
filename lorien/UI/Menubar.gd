@@ -10,26 +10,26 @@ signal project_closed(project_id)
 signal create_new_project
 
 # -------------------------------------------------------------------------------------------------
-onready var _menu_button: TextureButton = $Left/MenuButton
-onready var _new_file_button: Button = $Left/NewFileButton
-onready var _file_tabs_container: HBoxContainer = $Left/Tabs
+@onready var _menu_button: TextureButton = $Left/MenuButton
+@onready var _new_file_button: Button = $Left/NewFileButton
+@onready var _file_tabs_container: HBoxContainer = $Left/TabBar
 
-export var _main_menu_path: NodePath
+@export var _main_menu_path: NodePath
 var _active_file_tab: ProjectTab
 var _tabs_map: Dictionary # Dictonary<project_id, ProjectTab>
 
 # -------------------------------------------------------------------------------------------------
 func _ready() -> void:
-	_menu_button.connect("pressed", self, "_on_MenuButton_pressed")
-	_new_file_button.connect("pressed", self, "_on_NewFileButton_pressed")
+	_menu_button.connect("pressed", Callable(self, "_on_MenuButton_pressed"))
+	_new_file_button.connect("pressed", Callable(self, "_on_NewFileButton_pressed"))
 
 # -------------------------------------------------------------------------------------------------
 func make_tab(project: Project) -> void:
-	var tab: ProjectTab = PROJECT_TAB.instance()
-	tab.title = project.get_filename()
+	var tab: ProjectTab = PROJECT_TAB.instantiate()
+	tab.title = project.get_scene_file_path()
 	tab.project_id = project.id
-	tab.connect("close_requested", self, "_on_tab_close_requested")
-	tab.connect("selected", self, "_on_tab_selected")
+	tab.connect("close_requested", Callable(self, "_on_tab_close_requested"))
+	tab.connect("selected", Callable(self, "_on_tab_selected"))
 	_file_tabs_container.add_child(tab)
 	_tabs_map[project.id] = tab
 
@@ -41,8 +41,8 @@ func has_tab(project: Project) -> bool:
 func remove_tab(project: Project) -> void:
 	if _tabs_map.has(project.id):
 		var tab = _tabs_map[project.id]
-		tab.disconnect("close_requested", self, "_on_tab_close_requested")
-		tab.disconnect("selected", self, "_on_tab_selected")
+		tab.disconnect("close_requested", Callable(self, "_on_tab_close_requested"))
+		tab.disconnect("selected", Callable(self, "_on_tab_selected"))
 		_file_tabs_container.remove_child(tab)
 		_tabs_map.erase(project.id)
 		tab.call_deferred("free")
@@ -58,7 +58,7 @@ func remove_all_tabs() -> void:
 # ------------------------------------------------------------------------------------------------
 func update_tab_title(project: Project) -> void:
 	if _tabs_map.has(project.id):
-		var name = project.get_filename()
+		var name = project.get_scene_file_path()
 		if project.dirty:
 			name += " (*)"
 		_tabs_map[project.id].title = name

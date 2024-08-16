@@ -25,12 +25,12 @@ const ITEM_VIEW_2 		:= 101
 const ITEM_VIEW_3 		:= 102
 
 # -------------------------------------------------------------------------------------------------
-export var file_dialog_path: NodePath
-onready var _submenu_views: PopupMenu = $ViewsMenu
+@export var file_dialog_path: NodePath
+@onready var _submenu_views: PopupMenu = $ViewsMenu
 
 # -------------------------------------------------------------------------------------------------
 func _ready() -> void:
-	connect("id_pressed", self, "_on_MainMenu_id_pressed")
+	connect("id_pressed", Callable(self, "_on_MainMenu_id_pressed"))
 	
 	# Views submenu
 	_submenu_views.name = "Views"
@@ -39,7 +39,7 @@ func _ready() -> void:
 
 	# main menu
 	_apply_language()
-	GlobalSignals.connect("language_changed", self, "_apply_language")
+	GlobalSignals.connect("language_changed", Callable(self, "_apply_language"))
 
 # -------------------------------------------------------------------------------------------------
 func _apply_language() -> void:
@@ -69,9 +69,9 @@ func _on_MainMenu_id_pressed(id: int):
 # -------------------------------------------------------------------------------------------------
 func _on_open_project():
 	var file_dialog: FileDialog = get_node(file_dialog_path)
-	file_dialog.mode = FileDialog.MODE_OPEN_FILE
-	file_dialog.connect("file_selected", self, "_on_project_selected_to_open")
-	file_dialog.connect("popup_hide", self, "_on_file_dialog_closed")
+	file_dialog.mode = FileDialog.FILE_MODE_OPEN_FILE
+	file_dialog.connect("file_selected", Callable(self, "_on_project_selected_to_open"))
+	file_dialog.connect("popup_hide", Callable(self, "_on_file_dialog_closed"))
 	file_dialog.invalidate()
 	file_dialog.popup_centered()
 
@@ -87,5 +87,5 @@ func _on_file_dialog_closed() -> void:
 
 # -------------------------------------------------------------------------------------------------
 func add_item_with_shortcut(target: PopupMenu, name: String, id: int, shortcut_action: String) -> void:
-	var shortcut = InputMap.get_action_list(shortcut_action)[0].get_scancode_with_modifiers()
+	var shortcut = InputMap.action_get_events(shortcut_action)[0].get_keycode_with_modifiers()
 	target.add_item(name, id, shortcut)

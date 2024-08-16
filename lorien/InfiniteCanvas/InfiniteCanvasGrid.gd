@@ -2,7 +2,7 @@ class_name InfiniteCanvasGrid
 extends Node2D
 
 # -------------------------------------------------------------------------------------------------
-export var camera_path: NodePath
+@export var camera_path: NodePath
 var _enabled: bool
 var _pattern: int = Types.GridPattern.DOTS
 var _camera: Camera2D
@@ -15,9 +15,9 @@ func _ready():
 	_pattern = Settings.get_value(Settings.APPEARANCE_GRID_PATTERN, Config.DEFAULT_GRID_PATTERN)
 	
 	_camera = get_node(camera_path)
-	_camera.connect("zoom_changed", self, "_on_zoom_changed")
-	_camera.connect("position_changed", self, "_on_position_changed")
-	get_viewport().connect("size_changed", self, "_on_viewport_size_changed")
+	_camera.connect("zoom_changed", Callable(self, "_on_zoom_changed"))
+	_camera.connect("position_changed", Callable(self, "_on_position_changed"))
+	get_viewport().connect("size_changed", Callable(self, "_on_viewport_size_changed"))
 
 # -------------------------------------------------------------------------------------------------
 func enable(e: bool) -> void:

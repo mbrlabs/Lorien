@@ -1,15 +1,15 @@
-extends WindowDialog
+extends Window
 
 # -------------------------------------------------------------------------------------------------
 func _ready():
-	rect_size.y = $MarginContainer.rect_size.y + 5
+	size.y = $MarginContainer.size.y + 5
 	$"%VersionLabel".text = "Lorien v%s" % Config.VERSION_STRING
 	
-	$"%GithubLinkButton".connect("pressed", self, "_on_GithubLinkButton_pressed")
-	$"%LicenseButton".connect("pressed", self, "_on_LicenseButton_pressed")
-	$"%GodotButton".connect("pressed", self, "_on_GodotButton_pressed")
-	$"%KennyButton".connect("pressed", self, "_on_KennyButton_pressed")
-	$"%RemixIconsButton".connect("pressed", self, "_on_RemixIconsButton_pressed")
+	$"%GithubLinkButton".connect("pressed", Callable(self, "_on_GithubLinkButton_pressed"))
+	$"%LicenseButton".connect("pressed", Callable(self, "_on_LicenseButton_pressed"))
+	$"%GodotButton".connect("pressed", Callable(self, "_on_GodotButton_pressed"))
+	$"%KennyButton".connect("pressed", Callable(self, "_on_KennyButton_pressed"))
+	$"%RemixIconsButton".connect("pressed", Callable(self, "_on_RemixIconsButton_pressed"))
 
 # -------------------------------------------------------------------------------------------------
 func _on_GithubLinkButton_pressed():

@@ -4,9 +4,9 @@
 [ext_resource path="res://UI/MainMenu.gd" type="Script" id=2]
 
 [node name="MainMenu" type="PopupMenu"]
-margin_right = 150.0
-margin_bottom = 100.0
-rect_min_size = Vector2( 150, 100 )
+offset_right = 150.0
+offset_bottom = 100.0
+custom_minimum_size = Vector2( 150, 100 )
 theme = ExtResource( 1 )
 script = ExtResource( 2 )
 __meta__ = {
@@ -14,5 +14,5 @@ __meta__ = {
 }
 
 [node name="ViewsMenu" type="PopupMenu" parent="."]
-margin_right = 16.0
-margin_bottom = 16.0
+offset_right = 16.0
+offset_bottom = 16.0

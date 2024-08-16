@@ -1,11 +1,11 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://InfiniteCanvas/Cursor/SelectionCursor/SelectionCursor.gd" type="Script" id=1]
-[ext_resource path="res://InfiniteCanvas/Cursor/cursor.shader" type="Shader" id=2]
+[ext_resource path="res://InfiniteCanvas/Cursor/cursor.gdshader" type="Shader" id=2]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 2 )
 
-[node name="SelectionCursor" type="Sprite"]
+[node name="SelectionCursor" type="Sprite2D"]
 material = SubResource( 1 )
 script = ExtResource( 1 )

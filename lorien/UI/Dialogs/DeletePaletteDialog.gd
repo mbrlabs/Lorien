@@ -1,19 +1,19 @@
 class_name DeletePaletteDialog
-extends WindowDialog
+extends Window
 
 # -------------------------------------------------------------------------------------------------
 signal palette_deleted
 
 # -------------------------------------------------------------------------------------------------
-onready var _text: Label = $MarginContainer/Container/Label
-onready var _delete_button: Button = $MarginContainer/Container/HBoxContainer/DeleteButton
-onready var _cancel_button: Button = $MarginContainer/Container/HBoxContainer/CancelButton
+@onready var _text: Label = $MarginContainer/Container/Label
+@onready var _delete_button: Button = $MarginContainer/Container/HBoxContainer/DeleteButton
+@onready var _cancel_button: Button = $MarginContainer/Container/HBoxContainer/CancelButton
 
 # -------------------------------------------------------------------------------------------------
 func _ready() -> void:
-	connect("about_to_show", self, "_on_DeletePaletteDialog_about_to_show")
-	_delete_button.connect("pressed", self, "_on_DeleteButton_pressed")
-	_cancel_button.connect("pressed", self, "_on_CancelButton_pressed")
+	connect("about_to_popup", Callable(self, "_on_DeletePaletteDialog_about_to_show"))
+	_delete_button.connect("pressed", Callable(self, "_on_DeleteButton_pressed"))
+	_cancel_button.connect("pressed", Callable(self, "_on_CancelButton_pressed"))
 	
 # -------------------------------------------------------------------------------------------------
 func _on_DeletePaletteDialog_about_to_show() -> void:

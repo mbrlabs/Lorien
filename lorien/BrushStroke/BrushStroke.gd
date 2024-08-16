@@ -12,10 +12,10 @@ const MAX_VECTOR2 := Vector2(2147483647, 2147483647)
 const MIN_VECTOR2 := -MAX_VECTOR2
 
 # ------------------------------------------------------------------------------------------------
-onready var _line2d: Line2D = $Line2D
-onready var _visibility_notifier: VisibilityNotifier2D = $VisibilityNotifier2D
+@onready var _line2d: Line2D = $Line2D
+@onready var _visibility_notifier: VisibleOnScreenNotifier2D = $VisibleOnScreenNotifier2D
 
-var color: Color setget set_color, get_color
+var color: Color: get = get_color, set = set_color
 var size: int
 var points: Array # Array<Vector2>
 var pressures: Array # Array<float>
@@ -27,8 +27,8 @@ func _ready():
 	_line2d.width_curve = Curve.new()
 	_line2d.joint_mode = Line2D.LINE_JOINT_ROUND
 	
-	_visibility_notifier.connect("viewport_entered", self, "_on_VisibilityNotifier2D_viewport_entered")
-	_visibility_notifier.connect("viewport_exited", self, "_on_VisibilityNotifier2D_viewport_exited")
+	_visibility_notifier.connect("viewport_entered", Callable(self, "_on_VisibilityNotifier2D_viewport_entered"))
+	_visibility_notifier.connect("viewport_exited", Callable(self, "_on_VisibilityNotifier2D_viewport_exited"))
 	
 	# Anti aliasing
 	var aa_mode: int = Settings.get_value(Settings.RENDERING_AA_MODE, Config.DEFAULT_AA_MODE)
@@ -51,12 +51,12 @@ func _ready():
 	refresh()
 
 # ------------------------------------------------------------------------------------------------
-func _on_VisibilityNotifier2D_viewport_entered(viewport: Viewport) -> void: 
+func _on_VisibilityNotifier2D_viewport_entered(viewport: SubViewport) -> void: 
 	add_to_group(GROUP_ONSCREEN)
 	visible = true
 	
 # ------------------------------------------------------------------------------------------------
-func _on_VisibilityNotifier2D_viewport_exited(viewport: Viewport) -> void:
+func _on_VisibilityNotifier2D_viewport_exited(viewport: SubViewport) -> void:
 	remove_from_group(GROUP_ONSCREEN)
 	visible = false
 
@@ -69,7 +69,7 @@ func add_point(point: Vector2, pressure: float) -> void:
 	var converted_pressure := int(floor(pressure * MAX_PRESSURE_VALUE))
 	
 	# Smooth out pressure values (on Linux i sometimes get really high pressure spikes)
-	if !pressures.empty():
+	if !pressures.is_empty():
 		var last_pressure: int = pressures.back()
 		var pressure_diff := converted_pressure - last_pressure
 		if abs(pressure_diff) > MAX_PRESSURE_DIFF:
@@ -81,7 +81,7 @@ func add_point(point: Vector2, pressure: float) -> void:
 
 # ------------------------------------------------------------------------------------------------
 func remove_last_point() -> void:
-	if !points.empty():
+	if !points.is_empty():
 		points.pop_back()
 		pressures.pop_back()
 		_line2d.points.remove(_line2d.points.size() - 1)
@@ -89,10 +89,10 @@ func remove_last_point() -> void:
 
 # ------------------------------------------------------------------------------------------------
 func remove_all_points() -> void:
-	if !points.empty():
+	if !points.is_empty():
 		points.clear()
 		pressures.clear()
-		_line2d.points = PoolVector2Array()
+		_line2d.points = PackedVector2Array()
 		_line2d.width_curve.clear_points()
 
 # ------------------------------------------------------------------------------------------------
@@ -102,7 +102,7 @@ func refresh() -> void:
 	_line2d.clear_points()
 	_line2d.width_curve.clear_points()
 	
-	if points.empty():
+	if points.is_empty():
 		return
 	
 	_line2d.default_color = color

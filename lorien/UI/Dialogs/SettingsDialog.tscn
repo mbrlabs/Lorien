@@ -12,31 +12,31 @@
 
 [sub_resource type="StyleBoxEmpty" id=2]
 
-[node name="SettingsDialog" type="WindowDialog"]
-margin_right = 520.0
-margin_bottom = 250.0
-rect_min_size = Vector2( 520, 270 )
+[node name="SettingsDialog" type="Window"]
+offset_right = 520.0
+offset_bottom = 250.0
+custom_minimum_size = Vector2( 520, 270 )
 theme = ExtResource( 1 )
-popup_exclusive = true
+exclusive = true
 window_title = "SETTINGS_TITLE"
 script = ExtResource( 2 )
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_constants/margin_right = 12
-custom_constants/margin_top = 12
-custom_constants/margin_left = 12
-custom_constants/margin_bottom = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_bottom = 12
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="TabContainer" type="TabContainer" parent="MarginContainer"]
-margin_left = 12.0
-margin_top = 12.0
-margin_right = 508.0
-margin_bottom = 258.0
+offset_left = 12.0
+offset_top = 12.0
+offset_right = 508.0
+offset_bottom = 258.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -44,7 +44,7 @@ __meta__ = {
 [node name="General" type="Control" parent="MarginContainer/TabContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = 27.0
+offset_top = 27.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/TabContainer/General"]
 anchor_right = 1.0
@@ -54,29 +54,29 @@ __meta__ = {
 }
 
 [node name="HSeparator3" type="HSeparator" parent="MarginContainer/TabContainer/General/VBoxContainer"]
-margin_right = 496.0
-margin_bottom = 12.0
-custom_constants/separation = 12
-custom_styles/separator = SubResource( 1 )
+offset_right = 496.0
+offset_bottom = 12.0
+theme_override_constants/separation = 12
+theme_override_styles/separator = SubResource( 1 )
 
 [node name="PressureSensitivity" type="HBoxContainer" parent="MarginContainer/TabContainer/General/VBoxContainer"]
-margin_top = 16.0
-margin_right = 496.0
-margin_bottom = 37.0
+offset_top = 16.0
+offset_right = 496.0
+offset_bottom = 37.0
 size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="MarginContainer/TabContainer/General/VBoxContainer/PressureSensitivity"]
-margin_top = 2.0
-margin_right = 246.0
-margin_bottom = 19.0
+offset_top = 2.0
+offset_right = 246.0
+offset_bottom = 19.0
 size_flags_horizontal = 3
 size_flags_vertical = 6
 text = "SETTINGS_PRESSURE_SENSITIVITY"
 
 [node name="PressureSensitivity" type="SpinBox" parent="MarginContainer/TabContainer/General/VBoxContainer/PressureSensitivity"]
-margin_left = 250.0
-margin_right = 496.0
-margin_bottom = 21.0
+offset_left = 250.0
+offset_right = 496.0
+offset_bottom = 21.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 min_value = 0.1
@@ -85,43 +85,43 @@ step = 0.01
 value = 1.0
 
 [node name="ConstantPressure" type="HBoxContainer" parent="MarginContainer/TabContainer/General/VBoxContainer"]
-margin_top = 41.0
-margin_right = 496.0
-margin_bottom = 66.0
+offset_top = 41.0
+offset_right = 496.0
+offset_bottom = 66.0
 size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="MarginContainer/TabContainer/General/VBoxContainer/ConstantPressure"]
-margin_top = 4.0
-margin_right = 246.0
-margin_bottom = 21.0
+offset_top = 4.0
+offset_right = 246.0
+offset_bottom = 21.0
 size_flags_horizontal = 3
 size_flags_vertical = 6
 text = "SETTINGS_CONSTANT_PRESSURE"
 
 [node name="ConstantPressure" type="CheckBox" parent="MarginContainer/TabContainer/General/VBoxContainer/ConstantPressure"]
-margin_left = 250.0
-margin_right = 496.0
-margin_bottom = 25.0
+offset_left = 250.0
+offset_right = 496.0
+offset_bottom = 25.0
 size_flags_horizontal = 3
 
 [node name="DefaultBrushSize" type="HBoxContainer" parent="MarginContainer/TabContainer/General/VBoxContainer"]
-margin_top = 70.0
-margin_right = 496.0
-margin_bottom = 91.0
+offset_top = 70.0
+offset_right = 496.0
+offset_bottom = 91.0
 size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="MarginContainer/TabContainer/General/VBoxContainer/DefaultBrushSize"]
-margin_top = 2.0
-margin_right = 246.0
-margin_bottom = 19.0
+offset_top = 2.0
+offset_right = 246.0
+offset_bottom = 19.0
 size_flags_horizontal = 3
 size_flags_vertical = 6
 text = "SETTINGS_BRUSH_SIZE"
 
 [node name="DefaultBrushSize" type="SpinBox" parent="MarginContainer/TabContainer/General/VBoxContainer/DefaultBrushSize"]
-margin_left = 250.0
-margin_right = 496.0
-margin_bottom = 21.0
+offset_left = 250.0
+offset_right = 496.0
+offset_bottom = 21.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 min_value = 1.0
@@ -129,23 +129,23 @@ value = 12.0
 allow_greater = true
 
 [node name="DefaultToolPressure" type="HBoxContainer" parent="MarginContainer/TabContainer/General/VBoxContainer"]
-margin_top = 95.0
-margin_right = 496.0
-margin_bottom = 116.0
+offset_top = 95.0
+offset_right = 496.0
+offset_bottom = 116.0
 size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="MarginContainer/TabContainer/General/VBoxContainer/DefaultToolPressure"]
-margin_top = 2.0
-margin_right = 246.0
-margin_bottom = 19.0
+offset_top = 2.0
+offset_right = 246.0
+offset_bottom = 19.0
 size_flags_horizontal = 3
 size_flags_vertical = 6
 text = "SETTINGS_TOOL_PRESSURE"
 
 [node name="DefaultToolPressure" type="SpinBox" parent="MarginContainer/TabContainer/General/VBoxContainer/DefaultToolPressure"]
-margin_left = 250.0
-margin_right = 496.0
-margin_bottom = 21.0
+offset_left = 250.0
+offset_right = 496.0
+offset_bottom = 21.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 max_value = 1.0
@@ -153,68 +153,68 @@ step = 0.05
 value = 1.0
 
 [node name="DefaultSaveDir" type="HBoxContainer" parent="MarginContainer/TabContainer/General/VBoxContainer"]
-margin_top = 120.0
-margin_right = 496.0
-margin_bottom = 141.0
+offset_top = 120.0
+offset_right = 496.0
+offset_bottom = 141.0
 size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="MarginContainer/TabContainer/General/VBoxContainer/DefaultSaveDir"]
-margin_top = 2.0
-margin_right = 246.0
-margin_bottom = 19.0
+offset_top = 2.0
+offset_right = 246.0
+offset_bottom = 19.0
 size_flags_horizontal = 3
 size_flags_vertical = 6
 text = "SETTINGS_PROJECT_FOLDER"
 
 [node name="DefaultSaveDir" type="LineEdit" parent="MarginContainer/TabContainer/General/VBoxContainer/DefaultSaveDir"]
-margin_left = 250.0
-margin_right = 496.0
-margin_bottom = 21.0
+offset_left = 250.0
+offset_right = 496.0
+offset_bottom = 21.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 placeholder_text = "e.g. C:/Users/me/Lorien"
 placeholder_alpha = 0.5
 
 [node name="HSeparator4" type="HSeparator" parent="MarginContainer/TabContainer/General/VBoxContainer"]
-margin_top = 145.0
-margin_right = 496.0
-margin_bottom = 169.0
-custom_constants/separation = 24
+offset_top = 145.0
+offset_right = 496.0
+offset_bottom = 169.0
+theme_override_constants/separation = 24
 
 [node name="Language" type="HBoxContainer" parent="MarginContainer/TabContainer/General/VBoxContainer"]
-margin_top = 173.0
-margin_right = 496.0
-margin_bottom = 198.0
+offset_top = 173.0
+offset_right = 496.0
+offset_bottom = 198.0
 size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="MarginContainer/TabContainer/General/VBoxContainer/Language"]
-margin_top = 4.0
-margin_right = 246.0
-margin_bottom = 21.0
+offset_top = 4.0
+offset_right = 246.0
+offset_bottom = 21.0
 size_flags_horizontal = 3
 size_flags_vertical = 6
 text = "SETTINGS_LANGUAGE"
 
 [node name="OptionButton" type="OptionButton" parent="MarginContainer/TabContainer/General/VBoxContainer/Language"]
-margin_left = 250.0
-margin_right = 496.0
-margin_bottom = 25.0
+offset_left = 250.0
+offset_right = 496.0
+offset_bottom = 25.0
 size_flags_horizontal = 3
 text = "English"
 
 [node name="HSeparator" type="HSeparator" parent="MarginContainer/TabContainer/General/VBoxContainer"]
-margin_top = 202.0
-margin_right = 496.0
-margin_bottom = 214.0
-custom_constants/separation = 12
-custom_styles/separator = SubResource( 3 )
+offset_top = 202.0
+offset_right = 496.0
+offset_bottom = 214.0
+theme_override_constants/separation = 12
+theme_override_styles/separator = SubResource( 3 )
 
 [node name="RestartLabel" type="Label" parent="MarginContainer/TabContainer/General/VBoxContainer"]
 visible = false
-margin_top = 206.0
-margin_right = 496.0
-margin_bottom = 223.0
-custom_colors/font_color = Color( 1, 0.470588, 0.470588, 1 )
+offset_top = 206.0
+offset_right = 496.0
+offset_bottom = 223.0
+theme_override_colors/font_color = Color( 1, 0.470588, 0.470588, 1 )
 text = "SETTINGS_RESTART_NOTICE"
 align = 1
 
@@ -222,7 +222,7 @@ align = 1
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = 27.0
+offset_top = 27.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/TabContainer/Appearance"]
 anchor_right = 1.0
@@ -232,58 +232,58 @@ __meta__ = {
 }
 
 [node name="HSeparator3" type="HSeparator" parent="MarginContainer/TabContainer/Appearance/VBoxContainer"]
-margin_right = 496.0
-margin_bottom = 12.0
-custom_constants/separation = 12
-custom_styles/separator = SubResource( 1 )
+offset_right = 496.0
+offset_bottom = 12.0
+theme_override_constants/separation = 12
+theme_override_styles/separator = SubResource( 1 )
 
 [node name="Theme" type="HBoxContainer" parent="MarginContainer/TabContainer/Appearance/VBoxContainer"]
-margin_top = 16.0
-margin_right = 496.0
-margin_bottom = 41.0
+offset_top = 16.0
+offset_right = 496.0
+offset_bottom = 41.0
 size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="MarginContainer/TabContainer/Appearance/VBoxContainer/Theme"]
-margin_top = 4.0
-margin_right = 246.0
-margin_bottom = 21.0
+offset_top = 4.0
+offset_right = 246.0
+offset_bottom = 21.0
 size_flags_horizontal = 3
 size_flags_vertical = 6
 text = "SETTINGS_THEME"
 
 [node name="Theme" type="OptionButton" parent="MarginContainer/TabContainer/Appearance/VBoxContainer/Theme"]
-margin_left = 250.0
-margin_right = 496.0
-margin_bottom = 25.0
+offset_left = 250.0
+offset_right = 496.0
+offset_bottom = 25.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "Dark"
-items = [ "Dark", null, false, 0, null, "Light (not implemented yet)", null, false, 1, null ]
+items = [ "Dark", null, false, 0, null, "Light3D (not implemented yet)", null, false, 1, null ]
 selected = 0
 
 [node name="UIScale" type="HBoxContainer" parent="MarginContainer/TabContainer/Appearance/VBoxContainer"]
-margin_top = 45.0
-margin_right = 496.0
-margin_bottom = 70.0
+offset_top = 45.0
+offset_right = 496.0
+offset_bottom = 70.0
 
 [node name="Label" type="Label" parent="MarginContainer/TabContainer/Appearance/VBoxContainer/UIScale"]
-margin_top = 4.0
-margin_right = 218.0
-margin_bottom = 21.0
+offset_top = 4.0
+offset_right = 218.0
+offset_bottom = 21.0
 size_flags_horizontal = 3
 size_flags_vertical = 6
 text = "SETTINGS_UI_SCALE"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/TabContainer/Appearance/VBoxContainer/UIScale"]
-margin_left = 222.0
-margin_right = 496.0
-margin_bottom = 25.0
+offset_left = 222.0
+offset_right = 496.0
+offset_bottom = 25.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="UIScaleOptions" type="OptionButton" parent="MarginContainer/TabContainer/Appearance/VBoxContainer/UIScale/HBoxContainer"]
-margin_right = 198.0
-margin_bottom = 25.0
+offset_right = 198.0
+offset_bottom = 25.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "SETTINGS_UI_SCALE_AUTO"
@@ -291,9 +291,9 @@ items = [ "SETTINGS_UI_SCALE_AUTO", null, false, 0, null, "SETTINGS_UI_SCALE_CUS
 selected = 0
 
 [node name="UIScale" type="SpinBox" parent="MarginContainer/TabContainer/Appearance/VBoxContainer/UIScale/HBoxContainer"]
-margin_left = 202.0
-margin_right = 274.0
-margin_bottom = 25.0
+offset_left = 202.0
+offset_right = 274.0
+offset_bottom = 25.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 min_value = 0.5
@@ -303,50 +303,50 @@ value = 1.0
 script = ExtResource( 3 )
 
 [node name="CanvasColor" type="HBoxContainer" parent="MarginContainer/TabContainer/Appearance/VBoxContainer"]
-margin_top = 74.0
-margin_right = 496.0
-margin_bottom = 91.0
+offset_top = 74.0
+offset_right = 496.0
+offset_bottom = 91.0
 size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="MarginContainer/TabContainer/Appearance/VBoxContainer/CanvasColor"]
-margin_right = 246.0
-margin_bottom = 17.0
+offset_right = 246.0
+offset_bottom = 17.0
 size_flags_horizontal = 3
 size_flags_vertical = 6
 text = "SETTINGS_CANVAS_COLOR"
 
 [node name="CanvasColor" type="ColorPickerButton" parent="MarginContainer/TabContainer/Appearance/VBoxContainer/CanvasColor"]
-margin_left = 250.0
-margin_right = 496.0
-margin_bottom = 17.0
+offset_left = 250.0
+offset_right = 496.0
+offset_bottom = 17.0
 size_flags_horizontal = 3
-custom_styles/hover = SubResource( 2 )
-custom_styles/pressed = SubResource( 2 )
-custom_styles/focus = SubResource( 2 )
-custom_styles/disabled = SubResource( 2 )
-custom_styles/normal = SubResource( 2 )
+theme_override_styles/hover = SubResource( 2 )
+theme_override_styles/pressed = SubResource( 2 )
+theme_override_styles/focus = SubResource( 2 )
+theme_override_styles/disabled = SubResource( 2 )
+theme_override_styles/normal = SubResource( 2 )
 flat = true
 color = Color( 0.12549, 0.129412, 0.141176, 1 )
 edit_alpha = false
 
 [node name="GridPattern" type="HBoxContainer" parent="MarginContainer/TabContainer/Appearance/VBoxContainer"]
-margin_top = 95.0
-margin_right = 496.0
-margin_bottom = 120.0
+offset_top = 95.0
+offset_right = 496.0
+offset_bottom = 120.0
 size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="MarginContainer/TabContainer/Appearance/VBoxContainer/GridPattern"]
-margin_top = 4.0
-margin_right = 246.0
-margin_bottom = 21.0
+offset_top = 4.0
+offset_right = 246.0
+offset_bottom = 21.0
 size_flags_horizontal = 3
 size_flags_vertical = 6
 text = "SETTINGS_GRID_PATTERN"
 
 [node name="GridPattern" type="OptionButton" parent="MarginContainer/TabContainer/Appearance/VBoxContainer/GridPattern"]
-margin_left = 250.0
-margin_right = 496.0
-margin_bottom = 25.0
+offset_left = 250.0
+offset_right = 496.0
+offset_bottom = 25.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "Dots"
@@ -354,23 +354,23 @@ items = [ "Dots", null, false, 0, null, "Lines", null, false, 1, null, "None", n
 selected = 0
 
 [node name="GridSize" type="HBoxContainer" parent="MarginContainer/TabContainer/Appearance/VBoxContainer"]
-margin_top = 124.0
-margin_right = 496.0
-margin_bottom = 145.0
+offset_top = 124.0
+offset_right = 496.0
+offset_bottom = 145.0
 size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="MarginContainer/TabContainer/Appearance/VBoxContainer/GridSize"]
-margin_top = 2.0
-margin_right = 246.0
-margin_bottom = 19.0
+offset_top = 2.0
+offset_right = 246.0
+offset_bottom = 19.0
 size_flags_horizontal = 3
 size_flags_vertical = 6
 text = "SETTINGS_GRID_SIZE"
 
 [node name="GridSize" type="SpinBox" parent="MarginContainer/TabContainer/Appearance/VBoxContainer/GridSize"]
-margin_left = 250.0
-margin_right = 496.0
-margin_bottom = 21.0
+offset_left = 250.0
+offset_right = 496.0
+offset_bottom = 21.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 min_value = 8.0
@@ -379,18 +379,18 @@ value = 12.0
 allow_greater = true
 
 [node name="HSeparator5" type="HSeparator" parent="MarginContainer/TabContainer/Appearance/VBoxContainer"]
-margin_top = 149.0
-margin_right = 496.0
-margin_bottom = 161.0
-custom_constants/separation = 12
-custom_styles/separator = SubResource( 1 )
+offset_top = 149.0
+offset_right = 496.0
+offset_bottom = 161.0
+theme_override_constants/separation = 12
+theme_override_styles/separator = SubResource( 1 )
 
 [node name="RestartLabel" type="Label" parent="MarginContainer/TabContainer/Appearance/VBoxContainer"]
 visible = false
-margin_top = 90.0
-margin_right = 496.0
-margin_bottom = 107.0
-custom_colors/font_color = Color( 1, 0.470588, 0.470588, 1 )
+offset_top = 90.0
+offset_right = 496.0
+offset_bottom = 107.0
+theme_override_colors/font_color = Color( 1, 0.470588, 0.470588, 1 )
 text = "SETTINGS_RESTART_NOTICE"
 align = 1
 
@@ -398,83 +398,83 @@ align = 1
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = 27.0
+offset_top = 27.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/TabContainer/Rendering"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="HSeparator3" type="HSeparator" parent="MarginContainer/TabContainer/Rendering/VBoxContainer"]
-margin_right = 496.0
-margin_bottom = 12.0
-custom_constants/separation = 12
-custom_styles/separator = SubResource( 1 )
+offset_right = 496.0
+offset_bottom = 12.0
+theme_override_constants/separation = 12
+theme_override_styles/separator = SubResource( 1 )
 
 [node name="AntiAliasing" type="HBoxContainer" parent="MarginContainer/TabContainer/Rendering/VBoxContainer"]
-margin_top = 16.0
-margin_right = 496.0
-margin_bottom = 41.0
+offset_top = 16.0
+offset_right = 496.0
+offset_bottom = 41.0
 size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="MarginContainer/TabContainer/Rendering/VBoxContainer/AntiAliasing"]
-margin_top = 4.0
-margin_right = 246.0
-margin_bottom = 21.0
+offset_top = 4.0
+offset_right = 246.0
+offset_bottom = 21.0
 size_flags_horizontal = 3
 size_flags_vertical = 6
 text = "SETTINGS_AA_METHOD"
 
 [node name="AntiAliasing" type="OptionButton" parent="MarginContainer/TabContainer/Rendering/VBoxContainer/AntiAliasing"]
-margin_left = 250.0
-margin_right = 496.0
-margin_bottom = 25.0
+offset_left = 250.0
+offset_right = 496.0
+offset_bottom = 25.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "SETTINGS_AA_METHOD_NONE"
-items = [ "SETTINGS_AA_METHOD_NONE", null, false, 0, null, "OpenGL Hint", null, false, 1, null, "Texture Fill", null, false, 2, null ]
+items = [ "SETTINGS_AA_METHOD_NONE", null, false, 0, null, "OpenGL Hint", null, false, 1, null, "Texture2D Fill", null, false, 2, null ]
 selected = 0
 
 [node name="BrushRounding" type="HBoxContainer" parent="MarginContainer/TabContainer/Rendering/VBoxContainer"]
-margin_top = 45.0
-margin_right = 496.0
-margin_bottom = 70.0
+offset_top = 45.0
+offset_right = 496.0
+offset_bottom = 70.0
 size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="MarginContainer/TabContainer/Rendering/VBoxContainer/BrushRounding"]
-margin_top = 4.0
-margin_right = 246.0
-margin_bottom = 21.0
+offset_top = 4.0
+offset_right = 246.0
+offset_bottom = 21.0
 size_flags_horizontal = 3
 size_flags_vertical = 6
 text = "SETTINGS_BRUSH_CAPS"
 
 [node name="OptionButton" type="OptionButton" parent="MarginContainer/TabContainer/Rendering/VBoxContainer/BrushRounding"]
-margin_left = 250.0
-margin_right = 496.0
-margin_bottom = 25.0
+offset_left = 250.0
+offset_right = 496.0
+offset_bottom = 25.0
 size_flags_horizontal = 3
 text = "SETTINGS_BRUSH_CAPS_FLAT"
 items = [ "SETTINGS_BRUSH_CAPS_FLAT", null, false, 0, null, "SETTINGS_BRUSH_CAPS_ROUND", null, false, 1, null ]
 selected = 0
 
 [node name="TargetFramerate" type="HBoxContainer" parent="MarginContainer/TabContainer/Rendering/VBoxContainer"]
-margin_top = 74.0
-margin_right = 496.0
-margin_bottom = 95.0
+offset_top = 74.0
+offset_right = 496.0
+offset_bottom = 95.0
 size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="MarginContainer/TabContainer/Rendering/VBoxContainer/TargetFramerate"]
-margin_top = 2.0
-margin_right = 246.0
-margin_bottom = 19.0
+offset_top = 2.0
+offset_right = 246.0
+offset_bottom = 19.0
 size_flags_horizontal = 3
 size_flags_vertical = 6
 text = "SETTINGS_FPS_FOREGROUND"
 
 [node name="TargetFramerate" type="SpinBox" parent="MarginContainer/TabContainer/Rendering/VBoxContainer/TargetFramerate"]
-margin_left = 250.0
-margin_right = 496.0
-margin_bottom = 21.0
+offset_left = 250.0
+offset_right = 496.0
+offset_bottom = 21.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 min_value = 1.0
@@ -483,23 +483,23 @@ value = 144.0
 allow_greater = true
 
 [node name="BackgroundFramerate" type="HBoxContainer" parent="MarginContainer/TabContainer/Rendering/VBoxContainer"]
-margin_top = 99.0
-margin_right = 496.0
-margin_bottom = 120.0
+offset_top = 99.0
+offset_right = 496.0
+offset_bottom = 120.0
 size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="MarginContainer/TabContainer/Rendering/VBoxContainer/BackgroundFramerate"]
-margin_top = 2.0
-margin_right = 246.0
-margin_bottom = 19.0
+offset_top = 2.0
+offset_right = 246.0
+offset_bottom = 19.0
 size_flags_horizontal = 3
 size_flags_vertical = 6
 text = "SETTINGS_FPS_BACKGROUND"
 
 [node name="BackgroundFramerate" type="SpinBox" parent="MarginContainer/TabContainer/Rendering/VBoxContainer/BackgroundFramerate"]
-margin_left = 250.0
-margin_right = 496.0
-margin_bottom = 21.0
+offset_left = 250.0
+offset_right = 496.0
+offset_bottom = 21.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 min_value = 5.0
@@ -508,18 +508,18 @@ value = 10.0
 allow_greater = true
 
 [node name="HSeparator4" type="HSeparator" parent="MarginContainer/TabContainer/Rendering/VBoxContainer"]
-margin_top = 124.0
-margin_right = 496.0
-margin_bottom = 136.0
-custom_constants/separation = 12
-custom_styles/separator = SubResource( 1 )
+offset_top = 124.0
+offset_right = 496.0
+offset_bottom = 136.0
+theme_override_constants/separation = 12
+theme_override_styles/separator = SubResource( 1 )
 
 [node name="RestartLabel" type="Label" parent="MarginContainer/TabContainer/Rendering/VBoxContainer"]
 visible = false
-margin_top = 140.0
-margin_right = 496.0
-margin_bottom = 157.0
-custom_colors/font_color = Color( 1, 0.470588, 0.470588, 1 )
+offset_top = 140.0
+offset_right = 496.0
+offset_bottom = 157.0
+theme_override_colors/font_color = Color( 1, 0.470588, 0.470588, 1 )
 text = "SETTINGS_RESTART_NOTICE"
 align = 1
 
@@ -527,13 +527,13 @@ align = 1
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = 27.0
+offset_top = 27.0
 script = ExtResource( 4 )
 
 [node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/TabContainer/Keybindings"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = 12.0
+offset_top = 12.0
 
 [node name="KeyBindingsList" type="GridContainer" parent="MarginContainer/TabContainer/Keybindings/ScrollContainer"]
 columns = 3
@@ -542,9 +542,9 @@ columns = 3
 window_title = "KEYBINDING_DIALOG_BIND_WINDOW_NAME"
 
 [node name="ConfirmRebind" type="ConfirmationDialog" parent="MarginContainer/TabContainer/Keybindings/AddKeyDialog"]
-margin_right = 200.0
-margin_bottom = 70.0
-popup_exclusive = true
+offset_right = 200.0
+offset_bottom = 70.0
+exclusive = true
 window_title = "KEYBINDING_DIALOG_REBIND_WINDOW_NAME"
 dialog_autowrap = true
 

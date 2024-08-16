@@ -18,7 +18,7 @@ func _ready() -> void:
 	# Generate a texture with custom mipmaps (1-pixel feather on the top and bottom sides).
 	# The texture must be square for mipmaps to work correctly. The texture's in-memory size is still
 	# pretty low (less than 200 KB), so this should not cause any performance problems.
-	var data := PoolByteArray()
+	var data := PackedByteArray()
 	for mipmap in [256, 128, 64, 32, 16, 8, 4, 2, 1]:
 		for y in mipmap:
 			for x in mipmap:

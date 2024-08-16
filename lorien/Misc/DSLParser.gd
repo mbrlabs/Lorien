@@ -58,14 +58,15 @@ class_name DSLParser
 
 # -------------------------------------------------------------------------------------------------
 class ParsedSymbol:
-	extends Reference
+	extends RefCounted
 
 	var name: String
 	var last_position: int
 	var subsymbols: Array
 	var value
 	
-	func _init(_name: String, _last_position: int, _subsymbols: Array, _value).():
+	func _init(_name: String, _last_position: int, _subsymbols: Array, _value):
+		super()
 		name = _name
 		last_position = _last_position
 		subsymbols = _subsymbols
@@ -78,18 +79,18 @@ class ParsedSymbol:
 		return null
 	
 	func _to_string():
-		var subsymbol_strings = PoolStringArray([])
+		var subsymbol_strings = PackedStringArray([])
 		for st in subsymbols:
 			subsymbol_strings.append(str(st))
 		return "<T name={name}{value} [{subsymbols}]>".format({
 			"name": name,
 			"value": (" '%s'" % value) if value else "",
-			"subsymbols": subsymbol_strings.join(", ")
+			"subsymbols": ", ".join(subsymbol_strings)
 		})
 
 # -------------------------------------------------------------------------------------------------
 class GrammarElement:
-	extends Reference
+	extends RefCounted
 
 	func parse(s: String):
 		pass
@@ -119,7 +120,8 @@ class GrammarSequence:
 	var elements: Array
 	var flatten_same_name := false
 	
-	func _init(_name: String, _elements: Array = [], _flatten_same_name = false).():
+	func _init(_name: String, _elements: Array = [], _flatten_same_name = false):
+		super()
 		name = _name
 		elements = _elements
 		flatten_same_name = _flatten_same_name
@@ -156,7 +158,8 @@ class GrammarLiteral:
 	var value: String
 	var ignore_whitespace := true
 	
-	func _init(_name: String, _value = null).():
+	func _init(_name: String, _value = null):
+		super()
 		if _value == null:
 			_value = _name
 		name = _name
@@ -179,7 +182,8 @@ class GrammarRegexMatch:
 	var regex: RegEx
 	var ignore_whitespace := true
 	
-	func _init(_name: String, pattern: String).():
+	func _init(_name: String, pattern: String):
+		super()
 		name = _name
 		regex = RegEx.new()
 		regex.compile(pattern)

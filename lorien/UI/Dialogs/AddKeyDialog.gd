@@ -1,20 +1,20 @@
-extends WindowDialog
+extends Window
 
 # -------------------------------------------------------------------------------------------------
-const _MODIFIER_KEYS := [KEY_SUPER_L, KEY_SUPER_R, KEY_CONTROL, KEY_SHIFT, KEY_META, KEY_ALT]
+const _MODIFIER_KEYS := [KEY_SUPER_L, KEY_SUPER_R, KEY_CTRL, KEY_SHIFT, KEY_META, KEY_ALT]
 
 # -------------------------------------------------------------------------------------------------
-export var action_name := ""
-export var readable_action_name := "" setget _set_readable_action_name
+@export var action_name := ""
+@export var readable_action_name := "": set = _set_readable_action_name
 
-onready var _confirm_rebind_dialog := $ConfirmRebind
+@onready var _confirm_rebind_dialog := $ConfirmRebind
 
 var _pending_bind_event = null
 
 # -------------------------------------------------------------------------------------------------
 func _ready() -> void:
 	_update_event_text()
-	GlobalSignals.connect("language_changed", self, "_update_event_text")
+	GlobalSignals.connect("language_changed", Callable(self, "_update_event_text"))
 
 # -------------------------------------------------------------------------------------------------
 func _set_readable_action_name(s: String):
@@ -39,13 +39,13 @@ func _input(event: InputEvent) -> void:
 	if ! visible || _confirm_rebind_dialog.visible:
 		return
 	if event is InputEventKey && event.is_pressed():
-		get_tree().set_input_as_handled()
+		get_viewport().set_input_as_handled()
 		
-		if event.scancode in _MODIFIER_KEYS:
+		if event.keycode in _MODIFIER_KEYS:
 			return
 
 		var event_type := InputEventKey.new()
-		event_type.scancode = event.scancode
+		event_type.keycode = event.keycode
 		event_type.alt = event.alt
 		event_type.shift = event.shift
 		event_type.control = event.control
@@ -57,7 +57,7 @@ func _input(event: InputEvent) -> void:
 		_pending_bind_event = event_type
 		if _conflicting_action is String && _conflicting_action != action_name:
 			_confirm_rebind_dialog.dialog_text = tr("KEYBINDING_DIALOG_REBIND_MESSAGE").format({
-				"event": OS.get_scancode_string(event_type.get_scancode_with_modifiers()),
+				"event": OS.get_keycode_string(event_type.get_keycode_with_modifiers()),
 				"action": Utils.translate_action(_conflicting_action)
 			})
 			_confirm_rebind_dialog.popup_centered()

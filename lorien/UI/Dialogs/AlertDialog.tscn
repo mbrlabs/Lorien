@@ -3,11 +3,11 @@
 [ext_resource path="res://UI/Themes/theme_dark.tres" type="Theme" id=1]
 
 [node name="AlertDialog" type="AcceptDialog"]
-margin_right = 300.0
-margin_bottom = 80.0
-rect_min_size = Vector2( 500, 80 )
+offset_right = 300.0
+offset_bottom = 80.0
+custom_minimum_size = Vector2( 500, 80 )
 theme = ExtResource( 1 )
-popup_exclusive = true
+exclusive = true
 window_title = "Alert"
 dialog_autowrap = true
 __meta__ = {

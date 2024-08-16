@@ -9,18 +9,18 @@ signal color_changed(color)
 signal closed
 
 # -------------------------------------------------------------------------------------------------
-export var add_new_palette_dialog_path: NodePath
-export var edit_palette_dialog: NodePath
-export var delete_palette_dialog: NodePath
-export var toolbar_path: NodePath
+@export var add_new_palette_dialog_path: NodePath
+@export var edit_palette_dialog: NodePath
+@export var delete_palette_dialog: NodePath
+@export var toolbar_path: NodePath
 
-onready var _toolbar = get_node(toolbar_path)
-onready var _palette_selection_button: OptionButton = $MarginContainer/VBoxContainer/Buttons/PaletteSelectionButton
-onready var _color_grid: GridContainer = $MarginContainer/VBoxContainer/ColorGrid
-onready var _edit_button: TextureButton = $MarginContainer/VBoxContainer/Buttons/EditColorButton
-onready var _new_button: TextureButton = $MarginContainer/VBoxContainer/Buttons/AddPaletteButton
-onready var _duplicate_button: TextureButton = $MarginContainer/VBoxContainer/Buttons/DuplicatePaletteButton
-onready var _delete_button: TextureButton = $MarginContainer/VBoxContainer/Buttons/DeletePaletteButton
+@onready var _toolbar = get_node(toolbar_path)
+@onready var _palette_selection_button: OptionButton = $MarginContainer/VBoxContainer/Buttons/PaletteSelectionButton
+@onready var _color_grid: GridContainer = $MarginContainer/VBoxContainer/ColorGrid
+@onready var _edit_button: TextureButton = $MarginContainer/VBoxContainer/Buttons/EditColorButton
+@onready var _new_button: TextureButton = $MarginContainer/VBoxContainer/Buttons/AddPaletteButton
+@onready var _duplicate_button: TextureButton = $MarginContainer/VBoxContainer/Buttons/DuplicatePaletteButton
+@onready var _delete_button: TextureButton = $MarginContainer/VBoxContainer/Buttons/DeletePaletteButton
 
 var _active_palette_button: PaletteButton
 var _active_color_index := -1
@@ -29,11 +29,11 @@ var _active_color_index := -1
 func _ready() -> void:
 	update_palettes()
 	
-	_palette_selection_button.connect("item_selected", self, "_on_PaletteSelectionButton_item_selected")
-	_new_button.connect("pressed", self, "_on_AddPaletteButton_pressed")
-	_edit_button.connect("pressed", self, "_on_EditColorButton_pressed")
-	_duplicate_button.connect("pressed", self, "_on_DuplicatePaletteButton_pressed")
-	_delete_button.connect("pressed", self, "_on_DeletePaletteButton_pressed")
+	_palette_selection_button.connect("item_selected", Callable(self, "_on_PaletteSelectionButton_item_selected"))
+	_new_button.connect("pressed", Callable(self, "_on_AddPaletteButton_pressed"))
+	_edit_button.connect("pressed", Callable(self, "_on_EditColorButton_pressed"))
+	_duplicate_button.connect("pressed", Callable(self, "_on_DuplicatePaletteButton_pressed"))
+	_delete_button.connect("pressed", Callable(self, "_on_DeletePaletteButton_pressed"))
 	
 # -------------------------------------------------------------------------------------------------
 func _input(event: InputEvent) -> void:
@@ -48,14 +48,14 @@ func _input(event: InputEvent) -> void:
 		if should_hide:
 			_close()
 
-	elif event is InputEventKey && event.pressed && event.scancode == KEY_ESCAPE:
+	elif event is InputEventKey && event.pressed && event.keycode == KEY_ESCAPE:
 		_close()
 
 # -------------------------------------------------------------------------------------------------
 func get_active_color() -> Color:
 	if _active_palette_button != null:
 		return _active_palette_button.color
-	return Color.white
+	return Color.WHITE
 
 # -------------------------------------------------------------------------------------------------
 func get_active_color_index() -> int:
@@ -92,14 +92,14 @@ func _create_buttons(palette: Palette) -> void:
 	# Add new ones
 	var index := 0
 	for color in palette.colors:
-		var button: PaletteButton = PALETTE_BUTTON.instance()
+		var button: PaletteButton = PALETTE_BUTTON.instantiate()
 		_color_grid.add_child(button)
 		button.color = color
-		button.connect("pressed", self, "_on_platte_button_pressed", [button, index])
+		button.connect("pressed", Callable(self, "_on_platte_button_pressed").bind(button, index))
 		index += 1
 	
 	# Adjust ui size
-	rect_size = get_combined_minimum_size()
+	size = get_combined_minimum_size()
 	
 # -------------------------------------------------------------------------------------------------
 func _activate_palette_button(button: PaletteButton, color_index: int) -> void:
@@ -164,21 +164,21 @@ func toggle() -> void:
 
 # -------------------------------------------------------------------------------------------------
 func _adjust_position() -> void:
-	var color_button_position: float = _toolbar.get_brush_color_button().rect_position.x
+	var color_button_position: float = _toolbar.get_brush_color_button().position.x
 	# If palette extends beyond the window
-	if color_button_position + rect_size.x > _toolbar.rect_size.x:
-		var size_offset: int = _toolbar.rect_size.x - rect_size.x
+	if color_button_position + size.x > _toolbar.size.x:
+		var size_offset: int = _toolbar.size.x - size.x
 		# If window size is big enough to show the entire palette (horizontally)
 		if size_offset >= 0:
-			rect_position.x = size_offset
-		elif _color_grid.get_combined_minimum_size().x < _toolbar.rect_size.x:
-			rect_position.x = 0
+			position.x = size_offset
+		elif _color_grid.get_combined_minimum_size().x < _toolbar.size.x:
+			position.x = 0
 		else:
-			var color_button_size: float = _toolbar.get_brush_color_button().rect_size.x
+			var color_button_size: float = _toolbar.get_brush_color_button().size.x
 			# Brackets = Distance of window center from left side of color button
 			# Distance / size = ratio where (0 <= ratio <= 1) scrolls through color picker
 			# (ratio < 0) clamps to left side of color picker, (ratio > 1) clamps to right side
-			var interval_position: float = (_toolbar.scroll_horizontal + _toolbar.rect_size.x / 2 - color_button_position) / color_button_size * size_offset
-			rect_position.x = clamp(interval_position, size_offset, 0)
-	elif rect_position.x != color_button_position:
-		rect_position.x = color_button_position - _toolbar.scroll_horizontal
+			var interval_position: float = (_toolbar.scroll_horizontal + _toolbar.size.x / 2 - color_button_position) / color_button_size * size_offset
+			position.x = clamp(interval_position, size_offset, 0)
+	elif position.x != color_button_position:
+		position.x = color_button_position - _toolbar.scroll_horizontal

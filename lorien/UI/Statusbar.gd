@@ -2,12 +2,12 @@ extends Panel
 class_name Statusbar
 
 # -------------------------------------------------------------------------------------------------
-onready var _strokes_label: Label = $MarginContainer/HBoxContainer/Right/StrokesLabel
-onready var _points_label: Label = $MarginContainer/HBoxContainer/Right/PointsLabel
-onready var _pressure_label: Label = $MarginContainer/HBoxContainer/Left/PressureLabel
-onready var _position_label: Label = $MarginContainer/HBoxContainer/Left/PositionLabel
-onready var _zoom_label: Label = $MarginContainer/HBoxContainer/Left/ZoomLabel
-onready var _fps_label: Label = $MarginContainer/HBoxContainer/Left/FpsLabel
+@onready var _strokes_label: Label = $MarginContainer/HBoxContainer/Right/StrokesLabel
+@onready var _points_label: Label = $MarginContainer/HBoxContainer/Right/PointsLabel
+@onready var _pressure_label: Label = $MarginContainer/HBoxContainer/Left/PressureLabel
+@onready var _position_label: Label = $MarginContainer/HBoxContainer/Left/PositionLabel
+@onready var _zoom_label: Label = $MarginContainer/HBoxContainer/Left/ZoomLabel
+@onready var _fps_label: Label = $MarginContainer/HBoxContainer/Left/FpsLabel
 
 var _str_position: String
 var _str_zoom: String
@@ -19,7 +19,7 @@ var _str_point_count: String
 # -------------------------------------------------------------------------------------------------
 func _ready() -> void:
 	_apply_language()
-	GlobalSignals.connect("language_changed", self, "_apply_language")
+	GlobalSignals.connect("language_changed", Callable(self, "_apply_language"))
 
 # -------------------------------------------------------------------------------------------------
 func _apply_language() -> void:

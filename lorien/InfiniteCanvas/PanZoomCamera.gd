@@ -34,15 +34,15 @@ func tool_event(event: InputEvent) -> void:
 		if event is InputEventMouseButton:
 			
 			# Scroll wheel up/down to zoom
-			if event.button_index == BUTTON_WHEEL_DOWN:
+			if event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
 				if event.pressed:
 					_do_zoom_scroll(1)
-			elif event.button_index == BUTTON_WHEEL_UP:
+			elif event.button_index == MOUSE_BUTTON_WHEEL_UP:
 				if event.pressed:
 					_do_zoom_scroll(-1)
 			
 			# MMB press to begin pan; ctrl+MMB press to begin zoom
-			if event.button_index == BUTTON_MIDDLE:
+			if event.button_index == MOUSE_BUTTON_MIDDLE:
 				if !event.control:
 					_pan_active = event.is_pressed()
 					_zoom_active = false
@@ -60,27 +60,27 @@ func tool_event(event: InputEvent) -> void:
 		
 		elif Utils.event_pressed_bug_workaround("canvas_zoom_in", event):
 			_do_zoom_scroll(-1)
-			get_tree().set_input_as_handled()
+			get_viewport().set_input_as_handled()
 		
 		elif Utils.event_pressed_bug_workaround("canvas_zoom_out", event):
 			_do_zoom_scroll(1)
-			get_tree().set_input_as_handled()
+			get_viewport().set_input_as_handled()
 		
 		elif Utils.event_pressed_bug_workaround("canvas_pan_left", event):
 			_do_pan(-Vector2.LEFT * KEYBOARD_PAN_CONSTANT)
-			get_tree().set_input_as_handled()
+			get_viewport().set_input_as_handled()
 
 		elif Utils.event_pressed_bug_workaround("canvas_pan_right", event):
 			_do_pan(-Vector2.RIGHT * KEYBOARD_PAN_CONSTANT)
-			get_tree().set_input_as_handled()
+			get_viewport().set_input_as_handled()
 
 		elif Utils.event_pressed_bug_workaround("canvas_pan_up", event):
 			_do_pan(-Vector2.UP * KEYBOARD_PAN_CONSTANT)
-			get_tree().set_input_as_handled()
+			get_viewport().set_input_as_handled()
 
 		elif Utils.event_pressed_bug_workaround("canvas_pan_down", event):
 			_do_pan(-Vector2.DOWN * KEYBOARD_PAN_CONSTANT)
-			get_tree().set_input_as_handled()
+			get_viewport().set_input_as_handled()
 
 # -------------------------------------------------------------------------------------------------
 func _do_pan(pan: Vector2) -> void:

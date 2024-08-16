@@ -6,7 +6,7 @@ const STEP_IN_MOTION := 15
 const STEP_STATIC := 4
 
 # -------------------------------------------------------------------------------------------------
-export var pressure_curve: Curve
+@export var pressure_curve: Curve
 var _start_position_top_left: Vector2
 
 # -------------------------------------------------------------------------------------------------
@@ -17,8 +17,8 @@ func _init():
 	sin_arr.resize(360)
 	cos_arr.resize(360)
 	for i in 360:
-		sin_arr[i] = sin(deg2rad(i))
-		cos_arr[i] = cos(deg2rad(i))
+		sin_arr[i] = sin(deg_to_rad(i))
+		cos_arr[i] = cos(deg_to_rad(i))
 
 # -------------------------------------------------------------------------------------------------
 func tool_event(event: InputEvent) -> void:
@@ -36,7 +36,7 @@ func tool_event(event: InputEvent) -> void:
 		
 	# Start + End
 	elif event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT:
+		if event.button_index == MOUSE_BUTTON_LEFT:
 			if event.pressed:
 				start_stroke()
 				_start_position_top_left = _cursor.global_position
@@ -50,7 +50,7 @@ func tool_event(event: InputEvent) -> void:
 # -------------------------------------------------------------------------------------------------
 func _make_ellipse(pressure: float, step: int, should_draw_circle: bool) -> void:
 	
-	pressure = pressure_curve.interpolate(pressure)
+	pressure = pressure_curve.sample(pressure)
 
 	var r1 := 0.5 * abs(_cursor.global_position.x - _start_position_top_left.x)
 	var r2 := 0.5 * abs(_cursor.global_position.y - _start_position_top_left.y)
