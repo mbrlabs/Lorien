@@ -3,6 +3,7 @@ extends Node2D
 
 # -------------------------------------------------------------------------------------------------
 @export var camera_path: NodePath
+
 var _enabled: bool
 var _pattern: int = Types.GridPattern.DOTS
 var _camera: Camera2D
@@ -51,9 +52,9 @@ func set_grid_scale(size: float):
 
 # -------------------------------------------------------------------------------------------------
 func _draw() -> void:
-	var size := Vector2(get_viewport().size)  * _camera.zoom
-	var zoom := _camera.zoom.x
-	var offset := _camera.offset
+	var zoom := (Vector2.ONE / _camera.zoom).x
+	var size = Vector2(get_viewport().size.x, get_viewport().size.y) * zoom
+	var offset = _camera.offset
 	var grid_size := int(ceil((_grid_size * pow(zoom, 0.75))))
 		
 	match _pattern:

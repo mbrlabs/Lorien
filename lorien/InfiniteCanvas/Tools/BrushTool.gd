@@ -10,7 +10,6 @@ const DOT_MAX_DISTANCE_THRESHOLD := 4.0
 @export var pressure_curve: Curve
 
 # -------------------------------------------------------------------------------------------------
-var _current_position: Vector2
 var _current_pressure: float
 var _last_accepted_position: Vector2
 var _first_point := false
@@ -20,7 +19,6 @@ func tool_event(event: InputEvent) -> void:
 	_cursor.set_pressure(1.0)
 	
 	if event is InputEventMouseMotion:
-		_current_position = event.position
 		_current_pressure = event.pressure
 		if performing_stroke:
 			_cursor.set_pressure(event.pressure)
@@ -39,8 +37,10 @@ func tool_event(event: InputEvent) -> void:
 # -------------------------------------------------------------------------------------------------
 func _process(delta: float) -> void:
 	if performing_stroke:
+		var pos := _cursor.global_position
+		
 		# Basic smoothing
-		var diff := _current_position.distance_squared_to(_last_accepted_position)
+		var diff := pos.distance_squared_to(_last_accepted_position)
 		if diff <= MOVEMENT_THRESHOLD || _current_pressure <= MIN_PRESSURE:
 			return
 
@@ -50,17 +50,16 @@ func _process(delta: float) -> void:
 			point_pressure *= 1.4
 			_first_point = false
 		
-		var point_position := xform_vector2(_current_position)
-		add_stroke_point(point_position, point_pressure)
+		add_stroke_point(pos, point_pressure)
 		
 		# If the brush stroke gets too long, we make a new one. This is necessary because Godot limits the number
 		# of indices in a Line2D/Polygon
 		if get_current_brush_stroke().points.size() >= BrushStroke.MAX_POINTS:
 			end_stroke()
 			start_stroke()
-			add_stroke_point(point_position, point_pressure)
+			add_stroke_point(pos, point_pressure)
 			
-		_last_accepted_position = _current_position
+		_last_accepted_position = pos
 
 # -------------------------------------------------------------------------------------------------
 func _is_stroke_a_dot() -> bool:
@@ -85,7 +84,7 @@ func _is_stroke_a_dot() -> bool:
 
 # -------------------------------------------------------------------------------------------------
 func _draw_point() -> void:
-	var origin := xform_vector2(_current_position)
+	var origin := _cursor.global_position
 	var pressure = 0.5
 	var offset := 1.5
 	

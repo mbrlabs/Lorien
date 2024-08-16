@@ -31,13 +31,9 @@ func _ready():
 	_visibility_notifier.connect("screen_exited", _on_VisibilityNotifier2D_screen_exited)
 	
 	# Anti aliasing
-	var aa_mode: int = Settings.get_value(Settings.RENDERING_AA_MODE, Config.DEFAULT_AA_MODE)
-	match aa_mode:
-		Types.AAMode.OPENGL_HINT:
-			_line2d.antialiased = true
-		Types.AAMode.TEXTURE_FILL:
-			_line2d.texture = BrushStrokeTexture.texture
-			_line2d.texture_mode = Line2D.LINE_TEXTURE_STRETCH
+	_line2d.texture = BrushStrokeTexture.texture
+	_line2d.texture_mode = Line2D.LINE_TEXTURE_TILE
+	_line2d.texture_filter = TextureFilter.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS
 	
 	var rounding_mode: int = Settings.get_value(Settings.RENDERING_BRUSH_ROUNDING, Config.DEFAULT_BRUSH_ROUNDING)
 	match rounding_mode:

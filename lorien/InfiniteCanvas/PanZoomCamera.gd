@@ -3,7 +3,7 @@ extends Camera2D
 signal zoom_changed(value)
 signal position_changed(value)
 
-const ZOOM_INCREMENT := 1.1 	# Feel free to modify (Krita uses sqrt(2))
+const ZOOM_INCREMENT := 1.1
 const MIN_ZOOM_LEVEL := 0.1
 const MAX_ZOOM_LEVEL := 100
 const KEYBOARD_PAN_CONSTANT := 20
@@ -23,7 +23,11 @@ func set_zoom_level(zoom_level: float) -> void:
 
 # -------------------------------------------------------------------------------------------------
 func do_center(screen_space_center_point: Vector2) -> void:
-	var screen_space_center := get_viewport_rect().size / 2.0
+	#var screen_space_center := get_viewport().get_size() / 2
+	
+	# TODO(gd4): no idea if this is the eqivialnt of the above line
+	var screen_space_center := Vector2(DisplayServer.window_get_size().x, DisplayServer.window_get_size().y)
+	
 	var delta := screen_space_center - screen_space_center_point
 	get_viewport().warp_mouse(screen_space_center)
 	_do_pan(delta)
@@ -36,14 +40,14 @@ func tool_event(event: InputEvent) -> void:
 			# Scroll wheel up/down to zoom
 			if event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
 				if event.pressed:
-					_do_zoom_scroll(1)
+					_do_zoom_scroll(-1)
 			elif event.button_index == MOUSE_BUTTON_WHEEL_UP:
 				if event.pressed:
-					_do_zoom_scroll(-1)
+					_do_zoom_scroll(1)
 			
 			# MMB press to begin pan; ctrl+MMB press to begin zoom
 			if event.button_index == MOUSE_BUTTON_MIDDLE:
-				if !event.control:
+				if !event.ctrl_pressed:
 					_pan_active = event.is_pressed()
 					_zoom_active = false
 				else:
@@ -59,11 +63,11 @@ func tool_event(event: InputEvent) -> void:
 				_do_zoom_drag(event.relative.y)
 		
 		elif Utils.event_pressed_bug_workaround("canvas_zoom_in", event):
-			_do_zoom_scroll(-1)
+			_do_zoom_scroll(1)
 			get_viewport().set_input_as_handled()
 		
 		elif Utils.event_pressed_bug_workaround("canvas_zoom_out", event):
-			_do_zoom_scroll(1)
+			_do_zoom_scroll(-1)
 			get_viewport().set_input_as_handled()
 		
 		elif Utils.event_pressed_bug_workaround("canvas_pan_left", event):
@@ -84,7 +88,7 @@ func tool_event(event: InputEvent) -> void:
 
 # -------------------------------------------------------------------------------------------------
 func _do_pan(pan: Vector2) -> void:
-	offset -= pan * _current_zoom_level
+	offset -= pan * (1.0 / _current_zoom_level)
 	emit_signal("position_changed", offset)
 
 # -------------------------------------------------------------------------------------------------
@@ -107,7 +111,7 @@ func _zoom_canvas(target_zoom: float, anchor: Vector2) -> void:
 	# Pan canvas to keep content fixed under the cursor
 	var zoom_center = anchor - offset
 	var ratio = 1.0 - target_zoom / _current_zoom_level
-	offset += zoom_center * ratio
+	offset -= zoom_center * ratio
 	
 	_current_zoom_level = target_zoom
 	

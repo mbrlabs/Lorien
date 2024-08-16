@@ -47,5 +47,5 @@ func _ready() -> void:
 					# Average of 0 and 255 (there is only one pixel).
 					data.push_back(128)
 
-	var image := Image.create_from_data(256, 256, true, Image.FORMAT_LA8, data)
+	var image = Image.create_from_data(256, 256, true, Image.FORMAT_LA8, data)
 	texture = ImageTexture.create_from_image(image)

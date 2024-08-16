@@ -13,7 +13,7 @@ var _bounding_box_cache = {} # BrushStroke -> Rect2
 # -------------------------------------------------------------------------------------------------
 func tool_event(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
-		_last_mouse_position = xform_vector2(event.global_position)
+		_last_mouse_position = _cursor.global_position
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			if event.pressed:
@@ -61,9 +61,8 @@ func _add_undoredo_action_for_erased_strokes() -> void:
 		project.undo_redo.create_action("Erase Stroke")
 		for stroke in _removed_strokes:
 			_removed_strokes.erase(stroke)
-			# TODO: make _do_delete_stroke, _undo_delete_stroke public????
-			project.undo_redo.add_do_method(_canvas._do_delete_stroke.bind(stroke))
-			project.undo_redo.add_undo_method(_canvas._undo_delete_stroke.bind(stroke))
+			project.undo_redo.add_do_method(Callable(_canvas, "_do_delete_stroke").bind(stroke))
+			project.undo_redo.add_undo_method(Callable(_canvas, "_undo_delete_stroke").bind(stroke))
 		project.undo_redo.commit_action()
 		project.dirty = true
 
@@ -75,5 +74,6 @@ func _update_bounding_boxes() -> void:
 
 # ------------------------------------------------------------------------------------------------
 func reset() -> void:
+	super() # TODO(gd4) not sure if the super call is needed here?
 	_bounding_box_cache.clear()
 	performing_stroke = false

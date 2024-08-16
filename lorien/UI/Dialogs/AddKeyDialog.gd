@@ -46,11 +46,10 @@ func _input(event: InputEvent) -> void:
 
 		var event_type := InputEventKey.new()
 		event_type.keycode = event.keycode
-		event_type.alt = event.alt
-		event_type.shift = event.shift
-		event_type.control = event.control
-		event_type.meta = event.meta
-		event_type.command = event.command
+		event_type.alt_pressed = event.alt_pressed
+		event_type.shift_pressed = event.shift_pressed
+		event_type.ctrl_pressed = event.ctrl_pressed
+		event_type.meta_pressed = event.meta_pressed
 		
 		var _conflicting_action = _action_for_event(event_type)
 		
