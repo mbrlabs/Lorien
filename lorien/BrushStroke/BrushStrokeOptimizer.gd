@@ -19,21 +19,21 @@ func optimize(s: BrushStroke) -> void:
 	var max_angle_diff := ANGLE_THRESHOLD
 	var max_distance := DISTANCE_THRESHOLD
 	
-	var filtered_points := []
-	var filtered_pressures := []
+	var filtered_points: Array[Vector2]
+	var filtered_pressures: Array[float]
 	
 	filtered_points.append(s.points.front())
 	filtered_pressures.append(s.pressures.front())
 	
 	var previous_angle := 0.0
 	for i in range(1, s.points.size()):
-		var prev_point: Vector2 = s.points[i-1]
-		var point: Vector2 = s.points[i]
+		var prev_point := s.points[i-1]
+		var point := s.points[i]
 		var pressure = s.pressures[i]
 		
 		# Distance between 2 points must be greater than x
-		var distance = prev_point.distance_to(point)
-		var distance_cond = distance > max_distance # TODO: make dependent on zoom level
+		var distance := prev_point.distance_to(point)
+		var distance_cond := distance > max_distance # TODO: make dependent on zoom level
 	
 		# Angle between points must be beigger than x deg
 		var angle := rad_to_deg(prev_point.angle_to_point(point))
@@ -41,7 +41,7 @@ func optimize(s: BrushStroke) -> void:
 		var angle_cond := angle_diff >= max_angle_diff
 		previous_angle = angle
 		
-		var point_too_far_away = distance > 100
+		var point_too_far_away := distance > 100
 		
 		if point_too_far_away || (distance_cond && angle_cond):
 			filtered_points.append(point)

@@ -1,23 +1,25 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=8 format=3 uid="uid://e4oiel4oqq0b"]
 
-[ext_resource path="res://UI/Themes/theme_dark.tres" type="Theme" id=1]
-[ext_resource path="res://UI/Menubar.gd" type="Script" id=2]
-[ext_resource path="res://Assets/Icons/menu.png" type="Texture2D" id=3]
-[ext_resource path="res://UI/Components/FlatTextureButton.gd" type="Script" id=4]
-[ext_resource path="res://Assets/Fonts/font_big.tres" type="FontFile" id=5]
+[ext_resource type="Theme" uid="uid://u5qnpgxqykiv" path="res://UI/Themes/theme_dark.tres" id="1"]
+[ext_resource type="Script" path="res://UI/Menubar.gd" id="2"]
+[ext_resource type="Texture2D" uid="uid://r233fnxk5qkf" path="res://Assets/Icons/menu.png" id="3"]
+[ext_resource type="Script" path="res://UI/Components/FlatTextureButton.gd" id="4"]
+[ext_resource type="FontFile" path="res://Assets/Fonts/font_big.tres" id="5"]
 
-[sub_resource type="StyleBoxEmpty" id=1]
+[sub_resource type="StyleBoxEmpty" id="1"]
 
-[sub_resource type="StyleBoxEmpty" id=2]
+[sub_resource type="StyleBoxEmpty" id="2"]
 
 [node name="Menubar" type="Panel"]
+custom_minimum_size = Vector2(0, 38)
+anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 38.0
-custom_minimum_size = Vector2( 0, 38 )
-theme = ExtResource( 1 )
-script = ExtResource( 2 )
+theme = ExtResource("1")
+script = ExtResource("2")
 
 [node name="Left" type="HBoxContainer" parent="."]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
@@ -25,53 +27,38 @@ size_flags_vertical = 3
 theme_override_constants/separation = 4
 
 [node name="VSeparator3" type="VSeparator" parent="Left"]
-offset_right = 12.0
-offset_bottom = 38.0
-mouse_filter = 2
+layout_mode = 2
 size_flags_horizontal = 4
+mouse_filter = 2
 theme_override_constants/separation = 12
-theme_override_styles/separator = SubResource( 1 )
+theme_override_styles/separator = SubResource("1")
 
 [node name="MenuButton" type="TextureButton" parent="Left"]
-modulate = Color( 0.776471, 0.776471, 0.776471, 1 )
-offset_left = 16.0
-offset_top = 10.0
-offset_right = 34.0
-offset_bottom = 28.0
+modulate = Color(0.776471, 0.776471, 0.776471, 1)
+layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 6
-action_mode = 0
-texture_normal = ExtResource( 3 )
+texture_normal = ExtResource("3")
 stretch_mode = 3
-script = ExtResource( 4 )
-hover_tint = Color( 0.313726, 1, 0.839216, 1 )
+script = ExtResource("4")
+hover_tint = Color(0.313726, 1, 0.839216, 1)
 
 [node name="VSeparator2" type="VSeparator" parent="Left"]
-offset_left = 38.0
-offset_right = 50.0
-offset_bottom = 38.0
-mouse_filter = 2
+layout_mode = 2
 size_flags_horizontal = 4
+mouse_filter = 2
 theme_override_constants/separation = 12
-theme_override_styles/separator = SubResource( 2 )
+theme_override_styles/separator = SubResource("2")
 
 [node name="TabBar" type="HBoxContainer" parent="Left"]
-offset_left = 54.0
-offset_right = 104.0
-offset_bottom = 38.0
-custom_minimum_size = Vector2( 50, 38 )
+custom_minimum_size = Vector2(50, 38)
+layout_mode = 2
 size_flags_horizontal = 4
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="NewFileButton" type="Button" parent="Left"]
-offset_left = 108.0
-offset_top = 12.0
-offset_right = 129.0
-offset_bottom = 38.0
+layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
-theme_override_fonts/font = ExtResource( 5 )
+theme_override_fonts/font = ExtResource("5")
 text = "+"
 flat = true

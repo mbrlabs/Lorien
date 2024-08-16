@@ -19,22 +19,22 @@ const BUTTON_NORMAL_COLOR = Color.WHITE
 # -------------------------------------------------------------------------------------------------
 @export var file_dialog_path: NodePath
 
-@onready var _new_button: TextureButton = $Console/Left/NewFileButton
-@onready var _save_button: TextureButton = $Console/Left/SaveFileButton
-@onready var _open_button: TextureButton = $Console/Left/OpenFileButton
-@onready var _undo_button: TextureButton = $Console/Left/UndoButton
-@onready var _redo_button: TextureButton = $Console/Left/RedoButton
+@onready var _new_button: FlatTextureButton = $Console/Left/NewFileButton
+@onready var _save_button: FlatTextureButton = $Console/Left/SaveFileButton
+@onready var _open_button: FlatTextureButton = $Console/Left/OpenFileButton
+@onready var _undo_button: FlatTextureButton = $Console/Left/UndoButton
+@onready var _redo_button: FlatTextureButton = $Console/Left/RedoButton
 @onready var _color_button: Button = $Console/Left/ColorButton
 @onready var _brush_size_label: Label = $Console/Left/BrushSizeLabel
 @onready var _brush_size_slider: HSlider = $Console/Left/BrushSizeSlider
-@onready var _tool_btn_brush: TextureButton = $Console/Left/BrushToolButton
-@onready var _tool_btn_rectangle: TextureButton = $Console/Left/RectangleToolButton
-@onready var _tool_btn_circle: TextureButton = $Console/Left/CircleToolButton
-@onready var _tool_btn_line: TextureButton = $Console/Left/LineToolButton
-@onready var _tool_btn_eraser: TextureButton = $Console/Left/EraserToolButton
-@onready var _tool_btn_selection: TextureButton = $Console/Left/SelectionToolButton
+@onready var _tool_btn_brush: FlatTextureButton = $Console/Left/BrushToolButton
+@onready var _tool_btn_rectangle: FlatTextureButton = $Console/Left/RectangleToolButton
+@onready var _tool_btn_circle: FlatTextureButton = $Console/Left/CircleToolButton
+@onready var _tool_btn_line: FlatTextureButton = $Console/Left/LineToolButton
+@onready var _tool_btn_eraser: FlatTextureButton = $Console/Left/EraserToolButton
+@onready var _tool_btn_selection: FlatTextureButton = $Console/Left/SelectionToolButton
 
-var _last_active_tool_button: TextureButton
+var _last_active_tool_button: FlatTextureButton
 
 # -------------------------------------------------------------------------------------------------
 func _ready():

@@ -88,7 +88,7 @@ SETTINGS_TOOL_PRESSURE          Default Tools Pressure
 # -----------------------------------------------------------------------------
 
 ABOUT_DIALOG_TITLE              About
-ABOUT_DIALOG_COPYRIGHT          © 2021-2023 Marcus Brummer & contributors 
+ABOUT_DIALOG_COPYRIGHT          © 2021-2024 Marcus Brummer & contributors 
 ABOUT_DIALOG_LICSENSE           Lorien is licensed under:
 ABOUT_DIALOG_BASED_ON           Lorien is based on:
 ABOUT_DIALOG_EASTEREGG          Easteregg character:

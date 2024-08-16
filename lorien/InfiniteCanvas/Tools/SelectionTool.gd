@@ -169,7 +169,7 @@ func _duplicate_stroke(stroke: BrushStroke, offset: Vector2) -> BrushStroke:
 	return dup
 
 # ------------------------------------------------------------------------------------------------
-func _modify_strokes_colors(strokes: Array, color: Color) -> void:	
+func _modify_strokes_colors(strokes: Array[BrushStroke], color: Color) -> void:	
 	for stroke in strokes:
 		stroke.color = color
 

@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" path="res://Main.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://c4u5gk5n2aiom" path="res://InfiniteCanvas/InfiniteCanvas.tscn" id="2"]
-[ext_resource type="PackedScene" path="res://UI/Statusbar.tscn" id="3"]
-[ext_resource type="PackedScene" path="res://UI/Menubar.tscn" id="4"]
-[ext_resource type="PackedScene" path="res://UI/MainMenu.tscn" id="5"]
-[ext_resource type="PackedScene" path="res://UI/Toolbar.tscn" id="6"]
+[ext_resource type="PackedScene" uid="uid://bwer12t6vfkg1" path="res://UI/Statusbar.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://e4oiel4oqq0b" path="res://UI/Menubar.tscn" id="4"]
+[ext_resource type="PackedScene" uid="uid://c41oe1lt7u6r8" path="res://UI/MainMenu.tscn" id="5"]
+[ext_resource type="PackedScene" uid="uid://c0ral10lvpo7f" path="res://UI/Toolbar.tscn" id="6"]
 [ext_resource type="PackedScene" uid="uid://ct2b6hxxjlc6h" path="res://UI/Dialogs/UnsavedChangesDialog.tscn" id="7"]
 [ext_resource type="Theme" uid="uid://u5qnpgxqykiv" path="res://UI/Themes/theme_dark.tres" id="8"]
 [ext_resource type="PackedScene" uid="uid://dug4jmvhrb3t1" path="res://UI/Dialogs/AboutDialog.tscn" id="9"]
@@ -60,12 +60,13 @@ layout_mode = 2
 file_dialog_path = NodePath("../../FileDialog")
 
 [node name="Statusbar" parent="." instance=ExtResource("3")]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = 12
 anchor_top = 1.0
-anchor_right = 0.0
 anchor_bottom = 1.0
-offset_top = -24.0
 offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 0
 scale = Vector2(1, 1.00112)
 
 [node name="BackgroundColorPickerPopup" type="Popup" parent="."]
@@ -101,12 +102,16 @@ delete_palette_dialog = NodePath("../DeletePaletteDialog")
 toolbar_path = NodePath("../Topbar/Toolbar")
 
 [node name="MainMenu" parent="." instance=ExtResource("5")]
+submenu_popup_delay = 0.1
 file_dialog_path = NodePath("../FileDialog")
 
 [node name="FileDialog" type="FileDialog" parent="."]
+initial_position = 2
+size = Vector2i(540, 175)
 theme = ExtResource("8")
 access = 2
 filters = PackedStringArray("*.lorien")
+use_native_dialog = true
 
 [node name="ExitDialog" parent="." instance=ExtResource("11")]
 visible = false
@@ -122,8 +127,10 @@ visible = false
 visible = false
 
 [node name="ExportDialog" type="FileDialog" parent="."]
+initial_position = 2
 theme = ExtResource("8")
 access = 2
+use_native_dialog = true
 
 [node name="UnsavedChangesDialog" parent="." instance=ExtResource("7")]
 visible = false

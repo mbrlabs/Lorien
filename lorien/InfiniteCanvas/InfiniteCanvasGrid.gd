@@ -45,11 +45,6 @@ func set_canvas_color(c: Color) -> void:
 	queue_redraw()
 
 # -------------------------------------------------------------------------------------------------
-func set_grid_scale(size: float):
-	_grid_size *= size
-	queue_redraw()
-
-# -------------------------------------------------------------------------------------------------
 func _draw() -> void:
 	var zoom := (Vector2.ONE / _camera.zoom).x
 	var size = Vector2(get_viewport().size.x, get_viewport().size.y) * zoom

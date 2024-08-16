@@ -1,3 +1,4 @@
+class_name FlatTextureButton
 extends TextureButton
 
 # -------------------------------------------------------------------------------------------------
@@ -12,7 +13,7 @@ func _ready() -> void:
 	mouse_exited.connect(_on_mouse_exited)
 	pressed.connect(_on_pressed)
 
-	if toggle_mode && pressed:
+	if toggle_mode && button_pressed:
 		self_modulate = pressed_tint
 
 # -------------------------------------------------------------------------------------------------
@@ -23,33 +24,26 @@ func _exit_tree() -> void:
 
 # -------------------------------------------------------------------------------------------------
 func _on_mouse_entered() -> void:
-	if !pressed:
+	if !button_pressed:
 		self_modulate = hover_tint
 
 # -------------------------------------------------------------------------------------------------
 func _on_mouse_exited() -> void:
-	if !pressed:
+	if !button_pressed:
 		self_modulate = _normal_tint
 
 # -------------------------------------------------------------------------------------------------
 func toggle() -> void:
-	if pressed:
+	if button_pressed:
 		self_modulate = _normal_tint
 	else:
 		self_modulate = pressed_tint
 	button_pressed = !button_pressed
 
-# TODO(gd4): they added set_pressed or something. Also pressed get renamed to button_pressed.
-# this might not be nedded; or it might be. Keep an eye on the tool buttons!!! 
-# -------------------------------------------------------------------------------------------------
-#func set_pressed(is_pressed) -> void:
-	#button_pressed = is_pressed
-	#_on_pressed()
-
 # -------------------------------------------------------------------------------------------------
 func _on_pressed() -> void:
 	if toggle_mode:
-		if pressed:
+		if button_pressed:
 			self_modulate = pressed_tint
 		else:
 			self_modulate = _normal_tint

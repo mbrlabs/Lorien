@@ -8,8 +8,8 @@ extends Control
 @onready var _toolbar: Toolbar = $Topbar/Toolbar
 @onready var _file_dialog: FileDialog = $FileDialog
 @onready var _export_dialog : FileDialog = $ExportDialog
-@onready var _about_dialog: Window = $AboutDialog
-@onready var _settings_dialog: Window = $SettingsDialog
+@onready var _about_dialog: AboutDialog = $AboutDialog
+@onready var _settings_dialog: SettingsDialog = $SettingsDialog
 @onready var _brush_color_picker: ColorPalettePicker = $BrushColorPicker
 @onready var _main_menu: MainMenu = $MainMenu
 @onready var _generic_alert_dialog: AcceptDialog = $GenericAlertDialog
@@ -138,7 +138,7 @@ func _process(delta):
 
 # -------------------------------------------------------------------------------------------------
 func _unhandled_input(event):
-	if ! is_dialog_open():
+	if !is_dialog_open():
 		if Utils.event_pressed_bug_workaround("shortcut_new_project", event):
 			_on_create_new_project()
 		elif Utils.event_pressed_bug_workaround("shortcut_open_project", event):
@@ -173,7 +173,7 @@ func _unhandled_input(event):
 # -------------------------------------------------------------------------------------------------
 func _save_state() -> void:
 	# Open projects
-	var open_projects := Array()
+	var open_projects: Array[String]
 	for project in ProjectManager.get_open_projects():
 		open_projects.append(project.filepath)
 	StatePersistence.set_value(StatePersistence.OPEN_PROJECTS, open_projects)
@@ -252,11 +252,10 @@ func _is_mouse_on_ui() -> bool:
 
 # -------------------------------------------------------------------------------------------------
 func is_dialog_open() -> bool:
-	return false # TODO(gd4): HEELP!!!
-	#var open := _file_dialog.visible || _about_dialog.visible
-	#open = open || (_settings_dialog.visible || _generic_alert_dialog.visible)
-	#open = open || (_new_palette_dialog.visible || _edit_palette_dialog.visible || _delete_palette_dialog.visible)
-	#return open
+	var open := _file_dialog.visible || _about_dialog.visible
+	open = open || (_settings_dialog.visible || _generic_alert_dialog.visible)
+	open = open || (_new_palette_dialog.visible || _edit_palette_dialog.visible || _delete_palette_dialog.visible)
+	return open
 
 # -------------------------------------------------------------------------------------------------
 func _create_active_default_project() -> void:
@@ -535,13 +534,10 @@ func _on_scale_changed() -> void:
 		Types.UIScale.AUTO:   new_scale = _get_platform_ui_scale()
 		Types.UIScale.CUSTOM: new_scale = Settings.get_value(Settings.APPEARANCE_UI_SCALE, Config.DEFAULT_UI_SCALE)
 	new_scale = clamp(new_scale, _settings_dialog.get_min_ui_scale(), _settings_dialog.get_max_ui_scale())
-
-	_canvas.set_canvas_scale(new_scale)
 	
 	# TODO(gd4): the whole scaling stuff changed a lot in Godot 4; need to figure this out later.
 	# See: https://www.reddit.com/r/godot/comments/14h4iir/how_can_i_set_the_stretch_mode_and_aspect_in/
-	#get_tree().set_screen_stretch(SceneTree.STRETCH_MODE_DISABLED, SceneTree.STRETCH_ASPECT_IGNORE, Vector2(0,0), scale)
-	
+	get_tree().root.content_scale_factor = new_scale
 	get_window().min_size = Config.MIN_WINDOW_SIZE * new_scale
 
 # --------------------------------------------------------------------------------------------------

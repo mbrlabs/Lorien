@@ -7,6 +7,7 @@
 [sub_resource type="StyleBoxEmpty" id="1"]
 
 [node name="AboutDialog" type="Window"]
+title = "About"
 initial_position = 2
 size = Vector2i(485, 220)
 exclusive = true

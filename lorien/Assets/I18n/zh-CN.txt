@@ -81,7 +81,7 @@ SETTINGS_RESTART_NOTICE  		需要重新启动程序以应用新的设置
 # -----------------------------------------------------------------------------
 
 ABOUT_DIALOG_TITLE              关于
-ABOUT_DIALOG_COPYRIGHT          © 2021-2023 Marcus Brummer & contributors 
+ABOUT_DIALOG_COPYRIGHT          © 2021-2024 Marcus Brummer & contributors 
 ABOUT_DIALOG_LICSENSE           Lorien 采用以下协议授权:
 ABOUT_DIALOG_BASED_ON           Lorien 基于：
 ABOUT_DIALOG_EASTEREGG          复活节彩蛋角色:

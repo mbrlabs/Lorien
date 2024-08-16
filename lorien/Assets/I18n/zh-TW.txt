@@ -81,7 +81,7 @@ SETTINGS_RESTART_NOTICE  		重新啟動應用程式以套用新的設定
 # -----------------------------------------------------------------------------
 
 ABOUT_DIALOG_TITLE              關於
-ABOUT_DIALOG_COPYRIGHT          © 2021-2023 Marcus Brummer & contributors 
+ABOUT_DIALOG_COPYRIGHT          © 2021-2024 Marcus Brummer & contributors 
 ABOUT_DIALOG_LICSENSE           Lorien 所採用的授權條：
 ABOUT_DIALOG_BASED_ON           Lorien 是基於：
 ABOUT_DIALOG_EASTEREGG          復活節彩蛋角色：

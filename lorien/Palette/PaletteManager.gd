@@ -13,7 +13,7 @@ class PaletteSorter:
 		return a.name < b.name
 
 # -------------------------------------------------------------------------------------------------
-var palettes: Array # Array<Palette>
+var palettes: Array[Palette]
 var _active_palette_index: int
 
 # -------------------------------------------------------------------------------------------------

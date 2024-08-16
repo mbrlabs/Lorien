@@ -1,7 +1,7 @@
 extends Node
 
 # -------------------------------------------------------------------------------------------------
-var _open_projects: Array # Array<Project>
+var _open_projects: Array[Project]
 var _active_project: Project
 
 # -------------------------------------------------------------------------------------------------
@@ -108,5 +108,5 @@ func is_active_project(project: Project) -> bool:
 	return _active_project == project
 
 # -------------------------------------------------------------------------------------------------
-func get_open_projects() -> Array:
+func get_open_projects() -> Array[Project]:
 	return _open_projects

@@ -91,8 +91,8 @@ func _i18n_filter_shortcut_list(action_name: String) -> String:
 		return "(%s)" % ", ".join(keybindings)
 
 # -------------------------------------------------------------------------------------------------
-func _get_i18n_files() -> Array:
-	var files := []
+func _get_i18n_files() -> Array[String]:
+	var files: Array[String]
 	var dir := DirAccess.open(I18N_FOLDER)
 	if dir != null:
 		dir.list_dir_begin()

@@ -86,7 +86,7 @@ SETTINGS_RESTART_NOTICE  		Для застосування нових налаш
 # -----------------------------------------------------------------------------
 
 ABOUT_DIALOG_TITLE              Про Lorien
-ABOUT_DIALOG_COPYRIGHT          © 2021-2023 Marcus Brummer & співавтори
+ABOUT_DIALOG_COPYRIGHT          © 2021-2024 Marcus Brummer & співавтори
 ABOUT_DIALOG_LICSENSE           Lorien знаходиться під ліцензією:
 ABOUT_DIALOG_BASED_ON           Lorien створений на основі:
 ABOUT_DIALOG_EASTEREGG          Easteregg character:

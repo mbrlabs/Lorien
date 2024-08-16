@@ -30,7 +30,6 @@ var _current_stroke: BrushStroke
 var _current_project: Project
 var _use_optimizer := true
 var _optimizer: BrushStrokeOptimizer
-var _scale := Config.DEFAULT_UI_SCALE
 
 # -------------------------------------------------------------------------------------------------
 func _ready():
@@ -45,8 +44,6 @@ func _ready():
 		_brush_tool.pressure_curve = _constant_pressure_curve
 	else:
 		_brush_tool.pressure_curve = _default_pressure_curve
-	
-	get_tree().get_root().size_changed.connect(_on_window_resized)
 	
 	for child in $SubViewport.get_children():
 		if child is BaseCursor:
@@ -157,7 +154,7 @@ func get_strokes_in_camera_frustrum() -> Array:
 	return get_tree().get_nodes_in_group(BrushStroke.GROUP_ONSCREEN)
 
 # -------------------------------------------------------------------------------------------------
-func get_all_strokes() -> Array:
+func get_all_strokes() -> Array[BrushStroke]:
 	return _current_project.strokes
 
 # -------------------------------------------------------------------------------------------------
@@ -355,21 +352,3 @@ func _undo_delete_stroke(stroke: BrushStroke) -> void:
 	_strokes_parent.add_child(stroke)
 	info.point_count += stroke.points.size()
 	info.stroke_count += 1
-
-# -------------------------------------------------------------------------------------------------
-func _on_window_resized() -> void:
-	# Stops viewport from resetting scale when root viewport changes size
-	set_canvas_scale(_scale)
-
-# -------------------------------------------------------------------------------------------------
-func set_canvas_scale(scl: float) -> void:
-	_scale = scl
-	_grid.set_grid_scale(scl)
-	
-	# TODO(gd4): this throws a warning; it seems like this is not needed anyway though
-	# Needed to stop stretching of the canvas
-	#_viewport.set_size(get_viewport().get_size())
-	
-# -------------------------------------------------------------------------------------------------
-func get_canvas_scale() -> float:
-	return _scale

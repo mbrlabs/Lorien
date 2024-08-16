@@ -205,6 +205,7 @@ shadow_size = 2
 
 [resource]
 default_font = ExtResource("2")
+default_font_size = 13
 Button/colors/font_color = Color(1, 1, 1, 1)
 Button/colors/font_color_disabled = Color(0.9, 0.9, 0.9, 0.2)
 Button/colors/font_color_hover = Color(0.941176, 0.941176, 0.941176, 1)

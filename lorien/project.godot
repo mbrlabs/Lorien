@@ -15,7 +15,7 @@ run/main_scene="res://Main.tscn"
 config/features=PackedStringArray("4.3")
 run/low_processor_mode=true
 boot_splash/bg_color=Color(0.12549, 0.129412, 0.141176, 1)
-boot_splash/image="res://Assets/Textures/boot.png"
+boot_splash/show_image=false
 boot_splash/fullsize=false
 boot_splash/use_filter=false
 config/icon="res://Assets/icon.png"
@@ -47,6 +47,8 @@ window/size/viewport_width=1920
 window/size/viewport_height=1080
 window/size/window_width_override=1440
 window/size/window_height_override=810
+window/subwindows/embed_subwindows=false
+window/stretch/aspect="expand"
 window/vsync/vsync_mode=false
 
 [input]

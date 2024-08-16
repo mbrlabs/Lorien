@@ -45,7 +45,7 @@ func calculate_rect(start_pos: Vector2, end_pos: Vector2) -> Rect2:
 	return area
 
 # -------------------------------------------------------------------------------------------------
-func calculte_bounding_boxes(strokes: Array, margin: float = 0.0) -> Dictionary:
+func calculte_bounding_boxes(strokes: Array[BrushStroke], margin: float = 0.0) -> Dictionary:
 	var result := {}
 	for stroke in strokes:
 		var top_left: Vector2 = stroke.position + stroke.top_left_pos

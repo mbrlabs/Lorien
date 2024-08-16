@@ -88,7 +88,8 @@ func _on_NewFileButton_pressed() -> void:
 
 # -------------------------------------------------------------------------------------------------
 func _on_MenuButton_pressed():
-	get_node(_main_menu_path).popup()
+	var menu: MainMenu = get_node(_main_menu_path)
+	menu.popup_on_parent(_menu_button.get_rect())
 
 # -------------------------------------------------------------------------------------------------
 func get_first_project_id() -> int:

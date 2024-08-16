@@ -8,7 +8,7 @@ var loaded := false
 
 var filepath: String
 var meta_data: Dictionary
-var strokes: Array # Array<BrushStroke>
+var strokes: Array[BrushStroke]
 
 # -------------------------------------------------------------------------------------------------
 func _init():

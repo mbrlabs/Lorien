@@ -1,5 +1,5 @@
-extends PopupMenu
 class_name MainMenu
+extends PopupMenu
 
 # -------------------------------------------------------------------------------------------------
 signal open_about_dialog

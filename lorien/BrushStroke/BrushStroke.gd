@@ -17,8 +17,8 @@ const MIN_VECTOR2 := -MAX_VECTOR2
 
 var color: Color: get = get_color, set = set_color
 var size: int
-var points: Array # Array<Vector2>
-var pressures: Array # Array<float>
+var points: Array[Vector2]
+var pressures: Array[float]
 var top_left_pos: Vector2
 var bottom_right_pos: Vector2
 
@@ -32,7 +32,7 @@ func _ready():
 	
 	# Anti aliasing
 	_line2d.texture = BrushStrokeTexture.texture
-	_line2d.texture_mode = Line2D.LINE_TEXTURE_TILE
+	_line2d.texture_mode = Line2D.LINE_TEXTURE_STRETCH
 	_line2d.texture_filter = TextureFilter.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS
 	
 	var rounding_mode: int = Settings.get_value(Settings.RENDERING_BRUSH_ROUNDING, Config.DEFAULT_BRUSH_ROUNDING)

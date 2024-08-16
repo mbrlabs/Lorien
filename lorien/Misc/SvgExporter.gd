@@ -8,7 +8,7 @@ extends RefCounted
 const EDGE_MARGIN := 0.025
 
 # -------------------------------------------------------------------------------------------------
-func export_svg(strokes: Array, background: Color, path: String) -> void:
+func export_svg(strokes: Array[BrushStroke], background: Color, path: String) -> void:
 	var start_time := Time.get_ticks_msec()
 	
 	# Open file
