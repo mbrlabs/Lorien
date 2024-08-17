@@ -30,10 +30,10 @@ func _ready():
 	# Init stuff
 	randomize()
 	Engine.max_fps = Settings.get_value(Settings.RENDERING_FOREGROUND_FPS, Config.DEFAULT_FOREGROUND_FPS)
-	get_window().set_title("Lorien v%s" % Config.VERSION_STRING)
-	get_tree().set_auto_accept_quit(false)
+	get_window().title = "Lorien v%s" % Config.VERSION_STRING
+	get_tree().auto_accept_quit = false
 
-	var docs_folder = OS.get_system_dir(OS.SYSTEM_DIR_DOCUMENTS)
+	var docs_folder := OS.get_system_dir(OS.SYSTEM_DIR_DOCUMENTS)
 	_file_dialog.current_dir = Settings.get_value(Settings.GENERAL_DEFAULT_PROJECT_DIR, docs_folder)
 	_export_dialog.current_dir = Settings.get_value(Settings.GENERAL_DEFAULT_PROJECT_DIR, docs_folder)
 	
@@ -107,8 +107,6 @@ func _notification(what):
 				_exit_dialog.call_deferred("popup")
 			else:
 				_save_state()
-				 # we have to wait a bit before exiting; otherwise the changes might not be persisted correctly.
-				await get_tree().create_timer(0.12).timeout
 				get_tree().quit()
 
 	elif NOTIFICATION_APPLICATION_FOCUS_IN == what:
@@ -116,6 +114,7 @@ func _notification(what):
 		if !_is_mouse_on_ui() && _canvas != null && !is_dialog_open():
 			await get_tree().create_timer(0.12).timeout
 			_canvas.enable()
+			
 	elif NOTIFICATION_APPLICATION_FOCUS_OUT == what:
 		Engine.max_fps = Settings.get_value(Settings.RENDERING_BACKGROUND_FPS, Config.DEFAULT_BACKGROUND_FPS)
 		if _canvas != null:

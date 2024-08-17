@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://bwer12t6vfkg1"]
+[gd_scene load_steps=3 format=3 uid="uid://bwer12t6vfkg1"]
 
 [ext_resource type="Theme" uid="uid://u5qnpgxqykiv" path="res://UI/Themes/theme_dark.tres" id="1"]
 [ext_resource type="Script" path="res://UI/Statusbar.gd" id="2"]
-[ext_resource type="FontFile" path="res://Assets/Fonts/font_small.tres" id="3"]
 
 [node name="Statusbar" type="Panel"]
 custom_minimum_size = Vector2(0, 24)
@@ -30,37 +29,30 @@ theme_override_constants/separation = 0
 
 [node name="PositionLabel" type="Label" parent="MarginContainer/HBoxContainer/Left"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("3")
 text = "Position: -"
 
 [node name="Sep" type="Label" parent="MarginContainer/HBoxContainer/Left"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("3")
 text = "|"
 
 [node name="ZoomLabel" type="Label" parent="MarginContainer/HBoxContainer/Left"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("3")
 text = "Zoom: -"
 
 [node name="Sep2" type="Label" parent="MarginContainer/HBoxContainer/Left"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("3")
 text = "|"
 
 [node name="PressureLabel" type="Label" parent="MarginContainer/HBoxContainer/Left"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("3")
 text = "Pressure: -"
 
 [node name="Sep3" type="Label" parent="MarginContainer/HBoxContainer/Left"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("3")
 text = "|"
 
 [node name="FpsLabel" type="Label" parent="MarginContainer/HBoxContainer/Left"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("3")
 text = "FPS: -"
 
 [node name="Right" type="HBoxContainer" parent="MarginContainer/HBoxContainer"]
@@ -72,15 +64,12 @@ alignment = 2
 
 [node name="StrokesLabel" type="Label" parent="MarginContainer/HBoxContainer/Right"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("3")
 text = "Strokes: 0"
 
 [node name="Sep" type="Label" parent="MarginContainer/HBoxContainer/Right"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("3")
 text = "|"
 
 [node name="PointsLabel" type="Label" parent="MarginContainer/HBoxContainer/Right"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("3")
 text = "Points: 0"

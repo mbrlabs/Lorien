@@ -1,64 +1,46 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=5 format=3 uid="uid://c0jc7w57uc0tq"]
 
-[ext_resource path="res://Assets/Fonts/font_normal.tres" type="FontFile" id=1]
-[ext_resource path="res://UI/Components/ProjectTab.gd" type="Script" id=2]
-[ext_resource path="res://Assets/Icons/close.png" type="Texture2D" id=3]
-[ext_resource path="res://UI/Themes/style_tab_active_dark.tres" type="StyleBox" id=4]
+[ext_resource type="Script" path="res://UI/Components/ProjectTab.gd" id="2"]
+[ext_resource type="Texture2D" uid="uid://bp1yka17gbjtu" path="res://Assets/Icons/close.png" id="3"]
+[ext_resource type="StyleBox" uid="uid://bod8yb0beiaxt" path="res://UI/Themes/style_tab_active_dark.tres" id="4"]
 
-[sub_resource type="Theme" id=1]
-default_font = ExtResource( 1 )
-HBoxContainer/constants/separation = 4
-
-[sub_resource type="StyleBoxEmpty" id=2]
+[sub_resource type="StyleBoxEmpty" id="2"]
 content_margin_left = 8.0
 content_margin_right = 2.0
 
 [node name="ProjectTab" type="PanelContainer"]
+custom_minimum_size = Vector2(0, 28)
 offset_right = 78.0
 offset_bottom = 28.0
-custom_minimum_size = Vector2( 0, 28 )
 size_flags_horizontal = 8
 size_flags_vertical = 8
-theme_override_styles/panel = ExtResource( 4 )
-script = ExtResource( 2 )
-__meta__ = {
-"_edit_group_": true,
-"_edit_use_anchors_": false
-}
+theme_override_styles/panel = ExtResource("4")
+script = ExtResource("2")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
-offset_right = 84.0
-offset_bottom = 28.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme = SubResource( 1 )
 theme_override_constants/separation = 0
 alignment = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="FilenameButton" type="Button" parent="HBoxContainer"]
-offset_right = 60.0
-offset_bottom = 28.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_styles/hover = SubResource( 2 )
-theme_override_styles/pressed = SubResource( 2 )
-theme_override_styles/focus = SubResource( 2 )
-theme_override_styles/disabled = SubResource( 2 )
-theme_override_styles/normal = SubResource( 2 )
+theme_override_styles/focus = SubResource("2")
+theme_override_styles/disabled = SubResource("2")
+theme_override_styles/hover = SubResource("2")
+theme_override_styles/pressed = SubResource("2")
+theme_override_styles/normal = SubResource("2")
 text = "Untitled"
 flat = true
 
 [node name="CloseButton" type="TextureButton" parent="HBoxContainer"]
-offset_left = 60.0
-offset_right = 84.0
-offset_bottom = 28.0
-custom_minimum_size = Vector2( 24, 0 )
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.2
-texture_normal = ExtResource( 3 )
-expand = true
+texture_normal = ExtResource("3")
 stretch_mode = 3
