@@ -1,25 +1,20 @@
-[gd_scene load_steps=4 format=3 uid="uid://dug4jmvhrb3t1"]
+[gd_scene load_steps=5 format=3 uid="uid://dug4jmvhrb3t1"]
 
+[ext_resource type="Theme" uid="uid://u5qnpgxqykiv" path="res://UI/Themes/theme_dark.tres" id="1_usj82"]
 [ext_resource type="Script" path="res://UI/Dialogs/AboutDialog.gd" id="2"]
 [ext_resource type="Texture2D" uid="uid://b6io62g8b730e" path="res://Assets/icon.png" id="3"]
 
 [sub_resource type="StyleBoxEmpty" id="1"]
 
-[node name="AboutDialog" type="MarginContainer"]
-offset_right = 480.0
-offset_bottom = 243.0
+[node name="AboutDialog" type="PanelContainer"]
+offset_right = 347.0
+offset_bottom = 180.0
 size_flags_horizontal = 4
-size_flags_vertical = 3
-theme_override_constants/margin_left = 12
-theme_override_constants/margin_top = 12
-theme_override_constants/margin_right = 12
-theme_override_constants/margin_bottom = 12
+theme = ExtResource("1_usj82")
 script = ExtResource("2")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2

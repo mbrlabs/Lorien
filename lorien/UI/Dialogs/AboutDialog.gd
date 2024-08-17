@@ -1,5 +1,5 @@
 class_name AboutDialog
-extends MarginContainer
+extends PanelContainer
 
 # -------------------------------------------------------------------------------------------------
 func _ready():

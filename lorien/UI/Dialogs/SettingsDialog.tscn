@@ -1,5 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://cgs8d5y8yrwl0"]
+[gd_scene load_steps=6 format=3 uid="uid://cgs8d5y8yrwl0"]
 
+[ext_resource type="Theme" uid="uid://u5qnpgxqykiv" path="res://UI/Themes/theme_dark.tres" id="1_n5v21"]
 [ext_resource type="Script" path="res://UI/Dialogs/SettingsDialog.gd" id="2"]
 
 [sub_resource type="StyleBoxEmpty" id="1"]
@@ -8,45 +9,69 @@
 
 [sub_resource type="StyleBoxEmpty" id="2"]
 
-[node name="SettingsDialog" type="MarginContainer"]
+[node name="SettingsDialog" type="PanelContainer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-theme_override_constants/margin_left = 12
-theme_override_constants/margin_top = 12
-theme_override_constants/margin_right = 12
-theme_override_constants/margin_bottom = 12
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_n5v21")
 script = ExtResource("2")
 
-[node name="TabContainer" type="TabContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
-current_tab = 0
 
-[node name="General" type="Control" parent="TabContainer"]
+[node name="Tabs" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
-metadata/_tab_index = 0
+size_flags_horizontal = 4
+theme_override_constants/separation = 8
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/General"]
-layout_mode = 0
-anchor_right = 1.0
-anchor_bottom = 1.0
+[node name="GeneralTab" type="Button" parent="VBoxContainer/Tabs"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "SETTINGS_GENERAL"
 
-[node name="HSeparator3" type="HSeparator" parent="TabContainer/General/VBoxContainer"]
+[node name="AppearanceTab" type="Button" parent="VBoxContainer/Tabs"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "SETTINGS_APPEARANCE"
+
+[node name="RenderingTab" type="Button" parent="VBoxContainer/Tabs"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "SETTINGS_RENDERING"
+
+[node name="KeybindingsTab" type="Button" parent="VBoxContainer/Tabs"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "SETTINGS_KEYBINDINGS"
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="GeneralContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="HSeparator3" type="HSeparator" parent="VBoxContainer/MarginContainer/VBoxContainer/GeneralContainer"]
 layout_mode = 2
 theme_override_constants/separation = 12
 theme_override_styles/separator = SubResource("1")
 
-[node name="PressureSensitivity" type="HBoxContainer" parent="TabContainer/General/VBoxContainer"]
+[node name="PressureSensitivity" type="HBoxContainer" parent="VBoxContainer/MarginContainer/VBoxContainer/GeneralContainer"]
 layout_mode = 2
-size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="TabContainer/General/VBoxContainer/PressureSensitivity"]
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer/VBoxContainer/GeneralContainer/PressureSensitivity"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
 text = "SETTINGS_PRESSURE_SENSITIVITY"
 
-[node name="PressureSensitivity" type="SpinBox" parent="TabContainer/General/VBoxContainer/PressureSensitivity"]
+[node name="PressureSensitivity" type="SpinBox" parent="VBoxContainer/MarginContainer/VBoxContainer/GeneralContainer/PressureSensitivity"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -56,32 +81,32 @@ max_value = 2.0
 step = 0.01
 value = 1.0
 
-[node name="ConstantPressure" type="HBoxContainer" parent="TabContainer/General/VBoxContainer"]
+[node name="ConstantPressure" type="HBoxContainer" parent="VBoxContainer/MarginContainer/VBoxContainer/GeneralContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="TabContainer/General/VBoxContainer/ConstantPressure"]
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer/VBoxContainer/GeneralContainer/ConstantPressure"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
 text = "SETTINGS_CONSTANT_PRESSURE"
 
-[node name="ConstantPressure" type="CheckBox" parent="TabContainer/General/VBoxContainer/ConstantPressure"]
+[node name="ConstantPressure" type="CheckBox" parent="VBoxContainer/MarginContainer/VBoxContainer/GeneralContainer/ConstantPressure"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="DefaultBrushSize" type="HBoxContainer" parent="TabContainer/General/VBoxContainer"]
+[node name="DefaultBrushSize" type="HBoxContainer" parent="VBoxContainer/MarginContainer/VBoxContainer/GeneralContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="TabContainer/General/VBoxContainer/DefaultBrushSize"]
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer/VBoxContainer/GeneralContainer/DefaultBrushSize"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
 text = "SETTINGS_BRUSH_SIZE"
 
-[node name="DefaultBrushSize" type="SpinBox" parent="TabContainer/General/VBoxContainer/DefaultBrushSize"]
+[node name="DefaultBrushSize" type="SpinBox" parent="VBoxContainer/MarginContainer/VBoxContainer/GeneralContainer/DefaultBrushSize"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -90,17 +115,17 @@ min_value = 1.0
 value = 12.0
 allow_greater = true
 
-[node name="DefaultToolPressure" type="HBoxContainer" parent="TabContainer/General/VBoxContainer"]
+[node name="DefaultToolPressure" type="HBoxContainer" parent="VBoxContainer/MarginContainer/VBoxContainer/GeneralContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="TabContainer/General/VBoxContainer/DefaultToolPressure"]
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer/VBoxContainer/GeneralContainer/DefaultToolPressure"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
 text = "SETTINGS_TOOL_PRESSURE"
 
-[node name="DefaultToolPressure" type="SpinBox" parent="TabContainer/General/VBoxContainer/DefaultToolPressure"]
+[node name="DefaultToolPressure" type="SpinBox" parent="VBoxContainer/MarginContainer/VBoxContainer/GeneralContainer/DefaultToolPressure"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -109,81 +134,68 @@ max_value = 1.0
 step = 0.05
 value = 1.0
 
-[node name="DefaultProjectDir" type="HBoxContainer" parent="TabContainer/General/VBoxContainer"]
+[node name="DefaultProjectDir" type="HBoxContainer" parent="VBoxContainer/MarginContainer/VBoxContainer/GeneralContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="TabContainer/General/VBoxContainer/DefaultProjectDir"]
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer/VBoxContainer/GeneralContainer/DefaultProjectDir"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
 text = "SETTINGS_PROJECT_FOLDER"
 
-[node name="DefaultProjectDir" type="LineEdit" parent="TabContainer/General/VBoxContainer/DefaultProjectDir"]
+[node name="DefaultProjectDir" type="LineEdit" parent="VBoxContainer/MarginContainer/VBoxContainer/GeneralContainer/DefaultProjectDir"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 placeholder_text = "e.g. C:/Users/me/Lorien"
 
-[node name="HSeparator4" type="HSeparator" parent="TabContainer/General/VBoxContainer"]
+[node name="HSeparator4" type="HSeparator" parent="VBoxContainer/MarginContainer/VBoxContainer/GeneralContainer"]
 layout_mode = 2
 theme_override_constants/separation = 24
 
-[node name="Language" type="HBoxContainer" parent="TabContainer/General/VBoxContainer"]
+[node name="Language" type="HBoxContainer" parent="VBoxContainer/MarginContainer/VBoxContainer/GeneralContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="TabContainer/General/VBoxContainer/Language"]
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer/VBoxContainer/GeneralContainer/Language"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
 text = "SETTINGS_LANGUAGE"
 
-[node name="Language" type="OptionButton" parent="TabContainer/General/VBoxContainer/Language"]
+[node name="Language" type="OptionButton" parent="VBoxContainer/MarginContainer/VBoxContainer/GeneralContainer/Language"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="HSeparator" type="HSeparator" parent="TabContainer/General/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer/MarginContainer/VBoxContainer/GeneralContainer"]
 layout_mode = 2
 theme_override_constants/separation = 12
 theme_override_styles/separator = SubResource("3")
 
-[node name="GeneralRestartLabel" type="Label" parent="TabContainer/General/VBoxContainer"]
+[node name="AppearanceContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
-theme_override_colors/font_color = Color(1, 0.470588, 0.470588, 1)
-text = "SETTINGS_RESTART_NOTICE"
-horizontal_alignment = 1
 
-[node name="Appearance" type="Control" parent="TabContainer"]
-visible = false
-layout_mode = 2
-metadata/_tab_index = 1
-
-[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Appearance"]
-layout_mode = 0
-anchor_right = 1.0
-anchor_bottom = 1.0
-
-[node name="HSeparator3" type="HSeparator" parent="TabContainer/Appearance/VBoxContainer"]
+[node name="HSeparator3" type="HSeparator" parent="VBoxContainer/MarginContainer/VBoxContainer/AppearanceContainer"]
 layout_mode = 2
 theme_override_constants/separation = 12
 theme_override_styles/separator = SubResource("1")
 
-[node name="Theme" type="HBoxContainer" parent="TabContainer/Appearance/VBoxContainer"]
+[node name="Theme" type="HBoxContainer" parent="VBoxContainer/MarginContainer/VBoxContainer/AppearanceContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="TabContainer/Appearance/VBoxContainer/Theme"]
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer/VBoxContainer/AppearanceContainer/Theme"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
 text = "SETTINGS_THEME"
 
-[node name="Theme" type="OptionButton" parent="TabContainer/Appearance/VBoxContainer/Theme"]
+[node name="Theme" type="OptionButton" parent="VBoxContainer/MarginContainer/VBoxContainer/AppearanceContainer/Theme"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -193,21 +205,21 @@ popup/item_0/text = "Dark Mode"
 popup/item_1/text = "Light Mode"
 popup/item_1/id = 1
 
-[node name="UIScale" type="HBoxContainer" parent="TabContainer/Appearance/VBoxContainer"]
+[node name="UIScale" type="HBoxContainer" parent="VBoxContainer/MarginContainer/VBoxContainer/AppearanceContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="TabContainer/Appearance/VBoxContainer/UIScale"]
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer/VBoxContainer/AppearanceContainer/UIScale"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
 text = "SETTINGS_UI_SCALE"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/Appearance/VBoxContainer/UIScale"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer/VBoxContainer/AppearanceContainer/UIScale"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="UIScaleOptions" type="OptionButton" parent="TabContainer/Appearance/VBoxContainer/UIScale/HBoxContainer"]
+[node name="UIScaleOptions" type="OptionButton" parent="VBoxContainer/MarginContainer/VBoxContainer/AppearanceContainer/UIScale/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -217,7 +229,7 @@ popup/item_0/text = "Auto"
 popup/item_1/text = "Custom"
 popup/item_1/id = 1
 
-[node name="UIScale" type="SpinBox" parent="TabContainer/Appearance/VBoxContainer/UIScale/HBoxContainer"]
+[node name="UIScale" type="SpinBox" parent="VBoxContainer/MarginContainer/VBoxContainer/AppearanceContainer/UIScale/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -227,17 +239,17 @@ max_value = 2.5
 step = 0.1
 value = 1.0
 
-[node name="GridPattern" type="HBoxContainer" parent="TabContainer/Appearance/VBoxContainer"]
+[node name="GridPattern" type="HBoxContainer" parent="VBoxContainer/MarginContainer/VBoxContainer/AppearanceContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="TabContainer/Appearance/VBoxContainer/GridPattern"]
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer/VBoxContainer/AppearanceContainer/GridPattern"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
 text = "SETTINGS_GRID_PATTERN"
 
-[node name="GridPattern" type="OptionButton" parent="TabContainer/Appearance/VBoxContainer/GridPattern"]
+[node name="GridPattern" type="OptionButton" parent="VBoxContainer/MarginContainer/VBoxContainer/AppearanceContainer/GridPattern"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -249,17 +261,17 @@ popup/item_1/id = 1
 popup/item_2/text = "None"
 popup/item_2/id = 2
 
-[node name="GridSize" type="HBoxContainer" parent="TabContainer/Appearance/VBoxContainer"]
+[node name="GridSize" type="HBoxContainer" parent="VBoxContainer/MarginContainer/VBoxContainer/AppearanceContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="TabContainer/Appearance/VBoxContainer/GridSize"]
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer/VBoxContainer/AppearanceContainer/GridSize"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
 text = "SETTINGS_GRID_SIZE"
 
-[node name="GridSize" type="SpinBox" parent="TabContainer/Appearance/VBoxContainer/GridSize"]
+[node name="GridSize" type="SpinBox" parent="VBoxContainer/MarginContainer/VBoxContainer/AppearanceContainer/GridSize"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -269,17 +281,17 @@ max_value = 256.0
 value = 12.0
 allow_greater = true
 
-[node name="CanvasColor" type="HBoxContainer" parent="TabContainer/Appearance/VBoxContainer"]
+[node name="CanvasColor" type="HBoxContainer" parent="VBoxContainer/MarginContainer/VBoxContainer/AppearanceContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="TabContainer/Appearance/VBoxContainer/CanvasColor"]
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer/VBoxContainer/AppearanceContainer/CanvasColor"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
 text = "SETTINGS_CANVAS_COLOR"
 
-[node name="CanvasColor" type="ColorPickerButton" parent="TabContainer/Appearance/VBoxContainer/CanvasColor"]
+[node name="CanvasColor" type="ColorPickerButton" parent="VBoxContainer/MarginContainer/VBoxContainer/AppearanceContainer/CanvasColor"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(28, 28)
 layout_mode = 2
@@ -293,45 +305,32 @@ flat = true
 color = Color(0.12549, 0.129412, 0.141176, 1)
 edit_alpha = false
 
-[node name="HSeparator5" type="HSeparator" parent="TabContainer/Appearance/VBoxContainer"]
+[node name="HSeparator5" type="HSeparator" parent="VBoxContainer/MarginContainer/VBoxContainer/AppearanceContainer"]
 layout_mode = 2
 theme_override_constants/separation = 12
 theme_override_styles/separator = SubResource("1")
 
-[node name="AppearanceRestartLabel" type="Label" parent="TabContainer/Appearance/VBoxContainer"]
+[node name="RenderingContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
-theme_override_colors/font_color = Color(1, 0.470588, 0.470588, 1)
-text = "SETTINGS_RESTART_NOTICE"
-horizontal_alignment = 1
 
-[node name="Rendering" type="Control" parent="TabContainer"]
-visible = false
-layout_mode = 2
-metadata/_tab_index = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Rendering"]
-layout_mode = 0
-anchor_right = 1.0
-anchor_bottom = 1.0
-
-[node name="HSeparator3" type="HSeparator" parent="TabContainer/Rendering/VBoxContainer"]
+[node name="HSeparator3" type="HSeparator" parent="VBoxContainer/MarginContainer/VBoxContainer/RenderingContainer"]
 layout_mode = 2
 theme_override_constants/separation = 12
 theme_override_styles/separator = SubResource("1")
 
-[node name="BrushRounding" type="HBoxContainer" parent="TabContainer/Rendering/VBoxContainer"]
+[node name="BrushRounding" type="HBoxContainer" parent="VBoxContainer/MarginContainer/VBoxContainer/RenderingContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="TabContainer/Rendering/VBoxContainer/BrushRounding"]
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer/VBoxContainer/RenderingContainer/BrushRounding"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
 text = "SETTINGS_BRUSH_CAPS"
 
-[node name="BrushRounding" type="OptionButton" parent="TabContainer/Rendering/VBoxContainer/BrushRounding"]
+[node name="BrushRounding" type="OptionButton" parent="VBoxContainer/MarginContainer/VBoxContainer/RenderingContainer/BrushRounding"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -340,17 +339,17 @@ popup/item_0/text = "Flat"
 popup/item_1/text = "Round"
 popup/item_1/id = 1
 
-[node name="ForgroundFramerate" type="HBoxContainer" parent="TabContainer/Rendering/VBoxContainer"]
+[node name="ForgroundFramerate" type="HBoxContainer" parent="VBoxContainer/MarginContainer/VBoxContainer/RenderingContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="TabContainer/Rendering/VBoxContainer/ForgroundFramerate"]
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer/VBoxContainer/RenderingContainer/ForgroundFramerate"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
 text = "SETTINGS_FPS_FOREGROUND"
 
-[node name="ForgroundFramerate" type="SpinBox" parent="TabContainer/Rendering/VBoxContainer/ForgroundFramerate"]
+[node name="ForgroundFramerate" type="SpinBox" parent="VBoxContainer/MarginContainer/VBoxContainer/RenderingContainer/ForgroundFramerate"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -360,17 +359,17 @@ max_value = 1000.0
 value = 144.0
 allow_greater = true
 
-[node name="BackgroundFramerate" type="HBoxContainer" parent="TabContainer/Rendering/VBoxContainer"]
+[node name="BackgroundFramerate" type="HBoxContainer" parent="VBoxContainer/MarginContainer/VBoxContainer/RenderingContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="TabContainer/Rendering/VBoxContainer/BackgroundFramerate"]
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer/VBoxContainer/RenderingContainer/BackgroundFramerate"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
 text = "SETTINGS_FPS_BACKGROUND"
 
-[node name="BackgroundFramerate" type="SpinBox" parent="TabContainer/Rendering/VBoxContainer/BackgroundFramerate"]
+[node name="BackgroundFramerate" type="SpinBox" parent="VBoxContainer/MarginContainer/VBoxContainer/RenderingContainer/BackgroundFramerate"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -380,12 +379,17 @@ max_value = 1000.0
 value = 10.0
 allow_greater = true
 
-[node name="HSeparator4" type="HSeparator" parent="TabContainer/Rendering/VBoxContainer"]
+[node name="HSeparator4" type="HSeparator" parent="VBoxContainer/MarginContainer/VBoxContainer/RenderingContainer"]
 layout_mode = 2
 theme_override_constants/separation = 12
 theme_override_styles/separator = SubResource("1")
 
-[node name="RenderingRestartLabel" type="Label" parent="TabContainer/Rendering/VBoxContainer"]
+[node name="KeybindingsContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="RestartLabel" type="Label" parent="VBoxContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2

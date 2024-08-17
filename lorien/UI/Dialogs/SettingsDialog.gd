@@ -1,5 +1,5 @@
 class_name SettingsDialog
-extends MarginContainer
+extends PanelContainer
 
 # -------------------------------------------------------------------------------------------------
 const THEME_DARK_INDEX 	:= 0
@@ -23,7 +23,15 @@ signal grid_pattern_changed(pattern)
 signal constant_pressure_changed(state)
 
 # -------------------------------------------------------------------------------------------------
-@onready var _tab_container: TabContainer = $TabContainer
+@onready var _general_tab: Button = %GeneralTab
+@onready var _appearance_tab: Button = %AppearanceTab
+@onready var _rendering_tab: Button = %RenderingTab
+@onready var _keybindings_tab: Button = %KeybindingsTab
+@onready var _general_container: VBoxContainer = %GeneralContainer
+@onready var _appearance_container: VBoxContainer = %AppearanceContainer
+@onready var _rendering_container: VBoxContainer = %RenderingContainer
+@onready var _keybindings_container: VBoxContainer = %KeybindingsContainer
+
 @onready var _pressure_sensitivity: SpinBox = %PressureSensitivity
 @onready var _constant_pressure: CheckBox = %ConstantPressure
 @onready var _brush_size: SpinBox = %DefaultBrushSize
@@ -39,17 +47,14 @@ signal constant_pressure_changed(state)
 @onready var _foreground_fps: SpinBox = %ForgroundFramerate
 @onready var _background_fps: SpinBox = %BackgroundFramerate
 @onready var _brush_rounding: OptionButton = %BrushRounding
-@onready var _general_restart_label: Label = %GeneralRestartLabel
-@onready var _appearence_restart_label: Label = %AppearanceRestartLabel
-@onready var _rendering_restart_label: Label = %RenderingRestartLabel
+@onready var _restart_label: Label = %RestartLabel
 
 # -------------------------------------------------------------------------------------------------
 func _ready():
 	_set_values()
-	_apply_language()
-	GlobalSignals.language_changed.connect(_apply_language)
-	
 	get_parent().close_requested.connect(get_parent().hide)
+	_enable_tab(_general_tab, _general_container)
+	
 	_pressure_sensitivity.value_changed.connect(_on_pressure_sensitivity_changed)
 	_constant_pressure.toggled.connect(_on_constant_pressure_toggled)
 	_brush_size.value_changed.connect(_on_default_brush_size_changed)
@@ -66,12 +71,11 @@ func _ready():
 	_foreground_fps.value_changed.connect(_on_foreground_fps_changed)
 	_background_fps.value_changed.connect(_on_background_fps_changed)
 	
-# -------------------------------------------------------------------------------------------------
-func _apply_language() -> void:
-	_tab_container.set_tab_title(0, tr("SETTINGS_GENERAL"))
-	_tab_container.set_tab_title(1, tr("SETTINGS_APPEARANCE"))
-	_tab_container.set_tab_title(2, tr("SETTINGS_RENDERING"))
-
+	_general_tab.pressed.connect(func(): _enable_tab(_general_tab, _general_container))
+	_appearance_tab.pressed.connect(func(): _enable_tab(_appearance_tab, _appearance_container))
+	_rendering_tab.pressed.connect(func(): _enable_tab(_rendering_tab, _rendering_container))
+	_keybindings_tab.pressed.connect(func(): _enable_tab(_keybindings_tab, _keybindings_container))
+	
 # -------------------------------------------------------------------------------------------------
 func _set_values() -> void:
 	var brush_size = Settings.get_value(Settings.GENERAL_DEFAULT_BRUSH_SIZE, Config.DEFAULT_BRUSH_SIZE)
@@ -126,6 +130,20 @@ func _set_rounding():
 		Settings.RENDERING_BRUSH_ROUNDING, 
 		Config.DEFAULT_BRUSH_ROUNDING
 	)
+
+# -------------------------------------------------------------------------------------------------
+func _enable_tab(tab: Button, container: Control) -> void:
+	_general_tab.modulate = Color.WHITE
+	_appearance_tab.modulate = Color.WHITE
+	_rendering_tab.modulate = Color.WHITE
+	_keybindings_tab.modulate = Color.WHITE
+	tab.modulate = Color("92ffe4")
+	
+	_general_container.hide()
+	_appearance_container.hide()
+	_rendering_container.hide()
+	_keybindings_container.hide()
+	container.show()
 
 # -------------------------------------------------------------------------------------------------
 func _set_languages(current_locale: String) -> void:
@@ -220,7 +238,7 @@ func _on_theme_selected(index: int):
 		THEME_LIGHT_INDEX: ui_theme = Types.UITheme.LIGHT
 	
 	Settings.set_value(Settings.APPEARANCE_THEME, ui_theme)
-	_appearence_restart_label.show()
+	_restart_label.show()
 
 # -------------------------------------------------------------------------------------------------
 func _on_brush_rounding_selected(index: int):
@@ -229,8 +247,7 @@ func _on_brush_rounding_selected(index: int):
 			Settings.set_value(Settings.RENDERING_BRUSH_ROUNDING, Types.BrushRoundingType.FLAT)
 		BRUSH_STROKE_CAP_ROUND:
 			Settings.set_value(Settings.RENDERING_BRUSH_ROUNDING, Types.BrushRoundingType.ROUNDED)
-	
-	_rendering_restart_label.show()
+	_restart_label.show()
 
 # -------------------------------------------------------------------------------------------------
 func _on_language_selected(idx: int):
@@ -258,7 +275,7 @@ func _on_ui_scale_changed(value: float):
 	print("UI scale changed")
 	Settings.set_value(Settings.APPEARANCE_UI_SCALE, value)
 	emit_signal("ui_scale_changed")
-	#popup_centered()
+	_restart_label.show()
 
 # -------------------------------------------------------------------------------------------------
 func _on_default_tool_pressure_changed(value):

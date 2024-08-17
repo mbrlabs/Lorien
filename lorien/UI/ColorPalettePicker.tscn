@@ -1,120 +1,106 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=3 uid="uid://dsxmmndtd4r2c"]
 
-[ext_resource path="res://UI/Themes/theme_dark.tres" type="Theme" id=1]
-[ext_resource path="res://UI/ColorPalettePicker.gd" type="Script" id=2]
-[ext_resource path="res://Assets/Icons/edit.png" type="Texture2D" id=3]
-[ext_resource path="res://Assets/Icons/plus.png" type="Texture2D" id=4]
-[ext_resource path="res://Assets/Icons/copy.png" type="Texture2D" id=5]
-[ext_resource path="res://Assets/Icons/delete.png" type="Texture2D" id=6]
-[ext_resource path="res://UI/Components/FlatTextureButton.gd" type="Script" id=7]
+[ext_resource type="Theme" uid="uid://u5qnpgxqykiv" path="res://UI/Themes/theme_dark.tres" id="1"]
+[ext_resource type="Script" path="res://UI/ColorPalettePicker.gd" id="2"]
+[ext_resource type="Texture2D" uid="uid://bu10tixbxmwus" path="res://Assets/Icons/edit.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://bmutnbt040e0b" path="res://Assets/Icons/plus.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://ci340bpx1hg78" path="res://Assets/Icons/copy.png" id="5"]
+[ext_resource type="Texture2D" uid="uid://c3maqrdnsjgiq" path="res://Assets/Icons/delete.png" id="6"]
+[ext_resource type="Script" path="res://UI/Components/FlatTextureButton.gd" id="7"]
 
-[sub_resource type="StyleBoxLine" id=1]
-color = Color( 0.4, 0.407843, 0.443137, 1 )
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eth5b"]
+bg_color = Color(0.12549, 0.129412, 0.141176, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.207843, 0.211765, 0.227451, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxLine" id="1"]
+color = Color(0.4, 0.407843, 0.443137, 1)
 grow_begin = -4.0
 grow_end = -4.0
 vertical = true
 
-[sub_resource type="StyleBoxEmpty" id=2]
+[sub_resource type="StyleBoxEmpty" id="2"]
 
 [node name="ColorPalettePicker" type="PanelContainer"]
+custom_minimum_size = Vector2(358, 78)
 offset_right = 358.0
 offset_bottom = 78.0
-custom_minimum_size = Vector2( 358, 78 )
-theme = ExtResource( 1 )
-script = ExtResource( 2 )
+theme = ExtResource("1")
+theme_override_styles/panel = SubResource("StyleBoxFlat_eth5b")
+script = ExtResource("2")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
-offset_right = 358.0
-offset_bottom = 78.0
-theme_override_constants/margin_right = 6
-theme_override_constants/margin_top = 6
+layout_mode = 2
 theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
 theme_override_constants/margin_bottom = 6
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
-offset_left = 6.0
-offset_top = 6.0
-offset_right = 352.0
-offset_bottom = 72.0
-theme = ExtResource( 1 )
+layout_mode = 2
+theme = ExtResource("1")
 
 [node name="Buttons" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
-offset_right = 346.0
-offset_bottom = 25.0
+layout_mode = 2
 theme_override_constants/separation = 8
 
 [node name="PaletteSelectionButton" type="OptionButton" parent="MarginContainer/VBoxContainer/Buttons"]
-offset_right = 26.0
-offset_bottom = 25.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
+layout_mode = 2
 
 [node name="AddPaletteButton" type="TextureButton" parent="MarginContainer/VBoxContainer/Buttons"]
-offset_left = 34.0
-offset_top = 4.0
-offset_right = 50.0
-offset_bottom = 20.0
-tooltip_text = "COLOR_PALETTE_PICKER_HINT_NEW"
+layout_mode = 2
 size_flags_vertical = 4
-texture_normal = ExtResource( 4 )
-script = ExtResource( 7 )
-hover_tint = Color( 0.662745, 0.945098, 0.87451, 1 )
-pressed_tint = Color( 0.572549, 1, 0.894118, 1 )
+tooltip_text = "COLOR_PALETTE_PICKER_HINT_NEW"
+texture_normal = ExtResource("4")
+script = ExtResource("7")
+hover_tint = Color(0.662745, 0.945098, 0.87451, 1)
+pressed_tint = Color(0.572549, 1, 0.894118, 1)
 
 [node name="EditColorButton" type="TextureButton" parent="MarginContainer/VBoxContainer/Buttons"]
-offset_left = 58.0
-offset_top = 3.0
-offset_right = 76.0
-offset_bottom = 21.0
-tooltip_text = "COLOR_PALETTE_PICKER_HINT_EDIT"
+layout_mode = 2
 size_flags_vertical = 4
-texture_normal = ExtResource( 3 )
-script = ExtResource( 7 )
-hover_tint = Color( 0.662745, 0.945098, 0.87451, 1 )
-pressed_tint = Color( 0.572549, 1, 0.894118, 1 )
+tooltip_text = "COLOR_PALETTE_PICKER_HINT_EDIT"
+texture_normal = ExtResource("3")
+script = ExtResource("7")
+hover_tint = Color(0.662745, 0.945098, 0.87451, 1)
+pressed_tint = Color(0.572549, 1, 0.894118, 1)
 
 [node name="DuplicatePaletteButton" type="TextureButton" parent="MarginContainer/VBoxContainer/Buttons"]
-offset_left = 84.0
-offset_top = 3.0
-offset_right = 102.0
-offset_bottom = 21.0
-tooltip_text = "COLOR_PALETTE_PICKER_HINT_DUPLICATE"
+layout_mode = 2
 size_flags_vertical = 4
-texture_normal = ExtResource( 5 )
-script = ExtResource( 7 )
-hover_tint = Color( 0.662745, 0.945098, 0.87451, 1 )
-pressed_tint = Color( 0.572549, 1, 0.894118, 1 )
+tooltip_text = "COLOR_PALETTE_PICKER_HINT_DUPLICATE"
+texture_normal = ExtResource("5")
+script = ExtResource("7")
+hover_tint = Color(0.662745, 0.945098, 0.87451, 1)
+pressed_tint = Color(0.572549, 1, 0.894118, 1)
 
 [node name="VSeparator" type="VSeparator" parent="MarginContainer/VBoxContainer/Buttons"]
-offset_left = 110.0
-offset_right = 114.0
-offset_bottom = 25.0
-theme_override_styles/separator = SubResource( 1 )
+layout_mode = 2
+theme_override_styles/separator = SubResource("1")
 
 [node name="DeletePaletteButton" type="TextureButton" parent="MarginContainer/VBoxContainer/Buttons"]
-offset_left = 122.0
-offset_top = 3.0
-offset_right = 140.0
-offset_bottom = 21.0
-tooltip_text = "COLOR_PALETTE_PICKER_HINT_DELETE"
+layout_mode = 2
 size_flags_vertical = 4
-texture_normal = ExtResource( 6 )
-script = ExtResource( 7 )
-hover_tint = Color( 1, 0.431373, 0.431373, 1 )
-pressed_tint = Color( 1, 0.266667, 0.266667, 1 )
+tooltip_text = "COLOR_PALETTE_PICKER_HINT_DELETE"
+texture_normal = ExtResource("6")
+script = ExtResource("7")
+hover_tint = Color(1, 0.431373, 0.431373, 1)
+pressed_tint = Color(1, 0.266667, 0.266667, 1)
 
 [node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer"]
-offset_top = 29.0
-offset_right = 346.0
-offset_bottom = 31.0
+layout_mode = 2
 theme_override_constants/separation = 2
-theme_override_styles/separator = SubResource( 2 )
+theme_override_styles/separator = SubResource("2")
 
 [node name="ColorGrid" type="GridContainer" parent="MarginContainer/VBoxContainer"]
-offset_top = 35.0
-offset_right = 346.0
-offset_bottom = 66.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 columns = 10

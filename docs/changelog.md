@@ -6,6 +6,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [0.7.0] 
 
+### Breaking Changes
+- The keybindings fromat is different, so you will need to update them again in case you changed them
+
 ### Added
 - Setting to disable pressure sensitivity and always draw with a constant brush width
 - Translations: Ukrainian
@@ -13,6 +16,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Fixed
 
 ### Changed
+- Migrated from Godot 3.5.x to Godot 4.3
+- UI overhaul
 - Improved icon resolution on Windows
 
 ## [0.6.0] - 2023-11-06

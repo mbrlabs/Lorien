@@ -82,7 +82,7 @@ func _on_EditPaletteDialog_close_requested() -> void:
 	if _palette_edited:
 		PaletteManager.save()
 		emit_signal("palette_changed")
-		get_parent().hide()
+	get_parent().hide()
 
 # -------------------------------------------------------------------------------------------------
 func _on_NameLineEdit_text_changed(new_text: String) -> void:

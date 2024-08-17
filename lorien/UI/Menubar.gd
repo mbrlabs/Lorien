@@ -1,5 +1,5 @@
-extends Panel
 class_name Menubar
+extends Panel
 
 # -------------------------------------------------------------------------------------------------
 const PROJECT_TAB = preload("res://UI/Components/ProjectTab.tscn")
