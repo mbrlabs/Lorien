@@ -76,6 +76,10 @@ func _ready():
 	_rendering_tab.pressed.connect(func(): _enable_tab(_rendering_tab, _rendering_container))
 	_keybindings_tab.pressed.connect(func(): _enable_tab(_keybindings_tab, _keybindings_container))
 	
+	for action: String in InputMap.get_actions():
+		if !action.begins_with("ui_") && !action.begins_with("player_"):
+			print(action)
+	
 # -------------------------------------------------------------------------------------------------
 func _set_values() -> void:
 	var brush_size = Settings.get_value(Settings.GENERAL_DEFAULT_BRUSH_SIZE, Config.DEFAULT_BRUSH_SIZE)
@@ -108,7 +112,7 @@ func _set_values() -> void:
 		
 	_set_languages(locale)
 	_set_rounding()
-	_set_UIScale_range()
+	_set_ui_scale_range()
 	
 	_pressure_sensitivity.value = pressure_sensitivity
 	_brush_size.value = brush_size
@@ -167,7 +171,7 @@ func _set_languages(current_locale: String) -> void:
 	_language.selected = _language.get_item_index(id)
 
 #--------------------------------------------------------------------------------------------------
-func _set_UIScale_range():
+func _set_ui_scale_range():
 	var ss := DisplayServer.screen_get_size()
 	var viewport_width: float = ProjectSettings.get_setting("display/window/size/viewport_width")
 	var viewport_height: float = ProjectSettings.get_setting("display/window/size/viewport_height")

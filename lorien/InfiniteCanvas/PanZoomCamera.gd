@@ -61,30 +61,6 @@ func tool_event(event: InputEvent) -> void:
 				_do_pan(event.relative)
 			elif _zoom_active:
 				_do_zoom_drag(event.relative.y)
-		
-		elif Utils.event_pressed_bug_workaround("canvas_zoom_in", event):
-			_do_zoom_scroll(1)
-			get_viewport().set_input_as_handled()
-		
-		elif Utils.event_pressed_bug_workaround("canvas_zoom_out", event):
-			_do_zoom_scroll(-1)
-			get_viewport().set_input_as_handled()
-		
-		elif Utils.event_pressed_bug_workaround("canvas_pan_left", event):
-			_do_pan(-Vector2.LEFT * KEYBOARD_PAN_CONSTANT)
-			get_viewport().set_input_as_handled()
-
-		elif Utils.event_pressed_bug_workaround("canvas_pan_right", event):
-			_do_pan(-Vector2.RIGHT * KEYBOARD_PAN_CONSTANT)
-			get_viewport().set_input_as_handled()
-
-		elif Utils.event_pressed_bug_workaround("canvas_pan_up", event):
-			_do_pan(-Vector2.UP * KEYBOARD_PAN_CONSTANT)
-			get_viewport().set_input_as_handled()
-
-		elif Utils.event_pressed_bug_workaround("canvas_pan_down", event):
-			_do_pan(-Vector2.DOWN * KEYBOARD_PAN_CONSTANT)
-			get_viewport().set_input_as_handled()
 
 # -------------------------------------------------------------------------------------------------
 func _do_pan(pan: Vector2) -> void:

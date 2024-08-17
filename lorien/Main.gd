@@ -153,8 +153,6 @@ func _unhandled_input(event):
 			_on_undo_action()
 		elif Utils.event_pressed_bug_workaround("shortcut_redo", event):
 			_on_redo_action()
-		elif Utils.event_pressed_bug_workaround("center_canvas_to_mouse", event):
-			_canvas.center_to_mouse()
 		elif Utils.event_pressed_bug_workaround("shortcut_brush_tool", event):
 			_toolbar.enable_tool(Types.Tool.BRUSH)
 		elif Utils.event_pressed_bug_workaround("shortcut_rectangle_tool", event):
