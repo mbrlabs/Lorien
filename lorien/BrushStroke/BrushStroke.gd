@@ -25,15 +25,10 @@ var bottom_right_pos: Vector2
 # ------------------------------------------------------------------------------------------------
 func _ready():
 	_line2d.width_curve = Curve.new()
-	_line2d.joint_mode = Line2D.LINE_JOINT_ROUND
-	
-	_visibility_notifier.screen_entered.connect(_on_VisibilityNotifier2D_screen_entered)
-	_visibility_notifier.screen_exited.connect(_on_VisibilityNotifier2D_screen_exited)
-	
-	# Anti aliasing
 	_line2d.texture = BrushStrokeTexture.texture
-	_line2d.texture_mode = Line2D.LINE_TEXTURE_STRETCH
-	_line2d.texture_filter = TextureFilter.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS
+	
+	_visibility_notifier.screen_entered.connect(func(): add_to_group(GROUP_ONSCREEN))
+	_visibility_notifier.screen_exited.connect(func(): remove_from_group(GROUP_ONSCREEN))
 	
 	var rounding_mode: int = Settings.get_value(Settings.RENDERING_BRUSH_ROUNDING, Config.DEFAULT_BRUSH_ROUNDING)
 	match rounding_mode:
@@ -45,16 +40,6 @@ func _ready():
 			_line2d.begin_cap_mode = Line2D.LINE_CAP_ROUND
 	
 	refresh()
-
-# ------------------------------------------------------------------------------------------------
-func _on_VisibilityNotifier2D_screen_entered() -> void: 
-	add_to_group(GROUP_ONSCREEN)
-	visible = true
-	
-# ------------------------------------------------------------------------------------------------
-func _on_VisibilityNotifier2D_screen_exited() -> void:
-	remove_from_group(GROUP_ONSCREEN)
-	visible = false
 
 # -------------------------------------------------------------------------------------------------
 func _to_string() -> String:

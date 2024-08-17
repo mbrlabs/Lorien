@@ -8,3 +8,6 @@ script = ExtResource("1")
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 
 [node name="Line2D" type="Line2D" parent="."]
+texture_filter = 6
+texture_mode = 2
+joint_mode = 2
