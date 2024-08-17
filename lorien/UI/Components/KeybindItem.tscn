@@ -1,6 +1,13 @@
-[gd_scene format=3 uid="uid://ct7pvupldkei5"]
+[gd_scene load_steps=3 format=3 uid="uid://ct7pvupldkei5"]
+
+[ext_resource type="Script" path="res://UI/Components/KeybindItem.gd" id="1_1rkxe"]
+[ext_resource type="Theme" uid="uid://u5qnpgxqykiv" path="res://UI/Themes/theme_dark.tres" id="1_cuavq"]
 
 [node name="KeybindItem" type="HBoxContainer"]
+offset_right = 170.0
+offset_bottom = 29.0
+theme = ExtResource("1_cuavq")
+script = ExtResource("1_1rkxe")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 2
@@ -10,4 +17,4 @@ text = "Action Name"
 [node name="Button" type="Button" parent="."]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Listening..."
+text = "Press buttons to rebind..."

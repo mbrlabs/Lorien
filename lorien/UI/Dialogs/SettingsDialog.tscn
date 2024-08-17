@@ -1,8 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://cgs8d5y8yrwl0"]
+[gd_scene load_steps=6 format=3 uid="uid://cgs8d5y8yrwl0"]
 
 [ext_resource type="Theme" uid="uid://u5qnpgxqykiv" path="res://UI/Themes/theme_dark.tres" id="1_n5v21"]
 [ext_resource type="Script" path="res://UI/Dialogs/SettingsDialog.gd" id="2"]
-[ext_resource type="PackedScene" uid="uid://ct7pvupldkei5" path="res://UI/Components/KeybindItem.tscn" id="3_xmpn4"]
 
 [sub_resource type="StyleBoxEmpty" id="1"]
 
@@ -394,69 +393,16 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer/VBoxContainer/KeybindingsContainer"]
+[node name="KeybindItemList" type="VBoxContainer" parent="VBoxContainer/MarginContainer/VBoxContainer/KeybindingsContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="HSeparator2" type="HSeparator" parent="VBoxContainer/MarginContainer/VBoxContainer/KeybindingsContainer/VBoxContainer"]
+[node name="HSeparator2" type="HSeparator" parent="VBoxContainer/MarginContainer/VBoxContainer/KeybindingsContainer/KeybindItemList"]
 layout_mode = 2
 theme_override_constants/separation = 12
 theme_override_styles/separator = SubResource("StyleBoxEmpty_jxxpi")
-
-[node name="KeybindItem" parent="VBoxContainer/MarginContainer/VBoxContainer/KeybindingsContainer/VBoxContainer" instance=ExtResource("3_xmpn4")]
-layout_mode = 2
-
-[node name="KeybindItem2" parent="VBoxContainer/MarginContainer/VBoxContainer/KeybindingsContainer/VBoxContainer" instance=ExtResource("3_xmpn4")]
-layout_mode = 2
-
-[node name="KeybindItem3" parent="VBoxContainer/MarginContainer/VBoxContainer/KeybindingsContainer/VBoxContainer" instance=ExtResource("3_xmpn4")]
-layout_mode = 2
-
-[node name="KeybindItem4" parent="VBoxContainer/MarginContainer/VBoxContainer/KeybindingsContainer/VBoxContainer" instance=ExtResource("3_xmpn4")]
-layout_mode = 2
-
-[node name="KeybindItem5" parent="VBoxContainer/MarginContainer/VBoxContainer/KeybindingsContainer/VBoxContainer" instance=ExtResource("3_xmpn4")]
-layout_mode = 2
-
-[node name="KeybindItem6" parent="VBoxContainer/MarginContainer/VBoxContainer/KeybindingsContainer/VBoxContainer" instance=ExtResource("3_xmpn4")]
-layout_mode = 2
-
-[node name="KeybindItem7" parent="VBoxContainer/MarginContainer/VBoxContainer/KeybindingsContainer/VBoxContainer" instance=ExtResource("3_xmpn4")]
-layout_mode = 2
-
-[node name="KeybindItem8" parent="VBoxContainer/MarginContainer/VBoxContainer/KeybindingsContainer/VBoxContainer" instance=ExtResource("3_xmpn4")]
-layout_mode = 2
-
-[node name="KeybindItem9" parent="VBoxContainer/MarginContainer/VBoxContainer/KeybindingsContainer/VBoxContainer" instance=ExtResource("3_xmpn4")]
-layout_mode = 2
-
-[node name="KeybindItem10" parent="VBoxContainer/MarginContainer/VBoxContainer/KeybindingsContainer/VBoxContainer" instance=ExtResource("3_xmpn4")]
-layout_mode = 2
-
-[node name="KeybindItem11" parent="VBoxContainer/MarginContainer/VBoxContainer/KeybindingsContainer/VBoxContainer" instance=ExtResource("3_xmpn4")]
-layout_mode = 2
-
-[node name="KeybindItem12" parent="VBoxContainer/MarginContainer/VBoxContainer/KeybindingsContainer/VBoxContainer" instance=ExtResource("3_xmpn4")]
-layout_mode = 2
-
-[node name="KeybindItem13" parent="VBoxContainer/MarginContainer/VBoxContainer/KeybindingsContainer/VBoxContainer" instance=ExtResource("3_xmpn4")]
-layout_mode = 2
-
-[node name="KeybindItem14" parent="VBoxContainer/MarginContainer/VBoxContainer/KeybindingsContainer/VBoxContainer" instance=ExtResource("3_xmpn4")]
-layout_mode = 2
-
-[node name="KeybindItem15" parent="VBoxContainer/MarginContainer/VBoxContainer/KeybindingsContainer/VBoxContainer" instance=ExtResource("3_xmpn4")]
-layout_mode = 2
-
-[node name="KeybindItem16" parent="VBoxContainer/MarginContainer/VBoxContainer/KeybindingsContainer/VBoxContainer" instance=ExtResource("3_xmpn4")]
-layout_mode = 2
-
-[node name="KeybindItem17" parent="VBoxContainer/MarginContainer/VBoxContainer/KeybindingsContainer/VBoxContainer" instance=ExtResource("3_xmpn4")]
-layout_mode = 2
-
-[node name="KeybindItem18" parent="VBoxContainer/MarginContainer/VBoxContainer/KeybindingsContainer/VBoxContainer" instance=ExtResource("3_xmpn4")]
-layout_mode = 2
 
 [node name="RestartLabel" type="Label" parent="VBoxContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true

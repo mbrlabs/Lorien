@@ -2,6 +2,9 @@ class_name SettingsDialog
 extends PanelContainer
 
 # -------------------------------------------------------------------------------------------------
+const KEYBIND_ITEM = preload("res://UI/Components/KeybindItem.tscn")
+
+# -------------------------------------------------------------------------------------------------
 const THEME_DARK_INDEX 	:= 0
 const THEME_LIGHT_INDEX := 1
 
@@ -47,6 +50,7 @@ signal constant_pressure_changed(state)
 @onready var _foreground_fps: SpinBox = %ForgroundFramerate
 @onready var _background_fps: SpinBox = %BackgroundFramerate
 @onready var _brush_rounding: OptionButton = %BrushRounding
+@onready var _keybind_item_list: VBoxContainer = %KeybindItemList
 @onready var _restart_label: Label = %RestartLabel
 
 # -------------------------------------------------------------------------------------------------
@@ -75,11 +79,7 @@ func _ready():
 	_appearance_tab.pressed.connect(func(): _enable_tab(_appearance_tab, _appearance_container))
 	_rendering_tab.pressed.connect(func(): _enable_tab(_rendering_tab, _rendering_container))
 	_keybindings_tab.pressed.connect(func(): _enable_tab(_keybindings_tab, _keybindings_container))
-	
-	for action: String in InputMap.get_actions():
-		if !action.begins_with("ui_") && !action.begins_with("player_"):
-			print(action)
-	
+
 # -------------------------------------------------------------------------------------------------
 func _set_values() -> void:
 	var brush_size = Settings.get_value(Settings.GENERAL_DEFAULT_BRUSH_SIZE, Config.DEFAULT_BRUSH_SIZE)
@@ -112,6 +112,7 @@ func _set_values() -> void:
 		
 	_set_languages(locale)
 	_set_rounding()
+	_set_input_actions()
 	_set_ui_scale_range()
 	
 	_pressure_sensitivity.value = pressure_sensitivity
@@ -169,6 +170,14 @@ func _set_languages(current_locale: String) -> void:
 	# Set selected
 	var id := Array(Settings.locales).find(current_locale)
 	_language.selected = _language.get_item_index(id)
+
+#--------------------------------------------------------------------------------------------------
+func _set_input_actions() -> void:
+	for action: KeybindingsManager.Action in KeybindingsManager.get_actions():
+		var item: KeybindItem = KEYBIND_ITEM.instantiate()
+		item.action_rebind_requested.connect(_on_action_keybinding_changed)
+		_keybind_item_list.add_child(item)
+		item.set_action(action)
 
 #--------------------------------------------------------------------------------------------------
 func _set_ui_scale_range():
@@ -261,6 +270,7 @@ func _on_language_selected(idx: int):
 	Settings.set_value(Settings.GENERAL_LANGUAGE, locale)
 	TranslationServer.set_locale(locale)
 	GlobalSignals.emit_signal("language_changed")
+	_restart_label.show()
 
 # -------------------------------------------------------------------------------------------------
 func _on_ui_scale_mode_selected(index: int):
@@ -289,3 +299,9 @@ func _on_default_tool_pressure_changed(value):
 func _on_constant_pressure_toggled(button_pressed: bool):
 	Settings.set_value(Settings.GENERAL_CONSTANT_PRESSURE, button_pressed)
 	emit_signal("constant_pressure_changed", button_pressed)
+
+# -------------------------------------------------------------------------------------------------
+func _on_action_keybinding_changed(action: KeybindingsManager.Action, event: InputEventKey) -> void:
+	KeybindingsManager.rebind_action(action, event)
+	# TODO: serialize to settings
+	print("Rebind done")
