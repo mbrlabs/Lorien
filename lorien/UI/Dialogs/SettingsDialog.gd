@@ -27,10 +27,10 @@ signal constant_pressure_changed(state)
 @onready var _appearance_tab: Button = %AppearanceTab
 @onready var _rendering_tab: Button = %RenderingTab
 @onready var _keybindings_tab: Button = %KeybindingsTab
-@onready var _general_container: VBoxContainer = %GeneralContainer
-@onready var _appearance_container: VBoxContainer = %AppearanceContainer
-@onready var _rendering_container: VBoxContainer = %RenderingContainer
-@onready var _keybindings_container: VBoxContainer = %KeybindingsContainer
+@onready var _general_container: ScrollContainer = %GeneralContainer
+@onready var _appearance_container: ScrollContainer = %AppearanceContainer
+@onready var _rendering_container: ScrollContainer = %RenderingContainer
+@onready var _keybindings_container: ScrollContainer = %KeybindingsContainer
 
 @onready var _pressure_sensitivity: SpinBox = %PressureSensitivity
 @onready var _constant_pressure: CheckBox = %ConstantPressure

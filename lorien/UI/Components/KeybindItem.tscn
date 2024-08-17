@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://ct7pvupldkei5"]
+
+[node name="KeybindItem" type="HBoxContainer"]
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Action Name"
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Listening..."
