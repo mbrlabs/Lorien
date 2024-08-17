@@ -16,16 +16,16 @@ MENU_EXPORT         Exporter...
 # -----------------------------------------------------------------------------
 # Toolbar
 # -----------------------------------------------------------------------------
-TOOLBAR_TOOLTIP_NEW_FILE        Créer un nouveau fichier {{ shortcut_list("shortcut_new_project") }}
-TOOLBAR_TOOLTIP_OPEN_FILE       Ouvrir un fichier {{ shortcut_list("shortcut_open_project") }}
-TOOLBAR_TOOLTIP_SAVE_FILE       Enregistrer un fichier {{ shortcut_list("shortcut_save_project") }}
-TOOLBAR_TOOLTIP_UNDO            Annuler l'action {{ shortcut_list("shortcut_undo") }}
-TOOLBAR_TOOLTIP_REDO            Rétablir l'action {{ shortcut_list("shortcut_redo") }}
-TOOLBAR_TOOLTIP_BRUSH_TOOL      Pinceau {{ shortcut_list("shortcut_brush_tool") }}
-TOOLBAR_TOOLTIP_RECTANGLE_TOOL  Rectangle {{ shortcut_list("shortcut_rectangle_tool") }}
-TOOLBAR_TOOLTIP_LINE_TOOL       Ligne {{ shortcut_list("shortcut_line_tool") }}
-TOOLBAR_TOOLTIP_ERASER_TOOL     Gomme {{ shortcut_list("shortcut_eraser_tool") }}
-TOOLBAR_TOOLTIP_SELECT_TOOL     Outil de sélection {{ shortcut_list("shortcut_select_tool") }}
+TOOLBAR_TOOLTIP_NEW_FILE        Créer un nouveau fichier
+TOOLBAR_TOOLTIP_OPEN_FILE       Ouvrir un fichier
+TOOLBAR_TOOLTIP_SAVE_FILE       Enregistrer un fichier
+TOOLBAR_TOOLTIP_UNDO            Annuler l'action
+TOOLBAR_TOOLTIP_REDO            Rétablir l'action
+TOOLBAR_TOOLTIP_BRUSH_TOOL      Pinceau
+TOOLBAR_TOOLTIP_RECTANGLE_TOOL  Rectangle
+TOOLBAR_TOOLTIP_LINE_TOOL       Ligne
+TOOLBAR_TOOLTIP_ERASER_TOOL     Gomme
+TOOLBAR_TOOLTIP_SELECT_TOOL     Outil de sélection
 TOOLBAR_TOOLTIP_BRUSH_COLOR     Couleur de la brosse
 TOOLBAR_TOOLTIP_BRUSH_SIZE      Épaisseur de la brosse
 TOOLBAR_TOOLTIP_CANVAS_COLOR    Couleur du canevas
@@ -78,36 +78,36 @@ SETTINGS_RESTART_NOTICE  		Un redémarrage est nécessaire pour appliquer les ch
 
 ABOUT_DIALOG_TITLE              A propos
 ABOUT_DIALOG_COPYRIGHT          © 2021-2024 Marcus Brummer & contributeurs 
-ABOUT_DIALOG_LICSENSE           Lorien est sous licence :
-ABOUT_DIALOG_BASED_ON           Lorien est basé sur :
-ABOUT_DIALOG_EASTEREGG          Personnage Easter egg :
+ABOUT_DIALOG_LICSENSE           Lorien est sous licence:
+ABOUT_DIALOG_BASED_ON           Lorien est basé sur:
+ABOUT_DIALOG_EASTEREGG          Personnage Easter egg:
 
 # -----------------------------------------------------------------------------
 # Unsaved changes dialog
 # -----------------------------------------------------------------------------
 
-UNSAVED_CHANGES_DIALOG_TITLE    Enregistrer les changements ?
-UNSAVED_CHANGES_DIALOG_TEXT     Voulez-vous enregistrer les changements avant de fermer ?
+UNSAVED_CHANGES_DIALOG_TITLE    Enregistrer les changements?
+UNSAVED_CHANGES_DIALOG_TEXT     Voulez-vous enregistrer les changements avant de fermer?
 
 # -----------------------------------------------------------------------------
 # Exit dialog
 # -----------------------------------------------------------------------------
 
-EXIT_DIALOG_TITLE    Enregistrer les changements ?
-EXIT_DIALOG_TEXT     Voulez-vous enregistrer les changements avant de quitter ?
+EXIT_DIALOG_TITLE    Enregistrer les changements?
+EXIT_DIALOG_TEXT     Voulez-vous enregistrer les changements avant de quitter?
 
 # -----------------------------------------------------------------------------
 # New palette dialog
 # -----------------------------------------------------------------------------
-NEW_PALETTE_DIALOG_CREATE_TITLE 		  Nouvelle palette
-NEW_PALETTE_DIALOG_DUPLICATE_TITLE 		Dupliquer palette
-NEW_PALETTE_DIALOG_PLACEHOLDER 			  Nom de la palette
+NEW_PALETTE_DIALOG_CREATE_TITLE 		    Nouvelle palette
+NEW_PALETTE_DIALOG_DUPLICATE_TITLE 		    Dupliquer palette
+NEW_PALETTE_DIALOG_PLACEHOLDER 			    Nom de la palette
 
 # -----------------------------------------------------------------------------
 # Delete palette dialog
 # -----------------------------------------------------------------------------
 DELETE_PALETTE_DIALOG_TITLE 			Supprimer palette
-DELETE_PALETTE_DIALOG_TEXT 				Êtes-vous sûr de vouloir supprimer de façon permanente la palette ?
+DELETE_PALETTE_DIALOG_TEXT 				Êtes-vous sûr de vouloir supprimer de façon permanente la palette?
 
 # -----------------------------------------------------------------------------
 # Edit palette dialog

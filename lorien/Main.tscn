@@ -107,7 +107,7 @@ file_dialog_path = NodePath("../FileDialog")
 
 [node name="NewPaletteWindow" type="Window" parent="."]
 auto_translate_mode = 1
-title = "New Palette"
+title = "NEW_PALETTE_DIALOG_CREATE_TITLE"
 initial_position = 2
 size = Vector2i(420, 100)
 visible = false
@@ -117,7 +117,7 @@ unresizable = true
 [node name="NewPaletteDialog" parent="NewPaletteWindow" instance=ExtResource("12")]
 
 [node name="DeletePaletteWindow" type="Window" parent="."]
-title = "Delete Palette"
+title = "DELETE_PALETTE_DIALOG_TITLE"
 initial_position = 2
 size = Vector2i(420, 100)
 visible = false
@@ -128,7 +128,7 @@ unresizable = true
 
 [node name="EditPaletteWindow" type="Window" parent="."]
 auto_translate_mode = 1
-title = "Edit Palette"
+title = "EDIT_PALETTE_DIALOG_TITLE"
 initial_position = 2
 size = Vector2i(495, 495)
 visible = false
@@ -137,7 +137,7 @@ exclusive = true
 [node name="EditPaletteDialog" parent="EditPaletteWindow" instance=ExtResource("14")]
 
 [node name="AboutWindow" type="Window" parent="."]
-title = "About"
+title = "ABOUT_DIALOG_TITLE"
 initial_position = 2
 size = Vector2i(440, 205)
 visible = false
@@ -150,7 +150,7 @@ offset_bottom = 104.0
 
 [node name="SettingsWindow" type="Window" parent="."]
 auto_translate_mode = 1
-title = "Settings"
+title = "SETTINGS_TITLE"
 initial_position = 2
 size = Vector2i(600, 320)
 visible = false
@@ -173,6 +173,7 @@ access = 2
 use_native_dialog = true
 
 [node name="ExitDialog" parent="." instance=ExtResource("11")]
+title = "EXIT_DIALOG_TITLE"
 visible = false
 exclusive = true
 

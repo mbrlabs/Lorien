@@ -16,16 +16,16 @@ MENU_EXPORT         Exportieren...
 # -----------------------------------------------------------------------------
 # Toolbar
 # -----------------------------------------------------------------------------
-TOOLBAR_TOOLTIP_NEW_FILE        Neue Datei anlegen {{ shortcut_list("shortcut_new_project") }}
-TOOLBAR_TOOLTIP_OPEN_FILE       Datei öffnen {{ shortcut_list("shortcut_open_project") }}
-TOOLBAR_TOOLTIP_SAVE_FILE       Datei speichern {{ shortcut_list("shortcut_save_project") }}
-TOOLBAR_TOOLTIP_UNDO            Undo Action {{ shortcut_list("shortcut_undo") }}
-TOOLBAR_TOOLTIP_REDO            Redo Action {{ shortcut_list("shortcut_redo") }}
-TOOLBAR_TOOLTIP_BRUSH_TOOL      Pinsel Werkzeug {{ shortcut_list("shortcut_brush_tool") }}
-TOOLBAR_TOOLTIP_RECTANGLE_TOOL  Rechteck Werkzeug {{ shortcut_list("shortcut_rectangle_tool") }}
-TOOLBAR_TOOLTIP_LINE_TOOL       Linien Werkzeug {{ shortcut_list("shortcut_line_tool") }}
-TOOLBAR_TOOLTIP_ERASER_TOOL     Radierer {{ shortcut_list("shortcut_eraser_tool") }}
-TOOLBAR_TOOLTIP_SELECT_TOOL     Auswahl Werkzeug {{ shortcut_list("shortcut_select_tool") }}
+TOOLBAR_TOOLTIP_NEW_FILE        Neue Datei anlegen
+TOOLBAR_TOOLTIP_OPEN_FILE       Datei öffnen
+TOOLBAR_TOOLTIP_SAVE_FILE       Datei speichern
+TOOLBAR_TOOLTIP_UNDO            Undo Action
+TOOLBAR_TOOLTIP_REDO            Redo Action
+TOOLBAR_TOOLTIP_BRUSH_TOOL      Pinsel Werkzeug
+TOOLBAR_TOOLTIP_RECTANGLE_TOOL  Rechteck Werkzeug
+TOOLBAR_TOOLTIP_LINE_TOOL       Linien Werkzeug
+TOOLBAR_TOOLTIP_ERASER_TOOL     Radierer
+TOOLBAR_TOOLTIP_SELECT_TOOL     Auswahl Werkzeug
 TOOLBAR_TOOLTIP_BRUSH_COLOR     Pinsel Farbe
 TOOLBAR_TOOLTIP_BRUSH_SIZE      Pinsel Größe
 TOOLBAR_TOOLTIP_CANVAS_COLOR    Canvas Farbe

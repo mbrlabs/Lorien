@@ -16,17 +16,17 @@ MENU_EXPORT         Export...
 # -----------------------------------------------------------------------------
 # Toolbar
 # -----------------------------------------------------------------------------
-TOOLBAR_TOOLTIP_NEW_FILE        Create New File {{ shortcut_list("shortcut_new_project") }}
-TOOLBAR_TOOLTIP_OPEN_FILE       Open File {{ shortcut_list("shortcut_open_project") }}
-TOOLBAR_TOOLTIP_SAVE_FILE       Save File {{ shortcut_list("shortcut_save_project") }}
-TOOLBAR_TOOLTIP_UNDO            Undo Action {{ shortcut_list("shortcut_undo") }}
-TOOLBAR_TOOLTIP_REDO            Redo Action {{ shortcut_list("shortcut_redo") }}
-TOOLBAR_TOOLTIP_BRUSH_TOOL      Brush Tool {{ shortcut_list("shortcut_brush_tool") }}
-TOOLBAR_TOOLTIP_RECTANGLE_TOOL  Rectangle Tool {{ shortcut_list("shortcut_rectangle_tool") }}
-TOOLBAR_TOOLTIP_CIRCLE_TOOL     Circle Tool {{ shortcut_list("shortcut_circle_tool") }}
-TOOLBAR_TOOLTIP_LINE_TOOL       Line Tool {{ shortcut_list("shortcut_line_tool") }}
-TOOLBAR_TOOLTIP_ERASER_TOOL     Eraser {{ shortcut_list("shortcut_eraser_tool") }}
-TOOLBAR_TOOLTIP_SELECT_TOOL     Selection Tool {{ shortcut_list("shortcut_select_tool") }}
+TOOLBAR_TOOLTIP_NEW_FILE        Create New File
+TOOLBAR_TOOLTIP_OPEN_FILE       Open File
+TOOLBAR_TOOLTIP_SAVE_FILE       Save File
+TOOLBAR_TOOLTIP_UNDO            Undo Action
+TOOLBAR_TOOLTIP_REDO            Redo Action
+TOOLBAR_TOOLTIP_BRUSH_TOOL      Brush Tool
+TOOLBAR_TOOLTIP_RECTANGLE_TOOL  Rectangle Tool
+TOOLBAR_TOOLTIP_CIRCLE_TOOL     Circle Tool
+TOOLBAR_TOOLTIP_LINE_TOOL       Line Tool
+TOOLBAR_TOOLTIP_ERASER_TOOL     Eraser
+TOOLBAR_TOOLTIP_SELECT_TOOL     Selection Tool
 TOOLBAR_TOOLTIP_BRUSH_COLOR     Brush Color
 TOOLBAR_TOOLTIP_BRUSH_SIZE      Brush Size
 TOOLBAR_TOOLTIP_CANVAS_COLOR    Canvas Color

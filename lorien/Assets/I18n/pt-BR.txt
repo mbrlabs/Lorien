@@ -16,17 +16,17 @@ MENU_EXPORT         Exportar...
 # -----------------------------------------------------------------------------
 # Toolbar
 # -----------------------------------------------------------------------------
-TOOLBAR_TOOLTIP_NEW_FILE        Novo Arquivo {{ shortcut_list("shortcut_new_project") }}
-TOOLBAR_TOOLTIP_OPEN_FILE       Abrir Arquivo {{ shortcut_list("shortcut_open_project") }}
-TOOLBAR_TOOLTIP_SAVE_FILE       Salvar Arquivo {{ shortcut_list("shortcut_save_project") }}
-TOOLBAR_TOOLTIP_UNDO            Desfazer Ação {{ shortcut_list("shortcut_undo") }}
-TOOLBAR_TOOLTIP_REDO            Refazer Ação {{ shortcut_list("shortcut_redo") }}
-TOOLBAR_TOOLTIP_BRUSH_TOOL      Pincel {{ shortcut_list("shortcut_brush_tool") }}
-TOOLBAR_TOOLTIP_RECTANGLE_TOOL  Ferramenta Retângulo {{ shortcut_list("shortcut_rectangle_tool") }}
-TOOLBAR_TOOLTIP_CIRCLE_TOOL     Ferramenta Círculo {{ shortcut_list("shortcut_circle_tool") }}
-TOOLBAR_TOOLTIP_LINE_TOOL       Ferramenta Linha {{ shortcut_list("shortcut_line_tool") }}
-TOOLBAR_TOOLTIP_ERASER_TOOL     Borracha {{ shortcut_list("shortcut_eraser_tool") }}
-TOOLBAR_TOOLTIP_SELECT_TOOL     Ferramenta de Seleção {{ shortcut_list("shortcut_select_tool") }}
+TOOLBAR_TOOLTIP_NEW_FILE        Novo Arquivo
+TOOLBAR_TOOLTIP_OPEN_FILE       Abrir Arquivo
+TOOLBAR_TOOLTIP_SAVE_FILE       Salvar Arquivo
+TOOLBAR_TOOLTIP_UNDO            Desfazer Ação
+TOOLBAR_TOOLTIP_REDO            Refazer Ação
+TOOLBAR_TOOLTIP_BRUSH_TOOL      Pincel
+TOOLBAR_TOOLTIP_RECTANGLE_TOOL  Ferramenta Retângulo
+TOOLBAR_TOOLTIP_CIRCLE_TOOL     Ferramenta Círculo
+TOOLBAR_TOOLTIP_LINE_TOOL       Ferramenta Linha
+TOOLBAR_TOOLTIP_ERASER_TOOL     Borracha
+TOOLBAR_TOOLTIP_SELECT_TOOL     Ferramenta de Seleção
 TOOLBAR_TOOLTIP_BRUSH_COLOR     Cor do Pincel
 TOOLBAR_TOOLTIP_BRUSH_SIZE      Tamanho do Pincel
 TOOLBAR_FULLSCREEN_TOGGLE       (Des)ativar Tela Cheia

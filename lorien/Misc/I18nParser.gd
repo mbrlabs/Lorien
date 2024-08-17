@@ -24,11 +24,6 @@ class ParseResult:
 
 # -------------------------------------------------------------------------------------------------
 func load_files() -> ParseResult:
-	var templater = StringTemplating.new({
-		# TODO(gd4): this used to be a funcref, not a Callable. Must also fix code in StringTemplate
-		"shortcut_list": _i18n_filter_shortcut_list
-	})
-	
 	var result = ParseResult.new()
 	for f in _get_i18n_files():
 		var file := FileAccess.open(f, FileAccess.READ)
@@ -60,7 +55,6 @@ func load_files() -> ParseResult:
 						value = value.substr(0, comment_index)
 					
 					value = value.strip_edges()
-					value = templater.process_string(value)
 					value = value.replace("\\n", "\n")
 					position.add_message(key, value)
 				else:

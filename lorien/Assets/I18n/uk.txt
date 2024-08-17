@@ -16,17 +16,17 @@ MENU_EXPORT         Eкспорт...
 # -----------------------------------------------------------------------------
 # Toolbar
 # -----------------------------------------------------------------------------
-TOOLBAR_TOOLTIP_NEW_FILE        Створити Новий Файл {{ shortcut_list("shortcut_new_project") }}
-TOOLBAR_TOOLTIP_OPEN_FILE       Відкрити Файл {{ shortcut_list("shortcut_open_project") }}
-TOOLBAR_TOOLTIP_SAVE_FILE       Зберегти файл {{ shortcut_list("shortcut_save_project") }}
-TOOLBAR_TOOLTIP_UNDO            Назад {{ shortcut_list("shortcut_undo") }}
-TOOLBAR_TOOLTIP_REDO            Вперед {{ shortcut_list("shortcut_redo") }}
-TOOLBAR_TOOLTIP_BRUSH_TOOL      Пензлик {{ shortcut_list("shortcut_brush_tool") }}
-TOOLBAR_TOOLTIP_RECTANGLE_TOOL  Прямокутник {{ shortcut_list("shortcut_rectangle_tool") }}
-TOOLBAR_TOOLTIP_CIRCLE_TOOL     Коло {{ shortcut_list("shortcut_circle_tool") }}
-TOOLBAR_TOOLTIP_LINE_TOOL       Лінія {{ shortcut_list("shortcut_line_tool") }}
-TOOLBAR_TOOLTIP_ERASER_TOOL     Гумка {{ shortcut_list("shortcut_eraser_tool") }}
-TOOLBAR_TOOLTIP_SELECT_TOOL     Виділення {{ shortcut_list("shortcut_select_tool") }}
+TOOLBAR_TOOLTIP_NEW_FILE        Створити Новий Файл
+TOOLBAR_TOOLTIP_OPEN_FILE       Відкрити Файл
+TOOLBAR_TOOLTIP_SAVE_FILE       Зберегти файл
+TOOLBAR_TOOLTIP_UNDO            Назад
+TOOLBAR_TOOLTIP_REDO            Вперед
+TOOLBAR_TOOLTIP_BRUSH_TOOL      Пензлик
+TOOLBAR_TOOLTIP_RECTANGLE_TOOL  Прямокутник
+TOOLBAR_TOOLTIP_CIRCLE_TOOL     Коло
+TOOLBAR_TOOLTIP_LINE_TOOL       Лінія
+TOOLBAR_TOOLTIP_ERASER_TOOL     Гумка
+TOOLBAR_TOOLTIP_SELECT_TOOL     Виділення
 TOOLBAR_TOOLTIP_BRUSH_COLOR     Колір Пензлика
 TOOLBAR_TOOLTIP_BRUSH_SIZE      Розмір Пензлика
 TOOLBAR_TOOLTIP_CANVAS_COLOR    Колір Полотна
