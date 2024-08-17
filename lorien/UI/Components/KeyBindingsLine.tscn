@@ -1,8 +1,65 @@
-[gd_scene load_steps=4 format=3 uid="uid://cmdrtyujm1cdr"]
+[gd_scene load_steps=4 format=3 uid="uid://cwmcceni5nuik"]
 
-[ext_resource type="Script" path="res://UI/Components/KeyBindingsLineName.gd" id="1"]
-[ext_resource type="Script" path="res://UI/Components/KeyBindingsLineBindings.gd" id="2"]
-[ext_resource type="Script" path="res://UI/Components/KeyBindingsLineAddButton.gd" id="3"]
+[sub_resource type="GDScript" id="GDScript_n7pkr"]
+script/source = "extends Label
+
+# -------------------------------------------------------------------------------------------------
+signal modified_binding(bindings_data)
+
+# -------------------------------------------------------------------------------------------------
+# Keybindings data: {\"action\": \"str\", \"readable_name\": \"str\", \"events\": [...]}
+func set_keybindings_data(_bindings_data: Dictionary) -> void:
+	text = _bindings_data[\"readable_name\"]
+"
+
+[sub_resource type="GDScript" id="GDScript_nfc33"]
+script/source = "extends HBoxContainer
+
+# -------------------------------------------------------------------------------------------------
+signal modified_binding(bindings_data)
+
+# -------------------------------------------------------------------------------------------------
+var _bindings_data := {}
+var _preloaded_image := preload(\"res://Assets/Icons/delete.png\")
+
+# -------------------------------------------------------------------------------------------------
+# Keybindings data: {\"action\": \"str\", \"readable_name\": \"str\", \"events\": [...]}
+func set_keybindings_data(bindings_data: Dictionary) -> void:
+	for child in get_children():
+		remove_child(child)
+
+	_bindings_data = bindings_data
+	for event in bindings_data[\"events\"]:
+		if event is InputEventKey:
+			var remove_button = Button.new()
+			remove_button.text = OS.get_keycode_string(event.get_keycode_with_modifiers())
+			remove_button.icon = _preloaded_image
+	
+			remove_button.add_theme_constant_override(\"h_separation\", 6)
+	
+			remove_button.pressed.connect(_remove_pressed.bind(event))
+			add_child(remove_button)
+
+# -------------------------------------------------------------------------------------------------
+func _remove_pressed(event: InputEvent) -> void:
+	_bindings_data[\"events\"].erase(event)
+	emit_signal(\"modified_binding\", _bindings_data)
+"
+
+[sub_resource type="GDScript" id="GDScript_0wyh0"]
+script/source = "extends Button
+
+# -------------------------------------------------------------------------------------------------
+signal bind_new_key
+
+# -------------------------------------------------------------------------------------------------
+func set_keybindings_data(_bindings_data: Dictionary) -> void:
+	pass
+
+# -------------------------------------------------------------------------------------------------
+func _on_AddButton_pressed() -> void:
+	emit_signal(\"bind_new_key\")
+"
 
 [node name="KeyBindingsLine" type="GridContainer"]
 anchors_preset = 15
@@ -16,15 +73,15 @@ text = "Name
 "
 vertical_alignment = 1
 max_lines_visible = 1
-script = ExtResource("1")
+script = SubResource("GDScript_n7pkr")
 
 [node name="Bindings" type="HBoxContainer" parent="."]
 layout_mode = 2
-script = ExtResource("2")
+script = SubResource("GDScript_nfc33")
 
 [node name="AddButton" type="Button" parent="."]
 layout_mode = 2
 text = "+"
-script = ExtResource("3")
+script = SubResource("GDScript_0wyh0")
 
 [connection signal="pressed" from="AddButton" to="AddButton" method="_on_AddButton_pressed"]

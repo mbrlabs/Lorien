@@ -12,7 +12,6 @@ const GRID_PATTERN_NONE_INDEX 	:= 2
 const UI_SCALE_AUTO_INDEX := 0
 const UI_SCALE_CUSTOM_INDEX := 1
 
-# -------------------------------------------------------------------------------------------------
 const BRUSH_STROKE_CAP_FLAT 	:= 0
 const BRUSH_STROKE_CAP_ROUND 	:= 1
 
@@ -72,7 +71,6 @@ func _apply_language() -> void:
 	_tab_container.set_tab_title(0, tr("SETTINGS_GENERAL"))
 	_tab_container.set_tab_title(1, tr("SETTINGS_APPEARANCE"))
 	_tab_container.set_tab_title(2, tr("SETTINGS_RENDERING"))
-	_tab_container.set_tab_title(3, tr("SETTINGS_KEYBINDINGS"))
 
 # -------------------------------------------------------------------------------------------------
 func _set_values() -> void:

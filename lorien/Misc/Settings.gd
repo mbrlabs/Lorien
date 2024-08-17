@@ -30,8 +30,6 @@ var language_names: PackedStringArray
 func _ready():
 	_config_file = ConfigFile.new()
 	_load_settings()
-	_load_shortcuts()
-	_setup_default_shortcuts()
 	reload_locales()
 
 # -------------------------------------------------------------------------------------------------
@@ -68,45 +66,4 @@ func get_value(key: String, default_value = null):
 # -------------------------------------------------------------------------------------------------
 func set_value(key: String, value = null):
 	_config_file.set_value(DEFAULT_SECTION, key, value)
-	_save_settings()
-	
-# -------------------------------------------------------------------------------------------------
-func _setup_default_shortcuts() -> void:
-	var new_actions := []
-	for action_name in Utils.bindable_actions():
-		if ! _config_file.has_section_key(SHORTCUTS_SECTION, action_name):
-			new_actions.append(action_name)
-	
-	if len(new_actions) > 0:
-		var old_actions := []
-		for action_name in Utils.bindable_actions():
-			if ! action_name in new_actions:
-				old_actions.append(action_name)
-
-		for new_action in new_actions:
-			var event_list := InputMap.action_get_events(new_action)
-			for event in event_list:
-				for old_action in old_actions:
-					if InputMap.action_has_event(old_action, event):
-						event_list.erase(event)
-						break
-			_config_file.set_value(SHORTCUTS_SECTION, new_action, event_list)
-		_save_settings()
-		_load_shortcuts()
-
-# -------------------------------------------------------------------------------------------------
-func _load_shortcuts() -> void:	
-	for action_name in Utils.bindable_actions():
-		if !_config_file.has_section_key(SHORTCUTS_SECTION, action_name):
-			continue
-
-		var shortcuts = _config_file.get_value(SHORTCUTS_SECTION, action_name)
-		InputMap.action_erase_events(action_name)
-		for shortcut in shortcuts:
-			InputMap.action_add_event(action_name, shortcut)
-
-# -------------------------------------------------------------------------------------------------
-func store_shortcuts() -> void:	
-	for action_name in Utils.bindable_actions():
-		_config_file.set_value(SHORTCUTS_SECTION, action_name, InputMap.action_get_events(action_name))
 	_save_settings()

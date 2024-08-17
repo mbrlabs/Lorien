@@ -1,8 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://cgs8d5y8yrwl0"]
+[gd_scene load_steps=5 format=3 uid="uid://cgs8d5y8yrwl0"]
 
 [ext_resource type="Script" path="res://UI/Dialogs/SettingsDialog.gd" id="2"]
-[ext_resource type="Script" path="res://UI/Components/KeyBindingsList.gd" id="4"]
-[ext_resource type="PackedScene" uid="uid://coqvkhe0c36oj" path="res://UI/Dialogs/AddKeyDialog.tscn" id="5"]
 
 [sub_resource type="StyleBoxEmpty" id="1"]
 
@@ -394,27 +392,3 @@ layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.470588, 0.470588, 1)
 text = "SETTINGS_RESTART_NOTICE"
 horizontal_alignment = 1
-
-[node name="Keybindings" type="Control" parent="TabContainer"]
-visible = false
-layout_mode = 2
-script = ExtResource("4")
-metadata/_tab_index = 3
-
-[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/Keybindings"]
-layout_mode = 0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 12.0
-
-[node name="KeyBindingsList" type="GridContainer" parent="TabContainer/Keybindings/ScrollContainer"]
-layout_mode = 2
-columns = 3
-
-[node name="AddKeyDialog" parent="TabContainer/Keybindings" instance=ExtResource("5")]
-visible = false
-
-[node name="ConfirmRebind" type="ConfirmationDialog" parent="TabContainer/Keybindings/AddKeyDialog"]
-dialog_autowrap = true
-
-[connection signal="confirmed" from="TabContainer/Keybindings/AddKeyDialog/ConfirmRebind" to="TabContainer/Keybindings/AddKeyDialog" method="_on_ConfirmRebind_confirmed"]

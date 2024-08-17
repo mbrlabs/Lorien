@@ -256,10 +256,10 @@ func _is_mouse_on_ui() -> bool:
 
 # -------------------------------------------------------------------------------------------------
 func is_dialog_open() -> bool:
-	var open := _file_dialog.visible || _about_window.visible
-	open = open || (_settings_dialog.visible || _generic_alert_dialog.visible)
-	open = open || (_new_palette_dialog.visible || _edit_palette_dialog.visible || _delete_palette_dialog.visible)
-	return open
+	return _about_window.visible || _settings_window.visible || \
+			_new_palette_window.visible || _edit_palette_window.visible || \
+			_delete_palette_window.visible || _file_dialog.visible || _exit_dialog.visible || \
+			_unsaved_changes_dialog.visible || _exit_dialog.visible
 
 # -------------------------------------------------------------------------------------------------
 func _create_active_default_project() -> void:
@@ -319,7 +319,11 @@ func _show_autosave_not_implemented_alert() -> void:
 
 # -------------------------------------------------------------------------------------------------
 func _toggle_fullscreen():
-	get_window().mode = Window.MODE_EXCLUSIVE_FULLSCREEN if (!((get_window().mode == Window.MODE_EXCLUSIVE_FULLSCREEN) or (get_window().mode == Window.MODE_FULLSCREEN))) else Window.MODE_WINDOWED
+	match get_window().mode:
+		Window.MODE_EXCLUSIVE_FULLSCREEN, Window.MODE_FULLSCREEN:
+			get_window().mode = Window.MODE_WINDOWED
+		_:
+			get_window().mode = Window.MODE_FULLSCREEN
 
 # -------------------------------------------------------------------------------------------------
 func _on_brush_color_changed(brush_color: Color) -> void:
