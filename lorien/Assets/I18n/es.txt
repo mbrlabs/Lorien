@@ -86,15 +86,8 @@ ABOUT_DIALOG_EASTEREGG  Personaje secreto:
 # Unsaved changes dialog
 # -----------------------------------------------------------------------------
 
-UNSAVED_CHANGES_DIALOG_TITLE    ¿Guardar cambios?
+UNSAVED_CHANGES_DIALOG_TITLE    Warning # TODO
 UNSAVED_CHANGES_DIALOG_TEXT     ¿Guardar tus cambios antes de cerrar el archivo?
-
-# -----------------------------------------------------------------------------
-# Exit dialog
-# -----------------------------------------------------------------------------
-
-EXIT_DIALOG_TITLE   ¿Guardar cambios?
-EXIT_DIALOG_TEXT    ¿Guardar tus cambios antes de salir?
 
 # -----------------------------------------------------------------------------
 # New palette dialog
@@ -117,8 +110,6 @@ EDIT_PALETTE_DIALOG_TITLE       Editar paleta
 # -----------------------------------------------------------------------------
 # Error/Alert messages
 # -----------------------------------------------------------------------------
-ERROR_NOT_IMPLEMENTED           Aún no ha sido implementado.
-ERROR_AUTOSAVE_NOT_IMPLEMENTED  El guardado automático aún no ha sido implementado para el archivo "Untitled". Por favor, guárdalo manualmente.
 ALERT_EDITING_BUILTIN_PALETTE   No se pueden editar las paletas del sistema. Si deseas personalizarla, puedes duplicarla y editarla en su lugar.
 ALERT_DELETING_BUILTIN_PALETTE  No se pueden borrar las paletas del sistema.
 

@@ -90,15 +90,8 @@ ABOUT_DIALOG_EASTEREGG          復活節彩蛋角色：
 # Unsaved changes dialog
 # -----------------------------------------------------------------------------
 
-UNSAVED_CHANGES_DIALOG_TITLE    是否儲存變更？
+UNSAVED_CHANGES_DIALOG_TITLE    Warning # TODO
 UNSAVED_CHANGES_DIALOG_TEXT     關閉檔案前是否要儲存此次的變更？
-
-# -----------------------------------------------------------------------------
-# Exit dialog
-# -----------------------------------------------------------------------------
-
-EXIT_DIALOG_TITLE    是否儲存變更？
-EXIT_DIALOG_TEXT     離開 Lorien 前是否要儲存此次的變更？
 
 # -----------------------------------------------------------------------------
 # New palette dialog
@@ -122,8 +115,6 @@ EDIT_PALETTE_DIALOG_TITLE 		編輯調色板
 # Error/Alert messages
 # -----------------------------------------------------------------------------
 
-ERROR_NOT_IMPLEMENTED               尚未實作。
-ERROR_AUTOSAVE_NOT_IMPLEMENTED      "Untitled" 檔案的自動儲存功能目前尚未實作，請先手動儲存。
 ALERT_EDITING_BUILTIN_PALETTE       不能編輯預設的調色板。如果你想自訂目前的調色板，可以先新建副本再進行編輯。
 ALERT_DELETING_BUILTIN_PALETTE      不能刪除預設的調色板。
 

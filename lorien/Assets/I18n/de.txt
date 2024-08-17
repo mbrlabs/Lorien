@@ -89,15 +89,8 @@ ABOUT_DIALOG_EASTEREGG          Easteregg Charakter:
 # Unsaved changes dialog
 # -----------------------------------------------------------------------------
 
-UNSAVED_CHANGES_DIALOG_TITLE    Änderungen speichern?
-UNSAVED_CHANGES_DIALOG_TEXT     Willst du deine Änderungen speichern bevor die Datei geschlossen wird?
-
-# -----------------------------------------------------------------------------
-# Exit dialog
-# -----------------------------------------------------------------------------
-
-EXIT_DIALOG_TITLE    Änderungen speichern?
-EXIT_DIALOG_TEXT     Willst du deine Änderungen speichern bevor Lorien geschlossen wird?
+UNSAVED_CHANGES_DIALOG_TITLE    Warnung
+UNSAVED_CHANGES_DIALOG_TEXT     Willst du deine Änderungen speichern?
 
 # -----------------------------------------------------------------------------
 # New palette dialog
@@ -120,8 +113,6 @@ EDIT_PALETTE_DIALOG_TITLE 		Palette bearbeiten
 # -----------------------------------------------------------------------------
 # Error/Alert messages
 # -----------------------------------------------------------------------------
-ERROR_NOT_IMPLEMENTED               Nicht implementriert
-ERROR_AUTOSAVE_NOT_IMPLEMENTED      Auto-Speichern ist nicht implementriert für Datei "Untitled". Bitte manuell speichern.
 ALERT_EDITING_BUILTIN_PALETTE       Built-in Paletten können nicht verändert werden. Um diese Palette zu anzupassen, mache eine Kopie und verändere diese stattdessen.
 ALERT_DELETING_BUILTIN_PALETTE      Built-in Farbpaletten können nicht gelöscht werden.
 

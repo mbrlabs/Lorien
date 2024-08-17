@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://2uaupgd20h03"]
+[gd_scene load_steps=16 format=3 uid="uid://2uaupgd20h03"]
 
 [ext_resource type="Script" path="res://Main.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://c4u5gk5n2aiom" path="res://InfiniteCanvas/InfiniteCanvas.tscn" id="2"]
@@ -10,7 +10,6 @@
 [ext_resource type="Theme" uid="uid://u5qnpgxqykiv" path="res://UI/Themes/theme_dark.tres" id="8"]
 [ext_resource type="PackedScene" uid="uid://dug4jmvhrb3t1" path="res://UI/Dialogs/AboutDialog.tscn" id="9"]
 [ext_resource type="PackedScene" uid="uid://cgs8d5y8yrwl0" path="res://UI/Dialogs/SettingsDialog.tscn" id="10"]
-[ext_resource type="PackedScene" uid="uid://by1hug8oa5vft" path="res://UI/Dialogs/ExitDialog.tscn" id="11"]
 [ext_resource type="PackedScene" uid="uid://jow4q8tm6qro" path="res://UI/Dialogs/NewPaletteDialog.tscn" id="12"]
 [ext_resource type="PackedScene" uid="uid://dsxmmndtd4r2c" path="res://UI/ColorPalettePicker.tscn" id="13"]
 [ext_resource type="PackedScene" uid="uid://6jilea2pwjuk" path="res://UI/Dialogs/EditPaletteDialog.tscn" id="14"]
@@ -165,9 +164,20 @@ exclusive = true
 
 [node name="SettingsDialog" parent="SettingsWindow" instance=ExtResource("10")]
 
+[node name="UnsavedChangesWindow" type="Window" parent="."]
+auto_translate_mode = 1
+title = "UNSAVED_CHANGES_DIALOG_TITLE"
+initial_position = 2
+size = Vector2i(445, 90)
+visible = false
+exclusive = true
+unresizable = true
+
+[node name="UnsavedChangesDialog" parent="UnsavedChangesWindow" instance=ExtResource("7")]
+
 [node name="FileDialog" type="FileDialog" parent="."]
 initial_position = 2
-size = Vector2i(540, 175)
+size = Vector2i(625, 175)
 theme = ExtResource("8")
 access = 2
 filters = PackedStringArray("*.lorien")
@@ -175,21 +185,7 @@ use_native_dialog = true
 
 [node name="ExportDialog" type="FileDialog" parent="."]
 initial_position = 2
+size = Vector2i(625, 175)
 theme = ExtResource("8")
 access = 2
 use_native_dialog = true
-
-[node name="ExitDialog" parent="." instance=ExtResource("11")]
-title = "EXIT_DIALOG_TITLE"
-visible = false
-exclusive = true
-
-[node name="UnsavedChangesDialog" parent="." instance=ExtResource("7")]
-visible = false
-exclusive = true
-
-[node name="GenericAlertDialog" type="AcceptDialog" parent="."]
-position = Vector2i(880, 490)
-size = Vector2i(160, 100)
-theme = ExtResource("8")
-dialog_text = "Generic message. "

@@ -86,15 +86,8 @@ ABOUT_DIALOG_EASTEREGG          Carattere Easteregg:
 # Unsaved changes dialog
 # -----------------------------------------------------------------------------
 
-UNSAVED_CHANGES_DIALOG_TITLE    Salvare le modifiche?
+UNSAVED_CHANGES_DIALOG_TITLE    Warning # TODO
 UNSAVED_CHANGES_DIALOG_TEXT     Vuoi salvare le modifiche prima di chiudere il file?
-
-# -----------------------------------------------------------------------------
-# Exit dialog
-# -----------------------------------------------------------------------------
-
-EXIT_DIALOG_TITLE    Salvare le modifiche?
-EXIT_DIALOG_TEXT     Vuoi salvare le modifiche prima di uscire da Lorien?
 
 # -----------------------------------------------------------------------------
 # New palette dialog
@@ -117,8 +110,6 @@ EDIT_PALETTE_DIALOG_TITLE 		    Modifica tavolozza
 # -----------------------------------------------------------------------------
 # Error/Alert messages
 # -----------------------------------------------------------------------------
-ERROR_NOT_IMPLEMENTED               Non ancora implementato.
-ERROR_AUTOSAVE_NOT_IMPLEMENTED      Salvataggio automatico non ancora implementato per il file "Senza nome". Si prega di salvarlo manualmente.
 ALERT_EDITING_BUILTIN_PALETTE       Non è possibile modificare le tavolozze integrate. Se desideri personalizzare questa tavolozza, puoi crearne una copia e modificarla.
 ALERT_DELETING_BUILTIN_PALETTE      Non è possibile eliminare le tavolozze integrate.
 

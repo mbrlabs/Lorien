@@ -1,9 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://c6jpiuruu84k"]
+[gd_scene load_steps=3 format=3 uid="uid://bi7pkm1cg1s4w"]
 
 [ext_resource type="Theme" uid="uid://u5qnpgxqykiv" path="res://UI/Themes/theme_dark.tres" id="1"]
 [ext_resource type="Script" path="res://UI/Dialogs/AlertDialog.gd" id="2_a4x41"]
 
 [node name="AlertDialog" type="AcceptDialog"]
+initial_position = 2
+size = Vector2i(300, 100)
 theme = ExtResource("1")
 dialog_autowrap = true
 script = ExtResource("2_a4x41")

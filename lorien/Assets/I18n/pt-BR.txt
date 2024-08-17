@@ -92,15 +92,8 @@ ABOUT_DIALOG_EASTEREGG          Personagem secreto:
 # Unsaved changes dialog
 # -----------------------------------------------------------------------------
 
-UNSAVED_CHANGES_DIALOG_TITLE    Salvar alterações?
+UNSAVED_CHANGES_DIALOG_TITLE    Warning # TODO
 UNSAVED_CHANGES_DIALOG_TEXT     Quer salvar suas alterações antes de fechar o arquivo?
-
-# -----------------------------------------------------------------------------
-# Exit dialog
-# -----------------------------------------------------------------------------
-
-EXIT_DIALOG_TITLE    Salvar alterações?
-EXIT_DIALOG_TEXT     Quer salvar suas alterações antes de sair do Lorien?
 
 # -----------------------------------------------------------------------------
 # New palette dialog
@@ -124,8 +117,6 @@ EDIT_PALETTE_DIALOG_TITLE 		Editar paleta
 # Error/Alert messages
 # -----------------------------------------------------------------------------
 
-ERROR_NOT_IMPLEMENTED               Ainda não implementado.
-ERROR_AUTOSAVE_NOT_IMPLEMENTED      Auto-salvamento ainda não foi implementado para arquivos "Untitled" (Sem título). Por favor salve-o manualmente.
 ALERT_EDITING_BUILTIN_PALETTE       Não é possível editar paletas predefinidas, pode fazer uma cópia e editá-la em vez disso. # TODO
 ALERT_DELETING_BUILTIN_PALETTE      Não é possível deletar paletas predefinidas.
 

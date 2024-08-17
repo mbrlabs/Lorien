@@ -90,15 +90,8 @@ ABOUT_DIALOG_EASTEREGG          复活节彩蛋角色:
 # Unsaved changes dialog
 # -----------------------------------------------------------------------------
 
-UNSAVED_CHANGES_DIALOG_TITLE    是否保存更改？
+UNSAVED_CHANGES_DIALOG_TITLE    Warning # TODO
 UNSAVED_CHANGES_DIALOG_TEXT     你想在关闭文件之前保存你的修改吗？
-
-# -----------------------------------------------------------------------------
-# Exit dialog
-# -----------------------------------------------------------------------------
-
-EXIT_DIALOG_TITLE    是否保存更改？
-EXIT_DIALOG_TEXT     你想在退出 Lorien 之前保存你的修改吗？
 
 # -----------------------------------------------------------------------------
 # New palette dialog
@@ -122,8 +115,6 @@ EDIT_PALETTE_DIALOG_TITLE 		编辑调色板
 # Error/Alert messages
 # -----------------------------------------------------------------------------
 
-ERROR_NOT_IMPLEMENTED               还未实现。
-ERROR_AUTOSAVE_NOT_IMPLEMENTED      "Untitled" 文件的自动保存还未实现，请手动保存。
 ALERT_EDITING_BUILTIN_PALETTE       无法编辑内置调色板。如果你想自定义这个调色板，你可以创建一个副本并编辑它。
 ALERT_DELETING_BUILTIN_PALETTE      无法删除内置调色板。
 

@@ -1,4 +1,12 @@
-[gd_resource type="Theme" load_steps=16 format=3 uid="uid://u5qnpgxqykiv"]
+[gd_resource type="Theme" load_steps=17 format=3 uid="uid://u5qnpgxqykiv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5j3ky"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+bg_color = Color(0.12549, 0.129412, 0.141176, 1)
+corner_detail = 1
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ug54w"]
 content_margin_left = 12.0
@@ -123,6 +131,8 @@ shadow_size = 4
 
 [resource]
 default_font_size = 12
+AcceptDialog/constants/buttons_separation = 10
+AcceptDialog/styles/panel = SubResource("StyleBoxFlat_5j3ky")
 Button/colors/font_color = Color(1, 1, 1, 1)
 Button/colors/font_color_disabled = Color(0.9, 0.9, 0.9, 0.2)
 Button/colors/font_color_hover = Color(0.941176, 0.941176, 0.941176, 1)

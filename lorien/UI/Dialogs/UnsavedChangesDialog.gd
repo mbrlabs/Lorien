@@ -1,36 +1,27 @@
-extends Window
+class_name UnsavedChangesDialog
+extends PanelContainer
 
 # -------------------------------------------------------------------------------------------------
-signal cancel
-signal save_changes(project_ids)
-signal discard_changes(project_ids)
+signal save_changes
+signal discard_changes
 
-@onready var _save_button: Button = $HBoxContainer/SaveButton
-@onready var _discard_button: Button = $HBoxContainer/DiscardButton
-@onready var _cancel_button: Button = $HBoxContainer/CancelButton
-
-# -------------------------------------------------------------------------------------------------
-var project_ids: Array
+@onready var _save_button: Button = %SaveButton
+@onready var _discard_button: Button = %DiscardButton
 
 # -------------------------------------------------------------------------------------------------
 func _ready() -> void:
-	_save_button.pressed.connect(_on_SaveButton_pressed)
-	_discard_button.pressed.connect(_on_DiscardButton_pressed)
-	_cancel_button.pressed.connect(_on_CancelButton_pressed)
+	get_parent().close_requested.connect(get_parent().hide)
+	
+	_save_button.pressed.connect(func():
+		get_parent().hide()
+		save_changes.emit()
+	)
+	
+	_discard_button.pressed.connect(func(): 
+		get_parent().hide()
+		discard_changes.emit()
+	)
 
 # -------------------------------------------------------------------------------------------------
 func set_text(text: String) -> void:
 	$Label.text = text
-
-# -------------------------------------------------------------------------------------------------
-func _on_CancelButton_pressed(): 
-	hide()
-	emit_signal("cancel")
-
-# -------------------------------------------------------------------------------------------------
-func _on_SaveButton_pressed(): 
-	emit_signal("save_changes", project_ids)
-
-# -------------------------------------------------------------------------------------------------	
-func _on_DiscardButton_pressed(): 
-	emit_signal("discard_changes", project_ids)

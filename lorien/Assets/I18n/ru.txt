@@ -85,15 +85,8 @@ ABOUT_DIALOG_EASTEREGG          Easteregg character: 								# TODO
 # Unsaved changes dialog
 # -----------------------------------------------------------------------------
 
-UNSAVED_CHANGES_DIALOG_TITLE    Сохранить изменения?
+UNSAVED_CHANGES_DIALOG_TITLE    Warning # TODO
 UNSAVED_CHANGES_DIALOG_TEXT     Вы хотите сохранить изменения перед закрытием файла?
-
-# -----------------------------------------------------------------------------
-# Exit dialog
-# -----------------------------------------------------------------------------
-
-EXIT_DIALOG_TITLE    Сохранить изменения?
-EXIT_DIALOG_TEXT     Вы хотите сохранить изменения перед выходом из Lorien?
 
 # -----------------------------------------------------------------------------
 # New palette dialog
@@ -116,8 +109,6 @@ EDIT_PALETTE_DIALOG_TITLE 		Edit Palette 										# TODO
 # -----------------------------------------------------------------------------
 # Error/Alert messages
 # -----------------------------------------------------------------------------
-ERROR_NOT_IMPLEMENTED               Еще не реализовано.
-ERROR_AUTOSAVE_NOT_IMPLEMENTED      Автосохранение еще не реализовано для файла "Untitled". Пожалуйста, сохраните его вручную.
 ALERT_EDITING_BUILTIN_PALETTE       Editing built-in palettes is not possible. If you want to customize this palette you can make a copy and edit that instead. # TODO
 ALERT_DELETING_BUILTIN_PALETTE      Deleting built-in palettes is not possible. # TODO
 

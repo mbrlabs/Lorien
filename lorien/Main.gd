@@ -13,9 +13,8 @@ extends Control
 @onready var _settings_dialog: SettingsDialog = $SettingsWindow/SettingsDialog
 @onready var _brush_color_picker: ColorPalettePicker = $BrushColorPicker
 @onready var _main_menu: MainMenu = $MainMenu
-@onready var _generic_alert_dialog: AcceptDialog = $GenericAlertDialog
-@onready var _exit_dialog: Window = $ExitDialog
-@onready var _unsaved_changes_dialog: Window = $UnsavedChangesDialog
+@onready var _unsaved_changes_window: Window = $UnsavedChangesWindow
+@onready var _unsaved_changes_dialog: UnsavedChangesDialog = $UnsavedChangesWindow/UnsavedChangesDialog
 @onready var _new_palette_window: Window = $NewPaletteWindow
 @onready var _new_palette_dialog: NewPaletteDialog = $NewPaletteWindow/NewPaletteDialog
 @onready var _delete_palette_dialog: DeletePaletteDialog = $DeletePaletteWindow/DeletePaletteDialog
@@ -24,6 +23,8 @@ extends Control
 @onready var _edit_palette_dialog: EditPaletteDialog = $EditPaletteWindow/EditPaletteDialog
 
 var _ui_visible := true 
+var _exit_requested := false
+var _dirty_project_to_close: Project = null
 
 # -------------------------------------------------------------------------------------------------
 func _ready():
@@ -72,10 +73,8 @@ func _ready():
 	_main_menu.save_project.connect(_on_save_project)
 	_main_menu.save_project_as.connect(_on_save_project_as)
 	
-	_exit_dialog.save_changes.connect(_on_exit_with_changes_saved)
-	_exit_dialog.discard_changes.connect(_on_exit_with_changes_discarded)
-	_unsaved_changes_dialog.save_changes.connect(_on_close_file_with_changes_saved)
-	_unsaved_changes_dialog.discard_changes.connect(_on_close_file_with_changes_discarded)
+	_unsaved_changes_dialog.save_changes.connect(_on_save_unsaved_changes)
+	_unsaved_changes_dialog.discard_changes.connect(_on_discard_unsaved_changes)
 	
 	_export_dialog.file_selected.connect(_on_export_confirmed)
 	
@@ -102,12 +101,12 @@ func _ready():
 # -------------------------------------------------------------------------------------------------
 func _notification(what):
 	if NOTIFICATION_WM_CLOSE_REQUEST == what:
-		if !_exit_dialog.visible:
-			if ProjectManager.has_unsaved_changes():
-				_exit_dialog.call_deferred("popup")
-			else:
-				_save_state()
-				get_tree().quit()
+		if ProjectManager.has_unsaved_changes():
+			_exit_requested = true
+			_unsaved_changes_window.popup_centered()
+		else:
+			_save_state()
+			get_tree().quit()
 
 	elif NOTIFICATION_APPLICATION_FOCUS_IN == what:
 		Engine.max_fps = Settings.get_value(Settings.RENDERING_FOREGROUND_FPS, Config.DEFAULT_FOREGROUND_FPS)
@@ -257,8 +256,8 @@ func _is_mouse_on_ui() -> bool:
 func is_dialog_open() -> bool:
 	return _about_window.visible || _settings_window.visible || \
 			_new_palette_window.visible || _edit_palette_window.visible || \
-			_delete_palette_window.visible || _file_dialog.visible || _exit_dialog.visible || \
-			_unsaved_changes_dialog.visible || _exit_dialog.visible
+			_delete_palette_window.visible || _file_dialog.visible || \
+			_unsaved_changes_window.visible
 
 # -------------------------------------------------------------------------------------------------
 func _create_active_default_project() -> void:
@@ -286,9 +285,8 @@ func _on_project_closed(project_id: int) -> void:
 	# Ask the user to save changes
 	var project: Project = ProjectManager.get_project_by_id(project_id)
 	if project.dirty:
-		_unsaved_changes_dialog.project_ids.clear()
-		_unsaved_changes_dialog.project_ids.append(project_id)
-		_unsaved_changes_dialog.popup_centered()
+		_dirty_project_to_close = project
+		_unsaved_changes_window.popup_centered()
 	else:
 		_close_project(project_id)
 
@@ -310,11 +308,6 @@ func _close_project(project_id: int) -> void:
 			var new_project_id: int = _menubar.get_first_project_id()
 			var new_project: Project = ProjectManager.get_project_by_id(new_project_id)
 			_make_project_active(new_project)
-
-# -------------------------------------------------------------------------------------------------
-func _show_autosave_not_implemented_alert() -> void:
-	_generic_alert_dialog.dialog_text = tr("ERROR_AUTOSAVE_NOT_IMPLEMENTED")
-	_generic_alert_dialog.popup_centered()
 
 # -------------------------------------------------------------------------------------------------
 func _toggle_fullscreen():
@@ -431,33 +424,26 @@ func _on_tool_changed(tool_type: int) -> void:
 	_canvas.use_tool(tool_type)
 
 # -------------------------------------------------------------------------------------------------
-func _on_exit_with_changes_saved(project_ids: Array) -> void:
-	if ProjectManager.has_unsaved_projects():
-		_show_autosave_not_implemented_alert()
-	else:
+func _on_save_unsaved_changes() -> void:
+	if _exit_requested:
 		ProjectManager.save_all_projects()
+		_save_state()
 		get_tree().quit()
+	else:
+		if _dirty_project_to_close != null:
+			ProjectManager.save_project(_dirty_project_to_close)
+			_close_project(_dirty_project_to_close.id)
+			_dirty_project_to_close = null
 
 # -------------------------------------------------------------------------------------------------
-func _on_exit_with_changes_discarded(project_ids: Array) -> void:
-	get_tree().quit()
-
-# -------------------------------------------------------------------------------------------------
-func _on_close_file_with_changes_saved(project_ids: Array) -> void:
-	for id in project_ids:
-		var project: Project = ProjectManager.get_project_by_id(id)
-		if project.filepath.is_empty():
-			_show_autosave_not_implemented_alert()
-		else:
-			ProjectManager.save_project(project)
-			_close_project(id)
-	_unsaved_changes_dialog.hide()
-
-# -------------------------------------------------------------------------------------------------
-func _on_close_file_with_changes_discarded(project_ids: Array) -> void:
-	for id in project_ids:
-		_close_project(id)
-	_unsaved_changes_dialog.hide()
+func _on_discard_unsaved_changes() -> void:
+	if _exit_requested:
+		_save_state()
+		get_tree().quit()
+	else:
+		if _dirty_project_to_close != null:
+			_close_project(_dirty_project_to_close.id)
+			_dirty_project_to_close = null
 
 # -------------------------------------------------------------------------------------------------
 func _on_open_about_dialog() -> void:

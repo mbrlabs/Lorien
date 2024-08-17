@@ -86,15 +86,8 @@ ABOUT_DIALOG_EASTEREGG          Personnage Easter egg:
 # Unsaved changes dialog
 # -----------------------------------------------------------------------------
 
-UNSAVED_CHANGES_DIALOG_TITLE    Enregistrer les changements?
+UNSAVED_CHANGES_DIALOG_TITLE    Warning # TODO
 UNSAVED_CHANGES_DIALOG_TEXT     Voulez-vous enregistrer les changements avant de fermer?
-
-# -----------------------------------------------------------------------------
-# Exit dialog
-# -----------------------------------------------------------------------------
-
-EXIT_DIALOG_TITLE    Enregistrer les changements?
-EXIT_DIALOG_TEXT     Voulez-vous enregistrer les changements avant de quitter?
 
 # -----------------------------------------------------------------------------
 # New palette dialog
@@ -118,8 +111,6 @@ EDIT_PALETTE_DIALOG_TITLE 		    Modifier la palette
 # Error/Alert messages
 # -----------------------------------------------------------------------------
 
-ERROR_NOT_IMPLEMENTED              Implémentation manquante.
-ERROR_AUTOSAVE_NOT_IMPLEMENTED     La sauvegarde automatique n'existe pas encore pour les fichiers "Untitled". Veuillez enregistrer manuellement. # TODO : add an option to translate "Untitled" by "Sans nom"
 ALERT_EDITING_BUILTIN_PALETTE      L'édition de palettes pré-existances n'est pas possible. Si vous souhaitez la modifier, vous pouvez en faire une copie et l'éditer.
 ALERT_DELETING_BUILTIN_PALETTE     La suppression de palettes pré-existantes n'est pas possible.
 

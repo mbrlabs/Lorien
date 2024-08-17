@@ -8,7 +8,7 @@ MENU_OPEN           Open...
 MENU_SAVE           Save
 MENU_SAVE_AS        Save as...
 MENU_SETTINGS       Settings
-MENU_MANUAL         Manual
+MENU_MANUAL         Online Manual
 MENU_BUG_TRACKER    Bug Tracker
 MENU_ABOUT          About
 MENU_EXPORT         Export...
@@ -97,15 +97,8 @@ ABOUT_DIALOG_EASTEREGG          Easteregg character:
 # Unsaved changes dialog
 # -----------------------------------------------------------------------------
 
-UNSAVED_CHANGES_DIALOG_TITLE    Save changes?
-UNSAVED_CHANGES_DIALOG_TEXT     Do you want to save your changes before closing the file?
-
-# -----------------------------------------------------------------------------
-# Exit dialog
-# -----------------------------------------------------------------------------
-
-EXIT_DIALOG_TITLE    Save changes?
-EXIT_DIALOG_TEXT     Do you want to save your changes before exiting Lorien?
+UNSAVED_CHANGES_DIALOG_TITLE    Warning
+UNSAVED_CHANGES_DIALOG_TEXT     Do you want to save your changes before closing the file(s)?
 
 # -----------------------------------------------------------------------------
 # New palette dialog
@@ -129,8 +122,6 @@ EDIT_PALETTE_DIALOG_TITLE 		Edit Palette
 # Error/Alert messages
 # -----------------------------------------------------------------------------
 
-ERROR_NOT_IMPLEMENTED               Not implemented yet.
-ERROR_AUTOSAVE_NOT_IMPLEMENTED      Auto-saving not yet implemented for file "Untitled". Please save it manually.
 ALERT_EDITING_BUILTIN_PALETTE       Editing built-in palettes is not possible. If you want to customize this palette you can make a copy and edit that instead. # TODO
 ALERT_DELETING_BUILTIN_PALETTE      Deleting built-in palettes is not possible.
 

@@ -92,15 +92,8 @@ ABOUT_DIALOG_EASTEREGG          Easteregg karakteri:
 # Unsaved changes dialog
 # -----------------------------------------------------------------------------
 
-UNSAVED_CHANGES_DIALOG_TITLE    Değişiklikleri kaydet?
+UNSAVED_CHANGES_DIALOG_TITLE    Warning # TODO
 UNSAVED_CHANGES_DIALOG_TEXT     Dosyayı kapatmadan önce değişikliklerinizi kaydetmek istiyor musunuz?
-
-# -----------------------------------------------------------------------------
-# Exit dialog
-# -----------------------------------------------------------------------------
-
-EXIT_DIALOG_TITLE    Değişiklikleri kaydet?
-EXIT_DIALOG_TEXT     Lorien'den çıkmadan önce değişikliklerinizi kaydetmek istiyor musunuz?
 
 # -----------------------------------------------------------------------------
 # New palette dialog
@@ -124,8 +117,6 @@ EDIT_PALETTE_DIALOG_TITLE 		Paleti Düzenle
 # Error/Alert messages
 # -----------------------------------------------------------------------------
 
-ERROR_NOT_IMPLEMENTED               Daha eklenmedi.
-ERROR_AUTOSAVE_NOT_IMPLEMENTED      "Adsız" dosyası için otomatik kaydetme henüz uygulanmadı. Lütfen manuel olarak kaydedin.
 ALERT_EDITING_BUILTIN_PALETTE       Yerleşik paletleri düzenlemek mümkün değildir. Bu paleti özelleştirmek istiyorsanız, bunun yerine bir kopya oluşturabilir ve düzenleyebilirsiniz.. # TODO
 ALERT_DELETING_BUILTIN_PALETTE      Yerleşik paletleri silmek mümkün değildir.
 
