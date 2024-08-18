@@ -97,8 +97,8 @@ func set_rendering_value(key: String, value = null):
 	_save_settings()
 	
 # -------------------------------------------------------------------------------------------------
-func get_keybind_value(action_name: String) -> InputEventKey:
-	return _config_file.get_value(KEYBINDINGS_SECTION, action_name, null)
+func get_keybind_value(action_name: String, default_value = null) -> InputEventKey:
+	return _config_file.get_value(KEYBINDINGS_SECTION, action_name, default_value)
 
 # -------------------------------------------------------------------------------------------------
 func set_keybind_value(action_name: String, event: InputEventKey) -> void:

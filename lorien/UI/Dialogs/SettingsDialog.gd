@@ -99,8 +99,6 @@ func _set_values() -> void:
 	var foreground_fps = Settings.get_rendering_value(Settings.RENDERING_FOREGROUND_FPS, Config.DEFAULT_FOREGROUND_FPS)
 	var background_fps = Settings.get_rendering_value(Settings.RENDERING_BACKGROUND_FPS, Config.DEFAULT_BACKGROUND_FPS)
 	
-	_constant_pressure.button_pressed = constant_pressure
-	
 	match ui_theme:
 		Types.UITheme.DARK: _theme.selected = THEME_DARK_INDEX
 		Types.UITheme.LIGHT: _theme.selected = THEME_LIGHT_INDEX
@@ -114,9 +112,10 @@ func _set_values() -> void:
 		
 	_set_languages(locale)
 	_set_rounding()
-	_set_input_actions()
+	_set_keybindings()
 	_set_ui_scale_range()
 	
+	_constant_pressure.button_pressed = constant_pressure
 	_pressure_sensitivity.value = pressure_sensitivity
 	_brush_size.value = brush_size
 	_tool_pressure.value = tool_pressure
@@ -130,7 +129,7 @@ func _set_values() -> void:
 	_foreground_fps.value = foreground_fps
 	_background_fps.value = background_fps
 	_ui_scale.value = ui_scale
-
+	
 # -------------------------------------------------------------------------------------------------
 func _set_rounding():
 	_brush_rounding.selected = Settings.get_rendering_value(
@@ -174,7 +173,7 @@ func _set_languages(current_locale: String) -> void:
 	_language.selected = _language.get_item_index(id)
 
 #--------------------------------------------------------------------------------------------------
-func _set_input_actions() -> void:
+func _set_keybindings() -> void:
 	for action: KeybindingsManager.Action in KeybindingsManager.get_actions():
 		var item: KeybindItem = KEYBIND_ITEM.instantiate()
 		item.action_rebind_requested.connect(_on_action_keybinding_changed)
@@ -304,5 +303,5 @@ func _on_constant_pressure_toggled(button_pressed: bool):
 # -------------------------------------------------------------------------------------------------
 func _on_action_keybinding_changed(action: KeybindingsManager.Action, event: InputEventKey) -> void:
 	KeybindingsManager.rebind_action(action, event)
-	# TODO: serialize to settings
+	Settings.set_keybind_value(action.name, action.event)
 	print("Rebind done")
