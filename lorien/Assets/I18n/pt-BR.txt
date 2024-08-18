@@ -142,12 +142,10 @@ ACTION_shortcut_brush_tool         Pincel
 ACTION_shortcut_line_tool          Ferramenta Linha
 ACTION_shortcut_eraser_tool        Borracha
 ACTION_shortcut_select_tool        Ferramenta de Seleção
-ACTION_shortcut_move_tool          Ferramenta de Movimento
 ACTION_shortcut_rectangle_tool     Ferramenta Retângulo
 ACTION_shortcut_circle_tool        Ferramenta Círculo
 ACTION_shortcut_export_project     Exportar Projeto
 ACTION_deselect_all_strokes        Desmarcar todos os traços
-ACTION_center_canvas_to_mouse      Centralizar no mouse
 ACTION_delete_selected_strokes     Deletar traços selecionados
 ACTION_copy_strokes                Copiar traços
 ACTION_paste_strokes               Colar traços
@@ -155,12 +153,6 @@ ACTION_duplicate_strokes           Duplicar traços
 ACTION_toggle_distraction_free_mode (Des)ativar modo livre de distrações
 ACTION_toggle_player               (Des)ativar jogador
 ACTION_toggle_fullscreen           (Des)ativar Tela Cheia
-ACTION_canvas_zoom_in              Ampliar Imagem#Zoom in
-ACTION_canvas_zoom_out             Retrair Imagem#Zoom out
-ACTION_canvas_pan_up               Mover para cima
-ACTION_canvas_pan_down             Mover para baixo
-ACTION_canvas_pan_right            Mover para a direita
-ACTION_canvas_pan_left             Mover para a esquerda
 
 # -----------------------------------------------------------------------------
 # Kebindings dialog messages

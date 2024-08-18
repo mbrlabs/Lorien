@@ -145,12 +145,10 @@ ACTION_shortcut_brush_tool         Пензлик
 ACTION_shortcut_line_tool          Лінія
 ACTION_shortcut_eraser_tool        Гумка
 ACTION_shortcut_select_tool        Виділення
-ACTION_shortcut_move_tool          Перемістити
 ACTION_shortcut_rectangle_tool     Прямокутник
 ACTION_shortcut_circle_tool        Коло
 ACTION_shortcut_export_project     Експорт проєкту
 ACTION_deselect_all_strokes        Відмінити виділення
-ACTION_center_canvas_to_mouse      Калібрувати Полотно     # not sure about this
 ACTION_delete_selected_strokes     Видалити вибрані штрихи
 ACTION_copy_strokes                Скопіювати
 ACTION_paste_strokes               Вставити
@@ -158,12 +156,6 @@ ACTION_duplicate_strokes           Дублювати штрихи
 ACTION_toggle_distraction_free_mode Перемкнути zen-режим
 ACTION_toggle_player               ЕФФ ДВАНАДЦЯТЬ
 ACTION_toggle_fullscreen           Перемкнути повноекранний режим
-ACTION_canvas_zoom_in              Збільшити масштаб
-ACTION_canvas_zoom_out             Зменшити масштаб
-ACTION_canvas_pan_up               Полотно вверх
-ACTION_canvas_pan_down             Полотно вниз
-ACTION_canvas_pan_right            Полотно направо
-ACTION_canvas_pan_left             Полотно наліво
 
 # -----------------------------------------------------------------------------
 # Kebindings dialog messages
