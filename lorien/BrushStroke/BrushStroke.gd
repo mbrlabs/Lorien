@@ -30,7 +30,10 @@ func _ready():
 	_visibility_notifier.screen_entered.connect(func(): add_to_group(GROUP_ONSCREEN))
 	_visibility_notifier.screen_exited.connect(func(): remove_from_group(GROUP_ONSCREEN))
 	
-	var rounding_mode: int = Settings.get_value(Settings.RENDERING_BRUSH_ROUNDING, Config.DEFAULT_BRUSH_ROUNDING)
+	var rounding_mode: int = Settings.get_rendering_value(
+		Settings.RENDERING_BRUSH_ROUNDING, Config.DEFAULT_BRUSH_ROUNDING
+	)
+	
 	match rounding_mode:
 		Types.BrushRoundingType.FLAT:
 			_line2d.end_cap_mode = Line2D.LINE_CAP_NONE

@@ -34,12 +34,12 @@ var _optimizer: BrushStrokeOptimizer
 # -------------------------------------------------------------------------------------------------
 func _ready():
 	_optimizer = BrushStrokeOptimizer.new()
-	_brush_size = Settings.get_value(Settings.GENERAL_DEFAULT_BRUSH_SIZE, Config.DEFAULT_BRUSH_SIZE)
-	set_background_color(Settings.get_value(Settings.APPEARANCE_CANVAS_COLOR, Config.DEFAULT_CANVAS_COLOR))
+	_brush_size = Settings.get_general_value(Settings.GENERAL_DEFAULT_BRUSH_SIZE, Config.DEFAULT_BRUSH_SIZE)
+	set_background_color(Settings.get_appearance_value(Settings.APPEARANCE_CANVAS_COLOR, Config.DEFAULT_CANVAS_COLOR))
 	_active_tool._on_brush_size_changed(_brush_size)
 	_active_tool.enabled = false
 	
-	var constant_pressure = Settings.get_value(Settings.GENERAL_CONSTANT_PRESSURE, Config.DEFAULT_CONSTANT_PRESSURE)
+	var constant_pressure = Settings.get_general_value(Settings.GENERAL_CONSTANT_PRESSURE, Config.DEFAULT_CONSTANT_PRESSURE)
 	if constant_pressure:
 		_brush_tool.pressure_curve = _constant_pressure_curve
 	else:

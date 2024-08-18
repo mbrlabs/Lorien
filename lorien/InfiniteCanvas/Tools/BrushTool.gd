@@ -44,7 +44,10 @@ func _process(delta: float) -> void:
 		if diff <= MOVEMENT_THRESHOLD || _current_pressure <= MIN_PRESSURE:
 			return
 
-		var sensitivity: float = Settings.get_value(Settings.GENERAL_PRESSURE_SENSITIVITY, Config.DEFAULT_PRESSURE_SENSITIVITY)
+		var sensitivity: float = Settings.get_general_value(
+			Settings.GENERAL_PRESSURE_SENSITIVITY, Config.DEFAULT_PRESSURE_SENSITIVITY
+		)
+		
 		var point_pressure = pressure_curve.sample(_current_pressure) * sensitivity
 		if _first_point:
 			point_pressure *= 1.4

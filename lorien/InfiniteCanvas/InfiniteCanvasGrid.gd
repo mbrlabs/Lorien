@@ -11,8 +11,8 @@ var _grid_color: Color
 
 # -------------------------------------------------------------------------------------------------
 func _ready():
-	_grid_size = Settings.get_value(Settings.APPEARANCE_GRID_SIZE, Config.DEFAULT_GRID_SIZE)
-	_pattern = Settings.get_value(Settings.APPEARANCE_GRID_PATTERN, Config.DEFAULT_GRID_PATTERN)
+	_grid_size = Settings.get_appearance_value(Settings.APPEARANCE_GRID_SIZE, Config.DEFAULT_GRID_SIZE)
+	_pattern = Settings.get_appearance_value(Settings.APPEARANCE_GRID_PATTERN, Config.DEFAULT_GRID_PATTERN)
 	
 	_camera = get_node(camera_path)
 	_camera.zoom_changed.connect(_on_zoom_changed)
