@@ -151,7 +151,7 @@ ACTION_copy_strokes                Copiar traços
 ACTION_paste_strokes               Colar traços
 ACTION_duplicate_strokes           Duplicar traços
 ACTION_toggle_distraction_free_mode (Des)ativar modo livre de distrações
-ACTION_toggle_player               (Des)ativar jogador
+ACTION_toggle_player               Toggle Easteregg
 ACTION_toggle_fullscreen           (Des)ativar Tela Cheia
 
 # -----------------------------------------------------------------------------

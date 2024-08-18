@@ -25,6 +25,7 @@ extends Control
 var _ui_visible := true 
 var _exit_requested := false
 var _dirty_project_to_close: Project = null
+var _player_enabled := false
 
 # -------------------------------------------------------------------------------------------------
 func _ready():
@@ -141,34 +142,43 @@ func _process(delta):
 # -------------------------------------------------------------------------------------------------
 func _unhandled_input(event):
 	if !is_dialog_open():
-		if Utils.event_pressed_bug_workaround("shortcut_new_project", event):
-			_on_create_new_project()
-		elif Utils.event_pressed_bug_workaround("shortcut_open_project", event):
-			_toolbar._on_OpenFileButton_pressed()
-		elif Utils.event_pressed_bug_workaround("shortcut_save_project", event):
-			_on_save_project()
-		elif Utils.event_pressed_bug_workaround("shortcut_export_project", event):
-			_export_svg()
-		elif Utils.event_pressed_bug_workaround("shortcut_undo", event):
-			_on_undo_action()
-		elif Utils.event_pressed_bug_workaround("shortcut_redo", event):
-			_on_redo_action()
-		elif Utils.event_pressed_bug_workaround("shortcut_brush_tool", event):
-			_toolbar.enable_tool(Types.Tool.BRUSH)
-		elif Utils.event_pressed_bug_workaround("shortcut_rectangle_tool", event):
-			_toolbar.enable_tool(Types.Tool.RECTANGLE)
-		elif Utils.event_pressed_bug_workaround("shortcut_circle_tool", event):
-			_toolbar.enable_tool(Types.Tool.CIRCLE)
-		elif Utils.event_pressed_bug_workaround("shortcut_line_tool", event):
-			_toolbar.enable_tool(Types.Tool.LINE)
-		elif Utils.event_pressed_bug_workaround("shortcut_eraser_tool", event):
-			_toolbar.enable_tool(Types.Tool.ERASER)
-		elif Utils.event_pressed_bug_workaround("shortcut_select_tool", event):
-			_toolbar.enable_tool(Types.Tool.SELECT)
-		elif Utils.event_pressed_bug_workaround("toggle_distraction_free_mode", event):
-			_toggle_distraction_free_mode()
-		elif Utils.event_pressed_bug_workaround("toggle_fullscreen", event):
-			_toggle_fullscreen()
+		if Utils.event_pressed_bug_workaround("toggle_player", event):
+			_toggle_player()
+		
+		if !_player_enabled:
+			if Utils.event_pressed_bug_workaround("shortcut_new_project", event):
+				_on_create_new_project()
+			elif Utils.event_pressed_bug_workaround("shortcut_open_project", event):
+				_toolbar._on_OpenFileButton_pressed()
+			elif Utils.event_pressed_bug_workaround("shortcut_save_project", event):
+				_on_save_project()
+			elif Utils.event_pressed_bug_workaround("shortcut_export_project", event):
+				_export_svg()
+			elif Utils.event_pressed_bug_workaround("shortcut_undo", event):
+				_on_undo_action()
+			elif Utils.event_pressed_bug_workaround("shortcut_redo", event):
+				_on_redo_action()
+			elif Utils.event_pressed_bug_workaround("shortcut_brush_tool", event):
+				_toolbar.enable_tool(Types.Tool.BRUSH)
+			elif Utils.event_pressed_bug_workaround("shortcut_rectangle_tool", event):
+				_toolbar.enable_tool(Types.Tool.RECTANGLE)
+			elif Utils.event_pressed_bug_workaround("shortcut_circle_tool", event):
+				_toolbar.enable_tool(Types.Tool.CIRCLE)
+			elif Utils.event_pressed_bug_workaround("shortcut_line_tool", event):
+				_toolbar.enable_tool(Types.Tool.LINE)
+			elif Utils.event_pressed_bug_workaround("shortcut_eraser_tool", event):
+				_toolbar.enable_tool(Types.Tool.ERASER)
+			elif Utils.event_pressed_bug_workaround("shortcut_select_tool", event):
+				_toolbar.enable_tool(Types.Tool.SELECT)
+			elif Utils.event_pressed_bug_workaround("toggle_distraction_free_mode", event):
+				_toggle_distraction_free_mode()
+			elif Utils.event_pressed_bug_workaround("toggle_fullscreen", event):
+				_toggle_fullscreen()
+
+# -------------------------------------------------------------------------------------------------
+func _toggle_player() -> void:
+	_player_enabled = !_player_enabled
+	_canvas.enable_player(_player_enabled)
 
 # -------------------------------------------------------------------------------------------------
 func _save_state() -> void:

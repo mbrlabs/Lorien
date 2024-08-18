@@ -151,7 +151,7 @@ ACTION_copy_strokes                Kopyala
 ACTION_paste_strokes               Yapıştır
 ACTION_duplicate_strokes           Vuruşlarıkopyala
 ACTION_toggle_distraction_free_mode Dikkat dağıtmama modu
-ACTION_toggle_player               EFF TWELVE
+ACTION_toggle_player               Toggle Easteregg
 ACTION_toggle_fullscreen           Tam Ekran
 
 # -----------------------------------------------------------------------------

@@ -154,7 +154,7 @@ ACTION_copy_strokes                Скопіювати
 ACTION_paste_strokes               Вставити
 ACTION_duplicate_strokes           Дублювати штрихи
 ACTION_toggle_distraction_free_mode Перемкнути zen-режим
-ACTION_toggle_player               ЕФФ ДВАНАДЦЯТЬ
+ACTION_toggle_player               Toggle Easteregg
 ACTION_toggle_fullscreen           Перемкнути повноекранний режим
 
 # -----------------------------------------------------------------------------

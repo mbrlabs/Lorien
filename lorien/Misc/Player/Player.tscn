@@ -1,74 +1,121 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=20 format=3 uid="uid://dsfivcktd8k5d"]
 
-[ext_resource path="res://Misc/Player/Player.gd" type="Script" id=1]
-[ext_resource path="res://Assets/Player/p1_stand.png" type="Texture2D" id=2]
-[ext_resource path="res://Assets/Player/p1_jump.png" type="Texture2D" id=3]
-[ext_resource path="res://Assets/Player/p1_walk/p1_walk08.png" type="Texture2D" id=4]
-[ext_resource path="res://Assets/Player/p1_walk/p1_walk09.png" type="Texture2D" id=5]
-[ext_resource path="res://Assets/Player/p1_walk/p1_walk04.png" type="Texture2D" id=6]
-[ext_resource path="res://Assets/Player/p1_walk/p1_walk10.png" type="Texture2D" id=7]
-[ext_resource path="res://Assets/Player/p1_walk/p1_walk01.png" type="Texture2D" id=8]
-[ext_resource path="res://Assets/Player/p1_walk/p1_walk11.png" type="Texture2D" id=9]
-[ext_resource path="res://Assets/Player/p1_walk/p1_walk06.png" type="Texture2D" id=10]
-[ext_resource path="res://Assets/Player/p1_walk/p1_walk05.png" type="Texture2D" id=11]
-[ext_resource path="res://Assets/Player/p1_walk/p1_walk07.png" type="Texture2D" id=12]
-[ext_resource path="res://Assets/Player/p1_walk/p1_walk02.png" type="Texture2D" id=13]
-[ext_resource path="res://Assets/Player/p1_walk/p1_walk03.png" type="Texture2D" id=14]
-[ext_resource path="res://Assets/Player/p1_hurt.png" type="Texture2D" id=15]
-[ext_resource path="res://Assets/Player/p1_duck.png" type="Texture2D" id=16]
+[ext_resource type="Script" path="res://Misc/Player/Player.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://ffgv0s7vrro5" path="res://Assets/Player/p1_stand.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://cqyukg3uuycf4" path="res://Assets/Player/p1_jump.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://dwuysgyc8j82w" path="res://Assets/Player/p1_walk/p1_walk08.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://danut7sqbg40s" path="res://Assets/Player/p1_walk/p1_walk09.png" id="5"]
+[ext_resource type="Texture2D" uid="uid://cfltcpca42j7y" path="res://Assets/Player/p1_walk/p1_walk04.png" id="6"]
+[ext_resource type="Texture2D" uid="uid://b8cmwiibg70sy" path="res://Assets/Player/p1_walk/p1_walk10.png" id="7"]
+[ext_resource type="Texture2D" uid="uid://byicebm3xqqvf" path="res://Assets/Player/p1_walk/p1_walk01.png" id="8"]
+[ext_resource type="Texture2D" uid="uid://dy4wi0nvwge3k" path="res://Assets/Player/p1_walk/p1_walk11.png" id="9"]
+[ext_resource type="Texture2D" uid="uid://col76yk5anc3w" path="res://Assets/Player/p1_walk/p1_walk06.png" id="10"]
+[ext_resource type="Texture2D" uid="uid://dnc8qra7ik1og" path="res://Assets/Player/p1_walk/p1_walk05.png" id="11"]
+[ext_resource type="Texture2D" uid="uid://di3s8n8y1er54" path="res://Assets/Player/p1_walk/p1_walk07.png" id="12"]
+[ext_resource type="Texture2D" uid="uid://c0b2kwqc11hmp" path="res://Assets/Player/p1_walk/p1_walk02.png" id="13"]
+[ext_resource type="Texture2D" uid="uid://c0a6dcqg7ifki" path="res://Assets/Player/p1_walk/p1_walk03.png" id="14"]
+[ext_resource type="Texture2D" uid="uid://rnedtmq7m02m" path="res://Assets/Player/p1_hurt.png" id="15"]
+[ext_resource type="Texture2D" uid="uid://b122l270v6tvm" path="res://Assets/Player/p1_duck.png" id="16"]
 
-[sub_resource type="CapsuleShape2D" id=1]
-radius = 35.7294
-height = 34.0149
-
-[sub_resource type="CapsuleShape2D" id=4]
-radius = 35.7294
-height = 10.4698
-
-[sub_resource type="SpriteFrames" id=3]
-animations = [ {
-"frames": [ ExtResource( 16 ) ],
+[sub_resource type="SpriteFrames" id="3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("16")
+}],
 "loop": false,
-"name": "crouch",
+"name": &"crouch",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 3 ) ],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3")
+}],
 "loop": false,
-"name": "falling",
+"name": &"falling",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 15 ) ],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("15")
+}],
 "loop": false,
-"name": "hurt",
+"name": &"hurt",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 2 ) ],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2")
+}],
 "loop": false,
-"name": "idle",
+"name": &"idle",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 3 ) ],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3")
+}],
 "loop": false,
-"name": "jump",
+"name": &"jump",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 8 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 6 ), ExtResource( 11 ), ExtResource( 10 ), ExtResource( 12 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 7 ), ExtResource( 9 ) ],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9")
+}],
 "loop": true,
-"name": "walk",
+"name": &"walk",
 "speed": 12.0
-} ]
+}]
+
+[sub_resource type="CapsuleShape2D" id="1"]
+radius = 33.0
+height = 98.0
+
+[sub_resource type="CapsuleShape2D" id="4"]
+radius = 30.0
+height = 70.0
 
 [node name="Player" type="CharacterBody2D"]
-script = ExtResource( 1 )
-
-[node name="CollisionShapeNormal" type="CollisionShape2D" parent="."]
-shape = SubResource( 1 )
-
-[node name="CollisionShapeCrouching" type="CollisionShape2D" parent="."]
-shape = SubResource( 4 )
-disabled = true
+script = ExtResource("1")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-frames = SubResource( 3 )
-animation = "crouch"
-playing = true
+sprite_frames = SubResource("3")
+animation = &"walk"
+
+[node name="CollisionShapeNormal" type="CollisionShape2D" parent="."]
+shape = SubResource("1")
+
+[node name="CollisionShapeCrouching" type="CollisionShape2D" parent="."]
+shape = SubResource("4")
+disabled = true

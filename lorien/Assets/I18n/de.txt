@@ -147,5 +147,5 @@ ACTION_copy_strokes                Kopieren
 ACTION_paste_strokes               Einfügen
 ACTION_duplicate_strokes           Auswahl duplizieren
 ACTION_toggle_distraction_free_mode Zen modus aktivieren
-ACTION_toggle_player               Easteregg
+ACTION_toggle_player               Toggle Easteregg
 ACTION_toggle_fullscreen           Vollbildmodus
