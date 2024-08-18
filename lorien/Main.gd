@@ -170,8 +170,8 @@ func _unhandled_input(event):
 				_toolbar.enable_tool(Types.Tool.ERASER)
 			elif Utils.event_pressed_bug_workaround("shortcut_select_tool", event):
 				_toolbar.enable_tool(Types.Tool.SELECT)
-			elif Utils.event_pressed_bug_workaround("toggle_distraction_free_mode", event):
-				_toggle_distraction_free_mode()
+			elif Utils.event_pressed_bug_workaround("toggle_zen_mode", event):
+				_toggle_zen_mode()
 			elif Utils.event_pressed_bug_workaround("toggle_fullscreen", event):
 				_toggle_fullscreen()
 
@@ -223,7 +223,7 @@ func _apply_state() -> void:
 		_make_project_active(active_project)
 
 # -------------------------------------------------------------------------------------------------
-func _toggle_distraction_free_mode() -> void:
+func _toggle_zen_mode() -> void:
 	_ui_visible = !_ui_visible
 	_menubar.get_parent().visible = _ui_visible
 	_menubar.visible = _ui_visible

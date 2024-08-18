@@ -143,7 +143,7 @@ ACTION_delete_selected_strokes      Elimina i tratti selezionati
 ACTION_copy_strokes                 Copia i tratti
 ACTION_paste_strokes                Incolla i tratti
 ACTION_duplicate_strokes            Duplica i tratti
-ACTION_toggle_distraction_free_mode Abilita la modalità senza distrazioni
+ACTION_toggle_zen_mode              Toggle Zen Mode
 ACTION_toggle_player                Toggle Easteregg
 ACTION_toggle_fullscreen            Schermo intero
 

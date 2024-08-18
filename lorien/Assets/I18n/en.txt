@@ -138,26 +138,26 @@ DELETE          Delete
 # Action names
 # -----------------------------------------------------------------------------
 
-ACTION_shortcut_save_project       Save File
-ACTION_shortcut_new_project        New File
-ACTION_shortcut_open_project       Open File
-ACTION_shortcut_undo               Undo
-ACTION_shortcut_redo               Redo
-ACTION_shortcut_brush_tool         Brush Tool
-ACTION_shortcut_line_tool          Line Tool
-ACTION_shortcut_eraser_tool        Eraser Tool
-ACTION_shortcut_select_tool        Selection Tool
-ACTION_shortcut_rectangle_tool     Rectangle Tool
-ACTION_shortcut_circle_tool        Circle Tool
-ACTION_shortcut_export_project     Export File
-ACTION_deselect_all_strokes        Deselect All Strokes
-ACTION_delete_selected_strokes     Delete Selected Strokes
-ACTION_copy_strokes                Copy
-ACTION_paste_strokes               Paste
-ACTION_duplicate_strokes           Duplicate strokes
-ACTION_toggle_distraction_free_mode Zen Mode
-ACTION_toggle_player               Toggle Easteregg
-ACTION_toggle_fullscreen           Toggle Fullscreen
+ACTION_shortcut_save_project        Save File
+ACTION_shortcut_new_project         New File
+ACTION_shortcut_open_project        Open File
+ACTION_shortcut_undo                Undo
+ACTION_shortcut_redo                Redo
+ACTION_shortcut_brush_tool          Brush Tool
+ACTION_shortcut_line_tool           Line Tool
+ACTION_shortcut_eraser_tool         Eraser Tool
+ACTION_shortcut_select_tool         Selection Tool
+ACTION_shortcut_rectangle_tool      Rectangle Tool
+ACTION_shortcut_circle_tool         Circle Tool
+ACTION_shortcut_export_project      Export File
+ACTION_deselect_all_strokes         Deselect All Strokes
+ACTION_delete_selected_strokes      Delete Selected Strokes
+ACTION_copy_strokes                 Copy
+ACTION_paste_strokes                Paste
+ACTION_duplicate_strokes            Duplicate strokes
+ACTION_toggle_zen_mode              Toggle Zen Mode
+ACTION_toggle_player                Toggle Easteregg
+ACTION_toggle_fullscreen            Toggle Fullscreen
 
 # -----------------------------------------------------------------------------
 # Kebindings dialog messages

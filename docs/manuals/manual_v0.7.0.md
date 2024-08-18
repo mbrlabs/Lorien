@@ -1,4 +1,4 @@
-# Lorien Manual v0.7.0-dev
+# Lorien Manual v0.7.0
 
 Drawing tablets are supported and recommended, but you can also just use Keyboard+Mouse. 
 
@@ -68,5 +68,5 @@ Lorien provides you with different tools which you can find in the toolbar. If y
 - <kbd>S</kbd>: Selection tool
 - <kbd>Esc</kbd> or <kbd>RMB</kbd>: Deselect everything
 - <kbd>Delete</kbd>: Deletes selected brush strokes
-- <kbd>Tab</kbd>: enter/exit distraction free mode (no UI)
-- <kbd>F12</kbd>: Spwans a playable character at the mouse position who can walk on the drawn lines (easteregg)
+- <kbd>Tab</kbd>: Toggle zen mode (no UI)
+- <kbd>F12</kbd>: Easteregg: spwans a playable character at the mouse position who can walk/jump/crouch on brush strokes.
