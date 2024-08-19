@@ -11,10 +11,10 @@ var _pressure := 1.0
 # -------------------------------------------------------------------------------------------------
 func _input(event):
 	if event is InputEventMouseMotion:
-		_update_position()
+		update_position()
 
 # -------------------------------------------------------------------------------------------------
-func _update_position():
+func update_position():
 	global_position = _camera.get_global_mouse_position()
 
 # -------------------------------------------------------------------------------------------------
@@ -27,7 +27,7 @@ func change_size(value: int) -> void:
 
 # -------------------------------------------------------------------------------------------------
 func _on_canvas_position_changed(pos: Vector2) -> void:
-	_update_position()
+	update_position()
 
 # -------------------------------------------------------------------------------------------------
 func _on_zoom_changed(value: float) -> void:

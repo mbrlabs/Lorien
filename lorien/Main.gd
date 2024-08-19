@@ -247,25 +247,24 @@ func _make_project_active(project: Project) -> void:
 	
 # -------------------------------------------------------------------------------------------------
 func _is_mouse_on_ui() -> bool:
-	return true # TODO(gd4): HEELP!!!
-	#var on_ui := Utils.is_mouse_in_control(_menubar)
-	#on_ui = on_ui || Utils.is_mouse_in_control(_toolbar)
-	#on_ui = on_ui || Utils.is_mouse_in_control(_statusbar)
-	#on_ui = on_ui || Utils.is_mouse_on_window(_file_dialog)
-	#on_ui = on_ui || Utils.is_mouse_on_window(_about_dialog)
-	#on_ui = on_ui || Utils.is_mouse_on_window(_settings_dialog)
-	#on_ui = on_ui || Utils.is_mouse_in_control(_brush_color_picker)
-	#on_ui = on_ui || Utils.is_mouse_on_window(_new_palette_dialog)
-	#on_ui = on_ui || Utils.is_mouse_on_window(_edit_palette_dialog)
-	#on_ui = on_ui || Utils.is_mouse_on_window(_delete_palette_dialog)
-	#return on_ui
+	var on_ui := Utils.is_mouse_in_control(_menubar)
+	on_ui = on_ui || Utils.is_mouse_in_control(_toolbar)
+	on_ui = on_ui || Utils.is_mouse_in_control(_statusbar)
+	on_ui = on_ui || Utils.is_mouse_on_window(_file_dialog)
+	on_ui = on_ui || Utils.is_mouse_on_window(_about_window)
+	on_ui = on_ui || Utils.is_mouse_on_window(_settings_window)
+	on_ui = on_ui || Utils.is_mouse_in_control(_brush_color_picker)
+	on_ui = on_ui || Utils.is_mouse_on_window(_new_palette_window)
+	on_ui = on_ui || Utils.is_mouse_on_window(_edit_palette_window)
+	on_ui = on_ui || Utils.is_mouse_on_window(_delete_palette_window)
+	return on_ui
 
 # -------------------------------------------------------------------------------------------------
 func is_dialog_open() -> bool:
 	return _about_window.visible || _settings_window.visible || \
 			_new_palette_window.visible || _edit_palette_window.visible || \
 			_delete_palette_window.visible || _file_dialog.visible || \
-			_unsaved_changes_window.visible
+			_unsaved_changes_window.visible || AlertDialog.visible
 
 # -------------------------------------------------------------------------------------------------
 func _create_active_default_project() -> void:
@@ -469,7 +468,8 @@ func _on_open_url(url: String) -> void:
 
 # -------------------------------------------------------------------------------------------------
 func _on_InfiniteCanvas_mouse_entered():
-	_canvas.enable()
+	if !is_dialog_open() && !_is_mouse_on_ui():
+		_canvas.enable()
 
 # -------------------------------------------------------------------------------------------------
 func _on_InfiniteCanvas_mouse_exited():
@@ -486,6 +486,9 @@ func _on_export_confirmed(path: String):
 				svg.export_svg(project.strokes, background, path)
 		_:
 			printerr("Unsupported format")
+	
+	if !is_dialog_open() && !_is_mouse_on_ui():
+		_canvas.enable()
 
 # --------------------------------------------------------------------------------------------------
 func _export_svg() -> void:

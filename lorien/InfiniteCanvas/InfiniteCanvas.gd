@@ -181,6 +181,7 @@ func get_all_strokes() -> Array[BrushStroke]:
 func enable() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	_camera.enable_input()
+	_active_tool.get_cursor().update_position()
 	_active_tool.enabled = true
 	_is_enabled = true
 	

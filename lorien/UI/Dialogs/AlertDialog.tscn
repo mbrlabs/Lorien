@@ -5,7 +5,8 @@
 
 [node name="AlertDialog" type="AcceptDialog"]
 initial_position = 2
-size = Vector2i(300, 100)
+size = Vector2i(360, 100)
 theme = ExtResource("1")
+dialog_close_on_escape = false
 dialog_autowrap = true
 script = ExtResource("2_a4x41")
