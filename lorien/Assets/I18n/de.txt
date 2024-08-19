@@ -66,8 +66,6 @@ SETTINGS_THEME                  Theme
 SETTINGS_GRID_SIZE              Grid Größe
 SETTINGS_GRID_PATTERN           Grid Pattern
 SETTINGS_CANVAS_COLOR           Canvas Farbe
-SETTINGS_AA_METHOD              Anti Aliasing Methode
-SETTINGS_AA_METHOD_NONE         Keine
 SETTINGS_FPS_FOREGROUND         Vordergrund Fps
 SETTINGS_FPS_BACKGROUND         Hintergrund Fps
 SETTINGS_BRUSH_CAPS	            Pinsel Abrundung

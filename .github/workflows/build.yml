@@ -2,7 +2,7 @@ name: "build"
 
 on:
   push:
-    branches: [ main, godot4 ]
+    branches: [ main ]
   pull_request:
     branches: [ main ]
 

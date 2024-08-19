@@ -62,8 +62,6 @@ SETTINGS_BRUSH_SIZE             Dimensione Pennello Predefinita
 SETTINGS_PROJECT_FOLDER         Cartella di Progetto Predefinita
 SETTINGS_LANGUAGE               Lingua
 SETTINGS_THEME                  Tema
-SETTINGS_AA_METHOD              Metodo Anti-Aliasing
-SETTINGS_AA_METHOD_NONE         Nessuno
 SETTINGS_FPS_FOREGROUND         Fps in primo piano 
 SETTINGS_FPS_BACKGROUND         Fps sullo sfondo 
 SETTINGS_CANVAS_COLOR           Colore della Tela

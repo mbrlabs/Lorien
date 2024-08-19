@@ -66,8 +66,6 @@ SETTINGS_THEME                  테마
 SETTINGS_UI_SCALE               UI 표시 배율
 SETTINGS_UI_SCALE_AUTO          자동
 SETTINGS_UI_SCALE_CUSTOM        수동
-SETTINGS_AA_METHOD              안티에일리어싱
-SETTINGS_AA_METHOD_NONE         없음
 SETTINGS_FPS_FOREGROUND         필기 프레임
 SETTINGS_FPS_BACKGROUND         배경 프레임
 SETTINGS_CANVAS_COLOR           배경 색깔

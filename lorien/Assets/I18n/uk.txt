@@ -72,8 +72,6 @@ SETTINGS_UI_SCALE_CUSTOM        Власний
 SETTINGS_GRID_SIZE              Розмір Сітки
 SETTINGS_GRID_PATTERN           Тип Сітки
 SETTINGS_CANVAS_COLOR           Колір Полотна
-SETTINGS_AA_METHOD              Метод Згладжування
-SETTINGS_AA_METHOD_NONE         Не використовувати
 SETTINGS_FPS_FOREGROUND         Fps Переднього Плану
 SETTINGS_FPS_BACKGROUND         Fps Фону
 SETTINGS_BRUSH_CAPS             Заокруглення Пензлика

@@ -231,7 +231,7 @@ func _toggle_zen_mode() -> void:
 	_toolbar.visible = _ui_visible
 
 # -------------------------------------------------------------------------------------------------
-func _on_files_dropped(files: PackedStringArray, screen: int) -> void:
+func _on_files_dropped(files: PackedStringArray) -> void:
 	for file in files:
 		if Utils.is_valid_lorien_file(file):
 			_on_open_project(file)

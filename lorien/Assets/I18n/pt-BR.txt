@@ -69,8 +69,6 @@ SETTINGS_THEME                  Tema
 SETTINGS_UI_SCALE               Escala da Interface
 SETTINGS_UI_SCALE_AUTO          Automática
 SETTINGS_UI_SCALE_CUSTOM        Personalizada
-SETTINGS_AA_METHOD              Método de Anti-aliasing
-SETTINGS_AA_METHOD_NONE         Nenhum
 SETTINGS_FPS_FOREGROUND         FPS em Primeiro Plano
 SETTINGS_FPS_BACKGROUND         FPS em Segundo Plano
 SETTINGS_BRUSH_CAPS             Modo de Arredondamento do Pincel

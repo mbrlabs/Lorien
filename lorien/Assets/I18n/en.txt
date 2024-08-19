@@ -73,8 +73,6 @@ SETTINGS_UI_SCALE_CUSTOM        Custom
 SETTINGS_GRID_SIZE              Grid Size
 SETTINGS_GRID_PATTERN           Grid Pattern
 SETTINGS_CANVAS_COLOR           Canvas Color
-SETTINGS_AA_METHOD              Anti Aliasing Method
-SETTINGS_AA_METHOD_NONE         None
 SETTINGS_FPS_FOREGROUND         Foreground Fps
 SETTINGS_FPS_BACKGROUND         Background Fps
 SETTINGS_BRUSH_CAPS             Brush Rounding Mode

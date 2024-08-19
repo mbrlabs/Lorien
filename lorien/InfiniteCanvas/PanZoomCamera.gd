@@ -1,18 +1,19 @@
 extends Camera2D
 
+# -------------------------------------------------------------------------------------------------
 signal zoom_changed(value)
 signal position_changed(value)
 
+# -------------------------------------------------------------------------------------------------
 const ZOOM_INCREMENT := 1.1
 const MIN_ZOOM_LEVEL := 0.1
 const MAX_ZOOM_LEVEL := 100
 const KEYBOARD_PAN_CONSTANT := 20
 
+# -------------------------------------------------------------------------------------------------
 var _is_input_enabled := true
-
 var _pan_active := false
 var _zoom_active := false
-
 var _current_zoom_level := 1.0
 var _start_mouse_pos := Vector2(0.0, 0.0)
 
@@ -75,7 +76,7 @@ func _do_zoom_scroll(step: int) -> void:
 # -------------------------------------------------------------------------------------------------
 func _do_zoom_drag(delta: float) -> void:
 	delta *= _current_zoom_level / 100
-	_zoom_canvas(_current_zoom_level + delta, _start_mouse_pos)
+	_zoom_canvas(_current_zoom_level - delta, _start_mouse_pos)
 
 # -------------------------------------------------------------------------------------------------
 func _zoom_canvas(target_zoom: float, anchor: Vector2) -> void:
@@ -105,7 +106,6 @@ func enable_input() -> void:
 	_is_input_enabled = true
 
 # -------------------------------------------------------------------------------------------------
-
 func disable_input() -> void:
 	_is_input_enabled = false
 	

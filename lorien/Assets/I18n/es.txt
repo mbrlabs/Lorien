@@ -63,8 +63,6 @@ SETTINGS_CANVAS_COLOR           Color de Canvas
 SETTINGS_PROJECT_FOLDER         Carpeta de Proyectos Predeterminada
 SETTINGS_LANGUAGE               Idioma
 SETTINGS_THEME                  Tema
-SETTINGS_AA_METHOD              Método de Anti Aliasing
-SETTINGS_AA_METHOD_NONE         Ninguno
 SETTINGS_FPS_FOREGROUND         Color de texto de FPS
 SETTINGS_FPS_BACKGROUND         Color de fondo de FPS
 SETTINGS_BRUSH_CAPS             Modo de Redondeado de Pincel

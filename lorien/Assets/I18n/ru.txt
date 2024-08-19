@@ -62,8 +62,6 @@ SETTINGS_CANVAS_COLOR           Цвет кисти
 SETTINGS_PROJECT_FOLDER         Папка проекта по умолчанию
 SETTINGS_LANGUAGE               Язык
 SETTINGS_THEME                  Тема
-SETTINGS_AA_METHOD              Метод сглаживания
-SETTINGS_AA_METHOD_NONE         Не использовать
 SETTINGS_FPS_FOREGROUND         Foreground Fps 										# TODO
 SETTINGS_FPS_BACKGROUND         Background Fps 										# TODO
 SETTINGS_BRUSH_CAPS             Brush Rounding Mode 								# TODO

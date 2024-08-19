@@ -69,8 +69,6 @@ SETTINGS_THEME                  Tema
 SETTINGS_UI_SCALE               UI Boyutu
 SETTINGS_UI_SCALE_AUTO          Otomatik
 SETTINGS_UI_SCALE_CUSTOM        Özel              
-SETTINGS_AA_METHOD              Anti Aliasing Metodu
-SETTINGS_AA_METHOD_NONE         Hiçbiri
 SETTINGS_FPS_FOREGROUND         Ön plan Fps
 SETTINGS_FPS_BACKGROUND         Arka plan Fps
 SETTINGS_BRUSH_CAPS             Fırça Yuvarlama Modu

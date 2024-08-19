@@ -67,8 +67,6 @@ SETTINGS_THEME                  主题
 SETTINGS_UI_SCALE               UI 缩放
 SETTINGS_UI_SCALE_AUTO          自动
 SETTINGS_UI_SCALE_CUSTOM        自定义
-SETTINGS_AA_METHOD              抗锯齿方案
-SETTINGS_AA_METHOD_NONE         无
 SETTINGS_FPS_FOREGROUND         前台 Fps
 SETTINGS_FPS_BACKGROUND         后台 Fps
 SETTINGS_BRUSH_CAPS             画笔圆角模式

@@ -67,8 +67,6 @@ SETTINGS_THEME                  佈景主題
 SETTINGS_UI_SCALE               UI 縮放
 SETTINGS_UI_SCALE_AUTO          自動
 SETTINGS_UI_SCALE_CUSTOM        自定義
-SETTINGS_AA_METHOD              啟用反鋸齒
-SETTINGS_AA_METHOD_NONE         不啟用
 SETTINGS_FPS_FOREGROUND         前景 FPS
 SETTINGS_FPS_BACKGROUND         背景 FPS
 SETTINGS_BRUSH_CAPS             畫筆圓角模式
