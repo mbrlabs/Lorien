@@ -14,41 +14,52 @@ signal tool_changed(t)
 # -------------------------------------------------------------------------------------------------
 const BUTTON_HOVER_COLOR = Color("50ffd6")
 const BUTTON_CLICK_COLOR = Color("50ffd6")
-const BUTTON_NORMAL_COLOR = Color.white
+const BUTTON_NORMAL_COLOR = Color.WHITE
 
 # -------------------------------------------------------------------------------------------------
-export var file_dialog_path: NodePath
+@export var file_dialog_path: NodePath
 
-onready var _new_button: TextureButton = $Console/Left/NewFileButton
-onready var _save_button: TextureButton = $Console/Left/SaveFileButton
-onready var _open_button: TextureButton = $Console/Left/OpenFileButton
-onready var _clear_canvas_button: TextureButton = $Console/Left/ClearCanvasButton
-onready var _undo_button: TextureButton = $Console/Left/UndoButton
-onready var _redo_button: TextureButton = $Console/Left/RedoButton
-onready var _color_button: Button = $Console/Left/ColorButton
-onready var _brush_size_label: Label = $Console/Left/BrushSizeLabel
-onready var _brush_size_slider: HSlider = $Console/Left/BrushSizeSlider
-onready var _fullscreen_btn: TextureButton = $Console/Right/FullscreenButton
-onready var _tool_btn_brush: TextureButton = $Console/Left/BrushToolButton
-onready var _tool_btn_rectangle: TextureButton = $Console/Left/RectangleToolButton
-onready var _tool_btn_circle: TextureButton = $Console/Left/CircleToolButton
-onready var _tool_btn_line: TextureButton = $Console/Left/LineToolButton
-onready var _tool_btn_eraser: TextureButton = $Console/Left/EraserToolButton
-onready var _tool_btn_selection: TextureButton = $Console/Left/SelectionToolButton
+@onready var _new_button: FlatTextureButton = $Console/Left/NewFileButton
+@onready var _save_button: FlatTextureButton = $Console/Left/SaveFileButton
+@onready var _open_button: FlatTextureButton = $Console/Left/OpenFileButton
+@onready var _undo_button: FlatTextureButton = $Console/Left/UndoButton
+@onready var _redo_button: FlatTextureButton = $Console/Left/RedoButton
+@onready var _color_button: Button = $Console/Left/ColorButton
+@onready var _brush_size_label: Label = $Console/Left/BrushSizeLabel
+@onready var _brush_size_slider: HSlider = $Console/Left/BrushSizeSlider
+@onready var _tool_btn_brush: FlatTextureButton = $Console/Left/BrushToolButton
+@onready var _tool_btn_rectangle: FlatTextureButton = $Console/Left/RectangleToolButton
+@onready var _tool_btn_circle: FlatTextureButton = $Console/Left/CircleToolButton
+@onready var _tool_btn_line: FlatTextureButton = $Console/Left/LineToolButton
+@onready var _tool_btn_eraser: FlatTextureButton = $Console/Left/EraserToolButton
+@onready var _tool_btn_selection: FlatTextureButton = $Console/Left/SelectionToolButton
 
-var _last_active_tool_button: TextureButton
+var _last_active_tool_button: FlatTextureButton
 
 # -------------------------------------------------------------------------------------------------
 func _ready():
-	var brush_size: int = Settings.get_value(Settings.GENERAL_DEFAULT_BRUSH_SIZE, Config.DEFAULT_BRUSH_SIZE)
+	var brush_size: int = Settings.get_general_value(Settings.GENERAL_DEFAULT_BRUSH_SIZE, Config.DEFAULT_BRUSH_SIZE)
 	_brush_size_label.text = str(brush_size)
 	_brush_size_slider.value = brush_size
 	_last_active_tool_button = _tool_btn_brush
-
+	
+	_new_button.pressed.connect(_on_NewFileButton_pressed)
+	_undo_button.pressed.connect(_on_UndoButton_pressed)
+	_redo_button.pressed.connect(_on_RedoButton_pressed)
+	_open_button.pressed.connect(_on_OpenFileButton_pressed)
+	_save_button.pressed.connect(_on_SaveFileButton_pressed)
+	_color_button.pressed.connect(_on_ColorButton_pressed)
+	_brush_size_slider.value_changed.connect(_on_BrushSizeSlider_value_changed)
+	_tool_btn_brush.pressed.connect(_on_BrushToolButton_pressed)
+	_tool_btn_rectangle.pressed.connect(_on_RectangleToolButton_pressed)
+	_tool_btn_circle.pressed.connect(_on_CircleToolButton_pressed)
+	_tool_btn_line.pressed.connect(_on_LineToolButton_pressed)
+	_tool_btn_eraser.pressed.connect(_on_EraserToolButton_pressed)
+	_tool_btn_selection.pressed.connect(_on_SelectToolButton_pressed)
+	
 # Button clicked callbacks
 # -------------------------------------------------------------------------------------------------
 func _on_NewFileButton_pressed(): emit_signal("new_project")
-func _on_ClearCanvasButton_pressed(): emit_signal("clear_canvas")
 func _on_UndoButton_pressed(): emit_signal("undo_action")
 func _on_RedoButton_pressed(): emit_signal("redo_action")
 
@@ -69,25 +80,21 @@ func enable_tool(tool_type: int) -> void:
 
 # -------------------------------------------------------------------------------------------------
 func set_brush_color(color: Color) -> void:
-	_color_button.get("custom_styles/normal").bg_color = color
+	_color_button.get("theme_override_styles/normal").bg_color = color
 	var lum := color.r * 0.2126 + color.g * 0.7152 + color.b * 0.0722
-	var text_color := Color.black if lum > 0.4 else Color.white	
-	_color_button.set("custom_colors/font_color", text_color)
-	_color_button.set("custom_colors/font_color_hover", text_color)
-	_color_button.set("custom_colors/font_color_pressed", text_color)
-	_color_button.set("custom_colors/font_color_focus", text_color)
+	var text_color := Color.BLACK if lum > 0.4 else Color.WHITE	
+	_color_button.set("theme_override_colors/font_color", text_color)
+	_color_button.set("theme_override_colors/font_hover_color", text_color)
+	_color_button.set("theme_override_colors/font_pressed_color", text_color)
+	_color_button.set("theme_override_colors/font_focus_color", text_color)
 	_color_button.text = "#" + color.to_html(false)
-
-# -------------------------------------------------------------------------------------------------
-func set_fullscreen_toggle(pressed):
-	_fullscreen_btn.set_pressed(pressed)
 
 # -------------------------------------------------------------------------------------------------
 func _on_OpenFileButton_pressed():
 	var file_dialog: FileDialog = get_node(file_dialog_path)
-	file_dialog.mode = FileDialog.MODE_OPEN_FILE
-	file_dialog.connect("file_selected", self, "_on_project_selected_to_open")
-	file_dialog.connect("popup_hide", self, "_on_file_dialog_closed")
+	file_dialog.file_mode = FileDialog.FILE_MODE_OPEN_FILE
+	file_dialog.file_selected.connect(_on_project_selected_to_open)
+	file_dialog.close_requested.connect(_on_file_dialog_closed)
 	file_dialog.invalidate()
 	file_dialog.popup_centered()
 
@@ -103,7 +110,7 @@ func _on_SaveFileButton_pressed():
 func _on_file_dialog_closed() -> void:
 	var file_dialog: FileDialog = get_node(file_dialog_path)
 	Utils.remove_signal_connections(file_dialog, "file_selected")
-	Utils.remove_signal_connections(file_dialog, "popup_hide")
+	Utils.remove_signal_connections(file_dialog, "close_requested")
 
 # -------------------------------------------------------------------------------------------------
 func _on_ColorButton_pressed():
@@ -148,10 +155,6 @@ func _on_EraserToolButton_pressed():
 func _on_SelectToolButton_pressed():
 	_change_active_tool_button(_tool_btn_selection)
 	emit_signal("tool_changed", Types.Tool.SELECT)
-
-# -------------------------------------------------------------------------------------------------
-func _on_FullscreenButton_toggled(button_pressed):
-	OS.set_window_fullscreen(button_pressed)
 
 # -------------------------------------------------------------------------------------------------
 func _change_active_tool_button(btn: TextureButton) -> void:

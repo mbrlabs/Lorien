@@ -16,17 +16,17 @@ MENU_EXPORT         내보내기...
 # -----------------------------------------------------------------------------
 # Toolbar
 # -----------------------------------------------------------------------------
-TOOLBAR_TOOLTIP_NEW_FILE        새 파일 만들기 {{ shortcut_list("shortcut_new_project") }}
-TOOLBAR_TOOLTIP_OPEN_FILE       파일 열기 {{ shortcut_list("shortcut_new_project") }}
-TOOLBAR_TOOLTIP_SAVE_FILE       파일 저장하기 {{ shortcut_list("shortcut_save_project") }}
-TOOLBAR_TOOLTIP_UNDO            되돌리기 {{ shortcut_list("shortcut_undo") }}
-TOOLBAR_TOOLTIP_REDO            다시하기 {{ shortcut_list("shortcut_redo") }}
-TOOLBAR_TOOLTIP_BRUSH_TOOL      브러쉬 {{ shortcut_list("shortcut_brush_tool") }}
-TOOLBAR_TOOLTIP_RECTANGLE_TOOL  사각형 {{ shortcut_list("shortcut_rectangle_tool") }}
-TOOLBAR_TOOLTIP_CIRCLE_TOOL     원 {{ shortcut_list("shortcut_circle_tool") }}
-TOOLBAR_TOOLTIP_LINE_TOOL       직선 {{ shortcut_list("shortcut_line_tool") }}
-TOOLBAR_TOOLTIP_ERASER_TOOL     지우개 {{ shortcut_list("shortcut_eraser_tool") }}
-TOOLBAR_TOOLTIP_SELECT_TOOL     범위 선택 {{ shortcut_list("shortcut_select_tool") }}
+TOOLBAR_TOOLTIP_NEW_FILE        새 파일 만들기
+TOOLBAR_TOOLTIP_OPEN_FILE       파일 열기
+TOOLBAR_TOOLTIP_SAVE_FILE       파일 저장하기
+TOOLBAR_TOOLTIP_UNDO            되돌리기
+TOOLBAR_TOOLTIP_REDO            다시하기
+TOOLBAR_TOOLTIP_BRUSH_TOOL      브러쉬
+TOOLBAR_TOOLTIP_RECTANGLE_TOOL  사각형
+TOOLBAR_TOOLTIP_CIRCLE_TOOL     원
+TOOLBAR_TOOLTIP_LINE_TOOL       직선
+TOOLBAR_TOOLTIP_ERASER_TOOL     지우개
+TOOLBAR_TOOLTIP_SELECT_TOOL     범위 선택
 TOOLBAR_TOOLTIP_BRUSH_COLOR     브러쉬 색깔
 TOOLBAR_TOOLTIP_BRUSH_SIZE      브러쉬 크기
 TOOLBAR_FULLSCREEN_TOGGLE       전체화면/원래대로
@@ -66,8 +66,6 @@ SETTINGS_THEME                  테마
 SETTINGS_UI_SCALE               UI 표시 배율
 SETTINGS_UI_SCALE_AUTO          자동
 SETTINGS_UI_SCALE_CUSTOM        수동
-SETTINGS_AA_METHOD              안티에일리어싱
-SETTINGS_AA_METHOD_NONE         없음
 SETTINGS_FPS_FOREGROUND         필기 프레임
 SETTINGS_FPS_BACKGROUND         배경 프레임
 SETTINGS_CANVAS_COLOR           배경 색깔
@@ -81,7 +79,7 @@ SETTINGS_RESTART_NOTICE  		변경된 설정을 적용하려면 재시작이 필�
 # -----------------------------------------------------------------------------
 
 ABOUT_DIALOG_TITLE              정보
-ABOUT_DIALOG_COPYRIGHT          © 2021-2023 Marcus Brummer 와 기여자들
+ABOUT_DIALOG_COPYRIGHT          © 2021-2024 Marcus Brummer 와 기여자들
 ABOUT_DIALOG_LICSENSE           Lorien은 다음의 라이센스를 따릅니다:
 ABOUT_DIALOG_BASED_ON           Lorien은 다음의 기술을 기반으로 합니다:
 ABOUT_DIALOG_EASTEREGG          이스터에그:
@@ -90,15 +88,8 @@ ABOUT_DIALOG_EASTEREGG          이스터에그:
 # Unsaved changes dialog
 # -----------------------------------------------------------------------------
 
-UNSAVED_CHANGES_DIALOG_TITLE    변경사항을 저장할까요?
+UNSAVED_CHANGES_DIALOG_TITLE    Warning # TODO
 UNSAVED_CHANGES_DIALOG_TEXT     파일을 닫기 전에 저장할까요?
-
-# -----------------------------------------------------------------------------
-# Exit dialog
-# -----------------------------------------------------------------------------
-
-EXIT_DIALOG_TITLE    변경사항을 저장할까요?
-EXIT_DIALOG_TEXT     Lorien을 나가기 전에 저장할까요?
 
 # -----------------------------------------------------------------------------
 # New palette dialog
@@ -122,8 +113,6 @@ EDIT_PALETTE_DIALOG_TITLE 		팔레트 수정
 # Error/Alert messages
 # -----------------------------------------------------------------------------
 
-ERROR_NOT_IMPLEMENTED               아직 구현되지 않음
-ERROR_AUTOSAVE_NOT_IMPLEMENTED      "Untitled" 파일을 위한 자동저장 기능은 구현되지 않았습니다. 수동으로 저장해주세요.
 ALERT_EDITING_BUILTIN_PALETTE       내장된 팔레트를 수정할 수 없습니다. 수정이 필요하시면 내장된 팔레트를 복제 후 이용하세요.
 ALERT_DELETING_BUILTIN_PALETTE      내장된 팔레트를 수정할 수 없습니다.
 

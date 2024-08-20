@@ -7,28 +7,28 @@ on:
     branches: [ main ]
 
 env:
-  GODOT_VERSION: 3.5.2
+  GODOT_VERSION: 4.3
   EXPORT_NAME: Lorien
-  LORIEN_VERSION: v0.6.0-dev
+  LORIEN_VERSION: v0.7.0-dev
 
 jobs:
   windows-export:
     name: Windows Export
     runs-on: ubuntu-latest
     container:
-      image: docker://barichello/godot-ci:3.5.2
+      image: docker://barichello/godot-ci:4.3
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
       - name: Setup
         run: |
           mkdir -v -p build/${EXPORT_NAME}_${LORIEN_VERSION}_Windows
-          mkdir -v -p ~/.local/share/godot/templates
-          mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable ~/.local/share/godot/templates/${GODOT_VERSION}.stable
-      - name: Windows Build
+          mkdir -v -p ~/.local/share/godot/export_templates
+          mv /root/.local/share/godot/export_templates/${GODOT_VERSION}.stable ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
+      - name: Build
         run: | 
           cd lorien
-          godot -v --export "Windows Desktop" ../build/${EXPORT_NAME}_${LORIEN_VERSION}_Windows/${EXPORT_NAME}_${LORIEN_VERSION}.exe
+          godot --headless -v --export-release "Windows Desktop" ../build/${EXPORT_NAME}_${LORIEN_VERSION}_Windows/${EXPORT_NAME}_${LORIEN_VERSION}.exe
       - name: Upload Artifact
         uses: actions/upload-artifact@v2
         with:
@@ -40,19 +40,19 @@ jobs:
     name: Linux Export
     runs-on: ubuntu-latest
     container:
-      image: docker://barichello/godot-ci:3.5.2
+      image: docker://barichello/godot-ci:4.3
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
       - name: Setup
         run: |
           mkdir -v -p build/${EXPORT_NAME}_${LORIEN_VERSION}_Linux
-          mkdir -v -p ~/.local/share/godot/templates
-          mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable ~/.local/share/godot/templates/${GODOT_VERSION}.stable
-      - name: Linux Build
+          mkdir -v -p ~/.local/share/godot/export_templates
+          mv /root/.local/share/godot/export_templates/${GODOT_VERSION}.stable ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
+      - name: Build
         run: | 
           cd lorien
-          godot -v --export "Linux/X11" ../build/${EXPORT_NAME}_${LORIEN_VERSION}_Linux/${EXPORT_NAME}_${LORIEN_VERSION}.x86_64
+          godot --headless -v --export-release "Linux" ../build/${EXPORT_NAME}_${LORIEN_VERSION}_Linux/${EXPORT_NAME}_${LORIEN_VERSION}.x86_64
       - name: Upload Artifact
         uses: actions/upload-artifact@v2
         with:
@@ -64,19 +64,19 @@ jobs:
     name: Mac Export
     runs-on: ubuntu-latest
     container:
-      image: docker://barichello/godot-ci:3.5.2
+      image: docker://barichello/godot-ci:4.3
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
       - name: Setup
         run: |
           mkdir -v -p build/${EXPORT_NAME}_${LORIEN_VERSION}_Mac
-          mkdir -v -p ~/.local/share/godot/templates
-          mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable ~/.local/share/godot/templates/${GODOT_VERSION}.stable
-      - name: Windows Build
+          mkdir -v -p ~/.local/share/godot/export_templates
+          mv /root/.local/share/godot/export_templates/${GODOT_VERSION}.stable ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
+      - name: Build
         run: | 
           cd lorien
-          godot -v --export "Mac OSX" ../build/${EXPORT_NAME}_${LORIEN_VERSION}_Mac/${EXPORT_NAME}_${LORIEN_VERSION}.zip
+          godot --headless -v --export-release "macOS" ../build/${EXPORT_NAME}_${LORIEN_VERSION}_Mac/${EXPORT_NAME}_${LORIEN_VERSION}.zip
       - name: Upload Artifact
         uses: actions/upload-artifact@v2
         with:

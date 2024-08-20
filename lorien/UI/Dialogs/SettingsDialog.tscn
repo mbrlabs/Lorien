@@ -1,82 +1,86 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=6 format=3 uid="uid://cgs8d5y8yrwl0"]
 
-[ext_resource path="res://UI/Themes/theme_dark.tres" type="Theme" id=1]
-[ext_resource path="res://UI/Dialogs/SettingsDialog.gd" type="Script" id=2]
-[ext_resource path="res://UI/Components/DelayedSpinBox.gd" type="Script" id=3]
-[ext_resource path="res://UI/Components/KeyBindingsList.gd" type="Script" id=4]
-[ext_resource path="res://UI/Dialogs/AddKeyDialog.tscn" type="PackedScene" id=5]
+[ext_resource type="Theme" uid="uid://u5qnpgxqykiv" path="res://UI/Themes/theme_dark.tres" id="1_n5v21"]
+[ext_resource type="Script" path="res://UI/Dialogs/SettingsDialog.gd" id="2"]
 
-[sub_resource type="StyleBoxEmpty" id=1]
+[sub_resource type="StyleBoxEmpty" id="1"]
 
-[sub_resource type="StyleBoxEmpty" id=3]
+[sub_resource type="StyleBoxEmpty" id="2"]
 
-[sub_resource type="StyleBoxEmpty" id=2]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jxxpi"]
 
-[node name="SettingsDialog" type="WindowDialog"]
-margin_right = 520.0
-margin_bottom = 250.0
-rect_min_size = Vector2( 520, 270 )
-theme = ExtResource( 1 )
-popup_exclusive = true
-window_title = "SETTINGS_TITLE"
-script = ExtResource( 2 )
-
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="SettingsDialog" type="PanelContainer"]
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_constants/margin_right = 12
-custom_constants/margin_top = 12
-custom_constants/margin_left = 12
-custom_constants/margin_bottom = 12
-__meta__ = {
-"_edit_use_anchors_": false
-}
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_n5v21")
+script = ExtResource("2")
 
-[node name="TabContainer" type="TabContainer" parent="MarginContainer"]
-margin_left = 12.0
-margin_top = 12.0
-margin_right = 508.0
-margin_bottom = 258.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
 
-[node name="General" type="Control" parent="MarginContainer/TabContainer"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_top = 27.0
+[node name="Tabs" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 8
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/TabContainer/General"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="GeneralTab" type="Button" parent="VBoxContainer/Tabs"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "SETTINGS_GENERAL"
 
-[node name="HSeparator3" type="HSeparator" parent="MarginContainer/TabContainer/General/VBoxContainer"]
-margin_right = 496.0
-margin_bottom = 12.0
-custom_constants/separation = 12
-custom_styles/separator = SubResource( 1 )
+[node name="AppearanceTab" type="Button" parent="VBoxContainer/Tabs"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "SETTINGS_APPEARANCE"
 
-[node name="PressureSensitivity" type="HBoxContainer" parent="MarginContainer/TabContainer/General/VBoxContainer"]
-margin_top = 16.0
-margin_right = 496.0
-margin_bottom = 37.0
+[node name="RenderingTab" type="Button" parent="VBoxContainer/Tabs"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "SETTINGS_RENDERING"
+
+[node name="KeybindingsTab" type="Button" parent="VBoxContainer/Tabs"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "SETTINGS_KEYBINDINGS"
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="GeneralContainer" type="ScrollContainer" parent="VBoxContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer/VBoxContainer/GeneralContainer"]
+layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 3
 
-[node name="Label" type="Label" parent="MarginContainer/TabContainer/General/VBoxContainer/PressureSensitivity"]
-margin_top = 2.0
-margin_right = 246.0
-margin_bottom = 19.0
+[node name="HSeparator3" type="HSeparator" parent="VBoxContainer/MarginContainer/VBoxContainer/GeneralContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 12
+theme_override_styles/separator = SubResource("1")
+
+[node name="PressureSensitivity" type="HBoxContainer" parent="VBoxContainer/MarginContainer/VBoxContainer/GeneralContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer/VBoxContainer/GeneralContainer/VBoxContainer/PressureSensitivity"]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
 text = "SETTINGS_PRESSURE_SENSITIVITY"
 
-[node name="PressureSensitivity" type="SpinBox" parent="MarginContainer/TabContainer/General/VBoxContainer/PressureSensitivity"]
-margin_left = 250.0
-margin_right = 496.0
-margin_bottom = 21.0
+[node name="PressureSensitivity" type="SpinBox" parent="VBoxContainer/MarginContainer/VBoxContainer/GeneralContainer/VBoxContainer/PressureSensitivity"]
+unique_name_in_owner = true
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 min_value = 0.1
@@ -84,293 +88,200 @@ max_value = 2.0
 step = 0.01
 value = 1.0
 
-[node name="ConstantPressure" type="HBoxContainer" parent="MarginContainer/TabContainer/General/VBoxContainer"]
-margin_top = 41.0
-margin_right = 496.0
-margin_bottom = 66.0
+[node name="ConstantPressure" type="HBoxContainer" parent="VBoxContainer/MarginContainer/VBoxContainer/GeneralContainer/VBoxContainer"]
+layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="MarginContainer/TabContainer/General/VBoxContainer/ConstantPressure"]
-margin_top = 4.0
-margin_right = 246.0
-margin_bottom = 21.0
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer/VBoxContainer/GeneralContainer/VBoxContainer/ConstantPressure"]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
 text = "SETTINGS_CONSTANT_PRESSURE"
 
-[node name="ConstantPressure" type="CheckBox" parent="MarginContainer/TabContainer/General/VBoxContainer/ConstantPressure"]
-margin_left = 250.0
-margin_right = 278.0
-margin_bottom = 25.0
+[node name="ConstantPressure" type="CheckBox" parent="VBoxContainer/MarginContainer/VBoxContainer/GeneralContainer/VBoxContainer/ConstantPressure"]
+unique_name_in_owner = true
+layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="DefaultBrushSize" type="HBoxContainer" parent="MarginContainer/TabContainer/General/VBoxContainer"]
-margin_top = 70.0
-margin_right = 496.0
-margin_bottom = 91.0
+[node name="DefaultBrushSize" type="HBoxContainer" parent="VBoxContainer/MarginContainer/VBoxContainer/GeneralContainer/VBoxContainer"]
+layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="MarginContainer/TabContainer/General/VBoxContainer/DefaultBrushSize"]
-margin_top = 2.0
-margin_right = 246.0
-margin_bottom = 19.0
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer/VBoxContainer/GeneralContainer/VBoxContainer/DefaultBrushSize"]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
 text = "SETTINGS_BRUSH_SIZE"
 
-[node name="DefaultBrushSize" type="SpinBox" parent="MarginContainer/TabContainer/General/VBoxContainer/DefaultBrushSize"]
-margin_left = 250.0
-margin_right = 496.0
-margin_bottom = 21.0
+[node name="DefaultBrushSize" type="SpinBox" parent="VBoxContainer/MarginContainer/VBoxContainer/GeneralContainer/VBoxContainer/DefaultBrushSize"]
+unique_name_in_owner = true
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 min_value = 1.0
 value = 12.0
 allow_greater = true
 
-[node name="DefaultToolPressure" type="HBoxContainer" parent="MarginContainer/TabContainer/General/VBoxContainer"]
-margin_top = 95.0
-margin_right = 496.0
-margin_bottom = 116.0
+[node name="DefaultToolPressure" type="HBoxContainer" parent="VBoxContainer/MarginContainer/VBoxContainer/GeneralContainer/VBoxContainer"]
+layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="MarginContainer/TabContainer/General/VBoxContainer/DefaultToolPressure"]
-margin_top = 2.0
-margin_right = 246.0
-margin_bottom = 19.0
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer/VBoxContainer/GeneralContainer/VBoxContainer/DefaultToolPressure"]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
 text = "SETTINGS_TOOL_PRESSURE"
 
-[node name="DefaultToolPressure" type="SpinBox" parent="MarginContainer/TabContainer/General/VBoxContainer/DefaultToolPressure"]
-margin_left = 250.0
-margin_right = 496.0
-margin_bottom = 21.0
+[node name="DefaultToolPressure" type="SpinBox" parent="VBoxContainer/MarginContainer/VBoxContainer/GeneralContainer/VBoxContainer/DefaultToolPressure"]
+unique_name_in_owner = true
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 max_value = 1.0
 step = 0.05
 value = 1.0
 
-[node name="DefaultSaveDir" type="HBoxContainer" parent="MarginContainer/TabContainer/General/VBoxContainer"]
-margin_top = 120.0
-margin_right = 496.0
-margin_bottom = 141.0
+[node name="DefaultProjectDir" type="HBoxContainer" parent="VBoxContainer/MarginContainer/VBoxContainer/GeneralContainer/VBoxContainer"]
+layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="MarginContainer/TabContainer/General/VBoxContainer/DefaultSaveDir"]
-margin_top = 2.0
-margin_right = 246.0
-margin_bottom = 19.0
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer/VBoxContainer/GeneralContainer/VBoxContainer/DefaultProjectDir"]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
 text = "SETTINGS_PROJECT_FOLDER"
 
-[node name="DefaultSaveDir" type="LineEdit" parent="MarginContainer/TabContainer/General/VBoxContainer/DefaultSaveDir"]
-margin_left = 250.0
-margin_right = 496.0
-margin_bottom = 21.0
+[node name="DefaultProjectDir" type="LineEdit" parent="VBoxContainer/MarginContainer/VBoxContainer/GeneralContainer/VBoxContainer/DefaultProjectDir"]
+unique_name_in_owner = true
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 placeholder_text = "e.g. C:/Users/me/Lorien"
-placeholder_alpha = 0.5
 
-[node name="HSeparator4" type="HSeparator" parent="MarginContainer/TabContainer/General/VBoxContainer"]
-margin_top = 145.0
-margin_right = 496.0
-margin_bottom = 169.0
-custom_constants/separation = 24
+[node name="HSeparator4" type="HSeparator" parent="VBoxContainer/MarginContainer/VBoxContainer/GeneralContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 24
 
-[node name="Language" type="HBoxContainer" parent="MarginContainer/TabContainer/General/VBoxContainer"]
-margin_top = 173.0
-margin_right = 496.0
-margin_bottom = 198.0
+[node name="Language" type="HBoxContainer" parent="VBoxContainer/MarginContainer/VBoxContainer/GeneralContainer/VBoxContainer"]
+layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="MarginContainer/TabContainer/General/VBoxContainer/Language"]
-margin_top = 4.0
-margin_right = 246.0
-margin_bottom = 21.0
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer/VBoxContainer/GeneralContainer/VBoxContainer/Language"]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
 text = "SETTINGS_LANGUAGE"
 
-[node name="OptionButton" type="OptionButton" parent="MarginContainer/TabContainer/General/VBoxContainer/Language"]
-margin_left = 250.0
-margin_right = 496.0
-margin_bottom = 25.0
-size_flags_horizontal = 3
-text = "English"
-
-[node name="HSeparator" type="HSeparator" parent="MarginContainer/TabContainer/General/VBoxContainer"]
-margin_top = 202.0
-margin_right = 496.0
-margin_bottom = 214.0
-custom_constants/separation = 12
-custom_styles/separator = SubResource( 3 )
-
-[node name="RestartLabel" type="Label" parent="MarginContainer/TabContainer/General/VBoxContainer"]
-visible = false
-margin_top = 206.0
-margin_right = 496.0
-margin_bottom = 223.0
-custom_colors/font_color = Color( 1, 0.470588, 0.470588, 1 )
-text = "SETTINGS_RESTART_NOTICE"
-align = 1
-
-[node name="Appearance" type="Control" parent="MarginContainer/TabContainer"]
-visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_top = 27.0
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/TabContainer/Appearance"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="HSeparator3" type="HSeparator" parent="MarginContainer/TabContainer/Appearance/VBoxContainer"]
-margin_right = 496.0
-margin_bottom = 12.0
-custom_constants/separation = 12
-custom_styles/separator = SubResource( 1 )
-
-[node name="Theme" type="HBoxContainer" parent="MarginContainer/TabContainer/Appearance/VBoxContainer"]
-margin_top = 16.0
-margin_right = 496.0
-margin_bottom = 41.0
+[node name="Language" type="OptionButton" parent="VBoxContainer/MarginContainer/VBoxContainer/GeneralContainer/VBoxContainer/Language"]
+unique_name_in_owner = true
+layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="MarginContainer/TabContainer/Appearance/VBoxContainer/Theme"]
-margin_top = 4.0
-margin_right = 246.0
-margin_bottom = 21.0
+[node name="AppearanceContainer" type="ScrollContainer" parent="VBoxContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer/VBoxContainer/AppearanceContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HSeparator3" type="HSeparator" parent="VBoxContainer/MarginContainer/VBoxContainer/AppearanceContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 12
+theme_override_styles/separator = SubResource("1")
+
+[node name="Theme" type="HBoxContainer" parent="VBoxContainer/MarginContainer/VBoxContainer/AppearanceContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer/VBoxContainer/AppearanceContainer/VBoxContainer/Theme"]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
 text = "SETTINGS_THEME"
 
-[node name="Theme" type="OptionButton" parent="MarginContainer/TabContainer/Appearance/VBoxContainer/Theme"]
-margin_left = 250.0
-margin_right = 496.0
-margin_bottom = 25.0
+[node name="Theme" type="OptionButton" parent="VBoxContainer/MarginContainer/VBoxContainer/AppearanceContainer/VBoxContainer/Theme"]
+unique_name_in_owner = true
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-text = "Dark"
-items = [ "Dark", null, false, 0, null, "Light (not implemented yet)", null, false, 1, null ]
-selected = 0
+item_count = 2
+popup/item_0/text = "Dark Mode"
+popup/item_1/text = "Light Mode"
+popup/item_1/id = 1
 
-[node name="UIScale" type="HBoxContainer" parent="MarginContainer/TabContainer/Appearance/VBoxContainer"]
-margin_top = 45.0
-margin_right = 496.0
-margin_bottom = 70.0
+[node name="UIScale" type="HBoxContainer" parent="VBoxContainer/MarginContainer/VBoxContainer/AppearanceContainer/VBoxContainer"]
+layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/TabContainer/Appearance/VBoxContainer/UIScale"]
-margin_top = 4.0
-margin_right = 218.0
-margin_bottom = 21.0
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer/VBoxContainer/AppearanceContainer/VBoxContainer/UIScale"]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
 text = "SETTINGS_UI_SCALE"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/TabContainer/Appearance/VBoxContainer/UIScale"]
-margin_left = 222.0
-margin_right = 496.0
-margin_bottom = 25.0
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer/VBoxContainer/AppearanceContainer/VBoxContainer/UIScale"]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="UIScaleOptions" type="OptionButton" parent="MarginContainer/TabContainer/Appearance/VBoxContainer/UIScale/HBoxContainer"]
-margin_right = 198.0
-margin_bottom = 25.0
+[node name="UIScaleOptions" type="OptionButton" parent="VBoxContainer/MarginContainer/VBoxContainer/AppearanceContainer/VBoxContainer/UIScale/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-text = "SETTINGS_UI_SCALE_AUTO"
-items = [ "SETTINGS_UI_SCALE_AUTO", null, false, 0, null, "SETTINGS_UI_SCALE_CUSTOM", null, false, 1, null ]
-selected = 0
+item_count = 2
+popup/item_0/text = "Auto"
+popup/item_1/text = "Custom"
+popup/item_1/id = 1
 
-[node name="UIScale" type="SpinBox" parent="MarginContainer/TabContainer/Appearance/VBoxContainer/UIScale/HBoxContainer"]
-margin_left = 202.0
-margin_right = 274.0
-margin_bottom = 25.0
+[node name="UIScale" type="SpinBox" parent="VBoxContainer/MarginContainer/VBoxContainer/AppearanceContainer/VBoxContainer/UIScale/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 min_value = 0.5
 max_value = 2.5
 step = 0.1
 value = 1.0
-script = ExtResource( 3 )
 
-[node name="CanvasColor" type="HBoxContainer" parent="MarginContainer/TabContainer/Appearance/VBoxContainer"]
-margin_top = 74.0
-margin_right = 496.0
-margin_bottom = 91.0
+[node name="GridPattern" type="HBoxContainer" parent="VBoxContainer/MarginContainer/VBoxContainer/AppearanceContainer/VBoxContainer"]
+layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="MarginContainer/TabContainer/Appearance/VBoxContainer/CanvasColor"]
-margin_right = 246.0
-margin_bottom = 17.0
-size_flags_horizontal = 3
-size_flags_vertical = 6
-text = "SETTINGS_CANVAS_COLOR"
-
-[node name="CanvasColor" type="ColorPickerButton" parent="MarginContainer/TabContainer/Appearance/VBoxContainer/CanvasColor"]
-margin_left = 250.0
-margin_right = 496.0
-margin_bottom = 17.0
-size_flags_horizontal = 3
-custom_styles/hover = SubResource( 2 )
-custom_styles/pressed = SubResource( 2 )
-custom_styles/focus = SubResource( 2 )
-custom_styles/disabled = SubResource( 2 )
-custom_styles/normal = SubResource( 2 )
-flat = true
-color = Color( 0.12549, 0.129412, 0.141176, 1 )
-edit_alpha = false
-
-[node name="GridPattern" type="HBoxContainer" parent="MarginContainer/TabContainer/Appearance/VBoxContainer"]
-margin_top = 95.0
-margin_right = 496.0
-margin_bottom = 120.0
-size_flags_horizontal = 3
-
-[node name="Label" type="Label" parent="MarginContainer/TabContainer/Appearance/VBoxContainer/GridPattern"]
-margin_top = 4.0
-margin_right = 246.0
-margin_bottom = 21.0
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer/VBoxContainer/AppearanceContainer/VBoxContainer/GridPattern"]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
 text = "SETTINGS_GRID_PATTERN"
 
-[node name="GridPattern" type="OptionButton" parent="MarginContainer/TabContainer/Appearance/VBoxContainer/GridPattern"]
-margin_left = 250.0
-margin_right = 496.0
-margin_bottom = 25.0
+[node name="GridPattern" type="OptionButton" parent="VBoxContainer/MarginContainer/VBoxContainer/AppearanceContainer/VBoxContainer/GridPattern"]
+unique_name_in_owner = true
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-text = "Dots"
-items = [ "Dots", null, false, 0, null, "Lines", null, false, 1, null, "None", null, false, 2, null ]
-selected = 0
+item_count = 3
+popup/item_0/text = "Dots"
+popup/item_1/text = "Lines"
+popup/item_1/id = 1
+popup/item_2/text = "None"
+popup/item_2/id = 2
 
-[node name="GridSize" type="HBoxContainer" parent="MarginContainer/TabContainer/Appearance/VBoxContainer"]
-margin_top = 124.0
-margin_right = 496.0
-margin_bottom = 145.0
+[node name="GridSize" type="HBoxContainer" parent="VBoxContainer/MarginContainer/VBoxContainer/AppearanceContainer/VBoxContainer"]
+layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="MarginContainer/TabContainer/Appearance/VBoxContainer/GridSize"]
-margin_top = 2.0
-margin_right = 246.0
-margin_bottom = 19.0
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer/VBoxContainer/AppearanceContainer/VBoxContainer/GridSize"]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
 text = "SETTINGS_GRID_SIZE"
 
-[node name="GridSize" type="SpinBox" parent="MarginContainer/TabContainer/Appearance/VBoxContainer/GridSize"]
-margin_left = 250.0
-margin_right = 496.0
-margin_bottom = 21.0
+[node name="GridSize" type="SpinBox" parent="VBoxContainer/MarginContainer/VBoxContainer/AppearanceContainer/VBoxContainer/GridSize"]
+unique_name_in_owner = true
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 min_value = 8.0
@@ -378,103 +289,78 @@ max_value = 256.0
 value = 12.0
 allow_greater = true
 
-[node name="HSeparator5" type="HSeparator" parent="MarginContainer/TabContainer/Appearance/VBoxContainer"]
-margin_top = 149.0
-margin_right = 496.0
-margin_bottom = 161.0
-custom_constants/separation = 12
-custom_styles/separator = SubResource( 1 )
-
-[node name="RestartLabel" type="Label" parent="MarginContainer/TabContainer/Appearance/VBoxContainer"]
-visible = false
-margin_top = 90.0
-margin_right = 496.0
-margin_bottom = 107.0
-custom_colors/font_color = Color( 1, 0.470588, 0.470588, 1 )
-text = "SETTINGS_RESTART_NOTICE"
-align = 1
-
-[node name="Rendering" type="Control" parent="MarginContainer/TabContainer"]
-visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_top = 27.0
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/TabContainer/Rendering"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-
-[node name="HSeparator3" type="HSeparator" parent="MarginContainer/TabContainer/Rendering/VBoxContainer"]
-margin_right = 496.0
-margin_bottom = 12.0
-custom_constants/separation = 12
-custom_styles/separator = SubResource( 1 )
-
-[node name="AntiAliasing" type="HBoxContainer" parent="MarginContainer/TabContainer/Rendering/VBoxContainer"]
-margin_top = 16.0
-margin_right = 496.0
-margin_bottom = 41.0
+[node name="CanvasColor" type="HBoxContainer" parent="VBoxContainer/MarginContainer/VBoxContainer/AppearanceContainer/VBoxContainer"]
+layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="MarginContainer/TabContainer/Rendering/VBoxContainer/AntiAliasing"]
-margin_top = 4.0
-margin_right = 246.0
-margin_bottom = 21.0
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer/VBoxContainer/AppearanceContainer/VBoxContainer/CanvasColor"]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
-text = "SETTINGS_AA_METHOD"
+text = "SETTINGS_CANVAS_COLOR"
 
-[node name="AntiAliasing" type="OptionButton" parent="MarginContainer/TabContainer/Rendering/VBoxContainer/AntiAliasing"]
-margin_left = 250.0
-margin_right = 496.0
-margin_bottom = 25.0
+[node name="CanvasColor" type="ColorPickerButton" parent="VBoxContainer/MarginContainer/VBoxContainer/AppearanceContainer/VBoxContainer/CanvasColor"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(28, 28)
+layout_mode = 2
+size_flags_horizontal = 2
+theme_override_styles/focus = SubResource("2")
+theme_override_styles/disabled = SubResource("2")
+theme_override_styles/hover = SubResource("2")
+theme_override_styles/pressed = SubResource("2")
+theme_override_styles/normal = SubResource("2")
+flat = true
+color = Color(0.12549, 0.129412, 0.141176, 1)
+edit_alpha = false
+
+[node name="RenderingContainer" type="ScrollContainer" parent="VBoxContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer/VBoxContainer/RenderingContainer"]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-text = "SETTINGS_AA_METHOD_NONE"
-items = [ "SETTINGS_AA_METHOD_NONE", null, false, 0, null, "OpenGL Hint", null, false, 1, null, "Texture Fill", null, false, 2, null ]
-selected = 0
 
-[node name="BrushRounding" type="HBoxContainer" parent="MarginContainer/TabContainer/Rendering/VBoxContainer"]
-margin_top = 45.0
-margin_right = 496.0
-margin_bottom = 70.0
+[node name="HSeparator3" type="HSeparator" parent="VBoxContainer/MarginContainer/VBoxContainer/RenderingContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 12
+theme_override_styles/separator = SubResource("1")
+
+[node name="BrushRounding" type="HBoxContainer" parent="VBoxContainer/MarginContainer/VBoxContainer/RenderingContainer/VBoxContainer"]
+layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="MarginContainer/TabContainer/Rendering/VBoxContainer/BrushRounding"]
-margin_top = 4.0
-margin_right = 246.0
-margin_bottom = 21.0
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer/VBoxContainer/RenderingContainer/VBoxContainer/BrushRounding"]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
 text = "SETTINGS_BRUSH_CAPS"
 
-[node name="OptionButton" type="OptionButton" parent="MarginContainer/TabContainer/Rendering/VBoxContainer/BrushRounding"]
-margin_left = 250.0
-margin_right = 496.0
-margin_bottom = 25.0
+[node name="BrushRounding" type="OptionButton" parent="VBoxContainer/MarginContainer/VBoxContainer/RenderingContainer/VBoxContainer/BrushRounding"]
+unique_name_in_owner = true
+layout_mode = 2
 size_flags_horizontal = 3
-text = "SETTINGS_BRUSH_CAPS_FLAT"
-items = [ "SETTINGS_BRUSH_CAPS_FLAT", null, false, 0, null, "SETTINGS_BRUSH_CAPS_ROUND", null, false, 1, null ]
-selected = 0
+item_count = 2
+popup/item_0/text = "Flat"
+popup/item_1/text = "Round"
+popup/item_1/id = 1
 
-[node name="TargetFramerate" type="HBoxContainer" parent="MarginContainer/TabContainer/Rendering/VBoxContainer"]
-margin_top = 74.0
-margin_right = 496.0
-margin_bottom = 95.0
+[node name="ForgroundFramerate" type="HBoxContainer" parent="VBoxContainer/MarginContainer/VBoxContainer/RenderingContainer/VBoxContainer"]
+layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="MarginContainer/TabContainer/Rendering/VBoxContainer/TargetFramerate"]
-margin_top = 2.0
-margin_right = 246.0
-margin_bottom = 19.0
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer/VBoxContainer/RenderingContainer/VBoxContainer/ForgroundFramerate"]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
 text = "SETTINGS_FPS_FOREGROUND"
 
-[node name="TargetFramerate" type="SpinBox" parent="MarginContainer/TabContainer/Rendering/VBoxContainer/TargetFramerate"]
-margin_left = 250.0
-margin_right = 496.0
-margin_bottom = 21.0
+[node name="ForgroundFramerate" type="SpinBox" parent="VBoxContainer/MarginContainer/VBoxContainer/RenderingContainer/VBoxContainer/ForgroundFramerate"]
+unique_name_in_owner = true
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 min_value = 1.0
@@ -482,24 +368,19 @@ max_value = 1000.0
 value = 144.0
 allow_greater = true
 
-[node name="BackgroundFramerate" type="HBoxContainer" parent="MarginContainer/TabContainer/Rendering/VBoxContainer"]
-margin_top = 99.0
-margin_right = 496.0
-margin_bottom = 120.0
+[node name="BackgroundFramerate" type="HBoxContainer" parent="VBoxContainer/MarginContainer/VBoxContainer/RenderingContainer/VBoxContainer"]
+layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="MarginContainer/TabContainer/Rendering/VBoxContainer/BackgroundFramerate"]
-margin_top = 2.0
-margin_right = 246.0
-margin_bottom = 19.0
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer/VBoxContainer/RenderingContainer/VBoxContainer/BackgroundFramerate"]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
 text = "SETTINGS_FPS_BACKGROUND"
 
-[node name="BackgroundFramerate" type="SpinBox" parent="MarginContainer/TabContainer/Rendering/VBoxContainer/BackgroundFramerate"]
-margin_left = 250.0
-margin_right = 496.0
-margin_bottom = 21.0
+[node name="BackgroundFramerate" type="SpinBox" parent="VBoxContainer/MarginContainer/VBoxContainer/RenderingContainer/VBoxContainer/BackgroundFramerate"]
+unique_name_in_owner = true
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 min_value = 5.0
@@ -507,62 +388,26 @@ max_value = 1000.0
 value = 10.0
 allow_greater = true
 
-[node name="HSeparator4" type="HSeparator" parent="MarginContainer/TabContainer/Rendering/VBoxContainer"]
-margin_top = 124.0
-margin_right = 496.0
-margin_bottom = 136.0
-custom_constants/separation = 12
-custom_styles/separator = SubResource( 1 )
+[node name="KeybindingsContainer" type="ScrollContainer" parent="VBoxContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
 
-[node name="RestartLabel" type="Label" parent="MarginContainer/TabContainer/Rendering/VBoxContainer"]
+[node name="KeybindItemList" type="VBoxContainer" parent="VBoxContainer/MarginContainer/VBoxContainer/KeybindingsContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HSeparator2" type="HSeparator" parent="VBoxContainer/MarginContainer/VBoxContainer/KeybindingsContainer/KeybindItemList"]
+layout_mode = 2
+theme_override_constants/separation = 12
+theme_override_styles/separator = SubResource("StyleBoxEmpty_jxxpi")
+
+[node name="RestartLabel" type="Label" parent="VBoxContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
 visible = false
-margin_top = 140.0
-margin_right = 496.0
-margin_bottom = 157.0
-custom_colors/font_color = Color( 1, 0.470588, 0.470588, 1 )
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.470588, 0.470588, 1)
 text = "SETTINGS_RESTART_NOTICE"
-align = 1
-
-[node name="Keybindings" type="Control" parent="MarginContainer/TabContainer"]
-visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_top = 27.0
-script = ExtResource( 4 )
-
-[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/TabContainer/Keybindings"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_top = 12.0
-
-[node name="KeyBindingsList" type="GridContainer" parent="MarginContainer/TabContainer/Keybindings/ScrollContainer"]
-columns = 3
-
-[node name="AddKeyDialog" parent="MarginContainer/TabContainer/Keybindings" instance=ExtResource( 5 )]
-window_title = "KEYBINDING_DIALOG_BIND_WINDOW_NAME"
-
-[node name="ConfirmRebind" type="ConfirmationDialog" parent="MarginContainer/TabContainer/Keybindings/AddKeyDialog"]
-margin_right = 200.0
-margin_bottom = 70.0
-popup_exclusive = true
-window_title = "KEYBINDING_DIALOG_REBIND_WINDOW_NAME"
-dialog_autowrap = true
-
-[connection signal="value_changed" from="MarginContainer/TabContainer/General/VBoxContainer/PressureSensitivity/PressureSensitivity" to="." method="_on_PressureSensitivity_value_changed"]
-[connection signal="toggled" from="MarginContainer/TabContainer/General/VBoxContainer/ConstantPressure/ConstantPressure" to="." method="_on_ConstantPressure_toggled"]
-[connection signal="value_changed" from="MarginContainer/TabContainer/General/VBoxContainer/DefaultBrushSize/DefaultBrushSize" to="." method="_on_DefaultBrushSize_value_changed"]
-[connection signal="value_changed" from="MarginContainer/TabContainer/General/VBoxContainer/DefaultToolPressure/DefaultToolPressure" to="." method="_on_DefaultToolPressure_value_changed"]
-[connection signal="text_changed" from="MarginContainer/TabContainer/General/VBoxContainer/DefaultSaveDir/DefaultSaveDir" to="." method="_on_DefaultSaveDir_text_changed"]
-[connection signal="item_selected" from="MarginContainer/TabContainer/General/VBoxContainer/Language/OptionButton" to="." method="_on_OptionButton_item_selected"]
-[connection signal="item_selected" from="MarginContainer/TabContainer/Appearance/VBoxContainer/Theme/Theme" to="." method="_on_Theme_item_selected"]
-[connection signal="item_selected" from="MarginContainer/TabContainer/Appearance/VBoxContainer/UIScale/HBoxContainer/UIScaleOptions" to="." method="_on_UIScaleOptions_item_selected"]
-[connection signal="gui_input" from="MarginContainer/TabContainer/Appearance/VBoxContainer/UIScale/HBoxContainer/UIScale" to="MarginContainer/TabContainer/Appearance/VBoxContainer/UIScale/HBoxContainer/UIScale" method="_on_UIScale_gui_input"]
-[connection signal="value_changed" from="MarginContainer/TabContainer/Appearance/VBoxContainer/UIScale/HBoxContainer/UIScale" to="." method="_on_UIScale_value_changed"]
-[connection signal="color_changed" from="MarginContainer/TabContainer/Appearance/VBoxContainer/CanvasColor/CanvasColor" to="." method="_on_CanvasColor_color_changed"]
-[connection signal="item_selected" from="MarginContainer/TabContainer/Appearance/VBoxContainer/GridPattern/GridPattern" to="." method="_on_GridPattern_item_selected"]
-[connection signal="value_changed" from="MarginContainer/TabContainer/Appearance/VBoxContainer/GridSize/GridSize" to="." method="_on_GridSize_value_changed"]
-[connection signal="item_selected" from="MarginContainer/TabContainer/Rendering/VBoxContainer/AntiAliasing/AntiAliasing" to="." method="_on_AntiAliasing_item_selected"]
-[connection signal="item_selected" from="MarginContainer/TabContainer/Rendering/VBoxContainer/BrushRounding/OptionButton" to="." method="_on_Brush_rounding_item_selected"]
-[connection signal="value_changed" from="MarginContainer/TabContainer/Rendering/VBoxContainer/TargetFramerate/TargetFramerate" to="." method="_on_Target_Fps_Foreground_changed"]
-[connection signal="value_changed" from="MarginContainer/TabContainer/Rendering/VBoxContainer/BackgroundFramerate/BackgroundFramerate" to="." method="_on_Target_Fps_Background_changed"]
-[connection signal="confirmed" from="MarginContainer/TabContainer/Keybindings/AddKeyDialog/ConfirmRebind" to="MarginContainer/TabContainer/Keybindings/AddKeyDialog" method="_on_ConfirmRebind_confirmed"]
+horizontal_alignment = 1

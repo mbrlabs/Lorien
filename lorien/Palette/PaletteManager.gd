@@ -13,7 +13,7 @@ class PaletteSorter:
 		return a.name < b.name
 
 # -------------------------------------------------------------------------------------------------
-var palettes: Array # Array<Palette>
+var palettes: Array[Palette]
 var _active_palette_index: int
 
 # -------------------------------------------------------------------------------------------------
@@ -22,7 +22,10 @@ func _ready() -> void:
 	_sort()
 	
 	# Activate last used palette
-	var active_palette_uuid: String = Settings.get_value(Settings.COLOR_PALETTE_UUID_LAST_USED, UUID_DEFAULT_PALETTE)
+	var active_palette_uuid: String = Settings.get_general_value(
+		Settings.COLOR_PALETTE_UUID_LAST_USED, UUID_DEFAULT_PALETTE
+	)
+	
 	var index := _find_palette_index_by_uuid(active_palette_uuid)
 	if index < 0:
 		index = _find_palette_index_by_uuid(UUID_DEFAULT_PALETTE)
@@ -43,7 +46,7 @@ func create_custom_palette(palette_name: String) -> Palette:
 	palette.name = palette_name
 	palette.builtin = false
 	palette.uuid = Utils.generate_uuid(UUID_LENGTH)
-	palette.colors = PoolColorArray([Color.white, Color.black])
+	palette.colors = PackedColorArray([Color.WHITE, Color.BLACK])
 	palettes.append(palette)
 	_sort()
 	
@@ -67,14 +70,14 @@ func remove_palette(palette: Palette) -> bool:
 		if index >= 0:
 			if index == _active_palette_index:
 				_active_palette_index = 0
-			palettes.remove(index)
+			palettes.remove_at(index)
 			return true
 	return false
 		
 # -------------------------------------------------------------------------------------------------
 func set_active_palette_by_index(index: int) -> void:
 	if index < palettes.size():
-		Settings.set_value(Settings.COLOR_PALETTE_UUID_LAST_USED, palettes[index].uuid)
+		Settings.set_general_value(Settings.COLOR_PALETTE_UUID_LAST_USED, palettes[index].uuid)
 		_active_palette_index = index
 	else:
 		printerr("Invalid palette index: %d" % index)
@@ -83,7 +86,7 @@ func set_active_palette_by_index(index: int) -> void:
 func set_active_palette(palette: Palette) -> void:
 	var index := _find_palette_index_by_uuid(palette.uuid)
 	if index >= 0:
-		Settings.set_value(Settings.COLOR_PALETTE_UUID_LAST_USED, palette.uuid)
+		Settings.set_general_value(Settings.COLOR_PALETTE_UUID_LAST_USED, palette.uuid)
 		_active_palette_index = index
 	else:
 		printerr("Cold not find palette: %s" % palette.name)
@@ -98,7 +101,7 @@ func get_active_palette_index() -> int:
 
 # -------------------------------------------------------------------------------------------------
 func _sort() -> void:
-	palettes.sort_custom(PaletteSorter, "sort_descending")
+	palettes.sort_custom(Callable(PaletteSorter, "sort_descending"))
 
 # -------------------------------------------------------------------------------------------------
 func _find_palette_index_by_uuid(uuid: String) -> int:

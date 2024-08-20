@@ -1,46 +1,56 @@
 class_name NewPaletteDialog
-extends WindowDialog
+extends MarginContainer
 
 # -------------------------------------------------------------------------------------------------
 signal new_palette_created(palette)
 
 # -------------------------------------------------------------------------------------------------
-onready var _line_edit: LineEdit = $MarginContainer/Container/LineEdit
+@onready var _line_edit: LineEdit = $Container/LineEdit
+@onready var _save_button: Button = $Container/HBoxContainer/SaveButton
+@onready var _cancel_button: Button = $Container/HBoxContainer/CancelButton
 
 var duplicate_current_palette := false
 
 # -------------------------------------------------------------------------------------------------
+func _ready() -> void:
+	_save_button.pressed.connect(_on_SaveButton_pressed)
+	_cancel_button.pressed.connect(_on_CancelButton_pressed)
+	
+	get_parent().about_to_popup.connect(_on_about_to_popup)
+	get_parent().close_requested.connect(_on_close_requested)
+	
+# -------------------------------------------------------------------------------------------------
 func _on_SaveButton_pressed() -> void:
-	var name := _line_edit.text
-	if !name.empty():
+	var pallete_name := _line_edit.text
+	if !pallete_name.is_empty():
 		var palette: Palette
 		if duplicate_current_palette:
-			palette = PaletteManager.duplicate_palette(PaletteManager.get_active_palette(), name)
+			palette = PaletteManager.duplicate_palette(PaletteManager.get_active_palette(), pallete_name)
 		else:
-			palette = PaletteManager.create_custom_palette(name)
+			palette = PaletteManager.create_custom_palette(pallete_name)
 		
 		if palette != null:
 			PaletteManager.save()
-			hide()
 			emit_signal("new_palette_created", palette)
 			duplicate_current_palette = false
+			get_parent().hide()
 			
 # -------------------------------------------------------------------------------------------------
 func _on_CancelButton_pressed() -> void:
-	hide()
-
-# -------------------------------------------------------------------------------------------------
-func _on_NewPaletteDialog_popup_hide() -> void:
 	_line_edit.clear()
+	get_parent().hide()
 
 # -------------------------------------------------------------------------------------------------
-func _on_NewPaletteDialog_about_to_show() -> void:
+func _on_close_requested() -> void:
+	_line_edit.clear()
+	get_parent().hide()
+
+# -------------------------------------------------------------------------------------------------
+func _on_about_to_popup() -> void:
 	# Set title
 	if duplicate_current_palette:
-		window_title = tr("NEW_PALETTE_DIALOG_DUPLICATE_TITLE")
+		get_parent().title = tr("NEW_PALETTE_DIALOG_DUPLICATE_TITLE")
 	else:
-		window_title = tr("NEW_PALETTE_DIALOG_CREATE_TITLE")
+		get_parent().title = tr("NEW_PALETTE_DIALOG_CREATE_TITLE")
 	
-	# Grab focus
-	yield(get_tree(), "idle_frame")
-	_line_edit.grab_focus()
+	# TODO: Grab focus

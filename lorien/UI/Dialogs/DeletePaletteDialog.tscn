@@ -1,71 +1,40 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=2 format=3 uid="uid://bl2x4yif2wrml"]
 
-[ext_resource path="res://UI/Themes/theme_dark.tres" type="Theme" id=1]
-[ext_resource path="res://UI/Dialogs/DeletePaletteDialog.gd" type="Script" id=2]
+[ext_resource type="Script" path="res://UI/Dialogs/DeletePaletteDialog.gd" id="2"]
 
-[node name="DeletePaletteDialog" type="WindowDialog"]
-visible = true
-margin_right = 259.0
-margin_bottom = 80.0
-rect_min_size = Vector2( 300, 100 )
-theme = ExtResource( 1 )
-popup_exclusive = true
-window_title = "Delete Palette"
-script = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="DeletePaletteDialog" type="MarginContainer"]
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_constants/margin_right = 12
-custom_constants/margin_top = 12
-custom_constants/margin_left = 12
-custom_constants/margin_bottom = 12
-__meta__ = {
-"_edit_use_anchors_": false
-}
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+script = ExtResource("2")
 
-[node name="Container" type="Control" parent="MarginContainer"]
-margin_left = 12.0
-margin_top = 12.0
-margin_right = 288.0
-margin_bottom = 88.0
+[node name="Container" type="Control" parent="."]
+layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/Container"]
+[node name="Label" type="Label" parent="Container"]
+layout_mode = 0
 anchor_right = 1.0
-margin_bottom = 21.0
+offset_bottom = 21.0
 text = "DELETE_PALETTE_DIALOG_TEXT"
-autowrap = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/Container"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Container"]
+layout_mode = 0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = -25.0
+offset_top = -25.0
 size_flags_vertical = 0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="DeleteButton" type="Button" parent="MarginContainer/Container/HBoxContainer"]
-margin_right = 136.0
-margin_bottom = 25.0
+[node name="DeleteButton" type="Button" parent="Container/HBoxContainer"]
+layout_mode = 2
 size_flags_horizontal = 3
 text = "DELETE"
 
-[node name="CancelButton" type="Button" parent="MarginContainer/Container/HBoxContainer"]
-margin_left = 140.0
-margin_right = 276.0
-margin_bottom = 25.0
+[node name="CancelButton" type="Button" parent="Container/HBoxContainer"]
+layout_mode = 2
 size_flags_horizontal = 3
 text = "CANCEL"
-
-[connection signal="about_to_show" from="." to="." method="_on_DeletePaletteDialog_about_to_show"]
-[connection signal="popup_hide" from="." to="." method="_on_DeletePaletteDialog_popup_hide"]
-[connection signal="pressed" from="MarginContainer/Container/HBoxContainer/DeleteButton" to="." method="_on_DeleteButton_pressed"]
-[connection signal="pressed" from="MarginContainer/Container/HBoxContainer/CancelButton" to="." method="_on_CancelButton_pressed"]

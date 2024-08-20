@@ -2,11 +2,12 @@ class_name CircleTool
 extends CanvasTool
 
 # -------------------------------------------------------------------------------------------------
+const PRESSURE := 0.5
 const STEP_IN_MOTION := 15
 const STEP_STATIC := 4
 
 # -------------------------------------------------------------------------------------------------
-export var pressure_curve: Curve
+@export var pressure_curve: Curve
 var _start_position_top_left: Vector2
 
 # -------------------------------------------------------------------------------------------------
@@ -17,8 +18,8 @@ func _init():
 	sin_arr.resize(360)
 	cos_arr.resize(360)
 	for i in 360:
-		sin_arr[i] = sin(deg2rad(i))
-		cos_arr[i] = cos(deg2rad(i))
+		sin_arr[i] = sin(deg_to_rad(i))
+		cos_arr[i] = cos(deg_to_rad(i))
 
 # -------------------------------------------------------------------------------------------------
 func tool_event(event: InputEvent) -> void:
@@ -26,36 +27,33 @@ func tool_event(event: InputEvent) -> void:
 	
 	var should_draw_circle := Input.is_key_pressed(KEY_SHIFT)
 	
-	var tool_pressure : float = Settings.get_value(Settings.GENERAL_TOOL_PRESSURE)
-	
 	if event is InputEventMouseMotion:
 		if performing_stroke:
 			_cursor.set_pressure(event.pressure)
 			remove_all_stroke_points()
-			_make_ellipse(tool_pressure, STEP_IN_MOTION, should_draw_circle)
+			_make_ellipse(PRESSURE, STEP_IN_MOTION, should_draw_circle)
 		
 	# Start + End
 	elif event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT:
+		if event.button_index == MOUSE_BUTTON_LEFT:
 			if event.pressed:
 				start_stroke()
 				_start_position_top_left = _cursor.global_position
 				remove_all_stroke_points()
-				_make_ellipse(tool_pressure, STEP_IN_MOTION, should_draw_circle)
+				_make_ellipse(PRESSURE, STEP_IN_MOTION, should_draw_circle)
 			elif !event.pressed && performing_stroke:
 				remove_all_stroke_points()
-				_make_ellipse(tool_pressure, STEP_STATIC, should_draw_circle)
+				_make_ellipse(PRESSURE, STEP_STATIC, should_draw_circle)
 				end_stroke()
 
 # -------------------------------------------------------------------------------------------------
 func _make_ellipse(pressure: float, step: int, should_draw_circle: bool) -> void:
-	
-	pressure = pressure_curve.interpolate(pressure)
+	pressure = pressure_curve.sample(pressure)
 
-	var r1 := 0.5 * abs(_cursor.global_position.x - _start_position_top_left.x)
-	var r2 := 0.5 * abs(_cursor.global_position.y - _start_position_top_left.y)
+	var r1: float = 0.5 * abs(_cursor.global_position.x - _start_position_top_left.x)
+	var r2: float = 0.5 * abs(_cursor.global_position.y - _start_position_top_left.y)
 
-	if(should_draw_circle):
+	if  should_draw_circle:
 		r1 = max(r1, r2)
 		r2 = r1
 

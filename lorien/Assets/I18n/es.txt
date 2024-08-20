@@ -16,16 +16,16 @@ MENU_EXPORT         Exportar...
 # -----------------------------------------------------------------------------
 # Toolbar
 # -----------------------------------------------------------------------------
-TOOLBAR_TOOLTIP_NEW_FILE        Crear Nuevo Archivo {{ shortcut_list("shortcut_new_project") }}
-TOOLBAR_TOOLTIP_OPEN_FILE       Abrir Archivo {{ shortcut_list("shortcut_open_project") }}
-TOOLBAR_TOOLTIP_SAVE_FILE       Guardar Archivo {{ shortcut_list("shortcut_save_project") }}
-TOOLBAR_TOOLTIP_UNDO            Deshacer Acción {{ shortcut_list("shortcut_undo") }}
-TOOLBAR_TOOLTIP_REDO            Rehacer Acción {{ shortcut_list("shortcut_redo") }}
-TOOLBAR_TOOLTIP_BRUSH_TOOL      Herramienta de Pincel {{ shortcut_list("shortcut_brush_tool") }}
-TOOLBAR_TOOLTIP_RECTANGLE_TOOL  Rectángulo {{ shortcut_list("shortcut_rectangle_tool") }}
-TOOLBAR_TOOLTIP_LINE_TOOL       Herramienta de Línea {{ shortcut_list("shortcut_line_tool") }}
-TOOLBAR_TOOLTIP_ERASER_TOOL     Borrador {{ shortcut_list("shortcut_eraser_tool") }}
-TOOLBAR_TOOLTIP_SELECT_TOOL     Herramienta de Selección {{ shortcut_list("shortcut_select_tool") }}
+TOOLBAR_TOOLTIP_NEW_FILE        Crear Nuevo Archivo
+TOOLBAR_TOOLTIP_OPEN_FILE       Abrir Archivo
+TOOLBAR_TOOLTIP_SAVE_FILE       Guardar Archivo
+TOOLBAR_TOOLTIP_UNDO            Deshacer Acción
+TOOLBAR_TOOLTIP_REDO            Rehacer Acción
+TOOLBAR_TOOLTIP_BRUSH_TOOL      Herramienta de Pincel
+TOOLBAR_TOOLTIP_RECTANGLE_TOOL  Rectángulo
+TOOLBAR_TOOLTIP_LINE_TOOL       Herramienta de Línea
+TOOLBAR_TOOLTIP_ERASER_TOOL     Borrador
+TOOLBAR_TOOLTIP_SELECT_TOOL     Herramienta de Selección
 TOOLBAR_TOOLTIP_BRUSH_COLOR     Color de Pincel
 TOOLBAR_TOOLTIP_BRUSH_SIZE      Tamaño de Pincel
 TOOLBAR_TOOLTIP_CANVAS_COLOR    Color de Canvas
@@ -63,8 +63,6 @@ SETTINGS_CANVAS_COLOR           Color de Canvas
 SETTINGS_PROJECT_FOLDER         Carpeta de Proyectos Predeterminada
 SETTINGS_LANGUAGE               Idioma
 SETTINGS_THEME                  Tema
-SETTINGS_AA_METHOD              Método de Anti Aliasing
-SETTINGS_AA_METHOD_NONE         Ninguno
 SETTINGS_FPS_FOREGROUND         Color de texto de FPS
 SETTINGS_FPS_BACKGROUND         Color de fondo de FPS
 SETTINGS_BRUSH_CAPS             Modo de Redondeado de Pincel
@@ -77,7 +75,7 @@ SETTINGS_RESTART_NOTICE         Se requiere reiniciar para aplicar las nuevas op
 # -----------------------------------------------------------------------------
 
 ABOUT_DIALOG_TITLE      Acerca de Lorien
-ABOUT_DIALOG_COPYRIGHT  © 2021-2023 Marcus Brummer & colaboradores 
+ABOUT_DIALOG_COPYRIGHT  © 2021-2024 Marcus Brummer & colaboradores 
 ABOUT_DIALOG_LICSENSE   Lorien está licenciado bajo:
 ABOUT_DIALOG_BASED_ON   Lorien está basado en:
 ABOUT_DIALOG_EASTEREGG  Personaje secreto: 
@@ -86,15 +84,8 @@ ABOUT_DIALOG_EASTEREGG  Personaje secreto:
 # Unsaved changes dialog
 # -----------------------------------------------------------------------------
 
-UNSAVED_CHANGES_DIALOG_TITLE    ¿Guardar cambios?
+UNSAVED_CHANGES_DIALOG_TITLE    Warning # TODO
 UNSAVED_CHANGES_DIALOG_TEXT     ¿Guardar tus cambios antes de cerrar el archivo?
-
-# -----------------------------------------------------------------------------
-# Exit dialog
-# -----------------------------------------------------------------------------
-
-EXIT_DIALOG_TITLE   ¿Guardar cambios?
-EXIT_DIALOG_TEXT    ¿Guardar tus cambios antes de salir?
 
 # -----------------------------------------------------------------------------
 # New palette dialog
@@ -117,8 +108,6 @@ EDIT_PALETTE_DIALOG_TITLE       Editar paleta
 # -----------------------------------------------------------------------------
 # Error/Alert messages
 # -----------------------------------------------------------------------------
-ERROR_NOT_IMPLEMENTED           Aún no ha sido implementado.
-ERROR_AUTOSAVE_NOT_IMPLEMENTED  El guardado automático aún no ha sido implementado para el archivo "Untitled". Por favor, guárdalo manualmente.
 ALERT_EDITING_BUILTIN_PALETTE   No se pueden editar las paletas del sistema. Si deseas personalizarla, puedes duplicarla y editarla en su lugar.
 ALERT_DELETING_BUILTIN_PALETTE  No se pueden borrar las paletas del sistema.
 

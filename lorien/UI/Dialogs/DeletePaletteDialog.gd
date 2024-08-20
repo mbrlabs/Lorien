@@ -1,30 +1,35 @@
 class_name DeletePaletteDialog
-extends WindowDialog
+extends MarginContainer
 
 # -------------------------------------------------------------------------------------------------
 signal palette_deleted
 
 # -------------------------------------------------------------------------------------------------
-onready var _text: Label = $MarginContainer/Container/Label
+@onready var _text: Label = $Container/Label
+@onready var _delete_button: Button = $Container/HBoxContainer/DeleteButton
+@onready var _cancel_button: Button = $Container/HBoxContainer/CancelButton
 
 # -------------------------------------------------------------------------------------------------
-func _on_DeletePaletteDialog_about_to_show() -> void:
+func _ready() -> void:
+	get_parent().about_to_popup.connect(_on_about_to_popup)
+	_delete_button.pressed.connect(_on_delete_pressed)
+	_cancel_button.pressed.connect(_on_cancel_pressed)
+	
+# -------------------------------------------------------------------------------------------------
+func _on_about_to_popup() -> void:
 	var palette := PaletteManager.get_active_palette()
 	_text.text = tr("DELETE_PALETTE_DIALOG_TEXT") + " " + palette.name
+	get_parent().hide()
 
 # -------------------------------------------------------------------------------------------------
-func _on_DeletePaletteDialog_popup_hide() -> void:
-	pass # Replace with function body.
-
-# -------------------------------------------------------------------------------------------------
-func _on_DeleteButton_pressed() -> void:
+func _on_delete_pressed() -> void:
 	var palette := PaletteManager.get_active_palette()
 	if !palette.builtin:
 		PaletteManager.remove_palette(palette)
 		PaletteManager.save()
-		hide()
 		emit_signal("palette_deleted")
+		get_parent().hide()
 
 # -------------------------------------------------------------------------------------------------
-func _on_CancelButton_pressed() -> void:
-	hide()
+func _on_cancel_pressed() -> void:
+	get_parent().hide()

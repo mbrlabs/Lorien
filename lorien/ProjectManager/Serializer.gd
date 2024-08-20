@@ -6,7 +6,7 @@ class_name Serializer
 
 # -------------------------------------------------------------------------------------------------
 const BRUSH_STROKE = preload("res://BrushStroke/BrushStroke.tscn")
-const COMPRESSION_METHOD = File.COMPRESSION_DEFLATE
+const COMPRESSION_METHOD = FileAccess.COMPRESSION_DEFLATE
 const POINT_ELEM_SIZE := 3
 
 const VERSION_NUMBER := 1
@@ -15,12 +15,11 @@ const TYPE_ERASER_STROKE_DEPRECATED := 1 # Deprecated since v0; will be ignored 
 
 # -------------------------------------------------------------------------------------------------
 static func save_project(project: Project) -> void:
-	var start_time := OS.get_ticks_msec()
+	var start_time := Time.get_ticks_msec()
 	
 	# Open file
-	var file := File.new()
-	var err = file.open_compressed(project.filepath, File.WRITE, COMPRESSION_METHOD)
-	if err != OK:
+	var file := FileAccess.open_compressed(project.filepath, FileAccess.WRITE, COMPRESSION_METHOD)
+	if file == null:
 		print_debug("Failed to open file for writing: %s" % project.filepath)
 		return
 	
@@ -55,16 +54,15 @@ static func save_project(project: Project) -> void:
 
 	# Done
 	file.close()
-	print("Saved %s in %d ms" % [project.filepath, (OS.get_ticks_msec() - start_time)])
+	print("Saved %s in %d ms" % [project.filepath, (Time.get_ticks_msec() - start_time)])
 
 # -------------------------------------------------------------------------------------------------
 static func load_project(project: Project) -> void:
-	var start_time := OS.get_ticks_msec()
+	var start_time := Time.get_ticks_msec()
 
 	# Open file
-	var file := File.new()
-	var err = file.open_compressed(project.filepath, File.READ, COMPRESSION_METHOD)
-	if err != OK:
+	var file := FileAccess.open_compressed(project.filepath, FileAccess.READ, COMPRESSION_METHOD)
+	if file == null:
 		print_debug("Failed to load file: %s" % project.filepath)
 		return
 	
@@ -84,7 +82,7 @@ static func load_project(project: Project) -> void:
 		
 		match type:
 			TYPE_BRUSH_STROKE, TYPE_ERASER_STROKE_DEPRECATED:
-				var brush_stroke: BrushStroke = BRUSH_STROKE.instance()
+				var brush_stroke: BrushStroke = BRUSH_STROKE.instantiate()
 				
 				# Color
 				var r := file.get_8()
@@ -114,12 +112,12 @@ static func load_project(project: Project) -> void:
 				printerr("Invalid type")
 		
 		# are we done yet?
-		if file.get_position() >= file.get_len()-1 || file.eof_reached():
+		if file.get_position() >= file.get_length()-1 || file.eof_reached():
 			break
 	
 	# Done
 	file.close()
-	print("Loaded %s in %d ms" % [project.filepath, (OS.get_ticks_msec() - start_time)])
+	print("Loaded %s in %d ms" % [project.filepath, (Time.get_ticks_msec() - start_time)])
 
 # -------------------------------------------------------------------------------------------------
 static func _dict_to_metadata_str(d: Dictionary) -> String:
@@ -136,7 +134,7 @@ static func _dict_to_metadata_str(d: Dictionary) -> String:
 static func _metadata_str_to_dict(s: String) -> Dictionary:
 	var meta_dict := {}
 	for kv in s.split(",", false):
-		var kv_split: PoolStringArray = kv.split("=", false)
+		var kv_split: PackedStringArray = kv.split("=", false)
 		if kv_split.size() != 2:
 			print_debug("Invalid metadata key-value pair: %s" % kv)
 		else:

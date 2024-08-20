@@ -1,7 +1,7 @@
 extends Node
 
 # -------------------------------------------------------------------------------------------------
-var _open_projects: Array # Array<Project>
+var _open_projects: Array[Project]
 var _active_project: Project
 
 # -------------------------------------------------------------------------------------------------
@@ -22,7 +22,7 @@ func get_active_project() -> Project:
 func remove_project(project: Project) -> void:
 	var index := _open_projects.find(project)
 	if index >= 0:
-		_open_projects.remove(index)
+		_open_projects.remove_at(index)
 	
 	if project == _active_project:
 		_active_project = null
@@ -39,7 +39,7 @@ func remove_all_projects() -> void:
 # -------------------------------------------------------------------------------------------------
 func add_project(filepath: String = "") -> Project:
 	# Check if already open
-	if !filepath.empty():
+	if !filepath.is_empty():
 		var p := get_open_project_by_filepath(filepath)
 		if p != null:
 			print_debug("Project already in open project list")
@@ -48,7 +48,7 @@ func add_project(filepath: String = "") -> Project:
 	var project := Project.new()
 	project.id = _open_projects.size()
 	project.filepath = filepath
-	project.loaded = project.filepath.empty() # empty/unsaved/new projects are loaded by definition
+	project.loaded = project.filepath.is_empty() # empty/unsaved/new projects are loaded by definition
 	_open_projects.append(project)
 	return project
 	
@@ -60,7 +60,7 @@ func save_project(project: Project) -> void:
 # -------------------------------------------------------------------------------------------------
 func save_all_projects() -> void:
 	for p in _open_projects:
-		if !p.filepath.empty() && p.loaded && p.dirty:
+		if !p.filepath.is_empty() && p.loaded && p.dirty:
 			save_project(p)
 
 # -------------------------------------------------------------------------------------------------
@@ -95,7 +95,7 @@ func has_unsaved_changes() -> bool:
 # -------------------------------------------------------------------------------------------------
 func has_unsaved_projects() -> bool:
 	for p in _open_projects:
-		if p.dirty && p.filepath.empty():
+		if p.dirty && p.filepath.is_empty():
 			return true
 	return false
 
@@ -108,5 +108,5 @@ func is_active_project(project: Project) -> bool:
 	return _active_project == project
 
 # -------------------------------------------------------------------------------------------------
-func get_open_projects() -> Array:
+func get_open_projects() -> Array[Project]:
 	return _open_projects

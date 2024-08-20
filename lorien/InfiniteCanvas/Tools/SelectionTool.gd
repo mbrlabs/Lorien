@@ -20,7 +20,7 @@ enum State {
 }
 
 # -------------------------------------------------------------------------------------------------
-export var selection_rectangle_path: NodePath
+@export var selection_rectangle_path: NodePath
 var _selection_rectangle: SelectionRectangle
 var _state = State.NONE
 var _selecting_start_pos: Vector2 = Vector2.ZERO
@@ -32,6 +32,7 @@ var _bounding_box_cache = {} # BrushStroke -> Rect2
 
 # ------------------------------------------------------------------------------------------------
 func _ready():
+	super()
 	_selection_rectangle = get_node(selection_rectangle_path)
 	_cursor.mode = SelectionCursor.Mode.SELECT
 
@@ -51,17 +52,17 @@ func tool_event(event: InputEvent) -> void:
 	
 	if paste_pressed || duplicate_pressed:
 		var strokes := get_tree().get_nodes_in_group(GROUP_COPIED_STROKES)
-		if !strokes.empty():
+		if !strokes.is_empty():
 			deselect_all_strokes()
 			_cursor.mode = SelectionCursor.Mode.MOVE
 			_paste_strokes(strokes)
 
 	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT:
+		if event.button_index == MOUSE_BUTTON_LEFT:
 			# LMB down - decide if we should select/multiselect or move the selection
 			if event.pressed:
-				_selecting_start_pos = xform_vector2(event.global_position)
-				if event.shift:
+				_selecting_start_pos = _cursor.global_position
+				if event.shift_pressed:
 					_state = State.SELECTING
 					_multi_selecting = true
 					_build_bounding_boxes()
@@ -80,7 +81,7 @@ func tool_event(event: InputEvent) -> void:
 				if _state == State.SELECTING:
 					_state = State.NONE
 					_selection_rectangle.reset()
-					_selection_rectangle.update()
+					_selection_rectangle.queue_redraw()
 					_commit_strokes_under_selection_rectangle()
 					_deselect_marked_strokes()
 					if get_selected_strokes().size() > 0:
@@ -95,25 +96,25 @@ func tool_event(event: InputEvent) -> void:
 					_mouse_moved_during_pressed = false
 						
 		# RMB down - just deselect
-		elif event.button_index == BUTTON_RIGHT && event.pressed && _state == State.NONE:
+		elif event.button_index == MOUSE_BUTTON_RIGHT && event.pressed && _state == State.NONE:
 			deselect_all_strokes()
 	
 	# Mouse movement: move the selection
 	elif event is InputEventMouseMotion:
-		var event_pos := xform_vector2(event.global_position)
+		var event_pos := _cursor.global_position
 		if _state == State.SELECTING:
 			_selecting_end_pos = event_pos
 			compute_selection(_selecting_start_pos, _selecting_end_pos)
 			_selection_rectangle.start_position = _selecting_start_pos
 			_selection_rectangle.end_position = _selecting_end_pos
-			_selection_rectangle.update()
+			_selection_rectangle.queue_redraw()
 		elif _state == State.MOVING:
 			_mouse_moved_during_pressed = true
 			_move_selected_strokes()
 	
 	# Shift click - switch between move/select cursor mode
 	elif event is InputEventKey:
-		if event.scancode == KEY_SHIFT:
+		if event.keycode == KEY_SHIFT:
 			if event.pressed:
 				_cursor.mode = SelectionCursor.Mode.SELECT
 			elif get_selected_strokes().size() > 0:
@@ -158,7 +159,7 @@ func _paste_strokes(strokes: Array) -> void:
 
 # ------------------------------------------------------------------------------------------------
 func _duplicate_stroke(stroke: BrushStroke, offset: Vector2) -> BrushStroke:	
-	var dup: BrushStroke = BRUSH_STROKE.instance()
+	var dup: BrushStroke = BRUSH_STROKE.instantiate()
 	dup.global_position = stroke.global_position
 	dup.size = stroke.size
 	dup.color = stroke.color
@@ -168,7 +169,7 @@ func _duplicate_stroke(stroke: BrushStroke, offset: Vector2) -> BrushStroke:
 	return dup
 
 # ------------------------------------------------------------------------------------------------
-func _modify_strokes_colors(strokes: Array, color: Color) -> void:	
+func _modify_strokes_colors(strokes: Array[BrushStroke], color: Color) -> void:	
 	for stroke in strokes:
 		stroke.color = color
 
@@ -181,7 +182,7 @@ func _build_bounding_boxes() -> void:
 # ------------------------------------------------------------------------------------------------
 func _set_stroke_selected(stroke: BrushStroke) -> void:
 	if stroke.is_in_group(GROUP_SELECTED_STROKES):
-		stroke.modulate = Color.white
+		stroke.modulate = Color.WHITE
 		stroke.add_to_group(GROUP_MARKED_FOR_DESELECTION)
 	else:
 		stroke.modulate = Config.DEFAULT_SELECTION_COLOR
@@ -218,14 +219,14 @@ func _deselect_marked_strokes() -> void:
 	for s in get_tree().get_nodes_in_group(GROUP_MARKED_FOR_DESELECTION):
 		s.remove_from_group(GROUP_MARKED_FOR_DESELECTION)
 		s.remove_from_group(GROUP_SELECTED_STROKES)
-		s.modulate = Color.white
+		s.modulate = Color.WHITE
 
 # ------------------------------------------------------------------------------------------------
 func deselect_all_strokes() -> void:
 	var selected_strokes: Array = get_selected_strokes()
 	if selected_strokes.size():
-		get_tree().set_group(GROUP_SELECTED_STROKES, "modulate", Color.white)
-		get_tree().set_group(GROUP_STROKES_IN_SELECTION_RECTANGLE, "modulate", Color.white)
+		get_tree().set_group(GROUP_SELECTED_STROKES, "modulate", Color.WHITE)
+		get_tree().set_group(GROUP_STROKES_IN_SELECTION_RECTANGLE, "modulate", Color.WHITE)
 		Utils.remove_group_from_all_nodes(GROUP_SELECTED_STROKES)
 		Utils.remove_group_from_all_nodes(GROUP_MARKED_FOR_DESELECTION)
 		Utils.remove_group_from_all_nodes(GROUP_STROKES_IN_SELECTION_RECTANGLE)
@@ -250,6 +251,6 @@ func _on_brush_color_changed(color: Color) -> void:
 func reset() -> void:
 	_state = State.NONE
 	_selection_rectangle.reset()
-	_selection_rectangle.update()
+	_selection_rectangle.queue_redraw()
 	_commit_strokes_under_selection_rectangle()
 	deselect_all_strokes()

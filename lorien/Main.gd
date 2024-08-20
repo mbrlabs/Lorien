@@ -1,77 +1,89 @@
 extends Control
 
 # -------------------------------------------------------------------------------------------------
-onready var _canvas: InfiniteCanvas = $InfiniteCanvas
-onready var _canvas_grid: InfiniteCanvasGrid = $InfiniteCanvas/Viewport/Grid
-onready var _statusbar: Statusbar = $Statusbar
-onready var _menubar: Menubar = $Topbar/Menubar
-onready var _toolbar: Toolbar = $Topbar/Toolbar
-onready var _file_dialog: FileDialog = $FileDialog
-onready var _export_dialog : FileDialog = $ExportDialog
-onready var _about_dialog: WindowDialog = $AboutDialog
-onready var _settings_dialog: WindowDialog = $SettingsDialog
-onready var _brush_color_picker: ColorPalettePicker = $BrushColorPicker
-onready var _main_menu: MainMenu = $MainMenu
-onready var _generic_alert_dialog: AcceptDialog = $GenericAlertDialog
-onready var _exit_dialog: WindowDialog = $ExitDialog
-onready var _unsaved_changes_dialog: WindowDialog = $UnsavedChangesDialog
-onready var _background_color_picker: ColorPicker = $BackgroundColorPickerPopup/PanelContainer/ColorPicker
-onready var _new_palette_dialog: NewPaletteDialog = $NewPaletteDialog
-onready var _delete_palette_dialog: DeletePaletteDialog = $DeletePaletteDialog
-onready var _edit_palette_dialog: EditPaletteDialog = $EditPaletteDialog
+@onready var _canvas: InfiniteCanvas = $InfiniteCanvas
+@onready var _canvas_grid: InfiniteCanvasGrid = $InfiniteCanvas/SubViewport/Grid
+@onready var _statusbar: Statusbar = $Statusbar
+@onready var _menubar: Menubar = $Topbar/Menubar
+@onready var _toolbar: Toolbar = $Topbar/Toolbar
+@onready var _file_dialog: FileDialog = $FileDialog
+@onready var _export_dialog : FileDialog = $ExportDialog
+@onready var _about_window: Window = $AboutWindow
+@onready var _settings_window: Window = $SettingsWindow
+@onready var _settings_dialog: SettingsDialog = $SettingsWindow/SettingsDialog
+@onready var _brush_color_picker: ColorPalettePicker = $BrushColorPicker
+@onready var _main_menu: MainMenu = $MainMenu
+@onready var _unsaved_changes_window: Window = $UnsavedChangesWindow
+@onready var _unsaved_changes_dialog: UnsavedChangesDialog = $UnsavedChangesWindow/UnsavedChangesDialog
+@onready var _new_palette_window: Window = $NewPaletteWindow
+@onready var _new_palette_dialog: NewPaletteDialog = $NewPaletteWindow/NewPaletteDialog
+@onready var _delete_palette_dialog: DeletePaletteDialog = $DeletePaletteWindow/DeletePaletteDialog
+@onready var _delete_palette_window: Window = $DeletePaletteWindow
+@onready var _edit_palette_window: Window = $EditPaletteWindow
+@onready var _edit_palette_dialog: EditPaletteDialog = $EditPaletteWindow/EditPaletteDialog
 
 var _ui_visible := true 
+var _exit_requested := false
+var _dirty_project_to_close: Project = null
 var _player_enabled := false
 
 # -------------------------------------------------------------------------------------------------
 func _ready():
 	# Init stuff
 	randomize()
-	Engine.target_fps = Settings.get_value(Settings.RENDERING_FOREGROUND_FPS, Config.DEFAULT_FOREGROUND_FPS)
-	OS.set_window_title("Lorien v%s" % Config.VERSION_STRING)
-	get_tree().set_auto_accept_quit(false)
+	Engine.max_fps = Settings.get_rendering_value(Settings.RENDERING_FOREGROUND_FPS, Config.DEFAULT_FOREGROUND_FPS)
+	get_window().title = "Lorien v%s" % Config.VERSION_STRING
+	get_tree().auto_accept_quit = false
 
-	var docs_folder = OS.get_system_dir(OS.SYSTEM_DIR_DOCUMENTS)
-	_file_dialog.current_dir = Settings.get_value(Settings.GENERAL_DEFAULT_PROJECT_DIR, docs_folder)
-	_export_dialog.current_dir = Settings.get_value(Settings.GENERAL_DEFAULT_PROJECT_DIR, docs_folder)
+	var docs_folder := OS.get_system_dir(OS.SYSTEM_DIR_DOCUMENTS)
+	_file_dialog.current_dir = Settings.get_general_value(Settings.GENERAL_DEFAULT_PROJECT_DIR, docs_folder)
+	_export_dialog.current_dir = Settings.get_general_value(Settings.GENERAL_DEFAULT_PROJECT_DIR, docs_folder)
 	
 	# Signals
-	get_tree().connect("files_dropped", self, "_on_files_dropped")
+	get_window().files_dropped.connect(_on_files_dropped)
 	
-	_toolbar.connect("undo_action", self, "_on_undo_action")
-	_toolbar.connect("redo_action", self, "_on_redo_action")
-	_toolbar.connect("clear_canvas", self, "_on_clear_canvas")
-	_toolbar.connect("open_project", self, "_on_open_project")
-	_toolbar.connect("toggle_brush_color_picker", self, "_on_toggle_brush_color_picker")
-	_toolbar.connect("new_project", self, "_on_create_new_project")
-	_toolbar.connect("save_project", self, "_on_save_project")
-	_toolbar.connect("brush_size_changed", self, "_on_brush_size_changed")
-	_toolbar.connect("tool_changed", self, "_on_tool_changed")
+	_canvas.mouse_entered.connect(_on_InfiniteCanvas_mouse_entered)
+	_canvas.mouse_exited.connect(_on_InfiniteCanvas_mouse_exited)
 	
-	_menubar.connect("create_new_project", self, "_on_create_new_project")
-	_menubar.connect("project_selected", self, "_on_project_selected")
-	_menubar.connect("project_closed", self, "_on_project_closed")
+	_brush_color_picker.closed.connect(_on_BrushColorPicker_closed)
+	_brush_color_picker.color_changed.connect(_on_BrushColorPicker_color_changed)
 	
-	_main_menu.connect("open_about_dialog", self, "_on_open_about_dialog")
-	_main_menu.connect("open_settings_dialog", self, "_on_open_settings_dialog")
-	_main_menu.connect("open_url", self, "_on_open_url")
-	_main_menu.connect("export_svg", self, "_export_svg")
-	_main_menu.connect("open_project", self, "_on_open_project")
-	_main_menu.connect("save_project", self, "_on_save_project")
-	_main_menu.connect("save_project_as", self, "_on_save_project_as")
+	_new_palette_dialog.new_palette_created.connect(_on_NewPaletteDialog_new_palette_created)
+	_delete_palette_dialog.palette_deleted.connect(_on_DeletePaletteDialog_palette_deleted)
+	_edit_palette_dialog.palette_changed.connect(_on_EditPaletteDialog_palette_changed)
 	
-	_exit_dialog.connect("save_changes", self, "_on_exit_with_changes_saved")
-	_exit_dialog.connect("discard_changes", self, "_on_exit_with_changes_discarded")
-	_unsaved_changes_dialog.connect("save_changes", self, "_on_close_file_with_changes_saved")
-	_unsaved_changes_dialog.connect("discard_changes", self, "_on_close_file_with_changes_discarded")
+	_toolbar.undo_action.connect(_on_undo_action)
+	_toolbar.redo_action.connect(_on_redo_action)
+	_toolbar.clear_canvas.connect(_on_clear_canvas)
+	_toolbar.open_project.connect(_on_open_project)
+	_toolbar.toggle_brush_color_picker.connect(_on_toggle_brush_color_picker)
+	_toolbar.new_project.connect(_on_create_new_project)
+	_toolbar.save_project.connect(_on_save_project)
+	_toolbar.brush_size_changed.connect(_on_brush_size_changed)
+	_toolbar.tool_changed.connect(_on_tool_changed)
 	
-	_export_dialog.connect("file_selected", self, "_on_export_confirmed")
+	_menubar.create_new_project.connect(_on_create_new_project)
+	_menubar.project_selected.connect(_on_project_selected)
+	_menubar.project_closed.connect(_on_project_closed)
 	
-	_settings_dialog.connect("ui_scale_changed", self, "_on_scale_changed")
-	_settings_dialog.connect("grid_size_changed", self, "_on_grid_size_changed")
-	_settings_dialog.connect("grid_pattern_changed", self, "_on_grid_pattern_changed")
-	_settings_dialog.connect("canvas_color_changed", self, "_on_canvas_color_changed")
-	_settings_dialog.connect("constant_pressure_changed", self, "_on_constant_pressure_changed")
+	_main_menu.open_about_dialog.connect(_on_open_about_dialog)
+	_main_menu.open_settings_dialog.connect(_on_open_settings_dialog)
+	_main_menu.open_url.connect(_on_open_url)
+	_main_menu.export_svg.connect(_export_svg)
+	_main_menu.open_project.connect(_on_open_project)
+	_main_menu.save_project.connect(_on_save_project)
+	_main_menu.save_project_as.connect(_on_save_project_as)
+	
+	_unsaved_changes_dialog.save_changes.connect(_on_save_unsaved_changes)
+	_unsaved_changes_dialog.discard_changes.connect(_on_discard_unsaved_changes)
+	
+	_export_dialog.file_selected.connect(_on_export_confirmed)
+	
+	_settings_dialog.ui_scale_changed.connect(_on_scale_changed)
+	_settings_dialog.grid_size_changed.connect(_on_grid_size_changed)
+	_settings_dialog.grid_pattern_changed.connect(_on_grid_pattern_changed)
+	_settings_dialog.canvas_color_changed.connect(_on_canvas_color_changed)
+	_settings_dialog.constant_pressure_changed.connect(_on_constant_pressure_changed)
 	
 	# Initialize scale
 	_on_scale_changed()
@@ -89,23 +101,22 @@ func _ready():
 
 # -------------------------------------------------------------------------------------------------
 func _notification(what):
-	if NOTIFICATION_WM_QUIT_REQUEST == what:
-		if !_exit_dialog.visible:
-			if ProjectManager.has_unsaved_changes():
-				_exit_dialog.call_deferred("popup")
-			else:
-				_save_state()
-				 # we have to wait a bit before exiting; otherwise the changes might not be persisted correctly.
-				yield(get_tree().create_timer(0.12), "timeout")
-				get_tree().quit()
+	if NOTIFICATION_WM_CLOSE_REQUEST == what:
+		if ProjectManager.has_unsaved_changes():
+			_exit_requested = true
+			_unsaved_changes_window.popup_centered()
+		else:
+			_save_state()
+			get_tree().quit()
 
-	elif NOTIFICATION_WM_FOCUS_IN == what:
-		Engine.target_fps = Settings.get_value(Settings.RENDERING_FOREGROUND_FPS, Config.DEFAULT_FOREGROUND_FPS)
+	elif NOTIFICATION_APPLICATION_FOCUS_IN == what:
+		Engine.max_fps = Settings.get_rendering_value(Settings.RENDERING_FOREGROUND_FPS, Config.DEFAULT_FOREGROUND_FPS)
 		if !_is_mouse_on_ui() && _canvas != null && !is_dialog_open():
-			yield(get_tree().create_timer(0.12), "timeout")
+			await get_tree().create_timer(0.12).timeout
 			_canvas.enable()
-	elif NOTIFICATION_WM_FOCUS_OUT == what:
-		Engine.target_fps = Settings.get_value(Settings.RENDERING_BACKGROUND_FPS, Config.DEFAULT_BACKGROUND_FPS)
+			
+	elif NOTIFICATION_APPLICATION_FOCUS_OUT == what:
+		Engine.max_fps = Settings.get_rendering_value(Settings.RENDERING_BACKGROUND_FPS, Config.DEFAULT_BACKGROUND_FPS)
 		if _canvas != null:
 			_canvas.disable()
 
@@ -130,7 +141,7 @@ func _process(delta):
 
 # -------------------------------------------------------------------------------------------------
 func _unhandled_input(event):
-	if ! is_dialog_open():
+	if !is_dialog_open():
 		if Utils.event_pressed_bug_workaround("toggle_player", event):
 			_toggle_player()
 		
@@ -147,8 +158,6 @@ func _unhandled_input(event):
 				_on_undo_action()
 			elif Utils.event_pressed_bug_workaround("shortcut_redo", event):
 				_on_redo_action()
-			elif Utils.event_pressed_bug_workaround("center_canvas_to_mouse", event):
-				_canvas.center_to_mouse()
 			elif Utils.event_pressed_bug_workaround("shortcut_brush_tool", event):
 				_toolbar.enable_tool(Types.Tool.BRUSH)
 			elif Utils.event_pressed_bug_workaround("shortcut_rectangle_tool", event):
@@ -161,21 +170,20 @@ func _unhandled_input(event):
 				_toolbar.enable_tool(Types.Tool.ERASER)
 			elif Utils.event_pressed_bug_workaround("shortcut_select_tool", event):
 				_toolbar.enable_tool(Types.Tool.SELECT)
-			elif Utils.event_pressed_bug_workaround("toggle_distraction_free_mode", event):
-				_toggle_distraction_free_mode()
+			elif Utils.event_pressed_bug_workaround("toggle_zen_mode", event):
+				_toggle_zen_mode()
 			elif Utils.event_pressed_bug_workaround("toggle_fullscreen", event):
 				_toggle_fullscreen()
 
 # -------------------------------------------------------------------------------------------------
 func _toggle_player() -> void:
 	_player_enabled = !_player_enabled
-	_canvas.enable_colliders(_player_enabled)
 	_canvas.enable_player(_player_enabled)
 
 # -------------------------------------------------------------------------------------------------
 func _save_state() -> void:
 	# Open projects
-	var open_projects := Array()
+	var open_projects: Array[String]
 	for project in ProjectManager.get_open_projects():
 		open_projects.append(project.filepath)
 	StatePersistence.set_value(StatePersistence.OPEN_PROJECTS, open_projects)
@@ -185,8 +193,8 @@ func _save_state() -> void:
 	StatePersistence.set_value(StatePersistence.ACTIVE_PROJECT, active_project_path)
 	
 	# Window related stuff
-	StatePersistence.set_value(StatePersistence.WINDOW_SIZE, OS.window_size)
-	StatePersistence.set_value(StatePersistence.WINDOW_MAXIMIZED, OS.window_maximized)
+	StatePersistence.set_value(StatePersistence.WINDOW_SIZE, get_window().size)
+	StatePersistence.set_value(StatePersistence.WINDOW_MAXIMIZED, (get_window().mode == Window.MODE_MAXIMIZED))
 
 # -------------------------------------------------------------------------------------------------
 func _apply_state() -> void:
@@ -196,11 +204,11 @@ func _apply_state() -> void:
 	var win_size: Vector2 = StatePersistence.get_value(StatePersistence.WINDOW_SIZE, default_win_size)
 	
 	if is_maximized:
-		OS.window_maximized = true
+		get_window().mode = Window.MODE_MAXIMIZED if (true) else Window.MODE_WINDOWED
 	else:
-		OS.window_size = win_size
-		OS.center_window()
-	yield(get_tree().create_timer(0.12), "timeout")
+		get_window().size = win_size
+		get_window().move_to_center()
+	await get_tree().create_timer(0.12).timeout
 	
 	# Open projects
 	var open_projects: Array = StatePersistence.get_value(StatePersistence.OPEN_PROJECTS, Array())
@@ -215,7 +223,7 @@ func _apply_state() -> void:
 		_make_project_active(active_project)
 
 # -------------------------------------------------------------------------------------------------
-func _toggle_distraction_free_mode() -> void:
+func _toggle_zen_mode() -> void:
 	_ui_visible = !_ui_visible
 	_menubar.get_parent().visible = _ui_visible
 	_menubar.visible = _ui_visible
@@ -223,7 +231,7 @@ func _toggle_distraction_free_mode() -> void:
 	_toolbar.visible = _ui_visible
 
 # -------------------------------------------------------------------------------------------------
-func _on_files_dropped(files: PoolStringArray, screen: int) -> void:
+func _on_files_dropped(files: PackedStringArray) -> void:
 	for file in files:
 		if Utils.is_valid_lorien_file(file):
 			_on_open_project(file)
@@ -242,21 +250,21 @@ func _is_mouse_on_ui() -> bool:
 	var on_ui := Utils.is_mouse_in_control(_menubar)
 	on_ui = on_ui || Utils.is_mouse_in_control(_toolbar)
 	on_ui = on_ui || Utils.is_mouse_in_control(_statusbar)
-	on_ui = on_ui || Utils.is_mouse_in_control(_file_dialog)
-	on_ui = on_ui || Utils.is_mouse_in_control(_about_dialog)
-	on_ui = on_ui || Utils.is_mouse_in_control(_settings_dialog)
+	on_ui = on_ui || Utils.is_mouse_on_window(_file_dialog)
+	on_ui = on_ui || Utils.is_mouse_on_window(_about_window)
+	on_ui = on_ui || Utils.is_mouse_on_window(_settings_window)
 	on_ui = on_ui || Utils.is_mouse_in_control(_brush_color_picker)
-	on_ui = on_ui || Utils.is_mouse_in_control(_new_palette_dialog)
-	on_ui = on_ui || Utils.is_mouse_in_control(_edit_palette_dialog)
-	on_ui = on_ui || Utils.is_mouse_in_control(_delete_palette_dialog)
+	on_ui = on_ui || Utils.is_mouse_on_window(_new_palette_window)
+	on_ui = on_ui || Utils.is_mouse_on_window(_edit_palette_window)
+	on_ui = on_ui || Utils.is_mouse_on_window(_delete_palette_window)
 	return on_ui
 
 # -------------------------------------------------------------------------------------------------
 func is_dialog_open() -> bool:
-	var open := _file_dialog.visible || _about_dialog.visible
-	open = open || (_settings_dialog.visible || _generic_alert_dialog.visible)
-	open = open || (_new_palette_dialog.visible || _edit_palette_dialog.visible || _delete_palette_dialog.visible)
-	return open
+	return _about_window.visible || _settings_window.visible || \
+			_new_palette_window.visible || _edit_palette_window.visible || \
+			_delete_palette_window.visible || _file_dialog.visible || \
+			_unsaved_changes_window.visible || AlertDialog.visible
 
 # -------------------------------------------------------------------------------------------------
 func _create_active_default_project() -> void:
@@ -284,9 +292,8 @@ func _on_project_closed(project_id: int) -> void:
 	# Ask the user to save changes
 	var project: Project = ProjectManager.get_project_by_id(project_id)
 	if project.dirty:
-		_unsaved_changes_dialog.project_ids.clear()
-		_unsaved_changes_dialog.project_ids.append(project_id)
-		_unsaved_changes_dialog.popup_centered()
+		_dirty_project_to_close = project
+		_unsaved_changes_window.popup_centered()
 	else:
 		_close_project(project_id)
 
@@ -310,35 +317,33 @@ func _close_project(project_id: int) -> void:
 			_make_project_active(new_project)
 
 # -------------------------------------------------------------------------------------------------
-func _show_autosave_not_implemented_alert() -> void:
-	_generic_alert_dialog.dialog_text = tr("ERROR_AUTOSAVE_NOT_IMPLEMENTED")
-	_generic_alert_dialog.popup_centered()
-
-# -------------------------------------------------------------------------------------------------
 func _toggle_fullscreen():
-	OS.set_window_fullscreen(!OS.window_fullscreen)
-	_toolbar.set_fullscreen_toggle(OS.window_fullscreen)
+	match get_window().mode:
+		Window.MODE_EXCLUSIVE_FULLSCREEN, Window.MODE_FULLSCREEN:
+			get_window().mode = Window.MODE_WINDOWED
+		_:
+			get_window().mode = Window.MODE_FULLSCREEN
 
 # -------------------------------------------------------------------------------------------------
-func _on_brush_color_changed(color: Color) -> void:
-	_canvas.set_brush_color(color)
+func _on_brush_color_changed(brush_color: Color) -> void:
+	_canvas.set_brush_color(brush_color)
 
 # -------------------------------------------------------------------------------------------------
-func _on_brush_size_changed(size: int) -> void:
-	_canvas.set_brush_size(size)
+func _on_brush_size_changed(brush_size: int) -> void:
+	_canvas.set_brush_size(brush_size)
 
 # -------------------------------------------------------------------------------------------------
-func _on_grid_size_changed(size: int) -> void:
-	_canvas_grid.set_grid_size(size)
+func _on_grid_size_changed(grid_size: int) -> void:
+	_canvas_grid.set_grid_size(grid_size)
 
 # -------------------------------------------------------------------------------------------------
 func _on_grid_pattern_changed(pattern: int) -> void:
 	_canvas_grid.set_grid_pattern(pattern)
 
 # -------------------------------------------------------------------------------------------------
-func _on_canvas_color_changed(color: Color) -> void:
-	_canvas.set_background_color(color)
-	_canvas_grid.set_canvas_color(color)
+func _on_canvas_color_changed(canvas_color: Color) -> void:
+	_canvas.set_background_color(canvas_color)
+	_canvas_grid.set_canvas_color(canvas_color)
 
 # -------------------------------------------------------------------------------------------------
 func _on_clear_canvas() -> void:
@@ -347,8 +352,7 @@ func _on_clear_canvas() -> void:
 # -------------------------------------------------------------------------------------------------
 func _on_open_project(filepath: String) -> bool:
 	# Check if file exists
-	var file := File.new()
-	if !file.file_exists(filepath):
+	if !FileAccess.file_exists(filepath):
 		return false
 	
 	var project: Project = ProjectManager.get_open_project_by_filepath(filepath)
@@ -361,7 +365,7 @@ func _on_open_project(filepath: String) -> bool:
 		return true
 	
 	# Remove/Replace active project if not changed and unsaved (default project)
-	if active_project.filepath.empty() && !active_project.dirty:
+	if active_project.filepath.is_empty() && !active_project.dirty:
 		ProjectManager.remove_project(active_project)
 		_menubar.remove_tab(active_project)
 	
@@ -375,30 +379,30 @@ func _on_open_project(filepath: String) -> bool:
 func _on_save_project_as() -> void:
 	var active_project: Project = ProjectManager.get_active_project()
 	_canvas.disable()
-	_file_dialog.mode = FileDialog.MODE_SAVE_FILE
+	_file_dialog.file_mode = FileDialog.FILE_MODE_SAVE_FILE
 	_file_dialog.invalidate()
 	_file_dialog.current_file = active_project.filepath.get_file()
-	_file_dialog.connect("file_selected", self, "_on_file_selected_to_save_project")
-	_file_dialog.connect("popup_hide", self, "_on_file_dialog_closed")
+	_file_dialog.file_selected.connect(_on_file_selected_to_save_project)
+	_file_dialog.close_requested.connect(_on_file_dialog_closed)
 	_file_dialog.popup_centered()
 
 # -------------------------------------------------------------------------------------------------
 func _on_save_project() -> void:
 	var active_project: Project = ProjectManager.get_active_project()
-	if active_project.filepath.empty():
+	if active_project.filepath.is_empty():
 		_canvas.disable()
-		_file_dialog.mode = FileDialog.MODE_SAVE_FILE
+		_file_dialog.file_mode = FileDialog.FILE_MODE_SAVE_FILE
 		_file_dialog.invalidate()
-		_file_dialog.connect("file_selected", self, "_on_file_selected_to_save_project")
-		_file_dialog.connect("popup_hide", self, "_on_file_dialog_closed")
+		_file_dialog.file_selected.connect(_on_file_selected_to_save_project)
+		_file_dialog.close_requested.connect(_on_file_dialog_closed)
 		_file_dialog.popup_centered()
 	else:
 		_save_project(active_project)
 
 # -------------------------------------------------------------------------------------------------
 func _on_file_dialog_closed() -> void:
-	_file_dialog.disconnect("file_selected", self, "_on_file_selected_to_save_project")
-	_file_dialog.disconnect("popup_hide", self, "_on_file_dialog_closed")
+	_file_dialog.disfile_selected.connect(_on_file_selected_to_save_project)
+	_file_dialog.disclose_requested.connect(_on_file_dialog_closed)
 
 # -------------------------------------------------------------------------------------------------
 func _on_file_selected_to_save_project(filepath: String) -> void:
@@ -427,51 +431,45 @@ func _on_tool_changed(tool_type: int) -> void:
 	_canvas.use_tool(tool_type)
 
 # -------------------------------------------------------------------------------------------------
-func _on_exit_with_changes_saved(project_ids: Array) -> void:
-	if ProjectManager.has_unsaved_projects():
-		_show_autosave_not_implemented_alert()
-	else:
+func _on_save_unsaved_changes() -> void:
+	if _exit_requested:
 		ProjectManager.save_all_projects()
+		_save_state()
 		get_tree().quit()
+	else:
+		if _dirty_project_to_close != null:
+			ProjectManager.save_project(_dirty_project_to_close)
+			_close_project(_dirty_project_to_close.id)
+			_dirty_project_to_close = null
 
 # -------------------------------------------------------------------------------------------------
-func _on_exit_with_changes_discarded(project_ids: Array) -> void:
-	get_tree().quit()
-
-# -------------------------------------------------------------------------------------------------
-func _on_close_file_with_changes_saved(project_ids: Array) -> void:
-	for id in project_ids:
-		var project: Project = ProjectManager.get_project_by_id(id)
-		if project.filepath.empty():
-			_show_autosave_not_implemented_alert()
-		else:
-			ProjectManager.save_project(project)
-			_close_project(id)
-	_unsaved_changes_dialog.hide()
-
-# -------------------------------------------------------------------------------------------------
-func _on_close_file_with_changes_discarded(project_ids: Array) -> void:
-	for id in project_ids:
-		_close_project(id)
-	_unsaved_changes_dialog.hide()
+func _on_discard_unsaved_changes() -> void:
+	if _exit_requested:
+		_save_state()
+		get_tree().quit()
+	else:
+		if _dirty_project_to_close != null:
+			_close_project(_dirty_project_to_close.id)
+			_dirty_project_to_close = null
 
 # -------------------------------------------------------------------------------------------------
 func _on_open_about_dialog() -> void:
-	_about_dialog.popup()
+	_about_window.popup()
 
 # -------------------------------------------------------------------------------------------------
 func _on_open_settings_dialog() -> void:
-	_settings_dialog.popup()
+	_settings_window.popup()
 
 # -------------------------------------------------------------------------------------------------
 func _on_open_url(url: String) -> void:
 	OS.shell_open(url)
-	yield(get_tree().create_timer(0.1), "timeout")
+	await get_tree().create_timer(0.1).timeout
 	_canvas.disable()
 
 # -------------------------------------------------------------------------------------------------
 func _on_InfiniteCanvas_mouse_entered():
-	_canvas.enable()
+	if !is_dialog_open() && !_is_mouse_on_ui():
+		_canvas.enable()
 
 # -------------------------------------------------------------------------------------------------
 func _on_InfiniteCanvas_mouse_exited():
@@ -488,6 +486,9 @@ func _on_export_confirmed(path: String):
 				svg.export_svg(project.strokes, background, path)
 		_:
 			printerr("Unsupported format")
+	
+	if !is_dialog_open() && !_is_mouse_on_ui():
+		_canvas.enable()
 
 # --------------------------------------------------------------------------------------------------
 func _export_svg() -> void:
@@ -516,7 +517,8 @@ func _on_NewPaletteDialog_new_palette_created(palette: Palette) -> void:
 
 # --------------------------------------------------------------------------------------------------
 func _update_brush_color() -> void:
-	var color_index := min(_brush_color_picker.get_active_color_index(), PaletteManager.get_active_palette().colors.size()-1)
+	var color_index: int = min(_brush_color_picker.get_active_color_index(), 
+		PaletteManager.get_active_palette().colors.size() - 1)
 	_brush_color_picker.update_palettes(color_index)
 	_toolbar.set_brush_color(_brush_color_picker.get_active_color())
 	_canvas.set_brush_color(_brush_color_picker.get_active_color())
@@ -531,16 +533,17 @@ func _on_DeletePaletteDialog_palette_deleted() -> void:
 
 # --------------------------------------------------------------------------------------------------
 func _on_scale_changed() -> void:
-	var auto_scale: int = Settings.get_value(Settings.APPEARANCE_UI_SCALE_MODE, Config.DEFAULT_UI_SCALE_MODE)
-	var scale: float
+	var auto_scale: int = Settings.get_appearance_value(Settings.APPEARANCE_UI_SCALE_MODE, Config.DEFAULT_UI_SCALE_MODE)
+	var new_scale: float
 	match auto_scale:
-		Types.UIScale.AUTO:   scale = _get_platform_ui_scale()
-		Types.UIScale.CUSTOM: scale = Settings.get_value(Settings.APPEARANCE_UI_SCALE, Config.DEFAULT_UI_SCALE)
-	scale = clamp(scale, _settings_dialog.get_min_ui_scale(), _settings_dialog.get_max_ui_scale())
-
-	_canvas.set_canvas_scale(scale)
-	get_tree().set_screen_stretch(SceneTree.STRETCH_MODE_DISABLED, SceneTree.STRETCH_ASPECT_IGNORE, Vector2(0,0), scale)
-	OS.min_window_size = Config.MIN_WINDOW_SIZE * scale
+		Types.UIScale.AUTO:   new_scale = _get_platform_ui_scale()
+		Types.UIScale.CUSTOM: new_scale = Settings.get_appearance_value(Settings.APPEARANCE_UI_SCALE, Config.DEFAULT_UI_SCALE)
+	new_scale = clamp(new_scale, _settings_dialog.get_min_ui_scale(), _settings_dialog.get_max_ui_scale())
+	
+	# TODO(gd4): the whole scaling stuff changed a lot in Godot 4; need to figure this out later.
+	# See: https://www.reddit.com/r/godot/comments/14h4iir/how_can_i_set_the_stretch_mode_and_aspect_in/
+	get_tree().root.content_scale_factor = new_scale
+	get_window().min_size = Config.MIN_WINDOW_SIZE * new_scale
 
 # --------------------------------------------------------------------------------------------------
 func _on_constant_pressure_changed(enable: bool) -> void:
@@ -549,19 +552,19 @@ func _on_constant_pressure_changed(enable: bool) -> void:
 # --------------------------------------------------------------------------------------------------
 func _get_platform_ui_scale() -> float:
 	var platform: String = OS.get_name()
-	var scale: float
+	var scl: float
 	match platform:
-		"OSX":     scale = OS.get_screen_scale()
-		"Windows": scale = OS.get_screen_dpi() / 96.0
-		_:         scale = _get_general_ui_scale()
-	return scale
+		"OSX":     scl = DisplayServer.screen_get_scale()
+		"Windows": scl = DisplayServer.screen_get_dpi() / 96.0
+		_:         scl = _get_general_ui_scale()
+	return scl
 
 # --------------------------------------------------------------------------------------------------
 func _get_general_ui_scale() -> float:
 	# Adapted from Godot EditorSettings::get_auto_display_scale()
 	# https://github.com/godotengine/godot/blob/3.x/editor/editor_settings.cpp
-	var smallest_dimension: int = min(OS.get_screen_size().x, OS.get_screen_size().y)
-	if OS.get_screen_dpi() >= 192 && smallest_dimension >= 1400:
+	var smallest_dimension: int = min(DisplayServer.screen_get_size().x, DisplayServer.screen_get_size().y)
+	if DisplayServer.screen_get_dpi() >= 192 && smallest_dimension >= 1400:
 		return Config.DEFAULT_UI_SCALE * 2
 	elif smallest_dimension >= 1700:
 		return Config.DEFAULT_UI_SCALE * 1.5

@@ -16,17 +16,17 @@ MENU_EXPORT         Eкспорт...
 # -----------------------------------------------------------------------------
 # Toolbar
 # -----------------------------------------------------------------------------
-TOOLBAR_TOOLTIP_NEW_FILE        Створити Новий Файл {{ shortcut_list("shortcut_new_project") }}
-TOOLBAR_TOOLTIP_OPEN_FILE       Відкрити Файл {{ shortcut_list("shortcut_open_project") }}
-TOOLBAR_TOOLTIP_SAVE_FILE       Зберегти файл {{ shortcut_list("shortcut_save_project") }}
-TOOLBAR_TOOLTIP_UNDO            Назад {{ shortcut_list("shortcut_undo") }}
-TOOLBAR_TOOLTIP_REDO            Вперед {{ shortcut_list("shortcut_redo") }}
-TOOLBAR_TOOLTIP_BRUSH_TOOL      Пензлик {{ shortcut_list("shortcut_brush_tool") }}
-TOOLBAR_TOOLTIP_RECTANGLE_TOOL  Прямокутник {{ shortcut_list("shortcut_rectangle_tool") }}
-TOOLBAR_TOOLTIP_CIRCLE_TOOL     Коло {{ shortcut_list("shortcut_circle_tool") }}
-TOOLBAR_TOOLTIP_LINE_TOOL       Лінія {{ shortcut_list("shortcut_line_tool") }}
-TOOLBAR_TOOLTIP_ERASER_TOOL     Гумка {{ shortcut_list("shortcut_eraser_tool") }}
-TOOLBAR_TOOLTIP_SELECT_TOOL     Виділення {{ shortcut_list("shortcut_select_tool") }}
+TOOLBAR_TOOLTIP_NEW_FILE        Створити Новий Файл
+TOOLBAR_TOOLTIP_OPEN_FILE       Відкрити Файл
+TOOLBAR_TOOLTIP_SAVE_FILE       Зберегти файл
+TOOLBAR_TOOLTIP_UNDO            Назад
+TOOLBAR_TOOLTIP_REDO            Вперед
+TOOLBAR_TOOLTIP_BRUSH_TOOL      Пензлик
+TOOLBAR_TOOLTIP_RECTANGLE_TOOL  Прямокутник
+TOOLBAR_TOOLTIP_CIRCLE_TOOL     Коло
+TOOLBAR_TOOLTIP_LINE_TOOL       Лінія
+TOOLBAR_TOOLTIP_ERASER_TOOL     Гумка
+TOOLBAR_TOOLTIP_SELECT_TOOL     Виділення
 TOOLBAR_TOOLTIP_BRUSH_COLOR     Колір Пензлика
 TOOLBAR_TOOLTIP_BRUSH_SIZE      Розмір Пензлика
 TOOLBAR_TOOLTIP_CANVAS_COLOR    Колір Полотна
@@ -72,8 +72,6 @@ SETTINGS_UI_SCALE_CUSTOM        Власний
 SETTINGS_GRID_SIZE              Розмір Сітки
 SETTINGS_GRID_PATTERN           Тип Сітки
 SETTINGS_CANVAS_COLOR           Колір Полотна
-SETTINGS_AA_METHOD              Метод Згладжування
-SETTINGS_AA_METHOD_NONE         Не використовувати
 SETTINGS_FPS_FOREGROUND         Fps Переднього Плану
 SETTINGS_FPS_BACKGROUND         Fps Фону
 SETTINGS_BRUSH_CAPS             Заокруглення Пензлика
@@ -86,7 +84,7 @@ SETTINGS_RESTART_NOTICE  		Для застосування нових налаш
 # -----------------------------------------------------------------------------
 
 ABOUT_DIALOG_TITLE              Про Lorien
-ABOUT_DIALOG_COPYRIGHT          © 2021-2023 Marcus Brummer & співавтори
+ABOUT_DIALOG_COPYRIGHT          © 2021-2024 Marcus Brummer & співавтори
 ABOUT_DIALOG_LICSENSE           Lorien знаходиться під ліцензією:
 ABOUT_DIALOG_BASED_ON           Lorien створений на основі:
 ABOUT_DIALOG_EASTEREGG          Easteregg character:
@@ -95,15 +93,8 @@ ABOUT_DIALOG_EASTEREGG          Easteregg character:
 # Unsaved changes dialog
 # -----------------------------------------------------------------------------
 
-UNSAVED_CHANGES_DIALOG_TITLE    Зберегти зміни?
+UNSAVED_CHANGES_DIALOG_TITLE    Warning # TODO
 UNSAVED_CHANGES_DIALOG_TEXT     Чи хочете ви зберегти свої зміни перед тим, як закрити цей файл?
-
-# -----------------------------------------------------------------------------
-# Exit dialog
-# -----------------------------------------------------------------------------
-
-EXIT_DIALOG_TITLE    Зберегти зміни?
-EXIT_DIALOG_TEXT     Чи хочете ви зберегти свої зміни перед виходом з Lorien?
 
 # -----------------------------------------------------------------------------
 # New palette dialog
@@ -127,8 +118,6 @@ EDIT_PALETTE_DIALOG_TITLE 		Змінити палітру
 # Error/Alert messages
 # -----------------------------------------------------------------------------
 
-ERROR_NOT_IMPLEMENTED               Ще не реалізовано.
-ERROR_AUTOSAVE_NOT_IMPLEMENTED      Авто-збереження ще не реалізовано для файлу "Untitled". Будь-ласка, збережіть його вручну.
 ALERT_EDITING_BUILTIN_PALETTE       Неможливо змінити вбудовану палітру. Якщо ви хочете кастомізувати цю палітру, ви можете зробити її копію та змінити її.
 ALERT_DELETING_BUILTIN_PALETTE      Неможливо видаляти вбудовану палітру.
 
@@ -145,34 +134,26 @@ DELETE          Видалити
 # Action names
 # -----------------------------------------------------------------------------
 
-ACTION_shortcut_save_project       Зберегти проєкт
-ACTION_shortcut_new_project        Новий проєкт
-ACTION_shortcut_open_project       Відкрити проєкт
-ACTION_shortcut_undo               Назад
-ACTION_shortcut_redo               Вперед
-ACTION_shortcut_brush_tool         Пензлик
-ACTION_shortcut_line_tool          Лінія
-ACTION_shortcut_eraser_tool        Гумка
-ACTION_shortcut_select_tool        Виділення
-ACTION_shortcut_move_tool          Перемістити
-ACTION_shortcut_rectangle_tool     Прямокутник
-ACTION_shortcut_circle_tool        Коло
-ACTION_shortcut_export_project     Експорт проєкту
-ACTION_deselect_all_strokes        Відмінити виділення
-ACTION_center_canvas_to_mouse      Калібрувати Полотно     # not sure about this
-ACTION_delete_selected_strokes     Видалити вибрані штрихи
-ACTION_copy_strokes                Скопіювати
-ACTION_paste_strokes               Вставити
-ACTION_duplicate_strokes           Дублювати штрихи
-ACTION_toggle_distraction_free_mode Перемкнути zen-режим
-ACTION_toggle_player               ЕФФ ДВАНАДЦЯТЬ
-ACTION_toggle_fullscreen           Перемкнути повноекранний режим
-ACTION_canvas_zoom_in              Збільшити масштаб
-ACTION_canvas_zoom_out             Зменшити масштаб
-ACTION_canvas_pan_up               Полотно вверх
-ACTION_canvas_pan_down             Полотно вниз
-ACTION_canvas_pan_right            Полотно направо
-ACTION_canvas_pan_left             Полотно наліво
+ACTION_shortcut_save_project        Зберегти проєкт
+ACTION_shortcut_new_project         Новий проєкт
+ACTION_shortcut_open_project        Відкрити проєкт
+ACTION_shortcut_undo                Назад
+ACTION_shortcut_redo                Вперед
+ACTION_shortcut_brush_tool          Пензлик
+ACTION_shortcut_line_tool           Лінія
+ACTION_shortcut_eraser_tool         Гумка
+ACTION_shortcut_select_tool         Виділення
+ACTION_shortcut_rectangle_tool      Прямокутник
+ACTION_shortcut_circle_tool         Коло
+ACTION_shortcut_export_project      Експорт проєкту
+ACTION_deselect_all_strokes         Відмінити виділення
+ACTION_delete_selected_strokes      Видалити вибрані штрихи
+ACTION_copy_strokes                 Скопіювати
+ACTION_paste_strokes                Вставити
+ACTION_duplicate_strokes            Дублювати штрихи
+ACTION_toggle_zen_mode              Toggle Zen Mode
+ACTION_toggle_player                Toggle Easteregg
+ACTION_toggle_fullscreen            Перемкнути повноекранний режим
 
 # -----------------------------------------------------------------------------
 # Kebindings dialog messages

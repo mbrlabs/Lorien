@@ -16,17 +16,17 @@ MENU_EXPORT         ... Dışa Aktar
 # -----------------------------------------------------------------------------
 # Toolbar
 # -----------------------------------------------------------------------------
-TOOLBAR_TOOLTIP_NEW_FILE        Yeni Dosya Oluştur {{ shortcut_list("shortcut_new_project") }}
-TOOLBAR_TOOLTIP_OPEN_FILE       Dosya Aç {{ shortcut_list("shortcut_open_project") }}
-TOOLBAR_TOOLTIP_SAVE_FILE       Dosya Kaydet {{ shortcut_list("shortcut_save_project") }}
-TOOLBAR_TOOLTIP_UNDO            Geri Al {{ shortcut_list("shortcut_undo") }}
-TOOLBAR_TOOLTIP_REDO            İleri Al {{ shortcut_list("shortcut_redo") }}
-TOOLBAR_TOOLTIP_BRUSH_TOOL      Fırça {{ shortcut_list("shortcut_brush_tool") }}
-TOOLBAR_TOOLTIP_RECTANGLE_TOOL  Dikdörtgen Aracı {{ shortcut_list("shortcut_rectangle_tool") }}
-TOOLBAR_TOOLTIP_CIRCLE_TOOL     Çember Aracı {{ shortcut_list("shortcut_circle_tool") }} 
-TOOLBAR_TOOLTIP_LINE_TOOL       Çizgi Aracı {{ shortcut_list("shortcut_line_tool") }}
-TOOLBAR_TOOLTIP_ERASER_TOOL     Silgi {{ shortcut_list("shortcut_eraser_tool") }}
-TOOLBAR_TOOLTIP_SELECT_TOOL     Seçim Aracı {{ shortcut_list("shortcut_select_tool") }}
+TOOLBAR_TOOLTIP_NEW_FILE        Yeni Dosya Oluştur
+TOOLBAR_TOOLTIP_OPEN_FILE       Dosya Aç
+TOOLBAR_TOOLTIP_SAVE_FILE       Dosya Kaydet
+TOOLBAR_TOOLTIP_UNDO            Geri Al
+TOOLBAR_TOOLTIP_REDO            İleri Al
+TOOLBAR_TOOLTIP_BRUSH_TOOL      Fırça
+TOOLBAR_TOOLTIP_RECTANGLE_TOOL  Dikdörtgen Aracı
+TOOLBAR_TOOLTIP_CIRCLE_TOOL     Çember Aracı
+TOOLBAR_TOOLTIP_LINE_TOOL       Çizgi Aracı
+TOOLBAR_TOOLTIP_ERASER_TOOL     Silgi
+TOOLBAR_TOOLTIP_SELECT_TOOL     Seçim Aracı
 TOOLBAR_TOOLTIP_BRUSH_COLOR     Fırça Rengi
 TOOLBAR_TOOLTIP_BRUSH_SIZE      Fırça Boyutu
 TOOLBAR_FULLSCREEN_TOGGLE       Tam Ekran
@@ -69,8 +69,6 @@ SETTINGS_THEME                  Tema
 SETTINGS_UI_SCALE               UI Boyutu
 SETTINGS_UI_SCALE_AUTO          Otomatik
 SETTINGS_UI_SCALE_CUSTOM        Özel              
-SETTINGS_AA_METHOD              Anti Aliasing Metodu
-SETTINGS_AA_METHOD_NONE         Hiçbiri
 SETTINGS_FPS_FOREGROUND         Ön plan Fps
 SETTINGS_FPS_BACKGROUND         Arka plan Fps
 SETTINGS_BRUSH_CAPS             Fırça Yuvarlama Modu
@@ -83,7 +81,7 @@ SETTINGS_RESTART_NOTICE  		Yeni ayarların uygulanması için yeniden başlatma 
 # -----------------------------------------------------------------------------
 
 ABOUT_DIALOG_TITLE              Hakkında
-ABOUT_DIALOG_COPYRIGHT          © 2021-2023 Marcus Brummer & katkıda bulunanlar 
+ABOUT_DIALOG_COPYRIGHT          © 2021-2024 Marcus Brummer & katkıda bulunanlar 
 ABOUT_DIALOG_LICSENSE           Lorien, altında lisanslanmıştır:
 ABOUT_DIALOG_BASED_ON           Lorien, tabanlıdır:
 ABOUT_DIALOG_EASTEREGG          Easteregg karakteri:
@@ -92,15 +90,8 @@ ABOUT_DIALOG_EASTEREGG          Easteregg karakteri:
 # Unsaved changes dialog
 # -----------------------------------------------------------------------------
 
-UNSAVED_CHANGES_DIALOG_TITLE    Değişiklikleri kaydet?
+UNSAVED_CHANGES_DIALOG_TITLE    Warning # TODO
 UNSAVED_CHANGES_DIALOG_TEXT     Dosyayı kapatmadan önce değişikliklerinizi kaydetmek istiyor musunuz?
-
-# -----------------------------------------------------------------------------
-# Exit dialog
-# -----------------------------------------------------------------------------
-
-EXIT_DIALOG_TITLE    Değişiklikleri kaydet?
-EXIT_DIALOG_TEXT     Lorien'den çıkmadan önce değişikliklerinizi kaydetmek istiyor musunuz?
 
 # -----------------------------------------------------------------------------
 # New palette dialog
@@ -124,8 +115,6 @@ EDIT_PALETTE_DIALOG_TITLE 		Paleti Düzenle
 # Error/Alert messages
 # -----------------------------------------------------------------------------
 
-ERROR_NOT_IMPLEMENTED               Daha eklenmedi.
-ERROR_AUTOSAVE_NOT_IMPLEMENTED      "Adsız" dosyası için otomatik kaydetme henüz uygulanmadı. Lütfen manuel olarak kaydedin.
 ALERT_EDITING_BUILTIN_PALETTE       Yerleşik paletleri düzenlemek mümkün değildir. Bu paleti özelleştirmek istiyorsanız, bunun yerine bir kopya oluşturabilir ve düzenleyebilirsiniz.. # TODO
 ALERT_DELETING_BUILTIN_PALETTE      Yerleşik paletleri silmek mümkün değildir.
 
@@ -141,34 +130,28 @@ DELETE          Sil
 # -----------------------------------------------------------------------------
 # Action names
 # -----------------------------------------------------------------------------
-ACTION_shortcut_save_project       Projeyi Kaydet
-ACTION_shortcut_new_project        Yeni Proje
-ACTION_shortcut_open_project       Projeyi Aç
-ACTION_shortcut_undo               Geri
-ACTION_shortcut_redo               İleri
-ACTION_shortcut_brush_tool         Fırça aracı
-ACTION_shortcut_line_tool          Çizgi aracı
-ACTION_shortcut_eraser_tool        Silgi aracı
-ACTION_shortcut_select_tool        Seçim aracı
-ACTION_shortcut_move_tool          Taşıma aracı
-ACTION_shortcut_rectangle_tool     Dikdörtgen aracı
-ACTION_shortcut_circle_tool        Çember aracı
-ACTION_shortcut_export_project     Projeyi dışa aktar
-ACTION_deselect_all_strokes        Tüm vuruşların seçimini kaldır
-ACTION_center_canvas_to_mouse      Boşluk
-ACTION_delete_selected_strokes     Seçili vuruşları sil
-ACTION_copy_strokes                Kopyala
-ACTION_paste_strokes               Yapıştır
-ACTION_duplicate_strokes           Vuruşlarıkopyala
-ACTION_toggle_distraction_free_mode Dikkat dağıtmama modu
-ACTION_toggle_player               EFF TWELVE
-ACTION_toggle_fullscreen           Tam Ekran
-ACTION_canvas_zoom_in              Yaklaştır
-ACTION_canvas_zoom_out             Uzaklaştır
-ACTION_canvas_pan_up               Yukarı kaydır
-ACTION_canvas_pan_down             Aşağı kaydır
-ACTION_canvas_pan_right            Sağa kaydır
-ACTION_canvas_pan_left             Sola kaydır
+
+ACTION_shortcut_save_project        Projeyi Kaydet
+ACTION_shortcut_new_project         Yeni Proje
+ACTION_shortcut_open_project        Projeyi Aç
+ACTION_shortcut_undo                Geri
+ACTION_shortcut_redo                İleri
+ACTION_shortcut_brush_tool          Fırça aracı
+ACTION_shortcut_line_tool           Çizgi aracı
+ACTION_shortcut_eraser_tool         Silgi aracı
+ACTION_shortcut_select_tool         Seçim aracı
+ACTION_shortcut_rectangle_tool      Dikdörtgen aracı
+ACTION_shortcut_circle_tool         Çember aracı
+ACTION_shortcut_export_project      Projeyi dışa aktar
+ACTION_deselect_all_strokes         Tüm vuruşların seçimini kaldır
+ACTION_delete_selected_strokes      Seçili vuruşları sil
+ACTION_copy_strokes                 Kopyala
+ACTION_paste_strokes                Yapıştır
+ACTION_duplicate_strokes            Vuruşlarıkopyala
+ACTION_toggle_zen_mode              Toggle Zen Mode
+ACTION_toggle_player                Toggle Easteregg
+ACTION_toggle_fullscreen            Tam Ekran
+
 # -----------------------------------------------------------------------------
 # Kebindings dialog messages
 # -----------------------------------------------------------------------------

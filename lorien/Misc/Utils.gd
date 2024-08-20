@@ -5,18 +5,28 @@ const UUID_ALPHABET := "abcdefghijklmnopqrstuvwxyz0123456789"
 
 # -------------------------------------------------------------------------------------------------
 func get_native_mouse_position_on_screen() -> Vector2:
-	return OS.window_position + get_viewport().get_mouse_position()
+	return Vector2(get_window().position) + get_viewport().get_mouse_position()
 
 # -------------------------------------------------------------------------------------------------
 func remove_signal_connections(node: Node, signal_name: String) -> void:
 	for conn in node.get_signal_connection_list(signal_name):
-		node.disconnect(conn["signal"], conn["target"], conn["method"])
+		node.disconnect(conn["signal"], Callable(conn["target"], conn["method"]))
 
 # -------------------------------------------------------------------------------------------------
 func is_mouse_in_control(control: Control) -> bool:
 	if control.visible:
 		var pos = get_viewport().get_mouse_position()
 		var rect = control.get_global_rect()
+		return rect.has_point(pos)
+	return false
+
+# TODO(gd4): this is just a copy of is_mouse_in_control() from above for Godot 4 since Windows don't 
+# inherit from Control anymore
+# -------------------------------------------------------------------------------------------------
+func is_mouse_on_window(window: Window) -> bool:
+	if window.visible:
+		var pos = get_viewport().get_mouse_position()
+		var rect = window.get_viewport().get_visible_rect()
 		return rect.has_point(pos)
 	return false
 
@@ -35,7 +45,7 @@ func calculate_rect(start_pos: Vector2, end_pos: Vector2) -> Rect2:
 	return area
 
 # -------------------------------------------------------------------------------------------------
-func calculte_bounding_boxes(strokes: Array, margin: float = 0.0) -> Dictionary:
+func calculte_bounding_boxes(strokes: Array[BrushStroke], margin: float = 0.0) -> Dictionary:
 	var result := {}
 	for stroke in strokes:
 		var top_left: Vector2 = stroke.position + stroke.top_left_pos
@@ -48,7 +58,7 @@ func calculte_bounding_boxes(strokes: Array, margin: float = 0.0) -> Dictionary:
 	
 # -------------------------------------------------------------------------------------------------
 func return_timestamp_string() -> String:
-	var today := OS.get_datetime()
+	var today := Time.get_datetime_dict_from_system()
 	return "%s%s%s_%s%s%s" % [today.day, today.month, today.year, today.hour, today.minute, today.second]
 
 # -------------------------------------------------------------------------------------------------
@@ -64,7 +74,7 @@ func is_valid_lorien_file(filepath: String) -> bool:
 func generate_uuid(length: int) -> String:
 	var s := ""
 	for i in length:
-		var idx: int = rand_range(0, UUID_ALPHABET.length()-1)
+		var idx: int = randf_range(0, UUID_ALPHABET.length()-1)
 		s += UUID_ALPHABET[idx]
 	return s
 
@@ -72,18 +82,8 @@ func generate_uuid(length: int) -> String:
 func translate_action(action_name: String) -> String:
 	return TranslationServer.translate("ACTION_" + action_name)
 
-# -------------------------------------------------------------------------------------------------
-func bindable_actions() -> Array:
-	var result := []
-	for action in InputMap.get_actions():
-		# Suppress default keybindings for using menus etc and EFF TWELVE
-		if action.begins_with("ui_") || action.begins_with("player_"):
-			continue
-		result.append(action)
-	return result
-
 # ------------------------------------------------------------------------------------------------
 # See: https://github.com/mbrlabs/Lorien/pull/168#discussion_r908251372 for details
 # Does an _exact_ match for the given key stroke.
 func event_pressed_bug_workaround(action_name: String, event: InputEvent) -> bool:
-	return InputMap.action_has_event(action_name, event) && event.is_pressed()
+	return InputMap.action_has_event(action_name, event) && event.is_pressed() && !event.is_echo()

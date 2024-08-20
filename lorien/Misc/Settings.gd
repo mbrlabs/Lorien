@@ -1,44 +1,51 @@
 extends Node
 
 # -------------------------------------------------------------------------------------------------
-const DEFAULT_SECTION 					:= "settings"
-const SHORTCUTS_SECTION 				:= "shortcuts"
-const GENERAL_PRESSURE_SENSITIVITY 		:= "general_pressure_sensitvity"
-const GENERAL_CONSTANT_PRESSURE			:= "general_constant_pressure"
-const GENERAL_DEFAULT_BRUSH_SIZE 		:= "general_default_brush_size"
-const GENERAL_DEFAULT_PROJECT_DIR		:= "general_default_project_dir"
-const GENERAL_LANGUAGE					:= "general_language"
-const APPEARANCE_THEME 					:= "appearance_theme"
-const APPEARANCE_UI_SCALE_MODE  		:= "appearance_ui_scale_mode"
-const APPEARANCE_UI_SCALE				:= "appearance_ui_scale"
-const APPEARANCE_GRID_PATTERN			:= "appearance_grid_pattern"
-const APPEARANCE_GRID_SIZE				:= "appearance_grid_size"
-const APPEARANCE_CANVAS_COLOR 			:= "appearance_canvas_color"
-const RENDERING_AA_MODE					:= "rendering_aa_mode"
-const RENDERING_FOREGROUND_FPS			:= "rendering_foreground_fps"
-const RENDERING_BACKGROUND_FPS			:= "rendering_background_fps"
-const RENDERING_BRUSH_ROUNDING			:= "rendering_brush_rounding"
+const GENERAL_SECTION 					:= "general"
+const GENERAL_PRESSURE_SENSITIVITY 		:= "pressure_sensitvity"
+const GENERAL_CONSTANT_PRESSURE			:= "constant_pressure"
+const GENERAL_DEFAULT_BRUSH_SIZE 		:= "default_brush_size"
+const GENERAL_DEFAULT_PROJECT_DIR		:= "default_project_dir"
+const GENERAL_LANGUAGE					:= "language"
+const GENERAL_TOOL_PRESSURE				:= "tool_pressure"
+
+# -------------------------------------------------------------------------------------------------
+const APPEARANCE_SECTION 				:= "appearance"
+const APPEARANCE_THEME 					:= "theme"
+const APPEARANCE_UI_SCALE_MODE  		:= "ui_scale_mode"
+const APPEARANCE_UI_SCALE				:= "ui_scale"
+const APPEARANCE_GRID_PATTERN			:= "grid_pattern"
+const APPEARANCE_GRID_SIZE				:= "grid_size"
+const APPEARANCE_CANVAS_COLOR 			:= "canvas_color"
+
+# -------------------------------------------------------------------------------------------------
+const RENDERING_SECTION 				:= "rendering"
+const RENDERING_FOREGROUND_FPS			:= "foreground_fps"
+const RENDERING_BACKGROUND_FPS			:= "background_fps"
+const RENDERING_BRUSH_ROUNDING			:= "brush_rounding"
+
+# -------------------------------------------------------------------------------------------------
+const KEYBINDINGS_SECTION				:= "keybindings"
+
+# TODO: move this to state.cfg
 const COLOR_PALETTE_UUID_LAST_USED		:= "color_palette_uuid_last_used"
-const GENERAL_TOOL_PRESSURE				:= "general_tool_pressure"
 
 # -------------------------------------------------------------------------------------------------
 var _config_file := ConfigFile.new()
 var _i18n := I18nParser.new()
-var locales: PoolStringArray
-var language_names: PoolStringArray
+var locales: PackedStringArray
+var language_names: PackedStringArray
 
 # -------------------------------------------------------------------------------------------------
 func _ready():
 	_config_file = ConfigFile.new()
 	_load_settings()
-	_load_shortcuts()
-	_setup_default_shortcuts()
 	reload_locales()
 
 # -------------------------------------------------------------------------------------------------
 func reload_locales():
 	var parse_result := _i18n.reload_locales()
-	TranslationServer.set_locale(get_value(GENERAL_LANGUAGE, "en"))
+	TranslationServer.set_locale(get_general_value(GENERAL_LANGUAGE, "en"))
 	locales = parse_result.locales
 	language_names = parse_result.language_names
 
@@ -63,51 +70,37 @@ func _save_settings() -> int:
 	return err
 
 # -------------------------------------------------------------------------------------------------
-func get_value(key: String, default_value = null):
-	return _config_file.get_value(DEFAULT_SECTION, key, default_value)
+func get_general_value(key: String, default_value = null):
+	return _config_file.get_value(GENERAL_SECTION, key, default_value)
 
 # -------------------------------------------------------------------------------------------------
-func set_value(key: String, value = null):
-	_config_file.set_value(DEFAULT_SECTION, key, value)
+func set_general_value(key: String, value = null):
+	_config_file.set_value(GENERAL_SECTION, key, value)
 	_save_settings()
 	
 # -------------------------------------------------------------------------------------------------
-func _setup_default_shortcuts() -> void:
-	var new_actions := []
-	for action_name in Utils.bindable_actions():
-		if ! _config_file.has_section_key(SHORTCUTS_SECTION, action_name):
-			new_actions.append(action_name)
+func get_appearance_value(key: String, default_value = null):
+	return _config_file.get_value(APPEARANCE_SECTION, key, default_value)
+
+# -------------------------------------------------------------------------------------------------
+func set_appearance_value(key: String, value = null):
+	_config_file.set_value(APPEARANCE_SECTION, key, value)
+	_save_settings()
 	
-	if len(new_actions) > 0:
-		var old_actions := []
-		for action_name in Utils.bindable_actions():
-			if ! action_name in new_actions:
-				old_actions.append(action_name)
-
-		for new_action in new_actions:
-			var event_list := InputMap.get_action_list(new_action)
-			for event in event_list:
-				for old_action in old_actions:
-					if InputMap.action_has_event(old_action, event):
-						event_list.erase(event)
-						break
-			_config_file.set_value(SHORTCUTS_SECTION, new_action, event_list)
-		_save_settings()
-		_load_shortcuts()
+# -------------------------------------------------------------------------------------------------
+func get_rendering_value(key: String, default_value = null):
+	return _config_file.get_value(RENDERING_SECTION, key, default_value)
 
 # -------------------------------------------------------------------------------------------------
-func _load_shortcuts() -> void:	
-	for action_name in Utils.bindable_actions():
-		if !_config_file.has_section_key(SHORTCUTS_SECTION, action_name):
-			continue
-
-		var shortcuts = _config_file.get_value(SHORTCUTS_SECTION, action_name)
-		InputMap.action_erase_events(action_name)
-		for shortcut in shortcuts:
-			InputMap.action_add_event(action_name, shortcut)
+func set_rendering_value(key: String, value = null):
+	_config_file.set_value(RENDERING_SECTION, key, value)
+	_save_settings()
+	
+# -------------------------------------------------------------------------------------------------
+func get_keybind_value(action_name: String, default_value = null) -> InputEventKey:
+	return _config_file.get_value(KEYBINDINGS_SECTION, action_name, default_value)
 
 # -------------------------------------------------------------------------------------------------
-func store_shortcuts() -> void:	
-	for action_name in Utils.bindable_actions():
-		_config_file.set_value(SHORTCUTS_SECTION, action_name, InputMap.get_action_list(action_name))
+func set_keybind_value(action_name: String, event: InputEventKey) -> void:
+	_config_file.set_value(KEYBINDINGS_SECTION, action_name, event)
 	_save_settings()

@@ -16,16 +16,16 @@ MENU_EXPORT         Экспортировать...
 # -----------------------------------------------------------------------------
 # Toolbar
 # -----------------------------------------------------------------------------
-TOOLBAR_TOOLTIP_NEW_FILE        Создать новый файл {{ shortcut_list("shortcut_new_project") }}
-TOOLBAR_TOOLTIP_OPEN_FILE       Открыть файл {{ shortcut_list("shortcut_open_project") }}
-TOOLBAR_TOOLTIP_SAVE_FILE       Сохранить файл {{ shortcut_list("shortcut_save_project") }}
-TOOLBAR_TOOLTIP_UNDO            Отменить действие {{ shortcut_list("shortcut_undo") }}
-TOOLBAR_TOOLTIP_REDO            Повторить действие {{ shortcut_list("shortcut_redo") }}
-TOOLBAR_TOOLTIP_BRUSH_TOOL      Кисть {{ shortcut_list("shortcut_brush_tool") }}
-TOOLBAR_TOOLTIP_RECTANGLE_TOOL  Rectangle Tool {{ shortcut_list("shortcut_rectangle_tool") }} 									# TODO
-TOOLBAR_TOOLTIP_LINE_TOOL       Линия {{ shortcut_list("shortcut_line_tool") }}
-TOOLBAR_TOOLTIP_ERASER_TOOL     Стерка {{ shortcut_list("shortcut_eraser_tool") }}
-TOOLBAR_TOOLTIP_SELECT_TOOL     Выделить  {{ shortcut_list("shortcut_select_tool") }}
+TOOLBAR_TOOLTIP_NEW_FILE        Создать новый файл
+TOOLBAR_TOOLTIP_OPEN_FILE       Открыть файл
+TOOLBAR_TOOLTIP_SAVE_FILE       Сохранить файл
+TOOLBAR_TOOLTIP_UNDO            Отменить действие
+TOOLBAR_TOOLTIP_REDO            Повторить действие
+TOOLBAR_TOOLTIP_BRUSH_TOOL      Кисть
+TOOLBAR_TOOLTIP_RECTANGLE_TOOL  Rectangle Tool 									    # TODO
+TOOLBAR_TOOLTIP_LINE_TOOL       Линия
+TOOLBAR_TOOLTIP_ERASER_TOOL     Стерка
+TOOLBAR_TOOLTIP_SELECT_TOOL     Выделить
 TOOLBAR_TOOLTIP_BRUSH_SIZE      Размер кисти
 TOOLBAR_TOOLTIP_CANVAS_COLOR    Цвет холста
 
@@ -62,8 +62,6 @@ SETTINGS_CANVAS_COLOR           Цвет кисти
 SETTINGS_PROJECT_FOLDER         Папка проекта по умолчанию
 SETTINGS_LANGUAGE               Язык
 SETTINGS_THEME                  Тема
-SETTINGS_AA_METHOD              Метод сглаживания
-SETTINGS_AA_METHOD_NONE         Не использовать
 SETTINGS_FPS_FOREGROUND         Foreground Fps 										# TODO
 SETTINGS_FPS_BACKGROUND         Background Fps 										# TODO
 SETTINGS_BRUSH_CAPS             Brush Rounding Mode 								# TODO
@@ -76,7 +74,7 @@ SETTINGS_RESTART_NOTICE  		Restart required to apply the new settings 			# TODO
 # -----------------------------------------------------------------------------
 
 ABOUT_DIALOG_TITLE              О Lorien
-ABOUT_DIALOG_COPYRIGHT          © 2021-2023 Marcus Brummer и контрибютеры
+ABOUT_DIALOG_COPYRIGHT          © 2021-2024 Marcus Brummer и контрибютеры
 ABOUT_DIALOG_LICSENSE           Lorien находится под лицензией:
 ABOUT_DIALOG_BASED_ON           Lorien основан на:
 ABOUT_DIALOG_EASTEREGG          Easteregg character: 								# TODO
@@ -85,15 +83,8 @@ ABOUT_DIALOG_EASTEREGG          Easteregg character: 								# TODO
 # Unsaved changes dialog
 # -----------------------------------------------------------------------------
 
-UNSAVED_CHANGES_DIALOG_TITLE    Сохранить изменения?
+UNSAVED_CHANGES_DIALOG_TITLE    Warning # TODO
 UNSAVED_CHANGES_DIALOG_TEXT     Вы хотите сохранить изменения перед закрытием файла?
-
-# -----------------------------------------------------------------------------
-# Exit dialog
-# -----------------------------------------------------------------------------
-
-EXIT_DIALOG_TITLE    Сохранить изменения?
-EXIT_DIALOG_TEXT     Вы хотите сохранить изменения перед выходом из Lorien?
 
 # -----------------------------------------------------------------------------
 # New palette dialog
@@ -116,8 +107,6 @@ EDIT_PALETTE_DIALOG_TITLE 		Edit Palette 										# TODO
 # -----------------------------------------------------------------------------
 # Error/Alert messages
 # -----------------------------------------------------------------------------
-ERROR_NOT_IMPLEMENTED               Еще не реализовано.
-ERROR_AUTOSAVE_NOT_IMPLEMENTED      Автосохранение еще не реализовано для файла "Untitled". Пожалуйста, сохраните его вручную.
 ALERT_EDITING_BUILTIN_PALETTE       Editing built-in palettes is not possible. If you want to customize this palette you can make a copy and edit that instead. # TODO
 ALERT_DELETING_BUILTIN_PALETTE      Deleting built-in palettes is not possible. # TODO
 

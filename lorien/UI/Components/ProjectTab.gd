@@ -10,17 +10,20 @@ signal selected
 signal close_requested
 
 # -------------------------------------------------------------------------------------------------
-onready var _filename_button: Button = $HBoxContainer/FilenameButton
-onready var _close_button: TextureButton = $HBoxContainer/CloseButton
+@onready var _filename_button: Button = $HBoxContainer/FilenameButton
+@onready var _close_button: TextureButton = $HBoxContainer/CloseButton
 
 var is_active := false
-var title: String setget set_title
+var title: String: set = set_title
 var project_id: int
 
 # -------------------------------------------------------------------------------------------------
 func _ready():
 	set_active(false)
 	_filename_button.text = title
+	
+	_filename_button.pressed.connect(_on_FilenameButton_pressed)
+	_close_button.pressed.connect(_on_CloseButton_pressed)
 
 # -------------------------------------------------------------------------------------------------
 func set_title(t: String) -> void:
@@ -42,5 +45,4 @@ func set_active(active: bool) -> void:
 	var new_style = STYLE_INACTIVE
 	if is_active:
 		new_style = STYLE_ACTIVE
-	set("custom_styles/panel", new_style)
-
+	set("theme_override_styles/panel", new_style)

@@ -16,17 +16,17 @@ MENU_EXPORT         导出...
 # -----------------------------------------------------------------------------
 # Toolbar
 # -----------------------------------------------------------------------------
-TOOLBAR_TOOLTIP_NEW_FILE        创建新文件 {{ shortcut_list("shortcut_new_project") }}
-TOOLBAR_TOOLTIP_OPEN_FILE       打开文件 {{ shortcut_list("shortcut_open_project") }}
-TOOLBAR_TOOLTIP_SAVE_FILE       保存文件 {{ shortcut_list("shortcut_save_project") }}
-TOOLBAR_TOOLTIP_UNDO            撤销操作 {{ shortcut_list("shortcut_undo") }}
-TOOLBAR_TOOLTIP_REDO            重做操作 {{ shortcut_list("shortcut_redo") }}
-TOOLBAR_TOOLTIP_BRUSH_TOOL      画笔工具 {{ shortcut_list("shortcut_brush_tool") }}
-TOOLBAR_TOOLTIP_RECTANGLE_TOOL  矩形工具 {{ shortcut_list("shortcut_rectangle_tool") }}
-TOOLBAR_TOOLTIP_CIRCLE_TOOL     圆形工具 {{ shortcut_list("shortcut_circle_tool") }}
-TOOLBAR_TOOLTIP_LINE_TOOL       直线工具 {{ shortcut_list("shortcut_line_tool") }}
-TOOLBAR_TOOLTIP_ERASER_TOOL     橡皮擦 {{ shortcut_list("shortcut_eraser_tool") }}
-TOOLBAR_TOOLTIP_SELECT_TOOL     选择工具 {{ shortcut_list("shortcut_select_tool") }}
+TOOLBAR_TOOLTIP_NEW_FILE        创建新文件
+TOOLBAR_TOOLTIP_OPEN_FILE       打开文件
+TOOLBAR_TOOLTIP_SAVE_FILE       保存文件
+TOOLBAR_TOOLTIP_UNDO            撤销操作
+TOOLBAR_TOOLTIP_REDO            重做操作
+TOOLBAR_TOOLTIP_BRUSH_TOOL      画笔工具
+TOOLBAR_TOOLTIP_RECTANGLE_TOOL  矩形工具
+TOOLBAR_TOOLTIP_CIRCLE_TOOL     圆形工具
+TOOLBAR_TOOLTIP_LINE_TOOL       直线工具
+TOOLBAR_TOOLTIP_ERASER_TOOL     橡皮擦
+TOOLBAR_TOOLTIP_SELECT_TOOL     选择工具
 TOOLBAR_TOOLTIP_BRUSH_COLOR     画笔颜色
 TOOLBAR_TOOLTIP_BRUSH_SIZE      画笔大小
 TOOLBAR_FULLSCREEN_TOGGLE       切换全屏
@@ -67,8 +67,6 @@ SETTINGS_THEME                  主题
 SETTINGS_UI_SCALE               UI 缩放
 SETTINGS_UI_SCALE_AUTO          自动
 SETTINGS_UI_SCALE_CUSTOM        自定义
-SETTINGS_AA_METHOD              抗锯齿方案
-SETTINGS_AA_METHOD_NONE         无
 SETTINGS_FPS_FOREGROUND         前台 Fps
 SETTINGS_FPS_BACKGROUND         后台 Fps
 SETTINGS_BRUSH_CAPS             画笔圆角模式
@@ -81,7 +79,7 @@ SETTINGS_RESTART_NOTICE  		需要重新启动程序以应用新的设置
 # -----------------------------------------------------------------------------
 
 ABOUT_DIALOG_TITLE              关于
-ABOUT_DIALOG_COPYRIGHT          © 2021-2023 Marcus Brummer & contributors 
+ABOUT_DIALOG_COPYRIGHT          © 2021-2024 Marcus Brummer & contributors 
 ABOUT_DIALOG_LICSENSE           Lorien 采用以下协议授权:
 ABOUT_DIALOG_BASED_ON           Lorien 基于：
 ABOUT_DIALOG_EASTEREGG          复活节彩蛋角色:
@@ -90,15 +88,8 @@ ABOUT_DIALOG_EASTEREGG          复活节彩蛋角色:
 # Unsaved changes dialog
 # -----------------------------------------------------------------------------
 
-UNSAVED_CHANGES_DIALOG_TITLE    是否保存更改？
+UNSAVED_CHANGES_DIALOG_TITLE    Warning # TODO
 UNSAVED_CHANGES_DIALOG_TEXT     你想在关闭文件之前保存你的修改吗？
-
-# -----------------------------------------------------------------------------
-# Exit dialog
-# -----------------------------------------------------------------------------
-
-EXIT_DIALOG_TITLE    是否保存更改？
-EXIT_DIALOG_TEXT     你想在退出 Lorien 之前保存你的修改吗？
 
 # -----------------------------------------------------------------------------
 # New palette dialog
@@ -122,8 +113,6 @@ EDIT_PALETTE_DIALOG_TITLE 		编辑调色板
 # Error/Alert messages
 # -----------------------------------------------------------------------------
 
-ERROR_NOT_IMPLEMENTED               还未实现。
-ERROR_AUTOSAVE_NOT_IMPLEMENTED      "Untitled" 文件的自动保存还未实现，请手动保存。
 ALERT_EDITING_BUILTIN_PALETTE       无法编辑内置调色板。如果你想自定义这个调色板，你可以创建一个副本并编辑它。
 ALERT_DELETING_BUILTIN_PALETTE      无法删除内置调色板。
 

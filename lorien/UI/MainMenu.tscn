@@ -1,20 +1,12 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=3 format=3 uid="uid://c41oe1lt7u6r8"]
 
-[ext_resource path="res://UI/Themes/theme_dark.tres" type="Theme" id=1]
-[ext_resource path="res://UI/MainMenu.gd" type="Script" id=2]
+[ext_resource type="Theme" uid="uid://u5qnpgxqykiv" path="res://UI/Themes/theme_dark.tres" id="1"]
+[ext_resource type="Script" path="res://UI/MainMenu.gd" id="2"]
 
 [node name="MainMenu" type="PopupMenu"]
-margin_right = 150.0
-margin_bottom = 100.0
-rect_min_size = Vector2( 150, 100 )
-theme = ExtResource( 1 )
-script = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+theme = ExtResource("1")
+submenu_popup_delay = 0.01
+script = ExtResource("2")
 
 [node name="ViewsMenu" type="PopupMenu" parent="."]
-margin_right = 16.0
-margin_bottom = 16.0
-
-[connection signal="id_pressed" from="." to="." method="_on_MainMenu_id_pressed"]
+submenu_popup_delay = 0.01

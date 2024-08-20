@@ -2,43 +2,39 @@ extends Node2D
 class_name BrushStroke
 
 # ------------------------------------------------------------------------------------------------
-const COLLIDER_NODE_NAME := "StrokeCollider"
-
-# ------------------------------------------------------------------------------------------------
 const MAX_POINTS 			:= 1000
 const MAX_PRESSURE_VALUE 	:= 255
 const MIN_PRESSURE_VALUE 	:= 30
 const MAX_PRESSURE_DIFF 	:= 20
+const COLLIDER_NODE_NAME 	:= "StrokeCollider"
 const GROUP_ONSCREEN 		:= "onscreen_stroke"
 
 const MAX_VECTOR2 := Vector2(2147483647, 2147483647)
 const MIN_VECTOR2 := -MAX_VECTOR2
 
 # ------------------------------------------------------------------------------------------------
-onready var _line2d: Line2D = $Line2D
-onready var _visibility_notifier: VisibilityNotifier2D = $VisibilityNotifier2D
-var color: Color setget set_color, get_color
+@onready var _line2d: Line2D = $Line2D
+@onready var _visibility_notifier: VisibleOnScreenNotifier2D = $VisibleOnScreenNotifier2D
+
+var color: Color: get = get_color, set = set_color
 var size: int
-var points: Array # Array<Vector2>
-var pressures: Array # Array<float>
+var points: Array[Vector2]
+var pressures: Array[float]
 var top_left_pos: Vector2
 var bottom_right_pos: Vector2
 
 # ------------------------------------------------------------------------------------------------
 func _ready():
 	_line2d.width_curve = Curve.new()
-	_line2d.joint_mode = Line2D.LINE_JOINT_ROUND
+	_line2d.texture = BrushStrokeTexture.texture
 	
-	# Anti aliasing
-	var aa_mode: int = Settings.get_value(Settings.RENDERING_AA_MODE, Config.DEFAULT_AA_MODE)
-	match aa_mode:
-		Types.AAMode.OPENGL_HINT:
-			_line2d.antialiased = true
-		Types.AAMode.TEXTURE_FILL:
-			_line2d.texture = BrushStrokeTexture.texture
-			_line2d.texture_mode = Line2D.LINE_TEXTURE_STRETCH
+	_visibility_notifier.screen_entered.connect(func(): add_to_group(GROUP_ONSCREEN))
+	_visibility_notifier.screen_exited.connect(func(): remove_from_group(GROUP_ONSCREEN))
 	
-	var rounding_mode: int = Settings.get_value(Settings.RENDERING_BRUSH_ROUNDING, Config.DEFAULT_BRUSH_ROUNDING)
+	var rounding_mode: int = Settings.get_rendering_value(
+		Settings.RENDERING_BRUSH_ROUNDING, Config.DEFAULT_BRUSH_ROUNDING
+	)
+	
 	match rounding_mode:
 		Types.BrushRoundingType.FLAT:
 			_line2d.end_cap_mode = Line2D.LINE_CAP_NONE
@@ -49,19 +45,40 @@ func _ready():
 	
 	refresh()
 
-# ------------------------------------------------------------------------------------------------
-func _on_VisibilityNotifier2D_viewport_entered(viewport: Viewport) -> void: 
-	add_to_group(GROUP_ONSCREEN)
-	visible = true
-	
-# ------------------------------------------------------------------------------------------------
-func _on_VisibilityNotifier2D_viewport_exited(viewport: Viewport) -> void:
-	remove_from_group(GROUP_ONSCREEN)
-	visible = false
-
 # -------------------------------------------------------------------------------------------------
 func _to_string() -> String:
 	return "Color: %s, Size: %d, Points: %s" % [color, size, points]
+
+# -------------------------------------------------------------------------------------------------
+func add_point(point: Vector2, pressure: float) -> void:
+	var converted_pressure := int(floor(pressure * MAX_PRESSURE_VALUE))
+	
+	# Smooth out pressure values (on Linux i sometimes get really high pressure spikes)
+	if !pressures.is_empty():
+		var last_pressure: int = pressures.back()
+		var pressure_diff := converted_pressure - last_pressure
+		if abs(pressure_diff) > MAX_PRESSURE_DIFF:
+			converted_pressure = last_pressure + sign(pressure_diff) * MAX_PRESSURE_DIFF
+	converted_pressure = clamp(converted_pressure, MIN_PRESSURE_VALUE, MAX_PRESSURE_VALUE)
+	
+	points.append(point)
+	pressures.append(converted_pressure)
+
+# ------------------------------------------------------------------------------------------------
+func remove_last_point() -> void:
+	if !points.is_empty():
+		points.pop_back()
+		pressures.pop_back()
+		_line2d.points.remove_at(_line2d.points.size() - 1)
+		_line2d.width_curve.remove_point(_line2d.width_curve.get_point_count() - 1)
+
+# ------------------------------------------------------------------------------------------------
+func remove_all_points() -> void:
+	if !points.is_empty():
+		points.clear()
+		pressures.clear()
+		_line2d.points = PackedVector2Array()
+		_line2d.width_curve.clear_points()
 
 # -------------------------------------------------------------------------------------------------
 func enable_collider(enable: bool) -> void:
@@ -86,37 +103,6 @@ func enable_collider(enable: bool) -> void:
 			idx += 1
 		add_child(body)
 
-# -------------------------------------------------------------------------------------------------
-func add_point(point: Vector2, pressure: float) -> void:
-	var converted_pressure := int(floor(pressure * MAX_PRESSURE_VALUE))
-	
-	# Smooth out pressure values (on Linux i sometimes get really high pressure spikes)
-	if !pressures.empty():
-		var last_pressure: int = pressures.back()
-		var pressure_diff := converted_pressure - last_pressure
-		if abs(pressure_diff) > MAX_PRESSURE_DIFF:
-			converted_pressure = last_pressure + sign(pressure_diff) * MAX_PRESSURE_DIFF
-	converted_pressure = clamp(converted_pressure, MIN_PRESSURE_VALUE, MAX_PRESSURE_VALUE)
-	
-	points.append(point)
-	pressures.append(converted_pressure)
-
-# ------------------------------------------------------------------------------------------------
-func remove_last_point() -> void:
-	if !points.empty():
-		points.pop_back()
-		pressures.pop_back()
-		_line2d.points.remove(_line2d.points.size() - 1)
-		_line2d.width_curve.remove_point(_line2d.width_curve.get_point_count() - 1)
-
-# ------------------------------------------------------------------------------------------------
-func remove_all_points() -> void:
-	if !points.empty():
-		points.clear()
-		pressures.clear()
-		_line2d.points = PoolVector2Array()
-		_line2d.width_curve.clear_points()
-
 # ------------------------------------------------------------------------------------------------
 func refresh() -> void:
 	var max_pressure := float(MAX_PRESSURE_VALUE)
@@ -124,7 +110,7 @@ func refresh() -> void:
 	_line2d.clear_points()
 	_line2d.width_curve.clear_points()
 	
-	if points.empty():
+	if points.is_empty():
 		return
 	
 	_line2d.default_color = color

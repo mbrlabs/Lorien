@@ -1,282 +1,131 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=3 uid="uid://6jilea2pwjuk"]
 
-[ext_resource path="res://UI/Themes/theme_dark.tres" type="Theme" id=1]
-[ext_resource path="res://UI/Dialogs/EditPaletteDialog.gd" type="Script" id=2]
-[ext_resource path="res://UI/Components/PaletteButton.tscn" type="PackedScene" id=3]
+[ext_resource type="Script" path="res://UI/Dialogs/EditPaletteDialog.gd" id="2"]
+[ext_resource type="PackedScene" path="res://UI/Components/PaletteButton.tscn" id="3"]
 
-[sub_resource type="StyleBoxFlat" id=1]
-bg_color = Color( 0.270588, 0.27451, 0.294118, 1 )
+[sub_resource type="StyleBoxFlat" id="1"]
+bg_color = Color(0.270588, 0.27451, 0.294118, 1)
 expand_margin_left = 1.0
 expand_margin_right = 1.0
 
-[sub_resource type="StyleBoxEmpty" id=2]
+[sub_resource type="StyleBoxEmpty" id="2"]
 
-[node name="EditPaletteDialog" type="WindowDialog"]
-margin_right = 495.0
-margin_bottom = 474.0
-rect_min_size = Vector2( 495, 474 )
-theme = ExtResource( 1 )
-popup_exclusive = true
-window_title = "EDIT_PALETTE_DIALOG_TITLE"
-script = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="EditPaletteDialog" type="MarginContainer"]
+offset_right = 486.0
+offset_bottom = 495.0
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+script = ExtResource("2")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-custom_constants/margin_right = 12
-custom_constants/margin_top = 12
-custom_constants/margin_left = 12
-custom_constants/margin_bottom = 12
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 12
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
-margin_left = 12.0
-margin_top = 12.0
-margin_right = 483.0
-margin_bottom = 462.0
-custom_constants/separation = 12
-
-[node name="ColorPicker" type="ColorPicker" parent="MarginContainer/HBoxContainer"]
-margin_left = 12.0
-margin_top = 12.0
-margin_right = 317.0
-margin_bottom = 462.0
+[node name="ColorPicker" type="ColorPicker" parent="HBoxContainer"]
+layout_mode = 2
 edit_alpha = false
-presets_enabled = false
 presets_visible = false
 
-[node name="VSeparator" type="VSeparator" parent="MarginContainer/HBoxContainer"]
-margin_left = 317.0
-margin_right = 321.0
-margin_bottom = 450.0
-custom_styles/separator = SubResource( 1 )
+[node name="VSeparator" type="VSeparator" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("1")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
-margin_left = 333.0
-margin_right = 471.0
-margin_bottom = 450.0
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_constants/separation = 6
+theme_override_constants/separation = 6
 
-[node name="NameLineEdit" type="LineEdit" parent="MarginContainer/HBoxContainer/VBoxContainer"]
-margin_right = 138.0
-margin_bottom = 21.0
+[node name="NameLineEdit" type="LineEdit" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
 
-[node name="HSeparator" type="HSeparator" parent="MarginContainer/HBoxContainer/VBoxContainer"]
-margin_top = 27.0
-margin_right = 138.0
-margin_bottom = 31.0
-custom_styles/separator = SubResource( 2 )
+[node name="HSeparator" type="HSeparator" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("2")
 
-[node name="ColorGrid" type="GridContainer" parent="MarginContainer/HBoxContainer/VBoxContainer"]
-margin_top = 37.0
-margin_right = 138.0
-margin_bottom = 388.0
+[node name="ColorGrid" type="GridContainer" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
 size_flags_vertical = 3
 columns = 4
 
-[node name="PaletteButton" parent="MarginContainer/HBoxContainer/VBoxContainer/ColorGrid" instance=ExtResource( 3 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 31.0
-margin_bottom = 31.0
+[node name="PaletteButton" parent="HBoxContainer/VBoxContainer/ColorGrid" instance=ExtResource("3")]
+layout_mode = 2
 
-[node name="PaletteButton2" parent="MarginContainer/HBoxContainer/VBoxContainer/ColorGrid" instance=ExtResource( 3 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 35.0
-margin_right = 66.0
-margin_bottom = 31.0
+[node name="PaletteButton2" parent="HBoxContainer/VBoxContainer/ColorGrid" instance=ExtResource("3")]
+layout_mode = 2
 
-[node name="PaletteButton3" parent="MarginContainer/HBoxContainer/VBoxContainer/ColorGrid" instance=ExtResource( 3 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 70.0
-margin_right = 101.0
-margin_bottom = 31.0
+[node name="PaletteButton3" parent="HBoxContainer/VBoxContainer/ColorGrid" instance=ExtResource("3")]
+layout_mode = 2
 
-[node name="PaletteButton4" parent="MarginContainer/HBoxContainer/VBoxContainer/ColorGrid" instance=ExtResource( 3 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 105.0
-margin_right = 136.0
-margin_bottom = 31.0
+[node name="PaletteButton4" parent="HBoxContainer/VBoxContainer/ColorGrid" instance=ExtResource("3")]
+layout_mode = 2
 
-[node name="PaletteButton5" parent="MarginContainer/HBoxContainer/VBoxContainer/ColorGrid" instance=ExtResource( 3 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 35.0
-margin_right = 31.0
-margin_bottom = 66.0
+[node name="PaletteButton5" parent="HBoxContainer/VBoxContainer/ColorGrid" instance=ExtResource("3")]
+layout_mode = 2
 
-[node name="PaletteButton6" parent="MarginContainer/HBoxContainer/VBoxContainer/ColorGrid" instance=ExtResource( 3 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 35.0
-margin_top = 35.0
-margin_right = 66.0
-margin_bottom = 66.0
+[node name="PaletteButton6" parent="HBoxContainer/VBoxContainer/ColorGrid" instance=ExtResource("3")]
+layout_mode = 2
 
-[node name="PaletteButton7" parent="MarginContainer/HBoxContainer/VBoxContainer/ColorGrid" instance=ExtResource( 3 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 70.0
-margin_top = 35.0
-margin_right = 101.0
-margin_bottom = 66.0
+[node name="PaletteButton7" parent="HBoxContainer/VBoxContainer/ColorGrid" instance=ExtResource("3")]
+layout_mode = 2
 
-[node name="PaletteButton8" parent="MarginContainer/HBoxContainer/VBoxContainer/ColorGrid" instance=ExtResource( 3 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 105.0
-margin_top = 35.0
-margin_right = 136.0
-margin_bottom = 66.0
+[node name="PaletteButton8" parent="HBoxContainer/VBoxContainer/ColorGrid" instance=ExtResource("3")]
+layout_mode = 2
 
-[node name="PaletteButton9" parent="MarginContainer/HBoxContainer/VBoxContainer/ColorGrid" instance=ExtResource( 3 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 70.0
-margin_right = 31.0
-margin_bottom = 101.0
+[node name="PaletteButton9" parent="HBoxContainer/VBoxContainer/ColorGrid" instance=ExtResource("3")]
+layout_mode = 2
 
-[node name="PaletteButton10" parent="MarginContainer/HBoxContainer/VBoxContainer/ColorGrid" instance=ExtResource( 3 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 35.0
-margin_top = 70.0
-margin_right = 66.0
-margin_bottom = 101.0
+[node name="PaletteButton10" parent="HBoxContainer/VBoxContainer/ColorGrid" instance=ExtResource("3")]
+layout_mode = 2
 
-[node name="PaletteButton11" parent="MarginContainer/HBoxContainer/VBoxContainer/ColorGrid" instance=ExtResource( 3 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 70.0
-margin_top = 70.0
-margin_right = 101.0
-margin_bottom = 101.0
+[node name="PaletteButton11" parent="HBoxContainer/VBoxContainer/ColorGrid" instance=ExtResource("3")]
+layout_mode = 2
 
-[node name="PaletteButton12" parent="MarginContainer/HBoxContainer/VBoxContainer/ColorGrid" instance=ExtResource( 3 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 105.0
-margin_top = 70.0
-margin_right = 136.0
-margin_bottom = 101.0
+[node name="PaletteButton12" parent="HBoxContainer/VBoxContainer/ColorGrid" instance=ExtResource("3")]
+layout_mode = 2
 
-[node name="PaletteButton13" parent="MarginContainer/HBoxContainer/VBoxContainer/ColorGrid" instance=ExtResource( 3 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 105.0
-margin_right = 31.0
-margin_bottom = 136.0
+[node name="PaletteButton13" parent="HBoxContainer/VBoxContainer/ColorGrid" instance=ExtResource("3")]
+layout_mode = 2
 
-[node name="PaletteButton14" parent="MarginContainer/HBoxContainer/VBoxContainer/ColorGrid" instance=ExtResource( 3 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 35.0
-margin_top = 105.0
-margin_right = 66.0
-margin_bottom = 136.0
+[node name="PaletteButton14" parent="HBoxContainer/VBoxContainer/ColorGrid" instance=ExtResource("3")]
+layout_mode = 2
 
-[node name="PaletteButton15" parent="MarginContainer/HBoxContainer/VBoxContainer/ColorGrid" instance=ExtResource( 3 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 70.0
-margin_top = 105.0
-margin_right = 101.0
-margin_bottom = 136.0
+[node name="PaletteButton15" parent="HBoxContainer/VBoxContainer/ColorGrid" instance=ExtResource("3")]
+layout_mode = 2
 
-[node name="PaletteButton16" parent="MarginContainer/HBoxContainer/VBoxContainer/ColorGrid" instance=ExtResource( 3 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 105.0
-margin_top = 105.0
-margin_right = 136.0
-margin_bottom = 136.0
+[node name="PaletteButton16" parent="HBoxContainer/VBoxContainer/ColorGrid" instance=ExtResource("3")]
+layout_mode = 2
 
-[node name="PaletteButton17" parent="MarginContainer/HBoxContainer/VBoxContainer/ColorGrid" instance=ExtResource( 3 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 140.0
-margin_right = 31.0
-margin_bottom = 171.0
+[node name="PaletteButton17" parent="HBoxContainer/VBoxContainer/ColorGrid" instance=ExtResource("3")]
+layout_mode = 2
 
-[node name="PaletteButton18" parent="MarginContainer/HBoxContainer/VBoxContainer/ColorGrid" instance=ExtResource( 3 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 35.0
-margin_top = 140.0
-margin_right = 66.0
-margin_bottom = 171.0
+[node name="PaletteButton18" parent="HBoxContainer/VBoxContainer/ColorGrid" instance=ExtResource("3")]
+layout_mode = 2
 
-[node name="PaletteButton19" parent="MarginContainer/HBoxContainer/VBoxContainer/ColorGrid" instance=ExtResource( 3 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 70.0
-margin_top = 140.0
-margin_right = 101.0
-margin_bottom = 171.0
+[node name="PaletteButton19" parent="HBoxContainer/VBoxContainer/ColorGrid" instance=ExtResource("3")]
+layout_mode = 2
 
-[node name="PaletteButton20" parent="MarginContainer/HBoxContainer/VBoxContainer/ColorGrid" instance=ExtResource( 3 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 105.0
-margin_top = 140.0
-margin_right = 136.0
-margin_bottom = 171.0
+[node name="PaletteButton20" parent="HBoxContainer/VBoxContainer/ColorGrid" instance=ExtResource("3")]
+layout_mode = 2
 
-[node name="PaletteButton21" parent="MarginContainer/HBoxContainer/VBoxContainer/ColorGrid" instance=ExtResource( 3 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 175.0
-margin_right = 31.0
-margin_bottom = 206.0
+[node name="PaletteButton21" parent="HBoxContainer/VBoxContainer/ColorGrid" instance=ExtResource("3")]
+layout_mode = 2
 
-[node name="PaletteButton22" parent="MarginContainer/HBoxContainer/VBoxContainer/ColorGrid" instance=ExtResource( 3 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 35.0
-margin_top = 175.0
-margin_right = 66.0
-margin_bottom = 206.0
+[node name="PaletteButton22" parent="HBoxContainer/VBoxContainer/ColorGrid" instance=ExtResource("3")]
+layout_mode = 2
 
-[node name="PaletteButton23" parent="MarginContainer/HBoxContainer/VBoxContainer/ColorGrid" instance=ExtResource( 3 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 70.0
-margin_top = 175.0
-margin_right = 101.0
-margin_bottom = 206.0
+[node name="PaletteButton23" parent="HBoxContainer/VBoxContainer/ColorGrid" instance=ExtResource("3")]
+layout_mode = 2
 
-[node name="PaletteButton24" parent="MarginContainer/HBoxContainer/VBoxContainer/ColorGrid" instance=ExtResource( 3 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 105.0
-margin_top = 175.0
-margin_right = 136.0
-margin_bottom = 206.0
+[node name="PaletteButton24" parent="HBoxContainer/VBoxContainer/ColorGrid" instance=ExtResource("3")]
+layout_mode = 2
 
-[node name="AddColorButton" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
-margin_top = 394.0
-margin_right = 138.0
-margin_bottom = 419.0
+[node name="AddColorButton" type="Button" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
 text = "Add Color"
 
-[node name="RemoveColorButton" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
-margin_top = 425.0
-margin_right = 138.0
-margin_bottom = 450.0
+[node name="RemoveColorButton" type="Button" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
 text = "Remove Color"
-
-[connection signal="popup_hide" from="." to="." method="_on_EditPaletteDialog_popup_hide"]
-[connection signal="color_changed" from="MarginContainer/HBoxContainer/ColorPicker" to="." method="_on_ColorPicker_color_changed"]
-[connection signal="text_changed" from="MarginContainer/HBoxContainer/VBoxContainer/NameLineEdit" to="." method="_on_NameLineEdit_text_changed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/AddColorButton" to="." method="_on_AddColorButton_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/RemoveColorButton" to="." method="_on_RemoveColorButton_pressed"]
