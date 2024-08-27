@@ -87,7 +87,7 @@ func _zoom_canvas(target_zoom: float, anchor: Vector2) -> void:
 
 	# Pan canvas to keep content fixed under the cursor
 	var zoom_center = anchor - offset
-	var ratio = 1.0 - target_zoom / _current_zoom_level
+	var ratio = _current_zoom_level / target_zoom - 1.0
 	offset -= zoom_center * ratio
 	
 	_current_zoom_level = target_zoom
