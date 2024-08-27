@@ -21,10 +21,10 @@ func export_svg(strokes: Array[BrushStroke], background: Color, path: String) ->
 	var max_dim := BrushStroke.MIN_VECTOR2
 	var min_dim := BrushStroke.MAX_VECTOR2
 	for stroke in strokes:
-		min_dim.x = min(min_dim.x, stroke.top_left_pos.x)
-		min_dim.y = min(min_dim.y, stroke.top_left_pos.y)
-		max_dim.x = max(max_dim.x, stroke.bottom_right_pos.x)
-		max_dim.y = max(max_dim.y, stroke.bottom_right_pos.y)
+		min_dim.x = min(min_dim.x, stroke.top_left_pos.x + stroke.global_position.x)
+		min_dim.y = min(min_dim.y, stroke.top_left_pos.y + stroke.global_position.y)
+		max_dim.x = max(max_dim.x, stroke.bottom_right_pos.x + stroke.global_position.x)
+		max_dim.y = max(max_dim.y, stroke.bottom_right_pos.y + stroke.global_position.y)
 	var size := max_dim - min_dim
 	var margin_size := size * EDGE_MARGIN
 	size += margin_size*2.0
