@@ -238,6 +238,8 @@ func _on_files_dropped(files: PackedStringArray) -> void:
 
 # -------------------------------------------------------------------------------------------------
 func _make_project_active(project: Project) -> void:
+	var previous_project: Project = ProjectManager.get_active_project()
+	
 	ProjectManager.make_project_active(project)
 	_canvas.use_project(project)
 	
@@ -245,6 +247,8 @@ func _make_project_active(project: Project) -> void:
 		_menubar.make_tab(project)
 	_menubar.set_tab_active(project)
 	
+	_toolbar._on_active_project_changed(previous_project, project)
+
 # -------------------------------------------------------------------------------------------------
 func _is_mouse_on_ui() -> bool:
 	var on_ui := Utils.is_mouse_in_control(_menubar)

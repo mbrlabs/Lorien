@@ -4,6 +4,7 @@ extends TextureButton
 # -------------------------------------------------------------------------------------------------
 @export var hover_tint := Color.WHITE
 @export var pressed_tint := Color.WHITE
+@export var disabled_tint := Color(0.4, 0.4, 0.4)
 var _normal_tint: Color
 
 # -------------------------------------------------------------------------------------------------
@@ -11,39 +12,43 @@ func _ready() -> void:
 	_normal_tint = self_modulate
 	mouse_entered.connect(_on_mouse_entered)
 	mouse_exited.connect(_on_mouse_exited)
-	pressed.connect(_on_pressed)
-
-	if toggle_mode && button_pressed:
-		self_modulate = pressed_tint
+	toggled.connect(_on_toggled)
+	_update_tint()
 
 # -------------------------------------------------------------------------------------------------
 func _exit_tree() -> void:
 	mouse_entered.disconnect(_on_mouse_entered)
 	mouse_exited.disconnect(_on_mouse_exited)
-	pressed.disconnect(_on_pressed)
+	toggled.disconnect(_on_toggled)
 
 # -------------------------------------------------------------------------------------------------
 func _on_mouse_entered() -> void:
-	if !button_pressed:
-		self_modulate = hover_tint
+	call_deferred("_update_tint")
 
 # -------------------------------------------------------------------------------------------------
 func _on_mouse_exited() -> void:
-	if !button_pressed:
-		self_modulate = _normal_tint
+	call_deferred("_update_tint")
 
 # -------------------------------------------------------------------------------------------------
 func toggle() -> void:
-	if button_pressed:
-		self_modulate = _normal_tint
-	else:
-		self_modulate = pressed_tint
 	button_pressed = !button_pressed
 
 # -------------------------------------------------------------------------------------------------
-func _on_pressed() -> void:
-	if toggle_mode:
-		if button_pressed:
-			self_modulate = pressed_tint
-		else:
-			self_modulate = _normal_tint
+func _on_toggled(_toggled_on: bool) -> void:
+	_update_tint()
+
+# -------------------------------------------------------------------------------------------------
+func set_is_disabled(value: bool) -> void:
+	disabled = value
+	_update_tint()
+
+# -------------------------------------------------------------------------------------------------
+func _update_tint() -> void:
+	if disabled:
+		self_modulate = disabled_tint
+	elif button_pressed:
+		self_modulate = pressed_tint
+	elif is_hovered():
+		self_modulate = hover_tint
+	else:
+		self_modulate = _normal_tint
