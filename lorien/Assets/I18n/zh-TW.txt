@@ -1,4 +1,4 @@
-LANGUAGE_NAME Traditional Chinese
+LANGUAGE_NAME 漢語
 
 # -----------------------------------------------------------------------------
 # Menu strings

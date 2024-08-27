@@ -17,21 +17,19 @@ MENU_EXPORT_PNG     إخراج اللوحة PNG
 # -----------------------------------------------------------------------------
 # Toolbar
 # -----------------------------------------------------------------------------
-TOOLBAR_TOOLTIP_NEW_FILE        إنشاء ملف جديد (CTRL+N)
-TOOLBAR_TOOLTIP_OPEN_FILE       فتح ملف (CTRL+O)
-TOOLBAR_TOOLTIP_SAVE_FILE       حفظ ملف (CTRL+S)
-TOOLBAR_TOOLTIP_UNDO            تراجع عن الإجراء (CTRL+Z)
-TOOLBAR_TOOLTIP_REDO            إعادة الإجراء (CTRL+Y)
-TOOLBAR_TOOLTIP_BRUSH_TOOL      الفرشاة (B)
-TOOLBAR_TOOLTIP_RECTANGLE_TOOL  المستطيل (R)
-TOOLBAR_TOOLTIP_CIRCLE_TOOL     الدائرة (C)
-TOOLBAR_TOOLTIP_LINE_TOOL       سطر (L)
-TOOLBAR_TOOLTIP_ERASER_TOOL     ممحاة (E)
-TOOLBAR_TOOLTIP_SELECT_TOOL     أداة الاختيار (S)
+TOOLBAR_TOOLTIP_NEW_FILE        إنشاء ملف جديد
+TOOLBAR_TOOLTIP_OPEN_FILE       فتح ملف
+TOOLBAR_TOOLTIP_SAVE_FILE       حفظ ملف
+TOOLBAR_TOOLTIP_UNDO            تراجع عن الإجراء
+TOOLBAR_TOOLTIP_REDO            إعادة الإجراء
+TOOLBAR_TOOLTIP_BRUSH_TOOL      الفرشاة
+TOOLBAR_TOOLTIP_RECTANGLE_TOOL  المستطيل
+TOOLBAR_TOOLTIP_CIRCLE_TOOL     الدائرة
+TOOLBAR_TOOLTIP_LINE_TOOL       سطر
+TOOLBAR_TOOLTIP_ERASER_TOOL     ممحاة
 TOOLBAR_TOOLTIP_BRUSH_COLOR     لون الفرشاة
 TOOLBAR_TOOLTIP_BRUSH_SIZE      مقاس الفرشاة
 TOOLBAR_TOOLTIP_CANVAS_COLOR    لون اللوحة
-TOOLBAR_TOOLTIP_GRID 			إظهار الشبكة
 TOOLBAR_FULLSCREEN_TOGGLE       تبديل ملء الشاشة
 
 # -----------------------------------------------------------------------------
@@ -70,21 +68,19 @@ SETTINGS_THEME                  الشكل
 SETTINGS_UI_SCALE               حجم واجهة المستخدم
 SETTINGS_UI_SCALE_AUTO          تلقائي
 SETTINGS_UI_SCALE_CUSTOM        مخصص              
-SETTINGS_AA_METHOD              طريقة تنعيم الحافات
-SETTINGS_AA_METHOD_NONE         لا شيئ
 SETTINGS_FPS_FOREGROUND         عدد الأطر في الثانية(الأمامية)
 SETTINGS_FPS_BACKGROUND         عدد الأطر في الثانية(الخلفية)
 SETTINGS_BRUSH_CAPS             وضع تدوير الفرشاة
 SETTINGS_BRUSH_CAPS_FLAT        مسطح
 SETTINGS_BRUSH_CAPS_ROUND       دائري
-SETTINGS_RESTART_NOTICE  		    مطلوب إعادة التشغيل لتطبيق الإعدادات الجديدة
+SETTINGS_RESTART_NOTICE  	    مطلوب إعادة التشغيل لتطبيق الإعدادات الجديدة
 
 # -----------------------------------------------------------------------------
 # About dialog strings
 # -----------------------------------------------------------------------------
 
 ABOUT_DIALOG_TITLE              حول
-ABOUT_DIALOG_COPYRIGHT          © 2021-2022 Marcus Brummer & contributors 
+ABOUT_DIALOG_COPYRIGHT          © 2021-2024 Marcus Brummer & contributors 
 ABOUT_DIALOG_LICSENSE           Lorien is licensed under:
 ABOUT_DIALOG_BASED_ON           Lorien is based on:
 ABOUT_DIALOG_EASTEREGG          Easteregg character:
@@ -127,7 +123,7 @@ EDIT_PALETTE_DIALOG_TITLE 		تعديل لوح الألوان
 
 ERROR_NOT_IMPLEMENTED               لم تنفذ بعد.
 ERROR_AUTOSAVE_NOT_IMPLEMENTED      لم يتم تنفيذ "الحفظ التلقائي" لملف "بدون عنوان". يرجى حفظه يدويًا.
-ALERT_EDITING_BUILTIN_PALETTE       تعديل لوحات الألوان المدمجة غير ممكن. إذا كنت ترغب في تخصيص هذه اللوحة ، يمكنك عمل نسخة و تعديلها بدلاً من ذلك. # TODO
+ALERT_EDITING_BUILTIN_PALETTE       تعديل لوحات الألوان المدمجة غير ممكن. إذا كنت ترغب في تخصيص هذه اللوحة ، يمكنك عمل نسخة و تعديلها بدلاً من ذلك.
 ALERT_DELETING_BUILTIN_PALETTE      لا يمكن حذف لوحات الألوان المدمجة في البرنامج.
 
 # -----------------------------------------------------------------------------
