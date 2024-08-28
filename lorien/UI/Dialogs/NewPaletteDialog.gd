@@ -31,7 +31,7 @@ func _on_SaveButton_pressed() -> void:
 		
 		if palette != null:
 			PaletteManager.save()
-			emit_signal("new_palette_created", palette)
+			new_palette_created.emit(palette)
 			duplicate_current_palette = false
 			get_parent().hide()
 			

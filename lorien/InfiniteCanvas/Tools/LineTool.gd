@@ -43,7 +43,7 @@ func tool_event(event: InputEvent) -> void:
 
 # -------------------------------------------------------------------------------------------------
 func _add_point_at_mouse_pos(pressure: float) -> Vector2:
-	var brush_position: Vector2 = _cursor.global_position
+	var brush_position := _cursor.global_position
 	pressure = pressure_curve.sample(pressure)
 	add_stroke_point(brush_position, pressure)
 	return brush_position

@@ -26,7 +26,7 @@ func optimize(s: BrushStroke) -> void:
 	filtered_pressures.append(s.pressures.front())
 	
 	var previous_angle := 0.0
-	for i in range(1, s.points.size()):
+	for i: int in range(1, s.points.size()):
 		var prev_point := s.points[i-1]
 		var point := s.points[i]
 		var pressure = s.pressures[i]

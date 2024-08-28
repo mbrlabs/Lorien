@@ -70,7 +70,7 @@ func _do_pan(pan: Vector2) -> void:
 
 # -------------------------------------------------------------------------------------------------
 func _do_zoom_scroll(step: int) -> void:
-	var new_zoom = _to_nearest_zoom_step(_current_zoom_level) * pow(ZOOM_INCREMENT, step)
+	var new_zoom := _to_nearest_zoom_step(_current_zoom_level) * pow(ZOOM_INCREMENT, step)
 	_zoom_canvas(new_zoom, get_local_mouse_position())
 
 # -------------------------------------------------------------------------------------------------
@@ -86,8 +86,8 @@ func _zoom_canvas(target_zoom: float, anchor: Vector2) -> void:
 		return
 
 	# Pan canvas to keep content fixed under the cursor
-	var zoom_center = anchor - offset
-	var ratio = _current_zoom_level / target_zoom - 1.0
+	var zoom_center := anchor - offset
+	var ratio := _current_zoom_level / target_zoom - 1.0
 	offset -= zoom_center * ratio
 	
 	_current_zoom_level = target_zoom

@@ -11,13 +11,14 @@ const STEP_STATIC := 4
 var _start_position_top_left: Vector2
 
 # -------------------------------------------------------------------------------------------------
-var sin_arr : Array
-var cos_arr : Array
+var sin_arr : Array[float]
+var cos_arr : Array[float]
 
+# -------------------------------------------------------------------------------------------------
 func _init():
 	sin_arr.resize(360)
 	cos_arr.resize(360)
-	for i in 360:
+	for i: int in 360:
 		sin_arr[i] = sin(deg_to_rad(i))
 		cos_arr[i] = cos(deg_to_rad(i))
 
@@ -58,7 +59,7 @@ func _make_ellipse(pressure: float, step: int, should_draw_circle: bool) -> void
 		r2 = r1
 
 	var dir := (_cursor.global_position -_start_position_top_left);
-	var center : Vector2
+	var center: Vector2
 
 	if dir.x >= 0 && dir.y >= 0:
 		center = _start_position_top_left + Vector2(r1, r2)
@@ -69,7 +70,7 @@ func _make_ellipse(pressure: float, step: int, should_draw_circle: bool) -> void
 	else:
 		center = _start_position_top_left + Vector2(r1, -r2)
 
-	for i in range(0, 360, step):
+	for i: int in range(0, 360, step):
 		var point := Vector2(
 			center.x + r1 * sin_arr[i],
 			center.y + r2 * cos_arr[i]

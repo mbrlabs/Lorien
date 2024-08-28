@@ -92,7 +92,7 @@ func _ready():
 	_create_active_default_project()
 	
 	# Open project passed as CLI argument
-	for arg in OS.get_cmdline_args():
+	for arg: String in OS.get_cmdline_args():
 		if Utils.is_valid_lorien_file(arg):
 			_on_open_project(arg)
 	
@@ -184,7 +184,7 @@ func _toggle_player() -> void:
 func _save_state() -> void:
 	# Open projects
 	var open_projects: Array[String]
-	for project in ProjectManager.get_open_projects():
+	for project: Project in ProjectManager.get_open_projects():
 		open_projects.append(project.filepath)
 	StatePersistence.set_value(StatePersistence.OPEN_PROJECTS, open_projects)
 	
@@ -232,7 +232,7 @@ func _toggle_zen_mode() -> void:
 
 # -------------------------------------------------------------------------------------------------
 func _on_files_dropped(files: PackedStringArray) -> void:
-	for file in files:
+	for file: String in files:
 		if Utils.is_valid_lorien_file(file):
 			_on_open_project(file)
 

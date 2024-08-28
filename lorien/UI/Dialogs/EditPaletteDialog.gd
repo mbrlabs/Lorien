@@ -42,7 +42,7 @@ func setup(palette: Palette, color_index: int) -> void:
 	
 	# Fill color grid
 	var index := 0
-	for color in palette.colors:
+	for color: Color in palette.colors:
 		var button: PaletteButton = PALETTE_BUTTON.instantiate()
 		_color_grid.add_child(button)
 		button.color = color
@@ -115,9 +115,9 @@ func _on_RemoveColorButton_pressed() -> void:
 		_palette_edited = true
 		
 		# Create a new color array with the color removed
-		var arr := []
+		var arr: Array[Color]
 		var index := 0
-		for c in _palette.colors:
+		for c: Color in _palette.colors:
 			if index != _active_button_index:
 				arr.append(c)
 			index += 1

@@ -24,8 +24,8 @@ class ParseResult:
 
 # -------------------------------------------------------------------------------------------------
 func load_files() -> ParseResult:
-	var result = ParseResult.new()
-	for f in _get_i18n_files():
+	var result := ParseResult.new()
+	for f: String in _get_i18n_files():
 		var file := FileAccess.open(f, FileAccess.READ)
 		if file != null:
 			var position := Translation.new()
@@ -46,8 +46,8 @@ func load_files() -> ParseResult:
 				
 				var split_index := line.find(" ")
 				if split_index >= 0:
-					var key: String = line.substr(0, split_index)
-					var value: String = line.substr(split_index, line.length() - 1)
+					var key := line.substr(0, split_index)
+					var value := line.substr(split_index, line.length() - 1)
 					
 					# Remove inline comments
 					var comment_index := value.find("#")
@@ -74,9 +74,8 @@ func _i18n_filter_shortcut_list(action_name: String) -> String:
 		return "INVALID_ACTION %s" % action_name
 	
 	var keybindings := PackedStringArray()
-	for e in InputMap.action_get_events(action_name):
+	for e: InputEvent in InputMap.action_get_events(action_name):
 		if e is InputEventKey:
-			e = e as InputEventKey
 			keybindings.append(OS.get_keycode_string(e.get_keycode_with_modifiers()))
 
 	if len(keybindings) == 0:

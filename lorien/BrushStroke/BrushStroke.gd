@@ -83,14 +83,14 @@ func remove_all_points() -> void:
 # -------------------------------------------------------------------------------------------------
 func enable_collider(enable: bool) -> void:
 	# Remove current collider
-	var collider = get_node_or_null(COLLIDER_NODE_NAME)
-	if collider != null:
-		remove_child(collider)
-		collider.queue_free()
+	var body: StaticBody2D = get_node_or_null(COLLIDER_NODE_NAME)
+	if body != null:
+		remove_child(body)
+		body.queue_free()
 	
 	# Create new collider
 	if enable:
-		var body := StaticBody2D.new()
+		body = StaticBody2D.new()
 		body.name = COLLIDER_NODE_NAME
 		var idx := 0
 		while idx < points.size()-1:
@@ -120,7 +120,7 @@ func refresh() -> void:
 	var top_left := MAX_VECTOR2
 	var bottom_right := MIN_VECTOR2
 	var curve_step: float = 1.0 / pressures.size()
-	for point in points:
+	for point: Vector2 in points:
 		# Add the point
 		_line2d.add_point(point)
 		var pressure: float = pressures[p_idx]

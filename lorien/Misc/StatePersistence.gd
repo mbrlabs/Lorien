@@ -17,7 +17,7 @@ func _ready():
 
 # -------------------------------------------------------------------------------------------------
 func _load_state() -> int:
-	var err = _config_file.load(Config.STATE_PATH)
+	var err := _config_file.load(Config.STATE_PATH)
 	if err == ERR_FILE_NOT_FOUND:
 		pass
 	elif err != OK:
@@ -27,7 +27,7 @@ func _load_state() -> int:
 
 # -------------------------------------------------------------------------------------------------
 func _save_state() -> int:
-	var err = _config_file.save(Config.STATE_PATH)
+	var err := _config_file.save(Config.STATE_PATH)
 	if err == ERR_FILE_NOT_FOUND:
 		pass
 	elif err != OK:

@@ -28,7 +28,7 @@ static func save_project(project: Project) -> void:
 	file.store_pascal_string(_dict_to_metadata_str(project.meta_data))
 	
 	# Stroke data
-	for stroke in project.strokes:
+	for stroke: BrushStroke in project.strokes:
 		# Type
 		file.store_8(TYPE_BRUSH_STROKE)
 		
@@ -97,7 +97,7 @@ static func load_project(project: Project) -> void:
 				var point_count := file.get_16()
 
 				# Points
-				for i in point_count:
+				for i: int in point_count:
 					var x := file.get_float()
 					var y := file.get_float()
 					var pressure := file.get_8()
@@ -133,7 +133,7 @@ static func _dict_to_metadata_str(d: Dictionary) -> String:
 # -------------------------------------------------------------------------------------------------
 static func _metadata_str_to_dict(s: String) -> Dictionary:
 	var meta_dict := {}
-	for kv in s.split(",", false):
+	for kv: String in s.split(",", false):
 		var kv_split: PackedStringArray = kv.split("=", false)
 		if kv_split.size() != 2:
 			print_debug("Invalid metadata key-value pair: %s" % kv)

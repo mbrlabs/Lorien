@@ -48,7 +48,7 @@ func _process(delta: float) -> void:
 			Settings.GENERAL_PRESSURE_SENSITIVITY, Config.DEFAULT_PRESSURE_SENSITIVITY
 		)
 		
-		var point_pressure = pressure_curve.sample(_current_pressure) * sensitivity
+		var point_pressure := pressure_curve.sample(_current_pressure) * sensitivity
 		if _first_point:
 			point_pressure *= 1.4
 			_first_point = false
@@ -72,7 +72,7 @@ func _is_stroke_a_dot() -> bool:
 		return true
 	
 	if stroke.points.size() == 2:
-		var dist: float = stroke.points[0].distance_to(stroke.points[1])
+		var dist := stroke.points[0].distance_to(stroke.points[1])
 		if dist <= DOT_MAX_DISTANCE_THRESHOLD:
 			return true
 	

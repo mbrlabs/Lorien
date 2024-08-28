@@ -82,28 +82,28 @@ func _load_project(project: Project) -> void:
 
 # -------------------------------------------------------------------------------------------------
 func get_open_project_by_filepath(filepath: String) -> Project:
-	for p in _open_projects:
+	for p: Project in _open_projects:
 		if p.filepath == filepath:
 			return p
 	return null
 
 # -------------------------------------------------------------------------------------------------
 func get_project_by_id(id: int) -> Project:
-	for p in _open_projects:
+	for p: Project in _open_projects:
 		if p.id == id:
 			return p
 	return null
 
 # -------------------------------------------------------------------------------------------------
 func has_unsaved_changes() -> bool:
-	for p in _open_projects:
+	for p: Project in _open_projects:
 		if p.dirty:
 			return true 
 	return false
 
 # -------------------------------------------------------------------------------------------------
 func has_unsaved_projects() -> bool:
-	for p in _open_projects:
+	for p: Project in _open_projects:
 		if p.dirty && p.filepath.is_empty():
 			return true
 	return false

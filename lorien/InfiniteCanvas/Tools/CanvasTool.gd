@@ -68,7 +68,7 @@ func add_subdivided_line(from: Vector2, to: Vector2, pressure: float) -> void:
 	if do_subdiv:
 		var subdiv_length := dist * SUBDIVISION_PERCENT
 		var subdiv_count := int(dist / subdiv_length)
-		for i in subdiv_count:
+		for i: int in subdiv_count:
 			var point: Vector2 = from + dir*subdiv_length*i
 			add_stroke_point(point, pressure)
 		

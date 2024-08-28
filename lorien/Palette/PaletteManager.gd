@@ -34,7 +34,7 @@ func _ready() -> void:
 # -------------------------------------------------------------------------------------------------
 func save() -> bool:
 	var file := ConfigFile.new()
-	for p in palettes:
+	for p: Palette in palettes:
 		if !p.builtin:
 			file.set_value(p.uuid, KEY_NAME, p.name)
 			file.set_value(p.uuid, KEY_COLORS, p.colors)
@@ -106,7 +106,7 @@ func _sort() -> void:
 # -------------------------------------------------------------------------------------------------
 func _find_palette_index_by_uuid(uuid: String) -> int:
 	var index := 0
-	for p in palettes:
+	for p: Palette in palettes:
 		if p.uuid == uuid:
 			return index
 		index += 1
@@ -123,7 +123,7 @@ func _load_palettes() -> bool:
 		return false
 	
 	# Create palettes
-	for uuid in file.get_sections():
+	for uuid: String in file.get_sections():
 		var palette := Palette.new()
 		palette.builtin = false
 		palette.uuid = uuid

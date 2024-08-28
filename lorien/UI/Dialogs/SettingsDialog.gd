@@ -20,7 +20,7 @@ const BRUSH_STROKE_CAP_ROUND 	:= 1
 
 # -------------------------------------------------------------------------------------------------
 signal ui_scale_changed
-signal canvas_color_changed(color)
+signal canvas_color_changed(color: Color)
 signal grid_size_changed(size)
 signal grid_pattern_changed(pattern)
 signal constant_pressure_changed(state)
@@ -205,12 +205,13 @@ func _on_default_brush_size_changed(value: int) -> void:
 # -------------------------------------------------------------------------------------------------
 func _on_canvas_color_changed(color: Color) -> void:
 	Settings.set_appearance_value(Settings.APPEARANCE_CANVAS_COLOR, color)
-	emit_signal("canvas_color_changed", color)
+	canvas_color_changed.emit(color)
+	#emit_signal("canvas_color_changed", color)
 
 # -------------------------------------------------------------------------------------------------
 func _on_grid_size_changed(value: int) -> void:
 	Settings.set_appearance_value(Settings.APPEARANCE_GRID_SIZE, value)
-	emit_signal("grid_size_changed", value)
+	grid_size_changed.emit(value)
 	
 # -------------------------------------------------------------------------------------------------
 func _on_grid_pattern_selected(index: int) -> void:
@@ -219,7 +220,7 @@ func _on_grid_pattern_selected(index: int) -> void:
 		GRID_PATTERN_DOTS_INDEX: 	pattern = Types.GridPattern.DOTS
 		GRID_PATTERN_LINES_INDEX: 	pattern = Types.GridPattern.LINES
 	Settings.set_appearance_value(Settings.APPEARANCE_GRID_PATTERN, pattern)
-	emit_signal("grid_pattern_changed", pattern)
+	grid_pattern_changed.emit(pattern)
 
 # -------------------------------------------------------------------------------------------------
 func _on_pressure_sensitivity_changed(value: float):
@@ -270,7 +271,7 @@ func _on_language_selected(idx: int):
 	
 	Settings.set_general_value(Settings.GENERAL_LANGUAGE, locale)
 	TranslationServer.set_locale(locale)
-	GlobalSignals.emit_signal("language_changed")
+	GlobalSignals.language_changed.emit()
 	_restart_label.show()
 
 # -------------------------------------------------------------------------------------------------
@@ -282,13 +283,12 @@ func _on_ui_scale_mode_selected(index: int):
 		UI_SCALE_CUSTOM_INDEX:
 			_ui_scale.set_editable(true)
 			Settings.set_appearance_value(Settings.APPEARANCE_UI_SCALE_MODE, Types.UIScale.CUSTOM)
-	emit_signal("ui_scale_changed")
+	ui_scale_changed.emit()
 
 # -------------------------------------------------------------------------------------------------
 func _on_ui_scale_changed(value: float):
-	print("UI scale changed")
 	Settings.set_appearance_value(Settings.APPEARANCE_UI_SCALE, value)
-	emit_signal("ui_scale_changed")
+	ui_scale_changed.emit()
 	_restart_label.show()
 
 # -------------------------------------------------------------------------------------------------
@@ -298,7 +298,7 @@ func _on_default_tool_pressure_changed(value):
 # -------------------------------------------------------------------------------------------------
 func _on_constant_pressure_toggled(button_pressed: bool):
 	Settings.set_general_value(Settings.GENERAL_CONSTANT_PRESSURE, button_pressed)
-	emit_signal("constant_pressure_changed", button_pressed)
+	constant_pressure_changed.emit(button_pressed)
 
 # -------------------------------------------------------------------------------------------------
 func _on_action_keybinding_changed(action: KeybindingsManager.Action, event: InputEventKey) -> void:

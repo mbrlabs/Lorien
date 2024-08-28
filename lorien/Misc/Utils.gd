@@ -15,18 +15,16 @@ func remove_signal_connections(node: Node, signal_name: String) -> void:
 # -------------------------------------------------------------------------------------------------
 func is_mouse_in_control(control: Control) -> bool:
 	if control.visible:
-		var pos = get_viewport().get_mouse_position()
-		var rect = control.get_global_rect()
+		var pos := get_viewport().get_mouse_position()
+		var rect := control.get_global_rect()
 		return rect.has_point(pos)
 	return false
 
-# TODO(gd4): this is just a copy of is_mouse_in_control() from above for Godot 4 since Windows don't 
-# inherit from Control anymore
 # -------------------------------------------------------------------------------------------------
 func is_mouse_on_window(window: Window) -> bool:
 	if window.visible:
-		var pos = get_viewport().get_mouse_position()
-		var rect = window.get_viewport().get_visible_rect()
+		var pos := get_viewport().get_mouse_position()
+		var rect := window.get_viewport().get_visible_rect()
 		return rect.has_point(pos)
 	return false
 
@@ -47,9 +45,9 @@ func calculate_rect(start_pos: Vector2, end_pos: Vector2) -> Rect2:
 # -------------------------------------------------------------------------------------------------
 func calculte_bounding_boxes(strokes: Array[BrushStroke], margin: float = 0.0) -> Dictionary:
 	var result := {}
-	for stroke in strokes:
-		var top_left: Vector2 = stroke.position + stroke.top_left_pos
-		var bottom_right: Vector2 = stroke.position + stroke.bottom_right_pos
+	for stroke: BrushStroke in strokes:
+		var top_left := stroke.position + stroke.top_left_pos
+		var bottom_right := stroke.position + stroke.bottom_right_pos
 		var bounding_box := calculate_rect(top_left, bottom_right)
 		if margin > 0:
 			bounding_box = bounding_box.grow(margin)
@@ -73,8 +71,8 @@ func is_valid_lorien_file(filepath: String) -> bool:
 # -------------------------------------------------------------------------------------------------
 func generate_uuid(length: int) -> String:
 	var s := ""
-	for i in length:
-		var idx: int = randf_range(0, UUID_ALPHABET.length()-1)
+	for i: int in length:
+		var idx := randf_range(0, UUID_ALPHABET.length()-1)
 		s += UUID_ALPHABET[idx]
 	return s
 

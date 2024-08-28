@@ -123,10 +123,10 @@ func tool_event(event: InputEvent) -> void:
 # ------------------------------------------------------------------------------------------------
 func compute_selection(start_pos: Vector2, end_pos: Vector2) -> void:
 	var selection_rect : Rect2 = Utils.calculate_rect(start_pos, end_pos)
-	for stroke in _canvas.get_strokes_in_camera_frustrum():
+	for stroke: BrushStroke in _canvas.get_strokes_in_camera_frustrum():
 		var bounding_box: Rect2 = _bounding_box_cache[stroke]
 		if selection_rect.intersects(bounding_box):
-			for point in stroke.points:
+			for point: Vector2 in stroke.points:
 				var abs_point: Vector2 = stroke.position + point
 				if selection_rect.has_point(abs_point):
 					_set_stroke_selected(stroke)
@@ -139,7 +139,7 @@ func _paste_strokes(strokes: Array) -> void:
 	var top_left := Vector2(MAX_FLOAT, MAX_FLOAT)
 	var bottom_right := Vector2(MIN_FLOAT, MIN_FLOAT)
 	
-	for stroke in strokes:
+	for stroke: BrushStroke in strokes:
 		top_left.x = min(top_left.x, stroke.top_left_pos.x + stroke.position.x)
 		top_left.y = min(top_left.y, stroke.top_left_pos.y + stroke.position.y)
 		bottom_right.x = max(bottom_right.x, stroke.bottom_right_pos.x + stroke.position.x)
@@ -148,7 +148,7 @@ func _paste_strokes(strokes: Array) -> void:
 	
 	# Duplicate the strokes 
 	var duplicates := []
-	for stroke in strokes:
+	for stroke: BrushStroke in strokes:
 		var dup := _duplicate_stroke(stroke, offset)
 		dup.add_to_group(GROUP_SELECTED_STROKES)
 		dup.modulate = Config.DEFAULT_SELECTION_COLOR
@@ -164,13 +164,13 @@ func _duplicate_stroke(stroke: BrushStroke, offset: Vector2) -> BrushStroke:
 	dup.size = stroke.size
 	dup.color = stroke.color
 	dup.pressures = stroke.pressures.duplicate()
-	for point in stroke.points:
+	for point: Vector2 in stroke.points:
 		dup.points.append(point + offset)
 	return dup
 
 # ------------------------------------------------------------------------------------------------
 func _modify_strokes_colors(strokes: Array[BrushStroke], color: Color) -> void:	
-	for stroke in strokes:
+	for stroke: BrushStroke in strokes:
 		stroke.color = color
 
 # ------------------------------------------------------------------------------------------------
@@ -192,7 +192,7 @@ func _set_stroke_selected(stroke: BrushStroke) -> void:
 func _add_undoredo_action_for_moved_strokes() -> void:
 	var project: Project = ProjectManager.get_active_project()
 	project.undo_redo.create_action("Move Strokes")
-	for stroke in _stroke_positions_before_move.keys():
+	for stroke: BrushStroke in _stroke_positions_before_move.keys():
 		project.undo_redo.add_do_property(stroke, "global_position", stroke.global_position)
 		project.undo_redo.add_undo_property(stroke, "global_position", _stroke_positions_before_move[stroke])
 	project.undo_redo.commit_action()
@@ -200,26 +200,26 @@ func _add_undoredo_action_for_moved_strokes() -> void:
 
 # -------------------------------------------------------------------------------------------------
 func _offset_selected_strokes(offset: Vector2) -> void:
-	for stroke in get_selected_strokes():
+	for stroke: BrushStroke in get_selected_strokes():
 		stroke.set_meta(META_OFFSET, stroke.position - offset)
 
 # -------------------------------------------------------------------------------------------------
 func _move_selected_strokes() -> void:
-	for stroke in get_selected_strokes():
+	for stroke: BrushStroke in get_selected_strokes():
 		stroke.global_position = stroke.get_meta(META_OFFSET) + _cursor.global_position
 
 # ------------------------------------------------------------------------------------------------
 func _commit_strokes_under_selection_rectangle() -> void:
-	for stroke in get_tree().get_nodes_in_group(GROUP_STROKES_IN_SELECTION_RECTANGLE):
+	for stroke: BrushStroke in get_tree().get_nodes_in_group(GROUP_STROKES_IN_SELECTION_RECTANGLE):
 		stroke.remove_from_group(GROUP_STROKES_IN_SELECTION_RECTANGLE)
 		stroke.add_to_group(GROUP_SELECTED_STROKES)
 
 # ------------------------------------------------------------------------------------------------
 func _deselect_marked_strokes() -> void:
-	for s in get_tree().get_nodes_in_group(GROUP_MARKED_FOR_DESELECTION):
-		s.remove_from_group(GROUP_MARKED_FOR_DESELECTION)
-		s.remove_from_group(GROUP_SELECTED_STROKES)
-		s.modulate = Color.WHITE
+	for stroke: BrushStroke in get_tree().get_nodes_in_group(GROUP_MARKED_FOR_DESELECTION):
+		stroke.remove_from_group(GROUP_MARKED_FOR_DESELECTION)
+		stroke.remove_from_group(GROUP_SELECTED_STROKES)
+		stroke.modulate = Color.WHITE
 
 # ------------------------------------------------------------------------------------------------
 func deselect_all_strokes() -> void:

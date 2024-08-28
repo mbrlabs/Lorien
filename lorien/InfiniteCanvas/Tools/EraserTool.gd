@@ -38,19 +38,19 @@ func _stroke_intersects_circle(stroke: BrushStroke, circle_position: Vector2) ->
 
 	# Check every segment of the brush stroke for an intersection with the curser
 	var eraser_brush_radius := float(_cursor._brush_size) * 0.5
-	for i in stroke.points.size() - 1:
-		var pressure: float = float(stroke.pressures[i] + stroke.pressures[i+1]) / 2.0
-		var segment_radius: float = (pressure / float(BrushStroke.MAX_PRESSURE_VALUE)) * float(stroke.size) * 0.5
-		var radius: float = segment_radius + eraser_brush_radius
-		var start = stroke.position + stroke.points[i]
-		var end = stroke.position + stroke.points[i+1]
+	for i: int in stroke.points.size() - 1:
+		var pressure := float(stroke.pressures[i] + stroke.pressures[i+1]) / 2.0
+		var segment_radius := (pressure / float(BrushStroke.MAX_PRESSURE_VALUE)) * float(stroke.size) * 0.5
+		var radius := segment_radius + eraser_brush_radius
+		var start := stroke.position + stroke.points[i]
+		var end := stroke.position + stroke.points[i+1]
 		if Geometry2D.segment_intersects_circle(start, end, circle_position, radius*OVERLAP_THRESHOLD) >= 0:
 			return true
 	return false
 
 # -------------------------------------------------------------------------------------------------
 func _remove_stroke(brush_position: Vector2) -> void:
-	for stroke in _canvas.get_strokes_in_camera_frustrum():
+	for stroke: BrushStroke in _canvas.get_strokes_in_camera_frustrum():
 		if !_removed_strokes.has(stroke) && _stroke_intersects_circle(stroke, brush_position):
 			_removed_strokes.append(stroke)
 		
@@ -59,7 +59,7 @@ func _add_undoredo_action_for_erased_strokes() -> void:
 	var project: Project = ProjectManager.get_active_project()
 	if _removed_strokes.size():
 		project.undo_redo.create_action("Erase Stroke")
-		for stroke in _removed_strokes:
+		for stroke: BrushStroke in _removed_strokes:
 			_removed_strokes.erase(stroke)
 			project.undo_redo.add_do_method(Callable(_canvas, "_do_delete_stroke").bind(stroke))
 			project.undo_redo.add_undo_method(Callable(_canvas, "_undo_delete_stroke").bind(stroke))

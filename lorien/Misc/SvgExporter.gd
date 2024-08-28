@@ -20,7 +20,7 @@ func export_svg(strokes: Array[BrushStroke], background: Color, path: String) ->
 	# Calculate total canvas dimensions
 	var max_dim := BrushStroke.MIN_VECTOR2
 	var min_dim := BrushStroke.MAX_VECTOR2
-	for stroke in strokes:
+	for stroke: BrushStroke in strokes:
 		min_dim.x = min(min_dim.x, stroke.top_left_pos.x + stroke.global_position.x)
 		min_dim.y = min(min_dim.y, stroke.top_left_pos.y + stroke.global_position.y)
 		max_dim.x = max(max_dim.x, stroke.bottom_right_pos.x + stroke.global_position.x)
@@ -33,7 +33,7 @@ func export_svg(strokes: Array[BrushStroke], background: Color, path: String) ->
 	# Write svg to file
 	_svg_start(file, origin, size)
 	_svg_rect(file, origin, size, background)
-	for stroke in strokes:
+	for stroke: BrushStroke in strokes:
 		_svg_polyline(file, stroke)
 	_svg_end(file)
 	
@@ -63,7 +63,7 @@ func _svg_polyline(file: FileAccess, stroke: BrushStroke) -> void:
 	file.store_string("<polyline points=\"")
 	var idx := 0
 	var point_count := stroke.points.size()
-	for point in stroke.points:
+	for point: Vector2 in stroke.points:
 		point += stroke.global_position
 		if idx < point_count-1:
 			file.store_string("%.1f %.1f," % [point.x, point.y])

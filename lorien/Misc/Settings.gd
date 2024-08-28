@@ -51,7 +51,7 @@ func reload_locales():
 
 # -------------------------------------------------------------------------------------------------
 func _load_settings() -> int:
-	var err = _config_file.load(Config.CONFIG_PATH)
+	var err := _config_file.load(Config.CONFIG_PATH)
 	if err == ERR_FILE_NOT_FOUND:
 		pass
 	elif err != OK:
@@ -61,7 +61,7 @@ func _load_settings() -> int:
 
 # -------------------------------------------------------------------------------------------------
 func _save_settings() -> int:
-	var err = _config_file.save(Config.CONFIG_PATH)
+	var err := _config_file.save(Config.CONFIG_PATH)
 	if err == ERR_FILE_NOT_FOUND:
 		pass
 	elif err != OK:
