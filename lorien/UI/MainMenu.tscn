@@ -4,9 +4,8 @@
 [ext_resource type="Script" path="res://UI/MainMenu.gd" id="2"]
 
 [node name="MainMenu" type="PopupMenu"]
+visible = true
+unfocusable = true
 theme = ExtResource("1")
 submenu_popup_delay = 0.01
 script = ExtResource("2")
-
-[node name="ViewsMenu" type="PopupMenu" parent="."]
-submenu_popup_delay = 0.01

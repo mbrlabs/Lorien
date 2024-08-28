@@ -304,4 +304,4 @@ func _on_constant_pressure_toggled(button_pressed: bool):
 func _on_action_keybinding_changed(action: KeybindingsManager.Action, event: InputEventKey) -> void:
 	KeybindingsManager.rebind_action(action, event)
 	Settings.set_keybind_value(action.name, action.event)
-	print("Rebind done")
+	GlobalSignals.keybinding_changed.emit(action)

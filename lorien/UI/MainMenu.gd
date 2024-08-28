@@ -4,8 +4,8 @@ extends PopupMenu
 # -------------------------------------------------------------------------------------------------
 signal open_about_dialog
 signal open_settings_dialog
-signal open_url(url)
-signal open_project(filepath)
+signal open_url(url: String)
+signal open_project(filepath: String)
 signal save_project
 signal save_project_as
 signal export_svg
@@ -20,34 +20,29 @@ const ITEM_MANUAL 		:= 5
 const ITEM_BUG_TRACKER 	:= 6
 const ITEM_ABOUT 		:= 7
 
-const ITEM_VIEW_1 		:= 100
-const ITEM_VIEW_2 		:= 101
-const ITEM_VIEW_3 		:= 102
-
 # -------------------------------------------------------------------------------------------------
 @export var file_dialog_path: NodePath
-@onready var _submenu_views: PopupMenu = $ViewsMenu
 
 # -------------------------------------------------------------------------------------------------
 func _ready() -> void:
-	id_pressed.connect(_on_MainMenu_id_pressed)
+	_set_items()
 	
-	# Views submenu
-	_submenu_views.name = "Views"
-	_submenu_views.add_item("View 1", ITEM_VIEW_1)
-	_submenu_views.add_item("View 2", ITEM_VIEW_2)
-
-	# main menu
-	_apply_language()
-	GlobalSignals.language_changed.connect(_apply_language)
+	id_pressed.connect(_on_item_pressed)
+	GlobalSignals.language_changed.connect(_set_items)
+	GlobalSignals.keybinding_changed.connect(func(action): _set_items())
 
 # -------------------------------------------------------------------------------------------------
-func _apply_language() -> void:
+func _set_items() -> void:
 	clear()
-	add_item(tr("MENU_OPEN"), ITEM_OPEN)
-	add_item(tr("MENU_SAVE"), ITEM_SAVE)
+	
+	var open_action := KeybindingsManager.get_action("shortcut_open_project")
+	var save_action := KeybindingsManager.get_action("shortcut_save_project")
+	var export_action := KeybindingsManager.get_action("shortcut_export_project")
+	
+	add_item(tr("MENU_OPEN"), ITEM_OPEN, open_action.event.get_keycode_with_modifiers())
+	add_item(tr("MENU_SAVE"), ITEM_SAVE, save_action.event.get_keycode_with_modifiers())
 	add_item(tr("MENU_SAVE_AS"), ITEM_SAVE_AS)
-	add_item(tr("MENU_EXPORT"), ITEM_EXPORT)
+	add_item(tr("MENU_EXPORT"), ITEM_EXPORT, export_action.event.get_keycode_with_modifiers())
 	add_item(tr("MENU_SETTINGS"), ITEM_SETTINGS)
 	add_separator()
 	add_item(tr("MENU_MANUAL"), ITEM_MANUAL)
@@ -55,16 +50,16 @@ func _apply_language() -> void:
 	add_item(tr("MENU_ABOUT"), ITEM_ABOUT)
 
 # -------------------------------------------------------------------------------------------------
-func _on_MainMenu_id_pressed(id: int):
+func _on_item_pressed(id: int):
 	match id:
 		ITEM_OPEN: _on_open_project()
-		ITEM_SAVE: emit_signal("save_project")
-		ITEM_SAVE_AS: emit_signal("save_project_as")
-		ITEM_EXPORT: emit_signal("export_svg")
-		ITEM_SETTINGS: emit_signal("open_settings_dialog")
-		ITEM_MANUAL: emit_signal("open_url", "https://github.com/mbrlabs/lorien/blob/main/docs/manuals/manual_v0.6.0.md")
-		ITEM_BUG_TRACKER: emit_signal("open_url", "https://github.com/mbrlabs/lorien/issues")
-		ITEM_ABOUT: emit_signal("open_about_dialog")
+		ITEM_SAVE: save_project.emit()
+		ITEM_SAVE_AS: save_project_as.emit()
+		ITEM_EXPORT: export_svg.emit()
+		ITEM_SETTINGS: open_settings_dialog.emit()
+		ITEM_MANUAL: open_url.emit("https://github.com/mbrlabs/lorien/blob/main/docs/manuals/manual_v0.6.0.md")
+		ITEM_BUG_TRACKER: open_url.emit("https://github.com/mbrlabs/lorien/issues")
+		ITEM_ABOUT: open_about_dialog.emit()
 
 # -------------------------------------------------------------------------------------------------
 func _on_open_project():
@@ -77,15 +72,10 @@ func _on_open_project():
 
 # -------------------------------------------------------------------------------------------------
 func _on_project_selected_to_open(filepath: String) -> void:
-	emit_signal("open_project", filepath)
+	open_project.emit(filepath)
 
 # -------------------------------------------------------------------------------------------------
 func _on_file_dialog_closed() -> void:
 	var file_dialog: FileDialog = get_node(file_dialog_path)
 	Utils.remove_signal_connections(file_dialog, "file_selected")
 	Utils.remove_signal_connections(file_dialog, "close_requested")
-
-# -------------------------------------------------------------------------------------------------
-func add_item_with_shortcut(target: PopupMenu, p_name: String, id: int, shortcut_action: String) -> void:
-	var shortcut = InputMap.action_get_events(shortcut_action)[0].get_keycode_with_modifiers()
-	target.add_item(p_name, id, shortcut)

@@ -38,32 +38,34 @@ var _last_active_tool_button: FlatTextureButton
 
 # -------------------------------------------------------------------------------------------------
 func _ready():
+	# Set inintial values
 	var brush_size: int = Settings.get_general_value(Settings.GENERAL_DEFAULT_BRUSH_SIZE, Config.DEFAULT_BRUSH_SIZE)
 	_brush_size_label.text = str(brush_size)
 	_brush_size_slider.value = brush_size
 	_last_active_tool_button = _tool_btn_brush
 	
-	_new_button.pressed.connect(_on_NewFileButton_pressed)
-	_undo_button.pressed.connect(_on_UndoButton_pressed)
-	_redo_button.pressed.connect(_on_RedoButton_pressed)
-	_open_button.pressed.connect(_on_OpenFileButton_pressed)
-	_save_button.pressed.connect(_on_SaveFileButton_pressed)
-	_color_button.pressed.connect(_on_ColorButton_pressed)
-	_brush_size_slider.value_changed.connect(_on_BrushSizeSlider_value_changed)
-	_tool_btn_brush.pressed.connect(_on_BrushToolButton_pressed)
-	_tool_btn_rectangle.pressed.connect(_on_RectangleToolButton_pressed)
-	_tool_btn_circle.pressed.connect(_on_CircleToolButton_pressed)
-	_tool_btn_line.pressed.connect(_on_LineToolButton_pressed)
-	_tool_btn_eraser.pressed.connect(_on_EraserToolButton_pressed)
-	_tool_btn_selection.pressed.connect(_on_SelectToolButton_pressed)
-	ProjectManager.active_project_changed.connect(_on_active_project_changed)
+	# Tooltips (dynamic because they include keybindings)
+	for action: KeybindingsManager.Action in KeybindingsManager.get_actions():
+		_on_keybinding_changed(action)
 	
-# Button clicked callbacks
-# -------------------------------------------------------------------------------------------------
-func _on_NewFileButton_pressed(): emit_signal("new_project")
-func _on_UndoButton_pressed(): emit_signal("undo_action")
-func _on_RedoButton_pressed(): emit_signal("redo_action")
-
+	# Signals
+	ProjectManager.active_project_changed.connect(_on_active_project_changed)
+	GlobalSignals.keybinding_changed.connect(_on_keybinding_changed)
+	
+	_new_button.pressed.connect(func(): new_project.emit())
+	_undo_button.pressed.connect(func(): undo_action.emit())
+	_redo_button.pressed.connect(func(): redo_action.emit())
+	_open_button.pressed.connect(_on_open_project_pressed)
+	_save_button.pressed.connect(func(): save_project.emit())
+	_color_button.pressed.connect(func(): toggle_brush_color_picker.emit())
+	_brush_size_slider.value_changed.connect(_on_brush_size_changed)
+	_tool_btn_brush.pressed.connect(_on_brush_tool_pressed)
+	_tool_btn_rectangle.pressed.connect(_on_rectangle_tool_pressed)
+	_tool_btn_circle.pressed.connect(_on_circle_tool_pressed)
+	_tool_btn_line.pressed.connect(_on_line_tool_pressed)
+	_tool_btn_eraser.pressed.connect(_on_eraser_tool_pressed)
+	_tool_btn_selection.pressed.connect(_on_select_tool_pressed)
+	
 # -------------------------------------------------------------------------------------------------
 func enable_tool(tool_type: int) -> void:
 	var btn: TextureButton
@@ -77,7 +79,7 @@ func enable_tool(tool_type: int) -> void:
 	
 	btn.toggle()
 	_change_active_tool_button(btn)
-	emit_signal("tool_changed", tool_type)
+	tool_changed.emit(tool_type)
 
 # -------------------------------------------------------------------------------------------------
 func set_brush_color(color: Color) -> void:
@@ -91,7 +93,28 @@ func set_brush_color(color: Color) -> void:
 	_color_button.text = "#" + color.to_html(false)
 
 # -------------------------------------------------------------------------------------------------
-func _on_OpenFileButton_pressed():
+func get_brush_color_button() -> Control:
+	return _color_button
+
+# -------------------------------------------------------------------------------------------------
+func _on_keybinding_changed(action: KeybindingsManager.Action) -> void:
+	var label := action.event_label()
+	var fmt := "%s (%s)"
+	match action.name:
+		"shortcut_new_project": _new_button.tooltip_text = fmt % [tr("TOOLBAR_TOOLTIP_NEW_FILE"), label]
+		"shortcut_open_project": _open_button.tooltip_text = fmt % [tr("TOOLBAR_TOOLTIP_OPEN_FILE"), label]
+		"shortcut_save_project": _save_button.tooltip_text = fmt % [tr("TOOLBAR_TOOLTIP_SAVE_FILE"), label]
+		"shortcut_undo": _undo_button.tooltip_text = fmt % [tr("TOOLBAR_TOOLTIP_UNDO"), label]
+		"shortcut_redo": _redo_button.tooltip_text = fmt % [tr("TOOLBAR_TOOLTIP_REDO"), label]
+		"shortcut_brush_tool": _tool_btn_brush.tooltip_text = fmt % [tr("TOOLBAR_TOOLTIP_BRUSH_TOOL"), label]
+		"shortcut_rectangle_tool": _tool_btn_rectangle.tooltip_text = fmt % [tr("TOOLBAR_TOOLTIP_RECTANGLE_TOOL"), label]
+		"shortcut_circle_tool": _tool_btn_circle.tooltip_text = fmt % [tr("TOOLBAR_TOOLTIP_CIRCLE_TOOL"), label]
+		"shortcut_line_tool": _tool_btn_line.tooltip_text = fmt % [tr("TOOLBAR_TOOLTIP_LINE_TOOL"), label]
+		"shortcut_eraser_tool": _tool_btn_eraser.tooltip_text = fmt % [tr("TOOLBAR_TOOLTIP_ERASER_TOOL"), label]
+		"shortcut_select_tool": _tool_btn_selection.tooltip_text = fmt % [tr("TOOLBAR_TOOLTIP_SELECT_TOOL"), label]
+
+# -------------------------------------------------------------------------------------------------
+func _on_open_project_pressed():
 	var file_dialog: FileDialog = get_node(file_dialog_path)
 	file_dialog.file_mode = FileDialog.FILE_MODE_OPEN_FILE
 	file_dialog.file_selected.connect(_on_project_selected_to_open)
@@ -101,11 +124,7 @@ func _on_OpenFileButton_pressed():
 
 # -------------------------------------------------------------------------------------------------
 func _on_project_selected_to_open(filepath: String) -> void:
-	emit_signal("open_project", filepath)
-
-# -------------------------------------------------------------------------------------------------
-func _on_SaveFileButton_pressed():
-	emit_signal("save_project")
+	open_project.emit(filepath)
 
 # -------------------------------------------------------------------------------------------------
 func _on_file_dialog_closed() -> void:
@@ -114,58 +133,46 @@ func _on_file_dialog_closed() -> void:
 	Utils.remove_signal_connections(file_dialog, "close_requested")
 
 # -------------------------------------------------------------------------------------------------
-func _on_ColorButton_pressed():
-	emit_signal("toggle_brush_color_picker")
-
-# -------------------------------------------------------------------------------------------------
-func _on_background_color_changed(color: Color) -> void:
-	emit_signal("canvas_background_changed", color)
-
-# -------------------------------------------------------------------------------------------------
-func _on_BrushSizeSlider_value_changed(value: float):
+func _on_brush_size_changed(value: float):
 	var new_size := int(value)
 	_brush_size_label.text = "%d" % new_size
-	emit_signal("brush_size_changed", new_size)
+	brush_size_changed.emit(new_size)
 
 # -------------------------------------------------------------------------------------------------
-func _on_BrushToolButton_pressed():
+func _on_brush_tool_pressed():
 	_change_active_tool_button(_tool_btn_brush)
-	emit_signal("tool_changed", Types.Tool.BRUSH)
+	tool_changed.emit(Types.Tool.BRUSH)
 
 # -------------------------------------------------------------------------------------------------
-func _on_RectangleToolButton_pressed() -> void:
+func _on_rectangle_tool_pressed() -> void:
 	_change_active_tool_button(_tool_btn_rectangle)
-	emit_signal("tool_changed", Types.Tool.RECTANGLE)
+	tool_changed.emit(Types.Tool.RECTANGLE)
 
 # -------------------------------------------------------------------------------------------------
-func _on_CircleToolButton_pressed():
+func _on_circle_tool_pressed():
 	_change_active_tool_button(_tool_btn_circle)
-	emit_signal("tool_changed", Types.Tool.CIRCLE)	
+	tool_changed.emit(Types.Tool.CIRCLE)	
 	
 # -------------------------------------------------------------------------------------------------
-func _on_LineToolButton_pressed():
+func _on_line_tool_pressed():
 	_change_active_tool_button(_tool_btn_line)
-	emit_signal("tool_changed", Types.Tool.LINE)
+	tool_changed.emit(Types.Tool.LINE)
 
 # -------------------------------------------------------------------------------------------------
-func _on_EraserToolButton_pressed():
+func _on_eraser_tool_pressed():
 	_change_active_tool_button(_tool_btn_eraser)
-	emit_signal("tool_changed", Types.Tool.ERASER)
+	tool_changed.emit(Types.Tool.ERASER)
 
 # -------------------------------------------------------------------------------------------------
-func _on_SelectToolButton_pressed():
+func _on_select_tool_pressed():
 	_change_active_tool_button(_tool_btn_selection)
-	emit_signal("tool_changed", Types.Tool.SELECT)
+	tool_changed.emit(Types.Tool.SELECT)
 
 # -------------------------------------------------------------------------------------------------
 func _change_active_tool_button(btn: TextureButton) -> void:
 	if _last_active_tool_button != null:
 		_last_active_tool_button.toggle()
 	_last_active_tool_button = btn
-
-# -------------------------------------------------------------------------------------------------
-func get_brush_color_button() -> Control:
-	return _color_button
 
 # -------------------------------------------------------------------------------------------------
 func _on_active_project_changed(previous_project: Project, current_project: Project) -> void:
