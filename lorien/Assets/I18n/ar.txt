@@ -12,7 +12,7 @@ MENU_MANUAL         الدليل
 MENU_BUG_TRACKER    مراقب الأخطاء
 MENU_ABOUT          حول
 MENU_EXPORT         إخراج
-MENU_EXPORT_PNG     إخراج اللوحة PNG
+MENU_QUIT           Quit        # TODO
 
 # -----------------------------------------------------------------------------
 # Toolbar

@@ -12,6 +12,7 @@ MENU_MANUAL         Руководство
 MENU_BUG_TRACKER    Баг трекер
 MENU_ABOUT          О Lorien
 MENU_EXPORT         Экспортировать...
+MENU_QUIT           Выход
 
 # -----------------------------------------------------------------------------
 # Toolbar

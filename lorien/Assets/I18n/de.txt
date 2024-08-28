@@ -12,6 +12,7 @@ MENU_MANUAL         Benutzeranleitung
 MENU_BUG_TRACKER    Bug Tracker
 MENU_ABOUT          Über
 MENU_EXPORT         Exportieren...
+MENU_QUIT           Schließen
 
 # -----------------------------------------------------------------------------
 # Toolbar
@@ -130,6 +131,7 @@ DELETE          Löschen
 ACTION_shortcut_save_project        Datei speichern
 ACTION_shortcut_new_project         Neue Datei
 ACTION_shortcut_open_project        Datei öffnen
+ACTION_shortcut_quit                Schließen
 ACTION_shortcut_undo                Undo
 ACTION_shortcut_redo                Redo
 ACTION_shortcut_brush_tool          Pinsel Werkzeug

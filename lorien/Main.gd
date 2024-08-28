@@ -66,13 +66,14 @@ func _ready():
 	_menubar.project_selected.connect(_on_project_selected)
 	_menubar.project_closed.connect(_on_project_closed)
 	
-	_main_menu.open_about_dialog.connect(_on_open_about_dialog)
-	_main_menu.open_settings_dialog.connect(_on_open_settings_dialog)
-	_main_menu.open_url.connect(_on_open_url)
-	_main_menu.export_svg.connect(_export_svg)
 	_main_menu.open_project.connect(_on_open_project)
 	_main_menu.save_project.connect(_on_save_project)
 	_main_menu.save_project_as.connect(_on_save_project_as)
+	_main_menu.open_settings_dialog.connect(_on_open_settings_dialog)
+	_main_menu.open_url.connect(_on_open_url)
+	_main_menu.open_about_dialog.connect(_on_open_about_dialog)
+	_main_menu.export_svg.connect(_export_svg)
+	_main_menu.quit.connect(_quit)
 	
 	_unsaved_changes_dialog.save_changes.connect(_on_save_unsaved_changes)
 	_unsaved_changes_dialog.discard_changes.connect(_on_discard_unsaved_changes)
@@ -102,13 +103,7 @@ func _ready():
 # -------------------------------------------------------------------------------------------------
 func _notification(what):
 	if NOTIFICATION_WM_CLOSE_REQUEST == what:
-		if ProjectManager.has_unsaved_changes():
-			_exit_requested = true
-			_unsaved_changes_window.popup_centered()
-		else:
-			_save_state()
-			get_tree().quit()
-
+		_quit()
 	elif NOTIFICATION_APPLICATION_FOCUS_IN == what:
 		Engine.max_fps = Settings.get_rendering_value(Settings.RENDERING_FOREGROUND_FPS, Config.DEFAULT_FOREGROUND_FPS)
 		if !_is_mouse_on_ui() && _canvas != null && !is_dialog_open():
@@ -154,6 +149,8 @@ func _unhandled_input(event):
 				_on_save_project()
 			elif Utils.event_pressed_bug_workaround("shortcut_export_project", event):
 				_export_svg()
+			elif Utils.event_pressed_bug_workaround("shortcut_quit", event):
+				_quit()
 			elif Utils.event_pressed_bug_workaround("shortcut_undo", event):
 				_on_undo_action()
 			elif Utils.event_pressed_bug_workaround("shortcut_redo", event):
@@ -221,6 +218,15 @@ func _apply_state() -> void:
 	var active_project := ProjectManager.get_open_project_by_filepath(active_project_path)
 	if active_project != null:
 		_make_project_active(active_project)
+
+# -------------------------------------------------------------------------------------------------
+func _quit() -> void:
+	if ProjectManager.has_unsaved_changes():
+		_exit_requested = true
+		_unsaved_changes_window.popup_centered()
+	else:
+		_save_state()
+		get_tree().quit()
 
 # -------------------------------------------------------------------------------------------------
 func _toggle_zen_mode() -> void:

@@ -12,6 +12,7 @@ MENU_MANUAL         설명서
 MENU_BUG_TRACKER    버그 제보
 MENU_ABOUT          정보
 MENU_EXPORT         내보내기...
+MENU_QUIT           종료
 
 # -----------------------------------------------------------------------------
 # Toolbar

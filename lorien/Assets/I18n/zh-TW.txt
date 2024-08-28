@@ -1,4 +1,4 @@
-LANGUAGE_NAME 漢語
+LANGUAGE_NAME 漢語 # Traditional Chinese
 
 # -----------------------------------------------------------------------------
 # Menu strings
@@ -12,6 +12,7 @@ MENU_MANUAL         線上說明
 MENU_BUG_TRACKER    問題追蹤
 MENU_ABOUT          關於
 MENU_EXPORT         匯出...
+MENU_QUIT           退出
 
 # -----------------------------------------------------------------------------
 # Toolbar

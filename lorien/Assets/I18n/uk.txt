@@ -12,6 +12,7 @@ MENU_MANUAL         Документація
 MENU_BUG_TRACKER    Баг трекер
 MENU_ABOUT          Про Lorien
 MENU_EXPORT         Eкспорт...
+MENU_QUIT           Вийти
 
 # -----------------------------------------------------------------------------
 # Toolbar
@@ -137,6 +138,7 @@ DELETE          Видалити
 ACTION_shortcut_save_project        Зберегти проєкт
 ACTION_shortcut_new_project         Новий проєкт
 ACTION_shortcut_open_project        Відкрити проєкт
+ACTION_shortcut_quit                Quit                # TODO
 ACTION_shortcut_undo                Назад
 ACTION_shortcut_redo                Вперед
 ACTION_shortcut_brush_tool          Пензлик

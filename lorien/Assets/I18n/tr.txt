@@ -12,6 +12,7 @@ MENU_MANUAL         Kullanım Kılauzu
 MENU_BUG_TRACKER    Hata İzleyici
 MENU_ABOUT          Hakkında
 MENU_EXPORT         ... Dışa Aktar
+MENU_QUIT           Oyunu Kapat
 
 # -----------------------------------------------------------------------------
 # Toolbar
@@ -134,6 +135,7 @@ DELETE          Sil
 ACTION_shortcut_save_project        Projeyi Kaydet
 ACTION_shortcut_new_project         Yeni Proje
 ACTION_shortcut_open_project        Projeyi Aç
+ACTION_shortcut_quit                Quit                # TODO
 ACTION_shortcut_undo                Geri
 ACTION_shortcut_redo                İleri
 ACTION_shortcut_brush_tool          Fırça aracı

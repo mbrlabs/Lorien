@@ -12,6 +12,7 @@ MENU_MANUAL         Manual
 MENU_BUG_TRACKER    Reportar un error
 MENU_ABOUT          Acerca de Lorien
 MENU_EXPORT         Exportar...
+MENU_QUIT           Cerrar
 
 # -----------------------------------------------------------------------------
 # Toolbar

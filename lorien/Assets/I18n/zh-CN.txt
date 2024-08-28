@@ -1,4 +1,4 @@
-LANGUAGE_NAME 汉语
+LANGUAGE_NAME 汉语 # Simplified Chinese
 
 # -----------------------------------------------------------------------------
 # Menu strings
@@ -12,6 +12,7 @@ MENU_MANUAL         手册
 MENU_BUG_TRACKER    Bug 追踪器
 MENU_ABOUT          关于
 MENU_EXPORT         导出...
+MENU_QUIT           退出
 
 # -----------------------------------------------------------------------------
 # Toolbar

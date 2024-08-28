@@ -12,6 +12,7 @@ MENU_MANUAL         Documentation
 MENU_BUG_TRACKER    Suivi des bogues
 MENU_ABOUT          À propos
 MENU_EXPORT         Exporter...
+MENU_QUIT           Quitter
 
 # -----------------------------------------------------------------------------
 # Toolbar

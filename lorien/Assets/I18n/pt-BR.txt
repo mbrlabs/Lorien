@@ -12,6 +12,7 @@ MENU_MANUAL         Manual
 MENU_BUG_TRACKER    Rastreador de Bugs
 MENU_ABOUT          Sobre
 MENU_EXPORT         Exportar...
+MENU_QUIT           Sair
 
 # -----------------------------------------------------------------------------
 # Toolbar
@@ -134,6 +135,7 @@ DELETE          Deletar
 ACTION_shortcut_save_project        Salvar Projeto
 ACTION_shortcut_new_project         Novo Projeto
 ACTION_shortcut_open_project        Abrir Projeto
+ACTION_shortcut_quit                Quit                # TODO
 ACTION_shortcut_undo                Desfazer
 ACTION_shortcut_redo                Refazer
 ACTION_shortcut_brush_tool          Pincel

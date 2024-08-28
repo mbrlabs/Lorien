@@ -12,6 +12,7 @@ MENU_MANUAL         Online Manual
 MENU_BUG_TRACKER    Bug Tracker
 MENU_ABOUT          About
 MENU_EXPORT         Export...
+MENU_QUIT           Quit
 
 # -----------------------------------------------------------------------------
 # Toolbar
@@ -139,6 +140,7 @@ DELETE          Delete
 ACTION_shortcut_save_project        Save File
 ACTION_shortcut_new_project         New File
 ACTION_shortcut_open_project        Open File
+ACTION_shortcut_quit                Quit
 ACTION_shortcut_undo                Undo
 ACTION_shortcut_redo                Redo
 ACTION_shortcut_brush_tool          Brush Tool
