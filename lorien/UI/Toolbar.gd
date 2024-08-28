@@ -56,6 +56,7 @@ func _ready():
 	_tool_btn_line.pressed.connect(_on_LineToolButton_pressed)
 	_tool_btn_eraser.pressed.connect(_on_EraserToolButton_pressed)
 	_tool_btn_selection.pressed.connect(_on_SelectToolButton_pressed)
+	ProjectManager.active_project_changed.connect(_on_active_project_changed)
 	
 # Button clicked callbacks
 # -------------------------------------------------------------------------------------------------
