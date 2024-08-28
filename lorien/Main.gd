@@ -244,7 +244,7 @@ func _make_project_active(project: Project) -> void:
 	if !_menubar.has_tab(project):
 		_menubar.make_tab(project)
 	_menubar.set_tab_active(project)
-	
+
 # -------------------------------------------------------------------------------------------------
 func _is_mouse_on_ui() -> bool:
 	var on_ui := Utils.is_mouse_in_control(_menubar)

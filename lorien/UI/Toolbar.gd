@@ -56,6 +56,7 @@ func _ready():
 	_tool_btn_line.pressed.connect(_on_LineToolButton_pressed)
 	_tool_btn_eraser.pressed.connect(_on_EraserToolButton_pressed)
 	_tool_btn_selection.pressed.connect(_on_SelectToolButton_pressed)
+	ProjectManager.active_project_changed.connect(_on_active_project_changed)
 	
 # Button clicked callbacks
 # -------------------------------------------------------------------------------------------------
@@ -165,3 +166,34 @@ func _change_active_tool_button(btn: TextureButton) -> void:
 # -------------------------------------------------------------------------------------------------
 func get_brush_color_button() -> Control:
 	return _color_button
+
+# -------------------------------------------------------------------------------------------------
+func _on_active_project_changed(previous_project: Project, current_project: Project) -> void:
+	_update_undo_redo_buttons()
+	
+	if previous_project != null:
+		previous_project.dirtied.disconnect(_on_project_dirtied)
+		previous_project.undo_redo.version_changed.disconnect(_on_undo_or_redo_occured)
+	
+	if current_project != null:
+		current_project.dirtied.connect(_on_project_dirtied)
+		current_project.undo_redo.version_changed.connect(_on_undo_or_redo_occured)
+
+# -------------------------------------------------------------------------------------------------
+func _on_project_dirtied() -> void:
+	_update_undo_redo_buttons()
+
+# -------------------------------------------------------------------------------------------------
+func _on_undo_or_redo_occured() -> void:
+	_update_undo_redo_buttons()
+
+# -------------------------------------------------------------------------------------------------
+func _update_undo_redo_buttons() -> void:
+	var active_project: Project = ProjectManager.get_active_project()
+	if active_project == null:
+		_undo_button.set_is_disabled(true)
+		_redo_button.set_is_disabled(true)
+		return
+	
+	_undo_button.set_is_disabled(!active_project.undo_redo.has_undo())
+	_redo_button.set_is_disabled(!active_project.undo_redo.has_redo())

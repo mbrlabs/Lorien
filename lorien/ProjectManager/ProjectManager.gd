@@ -1,8 +1,17 @@
 extends Node
 
 # -------------------------------------------------------------------------------------------------
+signal active_project_changed(previous_project: Project, current_project: Project)
+
 var _open_projects: Array[Project]
-var _active_project: Project
+
+var _active_project: Project:
+	set(value):
+		if _active_project == value:
+			return
+		var previous_project: Project = _active_project
+		_active_project = value
+		active_project_changed.emit(previous_project, _active_project)
 
 # -------------------------------------------------------------------------------------------------
 func read_project_list() -> void:

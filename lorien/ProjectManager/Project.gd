@@ -1,9 +1,17 @@
 class_name Project
 
+# Emitted whenever something marks the project as dirty, even if it's already dirty.
+signal dirtied
+
 var id: int # this is used at runtime only and will not be persisted; project ids are not garanteed to be the same between restarts
 var undo_redo: UndoRedo
 
-var dirty := false
+var dirty := false:
+	set(value):
+		dirty = value
+		if value == true:
+			dirtied.emit()
+
 var loaded := false
 
 var filepath: String
