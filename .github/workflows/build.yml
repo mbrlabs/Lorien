@@ -30,7 +30,7 @@ jobs:
           cd lorien
           godot --headless -v --export-release "Windows Desktop" ../build/${EXPORT_NAME}_${LORIEN_VERSION}_Windows/${EXPORT_NAME}_${LORIEN_VERSION}.exe
       - name: Upload Artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: Lorien Windows
           path: build/${{ env.EXPORT_NAME }}_${{ env.LORIEN_VERSION }}_Windows
@@ -54,7 +54,7 @@ jobs:
           cd lorien
           godot --headless -v --export-release "Linux" ../build/${EXPORT_NAME}_${LORIEN_VERSION}_Linux/${EXPORT_NAME}_${LORIEN_VERSION}.x86_64
       - name: Upload Artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: Lorien Linux
           path: build/${{ env.EXPORT_NAME }}_${{ env.LORIEN_VERSION }}_Linux
@@ -78,7 +78,7 @@ jobs:
           cd lorien
           godot --headless -v --export-release "macOS" ../build/${EXPORT_NAME}_${LORIEN_VERSION}_Mac/${EXPORT_NAME}_${LORIEN_VERSION}.zip
       - name: Upload Artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: Lorien Mac
           path: build/${{ env.EXPORT_NAME }}_${{ env.LORIEN_VERSION }}_Mac
