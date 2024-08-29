@@ -37,13 +37,13 @@ var locales: PackedStringArray
 var language_names: PackedStringArray
 
 # -------------------------------------------------------------------------------------------------
-func _ready():
+func _ready() -> void:
 	_config_file = ConfigFile.new()
 	_load_settings()
 	reload_locales()
 
 # -------------------------------------------------------------------------------------------------
-func reload_locales():
+func reload_locales() -> void:
 	var parse_result := _i18n.reload_locales()
 	TranslationServer.set_locale(get_general_value(GENERAL_LANGUAGE, "en"))
 	locales = parse_result.locales
@@ -70,34 +70,34 @@ func _save_settings() -> int:
 	return err
 
 # -------------------------------------------------------------------------------------------------
-func get_general_value(key: String, default_value = null):
+func get_general_value(key: String, default_value: Variant = null) -> Variant:
 	return _config_file.get_value(GENERAL_SECTION, key, default_value)
 
 # -------------------------------------------------------------------------------------------------
-func set_general_value(key: String, value = null):
+func set_general_value(key: String, value: Variant = null) -> void:
 	_config_file.set_value(GENERAL_SECTION, key, value)
 	_save_settings()
 	
 # -------------------------------------------------------------------------------------------------
-func get_appearance_value(key: String, default_value = null):
+func get_appearance_value(key: String, default_value: Variant = null) -> Variant:
 	return _config_file.get_value(APPEARANCE_SECTION, key, default_value)
 
 # -------------------------------------------------------------------------------------------------
-func set_appearance_value(key: String, value = null):
+func set_appearance_value(key: String, value: Variant = null) -> void:
 	_config_file.set_value(APPEARANCE_SECTION, key, value)
 	_save_settings()
 	
 # -------------------------------------------------------------------------------------------------
-func get_rendering_value(key: String, default_value = null):
+func get_rendering_value(key: String, default_value: Variant = null) -> Variant:
 	return _config_file.get_value(RENDERING_SECTION, key, default_value)
 
 # -------------------------------------------------------------------------------------------------
-func set_rendering_value(key: String, value = null):
+func set_rendering_value(key: String, value: Variant = null) -> void:
 	_config_file.set_value(RENDERING_SECTION, key, value)
 	_save_settings()
 	
 # -------------------------------------------------------------------------------------------------
-func get_keybind_value(action_name: String, default_value = null) -> InputEventKey:
+func get_keybind_value(action_name: String, default_value: Variant = null) -> InputEventKey:
 	return _config_file.get_value(KEYBINDINGS_SECTION, action_name, default_value)
 
 # -------------------------------------------------------------------------------------------------

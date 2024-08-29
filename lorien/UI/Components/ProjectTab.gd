@@ -6,8 +6,8 @@ const STYLE_ACTIVE = preload("res://UI/Themes/style_tab_active_dark.tres")
 const STYLE_INACTIVE = preload("res://UI/Themes/style_tab_inactive_dark.tres")
 
 # -------------------------------------------------------------------------------------------------
-signal selected
-signal close_requested
+signal selected(tab: ProjectTab)
+signal close_requested(tab: ProjectTab)
 
 # -------------------------------------------------------------------------------------------------
 @onready var _filename_button: Button = $HBoxContainer/FilenameButton
@@ -18,7 +18,7 @@ var title: String: set = set_title
 var project_id: int
 
 # -------------------------------------------------------------------------------------------------
-func _ready():
+func _ready() -> void:
 	set_active(false)
 	_filename_button.text = title
 	
@@ -32,17 +32,17 @@ func set_title(t: String) -> void:
 		_filename_button.text = title
 
 # -------------------------------------------------------------------------------------------------
-func _on_FilenameButton_pressed():
-	emit_signal("selected", self)
+func _on_FilenameButton_pressed() -> void:
+	selected.emit(self)
 
 # -------------------------------------------------------------------------------------------------
-func _on_CloseButton_pressed():
-	emit_signal("close_requested", self)
+func _on_CloseButton_pressed() -> void:
+	close_requested.emit(self)
 
 # -------------------------------------------------------------------------------------------------
 func set_active(active: bool) -> void:
 	is_active = active
-	var new_style = STYLE_INACTIVE
+	var new_style: StyleBox = STYLE_INACTIVE
 	if is_active:
 		new_style = STYLE_ACTIVE
 	set("theme_override_styles/panel", new_style)

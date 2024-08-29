@@ -31,7 +31,9 @@ func _ready() -> void:
 	
 	id_pressed.connect(_on_item_pressed)
 	GlobalSignals.language_changed.connect(_set_items)
-	GlobalSignals.keybinding_changed.connect(func(action): _set_items())
+	GlobalSignals.keybinding_changed.connect(func(action: KeybindingsManager.Action) -> void: 
+		_set_items()
+	)
 
 # -------------------------------------------------------------------------------------------------
 func _set_items() -> void:
@@ -54,7 +56,7 @@ func _set_items() -> void:
 	add_item(tr("MENU_QUIT"), ITEM_QUIT, quit_action.event.get_keycode_with_modifiers())
 
 # -------------------------------------------------------------------------------------------------
-func _on_item_pressed(id: int):
+func _on_item_pressed(id: int) -> void:
 	match id:
 		ITEM_OPEN: _on_open_project()
 		ITEM_SAVE: save_project.emit()
@@ -67,7 +69,7 @@ func _on_item_pressed(id: int):
 		ITEM_QUIT: quit.emit()
 
 # -------------------------------------------------------------------------------------------------
-func _on_open_project():
+func _on_open_project() -> void:
 	var file_dialog: FileDialog = get_node(file_dialog_path)
 	file_dialog.file_mode = FileDialog.FILE_MODE_OPEN_FILE
 	file_dialog.file_selected.connect(_on_project_selected_to_open)

@@ -37,6 +37,7 @@ KeybindingsManager="*res://Misc/KeybindingsManager.gd"
 
 gdscript/warnings/unused_parameter=0
 gdscript/warnings/unused_signal=false
+gdscript/warnings/untyped_declaration=1
 gdscript/warnings/return_value_discarded=false
 gdscript/warnings/narrowing_conversion=false
 settings/fps/force_fps=144

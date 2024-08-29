@@ -2,14 +2,14 @@ extends ScrollContainer
 class_name Toolbar
 
 signal new_project
-signal open_project(filepath)
+signal open_project(filepath: String)
 signal save_project
 signal clear_canvas
 signal undo_action
 signal redo_action
 signal toggle_brush_color_picker
-signal brush_size_changed(size)
-signal tool_changed(t)
+signal brush_size_changed(size: float)
+signal tool_changed(t: Types.Tool)
 
 # -------------------------------------------------------------------------------------------------
 const BUTTON_HOVER_COLOR = Color("50ffd6")
@@ -37,7 +37,7 @@ const BUTTON_NORMAL_COLOR = Color.WHITE
 var _last_active_tool_button: FlatTextureButton
 
 # -------------------------------------------------------------------------------------------------
-func _ready():
+func _ready() -> void:
 	# Set inintial values
 	var brush_size: int = Settings.get_general_value(Settings.GENERAL_DEFAULT_BRUSH_SIZE, Config.DEFAULT_BRUSH_SIZE)
 	_brush_size_label.text = str(brush_size)
@@ -52,12 +52,12 @@ func _ready():
 	ProjectManager.active_project_changed.connect(_on_active_project_changed)
 	GlobalSignals.keybinding_changed.connect(_on_keybinding_changed)
 	
-	_new_button.pressed.connect(func(): new_project.emit())
-	_undo_button.pressed.connect(func(): undo_action.emit())
-	_redo_button.pressed.connect(func(): redo_action.emit())
+	_new_button.pressed.connect(func() -> void: new_project.emit())
+	_undo_button.pressed.connect(func() -> void: undo_action.emit())
+	_redo_button.pressed.connect(func() -> void: redo_action.emit())
 	_open_button.pressed.connect(_on_open_project_pressed)
-	_save_button.pressed.connect(func(): save_project.emit())
-	_color_button.pressed.connect(func(): toggle_brush_color_picker.emit())
+	_save_button.pressed.connect(func() -> void: save_project.emit())
+	_color_button.pressed.connect(func() -> void: toggle_brush_color_picker.emit())
 	_brush_size_slider.value_changed.connect(_on_brush_size_changed)
 	_tool_btn_brush.pressed.connect(_on_brush_tool_pressed)
 	_tool_btn_rectangle.pressed.connect(_on_rectangle_tool_pressed)
@@ -67,7 +67,7 @@ func _ready():
 	_tool_btn_selection.pressed.connect(_on_select_tool_pressed)
 	
 # -------------------------------------------------------------------------------------------------
-func enable_tool(tool_type: int) -> void:
+func enable_tool(tool_type: Types.Tool) -> void:
 	var btn: TextureButton
 	match tool_type:
 		Types.Tool.BRUSH: btn = _tool_btn_brush
@@ -114,7 +114,7 @@ func _on_keybinding_changed(action: KeybindingsManager.Action) -> void:
 		"shortcut_select_tool": _tool_btn_selection.tooltip_text = fmt % [tr("TOOLBAR_TOOLTIP_SELECT_TOOL"), label]
 
 # -------------------------------------------------------------------------------------------------
-func _on_open_project_pressed():
+func _on_open_project_pressed() -> void:
 	var file_dialog: FileDialog = get_node(file_dialog_path)
 	file_dialog.file_mode = FileDialog.FILE_MODE_OPEN_FILE
 	file_dialog.file_selected.connect(_on_project_selected_to_open)
@@ -133,13 +133,13 @@ func _on_file_dialog_closed() -> void:
 	Utils.remove_signal_connections(file_dialog, "close_requested")
 
 # -------------------------------------------------------------------------------------------------
-func _on_brush_size_changed(value: float):
+func _on_brush_size_changed(value: float) -> void:
 	var new_size := int(value)
 	_brush_size_label.text = "%d" % new_size
 	brush_size_changed.emit(new_size)
 
 # -------------------------------------------------------------------------------------------------
-func _on_brush_tool_pressed():
+func _on_brush_tool_pressed() -> void:
 	_change_active_tool_button(_tool_btn_brush)
 	tool_changed.emit(Types.Tool.BRUSH)
 
@@ -149,22 +149,22 @@ func _on_rectangle_tool_pressed() -> void:
 	tool_changed.emit(Types.Tool.RECTANGLE)
 
 # -------------------------------------------------------------------------------------------------
-func _on_circle_tool_pressed():
+func _on_circle_tool_pressed() -> void:
 	_change_active_tool_button(_tool_btn_circle)
 	tool_changed.emit(Types.Tool.CIRCLE)	
 	
 # -------------------------------------------------------------------------------------------------
-func _on_line_tool_pressed():
+func _on_line_tool_pressed() -> void:
 	_change_active_tool_button(_tool_btn_line)
 	tool_changed.emit(Types.Tool.LINE)
 
 # -------------------------------------------------------------------------------------------------
-func _on_eraser_tool_pressed():
+func _on_eraser_tool_pressed() -> void:
 	_change_active_tool_button(_tool_btn_eraser)
 	tool_changed.emit(Types.Tool.ERASER)
 
 # -------------------------------------------------------------------------------------------------
-func _on_select_tool_pressed():
+func _on_select_tool_pressed() -> void:
 	_change_active_tool_button(_tool_btn_selection)
 	tool_changed.emit(Types.Tool.SELECT)
 

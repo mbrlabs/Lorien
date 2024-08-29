@@ -5,7 +5,7 @@ extends PanelContainer
 const PALETTE_BUTTON = preload("res://UI/Components/PaletteButton.tscn")
 
 # -------------------------------------------------------------------------------------------------
-signal color_changed(color)
+signal color_changed(color: Color)
 signal closed
 
 # -------------------------------------------------------------------------------------------------
@@ -14,7 +14,7 @@ signal closed
 @export var delete_palette_dialog: NodePath
 @export var toolbar_path: NodePath
 
-@onready var _toolbar = get_node(toolbar_path)
+@onready var _toolbar: Toolbar = get_node(toolbar_path)
 @onready var _palette_selection_button: OptionButton = $MarginContainer/VBoxContainer/Buttons/PaletteSelectionButton
 @onready var _color_grid: GridContainer = $MarginContainer/VBoxContainer/ColorGrid
 @onready var _edit_button: TextureButton = $MarginContainer/VBoxContainer/Buttons/EditColorButton
@@ -79,7 +79,7 @@ func _close() -> void:
 	for btn in _color_grid.get_children():
 		btn.clear_hover_state()
 	hide()
-	emit_signal("closed")
+	closed.emit()
 
 # -------------------------------------------------------------------------------------------------
 func _create_buttons(palette: Palette) -> void:
@@ -112,7 +112,7 @@ func _activate_palette_button(button: PaletteButton, color_index: int) -> void:
 # -------------------------------------------------------------------------------------------------
 func _on_platte_button_pressed(button: PaletteButton, index: int) -> void:
 	_activate_palette_button(button, index)
-	emit_signal("color_changed", button.color)
+	color_changed.emit(button.color)
 
 # -------------------------------------------------------------------------------------------------
 func _on_PaletteSelectionButton_item_selected(index: int) -> void:

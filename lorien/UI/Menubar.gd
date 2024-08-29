@@ -5,8 +5,8 @@ extends Panel
 const PROJECT_TAB = preload("res://UI/Components/ProjectTab.tscn")
 
 # -------------------------------------------------------------------------------------------------
-signal project_selected(project_id)
-signal project_closed(project_id)
+signal project_selected(project_id: int)
+signal project_closed(project_id: int)
 signal create_new_project
 
 # -------------------------------------------------------------------------------------------------
@@ -76,18 +76,18 @@ func set_tab_active(project: Project) -> void:
 
 # -------------------------------------------------------------------------------------------------
 func _on_tab_close_requested(tab: ProjectTab) -> void:
-	emit_signal("project_closed", tab.project_id)
+	project_closed.emit(tab.project_id)
 
 # -------------------------------------------------------------------------------------------------
 func _on_tab_selected(tab: ProjectTab) -> void:
-	emit_signal("project_selected", tab.project_id)
+	project_selected.emit(tab.project_id)
 
 # -------------------------------------------------------------------------------------------------
 func _on_NewFileButton_pressed() -> void:
-	emit_signal("create_new_project")
+	create_new_project.emit()
 
 # -------------------------------------------------------------------------------------------------
-func _on_MenuButton_pressed():
+func _on_MenuButton_pressed() -> void:
 	var menu: MainMenu = get_node(_main_menu_path)
 	menu.popup_on_parent(_menu_button.get_rect())
 

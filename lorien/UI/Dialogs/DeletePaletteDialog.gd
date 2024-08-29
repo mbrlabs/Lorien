@@ -27,7 +27,7 @@ func _on_delete_pressed() -> void:
 	if !palette.builtin:
 		PaletteManager.remove_palette(palette)
 		PaletteManager.save()
-		emit_signal("palette_deleted")
+		palette_deleted.emit()
 		get_parent().hide()
 
 # -------------------------------------------------------------------------------------------------

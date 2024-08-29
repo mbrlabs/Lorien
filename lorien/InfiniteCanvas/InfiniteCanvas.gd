@@ -35,14 +35,16 @@ var _player: Player = null
 var _player_enabled := false
 
 # -------------------------------------------------------------------------------------------------
-func _ready():
+func _ready() -> void:
 	_optimizer = BrushStrokeOptimizer.new()
 	_brush_size = Settings.get_general_value(Settings.GENERAL_DEFAULT_BRUSH_SIZE, Config.DEFAULT_BRUSH_SIZE)
 	set_background_color(Settings.get_appearance_value(Settings.APPEARANCE_CANVAS_COLOR, Config.DEFAULT_CANVAS_COLOR))
 	_active_tool._on_brush_size_changed(_brush_size)
 	_active_tool.enabled = false
 	
-	var constant_pressure = Settings.get_general_value(Settings.GENERAL_CONSTANT_PRESSURE, Config.DEFAULT_CONSTANT_PRESSURE)
+	var constant_pressure: bool = Settings.get_general_value(
+		Settings.GENERAL_CONSTANT_PRESSURE, Config.DEFAULT_CONSTANT_PRESSURE)
+		
 	if constant_pressure:
 		_brush_tool.pressure_curve = _constant_pressure_curve
 	else:
@@ -141,15 +143,15 @@ func set_background_color(color: Color) -> void:
 	_grid.set_canvas_color(_background_color)
 
 # -------------------------------------------------------------------------------------------------
-func enable_player(enable: bool) -> void:
-	_player_enabled = enable
+func enable_player(e: bool) -> void:
+	_player_enabled = e
 	
 	# colliders
 	for stroke in _strokes_parent.get_children():
-		stroke.enable_collider(enable)
+		stroke.enable_collider(e)
 	
 	# player
-	if enable:
+	if e:
 		_player = PLAYER.instantiate()
 		_player.reset(_active_tool.get_cursor().global_position)
 		_viewport.add_child(_player)
@@ -270,7 +272,7 @@ func end_stroke() -> void:
 func add_strokes(strokes: Array) -> void:
 	_current_project.undo_redo.create_action("Add Strokes")
 	var point_count := 0
-	for stroke in strokes:
+	for stroke: BrushStroke in strokes:
 		point_count += stroke.points.size()
 		_current_project.undo_redo.add_undo_method(undo_last_stroke)
 		_current_project.undo_redo.add_undo_reference(stroke)
@@ -304,7 +306,7 @@ func use_project(project: Project) -> void:
 # -------------------------------------------------------------------------------------------------
 func undo_last_stroke() -> void:
 	if _current_stroke == null && !_current_project.strokes.is_empty():
-		var stroke = _strokes_parent.get_child(_strokes_parent.get_child_count() - 1)
+		var stroke: BrushStroke = _strokes_parent.get_child(_strokes_parent.get_child_count() - 1)
 		_strokes_parent.remove_child(stroke)
 		_current_project.remove_last_stroke()
 		info.point_count -= stroke.points.size()
@@ -323,7 +325,7 @@ func set_brush_color(color: Color) -> void:
 		_active_tool._on_brush_color_changed(_brush_color)
 
 # -------------------------------------------------------------------------------------------------
-func enable_constant_pressure(e: bool):
+func enable_constant_pressure(e: bool) -> void:
 	if e:
 		_brush_tool.pressure_curve = _constant_pressure_curve
 	else:
@@ -353,7 +355,7 @@ func _delete_selected_strokes() -> void:
 	var strokes := _selection_tool.get_selected_strokes()
 	if !strokes.is_empty():
 		_current_project.undo_redo.create_action("Delete Selection")
-		for stroke in strokes:
+		for stroke: BrushStroke in strokes:
 			_current_project.undo_redo.add_do_method(_do_delete_stroke.bind(stroke))
 			_current_project.undo_redo.add_undo_reference(stroke)
 			_current_project.undo_redo.add_undo_method(_undo_delete_stroke.bind(stroke))

@@ -11,7 +11,7 @@ const ACTIVE_PROJECT 					:= "active_project"
 var _config_file := ConfigFile.new()
 
 # -------------------------------------------------------------------------------------------------
-func _ready():
+func _ready() -> void:
 	_config_file = ConfigFile.new()
 	_load_state()
 
@@ -36,10 +36,10 @@ func _save_state() -> int:
 	return err
 
 # -------------------------------------------------------------------------------------------------
-func get_value(key: String, default_value = null):
+func get_value(key: String, default_value: Variant = null) -> Variant:
 	return _config_file.get_value(DEFAULT_SECTION, key, default_value)
 
 # -------------------------------------------------------------------------------------------------
-func set_value(key: String, value = null):
+func set_value(key: String, value: Variant = null) -> void:
 	_config_file.set_value(DEFAULT_SECTION, key, value)
 	_save_state()

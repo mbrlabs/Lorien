@@ -10,7 +10,7 @@ var _grid_size := Config.DEFAULT_GRID_SIZE
 var _grid_color: Color
 
 # -------------------------------------------------------------------------------------------------
-func _ready():
+func _ready() -> void:
 	_grid_size = Settings.get_appearance_value(Settings.APPEARANCE_GRID_SIZE, Config.DEFAULT_GRID_SIZE)
 	_pattern = Settings.get_appearance_value(Settings.APPEARANCE_GRID_PATTERN, Config.DEFAULT_GRID_PATTERN)
 	
@@ -47,8 +47,8 @@ func set_canvas_color(c: Color) -> void:
 # -------------------------------------------------------------------------------------------------
 func _draw() -> void:
 	var zoom := (Vector2.ONE / _camera.zoom).x
-	var size = Vector2(get_viewport().size.x, get_viewport().size.y) * zoom
-	var offset = _camera.offset
+	var size := Vector2(get_viewport().size.x, get_viewport().size.y) * zoom
+	var offset := _camera.offset
 	var grid_size := int(ceil((_grid_size * pow(zoom, 0.75))))
 		
 	match _pattern:
@@ -57,7 +57,7 @@ func _draw() -> void:
 			var x_start := int(offset.x / grid_size) - 1
 			var x_end := int((size.x + offset.x) / grid_size) + 1
 			var y_start := int(offset.y / grid_size) - 1
-			var y_end = int((size.y + offset.y) / grid_size) + 1
+			var y_end := int((size.y + offset.y) / grid_size) + 1
 			
 			for x in range(x_start, x_end):
 				for y in range(y_start, y_end):

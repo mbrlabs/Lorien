@@ -7,8 +7,8 @@ const BOUNDING_BOX_MARGIN := 20.0
 
 # -------------------------------------------------------------------------------------------------
 var _last_mouse_position: Vector2
-var _removed_strokes := [] # BrushStroke -> Vector2
-var _bounding_box_cache = {} # BrushStroke -> Rect2
+var _removed_strokes: Array[BrushStroke]
+var _bounding_box_cache := {} # BrushStroke -> Rect2
 
 # -------------------------------------------------------------------------------------------------
 func tool_event(event: InputEvent) -> void:

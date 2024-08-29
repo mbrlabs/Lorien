@@ -15,7 +15,7 @@ func reset() -> void:
 	end_position = Vector2.ZERO
 
 # -------------------------------------------------------------------------------------------------
-func _draw():
+func _draw() -> void:
 	if !(start_position - end_position).is_zero_approx():
 		material.set_shader_parameter("background_color", _canvas.get_background_color())
 		draw_rect(Rect2(start_position, end_position - start_position), FILL_COLOR)

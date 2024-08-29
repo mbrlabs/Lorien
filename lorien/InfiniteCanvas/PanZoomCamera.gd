@@ -1,8 +1,8 @@
 extends Camera2D
 
 # -------------------------------------------------------------------------------------------------
-signal zoom_changed(value)
-signal position_changed(value)
+signal zoom_changed(value: float)
+signal position_changed(value: Vector2)
 
 # -------------------------------------------------------------------------------------------------
 const ZOOM_INCREMENT := 1.1
@@ -66,7 +66,7 @@ func tool_event(event: InputEvent) -> void:
 # -------------------------------------------------------------------------------------------------
 func _do_pan(pan: Vector2) -> void:
 	offset -= pan * (1.0 / _current_zoom_level)
-	emit_signal("position_changed", offset)
+	position_changed.emit(offset)
 
 # -------------------------------------------------------------------------------------------------
 func _do_zoom_scroll(step: int) -> void:
@@ -93,7 +93,7 @@ func _zoom_canvas(target_zoom: float, anchor: Vector2) -> void:
 	_current_zoom_level = target_zoom
 	
 	zoom = Vector2(_current_zoom_level, _current_zoom_level)
-	emit_signal("zoom_changed", _current_zoom_level)
+	zoom_changed.emit(_current_zoom_level)
 
 # -------------------------------------------------------------------------------------------------
 func _to_nearest_zoom_step(zoom_level: float) -> float:

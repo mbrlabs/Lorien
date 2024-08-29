@@ -22,16 +22,16 @@ enum State {
 # -------------------------------------------------------------------------------------------------
 @export var selection_rectangle_path: NodePath
 var _selection_rectangle: SelectionRectangle
-var _state = State.NONE
+var _state := State.NONE
 var _selecting_start_pos: Vector2 = Vector2.ZERO
 var _selecting_end_pos: Vector2 = Vector2.ZERO
 var _multi_selecting: bool
 var _mouse_moved_during_pressed := false
 var _stroke_positions_before_move := {} # BrushStroke -> Vector2
-var _bounding_box_cache = {} # BrushStroke -> Rect2
+var _bounding_box_cache := {} # BrushStroke -> Rect2
 
 # ------------------------------------------------------------------------------------------------
-func _ready():
+func _ready() -> void:
 	super()
 	_selection_rectangle = get_node(selection_rectangle_path)
 	_cursor.mode = SelectionCursor.Mode.SELECT
@@ -46,7 +46,7 @@ func tool_event(event: InputEvent) -> void:
 		var strokes := get_selected_strokes()
 		if strokes.size() > 0:
 			Utils.remove_group_from_all_nodes(GROUP_COPIED_STROKES)
-			for stroke in strokes:
+			for stroke: BrushStroke in strokes:
 				stroke.add_to_group(GROUP_COPIED_STROKES)
 			print("Copied %d strokes" % strokes.size())
 	
@@ -74,7 +74,7 @@ func tool_event(event: InputEvent) -> void:
 					_state = State.MOVING
 					_mouse_moved_during_pressed = false
 					_offset_selected_strokes(_cursor.global_position)
-					for s in get_selected_strokes():
+					for s: BrushStroke in get_selected_strokes():
 						_stroke_positions_before_move[s] = s.global_position
 			# LMB up - stop selection or movement
 			else:

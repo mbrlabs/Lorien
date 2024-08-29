@@ -88,7 +88,7 @@ func _is_stroke_a_dot() -> bool:
 # -------------------------------------------------------------------------------------------------
 func _draw_point() -> void:
 	var origin := _cursor.global_position
-	var pressure = 0.5
+	var pressure := 0.5
 	var offset := 1.5
 	
 	add_stroke_point(origin, pressure)

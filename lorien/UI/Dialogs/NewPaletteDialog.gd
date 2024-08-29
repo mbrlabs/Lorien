@@ -2,7 +2,7 @@ class_name NewPaletteDialog
 extends MarginContainer
 
 # -------------------------------------------------------------------------------------------------
-signal new_palette_created(palette)
+signal new_palette_created(palette: Palette)
 
 # -------------------------------------------------------------------------------------------------
 @onready var _line_edit: LineEdit = $Container/LineEdit

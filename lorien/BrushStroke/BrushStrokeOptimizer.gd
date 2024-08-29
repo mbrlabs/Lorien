@@ -29,7 +29,7 @@ func optimize(s: BrushStroke) -> void:
 	for i: int in range(1, s.points.size()):
 		var prev_point := s.points[i-1]
 		var point := s.points[i]
-		var pressure = s.pressures[i]
+		var pressure := s.pressures[i]
 		
 		# Distance between 2 points must be greater than x
 		var distance := prev_point.distance_to(point)

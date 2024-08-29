@@ -24,12 +24,12 @@ var top_left_pos: Vector2
 var bottom_right_pos: Vector2
 
 # ------------------------------------------------------------------------------------------------
-func _ready():
+func _ready() -> void:
 	_line2d.width_curve = Curve.new()
 	_line2d.texture = BrushStrokeTexture.texture
 	
-	_visibility_notifier.screen_entered.connect(func(): add_to_group(GROUP_ONSCREEN))
-	_visibility_notifier.screen_exited.connect(func(): remove_from_group(GROUP_ONSCREEN))
+	_visibility_notifier.screen_entered.connect(func() -> void: add_to_group(GROUP_ONSCREEN))
+	_visibility_notifier.screen_exited.connect(func() -> void: remove_from_group(GROUP_ONSCREEN))
 	
 	var rounding_mode: int = Settings.get_rendering_value(
 		Settings.RENDERING_BRUSH_ROUNDING, Config.DEFAULT_BRUSH_ROUNDING

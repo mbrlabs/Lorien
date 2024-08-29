@@ -9,12 +9,12 @@ var _pressure := 1.0
 @onready var _camera: Camera2D = get_viewport().get_node("Camera2D")
 
 # -------------------------------------------------------------------------------------------------
-func _input(event):
+func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		update_position()
 
 # -------------------------------------------------------------------------------------------------
-func update_position():
+func update_position() -> void:
 	global_position = _camera.get_global_mouse_position()
 
 # -------------------------------------------------------------------------------------------------

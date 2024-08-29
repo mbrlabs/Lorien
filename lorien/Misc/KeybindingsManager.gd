@@ -37,9 +37,9 @@ func get_actions() -> Array[Action]:
 	return _actions
 
 # -------------------------------------------------------------------------------------------------
-func get_action(name: String) -> Action:
+func get_action(action_name: String) -> Action:
 	for action: Action in _actions:
-		if action.name == name:
+		if action.name == action_name:
 			return action
 	return null
 

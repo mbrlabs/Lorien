@@ -47,7 +47,7 @@ func _get_hover_color() -> Color:
 # -------------------------------------------------------------------------------------------------
 func _on_PaletteButton_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton && !event.pressed && event.button_index == MOUSE_BUTTON_LEFT:
-		emit_signal("pressed")
+		pressed.emit()
 
 # -------------------------------------------------------------------------------------------------
 func _on_PaletteButton_mouse_entered() -> void:

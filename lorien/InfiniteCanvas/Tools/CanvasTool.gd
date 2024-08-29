@@ -15,7 +15,7 @@ var enabled := false: get = get_enabled, set = set_enabled
 var performing_stroke := false
 
 # -------------------------------------------------------------------------------------------------
-func _ready():
+func _ready() -> void:
 	_cursor = get_node(cursor_path)
 	_canvas = get_parent()
 	set_enabled(false)
@@ -33,7 +33,7 @@ func _on_brush_size_changed(size: int) -> void:
 	_cursor.change_size(size)
 
 # -------------------------------------------------------------------------------------------------
-func get_cursor():
+func get_cursor() -> BaseCursor:
 	return _cursor
 
 # -------------------------------------------------------------------------------------------------

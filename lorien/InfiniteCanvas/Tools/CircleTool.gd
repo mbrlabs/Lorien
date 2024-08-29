@@ -15,7 +15,7 @@ var sin_arr : Array[float]
 var cos_arr : Array[float]
 
 # -------------------------------------------------------------------------------------------------
-func _init():
+func _init() -> void:
 	sin_arr.resize(360)
 	cos_arr.resize(360)
 	for i: int in 360:

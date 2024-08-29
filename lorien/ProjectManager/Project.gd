@@ -19,11 +19,11 @@ var meta_data: Dictionary
 var strokes: Array[BrushStroke]
 
 # -------------------------------------------------------------------------------------------------
-func _init():
+func _init() -> void:
 	undo_redo = UndoRedo.new()
 
 # -------------------------------------------------------------------------------------------------
-func _notification(what):
+func _notification(what: int) -> void:
 	if what == NOTIFICATION_PREDELETE:
 		if undo_redo != null:
 			undo_redo.free()

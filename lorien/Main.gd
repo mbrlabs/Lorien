@@ -28,7 +28,7 @@ var _dirty_project_to_close: Project = null
 var _player_enabled := false
 
 # -------------------------------------------------------------------------------------------------
-func _ready():
+func _ready() -> void:
 	# Init stuff
 	randomize()
 	Engine.max_fps = Settings.get_rendering_value(Settings.RENDERING_FOREGROUND_FPS, Config.DEFAULT_FOREGROUND_FPS)
@@ -101,7 +101,7 @@ func _ready():
 	_apply_state()
 
 # -------------------------------------------------------------------------------------------------
-func _notification(what):
+func _notification(what: int) -> void:
 	if NOTIFICATION_WM_CLOSE_REQUEST == what:
 		_quit()
 	elif NOTIFICATION_APPLICATION_FOCUS_IN == what:
@@ -116,12 +116,12 @@ func _notification(what):
 			_canvas.disable()
 
 # -------------------------------------------------------------------------------------------------
-func _exit_tree():
+func _exit_tree() -> void:
 	_menubar.remove_all_tabs()
 	ProjectManager.remove_all_projects()
 
 # -------------------------------------------------------------------------------------------------
-func _process(delta):
+func _process(delta: float) -> void:
 	_statusbar.set_stroke_count(_canvas.info.stroke_count)
 	_statusbar.set_point_count(_canvas.info.point_count)
 	_statusbar.set_pressure(_canvas.info.current_pressure)
@@ -135,7 +135,7 @@ func _process(delta):
 		_menubar.update_tab_title(active_project)
 
 # -------------------------------------------------------------------------------------------------
-func _unhandled_input(event):
+func _unhandled_input(event: InputEvent) -> void:
 	if !is_dialog_open():
 		if Utils.event_pressed_bug_workaround("toggle_player", event):
 			_toggle_player()
@@ -209,9 +209,8 @@ func _apply_state() -> void:
 	
 	# Open projects
 	var open_projects: Array = StatePersistence.get_value(StatePersistence.OPEN_PROJECTS, Array())
-	for path in open_projects:
-		if path is String:
-			_on_open_project(path)
+	for path: String in open_projects:
+		_on_open_project(path)
 			
 	# Active project
 	var active_project_path: String = StatePersistence.get_value(StatePersistence.ACTIVE_PROJECT, "")
@@ -279,7 +278,7 @@ func _create_active_default_project() -> void:
 
 # -------------------------------------------------------------------------------------------------
 func _save_project(project: Project) -> void:
-	var meta_data = ProjectMetadata.make_dict(_canvas)
+	var meta_data := ProjectMetadata.make_dict(_canvas)
 	project.meta_data = meta_data
 	ProjectManager.save_project(project)
 	_menubar.update_tab_title(project)
@@ -323,7 +322,7 @@ func _close_project(project_id: int) -> void:
 			_make_project_active(new_project)
 
 # -------------------------------------------------------------------------------------------------
-func _toggle_fullscreen():
+func _toggle_fullscreen() -> void:
 	match get_window().mode:
 		Window.MODE_EXCLUSIVE_FULLSCREEN, Window.MODE_FULLSCREEN:
 			get_window().mode = Window.MODE_WINDOWED
@@ -473,16 +472,16 @@ func _on_open_url(url: String) -> void:
 	_canvas.disable()
 
 # -------------------------------------------------------------------------------------------------
-func _on_InfiniteCanvas_mouse_entered():
+func _on_InfiniteCanvas_mouse_entered() -> void:
 	if !is_dialog_open() && !_is_mouse_on_ui():
 		_canvas.enable()
 
 # -------------------------------------------------------------------------------------------------
-func _on_InfiniteCanvas_mouse_exited():
+func _on_InfiniteCanvas_mouse_exited() -> void:
 	_canvas.disable()
 
 # --------------------------------------------------------------------------------------------------
-func _on_export_confirmed(path: String):
+func _on_export_confirmed(path: String) -> void:
 	match path.get_extension():
 		"svg":
 			var project: Project = ProjectManager.get_active_project()

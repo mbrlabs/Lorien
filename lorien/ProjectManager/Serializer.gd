@@ -72,7 +72,7 @@ static func load_project(project: Project) -> void:
 	
 	# Meta data
 	var _version_number := file.get_32()
-	var meta_data_str = file.get_pascal_string()
+	var meta_data_str := file.get_pascal_string()
 	project.meta_data = _metadata_str_to_dict(meta_data_str)
 	
 	# Brush strokes
@@ -122,8 +122,8 @@ static func load_project(project: Project) -> void:
 # -------------------------------------------------------------------------------------------------
 static func _dict_to_metadata_str(d: Dictionary) -> String:
 	var meta_str := ""
-	for k in d.keys():
-		var v = d[k]
+	for k: Variant in d.keys():
+		var v: Variant = d[k]
 		if k is String && v is String:
 			meta_str += "%s=%s," % [k, v]
 		else:

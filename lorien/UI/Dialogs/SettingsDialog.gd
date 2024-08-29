@@ -21,9 +21,9 @@ const BRUSH_STROKE_CAP_ROUND 	:= 1
 # -------------------------------------------------------------------------------------------------
 signal ui_scale_changed
 signal canvas_color_changed(color: Color)
-signal grid_size_changed(size)
-signal grid_pattern_changed(pattern)
-signal constant_pressure_changed(state)
+signal grid_size_changed(size: int)
+signal grid_pattern_changed(pattern: Types.GridPattern)
+signal constant_pressure_changed(state: bool)
 
 # -------------------------------------------------------------------------------------------------
 @onready var _general_tab: Button = %GeneralTab
@@ -54,7 +54,7 @@ signal constant_pressure_changed(state)
 @onready var _restart_label: Label = %RestartLabel
 
 # -------------------------------------------------------------------------------------------------
-func _ready():
+func _ready() -> void:
 	_set_values()
 	get_parent().close_requested.connect(get_parent().hide)
 	_enable_tab(_general_tab, _general_container)
@@ -75,29 +75,29 @@ func _ready():
 	_foreground_fps.value_changed.connect(_on_foreground_fps_changed)
 	_background_fps.value_changed.connect(_on_background_fps_changed)
 	
-	_general_tab.pressed.connect(func(): _enable_tab(_general_tab, _general_container))
-	_appearance_tab.pressed.connect(func(): _enable_tab(_appearance_tab, _appearance_container))
-	_rendering_tab.pressed.connect(func(): _enable_tab(_rendering_tab, _rendering_container))
-	_keybindings_tab.pressed.connect(func(): _enable_tab(_keybindings_tab, _keybindings_container))
+	_general_tab.pressed.connect(func() -> void: _enable_tab(_general_tab, _general_container))
+	_appearance_tab.pressed.connect(func() -> void: _enable_tab(_appearance_tab, _appearance_container))
+	_rendering_tab.pressed.connect(func() -> void: _enable_tab(_rendering_tab, _rendering_container))
+	_keybindings_tab.pressed.connect(func() -> void: _enable_tab(_keybindings_tab, _keybindings_container))
 
 # -------------------------------------------------------------------------------------------------
 func _set_values() -> void:
-	var brush_size = Settings.get_general_value(Settings.GENERAL_DEFAULT_BRUSH_SIZE, Config.DEFAULT_BRUSH_SIZE)
-	var project_dir = Settings.get_general_value(Settings.GENERAL_DEFAULT_PROJECT_DIR, "")
-	var locale = Settings.get_general_value(Settings.GENERAL_LANGUAGE, "en")
-	var tool_pressure = Settings.get_general_value(Settings.GENERAL_TOOL_PRESSURE, Config.DEFAULT_TOOL_PRESSURE)
-	var pressure_sensitivity = Settings.get_general_value(Settings.GENERAL_PRESSURE_SENSITIVITY, Config.DEFAULT_PRESSURE_SENSITIVITY)
-	var constant_pressure = Settings.get_general_value(Settings.GENERAL_CONSTANT_PRESSURE, Config.DEFAULT_CONSTANT_PRESSURE)
+	var brush_size: int = Settings.get_general_value(Settings.GENERAL_DEFAULT_BRUSH_SIZE, Config.DEFAULT_BRUSH_SIZE)
+	var project_dir: String = Settings.get_general_value(Settings.GENERAL_DEFAULT_PROJECT_DIR, "")
+	var locale: String = Settings.get_general_value(Settings.GENERAL_LANGUAGE, "en")
+	var tool_pressure: float = Settings.get_general_value(Settings.GENERAL_TOOL_PRESSURE, Config.DEFAULT_TOOL_PRESSURE)
+	var pressure_sensitivity: float = Settings.get_general_value(Settings.GENERAL_PRESSURE_SENSITIVITY, Config.DEFAULT_PRESSURE_SENSITIVITY)
+	var constant_pressure: bool = Settings.get_general_value(Settings.GENERAL_CONSTANT_PRESSURE, Config.DEFAULT_CONSTANT_PRESSURE)
 	
-	var canvas_color = Settings.get_appearance_value(Settings.APPEARANCE_CANVAS_COLOR, Config.DEFAULT_CANVAS_COLOR)
-	var ui_theme = Settings.get_appearance_value(Settings.APPEARANCE_THEME, Types.UITheme.DARK)
-	var ui_scale = Settings.get_appearance_value(Settings.APPEARANCE_UI_SCALE, Config.DEFAULT_UI_SCALE)
-	var ui_scale_mode = Settings.get_appearance_value(Settings.APPEARANCE_UI_SCALE_MODE, Config.DEFAULT_UI_SCALE_MODE)
-	var grid_pattern = Settings.get_appearance_value(Settings.APPEARANCE_GRID_PATTERN, Config.DEFAULT_GRID_PATTERN)
-	var grid_size = Settings.get_appearance_value(Settings.APPEARANCE_GRID_SIZE, Config.DEFAULT_GRID_SIZE)
+	var canvas_color: Color = Settings.get_appearance_value(Settings.APPEARANCE_CANVAS_COLOR, Config.DEFAULT_CANVAS_COLOR)
+	var ui_theme: Types.UITheme = Settings.get_appearance_value(Settings.APPEARANCE_THEME, Types.UITheme.DARK)
+	var ui_scale: float = Settings.get_appearance_value(Settings.APPEARANCE_UI_SCALE, Config.DEFAULT_UI_SCALE)
+	var ui_scale_mode: Types.UIScale = Settings.get_appearance_value(Settings.APPEARANCE_UI_SCALE_MODE, Config.DEFAULT_UI_SCALE_MODE)
+	var grid_pattern: Types.GridPattern = Settings.get_appearance_value(Settings.APPEARANCE_GRID_PATTERN, Config.DEFAULT_GRID_PATTERN)
+	var grid_size: int = Settings.get_appearance_value(Settings.APPEARANCE_GRID_SIZE, Config.DEFAULT_GRID_SIZE)
 	
-	var foreground_fps = Settings.get_rendering_value(Settings.RENDERING_FOREGROUND_FPS, Config.DEFAULT_FOREGROUND_FPS)
-	var background_fps = Settings.get_rendering_value(Settings.RENDERING_BACKGROUND_FPS, Config.DEFAULT_BACKGROUND_FPS)
+	var foreground_fps: int = Settings.get_rendering_value(Settings.RENDERING_FOREGROUND_FPS, Config.DEFAULT_FOREGROUND_FPS)
+	var background_fps: int = Settings.get_rendering_value(Settings.RENDERING_BACKGROUND_FPS, Config.DEFAULT_BACKGROUND_FPS)
 	
 	match ui_theme:
 		Types.UITheme.DARK: _theme.selected = THEME_DARK_INDEX
@@ -131,7 +131,7 @@ func _set_values() -> void:
 	_ui_scale.value = ui_scale
 	
 # -------------------------------------------------------------------------------------------------
-func _set_rounding():
+func _set_rounding() -> void:
 	_brush_rounding.selected = Settings.get_rendering_value(
 		Settings.RENDERING_BRUSH_ROUNDING, 
 		Config.DEFAULT_BRUSH_ROUNDING
@@ -165,7 +165,7 @@ func _set_languages(current_locale: String) -> void:
 	# order to start after it
 	_language.add_item("English", unsorted_languages.find("English"))
 	_language.add_separator()
-	for lang in sorted_languages:
+	for lang: String in sorted_languages:
 		_language.add_item(lang, unsorted_languages.find(lang))
 	
 	# Set selected
@@ -181,7 +181,7 @@ func _set_keybindings() -> void:
 		item.set_action(action)
 
 #--------------------------------------------------------------------------------------------------
-func _set_ui_scale_range():
+func _set_ui_scale_range() -> void:
 	var ss := DisplayServer.screen_get_size()
 	var viewport_width: float = ProjectSettings.get_setting("display/window/size/viewport_width")
 	var viewport_height: float = ProjectSettings.get_setting("display/window/size/viewport_height")
@@ -223,7 +223,7 @@ func _on_grid_pattern_selected(index: int) -> void:
 	grid_pattern_changed.emit(pattern)
 
 # -------------------------------------------------------------------------------------------------
-func _on_pressure_sensitivity_changed(value: float):
+func _on_pressure_sensitivity_changed(value: float) -> void:
 	Settings.set_general_value(Settings.GENERAL_PRESSURE_SENSITIVITY, value)
 
 # -------------------------------------------------------------------------------------------------
@@ -246,7 +246,7 @@ func _on_background_fps_changed(value: int) -> void:
 	Settings.set_rendering_value(Settings.RENDERING_BACKGROUND_FPS, value)
 
 # -------------------------------------------------------------------------------------------------
-func _on_theme_selected(index: int):
+func _on_theme_selected(index: int) -> void:
 	var ui_theme: Types.UITheme
 	match index:
 		THEME_DARK_INDEX: ui_theme = Types.UITheme.DARK
@@ -256,7 +256,7 @@ func _on_theme_selected(index: int):
 	_restart_label.show()
 
 # -------------------------------------------------------------------------------------------------
-func _on_brush_rounding_selected(index: int):
+func _on_brush_rounding_selected(index: int) -> void:
 	match index:
 		BRUSH_STROKE_CAP_FLAT:
 			Settings.set_rendering_value(Settings.RENDERING_BRUSH_ROUNDING, Types.BrushRoundingType.FLAT)
@@ -265,7 +265,7 @@ func _on_brush_rounding_selected(index: int):
 	_restart_label.show()
 
 # -------------------------------------------------------------------------------------------------
-func _on_language_selected(idx: int):
+func _on_language_selected(idx: int) -> void:
 	var id := _language.get_item_id(idx)
 	var locale: String = Settings.locales[id]
 	
@@ -275,7 +275,7 @@ func _on_language_selected(idx: int):
 	_restart_label.show()
 
 # -------------------------------------------------------------------------------------------------
-func _on_ui_scale_mode_selected(index: int):
+func _on_ui_scale_mode_selected(index: int) -> void:
 	match index:
 		UI_SCALE_AUTO_INDEX:
 			_ui_scale.set_editable(false)
@@ -286,17 +286,17 @@ func _on_ui_scale_mode_selected(index: int):
 	ui_scale_changed.emit()
 
 # -------------------------------------------------------------------------------------------------
-func _on_ui_scale_changed(value: float):
+func _on_ui_scale_changed(value: float) -> void:
 	Settings.set_appearance_value(Settings.APPEARANCE_UI_SCALE, value)
 	ui_scale_changed.emit()
 	_restart_label.show()
 
 # -------------------------------------------------------------------------------------------------
-func _on_default_tool_pressure_changed(value):
+func _on_default_tool_pressure_changed(value: float) -> void:
 	Settings.set_general_value(Settings.GENERAL_TOOL_PRESSURE, value)
 
 # -------------------------------------------------------------------------------------------------
-func _on_constant_pressure_toggled(button_pressed: bool):
+func _on_constant_pressure_toggled(button_pressed: bool) -> void:
 	Settings.set_general_value(Settings.GENERAL_CONSTANT_PRESSURE, button_pressed)
 	constant_pressure_changed.emit(button_pressed)
 
