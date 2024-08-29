@@ -1,8 +1,8 @@
 class_name BrushStrokeOptimizer
 
 # -------------------------------------------------------------------------------------------------
-const ANGLE_THRESHOLD := 1.0
-const DISTANCE_THRESHOLD := 2.0
+const ANGLE_THRESHOLD := 0.5
+const DISTANCE_THRESHOLD := 1.0
 
 # -------------------------------------------------------------------------------------------------
 var points_removed := 0
