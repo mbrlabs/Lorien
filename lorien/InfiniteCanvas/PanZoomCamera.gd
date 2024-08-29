@@ -36,6 +36,12 @@ func do_center(screen_space_center_point: Vector2) -> void:
 # -------------------------------------------------------------------------------------------------
 func tool_event(event: InputEvent) -> void:
 	if _is_input_enabled:
+		if event is InputEventKey:
+			if Utils.event_pressed_bug_workaround("canvas_pan_key", event):
+				_pan_active = event.is_pressed()
+			else:
+				_pan_active = event.is_pressed()
+		
 		if event is InputEventMouseButton:
 			
 			# Scroll wheel up/down to zoom
@@ -112,3 +118,8 @@ func disable_input() -> void:
 # -------------------------------------------------------------------------------------------------
 func xform(pos: Vector2) -> Vector2:
 	return (pos * zoom) + offset
+
+#--------------------------------------------------------------------------------------------------
+func _notification(what):
+	if what == NOTIFICATION_WM_MOUSE_EXIT:
+		_pan_active = false

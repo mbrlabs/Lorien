@@ -158,6 +158,7 @@ ACTION_duplicate_strokes            Duplicate strokes
 ACTION_toggle_zen_mode              Toggle Zen Mode
 ACTION_toggle_player                Toggle Easteregg
 ACTION_toggle_fullscreen            Toggle Fullscreen
+ACTION_canvas_pan_key               Pan Key
 
 # -----------------------------------------------------------------------------
 # Kebindings dialog messages
