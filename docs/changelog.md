@@ -12,6 +12,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Added
 - Setting to disable pressure sensitivity and always draw with a constant brush width
 - Quit shortcut (CTRL+Q by default)
+- Alternative way to pan the canvas by holding `SPACE` and moving the mouse
+- Brush stroke stabilizer/smoothing
 - Translations: Ukrainian, Arabic
 
 ### Fixed

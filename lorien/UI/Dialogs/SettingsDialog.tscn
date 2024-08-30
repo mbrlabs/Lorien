@@ -55,7 +55,6 @@ layout_mode = 2
 
 [node name="GeneralContainer" type="ScrollContainer" parent="VBoxContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 size_flags_vertical = 3
 
@@ -133,6 +132,25 @@ size_flags_vertical = 6
 text = "SETTINGS_TOOL_PRESSURE"
 
 [node name="DefaultToolPressure" type="SpinBox" parent="VBoxContainer/MarginContainer/VBoxContainer/GeneralContainer/VBoxContainer/DefaultToolPressure"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+max_value = 1.0
+step = 0.05
+value = 1.0
+
+[node name="StabilizerStrength" type="HBoxContainer" parent="VBoxContainer/MarginContainer/VBoxContainer/GeneralContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer/VBoxContainer/GeneralContainer/VBoxContainer/StabilizerStrength"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+text = "SETTINGS_STABILIZER_STRENGTH"
+
+[node name="StabilizerStrength" type="SpinBox" parent="VBoxContainer/MarginContainer/VBoxContainer/GeneralContainer/VBoxContainer/StabilizerStrength"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -390,6 +408,7 @@ allow_greater = true
 
 [node name="KeybindingsContainer" type="ScrollContainer" parent="VBoxContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 

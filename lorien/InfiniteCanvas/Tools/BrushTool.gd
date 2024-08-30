@@ -39,24 +39,30 @@ func _process(delta: float) -> void:
 	if performing_stroke:
 		var pos := _cursor.global_position
 		
-		# Smoothing
 		var diff := pos.distance_squared_to(_last_accepted_position)
 		if diff <= MOVEMENT_THRESHOLD || _current_pressure <= MIN_PRESSURE:
 			return
+
+		# Stabilizer smoothing
+		var stabilizer_strength: float = Settings.get_general_value(
+			Settings.GENERAL_STABILIZER_STRENGTH, Config.DEFAULT_STABILIZER_STRENGTH
+		)
 		
 		var points := get_current_brush_stroke().points
 		if points.size() > 3:
 			var p3 := points[-3]
 			var p2 := points[-2]
 			var p1 := points[-1]
-			# TODO: expose the smoothing factor in the settings
-			pos = Utils.cubic_bezier(p3, p2, p1, pos, 0.75)
+			# t is in [0.5, 1.0] interval depending on stabilizer settings
+			var t := 0.5 + (1.0 - stabilizer_strength) * 0.5
+			pos = Utils.cubic_bezier(p3, p2, p1, pos, t)
 		
+		
+		# Pressure
 		var sensitivity: float = Settings.get_general_value(
 			Settings.GENERAL_PRESSURE_SENSITIVITY, Config.DEFAULT_PRESSURE_SENSITIVITY
 		)
 		
-		# Pressure
 		var point_pressure := pressure_curve.sample(_current_pressure) * sensitivity
 		if _first_point:
 			point_pressure *= 1.4

@@ -4,6 +4,7 @@ extends Node
 const GENERAL_SECTION 					:= "general"
 const GENERAL_PRESSURE_SENSITIVITY 		:= "pressure_sensitvity"
 const GENERAL_CONSTANT_PRESSURE			:= "constant_pressure"
+const GENERAL_STABILIZER_STRENGTH		:= "stabilizer_strength"
 const GENERAL_DEFAULT_BRUSH_SIZE 		:= "default_brush_size"
 const GENERAL_DEFAULT_PROJECT_DIR		:= "default_project_dir"
 const GENERAL_LANGUAGE					:= "language"

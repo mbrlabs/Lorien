@@ -39,6 +39,7 @@ signal constant_pressure_changed(state: bool)
 @onready var _constant_pressure: CheckBox = %ConstantPressure
 @onready var _brush_size: SpinBox = %DefaultBrushSize
 @onready var _tool_pressure: SpinBox = %DefaultToolPressure
+@onready var _stabilizer_strength: SpinBox = %StabilizerStrength
 @onready var _project_dir: LineEdit = %DefaultProjectDir
 @onready var _language: OptionButton = %Language
 @onready var _theme: OptionButton = %Theme
@@ -61,6 +62,7 @@ func _ready() -> void:
 	
 	_pressure_sensitivity.value_changed.connect(_on_pressure_sensitivity_changed)
 	_constant_pressure.toggled.connect(_on_constant_pressure_toggled)
+	_stabilizer_strength.value_changed.connect(_on_stabilizer_strength_changed)
 	_brush_size.value_changed.connect(_on_default_brush_size_changed)
 	_tool_pressure.value_changed.connect(_on_default_tool_pressure_changed)
 	_project_dir.text_changed.connect(_on_default_project_dir_changed)
@@ -88,6 +90,7 @@ func _set_values() -> void:
 	var tool_pressure: float = Settings.get_general_value(Settings.GENERAL_TOOL_PRESSURE, Config.DEFAULT_TOOL_PRESSURE)
 	var pressure_sensitivity: float = Settings.get_general_value(Settings.GENERAL_PRESSURE_SENSITIVITY, Config.DEFAULT_PRESSURE_SENSITIVITY)
 	var constant_pressure: bool = Settings.get_general_value(Settings.GENERAL_CONSTANT_PRESSURE, Config.DEFAULT_CONSTANT_PRESSURE)
+	var stabilizer_strength: float = Settings.get_general_value(Settings.GENERAL_STABILIZER_STRENGTH, Config.DEFAULT_STABILIZER_STRENGTH)
 	
 	var canvas_color: Color = Settings.get_appearance_value(Settings.APPEARANCE_CANVAS_COLOR, Config.DEFAULT_CANVAS_COLOR)
 	var ui_theme: Types.UITheme = Settings.get_appearance_value(Settings.APPEARANCE_THEME, Types.UITheme.DARK)
@@ -117,6 +120,7 @@ func _set_values() -> void:
 	
 	_constant_pressure.button_pressed = constant_pressure
 	_pressure_sensitivity.value = pressure_sensitivity
+	_stabilizer_strength.value = stabilizer_strength
 	_brush_size.value = brush_size
 	_tool_pressure.value = tool_pressure
 	_canvas_color.color = canvas_color
@@ -294,6 +298,10 @@ func _on_ui_scale_changed(value: float) -> void:
 # -------------------------------------------------------------------------------------------------
 func _on_default_tool_pressure_changed(value: float) -> void:
 	Settings.set_general_value(Settings.GENERAL_TOOL_PRESSURE, value)
+
+# -------------------------------------------------------------------------------------------------
+func _on_stabilizer_strength_changed(value: float) -> void:
+	Settings.set_general_value(Settings.GENERAL_STABILIZER_STRENGTH, value)
 
 # -------------------------------------------------------------------------------------------------
 func _on_constant_pressure_toggled(button_pressed: bool) -> void:
