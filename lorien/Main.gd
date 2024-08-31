@@ -137,39 +137,39 @@ func _process(delta: float) -> void:
 # -------------------------------------------------------------------------------------------------
 func _unhandled_input(event: InputEvent) -> void:
 	if !is_dialog_open():
-		if Utils.event_pressed_bug_workaround("toggle_player", event):
+		if Utils.is_action_pressed("toggle_player", event):
 			_toggle_player()
 		
 		if !_player_enabled:
-			if Utils.event_pressed_bug_workaround("shortcut_new_project", event):
+			if Utils.is_action_pressed("shortcut_new_project", event):
 				_on_create_new_project()
-			elif Utils.event_pressed_bug_workaround("shortcut_open_project", event):
+			elif Utils.is_action_pressed("shortcut_open_project", event):
 				_toolbar._on_OpenFileButton_pressed()
-			elif Utils.event_pressed_bug_workaround("shortcut_save_project", event):
+			elif Utils.is_action_pressed("shortcut_save_project", event):
 				_on_save_project()
-			elif Utils.event_pressed_bug_workaround("shortcut_export_project", event):
+			elif Utils.is_action_pressed("shortcut_export_project", event):
 				_export_svg()
-			elif Utils.event_pressed_bug_workaround("shortcut_quit", event):
+			elif Utils.is_action_pressed("shortcut_quit", event):
 				_quit()
-			elif Utils.event_pressed_bug_workaround("shortcut_undo", event):
+			elif Utils.is_action_pressed("shortcut_undo", event):
 				_on_undo_action()
-			elif Utils.event_pressed_bug_workaround("shortcut_redo", event):
+			elif Utils.is_action_pressed("shortcut_redo", event):
 				_on_redo_action()
-			elif Utils.event_pressed_bug_workaround("shortcut_brush_tool", event):
+			elif Utils.is_action_pressed("shortcut_brush_tool", event):
 				_toolbar.enable_tool(Types.Tool.BRUSH)
-			elif Utils.event_pressed_bug_workaround("shortcut_rectangle_tool", event):
+			elif Utils.is_action_pressed("shortcut_rectangle_tool", event):
 				_toolbar.enable_tool(Types.Tool.RECTANGLE)
-			elif Utils.event_pressed_bug_workaround("shortcut_circle_tool", event):
+			elif Utils.is_action_pressed("shortcut_circle_tool", event):
 				_toolbar.enable_tool(Types.Tool.CIRCLE)
-			elif Utils.event_pressed_bug_workaround("shortcut_line_tool", event):
+			elif Utils.is_action_pressed("shortcut_line_tool", event):
 				_toolbar.enable_tool(Types.Tool.LINE)
-			elif Utils.event_pressed_bug_workaround("shortcut_eraser_tool", event):
+			elif Utils.is_action_pressed("shortcut_eraser_tool", event):
 				_toolbar.enable_tool(Types.Tool.ERASER)
-			elif Utils.event_pressed_bug_workaround("shortcut_select_tool", event):
+			elif Utils.is_action_pressed("shortcut_select_tool", event):
 				_toolbar.enable_tool(Types.Tool.SELECT)
-			elif Utils.event_pressed_bug_workaround("toggle_zen_mode", event):
+			elif Utils.is_action_pressed("toggle_zen_mode", event):
 				_toggle_zen_mode()
-			elif Utils.event_pressed_bug_workaround("toggle_fullscreen", event):
+			elif Utils.is_action_pressed("toggle_fullscreen", event):
 				_toggle_fullscreen()
 
 # -------------------------------------------------------------------------------------------------
