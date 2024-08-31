@@ -84,23 +84,23 @@ func _ready() -> void:
 
 # -------------------------------------------------------------------------------------------------
 func _set_values() -> void:
-	var brush_size: int = Settings.get_general_value(Settings.GENERAL_DEFAULT_BRUSH_SIZE, Config.DEFAULT_BRUSH_SIZE)
-	var project_dir: String = Settings.get_general_value(Settings.GENERAL_DEFAULT_PROJECT_DIR, "")
-	var locale: String = Settings.get_general_value(Settings.GENERAL_LANGUAGE, "en")
-	var tool_pressure: float = Settings.get_general_value(Settings.GENERAL_TOOL_PRESSURE, Config.DEFAULT_TOOL_PRESSURE)
-	var pressure_sensitivity: float = Settings.get_general_value(Settings.GENERAL_PRESSURE_SENSITIVITY, Config.DEFAULT_PRESSURE_SENSITIVITY)
-	var constant_pressure: bool = Settings.get_general_value(Settings.GENERAL_CONSTANT_PRESSURE, Config.DEFAULT_CONSTANT_PRESSURE)
-	var stabilizer_strength: float = Settings.get_general_value(Settings.GENERAL_STABILIZER_STRENGTH, Config.DEFAULT_STABILIZER_STRENGTH)
+	var brush_size: int = Settings.get_value(Settings.GENERAL_DEFAULT_BRUSH_SIZE, Config.DEFAULT_BRUSH_SIZE)
+	var project_dir: String = Settings.get_value(Settings.GENERAL_DEFAULT_PROJECT_DIR, "")
+	var locale: String = Settings.get_value(Settings.GENERAL_LANGUAGE, "en")
+	var tool_pressure: float = Settings.get_value(Settings.GENERAL_TOOL_PRESSURE, Config.DEFAULT_TOOL_PRESSURE)
+	var pressure_sensitivity: float = Settings.get_value(Settings.GENERAL_PRESSURE_SENSITIVITY, Config.DEFAULT_PRESSURE_SENSITIVITY)
+	var constant_pressure: bool = Settings.get_value(Settings.GENERAL_CONSTANT_PRESSURE, Config.DEFAULT_CONSTANT_PRESSURE)
+	var stabilizer_strength: float = Settings.get_value(Settings.GENERAL_STABILIZER_STRENGTH, Config.DEFAULT_STABILIZER_STRENGTH)
 	
-	var canvas_color: Color = Settings.get_appearance_value(Settings.APPEARANCE_CANVAS_COLOR, Config.DEFAULT_CANVAS_COLOR)
-	var ui_theme: Types.UITheme = Settings.get_appearance_value(Settings.APPEARANCE_THEME, Types.UITheme.DARK)
-	var ui_scale: float = Settings.get_appearance_value(Settings.APPEARANCE_UI_SCALE, Config.DEFAULT_UI_SCALE)
-	var ui_scale_mode: Types.UIScale = Settings.get_appearance_value(Settings.APPEARANCE_UI_SCALE_MODE, Config.DEFAULT_UI_SCALE_MODE)
-	var grid_pattern: Types.GridPattern = Settings.get_appearance_value(Settings.APPEARANCE_GRID_PATTERN, Config.DEFAULT_GRID_PATTERN)
-	var grid_size: int = Settings.get_appearance_value(Settings.APPEARANCE_GRID_SIZE, Config.DEFAULT_GRID_SIZE)
+	var canvas_color: Color = Settings.get_value(Settings.APPEARANCE_CANVAS_COLOR, Config.DEFAULT_CANVAS_COLOR)
+	var ui_theme: Types.UITheme = Settings.get_value(Settings.APPEARANCE_THEME, Types.UITheme.DARK)
+	var ui_scale: float = Settings.get_value(Settings.APPEARANCE_UI_SCALE, Config.DEFAULT_UI_SCALE)
+	var ui_scale_mode: Types.UIScale = Settings.get_value(Settings.APPEARANCE_UI_SCALE_MODE, Config.DEFAULT_UI_SCALE_MODE)
+	var grid_pattern: Types.GridPattern = Settings.get_value(Settings.APPEARANCE_GRID_PATTERN, Config.DEFAULT_GRID_PATTERN)
+	var grid_size: int = Settings.get_value(Settings.APPEARANCE_GRID_SIZE, Config.DEFAULT_GRID_SIZE)
 	
-	var foreground_fps: int = Settings.get_rendering_value(Settings.RENDERING_FOREGROUND_FPS, Config.DEFAULT_FOREGROUND_FPS)
-	var background_fps: int = Settings.get_rendering_value(Settings.RENDERING_BACKGROUND_FPS, Config.DEFAULT_BACKGROUND_FPS)
+	var foreground_fps: int = Settings.get_value(Settings.RENDERING_FOREGROUND_FPS, Config.DEFAULT_FOREGROUND_FPS)
+	var background_fps: int = Settings.get_value(Settings.RENDERING_BACKGROUND_FPS, Config.DEFAULT_BACKGROUND_FPS)
 	
 	match ui_theme:
 		Types.UITheme.DARK: _theme.selected = THEME_DARK_INDEX
@@ -136,7 +136,7 @@ func _set_values() -> void:
 	
 # -------------------------------------------------------------------------------------------------
 func _set_rounding() -> void:
-	_brush_rounding.selected = Settings.get_rendering_value(
+	_brush_rounding.selected = Settings.get_value(
 		Settings.RENDERING_BRUSH_ROUNDING, 
 		Config.DEFAULT_BRUSH_ROUNDING
 	)
@@ -204,17 +204,17 @@ func get_min_ui_scale() -> float:
 
 # -------------------------------------------------------------------------------------------------
 func _on_default_brush_size_changed(value: int) -> void:
-	Settings.set_general_value(Settings.GENERAL_DEFAULT_BRUSH_SIZE, int(value))
+	Settings.set_value(Settings.GENERAL_DEFAULT_BRUSH_SIZE, int(value))
 
 # -------------------------------------------------------------------------------------------------
 func _on_canvas_color_changed(color: Color) -> void:
-	Settings.set_appearance_value(Settings.APPEARANCE_CANVAS_COLOR, color)
+	Settings.set_value(Settings.APPEARANCE_CANVAS_COLOR, color)
 	canvas_color_changed.emit(color)
 	#emit_signal("canvas_color_changed", color)
 
 # -------------------------------------------------------------------------------------------------
 func _on_grid_size_changed(value: int) -> void:
-	Settings.set_appearance_value(Settings.APPEARANCE_GRID_SIZE, value)
+	Settings.set_value(Settings.APPEARANCE_GRID_SIZE, value)
 	grid_size_changed.emit(value)
 	
 # -------------------------------------------------------------------------------------------------
@@ -223,23 +223,23 @@ func _on_grid_pattern_selected(index: int) -> void:
 	match index:
 		GRID_PATTERN_DOTS_INDEX: 	pattern = Types.GridPattern.DOTS
 		GRID_PATTERN_LINES_INDEX: 	pattern = Types.GridPattern.LINES
-	Settings.set_appearance_value(Settings.APPEARANCE_GRID_PATTERN, pattern)
+	Settings.set_value(Settings.APPEARANCE_GRID_PATTERN, pattern)
 	grid_pattern_changed.emit(pattern)
 
 # -------------------------------------------------------------------------------------------------
 func _on_pressure_sensitivity_changed(value: float) -> void:
-	Settings.set_general_value(Settings.GENERAL_PRESSURE_SENSITIVITY, value)
+	Settings.set_value(Settings.GENERAL_PRESSURE_SENSITIVITY, value)
 
 # -------------------------------------------------------------------------------------------------
 func _on_default_project_dir_changed(text: String) -> void:
 	text = text.replace("\\", "/")
 	
 	if DirAccess.dir_exists_absolute(text):
-		Settings.set_general_value(Settings.GENERAL_DEFAULT_PROJECT_DIR, text)
+		Settings.set_value(Settings.GENERAL_DEFAULT_PROJECT_DIR, text)
 
 # -------------------------------------------------------------------------------------------------
 func _on_foreground_fps_changed(value: int) -> void:
-	Settings.set_rendering_value(Settings.RENDERING_FOREGROUND_FPS, value)
+	Settings.set_value(Settings.RENDERING_FOREGROUND_FPS, value)
 
 	# Settings FPS so user instantly Sees fps Change else fps only changes after unfocusing
 	Engine.max_fps = value
@@ -247,7 +247,7 @@ func _on_foreground_fps_changed(value: int) -> void:
 # -------------------------------------------------------------------------------------------------
 func _on_background_fps_changed(value: int) -> void:
 	# Background Fps need to be a minimum of 5 so you can smoothly reopen the window
-	Settings.set_rendering_value(Settings.RENDERING_BACKGROUND_FPS, value)
+	Settings.set_value(Settings.RENDERING_BACKGROUND_FPS, value)
 
 # -------------------------------------------------------------------------------------------------
 func _on_theme_selected(index: int) -> void:
@@ -256,16 +256,16 @@ func _on_theme_selected(index: int) -> void:
 		THEME_DARK_INDEX: ui_theme = Types.UITheme.DARK
 		THEME_LIGHT_INDEX: ui_theme = Types.UITheme.LIGHT
 	
-	Settings.set_appearance_value(Settings.APPEARANCE_THEME, ui_theme)
+	Settings.set_value(Settings.APPEARANCE_THEME, ui_theme)
 	_restart_label.show()
 
 # -------------------------------------------------------------------------------------------------
 func _on_brush_rounding_selected(index: int) -> void:
 	match index:
 		BRUSH_STROKE_CAP_FLAT:
-			Settings.set_rendering_value(Settings.RENDERING_BRUSH_ROUNDING, Types.BrushRoundingType.FLAT)
+			Settings.set_value(Settings.RENDERING_BRUSH_ROUNDING, Types.BrushRoundingType.FLAT)
 		BRUSH_STROKE_CAP_ROUND:
-			Settings.set_rendering_value(Settings.RENDERING_BRUSH_ROUNDING, Types.BrushRoundingType.ROUNDED)
+			Settings.set_value(Settings.RENDERING_BRUSH_ROUNDING, Types.BrushRoundingType.ROUNDED)
 	_restart_label.show()
 
 # -------------------------------------------------------------------------------------------------
@@ -273,7 +273,7 @@ func _on_language_selected(idx: int) -> void:
 	var id := _language.get_item_id(idx)
 	var locale: String = Settings.locales[id]
 	
-	Settings.set_general_value(Settings.GENERAL_LANGUAGE, locale)
+	Settings.set_value(Settings.GENERAL_LANGUAGE, locale)
 	TranslationServer.set_locale(locale)
 	GlobalSignals.language_changed.emit()
 	_restart_label.show()
@@ -283,33 +283,33 @@ func _on_ui_scale_mode_selected(index: int) -> void:
 	match index:
 		UI_SCALE_AUTO_INDEX:
 			_ui_scale.set_editable(false)
-			Settings.set_appearance_value(Settings.APPEARANCE_UI_SCALE_MODE, Types.UIScale.AUTO)
+			Settings.set_value(Settings.APPEARANCE_UI_SCALE_MODE, Types.UIScale.AUTO)
 		UI_SCALE_CUSTOM_INDEX:
 			_ui_scale.set_editable(true)
-			Settings.set_appearance_value(Settings.APPEARANCE_UI_SCALE_MODE, Types.UIScale.CUSTOM)
+			Settings.set_value(Settings.APPEARANCE_UI_SCALE_MODE, Types.UIScale.CUSTOM)
 	ui_scale_changed.emit()
 
 # -------------------------------------------------------------------------------------------------
 func _on_ui_scale_changed(value: float) -> void:
-	Settings.set_appearance_value(Settings.APPEARANCE_UI_SCALE, value)
+	Settings.set_value(Settings.APPEARANCE_UI_SCALE, value)
 	ui_scale_changed.emit()
 	_restart_label.show()
 
 # -------------------------------------------------------------------------------------------------
 func _on_default_tool_pressure_changed(value: float) -> void:
-	Settings.set_general_value(Settings.GENERAL_TOOL_PRESSURE, value)
+	Settings.set_value(Settings.GENERAL_TOOL_PRESSURE, value)
 
 # -------------------------------------------------------------------------------------------------
 func _on_stabilizer_strength_changed(value: float) -> void:
-	Settings.set_general_value(Settings.GENERAL_STABILIZER_STRENGTH, value)
+	Settings.set_value(Settings.GENERAL_STABILIZER_STRENGTH, value)
 
 # -------------------------------------------------------------------------------------------------
 func _on_constant_pressure_toggled(button_pressed: bool) -> void:
-	Settings.set_general_value(Settings.GENERAL_CONSTANT_PRESSURE, button_pressed)
+	Settings.set_value(Settings.GENERAL_CONSTANT_PRESSURE, button_pressed)
 	constant_pressure_changed.emit(button_pressed)
 
 # -------------------------------------------------------------------------------------------------
 func _on_action_keybinding_changed(action: KeybindingsManager.Action, event: InputEventKey) -> void:
 	KeybindingsManager.rebind_action(action, event)
-	Settings.set_keybind_value(action.name, action.event)
+	Settings.set_keybinding(action.name, action.event)
 	GlobalSignals.keybinding_changed.emit(action)

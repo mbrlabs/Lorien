@@ -15,7 +15,7 @@ var _actions: Array[Action]
 # -------------------------------------------------------------------------------------------------
 func _ready() -> void:
 	for action in get_actions():
-		var event := Settings.get_keybind_value(action.name, action.event)
+		var event := Settings.get_keybinding(action.name, action.event)
 		rebind_action(action, event)
 
 # -------------------------------------------------------------------------------------------------
@@ -26,7 +26,7 @@ func get_actions() -> Array[Action]:
 				var events := InputMap.action_get_events(action_name)
 				if events.size() > 0:
 					var event := events[0]
-					event = Settings.get_keybind_value(action_name, event)
+					event = Settings.get_keybinding(action_name, event)
 					
 					var action := Action.new()
 					action.event = event

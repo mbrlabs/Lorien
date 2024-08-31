@@ -31,13 +31,13 @@ var _player_enabled := false
 func _ready() -> void:
 	# Init stuff
 	randomize()
-	Engine.max_fps = Settings.get_rendering_value(Settings.RENDERING_FOREGROUND_FPS, Config.DEFAULT_FOREGROUND_FPS)
+	Engine.max_fps = Settings.get_value(Settings.RENDERING_FOREGROUND_FPS, Config.DEFAULT_FOREGROUND_FPS)
 	get_window().title = "Lorien v%s" % Config.VERSION_STRING
 	get_tree().auto_accept_quit = false
 
 	var docs_folder := OS.get_system_dir(OS.SYSTEM_DIR_DOCUMENTS)
-	_file_dialog.current_dir = Settings.get_general_value(Settings.GENERAL_DEFAULT_PROJECT_DIR, docs_folder)
-	_export_dialog.current_dir = Settings.get_general_value(Settings.GENERAL_DEFAULT_PROJECT_DIR, docs_folder)
+	_file_dialog.current_dir = Settings.get_value(Settings.GENERAL_DEFAULT_PROJECT_DIR, docs_folder)
+	_export_dialog.current_dir = Settings.get_value(Settings.GENERAL_DEFAULT_PROJECT_DIR, docs_folder)
 	
 	# Signals
 	get_window().files_dropped.connect(_on_files_dropped)
@@ -105,13 +105,13 @@ func _notification(what: int) -> void:
 	if NOTIFICATION_WM_CLOSE_REQUEST == what:
 		_quit()
 	elif NOTIFICATION_APPLICATION_FOCUS_IN == what:
-		Engine.max_fps = Settings.get_rendering_value(Settings.RENDERING_FOREGROUND_FPS, Config.DEFAULT_FOREGROUND_FPS)
+		Engine.max_fps = Settings.get_value(Settings.RENDERING_FOREGROUND_FPS, Config.DEFAULT_FOREGROUND_FPS)
 		if !_is_mouse_on_ui() && _canvas != null && !is_dialog_open():
 			await get_tree().create_timer(0.12).timeout
 			_canvas.enable()
 			
 	elif NOTIFICATION_APPLICATION_FOCUS_OUT == what:
-		Engine.max_fps = Settings.get_rendering_value(Settings.RENDERING_BACKGROUND_FPS, Config.DEFAULT_BACKGROUND_FPS)
+		Engine.max_fps = Settings.get_value(Settings.RENDERING_BACKGROUND_FPS, Config.DEFAULT_BACKGROUND_FPS)
 		if _canvas != null:
 			_canvas.disable()
 
@@ -538,11 +538,11 @@ func _on_DeletePaletteDialog_palette_deleted() -> void:
 
 # --------------------------------------------------------------------------------------------------
 func _on_scale_changed() -> void:
-	var auto_scale: int = Settings.get_appearance_value(Settings.APPEARANCE_UI_SCALE_MODE, Config.DEFAULT_UI_SCALE_MODE)
+	var auto_scale: int = Settings.get_value(Settings.APPEARANCE_UI_SCALE_MODE, Config.DEFAULT_UI_SCALE_MODE)
 	var new_scale: float
 	match auto_scale:
 		Types.UIScale.AUTO:   new_scale = _get_platform_ui_scale()
-		Types.UIScale.CUSTOM: new_scale = Settings.get_appearance_value(Settings.APPEARANCE_UI_SCALE, Config.DEFAULT_UI_SCALE)
+		Types.UIScale.CUSTOM: new_scale = Settings.get_value(Settings.APPEARANCE_UI_SCALE, Config.DEFAULT_UI_SCALE)
 	new_scale = clamp(new_scale, _settings_dialog.get_min_ui_scale(), _settings_dialog.get_max_ui_scale())
 	
 	# TODO(gd4): the whole scaling stuff changed a lot in Godot 4; need to figure this out later.

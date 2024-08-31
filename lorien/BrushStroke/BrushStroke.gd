@@ -31,7 +31,7 @@ func _ready() -> void:
 	_visibility_notifier.screen_entered.connect(func() -> void: add_to_group(GROUP_ONSCREEN))
 	_visibility_notifier.screen_exited.connect(func() -> void: remove_from_group(GROUP_ONSCREEN))
 	
-	var rounding_mode: int = Settings.get_rendering_value(
+	var rounding_mode: int = Settings.get_value(
 		Settings.RENDERING_BRUSH_ROUNDING, Config.DEFAULT_BRUSH_ROUNDING
 	)
 	

@@ -44,7 +44,7 @@ func _process(delta: float) -> void:
 			return
 
 		# Stabilizer smoothing
-		var stabilizer_strength: float = Settings.get_general_value(
+		var stabilizer_strength: float = Settings.get_value(
 			Settings.GENERAL_STABILIZER_STRENGTH, Config.DEFAULT_STABILIZER_STRENGTH
 		)
 		
@@ -59,7 +59,7 @@ func _process(delta: float) -> void:
 		
 		
 		# Pressure
-		var sensitivity: float = Settings.get_general_value(
+		var sensitivity: float = Settings.get_value(
 			Settings.GENERAL_PRESSURE_SENSITIVITY, Config.DEFAULT_PRESSURE_SENSITIVITY
 		)
 		
