@@ -105,6 +105,17 @@ func center_to_mouse() -> void:
 		_camera.do_center(screen_space_cursor_pos)
 
 # -------------------------------------------------------------------------------------------------
+func reset_to_center():
+	if _active_tool != null:
+		_camera.reset_to_center()
+
+# -------------------------------------------------------------------------------------------------
+func zoom_to_drawing():
+	if _active_tool != null:
+		_camera.zoom_to_drawing()
+
+
+# -------------------------------------------------------------------------------------------------
 func use_tool(tool_type: int) -> void:
 	var prev_tool := _active_tool
 	var prev_status := prev_tool.enabled

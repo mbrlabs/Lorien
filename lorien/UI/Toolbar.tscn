@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://c0ral10lvpo7f"]
+[gd_scene load_steps=21 format=3 uid="uid://c0ral10lvpo7f"]
 
 [ext_resource type="Texture2D" uid="uid://c4kv3i7fmom58" path="res://Assets/Icons/save_file.png" id="1"]
 [ext_resource type="Texture2D" uid="uid://dxi6gc6npiskq" path="res://Assets/Icons/open_file.png" id="2"]
@@ -12,6 +12,8 @@
 [ext_resource type="Texture2D" uid="uid://bn1qdw0v30np0" path="res://Assets/Icons/line_tool.png" id="11"]
 [ext_resource type="Script" path="res://UI/Components/FlatTextureButton.gd" id="13"]
 [ext_resource type="Theme" uid="uid://u5qnpgxqykiv" path="res://UI/Themes/theme_dark.tres" id="15"]
+[ext_resource type="Texture2D" uid="uid://dug7uaervy2ik" path="res://Assets/Icons/zoom_to_drawing.png" id="15_b47ao"]
+[ext_resource type="Texture2D" uid="uid://dcxctfytoiq28" path="res://Assets/Icons/reset_to_center.png" id="15_r3wm2"]
 [ext_resource type="Texture2D" uid="uid://ddxis8f7tvg66" path="res://Assets/Icons/selection_tool.png" id="16"]
 [ext_resource type="Texture2D" uid="uid://0qicbkag5jd3" path="res://Assets/Icons/circle_tool.png" id="19"]
 
@@ -218,6 +220,32 @@ value = 5.0
 [node name="BrushSizeLabel" type="Label" parent="Console/Left"]
 layout_mode = 2
 text = "12"
+
+[node name="VSeparator5" type="VSeparator" parent="Console/Left"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("3")
+
+[node name="ResetToCenterButton" type="TextureButton" parent="Console/Left"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+tooltip_text = "TOOLBAR_TOOLTIP_RESET_TO_CENTER"
+toggle_mode = true
+texture_normal = ExtResource("15_r3wm2")
+script = ExtResource("13")
+hover_tint = Color(0.662745, 0.945098, 0.87451, 1)
+pressed_tint = Color(0.572549, 1, 0.894118, 1)
+
+[node name="ZoomToDrawingButton" type="TextureButton" parent="Console/Left"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+tooltip_text = "TOOLBAR_TOOLTIP_ZOOM_TO_DRAWING"
+toggle_mode = true
+texture_normal = ExtResource("15_b47ao")
+script = ExtResource("13")
+hover_tint = Color(0.662745, 0.945098, 0.87451, 1)
+pressed_tint = Color(0.572549, 1, 0.894118, 1)
 
 [node name="Right" type="HBoxContainer" parent="Console"]
 layout_mode = 2

@@ -10,6 +10,8 @@ signal redo_action
 signal toggle_brush_color_picker
 signal brush_size_changed(size: float)
 signal tool_changed(t: Types.Tool)
+signal reset_to_center_action
+signal zoom_to_drawing_action
 
 # -------------------------------------------------------------------------------------------------
 const BUTTON_HOVER_COLOR = Color("50ffd6")
@@ -25,6 +27,8 @@ const BUTTON_NORMAL_COLOR = Color.WHITE
 @onready var _undo_button: FlatTextureButton = $Console/Left/UndoButton
 @onready var _redo_button: FlatTextureButton = $Console/Left/RedoButton
 @onready var _color_button: Button = $Console/Left/ColorButton
+@onready var _reset_to_center_button: FlatTextureButton = $Console/Left/ResetToCenterButton
+@onready var _zoom_to_drawing_button: FlatTextureButton = $Console/Left/ZoomToDrawingButton
 @onready var _brush_size_label: Label = $Console/Left/BrushSizeLabel
 @onready var _brush_size_slider: HSlider = $Console/Left/BrushSizeSlider
 @onready var _tool_btn_brush: FlatTextureButton = $Console/Left/BrushToolButton
@@ -58,6 +62,8 @@ func _ready() -> void:
 	_open_button.pressed.connect(_on_open_project_pressed)
 	_save_button.pressed.connect(func() -> void: save_project.emit())
 	_color_button.pressed.connect(func() -> void: toggle_brush_color_picker.emit())
+	_reset_to_center_button.pressed.connect(func() -> void: reset_to_center_action.emit())
+	_zoom_to_drawing_button.pressed.connect(func() -> void: zoom_to_drawing_action.emit())
 	_brush_size_slider.value_changed.connect(_on_brush_size_changed)
 	_tool_btn_brush.pressed.connect(_on_brush_tool_pressed)
 	_tool_btn_rectangle.pressed.connect(_on_rectangle_tool_pressed)

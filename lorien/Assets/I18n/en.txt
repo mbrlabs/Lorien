@@ -32,6 +32,8 @@ TOOLBAR_TOOLTIP_BRUSH_COLOR     Brush Color
 TOOLBAR_TOOLTIP_BRUSH_SIZE      Brush Size
 TOOLBAR_TOOLTIP_CANVAS_COLOR    Canvas Color
 TOOLBAR_FULLSCREEN_TOGGLE       Toggle fullscreen
+TOOLBAR_TOOLTIP_ZOOM_TO_DRAWING Zoom to Drawing
+TOOLBAR_TOOLTIP_RESET_TO_CENTER Reset Camera to Center
 
 # -----------------------------------------------------------------------------
 # Color Palette Picker
@@ -160,6 +162,8 @@ ACTION_toggle_zen_mode              Toggle Zen Mode
 ACTION_toggle_player                Toggle Easteregg
 ACTION_toggle_fullscreen            Toggle Fullscreen
 ACTION_canvas_pan_key               Pan Key
+ACTION_canvas_reset_to_center       Reset to center
+ACTION_canvas_zoom_to_drawing       Zoom to drawing
 
 # -----------------------------------------------------------------------------
 # Kebindings dialog messages

@@ -61,6 +61,9 @@ func _ready() -> void:
 	_toolbar.save_project.connect(_on_save_project)
 	_toolbar.brush_size_changed.connect(_on_brush_size_changed)
 	_toolbar.tool_changed.connect(_on_tool_changed)
+	_toolbar.reset_to_center_action.connect(_on_reset_to_center_action)
+	_toolbar.zoom_to_drawing_action.connect(_on_zoom_to_drawing_action)
+	
 	
 	_menubar.create_new_project.connect(_on_create_new_project)
 	_menubar.project_selected.connect(_on_project_selected)
@@ -171,6 +174,10 @@ func _unhandled_input(event: InputEvent) -> void:
 				_toggle_zen_mode()
 			elif Utils.event_pressed_bug_workaround("toggle_fullscreen", event):
 				_toggle_fullscreen()
+			elif Utils.event_pressed_bug_workaround("canvas_reset_to_center", event):
+				_on_reset_to_center_action()
+			elif Utils.event_pressed_bug_workaround("canvas_zoom_to_drawing", event):
+				_on_zoom_to_drawing_action()
 
 # -------------------------------------------------------------------------------------------------
 func _toggle_player() -> void:
@@ -574,3 +581,12 @@ func _get_general_ui_scale() -> float:
 	elif smallest_dimension >= 1700:
 		return Config.DEFAULT_UI_SCALE * 1.5
 	return Config.DEFAULT_UI_SCALE
+	
+# --------------------------------------------------------------------------------------------------
+func _on_reset_to_center_action() -> void:
+	_canvas.reset_to_center()
+
+# --------------------------------------------------------------------------------------------------
+func _on_zoom_to_drawing_action() -> void:
+	_canvas.zoom_to_drawing()
+	
