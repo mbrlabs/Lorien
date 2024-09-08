@@ -20,6 +20,10 @@ boot_splash/fullsize=false
 boot_splash/use_filter=false
 config/icon="res://Assets/icon.png"
 
+[audio]
+
+driver/driver="Dummy"
+
 [autoload]
 
 BrushStrokeTexture="*res://BrushStroke/BrushStrokeTexture.gd"
