@@ -239,8 +239,14 @@ func is_selecting() -> bool:
 	return _state == State.SELECTING
 
 # ------------------------------------------------------------------------------------------------
-func get_selected_strokes() -> Array:
-	return get_tree().get_nodes_in_group(GROUP_SELECTED_STROKES)
+func get_selected_strokes() -> Array[BrushStroke]:
+	# Can't cast from Array[Node] to Array[BrushStroke] directly (godot bug/missing feature?)
+	# so let's do it per item
+	var strokes: Array[BrushStroke]
+	for stroke in get_tree().get_nodes_in_group(GROUP_SELECTED_STROKES):
+		strokes.append(stroke as BrushStroke)
+	
+	return strokes
 
 # ------------------------------------------------------------------------------------------------
 func _on_brush_color_changed(color: Color) -> void:
