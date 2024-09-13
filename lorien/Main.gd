@@ -73,7 +73,7 @@ func _ready() -> void:
 	_main_menu.open_url.connect(_on_open_url)
 	_main_menu.open_about_dialog.connect(_on_open_about_dialog)
 	_main_menu.export_svg.connect(_export_svg)
-	_main_menu.quit.connect(_quit)
+	_main_menu.quit.connect(_on_quit)
 	
 	_unsaved_changes_dialog.save_changes.connect(_on_save_unsaved_changes)
 	_unsaved_changes_dialog.discard_changes.connect(_on_discard_unsaved_changes)
@@ -103,7 +103,7 @@ func _ready() -> void:
 # -------------------------------------------------------------------------------------------------
 func _notification(what: int) -> void:
 	if NOTIFICATION_WM_CLOSE_REQUEST == what:
-		_quit()
+		_on_quit()
 	elif NOTIFICATION_APPLICATION_FOCUS_IN == what:
 		Engine.max_fps = Settings.get_value(Settings.RENDERING_FOREGROUND_FPS, Config.DEFAULT_FOREGROUND_FPS)
 		if !_is_mouse_on_ui() && _canvas != null && !is_dialog_open():
@@ -144,13 +144,16 @@ func _unhandled_input(event: InputEvent) -> void:
 			if Utils.is_action_pressed("shortcut_new_project", event):
 				_on_create_new_project()
 			elif Utils.is_action_pressed("shortcut_open_project", event):
-				_toolbar._on_OpenFileButton_pressed()
+				_toolbar._on_open_project_pressed()
 			elif Utils.is_action_pressed("shortcut_save_project", event):
 				_on_save_project()
+			elif Utils.is_action_pressed("shortcut_close_project", event):
+				if ProjectManager.get_project_count() > 0:
+					_on_project_closed(ProjectManager.get_active_project().id)
 			elif Utils.is_action_pressed("shortcut_export_project", event):
 				_export_svg()
 			elif Utils.is_action_pressed("shortcut_quit", event):
-				_quit()
+				_on_quit()
 			elif Utils.is_action_pressed("shortcut_undo", event):
 				_on_undo_action()
 			elif Utils.is_action_pressed("shortcut_redo", event):
@@ -219,7 +222,7 @@ func _apply_state() -> void:
 		_make_project_active(active_project)
 
 # -------------------------------------------------------------------------------------------------
-func _quit() -> void:
+func _on_quit() -> void:
 	if ProjectManager.has_unsaved_changes():
 		_exit_requested = true
 		_unsaved_changes_window.popup_centered()

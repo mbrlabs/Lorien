@@ -119,6 +119,6 @@ func xform(pos: Vector2) -> Vector2:
 	return (pos * zoom) + offset
 
 #--------------------------------------------------------------------------------------------------
-func _notification(what):
+func _notification(what: int) -> void:
 	if what == NOTIFICATION_WM_MOUSE_EXIT:
 		_pan_active = false

@@ -20,8 +20,8 @@ var _tabs_map: Dictionary # Dictonary<project_id, ProjectTab>
 
 # -------------------------------------------------------------------------------------------------
 func _ready() -> void:
-	_menu_button.pressed.connect(_on_MenuButton_pressed)
-	_new_file_button.pressed.connect(_on_NewFileButton_pressed)
+	_menu_button.pressed.connect(_on_menu_button_pressed)
+	_new_file_button.pressed.connect(_on_new_file_button_pressed)
 
 # -------------------------------------------------------------------------------------------------
 func make_tab(project: Project) -> void:
@@ -83,11 +83,11 @@ func _on_tab_selected(tab: ProjectTab) -> void:
 	project_selected.emit(tab.project_id)
 
 # -------------------------------------------------------------------------------------------------
-func _on_NewFileButton_pressed() -> void:
+func _on_new_file_button_pressed() -> void:
 	create_new_project.emit()
 
 # -------------------------------------------------------------------------------------------------
-func _on_MenuButton_pressed() -> void:
+func _on_menu_button_pressed() -> void:
 	var menu: MainMenu = get_node(_main_menu_path)
 	menu.popup_on_parent(_menu_button.get_rect())
 

@@ -141,6 +141,7 @@ DELETE          Delete
 ACTION_shortcut_save_project        Save File
 ACTION_shortcut_new_project         New File
 ACTION_shortcut_open_project        Open File
+ACTION_shortcut_close_project       Close File
 ACTION_shortcut_quit                Quit
 ACTION_shortcut_undo                Undo
 ACTION_shortcut_redo                Redo
@@ -160,15 +161,3 @@ ACTION_toggle_zen_mode              Toggle Zen Mode
 ACTION_toggle_player                Toggle Easteregg
 ACTION_toggle_fullscreen            Toggle Fullscreen
 ACTION_canvas_pan_key               Pan Key
-
-# -----------------------------------------------------------------------------
-# Kebindings dialog messages
-# -----------------------------------------------------------------------------
-
-# Bind key dialog
-KEYBINDING_DIALOG_BIND_WINDOW_NAME     Bind key
-KEYBINDING_DIALOG_BIND_ACTION          Action: {action}
-
-# Rebind already bound key dialog
-KEYBINDING_DIALOG_REBIND_WINDOW_NAME   Rebind key?
-KEYBINDING_DIALOG_REBIND_MESSAGE       '{event}' already is bound to {action}.\n\nDo you want to rebind?

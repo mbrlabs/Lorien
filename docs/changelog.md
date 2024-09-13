@@ -11,10 +11,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Added
 - Setting to disable pressure sensitivity and always draw with a constant brush width
-- Quit shortcut (CTRL+Q by default)
+- Quit shortcut (`CTRL+Q` by default)
 - Alternative way to pan the canvas by holding `SPACE` and moving the mouse
 - Brush stroke stabilizer/smoothing
-- Translations: Ukrainian, Arabic
+- Translations: Ukrainian, Arabic 
 
 ### Fixed
 - Fixed SVG export for brush strokes that have been moved using the move tool
@@ -24,6 +24,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Migrated from Godot 3.5.x to Godot 4.3
 - UI overhaul
 - Improved icon resolution on Windows
+- Disabled all audio functionality inherited from Godot
 
 ## [0.6.0] - 2023-11-06
 
