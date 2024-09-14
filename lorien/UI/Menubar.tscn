@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://e4oiel4oqq0b"]
+[gd_scene load_steps=8 format=3 uid="uid://e4oiel4oqq0b"]
 
 [ext_resource type="Theme" uid="uid://u5qnpgxqykiv" path="res://UI/Themes/theme_dark.tres" id="1"]
 [ext_resource type="Script" path="res://UI/Menubar.gd" id="2"]
 [ext_resource type="Texture2D" uid="uid://r233fnxk5qkf" path="res://Assets/Icons/menu.png" id="3"]
 [ext_resource type="Script" path="res://UI/Components/FlatTextureButton.gd" id="4"]
+[ext_resource type="Texture2D" uid="uid://bbdkcvds2nxg7" path="res://Assets/Icons/add.png" id="5_4fxbm"]
 
 [sub_resource type="StyleBoxEmpty" id="1"]
 
@@ -50,15 +51,16 @@ mouse_filter = 2
 theme_override_constants/separation = 12
 theme_override_styles/separator = SubResource("2")
 
-[node name="TabBar" type="HBoxContainer" parent="Left"]
-custom_minimum_size = Vector2(50, 38)
+[node name="TabBar" type="TabBar" parent="Left"]
 layout_mode = 2
-size_flags_horizontal = 4
-
-[node name="NewFileButton" type="Button" parent="Left"]
-layout_mode = 2
-size_flags_horizontal = 4
 size_flags_vertical = 8
-theme_override_font_sizes/font_size = 18
-text = "+"
-flat = true
+tab_close_display_policy = 2
+drag_to_rearrange_enabled = true
+scroll_to_selected = false
+
+[node name="NewFileButton" type="TextureButton" parent="Left"]
+custom_minimum_size = Vector2(32, 26)
+layout_mode = 2
+size_flags_vertical = 8
+texture_normal = ExtResource("5_4fxbm")
+stretch_mode = 3

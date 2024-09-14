@@ -57,6 +57,11 @@ window/subwindows/embed_subwindows=false
 window/stretch/aspect="expand"
 window/vsync/vsync_mode=false
 
+[editor]
+
+naming/scene_name_casing=1
+naming/script_name_casing=1
+
 [input]
 
 ui_accept={

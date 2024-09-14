@@ -7,13 +7,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ## [0.7.0] 
 
 ### Breaking Changes
-- The keybindings fromat is different, so you will need to update them again in case you changed them
+- The keybindings format is different, so you will need to update them again in case you changed them
 
 ### Added
 - Setting to disable pressure sensitivity and always draw with a constant brush width
 - Quit shortcut (`CTRL+Q` by default)
 - Alternative way to pan the canvas by holding `SPACE` and moving the mouse
 - Brush stroke stabilizer/smoothing
+- File tabs are now responsive and can be scrolled when not enough screen width is availble
+- File tabs can be moved via drag and drop
 - Translations: Ukrainian, Arabic 
 
 ### Fixed
