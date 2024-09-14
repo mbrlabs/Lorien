@@ -55,6 +55,11 @@ func _ready() -> void:
 			_camera.zoom_changed.connect(Callable(child, "_on_zoom_changed"))
 			_camera.position_changed.connect(Callable(child, "_on_canvas_position_changed"))
 	
+	for child in get_children():
+		if child is CanvasTool:
+			_camera.is_panning.connect(Callable(child, "_on_is_panning"))
+			_camera.is_zooming.connect(Callable(child, "_on_is_zooming"))
+	
 	_camera.zoom_changed.connect(_on_zoom_changed)
 	_camera.position_changed.connect(_on_camera_moved)
 	#_viewport.size = get_window().size

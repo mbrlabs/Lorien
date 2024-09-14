@@ -30,7 +30,7 @@ func tool_event(event: InputEvent) -> void:
 				_tail = _add_point_at_mouse_pos(0.5)
 	
 	# Start + End
-	elif event is InputEventMouseButton:
+	elif event is InputEventMouseButton && !disable_stroke:
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			if event.pressed:
 				start_stroke()

@@ -1,7 +1,9 @@
 extends Camera2D
 
 # -------------------------------------------------------------------------------------------------
+signal is_zooming(value: bool)
 signal zoom_changed(value: float)
+signal is_panning(value: bool)
 signal position_changed(value: Vector2)
 
 # -------------------------------------------------------------------------------------------------
@@ -39,8 +41,10 @@ func tool_event(event: InputEvent) -> void:
 		if event is InputEventKey:
 			if Utils.is_action_pressed("canvas_pan_key", event):
 				_pan_active = true
+				is_panning.emit(true)
 			if Utils.is_action_released("canvas_pan_key", event):
 				_pan_active = false
+				is_panning.emit(false)
 		if event is InputEventMouseButton:
 			
 			# Scroll wheel up/down to zoom
@@ -55,10 +59,14 @@ func tool_event(event: InputEvent) -> void:
 			if event.button_index == MOUSE_BUTTON_MIDDLE:
 				if !event.ctrl_pressed:
 					_pan_active = event.is_pressed()
+					is_panning.emit(_pan_active)
 					_zoom_active = false
+					is_zooming.emit(false)
 				else:
 					_zoom_active = event.is_pressed()
+					is_zooming.emit(_zoom_active)
 					_pan_active = false
+					is_panning.emit(false)
 					_start_mouse_pos = get_local_mouse_position()
 					
 		elif event is InputEventMouseMotion:

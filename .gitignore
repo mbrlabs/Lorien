@@ -5,3 +5,6 @@
 # Mono-specific ignores
 .mono/
 data_*/
+
+# Visual Studio Code-specific ignores
+.vscode/

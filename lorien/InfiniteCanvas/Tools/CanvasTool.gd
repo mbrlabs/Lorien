@@ -13,6 +13,9 @@ var _cursor: BaseCursor
 var _canvas: InfiniteCanvas
 var enabled := false: get = get_enabled, set = set_enabled
 var performing_stroke := false
+var disable_stroke := false
+var panning_detected := false
+var zooming_detected := false
 
 # -------------------------------------------------------------------------------------------------
 func _ready() -> void:
@@ -31,6 +34,16 @@ func _on_brush_color_changed(color: Color) -> void:
 # -------------------------------------------------------------------------------------------------
 func _on_brush_size_changed(size: int) -> void:
 	_cursor.change_size(size)
+
+# -------------------------------------------------------------------------------------------------
+func _on_is_panning(is_panning: bool) -> void:
+	panning_detected = is_panning
+	eval_disable_stroke()
+
+# -------------------------------------------------------------------------------------------------
+func _on_is_zooming(is_zooming: bool) -> void:
+	zooming_detected = is_zooming
+	eval_disable_stroke()
 
 # -------------------------------------------------------------------------------------------------
 func get_cursor() -> BaseCursor:
@@ -88,6 +101,9 @@ func get_current_brush_stroke() -> BrushStroke:
 func end_stroke() -> void:
 	_canvas.end_stroke()
 	performing_stroke = false
+
+func eval_disable_stroke() -> void:
+	disable_stroke = panning_detected || zooming_detected
 
 # TODO(gd4): probably don't need this anymore
 # -------------------------------------------------------------------------------------------------
