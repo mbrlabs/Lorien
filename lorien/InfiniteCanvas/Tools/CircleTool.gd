@@ -35,7 +35,7 @@ func tool_event(event: InputEvent) -> void:
 			_make_ellipse(PRESSURE, STEP_IN_MOTION, should_draw_circle)
 		
 	# Start + End
-	elif event is InputEventMouseButton:
+	elif event is InputEventMouseButton && !disable_stroke:
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			if event.pressed:
 				start_stroke()

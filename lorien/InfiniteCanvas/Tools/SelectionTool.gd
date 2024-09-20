@@ -57,7 +57,7 @@ func tool_event(event: InputEvent) -> void:
 			_cursor.mode = SelectionCursor.Mode.MOVE
 			_paste_strokes(strokes)
 
-	if event is InputEventMouseButton:
+	if event is InputEventMouseButton && !disable_stroke:
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			# LMB down - decide if we should select/multiselect or move the selection
 			if event.pressed:

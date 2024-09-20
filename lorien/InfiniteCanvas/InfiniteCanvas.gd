@@ -52,8 +52,13 @@ func _ready() -> void:
 	
 	for child in $SubViewport.get_children():
 		if child is BaseCursor:
-			_camera.zoom_changed.connect(Callable(child, "_on_zoom_changed"))
-			_camera.position_changed.connect(Callable(child, "_on_canvas_position_changed"))
+			_camera.zoom_changed.connect(child._on_zoom_changed)
+			_camera.position_changed.connect(child._on_canvas_position_changed)
+	
+	for child in get_children():
+		if child is CanvasTool:
+			_camera.panning_toggled.connect(child._on_panning_toggled)
+			_camera.zooming_toggled.connect(child._on_zooming_toggled)
 	
 	_camera.zoom_changed.connect(_on_zoom_changed)
 	_camera.position_changed.connect(_on_camera_moved)
