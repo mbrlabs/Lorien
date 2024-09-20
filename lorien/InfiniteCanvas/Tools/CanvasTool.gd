@@ -36,14 +36,14 @@ func _on_brush_size_changed(size: int) -> void:
 	_cursor.change_size(size)
 
 # -------------------------------------------------------------------------------------------------
-func _on_is_panning(is_panning: bool) -> void:
-	panning_detected = is_panning
-	eval_disable_stroke()
+func _on_panning_toggled(panning_enabled: bool) -> void:
+	panning_detected = panning_enabled
+	_eval_disable_stroke()
 
 # -------------------------------------------------------------------------------------------------
-func _on_is_zooming(is_zooming: bool) -> void:
-	zooming_detected = is_zooming
-	eval_disable_stroke()
+func _on_zooming_toggled(zooming_enabled: bool) -> void:
+	zooming_detected = zooming_enabled
+	_eval_disable_stroke()
 
 # -------------------------------------------------------------------------------------------------
 func get_cursor() -> BaseCursor:
@@ -102,7 +102,7 @@ func end_stroke() -> void:
 	_canvas.end_stroke()
 	performing_stroke = false
 
-func eval_disable_stroke() -> void:
+func _eval_disable_stroke() -> void:
 	disable_stroke = panning_detected || zooming_detected
 
 # TODO(gd4): probably don't need this anymore
