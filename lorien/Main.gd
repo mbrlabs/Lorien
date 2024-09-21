@@ -22,6 +22,7 @@ extends Control
 @onready var _edit_palette_window: Window = $EditPaletteWindow
 @onready var _edit_palette_dialog: EditPaletteDialog = $EditPaletteWindow/EditPaletteDialog
 
+var _last_input_time := 0
 var _ui_visible := true 
 var _exit_requested := false
 var _dirty_project_to_close: Project = null
@@ -122,6 +123,11 @@ func _exit_tree() -> void:
 
 # -------------------------------------------------------------------------------------------------
 func _process(delta: float) -> void:
+	# Lower fps if user is idle
+	if (Time.get_ticks_msec() - _last_input_time) > Config.BACKGROUND_IDLE_TIME_THRESHOLD:
+		Engine.max_fps = Settings.get_value(Settings.RENDERING_BACKGROUND_FPS, Config.DEFAULT_BACKGROUND_FPS)
+	
+	# Upate statusbar
 	_statusbar.set_stroke_count(_canvas.info.stroke_count)
 	_statusbar.set_point_count(_canvas.info.point_count)
 	_statusbar.set_pressure(_canvas.info.current_pressure)
@@ -136,6 +142,10 @@ func _process(delta: float) -> void:
 
 # -------------------------------------------------------------------------------------------------
 func _unhandled_input(event: InputEvent) -> void:
+	# Idle time over; let's set the fps high again
+	_last_input_time = Time.get_ticks_msec()
+	Engine.max_fps = Settings.get_value(Settings.RENDERING_FOREGROUND_FPS, Config.DEFAULT_FOREGROUND_FPS)
+	
 	if !is_dialog_open():
 		if Utils.is_action_pressed("toggle_player", event):
 			_toggle_player()
