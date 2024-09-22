@@ -66,6 +66,7 @@ SETTINGS_BRUSH_SIZE             Tamanho Padrão do Pincel
 SETTINGS_CANVAS_COLOR           Cor da Área de Desenho
 SETTINGS_PROJECT_FOLDER         Pasta Padrão do Projeto
 SETTINGS_LANGUAGE               Idioma
+SETTINGS_TABLET_DRIVER          Tablet Driver
 SETTINGS_THEME                  Tema
 SETTINGS_UI_SCALE               Escala da Interface
 SETTINGS_UI_SCALE_AUTO          Automática

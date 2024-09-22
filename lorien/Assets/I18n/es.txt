@@ -63,6 +63,7 @@ SETTINGS_BRUSH_SIZE             Tamaño de Pincel Predeterminado
 SETTINGS_CANVAS_COLOR           Color de Canvas
 SETTINGS_PROJECT_FOLDER         Carpeta de Proyectos Predeterminada
 SETTINGS_LANGUAGE               Idioma
+SETTINGS_TABLET_DRIVER          Tablet Driver
 SETTINGS_THEME                  Tema
 SETTINGS_FPS_FOREGROUND         Color de texto de FPS
 SETTINGS_FPS_BACKGROUND         Color de fondo de FPS

@@ -64,6 +64,7 @@ SETTINGS_BRUSH_SIZE             預設畫筆大小
 SETTINGS_CANVAS_COLOR           畫布底色
 SETTINGS_PROJECT_FOLDER         預設專案目錄
 SETTINGS_LANGUAGE               語言
+SETTINGS_TABLET_DRIVER          Tablet Driver
 SETTINGS_THEME                  佈景主題
 SETTINGS_UI_SCALE               UI 縮放
 SETTINGS_UI_SCALE_AUTO          自動

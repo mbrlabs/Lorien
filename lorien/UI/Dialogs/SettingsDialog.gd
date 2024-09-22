@@ -42,6 +42,7 @@ signal constant_pressure_changed(state: bool)
 @onready var _stabilizer_strength: SpinBox = %StabilizerStrength
 @onready var _project_dir: LineEdit = %DefaultProjectDir
 @onready var _language: OptionButton = %Language
+@onready var _tablet_driver: OptionButton = %TabletDriver
 @onready var _theme: OptionButton = %Theme
 @onready var _canvas_color: ColorPickerButton= %CanvasColor
 @onready var _ui_scale_mode: OptionButton = %UIScaleOptions
@@ -67,6 +68,7 @@ func _ready() -> void:
 	_tool_pressure.value_changed.connect(_on_default_tool_pressure_changed)
 	_project_dir.text_changed.connect(_on_default_project_dir_changed)
 	_language.item_selected.connect(_on_language_selected)
+	_tablet_driver.item_selected.connect(_on_tablet_driver_selected)
 	_theme.item_selected.connect(_on_theme_selected)
 	_ui_scale_mode.item_selected.connect(_on_ui_scale_mode_selected)
 	_ui_scale.value_changed.connect(_on_ui_scale_changed)
@@ -87,6 +89,7 @@ func _set_values() -> void:
 	var brush_size: int = Settings.get_value(Settings.GENERAL_DEFAULT_BRUSH_SIZE, Config.DEFAULT_BRUSH_SIZE)
 	var project_dir: String = Settings.get_value(Settings.GENERAL_DEFAULT_PROJECT_DIR, "")
 	var locale: String = Settings.get_value(Settings.GENERAL_LANGUAGE, "en")
+	var driver: String = Settings.get_value(Settings.GENERAL_TABLET_DRIVER, DisplayServer.tablet_get_current_driver())
 	var tool_pressure: float = Settings.get_value(Settings.GENERAL_TOOL_PRESSURE, Config.DEFAULT_TOOL_PRESSURE)
 	var pressure_sensitivity: float = Settings.get_value(Settings.GENERAL_PRESSURE_SENSITIVITY, Config.DEFAULT_PRESSURE_SENSITIVITY)
 	var constant_pressure: bool = Settings.get_value(Settings.GENERAL_CONSTANT_PRESSURE, Config.DEFAULT_CONSTANT_PRESSURE)
@@ -114,6 +117,7 @@ func _set_values() -> void:
 			_ui_scale.set_editable(true)
 		
 	_set_languages(locale)
+	_set_tablet_drivers(driver)
 	_set_rounding()
 	_set_keybindings()
 	_set_ui_scale_range()
@@ -176,6 +180,15 @@ func _set_languages(current_locale: String) -> void:
 	var id := Array(Settings.locales).find(current_locale)
 	_language.selected = _language.get_item_index(id)
 
+#--------------------------------------------------------------------------------------------------
+func _set_tablet_drivers(current_driver: String) -> void:
+	for i: int in DisplayServer.tablet_get_driver_count():
+		var driver := DisplayServer.tablet_get_driver_name(i)
+		if driver != "dummy":
+			_tablet_driver.add_item(driver)
+			if current_driver == driver:
+				_tablet_driver.selected = i
+	
 #--------------------------------------------------------------------------------------------------
 func _set_keybindings() -> void:
 	for action: KeybindingsManager.Action in KeybindingsManager.get_actions():
@@ -277,6 +290,12 @@ func _on_language_selected(idx: int) -> void:
 	TranslationServer.set_locale(locale)
 	GlobalSignals.language_changed.emit()
 	_restart_label.show()
+
+# -------------------------------------------------------------------------------------------------
+func _on_tablet_driver_selected(idx: int) -> void:
+	var driver := _tablet_driver.get_item_text(idx)
+	Settings.set_value(Settings.GENERAL_TABLET_DRIVER, driver)
+	DisplayServer.tablet_set_current_driver(driver)
 
 # -------------------------------------------------------------------------------------------------
 func _on_ui_scale_mode_selected(index: int) -> void:

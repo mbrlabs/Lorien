@@ -63,6 +63,7 @@ SETTINGS_PRESSURE_SENSITIVITY   필압 민감도
 SETTINGS_BRUSH_SIZE             기본 브러쉬 크기
 SETTINGS_PROJECT_FOLDER         기본 프로젝트 풀더
 SETTINGS_LANGUAGE               언어
+SETTINGS_TABLET_DRIVER          Tablet Driver
 SETTINGS_THEME                  테마
 SETTINGS_UI_SCALE               UI 표시 배율
 SETTINGS_UI_SCALE_AUTO          자동

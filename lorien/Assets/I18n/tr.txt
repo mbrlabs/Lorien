@@ -66,6 +66,7 @@ SETTINGS_CANVAS_COLOR           Tuval Rengi
 SETTINGS_PROJECT_FOLDER         Varsayılan Proje Klasörü
 SETTINGS_GRID_SIZE              Izgara Boyutu
 SETTINGS_LANGUAGE               Dil
+SETTINGS_TABLET_DRIVER          Tablet Driver
 SETTINGS_THEME                  Tema
 SETTINGS_UI_SCALE               UI Boyutu
 SETTINGS_UI_SCALE_AUTO          Otomatik

@@ -66,6 +66,7 @@ SETTINGS_BRUSH_SIZE             Розмір Пензлика за замовч�
 SETTINGS_PROJECT_FOLDER         Папка Проекту за замовчуванням
 SETTINGS_GRID_SIZE              Розмір сітки
 SETTINGS_LANGUAGE               Мова
+SETTINGS_TABLET_DRIVER          Tablet Driver
 SETTINGS_THEME                  Тема
 SETTINGS_UI_SCALE               Розмір UI
 SETTINGS_UI_SCALE_AUTO          Авто
