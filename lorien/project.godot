@@ -257,6 +257,10 @@ canvas_pan_key={
 ]
 }
 
+[input_devices]
+
+pen_tablet/driver.windows="wintab"
+
 [locale]
 
 translation_remaps={
