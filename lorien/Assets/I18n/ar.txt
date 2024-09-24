@@ -64,6 +64,7 @@ SETTINGS_BRUSH_SIZE             مقاس الفرشاة الافتراضي
 SETTINGS_CANVAS_COLOR           لون اللوحة الافتراضي
 SETTINGS_PROJECT_FOLDER         ملف المشروع الافتراضي
 SETTINGS_LANGUAGE               اللغة
+SETTINGS_TABLET_DRIVER          Tablet Driver
 SETTINGS_THEME                  الشكل
 SETTINGS_UI_SCALE               حجم واجهة المستخدم
 SETTINGS_UI_SCALE_AUTO          تلقائي

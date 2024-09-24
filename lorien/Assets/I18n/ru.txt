@@ -62,6 +62,7 @@ SETTINGS_BRUSH_SIZE             Размер кисти по умолчанию
 SETTINGS_CANVAS_COLOR           Цвет кисти
 SETTINGS_PROJECT_FOLDER         Папка проекта по умолчанию
 SETTINGS_LANGUAGE               Язык
+SETTINGS_TABLET_DRIVER          Tablet Driver
 SETTINGS_THEME                  Тема
 SETTINGS_FPS_FOREGROUND         Foreground Fps 										# TODO
 SETTINGS_FPS_BACKGROUND         Background Fps 										# TODO

@@ -62,6 +62,7 @@ SETTINGS_PRESSURE_SENSITIVITY   Sensibilità alla pressione
 SETTINGS_BRUSH_SIZE             Dimensione Pennello Predefinita
 SETTINGS_PROJECT_FOLDER         Cartella di Progetto Predefinita
 SETTINGS_LANGUAGE               Lingua
+SETTINGS_TABLET_DRIVER          Tablet Driver
 SETTINGS_THEME                  Tema
 SETTINGS_FPS_FOREGROUND         Fps in primo piano 
 SETTINGS_FPS_BACKGROUND         Fps sullo sfondo 

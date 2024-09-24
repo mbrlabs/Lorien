@@ -64,6 +64,7 @@ SETTINGS_BRUSH_SIZE             默认画笔大小
 SETTINGS_CANVAS_COLOR           画布颜色
 SETTINGS_PROJECT_FOLDER         默认项目路径
 SETTINGS_LANGUAGE               语言
+SETTINGS_TABLET_DRIVER          Tablet Driver
 SETTINGS_THEME                  主题
 SETTINGS_UI_SCALE               UI 缩放
 SETTINGS_UI_SCALE_AUTO          自动

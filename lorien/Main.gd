@@ -40,6 +40,10 @@ func _ready() -> void:
 	_file_dialog.current_dir = Settings.get_value(Settings.GENERAL_DEFAULT_PROJECT_DIR, docs_folder)
 	_export_dialog.current_dir = Settings.get_value(Settings.GENERAL_DEFAULT_PROJECT_DIR, docs_folder)
 	
+	# Set tablet driver
+	var driver: String = Settings.get_value(Settings.GENERAL_TABLET_DRIVER, DisplayServer.tablet_get_current_driver())
+	DisplayServer.tablet_set_current_driver(driver)
+	
 	# Signals
 	get_window().files_dropped.connect(_on_files_dropped)
 	

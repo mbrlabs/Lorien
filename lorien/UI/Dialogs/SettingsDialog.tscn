@@ -180,6 +180,21 @@ placeholder_text = "e.g. C:/Users/me/Lorien"
 layout_mode = 2
 theme_override_constants/separation = 24
 
+[node name="TabletDriver" type="HBoxContainer" parent="VBoxContainer/MarginContainer/VBoxContainer/GeneralContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer/VBoxContainer/GeneralContainer/VBoxContainer/TabletDriver"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+text = "SETTINGS_TABLET_DRIVER"
+
+[node name="TabletDriver" type="OptionButton" parent="VBoxContainer/MarginContainer/VBoxContainer/GeneralContainer/VBoxContainer/TabletDriver"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
 [node name="Language" type="HBoxContainer" parent="VBoxContainer/MarginContainer/VBoxContainer/GeneralContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3

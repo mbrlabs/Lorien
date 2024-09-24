@@ -63,6 +63,7 @@ SETTINGS_PRESSURE_SENSITIVITY   Druckempfindlichkeit
 SETTINGS_BRUSH_SIZE             Default Pinsel Größe
 SETTINGS_PROJECT_FOLDER         Default Project Ordner
 SETTINGS_LANGUAGE               Sprache
+SETTINGS_TABLET_DRIVER          Tablet Treiber
 SETTINGS_THEME                  Theme
 SETTINGS_GRID_SIZE              Grid Größe
 SETTINGS_GRID_PATTERN           Grid Pattern
