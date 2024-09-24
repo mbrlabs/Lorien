@@ -1,6 +1,10 @@
 class_name BrushStrokeOptimizer
 
+# NOTE: this implementation is currently too aggressive and has a negative effect on user experience.
+# Until it is visually undetectable by the user that the strokes were optimized, this will stay disabled.
+
 # -------------------------------------------------------------------------------------------------
+const ENABLED := false
 const ANGLE_THRESHOLD := 0.5
 const DISTANCE_THRESHOLD := 1.0
 
@@ -13,6 +17,9 @@ func reset() -> void:
 
 # -------------------------------------------------------------------------------------------------
 func optimize(s: BrushStroke) -> void:
+	if !ENABLED:
+		return
+	
 	if s.points.size() < 8:
 		return
 	

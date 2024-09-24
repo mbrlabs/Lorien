@@ -3,16 +3,16 @@ extends CanvasTool
 
 # -------------------------------------------------------------------------------------------------
 const MOVEMENT_THRESHOLD := 1.0
-const MIN_PRESSURE := 0.1
-const DOT_MAX_DISTANCE_THRESHOLD := 4.0
+const MIN_PRESSURE := 0.25
+const DOT_MAX_DISTANCE_THRESHOLD := 6.0
 
 # -------------------------------------------------------------------------------------------------
 @export var pressure_curve: Curve
 
 # -------------------------------------------------------------------------------------------------
 var _current_pressure: float
+var _moved := false
 var _last_accepted_position: Vector2
-var _first_point := false
 
 # -------------------------------------------------------------------------------------------------
 func tool_event(event: InputEvent) -> void:
@@ -21,6 +21,7 @@ func tool_event(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		_current_pressure = event.pressure
 		if performing_stroke:
+			_moved = true
 			_cursor.set_pressure(event.pressure)
 		if zooming_detected && performing_stroke:
 			end_stroke()
@@ -29,7 +30,6 @@ func tool_event(event: InputEvent) -> void:
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			if event.pressed:
 				start_stroke()
-				_first_point = true
 			elif performing_stroke:
 				if _is_stroke_a_dot():
 					_canvas.remove_all_stroke_points()
@@ -41,10 +41,14 @@ func _process(delta: float) -> void:
 	if performing_stroke:
 		var pos := _cursor.global_position
 		
+		if !_moved:
+			return
+		_moved = false
+		
 		var diff := pos.distance_squared_to(_last_accepted_position)
 		if diff <= MOVEMENT_THRESHOLD || _current_pressure <= MIN_PRESSURE:
 			return
-
+		
 		# Stabilizer smoothing
 		var stabilizer_strength: float = Settings.get_value(
 			Settings.GENERAL_STABILIZER_STRENGTH, Config.DEFAULT_STABILIZER_STRENGTH
@@ -59,16 +63,12 @@ func _process(delta: float) -> void:
 			var t := 0.5 + (1.0 - stabilizer_strength) * 0.5
 			pos = Utils.cubic_bezier(p3, p2, p1, pos, t)
 		
-		
 		# Pressure
 		var sensitivity: float = Settings.get_value(
 			Settings.GENERAL_PRESSURE_SENSITIVITY, Config.DEFAULT_PRESSURE_SENSITIVITY
 		)
 		
 		var point_pressure := pressure_curve.sample(_current_pressure) * sensitivity
-		if _first_point:
-			point_pressure *= 1.4
-			_first_point = false
 		
 		add_stroke_point(pos, point_pressure)
 		

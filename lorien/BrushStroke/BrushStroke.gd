@@ -3,9 +3,9 @@ class_name BrushStroke
 
 # ------------------------------------------------------------------------------------------------
 const MAX_POINTS 			:= 1000
-const MAX_PRESSURE_VALUE 	:= 255
-const MIN_PRESSURE_VALUE 	:= 30
-const MAX_PRESSURE_DIFF 	:= 20
+const MAX_PRESSURE_DIFF 	:= 0.1
+const MIN_PRESSURE_VALUE 	:= 0.1
+const MAX_PRESSURE_VALUE 	:= 1.0
 const COLLIDER_NODE_NAME 	:= "StrokeCollider"
 const GROUP_ONSCREEN 		:= "onscreen_stroke"
 
@@ -51,18 +51,16 @@ func _to_string() -> String:
 
 # -------------------------------------------------------------------------------------------------
 func add_point(point: Vector2, pressure: float) -> void:
-	var converted_pressure := int(floor(pressure * MAX_PRESSURE_VALUE))
-	
 	# Smooth out pressure values (on Linux i sometimes get really high pressure spikes)
 	if !pressures.is_empty():
-		var last_pressure: int = pressures.back()
-		var pressure_diff := converted_pressure - last_pressure
+		var last_pressure: float = pressures.back()
+		var pressure_diff := pressure - last_pressure
 		if abs(pressure_diff) > MAX_PRESSURE_DIFF:
-			converted_pressure = last_pressure + sign(pressure_diff) * MAX_PRESSURE_DIFF
-	converted_pressure = clamp(converted_pressure, MIN_PRESSURE_VALUE, MAX_PRESSURE_VALUE)
+			pressure = last_pressure + sign(pressure_diff) * MAX_PRESSURE_DIFF
+	pressure = clamp(pressure, MIN_PRESSURE_VALUE, MAX_PRESSURE_VALUE)
 	
 	points.append(point)
-	pressures.append(converted_pressure)
+	pressures.append(pressure)
 
 # ------------------------------------------------------------------------------------------------
 func remove_last_point() -> void:
@@ -124,7 +122,7 @@ func refresh() -> void:
 		# Add the point
 		_line2d.add_point(point)
 		var pressure: float = pressures[p_idx]
-		_line2d.width_curve.add_point(Vector2(curve_step*p_idx, pressure / max_pressure))
+		_line2d.width_curve.add_point(Vector2(curve_step * p_idx, pressure / max_pressure))
 		p_idx += 1
 			
 		# Update the extreme values

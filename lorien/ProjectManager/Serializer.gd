@@ -49,7 +49,8 @@ static func save_project(project: Project) -> void:
 			# Add global_position offset which is != 0 when moved by move tool; but mostly it should just add 0
 			file.store_float(p.x + stroke.global_position.x)
 			file.store_float(p.y + stroke.global_position.y)
-			file.store_8(stroke.pressures[p_idx])
+			var pressure: int = clamp(int(stroke.pressures[p_idx] * 255), 0, 255)
+			file.store_8(pressure)
 			p_idx += 1
 
 	# Done
@@ -100,7 +101,7 @@ static func load_project(project: Project) -> void:
 				for i: int in point_count:
 					var x := file.get_float()
 					var y := file.get_float()
-					var pressure := file.get_8()
+					var pressure := float(file.get_8()) / 255.0
 					brush_stroke.points.append(Vector2(x, y))
 					brush_stroke.pressures.append(pressure)
 				
