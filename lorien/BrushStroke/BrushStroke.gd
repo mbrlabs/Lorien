@@ -103,8 +103,6 @@ func enable_collider(enable: bool) -> void:
 
 # ------------------------------------------------------------------------------------------------
 func refresh() -> void:
-	var max_pressure := float(MAX_PRESSURE_VALUE)
-	
 	_line2d.clear_points()
 	_line2d.width_curve.clear_points()
 	
@@ -122,7 +120,7 @@ func refresh() -> void:
 		# Add the point
 		_line2d.add_point(point)
 		var pressure: float = pressures[p_idx]
-		_line2d.width_curve.add_point(Vector2(curve_step * p_idx, pressure / max_pressure))
+		_line2d.width_curve.add_point(Vector2(curve_step * p_idx, pressure / MAX_PRESSURE_VALUE))
 		p_idx += 1
 			
 		# Update the extreme values
