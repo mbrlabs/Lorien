@@ -184,10 +184,10 @@ func _set_languages(current_locale: String) -> void:
 func _set_tablet_drivers(current_driver: String) -> void:
 	for i: int in DisplayServer.tablet_get_driver_count():
 		var driver := DisplayServer.tablet_get_driver_name(i)
-		if driver != "dummy":
-			_tablet_driver.add_item(driver)
-			if current_driver == driver:
-				_tablet_driver.selected = i
+
+		_tablet_driver.add_item(driver)
+		if current_driver == driver:
+			_tablet_driver.selected = i
 	
 #--------------------------------------------------------------------------------------------------
 func _set_keybindings() -> void:

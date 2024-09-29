@@ -3,7 +3,7 @@ class_name BrushStroke
 
 # ------------------------------------------------------------------------------------------------
 const MAX_POINTS 			:= 1000
-const MAX_PRESSURE_DIFF 	:= 0.1
+const MAX_PRESSURE_DIFF 	:= 0.05
 const MIN_PRESSURE_VALUE 	:= 0.1
 const MAX_PRESSURE_VALUE 	:= 1.0
 const COLLIDER_NODE_NAME 	:= "StrokeCollider"

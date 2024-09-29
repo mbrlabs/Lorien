@@ -3,7 +3,6 @@ extends CanvasTool
 
 # -------------------------------------------------------------------------------------------------
 const MOVEMENT_THRESHOLD := 1.0
-const MIN_PRESSURE := 0.25
 const DOT_MAX_DISTANCE_THRESHOLD := 6.0
 
 # -------------------------------------------------------------------------------------------------
@@ -18,9 +17,10 @@ var _last_accepted_position: Vector2
 # -------------------------------------------------------------------------------------------------
 func tool_event(event: InputEvent) -> void:
 	_cursor.set_pressure(1.0)
-	
 	if event is InputEventMouseMotion:
 		_current_pressure = event.pressure
+		if _current_pressure < 0 || is_zero_approx(_current_pressure):
+			_current_pressure = 1.0
 		
 		var screen := DisplayServer.screen_get_size()
 		var velocity: Vector2 = event.screen_velocity / Vector2(screen.x, screen.y)
@@ -52,7 +52,7 @@ func _process(delta: float) -> void:
 		_moved = false
 		
 		var diff := pos.distance_squared_to(_last_accepted_position)
-		if diff <= MOVEMENT_THRESHOLD || _current_pressure <= MIN_PRESSURE:
+		if diff <= MOVEMENT_THRESHOLD:
 			return
 		
 		# Stabilizer smoothing
