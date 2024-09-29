@@ -204,7 +204,7 @@ action_mode = 0
 text = "#ffffff"
 
 [node name="BrushSizeSlider" type="HSlider" parent="Console/Left"]
-custom_minimum_size = Vector2(200, 20)
+custom_minimum_size = Vector2(180, 20)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4

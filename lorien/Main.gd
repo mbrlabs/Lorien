@@ -128,7 +128,8 @@ func _exit_tree() -> void:
 # -------------------------------------------------------------------------------------------------
 func _process(delta: float) -> void:
 	# Lower fps if user is idle
-	if !_canvas.is_drawing() && (Time.get_ticks_msec() - _last_input_time) > Config.BACKGROUND_IDLE_TIME_THRESHOLD:
+	var idle := (Time.get_ticks_msec() - _last_input_time) > Config.BACKGROUND_IDLE_TIME_THRESHOLD
+	if !_player_enabled && !_canvas.is_drawing() && idle:
 		Engine.max_fps = Settings.get_value(Settings.RENDERING_BACKGROUND_FPS, Config.DEFAULT_BACKGROUND_FPS)
 	
 	# Upate statusbar
