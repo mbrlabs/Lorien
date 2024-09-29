@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://InfiniteCanvas/InfiniteCanvas.gd" id="1"]
 [ext_resource type="Script" path="res://InfiniteCanvas/PanZoomCamera.gd" id="2"]
-[ext_resource type="Curve" path="res://InfiniteCanvas/default_pressure_curve.tres" id="3"]
+[ext_resource type="Curve" uid="uid://bgd7v60kyywsk" path="res://InfiniteCanvas/default_pressure_curve.tres" id="3"]
 [ext_resource type="PackedScene" uid="uid://cf3j2vavqos04" path="res://InfiniteCanvas/Cursor/BrushCursor/BrushCursor.tscn" id="4"]
 [ext_resource type="Script" path="res://InfiniteCanvas/Tools/BrushTool.gd" id="5"]
 [ext_resource type="Script" path="res://InfiniteCanvas/Tools/LineTool.gd" id="6"]

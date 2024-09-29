@@ -11,6 +11,7 @@ const DOT_MAX_DISTANCE_THRESHOLD := 6.0
 
 # -------------------------------------------------------------------------------------------------
 var _current_pressure: float
+var _current_velocity: float
 var _moved := false
 var _last_accepted_position: Vector2
 
@@ -20,6 +21,11 @@ func tool_event(event: InputEvent) -> void:
 	
 	if event is InputEventMouseMotion:
 		_current_pressure = event.pressure
+		
+		var screen := DisplayServer.screen_get_size()
+		var velocity: Vector2 = event.screen_velocity / Vector2(screen.x, screen.y)
+		_current_velocity = velocity.length()
+		
 		if performing_stroke:
 			_moved = true
 			_cursor.set_pressure(event.pressure)
@@ -54,20 +60,28 @@ func _process(delta: float) -> void:
 			Settings.GENERAL_STABILIZER_STRENGTH, Config.DEFAULT_STABILIZER_STRENGTH
 		)
 		
-		var points := get_current_brush_stroke().points
-		if points.size() > 3:
-			var p3 := points[-3]
-			var p2 := points[-2]
-			var p1 := points[-1]
-			# t is in [0.5, 1.0] interval depending on stabilizer settings
-			var t := 0.5 + (1.0 - stabilizer_strength) * 0.5
-			pos = Utils.cubic_bezier(p3, p2, p1, pos, t)
-		
-		# Pressure
+		if stabilizer_strength >= 0.01:
+			var points := get_current_brush_stroke().points
+			if points.size() > 3:
+				var p3 := points[-3]
+				var p2 := points[-2]
+				var p1 := points[-1]
+				# t is in [0.5, 1.0] interval depending on stabilizer settings
+				var t := 0.5 + (1.0 - stabilizer_strength) * 0.5
+				pos = Utils.cubic_bezier(p3, p2, p1, pos, t)
+				#pos = Utils.quadratic_bezier(p2, p1, pos, t)
+			
+			
+		# Pressure & velocity
 		var sensitivity: float = Settings.get_value(
 			Settings.GENERAL_PRESSURE_SENSITIVITY, Config.DEFAULT_PRESSURE_SENSITIVITY
 		)
 		
+		if _current_pressure >= 0.99:
+			_current_pressure -= min(_current_velocity * 1.5, 0.33)
+		else:
+			_current_pressure -= min(_current_velocity, 0.33)
+			
 		var point_pressure := pressure_curve.sample(_current_pressure) * sensitivity
 		
 		add_stroke_point(pos, point_pressure)

@@ -12,6 +12,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Added
 - Brush stroke stabilizer/smoothing
 - Adaptive frame rate for reduced GPU/CPU load when the user is idle
+- Velocity based line thickness (in addition to pen pressure)
 - File tabs are now responsive and can be scrolled when not enough screen width is availble
 - File tabs can be moved via drag and drop
 - Native file dialogs

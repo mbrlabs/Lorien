@@ -131,7 +131,6 @@ func refresh() -> void:
 		bottom_right.x = max(bottom_right.x, point.x)
 		bottom_right.y = max(bottom_right.y, point.y)
 		
-	_line2d.width_curve.bake()
 	top_left_pos = top_left
 	bottom_right_pos = bottom_right
 	_visibility_notifier.rect = Utils.calculate_rect(top_left, bottom_right)

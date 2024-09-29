@@ -204,15 +204,6 @@ func take_screenshot() -> Image:
 	return _viewport.get_texture().get_data()
 
 # -------------------------------------------------------------------------------------------------
-func start_stroke() -> void:
-	_current_stroke = BRUSH_STROKE.instantiate()
-	_current_stroke.size = _brush_size
-	_current_stroke.color = _brush_color
-	
-	_strokes_parent.add_child(_current_stroke)
-	_optimizer.reset()
-	
-# -------------------------------------------------------------------------------------------------
 func add_stroke(stroke: BrushStroke) -> void:
 	if _current_project != null:
 		_current_project.strokes.append(stroke)
@@ -234,6 +225,19 @@ func remove_last_stroke_point() -> void:
 # -------------------------------------------------------------------------------------------------
 func remove_all_stroke_points() -> void:
 	_current_stroke.remove_all_points()
+
+# -------------------------------------------------------------------------------------------------
+func is_drawing() -> bool:
+	return _current_stroke != null 
+
+# -------------------------------------------------------------------------------------------------
+func start_stroke() -> void:
+	_current_stroke = BRUSH_STROKE.instantiate()
+	_current_stroke.size = _brush_size
+	_current_stroke.color = _brush_color
+	
+	_strokes_parent.add_child(_current_stroke)
+	_optimizer.reset()
 
 # -------------------------------------------------------------------------------------------------
 func end_stroke() -> void:
