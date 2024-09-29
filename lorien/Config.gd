@@ -3,7 +3,7 @@ class_name Config
 const VERSION_MAJOR					:= 0
 const VERSION_MINOR					:= 7
 const VERSION_PATCH					:= 0
-const VERSION_STATUS				:= "-dev"
+const VERSION_STATUS				:= "-beta1"
 static var VERSION_STRING			:= "%d.%d.%d%s" % [VERSION_MAJOR, VERSION_MINOR, VERSION_PATCH, VERSION_STATUS]
 const CONFIG_PATH 					:= "user://settings_v4.cfg"
 const PALETTES_PATH					:= "user://palettes.cfg"
