@@ -10,12 +10,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - The keybindings format is different, so you will need to update them again in case you changed them
 
 ### Added
+- Brush stroke stabilizer/smoothing
+- Adaptive frame rate for reduced GPU/CPU load when the user is idle
+- File tabs are now responsive and can be scrolled when not enough screen width is availble
+- File tabs can be moved via drag and drop
+- Native file dialogs
+- Option to change the internally used drawing tablet driver in the settings
 - Setting to disable pressure sensitivity and always draw with a constant brush width
 - Quit shortcut (`CTRL+Q` by default)
 - Alternative way to pan the canvas by holding `SPACE` and moving the mouse
-- Brush stroke stabilizer/smoothing
-- File tabs are now responsive and can be scrolled when not enough screen width is availble
-- File tabs can be moved via drag and drop
 - Translations: Ukrainian, Arabic 
 
 ### Fixed
@@ -23,7 +26,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Made zooming to the mouse cursor in the canvas more accurate 
 
 ### Changed
-- Migrated from Godot 3.5.x to Godot 4.3
+- Migrated from Godot 3.5.3 to Godot 4.3
+- Improved stability and quality of the brush tool 
 - UI overhaul
 - Improved icon resolution on Windows
 - Disabled all audio functionality inherited from Godot
