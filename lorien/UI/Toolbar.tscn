@@ -204,13 +204,13 @@ action_mode = 0
 text = "#ffffff"
 
 [node name="BrushSizeSlider" type="HSlider" parent="Console/Left"]
-custom_minimum_size = Vector2(120, 20)
+custom_minimum_size = Vector2(200, 20)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 tooltip_text = "TOOLBAR_TOOLTIP_BRUSH_SIZE"
 min_value = 1.0
-max_value = 50.0
+max_value = 32.0
 value = 5.0
 
 [node name="BrushSizeLabel" type="Label" parent="Console/Left"]
