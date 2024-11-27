@@ -36,6 +36,10 @@ func _make_rectangle(pressure: float) -> void:
 	pressure = pressure_curve.sample(pressure)
 	
 	var bottom_right_point := _cursor.global_position
+	# draw a square if Shift is pressed
+	if Input.is_key_pressed(KEY_SHIFT):
+		var drag_dir := _cursor.global_position - _start_position_top_left
+		bottom_right_point = _start_position_top_left + drag_dir.project(sign(drag_dir))
 	var height := bottom_right_point.y - _start_position_top_left.y
 	var width := bottom_right_point.x - _start_position_top_left.x
 	var top_right_point := _start_position_top_left + Vector2(width, 0)
