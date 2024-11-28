@@ -52,6 +52,7 @@ func _ready() -> void:
 	
 	_brush_color_picker.closed.connect(_on_BrushColorPicker_closed)
 	_brush_color_picker.color_changed.connect(_on_BrushColorPicker_color_changed)
+	GlobalSignals.connect("color_changed", self._on_BrushColorPicker_color_changed)
 	
 	_new_palette_dialog.new_palette_created.connect(_on_NewPaletteDialog_new_palette_created)
 	_delete_palette_dialog.palette_deleted.connect(_on_DeletePaletteDialog_palette_deleted)

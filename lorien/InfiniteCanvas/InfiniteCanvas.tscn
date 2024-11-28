@@ -9,12 +9,14 @@
 [ext_resource type="Script" path="res://InfiniteCanvas/Tools/SelectionTool.gd" id="7"]
 [ext_resource type="PackedScene" path="res://InfiniteCanvas/Cursor/SelectionCursor/SelectionCursor.tscn" id="8"]
 [ext_resource type="Script" path="res://InfiniteCanvas/Tools/SelectionRectangle.gd" id="9"]
+[ext_resource type="Script" path="res://InfiniteCanvas/Tools/ColorPickerTool.gd" id="9_xqyd5"]
 [ext_resource type="Shader" path="res://InfiniteCanvas/Tools/selection_rectangle.gdshader" id="10"]
 [ext_resource type="Script" path="res://InfiniteCanvas/Tools/RectangleTool.gd" id="11"]
 [ext_resource type="Script" path="res://InfiniteCanvas/InfiniteCanvasGrid.gd" id="12"]
 [ext_resource type="Script" path="res://InfiniteCanvas/Tools/CircleTool.gd" id="13"]
 [ext_resource type="Script" path="res://InfiniteCanvas/Tools/EraserTool.gd" id="14"]
 [ext_resource type="Script" path="res://InfiniteCanvas/DebugDraw.gd" id="15"]
+[ext_resource type="PackedScene" uid="uid://dmybbclki2clv" path="res://InfiniteCanvas/Cursor/ColorPickerCursor/ColorPickerCursor.tscn" id="16_mifpa"]
 
 [sub_resource type="ShaderMaterial" id="1"]
 shader = ExtResource("10")
@@ -55,6 +57,10 @@ script = ExtResource("7")
 selection_rectangle_path = NodePath("../SubViewport/SelectionRectangle")
 cursor_path = NodePath("../SubViewport/SelectionCursor")
 
+[node name="ColorPickerTool" type="Node" parent="."]
+script = ExtResource("9_xqyd5")
+cursor_path = NodePath("../SubViewport/ColorPickerCursor")
+
 [node name="SubViewport" type="SubViewport" parent="."]
 handle_input_locally = false
 size = Vector2i(1920, 1080)
@@ -80,3 +86,5 @@ script = ExtResource("9")
 [node name="BrushCursor" parent="SubViewport" instance=ExtResource("4")]
 
 [node name="SelectionCursor" parent="SubViewport" instance=ExtResource("8")]
+
+[node name="ColorPickerCursor" parent="SubViewport" instance=ExtResource("16_mifpa")]
