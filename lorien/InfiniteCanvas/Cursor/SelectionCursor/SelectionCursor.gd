@@ -15,7 +15,7 @@ var mode := Mode.SELECT: get = get_mode, set = set_mode
 
 # -------------------------------------------------------------------------------------------------
 func _on_zoom_changed(zoom_value: float) -> void:
-	scale = Vector2.ONE * zoom_value
+	scale = Vector2.ONE / zoom_value
 
 # -------------------------------------------------------------------------------------------------
 func set_mode(m: Mode) -> void:
