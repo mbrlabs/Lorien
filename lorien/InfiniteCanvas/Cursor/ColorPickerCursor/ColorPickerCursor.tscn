@@ -1,0 +1,16 @@
+[gd_scene load_steps=5 format=3 uid="uid://dmybbclki2clv"]
+
+[ext_resource type="Shader" path="res://InfiniteCanvas/Cursor/cursor.gdshader" id="1_q5575"]
+[ext_resource type="Script" path="res://InfiniteCanvas/Cursor/ColorPickerCursor/ColorPickerCursor.gd" id="2_labi7"]
+[ext_resource type="Texture2D" uid="uid://tcovt1vw06tr" path="res://Assets/Icons/color_picker.png" id="3_rydea"]
+
+[sub_resource type="ShaderMaterial" id="1"]
+shader = ExtResource("1_q5575")
+
+[node name="ColorPickerCursor" type="Sprite2D"]
+material = SubResource("1")
+script = ExtResource("2_labi7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(7, -7)
+texture = ExtResource("3_rydea")
