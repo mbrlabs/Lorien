@@ -62,7 +62,7 @@ SETTINGS_PRESSURE_SENSITIVITY   Sensibilità alla pressione
 SETTINGS_BRUSH_SIZE             Dimensione Pennello Predefinita
 SETTINGS_PROJECT_FOLDER         Cartella di Progetto Predefinita
 SETTINGS_LANGUAGE               Lingua
-SETTINGS_TABLET_DRIVER          Tablet Driver
+SETTINGS_TABLET_DRIVER          Driver del tablet
 SETTINGS_THEME                  Tema
 SETTINGS_FPS_FOREGROUND         Fps in primo piano 
 SETTINGS_FPS_BACKGROUND         Fps sullo sfondo 
@@ -86,7 +86,7 @@ ABOUT_DIALOG_EASTEREGG          Carattere Easteregg:
 # Unsaved changes dialog
 # -----------------------------------------------------------------------------
 
-UNSAVED_CHANGES_DIALOG_TITLE    Warning # TODO
+UNSAVED_CHANGES_DIALOG_TITLE    Attenzione # TODO
 UNSAVED_CHANGES_DIALOG_TEXT     Vuoi salvare le modifiche prima di chiudere il file?
 
 # -----------------------------------------------------------------------------
@@ -129,7 +129,7 @@ DELETE          Elimina
 ACTION_shortcut_save_project        Salva il progetto
 ACTION_shortcut_new_project         Nuovo progetto
 ACTION_shortcut_open_project        Apri il progetto
-ACTION_shortcut_quit                Quit                # TODO
+ACTION_shortcut_quit                Esci                
 ACTION_shortcut_undo                Torna indietro
 ACTION_shortcut_redo                Ripeti azione
 ACTION_shortcut_brush_tool          Strumento Pennello
@@ -144,8 +144,8 @@ ACTION_delete_selected_strokes      Elimina i tratti selezionati
 ACTION_copy_strokes                 Copia i tratti
 ACTION_paste_strokes                Incolla i tratti
 ACTION_duplicate_strokes            Duplica i tratti
-ACTION_toggle_zen_mode              Toggle Zen Mode
-ACTION_toggle_player                Toggle Easteregg
+ACTION_toggle_zen_mode              Attiva la modalità Zen
+ACTION_toggle_player                Attiva Easteregg
 ACTION_toggle_fullscreen            Schermo intero
 
 #---------------------------------------------------------------------------
