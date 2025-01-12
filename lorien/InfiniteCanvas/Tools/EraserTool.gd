@@ -42,10 +42,10 @@ func _stroke_intersects_circle(stroke: BrushStroke, circle_position: Vector2) ->
 		var pressure := float(stroke.pressures[i] + stroke.pressures[i+1]) / 2.0
 		var segment_radius := (pressure / float(BrushStroke.MAX_PRESSURE_VALUE)) * float(stroke.size) * 0.5
 		var radius := segment_radius + eraser_brush_radius
-		var start := stroke.position + stroke.points[i]
-		var end := stroke.position + stroke.points[i+1]
-		if Geometry2D.segment_intersects_circle(start, end, circle_position, radius*OVERLAP_THRESHOLD) >= 0:
+		
+		if Geometry2D.is_point_in_circle(stroke.points[i], circle_position, radius*OVERLAP_THRESHOLD):
 			return true
+		
 	return false
 
 # -------------------------------------------------------------------------------------------------
