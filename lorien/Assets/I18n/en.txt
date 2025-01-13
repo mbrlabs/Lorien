@@ -164,15 +164,3 @@ ACTION_toggle_fullscreen            Toggle Fullscreen
 ACTION_canvas_pan_key               Pan Key
 ACTION_canvas_reset_to_center       Reset to center
 ACTION_canvas_zoom_to_drawing       Zoom to drawing
-
-# -----------------------------------------------------------------------------
-# Kebindings dialog messages
-# -----------------------------------------------------------------------------
-
-# Bind key dialog
-KEYBINDING_DIALOG_BIND_WINDOW_NAME     Bind key
-KEYBINDING_DIALOG_BIND_ACTION          Action: {action}
-
-# Rebind already bound key dialog
-KEYBINDING_DIALOG_REBIND_WINDOW_NAME   Rebind key?
-KEYBINDING_DIALOG_REBIND_MESSAGE       '{event}' already is bound to {action}.\n\nDo you want to rebind?
