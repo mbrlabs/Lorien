@@ -35,7 +35,6 @@ func _stroke_intersects_circle(stroke: BrushStroke, circle_position: Vector2) ->
 	var bounding_box: Rect2 = _bounding_box_cache[stroke]
 	if !bounding_box.has_point(_last_mouse_position):
 		return false
-
 	# Check every segment of the brush stroke for an intersection with the curser
 	var eraser_brush_radius := float(_cursor._brush_size) * 0.5
 	for i: int in stroke.points.size() - 1:
@@ -44,8 +43,13 @@ func _stroke_intersects_circle(stroke: BrushStroke, circle_position: Vector2) ->
 		var radius := segment_radius + eraser_brush_radius
 		var start := stroke.position + stroke.points[i]
 		var end := stroke.position + stroke.points[i+1]
+		
 		if Geometry2D.segment_intersects_circle(start, end, circle_position, radius*OVERLAP_THRESHOLD) >= 0:
 			return true
+		
+		if Geometry2D.is_point_in_circle(stroke.points[i], circle_position, radius*OVERLAP_THRESHOLD):
+			return true
+			
 	return false
 
 # -------------------------------------------------------------------------------------------------
