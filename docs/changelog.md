@@ -20,11 +20,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Setting to disable pressure sensitivity and always draw with a constant brush width
 - Quit shortcut (`CTRL+Q` by default)
 - Alternative way to pan the canvas by holding `SPACE` and moving the mouse
+- The rectangle tool will now draw a perfect square while holding `SHIFT`
 - Translations: Ukrainian, Arabic 
 
 ### Fixed
 - Fixed SVG export for brush strokes that have been moved using the move tool
-- Made zooming to the mouse cursor in the canvas more accurate 
+- Made zooming to the mouse cursor in the canvas more accurate
+- Made it easier to delete single dots with the eraser tool
 
 ### Changed
 - Migrated from Godot 3.5.3 to Godot 4.3
