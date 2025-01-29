@@ -79,6 +79,7 @@ add_new_palette_dialog_path = NodePath("../NewPaletteWindow/NewPaletteDialog")
 edit_palette_dialog = NodePath("../EditPaletteWindow/EditPaletteDialog")
 delete_palette_dialog = NodePath("../DeletePaletteWindow/DeletePaletteDialog")
 toolbar_path = NodePath("../Topbar/Toolbar")
+file_dialog_path = NodePath("../ImportPaletteDialog")
 
 [node name="BackgroundColorPickerPopup" type="Popup" parent="."]
 size = Vector2i(399, 525)
@@ -103,6 +104,7 @@ presets_visible = false
 
 [node name="MainMenu" parent="." instance=ExtResource("5")]
 visible = false
+unfocusable = false
 submenu_popup_delay = 0.1
 file_dialog_path = NodePath("../FileDialog")
 
@@ -182,6 +184,17 @@ size = Vector2i(625, 175)
 theme = ExtResource("8")
 access = 2
 filters = PackedStringArray("*.lorien")
+use_native_dialog = true
+
+[node name="ImportPaletteDialog" type="FileDialog" parent="."]
+auto_translate_mode = 1
+title = "Import Palette"
+initial_position = 2
+size = Vector2i(625, 175)
+theme = ExtResource("8")
+ok_button_text = "Import"
+access = 2
+filters = PackedStringArray("*.gpl;GIMP GPL", "*.pal;JASC PAL")
 use_native_dialog = true
 
 [node name="ExportDialog" type="FileDialog" parent="."]

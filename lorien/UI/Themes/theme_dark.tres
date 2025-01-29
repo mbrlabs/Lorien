@@ -1,6 +1,5 @@
-[gd_resource type="Theme" load_steps=27 format=4 uid="uid://u5qnpgxqykiv"]
+[gd_resource type="Theme" load_steps=26 format=4 uid="uid://u5qnpgxqykiv"]
 
-[ext_resource type="Texture2D" uid="uid://bp1yka17gbjtu" path="res://Assets/Icons/close.png" id="1_qgxa7"]
 [ext_resource type="StyleBox" uid="uid://kdduww61cjw" path="res://UI/Themes/tab_inactive_dark.tres" id="2_n6mkw"]
 [ext_resource type="StyleBox" uid="uid://dtn7ehcyfik4a" path="res://UI/Themes/tab_active_dark.tres" id="3_rqnin"]
 
@@ -2562,7 +2561,7 @@ TabBar/constants/h_separation = 4
 TabBar/constants/icon_max_width = 0
 TabBar/constants/outline_size = 0
 TabBar/fonts/font = SubResource("FontFile_1bm21")
-TabBar/icons/close = ExtResource("1_qgxa7")
+TabBar/icons/close = null
 TabBar/styles/button_highlight = SubResource("StyleBoxEmpty_me351")
 TabBar/styles/button_pressed = SubResource("StyleBoxEmpty_n0chp")
 TabBar/styles/tab_disabled = ExtResource("2_n6mkw")

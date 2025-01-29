@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dsxmmndtd4r2c"]
+[gd_scene load_steps=12 format=3 uid="uid://dsxmmndtd4r2c"]
 
 [ext_resource type="Theme" uid="uid://u5qnpgxqykiv" path="res://UI/Themes/theme_dark.tres" id="1"]
 [ext_resource type="Script" path="res://UI/ColorPalettePicker.gd" id="2"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://ci340bpx1hg78" path="res://Assets/Icons/copy.png" id="5"]
 [ext_resource type="Texture2D" uid="uid://c3maqrdnsjgiq" path="res://Assets/Icons/delete.png" id="6"]
 [ext_resource type="Script" path="res://UI/Components/FlatTextureButton.gd" id="7"]
+[ext_resource type="Texture2D" uid="uid://cy1dw232wfupq" path="res://Assets/Icons/import.png" id="7_yo14x"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eth5b"]
 bg_color = Color(0.12549, 0.129412, 0.141176, 1)
@@ -77,6 +78,15 @@ layout_mode = 2
 size_flags_vertical = 4
 tooltip_text = "COLOR_PALETTE_PICKER_HINT_DUPLICATE"
 texture_normal = ExtResource("5")
+script = ExtResource("7")
+hover_tint = Color(0.662745, 0.945098, 0.87451, 1)
+pressed_tint = Color(0.572549, 1, 0.894118, 1)
+
+[node name="ImportPaletteButton" type="TextureButton" parent="MarginContainer/VBoxContainer/Buttons"]
+layout_mode = 2
+size_flags_vertical = 4
+tooltip_text = "COLOR_PALETTE_PICKER_HINT_IMPORT"
+texture_normal = ExtResource("7_yo14x")
 script = ExtResource("7")
 hover_tint = Color(0.662745, 0.945098, 0.87451, 1)
 pressed_tint = Color(0.572549, 1, 0.894118, 1)

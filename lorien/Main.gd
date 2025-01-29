@@ -21,6 +21,7 @@ extends Control
 @onready var _delete_palette_window: Window = $DeletePaletteWindow
 @onready var _edit_palette_window: Window = $EditPaletteWindow
 @onready var _edit_palette_dialog: EditPaletteDialog = $EditPaletteWindow/EditPaletteDialog
+@onready var _import_palette_dialog: FileDialog = $ImportPaletteDialog
 
 var _last_input_time := 0
 var _ui_visible := true 
@@ -39,6 +40,7 @@ func _ready() -> void:
 	var docs_folder := OS.get_system_dir(OS.SYSTEM_DIR_DOCUMENTS)
 	_file_dialog.current_dir = Settings.get_value(Settings.GENERAL_DEFAULT_PROJECT_DIR, docs_folder)
 	_export_dialog.current_dir = Settings.get_value(Settings.GENERAL_DEFAULT_PROJECT_DIR, docs_folder)
+	_import_palette_dialog.current_dir = Settings.get_value(Settings.GENERAL_DEFAULT_PROJECT_DIR, docs_folder)
 	
 	# Set tablet driver
 	var driver: String = Settings.get_value(Settings.GENERAL_TABLET_DRIVER, DisplayServer.tablet_get_current_driver())
@@ -274,6 +276,8 @@ func _is_mouse_on_ui() -> bool:
 	on_ui = on_ui || Utils.is_mouse_in_control(_toolbar)
 	on_ui = on_ui || Utils.is_mouse_in_control(_statusbar)
 	on_ui = on_ui || Utils.is_mouse_on_window(_file_dialog)
+	on_ui = on_ui || Utils.is_mouse_on_window(_export_dialog)
+	on_ui = on_ui || Utils.is_mouse_on_window(_import_palette_dialog)
 	on_ui = on_ui || Utils.is_mouse_on_window(_about_window)
 	on_ui = on_ui || Utils.is_mouse_on_window(_settings_window)
 	on_ui = on_ui || Utils.is_mouse_in_control(_brush_color_picker)
@@ -287,7 +291,8 @@ func is_dialog_open() -> bool:
 	return _about_window.visible || _settings_window.visible || \
 			_new_palette_window.visible || _edit_palette_window.visible || \
 			_delete_palette_window.visible || _file_dialog.visible || \
-			_unsaved_changes_window.visible || AlertDialog.visible
+			_import_palette_dialog.visible || AlertDialog.visible || \
+			_unsaved_changes_window.visible
 
 # -------------------------------------------------------------------------------------------------
 func _create_active_default_project() -> void:
