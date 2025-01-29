@@ -57,7 +57,7 @@ func duplicate_palette(palette: Palette, new_palette_name: String) -> Palette:
 	var new_palette := Palette.new()
 	new_palette.name = new_palette_name
 	new_palette.builtin = false
-	new_palette.colors = palette.colors # TODO: make sure this is passed by-value
+	new_palette.colors = PackedColorArray(palette.colors)
 	palettes.append(new_palette)
 	_sort()
 	
@@ -73,7 +73,11 @@ func remove_palette(palette: Palette) -> bool:
 			palettes.remove_at(index)
 			return true
 	return false
-		
+
+# -------------------------------------------------------------------------------------------------
+func import_palette() -> void:
+	pass
+
 # -------------------------------------------------------------------------------------------------
 func set_active_palette_by_index(index: int) -> void:
 	if index < palettes.size():

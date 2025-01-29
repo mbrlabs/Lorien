@@ -13,6 +13,7 @@ signal closed
 @export var edit_palette_dialog: NodePath
 @export var delete_palette_dialog: NodePath
 @export var toolbar_path: NodePath
+@export var file_dialog_path: NodePath
 
 @onready var _toolbar: Toolbar = get_node(toolbar_path)
 @onready var _palette_selection_button: OptionButton = $MarginContainer/VBoxContainer/Buttons/PaletteSelectionButton
@@ -21,6 +22,7 @@ signal closed
 @onready var _new_button: TextureButton = $MarginContainer/VBoxContainer/Buttons/AddPaletteButton
 @onready var _duplicate_button: TextureButton = $MarginContainer/VBoxContainer/Buttons/DuplicatePaletteButton
 @onready var _delete_button: TextureButton = $MarginContainer/VBoxContainer/Buttons/DeletePaletteButton
+@onready var _import_button: TextureButton = $MarginContainer/VBoxContainer/Buttons/ImportPaletteButton
 
 var _active_palette_button: PaletteButton
 var _active_color_index := -1
@@ -34,6 +36,7 @@ func _ready() -> void:
 	_edit_button.pressed.connect(_on_EditColorButton_pressed)
 	_duplicate_button.pressed.connect(_on_DuplicatePaletteButton_pressed)
 	_delete_button.pressed.connect(_on_DeletePaletteButton_pressed)
+	_import_button.pressed.connect(_on_ImportPaletteButton_pressed)
 	
 # -------------------------------------------------------------------------------------------------
 func _input(event: InputEvent) -> void:
@@ -156,6 +159,31 @@ func _on_DeletePaletteButton_pressed() -> void:
 	else:
 		var dialog: DeletePaletteDialog = get_node(delete_palette_dialog)
 		dialog.get_parent().popup_centered()
+
+# -------------------------------------------------------------------------------------------------
+func _on_ImportPaletteButton_pressed() -> void:
+	var file_dialog: FileDialog = get_node(file_dialog_path)
+	file_dialog.file_mode = FileDialog.FILE_MODE_OPEN_FILE
+	file_dialog.file_selected.connect(_on_palette_selected_to_import)
+	file_dialog.close_requested.connect(_on_file_dialog_closed)
+	file_dialog.invalidate()
+	file_dialog.popup_centered()
+
+# -------------------------------------------------------------------------------------------------
+func _on_palette_selected_to_import(filepath: String) -> void:
+	var palette : Palette
+	palette = PaletteManager.create_custom_palette("Test")
+	if palette != null:
+		palette.colors = PackedColorArray([Color.BEIGE])
+		PaletteManager.save()
+		PaletteManager.set_active_palette(palette)
+		update_palettes()
+
+# -------------------------------------------------------------------------------------------------
+func _on_file_dialog_closed() -> void:
+	var file_dialog: FileDialog = get_node(file_dialog_path)
+	Utils.remove_signal_connections(file_dialog, "file_selected")
+	Utils.remove_signal_connections(file_dialog, "close_requested")
 
 # -------------------------------------------------------------------------------------------------
 func toggle() -> void:

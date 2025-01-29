@@ -40,6 +40,7 @@ COLOR_PALETTE_PICKER_HINT_NEW        Create new color palette
 COLOR_PALETTE_PICKER_HINT_EDIT       Edit the current color palette
 COLOR_PALETTE_PICKER_HINT_DUPLICATE  Duplicate the current color palette
 COLOR_PALETTE_PICKER_HINT_DELETE     Delete the current color palette permanently
+COLOR_PALETTE_PICKER_HINT_IMPORT     Import color palette from file...
 
 # -----------------------------------------------------------------------------
 # Statusbar strings
