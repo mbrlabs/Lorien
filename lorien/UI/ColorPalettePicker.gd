@@ -172,12 +172,88 @@ func _on_ImportPaletteButton_pressed() -> void:
 # -------------------------------------------------------------------------------------------------
 func _on_palette_selected_to_import(filepath: String) -> void:
 	var palette : Palette
-	palette = PaletteManager.create_custom_palette("Test")
+	var palette_name: String
+	var palette_colors: PackedColorArray
+	var palette_string: String
+	var file := FileAccess.open(filepath, FileAccess.READ)
+	palette_string = file.get_as_text(true)
+	file.close()
+	match filepath.get_extension():
+		"gpl":
+			if !is_valid_gpl(palette_string):
+				return
+			palette_name = get_gpl_palette_name(palette_string)
+			if !palette_name:
+				palette_name = filepath.get_file().trim_suffix(".gpl")
+			palette_colors = parse_gpl_palette(palette_string)
+		"pal":
+			if !is_valid_pal(palette_string):
+				return
+			palette_name = filepath.get_file().trim_suffix(".pal")
+			palette_colors = parse_pal_palette(palette_string)
+		_:
+			return
+	
+	palette = PaletteManager.create_custom_palette(palette_name)
 	if palette != null:
-		palette.colors = PackedColorArray([Color.BEIGE])
+		palette.colors = palette_colors
 		PaletteManager.save()
 		PaletteManager.set_active_palette(palette)
 		update_palettes()
+
+# -------------------------------------------------------------------------------------------------
+func is_valid_gpl(gpl_palette: String) -> bool:
+	return gpl_palette.begins_with("GIMP Palette")
+
+# -------------------------------------------------------------------------------------------------
+func get_gpl_palette_name(gpl_palette: String) -> String:
+	var name_line: String
+	name_line = gpl_palette.get_slice("\n", 1)
+	if name_line.begins_with("Name: "):
+		return name_line.right(-6).strip_edges()
+	else:
+		return ""
+
+# -------------------------------------------------------------------------------------------------
+func parse_gpl_palette(gpl_palette: String) -> PackedColorArray:
+	var color_array: PackedColorArray
+	for line in gpl_palette.split("\n"):
+		if !line or line.begins_with("#") or line == "GIMP Palette":
+			continue
+		var values: Array
+		if line.contains("\t"):
+			values = line.split("\t")
+		else:
+			values = line.split(" ")
+		color_array.append(
+			Color(
+				float(values[0])/255,
+				float(values[1])/255,
+				float(values[2])/255
+				)
+			)
+	return color_array
+
+# -------------------------------------------------------------------------------------------------
+func is_valid_pal(pal_palette: String) -> bool:
+	return pal_palette.begins_with("JASC-PAL")
+
+# -------------------------------------------------------------------------------------------------
+func parse_pal_palette(pal_palette: String) -> PackedColorArray:
+	var color_array: PackedColorArray
+	var n_colors: int
+	n_colors = int(pal_palette.split("\n")[2])
+	for i in range(3,n_colors+3):
+		var values: Array
+		values = pal_palette.split("\n")[i].split(" ")
+		color_array.append(
+			Color(
+				float(values[0])/255,
+				float(values[1])/255,
+				float(values[2])/255
+				)
+			)
+	return color_array
 
 # -------------------------------------------------------------------------------------------------
 func _on_file_dialog_closed() -> void:
