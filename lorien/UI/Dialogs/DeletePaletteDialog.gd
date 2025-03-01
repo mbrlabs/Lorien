@@ -33,3 +33,11 @@ func _on_delete_pressed() -> void:
 # -------------------------------------------------------------------------------------------------
 func _on_cancel_pressed() -> void:
 	get_parent().hide()
+
+# -------------------------------------------------------------------------------------------------
+func _input(event):
+	if event is InputEventKey:
+		if event.keycode==KEY_D:
+			_on_delete_pressed()
+		elif event.keycode==KEY_C || event.keycode==KEY_ESCAPE:
+			_on_cancel_pressed()

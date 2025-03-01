@@ -54,3 +54,15 @@ func _on_about_to_popup() -> void:
 		get_parent().title = tr("NEW_PALETTE_DIALOG_CREATE_TITLE")
 	
 	# TODO: Grab focus
+
+# -------------------------------------------------------------------------------------------------
+func cancel()->void:
+	get_parent().hide()
+# -------------------------------------------------------------------------------------------------
+func _input(event):
+	if event is InputEventKey:
+		if event.keycode==KEY_ENTER:
+			_on_SaveButton_pressed()
+		elif event.keycode==KEY_ESCAPE:
+			cancel()
+

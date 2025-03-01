@@ -127,3 +127,8 @@ func _on_RemoveColorButton_pressed() -> void:
 		_active_button_index = min(_active_button_index, _color_grid.get_child_count() - 1)
 		_active_button = _color_grid.get_child(_active_button_index)
 		_on_platte_button_pressed(_active_button, _color_grid.get_child_count() - 1)
+# ------------------------------------------------------------------------------------------------
+func _input(event: InputEvent) -> void:
+	if event is InputEventKey:
+		if event.keycode==KEY_ESCAPE:
+			_on_EditPaletteDialog_close_requested()

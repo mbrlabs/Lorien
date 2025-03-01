@@ -26,10 +26,15 @@ func discard()->void:
 # -------------------------------------------------------------------------------------------------
 func set_text(text: String) -> void:
 	$Label.text = text
-
-func _input(event):
+# -------------------------------------------------------------------------------------------------
+func cancel()->void:
+	get_parent().hide()
+# -------------------------------------------------------------------------------------------------
+func _input(event:InputEvent)->void:
 	if event is InputEventKey:
 		if event.keycode==KEY_S:
 			save()
 		elif event.keycode==KEY_D:
 			discard()
+		elif event.keycode==KEY_ESCAPE:
+			cancel()
