@@ -74,6 +74,7 @@ SETTINGS_UI_SCALE               UI Scale
 SETTINGS_UI_SCALE_AUTO          Auto
 SETTINGS_UI_SCALE_CUSTOM        Custom
 SETTINGS_GRID_SIZE              Grid Size
+SETTINGS_STATIC_GRID            Static Grid
 SETTINGS_GRID_PATTERN           Grid Pattern
 SETTINGS_CANVAS_COLOR           Canvas Color
 SETTINGS_FPS_FOREGROUND         Foreground Fps

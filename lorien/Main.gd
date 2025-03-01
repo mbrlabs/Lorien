@@ -87,6 +87,7 @@ func _ready() -> void:
 	
 	_settings_dialog.ui_scale_changed.connect(_on_scale_changed)
 	_settings_dialog.grid_size_changed.connect(_on_grid_size_changed)
+	_settings_dialog.static_grid_changed.connect(_on_static_grid_changed)
 	_settings_dialog.grid_pattern_changed.connect(_on_grid_pattern_changed)
 	_settings_dialog.canvas_color_changed.connect(_on_canvas_color_changed)
 	_settings_dialog.constant_pressure_changed.connect(_on_constant_pressure_changed)
@@ -358,6 +359,10 @@ func _on_brush_size_changed(brush_size: int) -> void:
 # -------------------------------------------------------------------------------------------------
 func _on_grid_size_changed(grid_size: int) -> void:
 	_canvas_grid.set_grid_size(grid_size)
+
+# -------------------------------------------------------------------------------------------------
+func _on_static_grid_changed(static_grid: bool) -> void:
+	_canvas_grid.set_static_grid(static_grid)
 
 # -------------------------------------------------------------------------------------------------
 func _on_grid_pattern_changed(pattern: int) -> void:

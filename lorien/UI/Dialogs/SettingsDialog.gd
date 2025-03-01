@@ -22,6 +22,7 @@ const BRUSH_STROKE_CAP_ROUND 	:= 1
 signal ui_scale_changed
 signal canvas_color_changed(color: Color)
 signal grid_size_changed(size: int)
+signal static_grid_changed(static_grid: bool)
 signal grid_pattern_changed(pattern: Types.GridPattern)
 signal constant_pressure_changed(state: bool)
 
@@ -48,6 +49,7 @@ signal constant_pressure_changed(state: bool)
 @onready var _ui_scale_mode: OptionButton = %UIScaleOptions
 @onready var _ui_scale: SpinBox = %UIScale
 @onready var _grid_size: SpinBox = %GridSize
+@onready var _static_grid: CheckBox = %StaticGrid
 @onready var _grid_pattern: OptionButton = %GridPattern
 @onready var _foreground_fps: SpinBox = %ForgroundFramerate
 @onready var _background_fps: SpinBox = %BackgroundFramerate
@@ -74,6 +76,7 @@ func _ready() -> void:
 	_ui_scale.value_changed.connect(_on_ui_scale_changed)
 	_canvas_color.color_changed.connect(_on_canvas_color_changed)
 	_grid_pattern.item_selected.connect(_on_grid_pattern_selected)
+	_static_grid.toggled.connect(_on_static_grid_toggled)
 	_grid_size.value_changed.connect(_on_grid_size_changed)
 	_brush_rounding.item_selected.connect(_on_brush_rounding_selected)
 	_foreground_fps.value_changed.connect(_on_foreground_fps_changed)
@@ -100,6 +103,7 @@ func _set_values() -> void:
 	var ui_scale: float = Settings.get_value(Settings.APPEARANCE_UI_SCALE, Config.DEFAULT_UI_SCALE)
 	var ui_scale_mode: Types.UIScale = Settings.get_value(Settings.APPEARANCE_UI_SCALE_MODE, Config.DEFAULT_UI_SCALE_MODE)
 	var grid_pattern: Types.GridPattern = Settings.get_value(Settings.APPEARANCE_GRID_PATTERN, Config.DEFAULT_GRID_PATTERN)
+	var static_grid: bool = Settings.get_value(Settings.APPEARANCE_STATIC_GRID, Config.DEFAULT_STATIC_GRID)
 	var grid_size: int = Settings.get_value(Settings.APPEARANCE_GRID_SIZE, Config.DEFAULT_GRID_SIZE)
 	
 	var foreground_fps: int = Settings.get_value(Settings.RENDERING_FOREGROUND_FPS, Config.DEFAULT_FOREGROUND_FPS)
@@ -129,6 +133,7 @@ func _set_values() -> void:
 	_tool_pressure.value = tool_pressure
 	_canvas_color.color = canvas_color
 	_grid_size.value = grid_size
+	_static_grid.button_pressed = static_grid
 	match grid_pattern:
 		Types.GridPattern.DOTS: _grid_pattern.selected = GRID_PATTERN_DOTS_INDEX
 		Types.GridPattern.LINES: _grid_pattern.selected = GRID_PATTERN_LINES_INDEX
@@ -230,6 +235,11 @@ func _on_grid_size_changed(value: int) -> void:
 	Settings.set_value(Settings.APPEARANCE_GRID_SIZE, value)
 	grid_size_changed.emit(value)
 	
+# -------------------------------------------------------------------------------------------------
+func _on_static_grid_toggled(button_pressed: bool) -> void:
+	Settings.set_value(Settings.APPEARANCE_STATIC_GRID, button_pressed)
+	static_grid_changed.emit(button_pressed)
+
 # -------------------------------------------------------------------------------------------------
 func _on_grid_pattern_selected(index: int) -> void:
 	var pattern: int = Types.GridPattern.NONE

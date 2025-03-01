@@ -302,6 +302,21 @@ popup/item_1/id = 1
 popup/item_2/text = "None"
 popup/item_2/id = 2
 
+[node name="StaticGrid" type="HBoxContainer" parent="VBoxContainer/MarginContainer/VBoxContainer/AppearanceContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer/VBoxContainer/AppearanceContainer/VBoxContainer/StaticGrid"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+text = "SETTINGS_STATIC_GRID"
+
+[node name="StaticGrid" type="CheckBox" parent="VBoxContainer/MarginContainer/VBoxContainer/AppearanceContainer/VBoxContainer/StaticGrid"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
 [node name="GridSize" type="HBoxContainer" parent="VBoxContainer/MarginContainer/VBoxContainer/AppearanceContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3

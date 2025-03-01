@@ -26,4 +26,5 @@ const DEFAULT_BRUSH_ROUNDING		:= Types.BrushRoundingType.ROUNDED
 const DEFAULT_UI_SCALE_MODE 		:= Types.UIScale.AUTO
 const DEFAULT_UI_SCALE  			:= 1.0
 const DEFAULT_GRID_PATTERN 			:= Types.GridPattern.DOTS
+const DEFAULT_STATIC_GRID			:= false
 const DEFAULT_GRID_SIZE 			:= 25.0
