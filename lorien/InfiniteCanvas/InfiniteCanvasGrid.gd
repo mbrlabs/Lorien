@@ -59,7 +59,8 @@ func _draw() -> void:
 	var zoom := (Vector2.ONE / _camera.zoom).x
 	var size := Vector2(get_viewport().size.x, get_viewport().size.y) * zoom
 	var offset := _camera.offset
-	var grid_size := int(_grid_size) if _static_grid else int(ceil(_grid_size * pow(zoom, 0.75)))
+	var grid_division := pow(2, max(floor(-(log(zoom) / log(2))) - 1, 0)) 
+	var grid_size := int(_grid_size / grid_division) if _static_grid else int(ceil(_grid_size * pow(zoom, 0.75)))
 	
 	match _pattern:
 		Types.GridPattern.DOTS:
@@ -72,9 +73,9 @@ func _draw() -> void:
 			for x in range(x_start, x_end):
 				for y in range(y_start, y_end):
 					var pos := Vector2(x, y) * grid_size
-					draw_rect(Rect2(pos.x, pos.y, dot_size, dot_size), _grid_color)
+					draw_rect(Rect2(pos.x - dot_size / 2, pos.y - dot_size / 2, dot_size, dot_size), _grid_color)
 		Types.GridPattern.LINES:
-			var line_size = _line_size if _static_grid else -1
+			var line_size = _line_size / grid_division if _static_grid else -1
 			# Vertical lines
 			var start_index := int(offset.x / grid_size) - 1
 			var end_index := int((size.x + offset.x) / grid_size) + 1
