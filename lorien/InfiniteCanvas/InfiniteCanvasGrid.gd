@@ -60,11 +60,11 @@ func _draw() -> void:
 	var size := Vector2(get_viewport().size.x, get_viewport().size.y) * zoom
 	var offset := _camera.offset
 	var grid_division := pow(2, max(floor(-(log(zoom) / log(2))) - 1, 0)) 
-	var grid_size := int(_grid_size / grid_division) if _static_grid else int(ceil(_grid_size * pow(zoom, 0.75)))
+	var grid_size := int(ceil(_grid_size / grid_division)) if _static_grid else int(ceil(_grid_size * pow(zoom, 0.75)))
 	
 	match _pattern:
 		Types.GridPattern.DOTS:
-			var dot_size := int(ceil(grid_size * 0.12))
+			var dot_size = grid_size * 0.12
 			var x_start := int(offset.x / grid_size) - 1
 			var x_end := int((size.x + offset.x) / grid_size) + 1
 			var y_start := int(offset.y / grid_size) - 1
