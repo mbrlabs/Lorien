@@ -33,6 +33,7 @@ const BUTTON_NORMAL_COLOR = Color.WHITE
 @onready var _tool_btn_line: FlatTextureButton = $Console/Left/LineToolButton
 @onready var _tool_btn_eraser: FlatTextureButton = $Console/Left/EraserToolButton
 @onready var _tool_btn_selection: FlatTextureButton = $Console/Left/SelectionToolButton
+@onready var _tool_btn_textbox: FlatTextureButton = $Console/Left/TextBoxToolButton
 
 var _last_active_tool_button: FlatTextureButton
 
@@ -65,6 +66,7 @@ func _ready() -> void:
 	_tool_btn_line.pressed.connect(_on_line_tool_pressed)
 	_tool_btn_eraser.pressed.connect(_on_eraser_tool_pressed)
 	_tool_btn_selection.pressed.connect(_on_select_tool_pressed)
+	_tool_btn_textbox.pressed.connect(_on_textbox_tool_pressed)
 	
 # -------------------------------------------------------------------------------------------------
 func enable_tool(tool_type: Types.Tool) -> void:
@@ -76,6 +78,7 @@ func enable_tool(tool_type: Types.Tool) -> void:
 		Types.Tool.SELECT: btn = _tool_btn_selection
 		Types.Tool.RECTANGLE: btn = _tool_btn_rectangle
 		Types.Tool.CIRCLE: btn = _tool_btn_circle
+		Types.Tool.TEXTBOX: btn = _tool_btn_textbox
 	
 	btn.toggle()
 	_change_active_tool_button(btn)
@@ -112,6 +115,7 @@ func _on_keybinding_changed(action: KeybindingsManager.Action) -> void:
 		"shortcut_line_tool": _tool_btn_line.tooltip_text = fmt % [tr("TOOLBAR_TOOLTIP_LINE_TOOL"), label]
 		"shortcut_eraser_tool": _tool_btn_eraser.tooltip_text = fmt % [tr("TOOLBAR_TOOLTIP_ERASER_TOOL"), label]
 		"shortcut_select_tool": _tool_btn_selection.tooltip_text = fmt % [tr("TOOLBAR_TOOLTIP_SELECT_TOOL"), label]
+		"shortcut_textbox_tool": _tool_btn_textbox.tooltip_text = fmt % [tr("TOOLBAR_TOOLTIP_TEXTBOX_TOOL"), label]
 
 # -------------------------------------------------------------------------------------------------
 func _on_open_project_pressed() -> void:
@@ -167,6 +171,11 @@ func _on_eraser_tool_pressed() -> void:
 func _on_select_tool_pressed() -> void:
 	_change_active_tool_button(_tool_btn_selection)
 	tool_changed.emit(Types.Tool.SELECT)
+	
+# -------------------------------------------------------------------------------------------------
+func _on_textbox_tool_pressed() -> void:
+	_change_active_tool_button(_tool_btn_textbox)
+	tool_changed.emit(Types.Tool.TEXTBOX)
 
 # -------------------------------------------------------------------------------------------------
 func _change_active_tool_button(btn: TextureButton) -> void:

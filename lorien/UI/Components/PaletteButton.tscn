@@ -1,18 +1,24 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=4 format=3 uid="uid://bgh8biiyio5bn"]
 
-[ext_resource path="res://Assets/Textures/palette_button_outline.png" type="Texture2D" id=1]
-[ext_resource path="res://Assets/Textures/palette_button.png" type="Texture2D" id=2]
-[ext_resource path="res://UI/Components/PaletteButton.gd" type="Script" id=3]
+[ext_resource type="Texture2D" uid="uid://d2x4s44tq3fd3" path="res://Assets/Textures/palette_button_outline.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://bb2kaiahpvl5m" path="res://Assets/Textures/palette_button.png" id="2"]
+[ext_resource type="Script" path="res://UI/Components/PaletteButton.gd" id="3"]
 
 [node name="PaletteButton" type="Control"]
+custom_minimum_size = Vector2(31, 31)
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_right = -1889.0
 offset_bottom = -1049.0
-custom_minimum_size = Vector2( 31, 31 )
-script = ExtResource( 3 )
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3")
 
 [node name="Color" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -21,20 +27,14 @@ offset_left = -16.0
 offset_top = -16.0
 offset_right = 16.0
 offset_bottom = 16.0
-custom_minimum_size = Vector2( 32, 32 )
-texture = ExtResource( 2 )
-expand = true
+texture = ExtResource("2")
+expand_mode = 1
 stretch_mode = 6
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Selection" type="TextureRect" parent="."]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
-texture = ExtResource( 1 )
-expand = true
+texture = ExtResource("1")
+expand_mode = 1
 stretch_mode = 4
-__meta__ = {
-"_edit_use_anchors_": false
-}

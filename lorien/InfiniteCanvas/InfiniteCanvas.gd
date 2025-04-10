@@ -12,9 +12,11 @@ const PLAYER = preload("res://Misc/Player/Player.tscn")
 @onready var _circle_tool: CircleTool = $CircleTool
 @onready var _eraser_tool: EraserTool = $EraserTool
 @onready var _selection_tool: SelectionTool = $SelectionTool
+@onready var _textbox_tool: TextBoxTool = $TextBoxTool
 @onready var _active_tool: CanvasTool = _brush_tool
 @onready var _active_tool_type: int = Types.Tool.BRUSH
 @onready var _strokes_parent: Node2D = $SubViewport/Strokes
+@onready var _textboxes_parent: Control = $SubViewport/TextBoxes
 @onready var _camera: Camera2D = $SubViewport/Camera2D
 @onready var _viewport: SubViewport = $SubViewport
 @onready var _grid: InfiniteCanvasGrid = $SubViewport/Grid
@@ -65,6 +67,13 @@ func _ready() -> void:
 	#_viewport.size = get_window().size
 
 	info.pen_inverted = false
+
+func _process(delta: float) -> void:
+	var node : Node = $SubViewport.gui_get_focus_owner()
+	#if node != null:
+	#	print(node.name)
+	#else:
+	#	print("Node is null")
 
 # -------------------------------------------------------------------------------------------------
 func _unhandled_key_input(event: InputEvent) -> void:
@@ -132,6 +141,9 @@ func use_tool(tool_type: int) -> void:
 			_use_optimizer = false
 		Types.Tool.SELECT:
 			_active_tool = _selection_tool
+			_use_optimizer = false
+		Types.Tool.TEXTBOX:
+			_active_tool = _textbox_tool
 			_use_optimizer = false
 
 	if prev_tool != _active_tool:
@@ -388,3 +400,26 @@ func _undo_delete_stroke(stroke: BrushStroke) -> void:
 	_strokes_parent.add_child(stroke)
 	info.point_count += stroke.points.size()
 	info.stroke_count += 1
+	
+# -------------------------------------------------------------------------------------------------
+func _create_textbox(textBox : Label) -> void:
+	_textboxes_parent.add_child(textBox)
+
+func _on_mouse_exited() -> void:
+	print("Mouse left infinite canvas")
+
+
+func _on_mouse_entered() -> void:
+	print("Mouse entered infinite canvas")
+
+
+func _on_text_box_tool_text_box_tool_reset() -> void:
+	print("Text Box Reset on infinite canvas")
+	#grab_click_focus()
+	grab_focus()
+	#mouse_exited.emit()
+	#mouse_entered.emit()
+
+
+func _on_focus_entered() -> void:
+	print("focus on infiniteCanvas")

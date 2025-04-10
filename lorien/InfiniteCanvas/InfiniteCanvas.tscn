@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://c4u5gk5n2aiom"]
+[gd_scene load_steps=19 format=3 uid="uid://c4u5gk5n2aiom"]
 
 [ext_resource type="Script" path="res://InfiniteCanvas/InfiniteCanvas.gd" id="1"]
 [ext_resource type="Script" path="res://InfiniteCanvas/PanZoomCamera.gd" id="2"]
@@ -9,7 +9,9 @@
 [ext_resource type="Script" path="res://InfiniteCanvas/Tools/SelectionTool.gd" id="7"]
 [ext_resource type="PackedScene" path="res://InfiniteCanvas/Cursor/SelectionCursor/SelectionCursor.tscn" id="8"]
 [ext_resource type="Script" path="res://InfiniteCanvas/Tools/SelectionRectangle.gd" id="9"]
+[ext_resource type="Script" path="res://InfiniteCanvas/Tools/TextBoxTool.gd" id="9_yqcq5"]
 [ext_resource type="Shader" path="res://InfiniteCanvas/Tools/selection_rectangle.gdshader" id="10"]
+[ext_resource type="PackedScene" uid="uid://ccl05i282g120" path="res://TextBox/TextBox2.tscn" id="10_gdd0v"]
 [ext_resource type="Script" path="res://InfiniteCanvas/Tools/RectangleTool.gd" id="11"]
 [ext_resource type="Script" path="res://InfiniteCanvas/InfiniteCanvasGrid.gd" id="12"]
 [ext_resource type="Script" path="res://InfiniteCanvas/Tools/CircleTool.gd" id="13"]
@@ -55,6 +57,11 @@ script = ExtResource("7")
 selection_rectangle_path = NodePath("../SubViewport/SelectionRectangle")
 cursor_path = NodePath("../SubViewport/SelectionCursor")
 
+[node name="TextBoxTool" type="Node" parent="."]
+script = ExtResource("9_yqcq5")
+_textBox = ExtResource("10_gdd0v")
+cursor_path = NodePath("../SubViewport/SelectionCursor")
+
 [node name="SubViewport" type="SubViewport" parent="."]
 handle_input_locally = false
 size = Vector2i(1920, 1080)
@@ -80,3 +87,13 @@ script = ExtResource("9")
 [node name="BrushCursor" parent="SubViewport" instance=ExtResource("4")]
 
 [node name="SelectionCursor" parent="SubViewport" instance=ExtResource("8")]
+
+[node name="TextBoxes" type="Control" parent="SubViewport"]
+layout_mode = 3
+anchors_preset = 0
+mouse_filter = 1
+
+[connection signal="focus_entered" from="." to="." method="_on_focus_entered"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="text_box_tool_reset" from="TextBoxTool" to="." method="_on_text_box_tool_text_box_tool_reset"]

@@ -1,0 +1,54 @@
+[gd_scene load_steps=2 format=3 uid="uid://7dswpn8jua61"]
+
+[ext_resource type="Script" path="res://TextBox/TextBox.gd" id="1_cx17r"]
+
+[node name="TextBox" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_cx17r")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="btn_ok" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+text = "OK"
+
+[node name="btn_cancel" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+text = "Cancel"
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(300, 25)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/PanelContainer"]
+visible = false
+layout_mode = 2
+
+[node name="TextEdit" type="TextEdit" parent="VBoxContainer/PanelContainer"]
+layout_mode = 2
+wrap_mode = 1
+scroll_fit_content_height = true
+
+[connection signal="mouse_exited" from="VBoxContainer" to="." method="_on_v_box_container_mouse_exited"]
+[connection signal="button_up" from="VBoxContainer/HBoxContainer/btn_ok" to="." method="_on_btn_ok_button_up"]
+[connection signal="button_up" from="VBoxContainer/HBoxContainer/btn_cancel" to="." method="_on_btn_cancel_button_up"]
+[connection signal="mouse_exited" from="VBoxContainer/PanelContainer" to="." method="_on_panel_container_mouse_exited"]
+[connection signal="focus_entered" from="VBoxContainer/PanelContainer/Label" to="." method="_on_label_focus_entered"]
+[connection signal="focus_exited" from="VBoxContainer/PanelContainer/Label" to="." method="_on_label_focus_exited"]
+[connection signal="focus_exited" from="VBoxContainer/PanelContainer/TextEdit" to="." method="_on_text_edit_focus_exited"]
+[connection signal="mouse_exited" from="VBoxContainer/PanelContainer/TextEdit" to="." method="_on_text_edit_mouse_exited"]

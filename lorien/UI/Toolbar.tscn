@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://c0ral10lvpo7f"]
+[gd_scene load_steps=20 format=3 uid="uid://c0ral10lvpo7f"]
 
 [ext_resource type="Texture2D" uid="uid://c4kv3i7fmom58" path="res://Assets/Icons/save_file.png" id="1"]
 [ext_resource type="Texture2D" uid="uid://dxi6gc6npiskq" path="res://Assets/Icons/open_file.png" id="2"]
@@ -14,6 +14,7 @@
 [ext_resource type="Script" path="res://UI/Components/FlatTextureButton.gd" id="13"]
 [ext_resource type="Theme" uid="uid://u5qnpgxqykiv" path="res://UI/Themes/theme_dark.tres" id="15"]
 [ext_resource type="Texture2D" uid="uid://ddxis8f7tvg66" path="res://Assets/Icons/selection_tool.png" id="16"]
+[ext_resource type="Texture2D" uid="uid://desowbtf21cic" path="res://Assets/Icons/text-block.png" id="16_hx67p"]
 [ext_resource type="Texture2D" uid="uid://0qicbkag5jd3" path="res://Assets/Icons/circle_tool.png" id="19"]
 
 [sub_resource type="StyleBoxEmpty" id="2"]
@@ -177,6 +178,17 @@ size_flags_vertical = 4
 tooltip_text = "TOOLBAR_TOOLTIP_SELECT_TOOL"
 toggle_mode = true
 texture_normal = ExtResource("16")
+script = ExtResource("13")
+hover_tint = Color(0.662745, 0.945098, 0.87451, 1)
+pressed_tint = Color(0.572549, 1, 0.894118, 1)
+
+[node name="TextBoxToolButton" type="TextureButton" parent="Console/Left"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+tooltip_text = "TOOLBAR_TOOLTIP_SELECT_TOOL"
+toggle_mode = true
+texture_normal = ExtResource("16_hx67p")
 script = ExtResource("13")
 hover_tint = Color(0.662745, 0.945098, 0.87451, 1)
 pressed_tint = Color(0.572549, 1, 0.894118, 1)
