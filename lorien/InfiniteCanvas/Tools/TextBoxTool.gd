@@ -28,10 +28,15 @@ func tool_event(event: InputEvent) -> void:
 			if event.pressed && _state == State.CREATING:
 				_state = State.EDITING
 				textBoxInstance = _textBox.instantiate()
-				textBoxInstance.set_position(_cursor.global_position)
+				textBoxInstance.set_position(event.position)
 				textBoxInstance.textBox_ok.connect(save_label)
+				textBoxInstance.exclusive = true
 				_position = _cursor.global_position
 				add_child(textBoxInstance)
+				var window_position : Vector2i = DisplayServer.window_get_position(0)
+				textBoxInstance.get_window_id()
+				print(DisplayServer.get_window_list()[1])
+				DisplayServer.window_set_current_screen(DisplayServer.window_get_current_screen(0), DisplayServer.get_window_list()[1])
 
 func save_label(value : String) -> void:
 	var label : Label = Label.new()
