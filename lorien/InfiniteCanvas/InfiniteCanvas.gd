@@ -20,6 +20,7 @@ const PLAYER = preload("res://Misc/Player/Player.tscn")
 @onready var _camera: Camera2D = $SubViewport/Camera2D
 @onready var _viewport: SubViewport = $SubViewport
 @onready var _grid: InfiniteCanvasGrid = $SubViewport/Grid
+@onready var _text_box_editor : PanelContainer = $TextBoxEditor
 
 @onready var _constant_pressure_curve := load("res://InfiniteCanvas/constant_pressure_curve.tres")
 @onready var _default_pressure_curve := load("res://InfiniteCanvas/default_pressure_curve.tres")
@@ -308,6 +309,8 @@ func use_project(project: Project) -> void:
 	# Cleanup old data
 	for stroke in _strokes_parent.get_children():
 		_strokes_parent.remove_child(stroke)
+	for textBox in _textboxes_parent.get_children():
+		_textboxes_parent.remove_child(textBox)
 	info.point_count = 0
 	info.stroke_count = 0
 	
@@ -321,6 +324,8 @@ func use_project(project: Project) -> void:
 		_strokes_parent.add_child(stroke)
 		info.stroke_count += 1
 		info.point_count += stroke.points.size()
+	for textBox in _current_project.textBoxes:
+		_textboxes_parent.add_child(textBox)
 	
 	_grid.queue_redraw()
 	
@@ -404,6 +409,7 @@ func _undo_delete_stroke(stroke: BrushStroke) -> void:
 # -------------------------------------------------------------------------------------------------
 func _create_textbox(textBox : Label) -> void:
 	_textboxes_parent.add_child(textBox)
+	_current_project.textBoxes.append(textBox)
 
 func _on_mouse_exited() -> void:
 	print("Mouse left infinite canvas")
@@ -416,10 +422,24 @@ func _on_mouse_entered() -> void:
 func _on_text_box_tool_text_box_tool_reset() -> void:
 	print("Text Box Reset on infinite canvas")
 	#grab_click_focus()
-	grab_focus()
+	#grab_focus()
 	#mouse_exited.emit()
 	#mouse_entered.emit()
 
-
 func _on_focus_entered() -> void:
 	print("focus on infiniteCanvas")
+
+func _on_text_box_tool_show_text_box_dialog(dialogPosition : Vector2) -> void:
+	print("Catch Show Dialog Event ", dialogPosition)
+	_text_box_editor.visible = true
+	_text_box_editor.label_position = dialogPosition
+
+func _on_text_box_editor_text_box_ok(value : String, labelPosition : Vector2) -> void:
+	var label : TextBox = TextBox.new()
+	label.text = value
+	label.set_position(labelPosition)
+	_create_textbox(label)
+	_textbox_tool._state = _textbox_tool.State.CREATING
+
+func _on_text_box_editor_text_box_cancel() -> void:
+	_textbox_tool._state = _textbox_tool.State.CREATING

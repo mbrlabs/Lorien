@@ -28,6 +28,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource("1")
 
+[node name="TextBoxEditor" parent="." instance=ExtResource("10_gdd0v")]
+visible = true
+layout_mode = 2
+
 [node name="BrushTool" type="Node" parent="."]
 script = ExtResource("5")
 pressure_curve = ExtResource("3")
@@ -96,4 +100,7 @@ mouse_filter = 1
 [connection signal="focus_entered" from="." to="." method="_on_focus_entered"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="textBox_cancel" from="TextBoxEditor" to="." method="_on_text_box_editor_text_box_cancel"]
+[connection signal="textBox_ok" from="TextBoxEditor" to="." method="_on_text_box_editor_text_box_ok"]
+[connection signal="show_textBoxDialog" from="TextBoxTool" to="." method="_on_text_box_tool_show_text_box_dialog"]
 [connection signal="text_box_tool_reset" from="TextBoxTool" to="." method="_on_text_box_tool_text_box_tool_reset"]

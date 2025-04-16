@@ -6,12 +6,14 @@ class_name Serializer
 
 # -------------------------------------------------------------------------------------------------
 const BRUSH_STROKE = preload("res://BrushStroke/BrushStroke.tscn")
+const TEXT_BOX = preload("res://TextBox/TextBox.tscn")
 const COMPRESSION_METHOD = FileAccess.COMPRESSION_DEFLATE
 const POINT_ELEM_SIZE := 3
 
 const VERSION_NUMBER := 1
 const TYPE_BRUSH_STROKE := 0
 const TYPE_ERASER_STROKE_DEPRECATED := 1 # Deprecated since v0; will be ignored when read; structually the same as normal brush stroke
+const TYPE_TEXT_BOX := 2
 
 # -------------------------------------------------------------------------------------------------
 static func save_project(project: Project) -> void:
@@ -53,7 +55,14 @@ static func save_project(project: Project) -> void:
 			file.store_8(pressure)
 			p_idx += 1
 
-	# Done
+	# Text Box Data
+	for textBox : TextBox in project.textBoxes:
+		file.store_8(TYPE_TEXT_BOX)
+		file.store_float(textBox.global_position.x)
+		file.store_float(textBox.global_position.y)
+		file.store_pascal_string(textBox.text)
+
+	# Done		
 	file.close()
 	print("Saved %s in %d ms" % [project.filepath, (Time.get_ticks_msec() - start_time)])
 
@@ -109,6 +118,15 @@ static func load_project(project: Project) -> void:
 					print("Skipped deprecated eraser stroke: %d points" % point_count)
 				else:
 					project.strokes.append(brush_stroke)
+			TYPE_TEXT_BOX:
+				var x = file.get_float()
+				var y = file.get_float()
+				var text = file.get_pascal_string()
+				var textBox : TextBox = TextBox.new()
+				textBox.set_global_position(Vector2(x,y))
+				textBox.text = text;
+				
+				project.textBoxes.append(textBox)
 			_:
 				printerr("Invalid type")
 		

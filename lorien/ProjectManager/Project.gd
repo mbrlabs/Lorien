@@ -17,6 +17,7 @@ var loaded := false
 var filepath: String
 var meta_data: Dictionary
 var strokes: Array[BrushStroke]
+var textBoxes : Array[TextBox]
 
 # -------------------------------------------------------------------------------------------------
 func _init() -> void:
@@ -34,6 +35,7 @@ func clear() -> void:
 	undo_redo = null
 	meta_data.clear()
 	strokes.clear()
+	textBoxes.clear()
 
 # -------------------------------------------------------------------------------------------------
 func add_stroke(stroke: BrushStroke) -> void:
@@ -44,6 +46,11 @@ func add_stroke(stroke: BrushStroke) -> void:
 func remove_last_stroke() -> void:
 	if !strokes.is_empty():
 		strokes.pop_back()
+
+#-------------------------------------------------------------------------------------------------
+func add_text_box(textBox : TextBox) -> void:
+	textBoxes.append(textBox)
+	dirty = true
 
 # -------------------------------------------------------------------------------------------------
 func get_scene_file_path() -> String:
