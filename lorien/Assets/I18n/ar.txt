@@ -4,15 +4,15 @@ LANGUAGE_NAME العربية
 # Menu strings
 # -----------------------------------------------------------------------------
 
-MENU_OPEN           فتح
+MENU_OPEN           ...فتح
 MENU_SAVE           حفظ
-MENU_SAVE_AS        حفظ باسم
+MENU_SAVE_AS        ...حفظ باسم
 MENU_SETTINGS       إعدادات
 MENU_MANUAL         الدليل
 MENU_BUG_TRACKER    مراقب الأخطاء
 MENU_ABOUT          حول
-MENU_EXPORT         إخراج
-MENU_QUIT           Quit        # TODO
+MENU_EXPORT         ...تصدير
+MENU_QUIT           خروج
 
 # -----------------------------------------------------------------------------
 # Toolbar
@@ -23,10 +23,11 @@ TOOLBAR_TOOLTIP_SAVE_FILE       حفظ ملف
 TOOLBAR_TOOLTIP_UNDO            تراجع عن الإجراء
 TOOLBAR_TOOLTIP_REDO            إعادة الإجراء
 TOOLBAR_TOOLTIP_BRUSH_TOOL      الفرشاة
-TOOLBAR_TOOLTIP_RECTANGLE_TOOL  المستطيل
-TOOLBAR_TOOLTIP_CIRCLE_TOOL     الدائرة
-TOOLBAR_TOOLTIP_LINE_TOOL       سطر
+TOOLBAR_TOOLTIP_RECTANGLE_TOOL  أداة المستطيل
+TOOLBAR_TOOLTIP_CIRCLE_TOOL     أداة الدائرة
+TOOLBAR_TOOLTIP_LINE_TOOL       أداة الخط
 TOOLBAR_TOOLTIP_ERASER_TOOL     ممحاة
+TOOLBAR_TOOLTIP_SELECT_TOOL     أداة التحديد
 TOOLBAR_TOOLTIP_BRUSH_COLOR     لون الفرشاة
 TOOLBAR_TOOLTIP_BRUSH_SIZE      مقاس الفرشاة
 TOOLBAR_TOOLTIP_CANVAS_COLOR    لون اللوحة
@@ -44,12 +45,12 @@ COLOR_PALETTE_PICKER_HINT_DELETE     حذف لوح الألوان الحالي �
 # Statusbar strings
 # -----------------------------------------------------------------------------
 
-STATUSBAR_POSITION              موقع
-STATUSBAR_ZOOM                  تكبير
-STATUSBAR_PRESSURE              ضغط
+STATUSBAR_POSITION              الموقع
+STATUSBAR_ZOOM                  التقريب
+STATUSBAR_PRESSURE              الضغط
 STATUSBAR_FPS                   عدد الأطر في الثانية
-STATUSBAR_STROKES               خطوط
-STATUSBAR_POINTS                نقاط
+STATUSBAR_STROKES               الخطوط
+STATUSBAR_POINTS                النقاط
 
 # -----------------------------------------------------------------------------
 # Settings strings
@@ -59,46 +60,46 @@ SETTINGS_TITLE                  إعدادات
 SETTINGS_GENERAL                عام
 SETTINGS_APPEARANCE             مظهر
 SETTINGS_RENDERING              العرض
+SETTINGS_KEYBINDINGS            اختصارات لوحة المفاتيح
 SETTINGS_PRESSURE_SENSITIVITY   حساسية الضغط
+SETTINGS_CONSTANT_PRESSURE      ضغط ثابت
+SETTINGS_STABILIZER_STRENGTH    قوة المثبت
 SETTINGS_BRUSH_SIZE             مقاس الفرشاة الافتراضي
-SETTINGS_CANVAS_COLOR           لون اللوحة الافتراضي
-SETTINGS_PROJECT_FOLDER         ملف المشروع الافتراضي
+SETTINGS_PROJECT_FOLDER         مجلد الحفظ/التحميل الافتراضي
+#SETTINGS_GRID_SIZE             Grid Size      #this line is duplicated in the original en.txt file
 SETTINGS_LANGUAGE               اللغة
-SETTINGS_TABLET_DRIVER          Tablet Driver
-SETTINGS_THEME                  الشكل
+SETTINGS_TABLET_DRIVER          برنامج تشغيل الجهاز اللوحي
+SETTINGS_THEME                  السمة
 SETTINGS_UI_SCALE               حجم واجهة المستخدم
 SETTINGS_UI_SCALE_AUTO          تلقائي
-SETTINGS_UI_SCALE_CUSTOM        مخصص              
+SETTINGS_UI_SCALE_CUSTOM        مخصص
+SETTINGS_GRID_SIZE              حجم الشبكة
+SETTINGS_GRID_PATTERN           نمط الشبكة
+SETTINGS_CANVAS_COLOR           لون اللوحة
 SETTINGS_FPS_FOREGROUND         عدد الأطر في الثانية(الأمامية)
 SETTINGS_FPS_BACKGROUND         عدد الأطر في الثانية(الخلفية)
 SETTINGS_BRUSH_CAPS             وضع تدوير الفرشاة
 SETTINGS_BRUSH_CAPS_FLAT        مسطح
 SETTINGS_BRUSH_CAPS_ROUND       دائري
-SETTINGS_RESTART_NOTICE  	    مطلوب إعادة التشغيل لتطبيق الإعدادات الجديدة
+SETTINGS_RESTART_NOTICE  	      مطلوب إعادة التشغيل لتطبيق الإعدادات الجديدة
+SETTINGS_TOOL_PRESSURE          الضغط الافتراضي للأدوات
 
 # -----------------------------------------------------------------------------
 # About dialog strings
 # -----------------------------------------------------------------------------
 
 ABOUT_DIALOG_TITLE              حول
-ABOUT_DIALOG_COPYRIGHT          © 2021-2024 Marcus Brummer & contributors 
-ABOUT_DIALOG_LICSENSE           Lorien is licensed under:
-ABOUT_DIALOG_BASED_ON           Lorien is based on:
-ABOUT_DIALOG_EASTEREGG          Easteregg character:
+ABOUT_DIALOG_COPYRIGHT          © ٢٠٢١-٢٠٢٤ ماركوس برومر والمساهمون
+ABOUT_DIALOG_LICSENSE           لوريان مرخص بموجب:
+ABOUT_DIALOG_BASED_ON           لوريان مبني على:
+ABOUT_DIALOG_EASTEREGG          Easteregg character:             #TODO
 
 # -----------------------------------------------------------------------------
 # Unsaved changes dialog
 # -----------------------------------------------------------------------------
 
-UNSAVED_CHANGES_DIALOG_TITLE    حفظ التغييرات؟
-UNSAVED_CHANGES_DIALOG_TEXT     هل تريد حفظ التغييرات قبل إغلاق الملف؟
-
-# -----------------------------------------------------------------------------
-# Exit dialog
-# -----------------------------------------------------------------------------
-
-EXIT_DIALOG_TITLE    حفظ التغييرات؟
-EXIT_DIALOG_TEXT     هل تريد حفظ التغييرات قبل الخروج من Lorien؟
+UNSAVED_CHANGES_DIALOG_TITLE    تنبيه
+UNSAVED_CHANGES_DIALOG_TEXT     هل تريد حفظ التغييرات قبل إغلاق الملف/الملفات؟
 
 # -----------------------------------------------------------------------------
 # New palette dialog
@@ -110,8 +111,8 @@ NEW_PALETTE_DIALOG_PLACEHOLDER 			اسم لوح الألوان
 # -----------------------------------------------------------------------------
 # Delete palette dialog
 # -----------------------------------------------------------------------------
-DELETE_PALETTE_DIALOG_TITLE 			مسح لوح الألوان
-DELETE_PALETTE_DIALOG_TEXT 				هل أنت متأكد أنك تريد حذف نهائيًا:
+DELETE_PALETTE_DIALOG_TITLE 			حذف لوح الألوان
+DELETE_PALETTE_DIALOG_TEXT 				أمتأكد من رغبتك في حذفه نهائيًا:
 
 # -----------------------------------------------------------------------------
 # Edit palette dialog
@@ -122,10 +123,8 @@ EDIT_PALETTE_DIALOG_TITLE 		تعديل لوح الألوان
 # Error/Alert messages
 # -----------------------------------------------------------------------------
 
-ERROR_NOT_IMPLEMENTED               لم تنفذ بعد.
-ERROR_AUTOSAVE_NOT_IMPLEMENTED      لم يتم تنفيذ "الحفظ التلقائي" لملف "بدون عنوان". يرجى حفظه يدويًا.
-ALERT_EDITING_BUILTIN_PALETTE       تعديل لوحات الألوان المدمجة غير ممكن. إذا كنت ترغب في تخصيص هذه اللوحة ، يمكنك عمل نسخة و تعديلها بدلاً من ذلك.
-ALERT_DELETING_BUILTIN_PALETTE      لا يمكن حذف لوحات الألوان المدمجة في البرنامج.
+ALERT_EDITING_BUILTIN_PALETTE       تعديل ألواح الألوان المدمجة غير ممكن. إذا كنت ترغب في تخصيص هذا اللوح ، يمكنك عمل نسخة و تعديلها بدلاً من ذلك.
+ALERT_DELETING_BUILTIN_PALETTE      لا يمكن حذف ألواح الألوان المدمجة في البرنامج.
 
 # -----------------------------------------------------------------------------
 # Generic strings
@@ -134,4 +133,32 @@ ALERT_DELETING_BUILTIN_PALETTE      لا يمكن حذف لوحات الألوا
 SAVE            حفظ
 DISCARD         رفض
 CANCEL          إلغاء
-DELETE          مسح
+DELETE          حذف
+
+# -----------------------------------------------------------------------------
+# Action names
+# -----------------------------------------------------------------------------
+
+ACTION_shortcut_save_project        حفظ ملف
+ACTION_shortcut_new_project         ملف جديد
+ACTION_shortcut_open_project        فتح ملف
+ACTION_shortcut_close_project       إغلاق ملف
+ACTION_shortcut_quit                خروج
+ACTION_shortcut_undo                التراجع عن إجراء
+ACTION_shortcut_redo                إعادة الإجراء
+ACTION_shortcut_brush_tool          أداة الفرشاة
+ACTION_shortcut_line_tool           أداة الخط
+ACTION_shortcut_eraser_tool         أداة الممحاة
+ACTION_shortcut_select_tool         أداة التحديد
+ACTION_shortcut_rectangle_tool      أداة المستطيل
+ACTION_shortcut_circle_tool         أداة الدائرة
+ACTION_shortcut_export_project      تصدير ملف
+ACTION_deselect_all_strokes         إلغاء تحديد جميع الخطوط
+ACTION_delete_selected_strokes      حذف الخطوط المحددة
+ACTION_copy_strokes                 نسخ
+ACTION_paste_strokes                لصق
+ACTION_duplicate_strokes            كرر الخطوط
+ACTION_toggle_zen_mode              تبديل وضع Zen    #TODO
+ACTION_toggle_player                Toggle Easteregg #TODO
+ACTION_toggle_fullscreen            تبديد ملء الشاشة
+ACTION_canvas_pan_key               Pan Key          #TODO
