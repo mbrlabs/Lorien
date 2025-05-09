@@ -15,6 +15,11 @@ MENU_EXPORT         Export...
 MENU_QUIT           Quit
 
 # -----------------------------------------------------------------------------
+# Project
+# -----------------------------------------------------------------------------
+PROJECT_NAME_UNTITLED                   Untitled
+PROJECT_NAME_UNTITLED_UNSAVED           Untitled (*)
+# -----------------------------------------------------------------------------
 # Toolbar
 # -----------------------------------------------------------------------------
 TOOLBAR_TOOLTIP_NEW_FILE        Create New File
@@ -56,33 +61,39 @@ STATUSBAR_POINTS                Points
 # Settings strings
 # -----------------------------------------------------------------------------
 
-SETTINGS_TITLE                  Settings
-SETTINGS_GENERAL                General
-SETTINGS_APPEARANCE             Appearance
-SETTINGS_RENDERING              Rendering
-SETTINGS_KEYBINDINGS            Keybindings
-SETTINGS_PRESSURE_SENSITIVITY   Pressure Sensitivity
-SETTINGS_CONSTANT_PRESSURE      Constant Pressure
-SETTINGS_STABILIZER_STRENGTH    Stabilizer Strength
-SETTINGS_BRUSH_SIZE             Default Brush Size
-SETTINGS_PROJECT_FOLDER         Default save/load folder
-SETTINGS_GRID_SIZE              Grid Size
-SETTINGS_LANGUAGE               Language
-SETTINGS_TABLET_DRIVER          Tablet Driver
-SETTINGS_THEME                  Theme
-SETTINGS_UI_SCALE               UI Scale
-SETTINGS_UI_SCALE_AUTO          Auto
-SETTINGS_UI_SCALE_CUSTOM        Custom
-SETTINGS_GRID_SIZE              Grid Size
-SETTINGS_GRID_PATTERN           Grid Pattern
-SETTINGS_CANVAS_COLOR           Canvas Color
-SETTINGS_FPS_FOREGROUND         Foreground Fps
-SETTINGS_FPS_BACKGROUND         Background Fps
-SETTINGS_BRUSH_CAPS             Brush Rounding Mode
-SETTINGS_BRUSH_CAPS_FLAT        Flat
-SETTINGS_BRUSH_CAPS_ROUND       Round
-SETTINGS_RESTART_NOTICE  		Restart required to apply the new settings
-SETTINGS_TOOL_PRESSURE          Default Tools Pressure
+SETTINGS_TITLE                          Settings
+SETTINGS_GENERAL                        General
+SETTINGS_APPEARANCE                     Appearance
+SETTINGS_RENDERING                      Rendering
+SETTINGS_KEYBINDINGS                    Keybindings
+SETTINGS_PRESSURE_SENSITIVITY           Pressure Sensitivity
+SETTINGS_CONSTANT_PRESSURE              Constant Pressure
+SETTINGS_STABILIZER_STRENGTH            Stabilizer Strength
+SETTINGS_BRUSH_SIZE                     Default Brush Size
+SETTINGS_PROJECT_FOLDER                 Default save/load folder
+SETTINGS_PROJECT_FOLDER_PLACEHOLDER     e.g. C:/Users/me/Lorien
+SETTINGS_GRID_SIZE                      Grid Size
+SETTINGS_LANGUAGE                       Language
+SETTINGS_TABLET_DRIVER                  Tablet Driver
+SETTINGS_THEME                          Theme
+SETTINGS_THEME_DARK                     Dark Mode
+SETTINGS_THEME_LIGHT                    Light Mode
+SETTINGS_UI_SCALE                       UI Scale
+SETTINGS_UI_SCALE_AUTO                  Auto
+SETTINGS_UI_SCALE_CUSTOM                Custom
+SETTINGS_GRID_SIZE                      Grid Size
+SETTINGS_GRID_PATTERN                   Grid Pattern
+SETTINGS_GRID_PATTERN_DOTS              Dots
+SETTINGS_GRID_PATTERN_LINES             Lines
+SETTINGS_GRID_PATTERN_NONE              None
+SETTINGS_CANVAS_COLOR                   Canvas Color
+SETTINGS_FPS_FOREGROUND                 Foreground Fps
+SETTINGS_FPS_BACKGROUND                 Background Fps
+SETTINGS_BRUSH_CAPS                     Brush Rounding Mode
+SETTINGS_BRUSH_CAPS_FLAT                Flat
+SETTINGS_BRUSH_CAPS_ROUND               Round
+SETTINGS_RESTART_NOTICE  		        Restart required to apply the new settings
+SETTINGS_TOOL_PRESSURE                  Default Tools Pressure
 
 # -----------------------------------------------------------------------------
 # About dialog strings
