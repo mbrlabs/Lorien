@@ -11,9 +11,9 @@ const COMPRESSION_METHOD = FileAccess.COMPRESSION_DEFLATE
 const POINT_ELEM_SIZE := 3
 
 const VERSION_NUMBER := 1
-const TYPE_BRUSH_STROKE := 0
-const TYPE_ERASER_STROKE_DEPRECATED := 1 # Deprecated since v0; will be ignored when read; structually the same as normal brush stroke
-const TYPE_TEXT_BOX := 2
+const TYPE_BRUSH_STROKE : int = 0
+const TYPE_ERASER_STROKE_DEPRECATED : int = 1 # Deprecated since v0; will be ignored when read; structually the same as normal brush stroke
+const TYPE_TEXT_BOX : int = 2
 
 # -------------------------------------------------------------------------------------------------
 static func save_project(project: Project) -> void:

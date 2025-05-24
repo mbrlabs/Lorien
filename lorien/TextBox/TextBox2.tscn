@@ -23,27 +23,41 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 26.0
-offset_top = -12.5
-offset_right = 134.0
-offset_bottom = 172.5
+offset_left = -125.0
+offset_top = -100.0
+offset_right = 125.0
+offset_bottom = 100.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="TextEdit" type="TextEdit" parent="Panel/VBoxContainer"]
-custom_minimum_size = Vector2(100, 150)
+custom_minimum_size = Vector2(200, 150)
 layout_mode = 2
+size_flags_horizontal = 4
+focus_next = NodePath("../HBoxContainer/SaveButton")
+focus_previous = NodePath("../HBoxContainer/CancelButton")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
 
 [node name="SaveButton" type="Button" parent="Panel/VBoxContainer/HBoxContainer"]
 layout_mode = 2
+focus_neighbor_left = NodePath("../CancelButton")
+focus_neighbor_right = NodePath("../CancelButton")
+focus_next = NodePath("../CancelButton")
+focus_previous = NodePath("../CancelButton")
 text = "Save"
 
 [node name="CancelButton" type="Button" parent="Panel/VBoxContainer/HBoxContainer"]
 layout_mode = 2
+focus_neighbor_left = NodePath("../SaveButton")
+focus_neighbor_right = NodePath("../SaveButton")
+focus_next = NodePath("../SaveButton")
+focus_previous = NodePath("../SaveButton")
 text = "Cancel"
 
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
+[connection signal="close_click" from="Panel" to="." method="_on_panel_close_click"]
 [connection signal="pressed" from="Panel/VBoxContainer/HBoxContainer/SaveButton" to="." method="_on_save_button_pressed"]
 [connection signal="pressed" from="Panel/VBoxContainer/HBoxContainer/CancelButton" to="." method="_on_cancel_button_pressed"]

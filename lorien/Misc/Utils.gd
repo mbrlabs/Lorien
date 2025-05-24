@@ -43,7 +43,7 @@ func calculate_rect(start_pos: Vector2, end_pos: Vector2) -> Rect2:
 	return area
 
 # -------------------------------------------------------------------------------------------------
-func calculte_bounding_boxes(strokes: Array[BrushStroke], margin: float = 0.0) -> Dictionary:
+func calculte_bounding_boxes(strokes: Array[BrushStroke], text_boxes: Array[TextBox], margin: float = 0.0) -> Dictionary:
 	var result := {}
 	for stroke: BrushStroke in strokes:
 		var top_left := stroke.position + stroke.top_left_pos
@@ -52,6 +52,12 @@ func calculte_bounding_boxes(strokes: Array[BrushStroke], margin: float = 0.0) -
 		if margin > 0:
 			bounding_box = bounding_box.grow(margin)
 		result[stroke] = bounding_box
+		
+	for text_box : TextBox in text_boxes:
+		var text_box_bounding_box := text_box.get_global_rect()
+		#if margin > 0:
+		#	text_box_bounding_box := text_box_bounding_box.grow(margin)
+		result[text_box] = text_box_bounding_box
 	return result
 	
 # -------------------------------------------------------------------------------------------------

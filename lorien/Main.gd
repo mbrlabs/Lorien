@@ -144,7 +144,9 @@ func _process(delta: float) -> void:
 	var active_project: Project = ProjectManager.get_active_project()
 	if active_project != null:
 		_menubar.update_tab_title(active_project)
-
+		
+	var nodes_in_group = get_tree().get_nodes_in_group("text_boxes_in_selection_rectangle")
+	
 # -------------------------------------------------------------------------------------------------
 func _unhandled_input(event: InputEvent) -> void:
 	# Idle time over; let's set the fps high again

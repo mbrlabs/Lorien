@@ -197,6 +197,8 @@ func get_strokes_in_camera_frustrum() -> Array:
 func get_all_strokes() -> Array[BrushStroke]:
 	return _current_project.strokes
 
+func get_all_text_boxes() -> Array[TextBox]:
+	return _current_project.textBoxes
 # -------------------------------------------------------------------------------------------------
 func enable() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
