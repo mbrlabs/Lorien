@@ -101,5 +101,7 @@ mouse_filter = 1
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
 [connection signal="textBox_cancel" from="TextBoxEditor" to="." method="_on_text_box_editor_text_box_cancel"]
 [connection signal="textBox_ok" from="TextBoxEditor" to="." method="_on_text_box_editor_text_box_ok"]
+[connection signal="textBox_ok_update" from="TextBoxEditor" to="." method="_on_text_box_editor_text_box_ok_update"]
+[connection signal="edit_existing_textBox" from="TextBoxTool" to="." method="_on_text_box_tool_edit_existing_text_box"]
 [connection signal="show_textBoxDialog" from="TextBoxTool" to="." method="_on_text_box_tool_show_text_box_dialog"]
 [connection signal="text_box_tool_reset" from="TextBoxTool" to="." method="_on_text_box_tool_text_box_tool_reset"]

@@ -440,7 +440,7 @@ func _undo_delete_text_box(text_box: TextBox) -> void:
 	_textboxes_parent.add_child(text_box)
 	
 # -------------------------------------------------------------------------------------------------
-func _create_textbox(textBox : Label) -> void:
+func _create_textbox(textBox : TextBox) -> void:
 	_textboxes_parent.add_child(textBox)
 	_current_project.textBoxes.append(textBox)
 
@@ -475,4 +475,17 @@ func _on_text_box_editor_text_box_ok(value : String, labelPosition : Vector2) ->
 	_textbox_tool._state = _textbox_tool.State.CREATING
 
 func _on_text_box_editor_text_box_cancel() -> void:
+	_textbox_tool._state = _textbox_tool.State.CREATING
+
+
+
+func _on_text_box_tool_edit_existing_text_box(textBox : TextBox) -> void:
+	print("Show Dialog for existing text Box")
+	_text_box_editor.visible = true
+	_text_box_editor.textEdit.text = textBox.text
+	_text_box_editor.label_position = textBox.position
+	_text_box_editor.textBox = textBox
+
+
+func _on_text_box_editor_text_box_ok_update() -> void:
 	_textbox_tool._state = _textbox_tool.State.CREATING
