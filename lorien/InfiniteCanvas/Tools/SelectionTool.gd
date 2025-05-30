@@ -195,6 +195,11 @@ func _duplicate_stroke(stroke: BrushStroke, offset: Vector2) -> BrushStroke:
 func _modify_strokes_colors(strokes: Array[BrushStroke], color: Color) -> void:	
 	for stroke: BrushStroke in strokes:
 		stroke.color = color
+		
+# ------------------------------------------------------------------------------------------------
+func _modify_text_boxes_colors(text_boxes: Array[TextBox], color: Color) -> void:	
+	for text_box: TextBox in text_boxes:
+		text_box.add_theme_color_override("font_color", color)
 
 # ------------------------------------------------------------------------------------------------
 func _build_bounding_boxes() -> void:
@@ -342,7 +347,9 @@ func get_selected_text_boxes() -> Array[TextBox]:
 # ------------------------------------------------------------------------------------------------
 func _on_brush_color_changed(color: Color) -> void:
 	var strokes := get_selected_strokes()
+	var text_boxes := get_selected_text_boxes()
 	_modify_strokes_colors(strokes, color)
+	_modify_text_boxes_colors(text_boxes, color)
 
 # ------------------------------------------------------------------------------------------------
 func reset() -> void:

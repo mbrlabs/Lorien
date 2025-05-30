@@ -61,6 +61,10 @@ static func save_project(project: Project) -> void:
 		file.store_float(textBox.global_position.x)
 		file.store_float(textBox.global_position.y)
 		file.store_pascal_string(textBox.text)
+		var textBoxColor : Color = textBox.get("theme_override_colors/font_color")
+		file.store_8(textBoxColor.r8)
+		file.store_8(textBoxColor.g8)
+		file.store_8(textBoxColor.b8)
 
 	# Done		
 	file.close()
@@ -125,6 +129,11 @@ static func load_project(project: Project) -> void:
 				var textBox : TextBox = TextBox.new()
 				textBox.set_global_position(Vector2(x,y))
 				textBox.text = text;
+				var r := file.get_8()
+				var g := file.get_8()
+				var b := file.get_8()
+				var textBoxColor : Color = Color(r/255.0, g/255.0, b/255.0, 1.0)
+				textBox.add_theme_color_override("font_color", textBoxColor)
 				
 				project.textBoxes.append(textBox)
 			_:

@@ -471,6 +471,7 @@ func _on_text_box_editor_text_box_ok(value : String, labelPosition : Vector2) ->
 	var label : TextBox = TextBox.new()
 	label.text = value
 	label.set_position(labelPosition)
+	label.add_theme_color_override("font_color", _brush_color)
 	_create_textbox(label)
 	_textbox_tool._state = _textbox_tool.State.CREATING
 
