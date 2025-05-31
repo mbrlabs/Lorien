@@ -2,7 +2,7 @@ class_name TextBoxTool
 extends CanvasTool
 
 @export var _textBox: PackedScene
-var textBoxInstance : TextBox2
+var textBoxInstance : TextBoxEditor
 
 signal text_box_tool_reset
 signal show_textBoxDialog

@@ -1,4 +1,4 @@
-class_name TextBox2 extends PanelContainer
+class_name TextBoxEditor extends PanelContainer
 
 @onready
 var textEdit : TextEdit = $Panel/Panel/VBoxContainer/TextEdit

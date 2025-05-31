@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://ccl05i282g120"]
 
-[ext_resource type="Script" path="res://TextBox/TextBox2.gd" id="1_pskl6"]
-[ext_resource type="Script" path="res://TextBox/Panel.gd" id="2_mvgor"]
+[ext_resource type="Script" path="res://TextBox/TextBox2.gd" id="1_l1c4a"]
+[ext_resource type="Script" path="res://TextBox/Panel.gd" id="2_fvesn"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jirs3"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -20,12 +20,12 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_jirs3")
-script = ExtResource("1_pskl6")
+script = ExtResource("1_l1c4a")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_u5mq5")
-script = ExtResource("2_mvgor")
+script = ExtResource("2_fvesn")
 
 [node name="Panel" type="Panel" parent="Panel"]
 layout_mode = 1
