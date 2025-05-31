@@ -10,7 +10,7 @@ const META_OFFSET := "offset"
 const GROUP_SELECTED_STROKES := "selected_strokes" # selected strokes
 const GROUP_SELECTED_TEXT_BOXES := "selected_text_boxes"
 const GROUP_STROKES_IN_SELECTION_RECTANGLE := "strokes_in_selection_rectangle" # strokes that are in selection rectangle but not commit (i.e. the user is still selecting)
-const GROUP_TEXT_BOXES__IN_SELECTION_RECTANGLE := "text_boxes_in_selection_rectangle" # strokes that are in selection rectangle but not commit (i.e. the user is still selecting)
+const GROUP_TEXT_BOXES_IN_SELECTION_RECTANGLE := "text_boxes_in_selection_rectangle" # strokes that are in selection rectangle but not commit (i.e. the user is still selecting)
 const GROUP_MARKED_FOR_DESELECTION := "strokes_marked_for_deselection" # strokes that need to be deslected once LMB is released
 const GROUP_MARKED_TEXT_BOXES_FOR_DESELECTION = "text_boxes_marked_for_deselection"
 const GROUP_COPIED_STROKES := "strokes_copied"
@@ -65,8 +65,6 @@ func tool_event(event: InputEvent) -> void:
 	if event is InputEventMouseButton && !disable_stroke:
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			# LMB down - decide if we should select/multiselect or move the selection
-			print("selected strokes", get_selected_strokes().size())
-			print("selected text boxes", get_selected_strokes().size())
 			if event.pressed:
 				_selecting_start_pos = _cursor.global_position
 				if event.shift_pressed:
@@ -74,12 +72,10 @@ func tool_event(event: InputEvent) -> void:
 					_multi_selecting = true
 					_build_bounding_boxes()
 				elif get_selected_strokes().size() == 0 && get_selected_text_boxes().size() == 0:
-					print("Nothing Selected")
 					_state = State.SELECTING
 					_multi_selecting = false
 					_build_bounding_boxes()
 				else:
-					print("Else Moving")
 					_state = State.MOVING
 					_mouse_moved_during_pressed = false
 					_offset_selected_strokes(_cursor.global_position)
@@ -104,7 +100,7 @@ func tool_event(event: InputEvent) -> void:
 					_state = State.NONE
 					if _mouse_moved_during_pressed:
 						_add_undoredo_action_for_moved_strokes()
-						#_add_undoredo_action_for_moved_text_boxes()
+						_add_undoredo_action_for_moved_text_boxes()
 						_stroke_positions_before_move.clear()
 						_text_box_positions_before_move.clear()
 					else:
@@ -223,7 +219,7 @@ func _set_text_box_selected(text_box : TextBox) -> void:
 		text_box.add_to_group(GROUP_MARKED_TEXT_BOXES_FOR_DESELECTION)
 	else:
 		text_box.modulate = Config.DEFAULT_SELECTION_COLOR
-		text_box.add_to_group(GROUP_TEXT_BOXES__IN_SELECTION_RECTANGLE)
+		text_box.add_to_group(GROUP_TEXT_BOXES_IN_SELECTION_RECTANGLE)
 
 # ------------------------------------------------------------------------------------------------
 func _add_undoredo_action_for_moved_strokes() -> void:
@@ -276,8 +272,8 @@ func _commit_strokes_under_selection_rectangle() -> void:
 
 # ------------------------------------------------------------------------------------------------
 func _commit_text_boxes_under_selection_rectangle() -> void:
-	for text_box: TextBox in get_tree().get_nodes_in_group(GROUP_TEXT_BOXES__IN_SELECTION_RECTANGLE):
-		text_box.remove_from_group(GROUP_TEXT_BOXES__IN_SELECTION_RECTANGLE)
+	for text_box: TextBox in get_tree().get_nodes_in_group(GROUP_TEXT_BOXES_IN_SELECTION_RECTANGLE):
+		text_box.remove_from_group(GROUP_TEXT_BOXES_IN_SELECTION_RECTANGLE)
 		text_box.add_to_group(GROUP_SELECTED_TEXT_BOXES)
 	print(get_selected_text_boxes())
 
@@ -313,10 +309,10 @@ func deselect_all_text_boxes() -> void:
 	var selected_text_boxes: Array = get_selected_text_boxes()
 	if selected_text_boxes.size():
 		get_tree().set_group(GROUP_SELECTED_TEXT_BOXES, "modulate", Color.WHITE)
-		get_tree().set_group(GROUP_TEXT_BOXES__IN_SELECTION_RECTANGLE, "modulate", Color.WHITE)
+		get_tree().set_group(GROUP_TEXT_BOXES_IN_SELECTION_RECTANGLE, "modulate", Color.WHITE)
 		Utils.remove_group_from_all_nodes(GROUP_SELECTED_TEXT_BOXES)
 		Utils.remove_group_from_all_nodes(GROUP_MARKED_TEXT_BOXES_FOR_DESELECTION)
-		Utils.remove_group_from_all_nodes(GROUP_TEXT_BOXES__IN_SELECTION_RECTANGLE)
+		Utils.remove_group_from_all_nodes(GROUP_TEXT_BOXES_IN_SELECTION_RECTANGLE)
 		
 	_cursor.mode = SelectionCursor.Mode.SELECT
 	

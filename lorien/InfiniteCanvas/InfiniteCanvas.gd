@@ -69,13 +69,6 @@ func _ready() -> void:
 
 	info.pen_inverted = false
 
-func _process(delta: float) -> void:
-	var node : Node = $SubViewport.gui_get_focus_owner()
-	#if node != null:
-	#	print(node.name)
-	#else:
-	#	print("Node is null")
-
 # -------------------------------------------------------------------------------------------------
 func _unhandled_key_input(event: InputEvent) -> void:
 	_process_event(event)
@@ -199,6 +192,7 @@ func get_strokes_in_camera_frustrum() -> Array:
 func get_all_strokes() -> Array[BrushStroke]:
 	return _current_project.strokes
 
+# -------------------------------------------------------------------------------------------------
 func get_all_text_boxes() -> Array[TextBox]:
 	return _current_project.textBoxes
 # -------------------------------------------------------------------------------------------------
@@ -414,9 +408,6 @@ func _do_delete_stroke(stroke: BrushStroke) -> void:
 	info.point_count -= stroke.points.size()
 	info.stroke_count -= 1
 
-# FIXME: this adds strokes at the back and does not preserve stroke order; not sure how to do that except saving before
-# and after versions of the stroke arrays which is a nogo.
-
 # -------------------------------------------------------------------------------------------------
 func _do_delete_text_box(text_box: TextBox) -> void:
 	var index := _current_project.textBoxes.find(text_box)
@@ -444,29 +435,12 @@ func _create_textbox(textBox : TextBox) -> void:
 	_textboxes_parent.add_child(textBox)
 	_current_project.textBoxes.append(textBox)
 
-func _on_mouse_exited() -> void:
-	print("Mouse left infinite canvas")
-
-
-func _on_mouse_entered() -> void:
-	print("Mouse entered infinite canvas")
-
-
-func _on_text_box_tool_text_box_tool_reset() -> void:
-	print("Text Box Reset on infinite canvas")
-	#grab_click_focus()
-	#grab_focus()
-	#mouse_exited.emit()
-	#mouse_entered.emit()
-
-func _on_focus_entered() -> void:
-	print("focus on infiniteCanvas")
-
+# -------------------------------------------------------------------------------------------------
 func _on_text_box_tool_show_text_box_dialog(dialogPosition : Vector2) -> void:
-	print("Catch Show Dialog Event ", dialogPosition)
 	_text_box_editor.visible = true
 	_text_box_editor.label_position = dialogPosition
 
+# -------------------------------------------------------------------------------------------------
 func _on_text_box_editor_text_box_ok(value : String, labelPosition : Vector2) -> void:
 	var label : TextBox = TextBox.new()
 	label.text = value
@@ -475,18 +449,17 @@ func _on_text_box_editor_text_box_ok(value : String, labelPosition : Vector2) ->
 	_create_textbox(label)
 	_textbox_tool._state = _textbox_tool.State.CREATING
 
+# -------------------------------------------------------------------------------------------------
 func _on_text_box_editor_text_box_cancel() -> void:
 	_textbox_tool._state = _textbox_tool.State.CREATING
-
-
-
+	
+# -------------------------------------------------------------------------------------------------
 func _on_text_box_tool_edit_existing_text_box(textBox : TextBox) -> void:
-	print("Show Dialog for existing text Box")
 	_text_box_editor.visible = true
 	_text_box_editor.textEdit.text = textBox.text
 	_text_box_editor.label_position = textBox.position
 	_text_box_editor.textBox = textBox
 
-
+# -------------------------------------------------------------------------------------------------
 func _on_text_box_editor_text_box_ok_update() -> void:
 	_textbox_tool._state = _textbox_tool.State.CREATING

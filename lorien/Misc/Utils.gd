@@ -55,8 +55,6 @@ func calculte_bounding_boxes(strokes: Array[BrushStroke], text_boxes: Array[Text
 		
 	for text_box : TextBox in text_boxes:
 		var text_box_bounding_box := text_box.get_global_rect()
-		#if margin > 0:
-		#	text_box_bounding_box := text_box_bounding_box.grow(margin)
 		result[text_box] = text_box_bounding_box
 	return result
 	
