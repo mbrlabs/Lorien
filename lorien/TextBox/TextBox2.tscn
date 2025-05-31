@@ -1,7 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://ccl05i282g120"]
+[gd_scene load_steps=6 format=3 uid="uid://ccl05i282g120"]
 
 [ext_resource type="Script" path="res://TextBox/TextBox2.gd" id="1_pskl6"]
 [ext_resource type="Script" path="res://TextBox/Panel.gd" id="2_mvgor"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jirs3"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u5mq5"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q5oxc"]
+bg_color = Color(0.266575, 0.266575, 0.266575, 1)
 
 [node name="PopupPanel" type="PanelContainer"]
 visible = false
@@ -10,38 +19,55 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_jirs3")
 script = ExtResource("1_pskl6")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_u5mq5")
 script = ExtResource("2_mvgor")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+[node name="Panel" type="Panel" parent="Panel"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -125.0
+offset_left = -200.0
+offset_top = -110.0
+offset_right = 200.0
+offset_bottom = 110.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_q5oxc")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
 offset_top = -100.0
-offset_right = 125.0
+offset_right = 200.0
 offset_bottom = 100.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TextEdit" type="TextEdit" parent="Panel/VBoxContainer"]
-custom_minimum_size = Vector2(200, 150)
+[node name="TextEdit" type="TextEdit" parent="Panel/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(350, 150)
 layout_mode = 2
 size_flags_horizontal = 4
 focus_next = NodePath("../HBoxContainer/SaveButton")
 focus_previous = NodePath("../HBoxContainer/CancelButton")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/Panel/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="SaveButton" type="Button" parent="Panel/VBoxContainer/HBoxContainer"]
+[node name="SaveButton" type="Button" parent="Panel/Panel/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 focus_neighbor_left = NodePath("../CancelButton")
 focus_neighbor_right = NodePath("../CancelButton")
@@ -49,7 +75,7 @@ focus_next = NodePath("../CancelButton")
 focus_previous = NodePath("../CancelButton")
 text = "Save"
 
-[node name="CancelButton" type="Button" parent="Panel/VBoxContainer/HBoxContainer"]
+[node name="CancelButton" type="Button" parent="Panel/Panel/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 focus_neighbor_left = NodePath("../SaveButton")
 focus_neighbor_right = NodePath("../SaveButton")
@@ -59,5 +85,5 @@ text = "Cancel"
 
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="close_click" from="Panel" to="." method="_on_panel_close_click"]
-[connection signal="pressed" from="Panel/VBoxContainer/HBoxContainer/SaveButton" to="." method="_on_save_button_pressed"]
-[connection signal="pressed" from="Panel/VBoxContainer/HBoxContainer/CancelButton" to="." method="_on_cancel_button_pressed"]
+[connection signal="pressed" from="Panel/Panel/VBoxContainer/HBoxContainer/SaveButton" to="." method="_on_save_button_pressed"]
+[connection signal="pressed" from="Panel/Panel/VBoxContainer/HBoxContainer/CancelButton" to="." method="_on_cancel_button_pressed"]

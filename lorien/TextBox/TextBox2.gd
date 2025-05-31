@@ -1,9 +1,9 @@
 class_name TextBox2 extends PanelContainer
 
 @onready
-var textEdit : TextEdit = $Panel/VBoxContainer/TextEdit
+var textEdit : TextEdit = $Panel/Panel/VBoxContainer/TextEdit
 @onready
-var saveButton : Button = $Panel/VBoxContainer/HBoxContainer/SaveButton
+var saveButton : Button = $Panel/Panel/VBoxContainer/HBoxContainer/SaveButton
 var textBox : TextBox
 
 signal textBox_ok
