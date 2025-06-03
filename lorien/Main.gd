@@ -466,7 +466,6 @@ func _on_tool_changed(tool_type: int) -> void:
 # -------------------------------------------------------------------------------------------------
 func _on_save_unsaved_changes() -> void:
 	if _exit_requested:
-#		ProjectManager.save_all_projects()
 		for project in ProjectManager.get_open_projects():
 			ProjectManager.make_project_active(project)
 			if project.filepath.is_empty() && project.loaded && project.dirty:
