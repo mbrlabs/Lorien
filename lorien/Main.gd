@@ -408,6 +408,7 @@ func _on_save_project_as() -> void:
 	_file_dialog.file_selected.connect(_on_file_selected_to_save_project)
 	_file_dialog.close_requested.connect(_on_file_dialog_closed)
 	_file_dialog.popup_centered()
+	await _file_dialog.file_selected
 
 # -------------------------------------------------------------------------------------------------
 func _on_save_project() -> void:
@@ -431,7 +432,7 @@ func _on_file_dialog_closed() -> void:
 func _on_file_selected_to_save_project(filepath: String) -> void:
 	var active_project: Project = ProjectManager.get_active_project()
 	active_project.filepath = filepath
-	_save_project(active_project)
+	await(_save_project(active_project))
 
 # -------------------------------------------------------------------------------------------------
 func _on_canvas_background_changed(color: Color) -> void:
@@ -456,7 +457,13 @@ func _on_tool_changed(tool_type: int) -> void:
 # -------------------------------------------------------------------------------------------------
 func _on_save_unsaved_changes() -> void:
 	if _exit_requested:
-		ProjectManager.save_all_projects()
+#		ProjectManager.save_all_projects()
+		for project in ProjectManager.get_open_projects():
+			ProjectManager.make_project_active(project)
+			if project.filepath.is_empty() && project.loaded && project.dirty:
+				await(_on_save_project_as())
+			elif !project.filepath.is_empty() && project.loaded && project.dirty:
+				await(_on_save_project())
 		_save_state()
 		get_tree().quit()
 	else:
