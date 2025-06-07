@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://e4oiel4oqq0b"]
 
-[ext_resource type="Theme" uid="uid://u5qnpgxqykiv" path="res://UI/Themes/theme_dark.tres" id="1"]
+[ext_resource type="Theme" uid="uid://u5qnpgxqykiv" path="res://UI/Themes/dark/theme.tres" id="1"]
 [ext_resource type="Script" path="res://UI/Menubar.gd" id="2"]
 [ext_resource type="Texture2D" uid="uid://r233fnxk5qkf" path="res://Assets/Icons/menu.png" id="3"]
 [ext_resource type="Script" path="res://UI/Components/FlatTextureButton.gd" id="4"]

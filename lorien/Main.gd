@@ -91,6 +91,8 @@ func _ready() -> void:
 	_settings_dialog.canvas_color_changed.connect(_on_canvas_color_changed)
 	_settings_dialog.constant_pressure_changed.connect(_on_constant_pressure_changed)
 	
+	Settings.changed_theme.connect(_on_theme_changed)
+	
 	# Initialize scale
 	_on_scale_changed()
 	
@@ -592,3 +594,23 @@ func _get_general_ui_scale() -> float:
 	elif smallest_dimension >= 1700:
 		return Config.DEFAULT_UI_SCALE * 1.5
 	return Config.DEFAULT_UI_SCALE
+
+# --------------------------------------------------------------------------------------------------
+func _on_theme_changed(path : String) -> void:
+	var themePath : String = str("res://UI/Themes/", path, "/theme.tres")
+	var toolBarPath : String = str("res://UI/Themes/", path, "/toolbar.tres")
+	print(themePath)
+	var theme : Theme = load(themePath)
+	var toolbarTheme : StyleBoxFlat = load(toolBarPath)
+	set_theme(theme)
+	_toolbar.set_theme(theme)
+	_toolbar.add_theme_stylebox_override("panel", toolbarTheme)
+	_toolbar.queue_redraw()
+	_statusbar.set_theme(theme)
+	_statusbar.queue_redraw()
+	_menubar.set_theme(theme)
+	_menubar.queue_redraw()
+	_main_menu.set_theme(theme)
+#	_main_menu.
+	queue_redraw()
+	print(theme)
