@@ -97,7 +97,7 @@ func _set_values() -> void:
 	var stabilizer_strength: float = Settings.get_value(Settings.GENERAL_STABILIZER_STRENGTH, Config.DEFAULT_STABILIZER_STRENGTH)
 	
 	var canvas_color: Color = Settings.get_value(Settings.APPEARANCE_CANVAS_COLOR, Config.DEFAULT_CANVAS_COLOR)
-	var ui_theme: Types.UITheme = Settings.get_value(Settings.APPEARANCE_THEME, Types.UITheme.DARK)
+	var ui_theme: Types.UITheme = Settings.get_value(Settings.APPEARANCE_THEME, Config.DEFAULT_APPEARANCE_THEME)
 	var ui_scale: float = Settings.get_value(Settings.APPEARANCE_UI_SCALE, Config.DEFAULT_UI_SCALE)
 	var ui_scale_mode: Types.UIScale = Settings.get_value(Settings.APPEARANCE_UI_SCALE_MODE, Config.DEFAULT_UI_SCALE_MODE)
 	var grid_pattern: Types.GridPattern = Settings.get_value(Settings.APPEARANCE_GRID_PATTERN, Config.DEFAULT_GRID_PATTERN)
@@ -275,7 +275,6 @@ func _on_theme_selected(index: int) -> void:
 	
 	Settings.set_value(Settings.APPEARANCE_THEME, index)
 	Settings.changed_theme.emit(themeName)
-	_restart_label.show()
 
 # -------------------------------------------------------------------------------------------------
 func _on_brush_rounding_selected(index: int) -> void:

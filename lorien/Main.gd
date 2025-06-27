@@ -106,6 +106,11 @@ func _ready() -> void:
 	
 	# Apply state from previous session
 	_apply_state()
+	
+	# Set theme
+	var themeIndex = Settings.get_value(Settings.APPEARANCE_THEME, Config.DEFAULT_APPEARANCE_THEME)
+	var themeName : String = Types.UIThemeArray[themeIndex]
+	Settings.changed_theme.emit(themeName)
 
 # -------------------------------------------------------------------------------------------------
 func _notification(what: int) -> void:
@@ -611,6 +616,8 @@ func _on_theme_changed(path : String) -> void:
 	_menubar.set_theme(theme)
 	_menubar.queue_redraw()
 	_main_menu.set_theme(theme)
-#	_main_menu.
+	print(_settings_dialog)
+	_settings_dialog.set_theme(theme)
+	_settings_dialog.queue_redraw()
 	queue_redraw()
 	print(theme)

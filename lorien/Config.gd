@@ -27,3 +27,4 @@ const DEFAULT_UI_SCALE_MODE 		:= Types.UIScale.AUTO
 const DEFAULT_UI_SCALE  			:= 1.0
 const DEFAULT_GRID_PATTERN 			:= Types.GridPattern.DOTS
 const DEFAULT_GRID_SIZE 			:= 25.0
+const DEFAULT_APPEARANCE_THEME		:= 0
