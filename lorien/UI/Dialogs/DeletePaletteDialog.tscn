@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bl2x4yif2wrml"]
+[gd_scene load_steps=3 format=3 uid="uid://bl2x4yif2wrml"]
 
-[ext_resource type="Script" path="res://UI/Dialogs/DeletePaletteDialog.gd" id="2"]
+[ext_resource type="Script" uid="uid://t8i4e1258pw0" path="res://UI/Dialogs/DeletePaletteDialog.gd" id="2"]
+[ext_resource type="StyleBox" uid="uid://1q61x8arunpe" path="res://UI/Themes/focused_button.tres" id="2_ob1pa"]
 
 [node name="DeletePaletteDialog" type="MarginContainer"]
 anchors_preset = 15
@@ -32,9 +33,11 @@ size_flags_vertical = 0
 [node name="DeleteButton" type="Button" parent="Container/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_styles/focus = ExtResource("2_ob1pa")
 text = "DELETE"
 
 [node name="CancelButton" type="Button" parent="Container/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_styles/focus = ExtResource("2_ob1pa")
 text = "CANCEL"

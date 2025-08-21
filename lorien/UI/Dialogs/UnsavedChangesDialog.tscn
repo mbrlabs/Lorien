@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://ct2b6hxxjlc6h"]
+[gd_scene load_steps=5 format=3 uid="uid://ct2b6hxxjlc6h"]
 
-[ext_resource type="Script" path="res://UI/Dialogs/UnsavedChangesDialog.gd" id="1"]
+[ext_resource type="Script" uid="uid://brvmsgnhgmuyw" path="res://UI/Dialogs/UnsavedChangesDialog.gd" id="1"]
 [ext_resource type="Theme" uid="uid://u5qnpgxqykiv" path="res://UI/Themes/theme_dark.tres" id="3"]
+[ext_resource type="StyleBox" uid="uid://1q61x8arunpe" path="res://UI/Themes/focused_button.tres" id="3_3tshu"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ythkr"]
 
@@ -37,9 +38,11 @@ alignment = 1
 [node name="SaveButton" type="Button" parent="VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_styles/focus = ExtResource("3_3tshu")
 text = "SAVE"
 
 [node name="DiscardButton" type="Button" parent="VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_styles/focus = ExtResource("3_3tshu")
 text = "DISCARD"

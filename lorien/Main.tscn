@@ -1,6 +1,6 @@
 [gd_scene load_steps=16 format=3 uid="uid://2uaupgd20h03"]
 
-[ext_resource type="Script" path="res://Main.gd" id="1"]
+[ext_resource type="Script" uid="uid://bbitugvmxrq0e" path="res://Main.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://c4u5gk5n2aiom" path="res://InfiniteCanvas/InfiniteCanvas.tscn" id="2"]
 [ext_resource type="PackedScene" uid="uid://bwer12t6vfkg1" path="res://UI/Statusbar.tscn" id="3"]
 [ext_resource type="PackedScene" uid="uid://e4oiel4oqq0b" path="res://UI/Menubar.tscn" id="4"]

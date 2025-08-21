@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://dug4jmvhrb3t1"]
 
 [ext_resource type="Theme" uid="uid://u5qnpgxqykiv" path="res://UI/Themes/theme_dark.tres" id="1_usj82"]
-[ext_resource type="Script" path="res://UI/Dialogs/AboutDialog.gd" id="2"]
+[ext_resource type="Script" uid="uid://c6cqxlevbmjmh" path="res://UI/Dialogs/AboutDialog.gd" id="2"]
 [ext_resource type="Texture2D" uid="uid://b6io62g8b730e" path="res://Assets/icon.png" id="3"]
 
 [sub_resource type="StyleBoxEmpty" id="1"]

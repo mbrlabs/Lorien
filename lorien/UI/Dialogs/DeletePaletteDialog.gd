@@ -41,3 +41,13 @@ func _input(event):
 			_on_delete_pressed()
 		elif event.keycode==KEY_C || event.keycode==KEY_ESCAPE:
 			_on_cancel_pressed()
+# -------------------------------------------------------------------------------------------------
+func on_unhide():
+	# The _cancel_button is focused by default
+	_cancel_button.grab_focus()
+	pass
+# -------------------------------------------------------------------------------------------------
+func _notification(what: int) -> void:
+	if what ==NOTIFICATION_VISIBILITY_CHANGED and is_visible_in_tree():
+			#runs when visibility changes and is_visible
+			on_unhide()

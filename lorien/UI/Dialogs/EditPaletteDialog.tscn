@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://6jilea2pwjuk"]
 
-[ext_resource type="Script" path="res://UI/Dialogs/EditPaletteDialog.gd" id="2"]
+[ext_resource type="Script" uid="uid://b0huugt6j0ojv" path="res://UI/Dialogs/EditPaletteDialog.gd" id="2"]
 [ext_resource type="PackedScene" path="res://UI/Components/PaletteButton.tscn" id="3"]
 
 [sub_resource type="StyleBoxFlat" id="1"]

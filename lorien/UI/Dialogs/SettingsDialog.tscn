@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://cgs8d5y8yrwl0"]
 
 [ext_resource type="Theme" uid="uid://u5qnpgxqykiv" path="res://UI/Themes/theme_dark.tres" id="1_n5v21"]
-[ext_resource type="Script" path="res://UI/Dialogs/SettingsDialog.gd" id="2"]
+[ext_resource type="Script" uid="uid://4ksi6qd82ray" path="res://UI/Dialogs/SettingsDialog.gd" id="2"]
 
 [sub_resource type="StyleBoxEmpty" id="1"]
 
@@ -243,6 +243,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 item_count = 2
 popup/item_0/text = "Dark Mode"
+popup/item_0/id = 0
 popup/item_1/text = "Light Mode"
 popup/item_1/id = 1
 
@@ -267,6 +268,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 item_count = 2
 popup/item_0/text = "Auto"
+popup/item_0/id = 0
 popup/item_1/text = "Custom"
 popup/item_1/id = 1
 
@@ -297,6 +299,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 item_count = 3
 popup/item_0/text = "Dots"
+popup/item_0/id = 0
 popup/item_1/text = "Lines"
 popup/item_1/id = 1
 popup/item_2/text = "None"
@@ -378,6 +381,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 item_count = 2
 popup/item_0/text = "Flat"
+popup/item_0/id = 0
 popup/item_1/text = "Round"
 popup/item_1/id = 1
 

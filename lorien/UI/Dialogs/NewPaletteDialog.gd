@@ -53,7 +53,8 @@ func _on_about_to_popup() -> void:
 	else:
 		get_parent().title = tr("NEW_PALETTE_DIALOG_CREATE_TITLE")
 	
-	# TODO: Grab focus
+	# TODO: Grab focus [Done]
+		#focus is already being grabed by line_edit 
 
 # -------------------------------------------------------------------------------------------------
 func cancel()->void:
@@ -61,8 +62,17 @@ func cancel()->void:
 # -------------------------------------------------------------------------------------------------
 func _input(event):
 	if event is InputEventKey:
-		if event.keycode==KEY_ENTER:
+		if event.keycode==KEY_ENTER and _line_edit.has_focus(): # withoute this, pressing enter while cancel on focus will save the new palet!
 			_on_SaveButton_pressed()
 		elif event.keycode==KEY_ESCAPE:
 			cancel()
-
+# -------------------------------------------------------------------------------------------------
+func on_unhide():
+	# The line_edit is focused by default
+	_line_edit.grab_focus()
+	pass
+# -------------------------------------------------------------------------------------------------
+func _notification(what: int) -> void:
+	if what ==NOTIFICATION_VISIBILITY_CHANGED and is_visible_in_tree():
+			#runs when visibility changes and is_visible
+			on_unhide()
