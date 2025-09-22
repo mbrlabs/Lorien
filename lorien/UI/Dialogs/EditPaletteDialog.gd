@@ -122,8 +122,15 @@ func _on_RemoveColorButton_pressed() -> void:
 				arr.append(c)
 			index += 1
 		_palette.colors = PackedColorArray(arr)
-
-		_color_grid.remove_child(_active_button)
+		
+		_color_grid.remove_child(_active_button) 
+		
+		var buttonIndex : int = 0
+		for button : PaletteButton in _color_grid.get_children():
+			button.pressed.disconnect(_on_platte_button_pressed)
+			button.pressed.connect(_on_platte_button_pressed.bind(button, buttonIndex))
+			buttonIndex += 1
+			
 		_active_button_index = min(_active_button_index, _color_grid.get_child_count() - 1)
 		_active_button = _color_grid.get_child(_active_button_index)
 		_on_platte_button_pressed(_active_button, _color_grid.get_child_count() - 1)
