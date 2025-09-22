@@ -48,7 +48,7 @@ func remove_last_stroke() -> void:
 # -------------------------------------------------------------------------------------------------
 func get_scene_file_path() -> String:
 	if filepath.is_empty():
-		return "Untitled"
+		return "PROJECT_NAME_UNTITLED"
 	return filepath.get_file()
 
 # -------------------------------------------------------------------------------------------------

@@ -15,6 +15,11 @@ MENU_EXPORT         Exportar...
 MENU_QUIT           Salir
 
 # -----------------------------------------------------------------------------
+# Project
+# -----------------------------------------------------------------------------
+PROJECT_NAME_UNTITLED                   Sin título
+PROJECT_NAME_UNTITLED_UNSAVED           Sin título (*)
+# -----------------------------------------------------------------------------
 # Toolbar
 # -----------------------------------------------------------------------------
 TOOLBAR_TOOLTIP_NEW_FILE        Crear Nuevo Archivo
@@ -56,33 +61,39 @@ STATUSBAR_POINTS                Puntos
 # Settings strings
 # -----------------------------------------------------------------------------
 
-SETTINGS_TITLE                  Configuración
-SETTINGS_GENERAL                General
-SETTINGS_APPEARANCE             Apariencia
-SETTINGS_RENDERING              Renderizado
-SETTINGS_KEYBINDINGS            Atajos de teclado
-SETTINGS_PRESSURE_SENSITIVITY   Sensibilidad de presión
-SETTINGS_CONSTANT_PRESSURE      Presión constante
-SETTINGS_STABILIZER_STRENGTH    Fuerza del estabilizador
-SETTINGS_BRUSH_SIZE             Tamaño de Pincel Predeterminado
-SETTINGS_PROJECT_FOLDER         Carpeta de carga y guardado predeterminada
-SETTINGS_GRID_SIZE              Tamaño de Cuadrícula
-SETTINGS_LANGUAGE               Idioma
-SETTINGS_TABLET_DRIVER          Driver de tableta
-SETTINGS_THEME                  Tema
-SETTINGS_UI_SCALE               Escala de interfaz de usuario
-SETTINGS_UI_SCALE_AUTO          Automática
-SETTINGS_UI_SCALE_CUSTOM        Personalizada
-SETTINGS_GRID_SIZE              Tamaño de Cuadrícula
-SETTINGS_GRID_PATTERN           Patrón de Cuadrícula
-SETTINGS_CANVAS_COLOR           Color de Lienzo
-SETTINGS_FPS_FOREGROUND         FPS en primer plano
-SETTINGS_FPS_BACKGROUND         FPS en fondo
-SETTINGS_BRUSH_CAPS             Modo de Redondeado de Pincel
-SETTINGS_BRUSH_CAPS_FLAT        Plano
-SETTINGS_BRUSH_CAPS_ROUND       Redondo
-SETTINGS_RESTART_NOTICE  		Se requiere de un reinicio para aplicar la nueva configuración
-SETTINGS_TOOL_PRESSURE          Presión de las herramientas predeterminadas
+SETTINGS_TITLE                          Configuración
+SETTINGS_GENERAL                        General
+SETTINGS_APPEARANCE                     Apariencia
+SETTINGS_RENDERING                      Renderizado
+SETTINGS_KEYBINDINGS                    Atajos de teclado
+SETTINGS_PRESSURE_SENSITIVITY           Sensibilidad de presión
+SETTINGS_CONSTANT_PRESSURE              Presión constante
+SETTINGS_STABILIZER_STRENGTH            Fuerza del estabilizador
+SETTINGS_BRUSH_SIZE                     Tamaño de Pincel predeterminado
+SETTINGS_PROJECT_FOLDER                 Carpeta de carga y guardado predeterminada
+SETTINGS_PROJECT_FOLDER_PLACEHOLDER     p.ej. C:/Users/yo/Lorien
+SETTINGS_GRID_SIZE                      Tamaño de Cuadrícula
+SETTINGS_LANGUAGE                       Idioma
+SETTINGS_TABLET_DRIVER                  Driver de tableta
+SETTINGS_THEME                          Tema
+SETTINGS_THEME_DARK                     Modo oscuro
+SETTINGS_THEME_LIGHT                    Modo claro
+SETTINGS_UI_SCALE                       Escala de interfaz de usuario
+SETTINGS_UI_SCALE_AUTO                  Automática
+SETTINGS_UI_SCALE_CUSTOM                Personalizada
+SETTINGS_GRID_SIZE                      Tamaño de Cuadrícula
+SETTINGS_GRID_PATTERN                   Patrón de Cuadrícula
+SETTINGS_GRID_PATTERN_DOTS              Puntos
+SETTINGS_GRID_PATTERN_LINES             Líneas
+SETTINGS_GRID_PATTERN_NONE              Ninguno
+SETTINGS_CANVAS_COLOR                   Color de Lienzo
+SETTINGS_FPS_FOREGROUND                 FPS en primer plano
+SETTINGS_FPS_BACKGROUND                 FPS en fondo
+SETTINGS_BRUSH_CAPS                     Modo de Redondeado de Pincel
+SETTINGS_BRUSH_CAPS_FLAT                Plano
+SETTINGS_BRUSH_CAPS_ROUND               Redondo
+SETTINGS_RESTART_NOTICE  		        Se requiere de un reinicio para aplicar la nueva configuración
+SETTINGS_TOOL_PRESSURE                  Presión de las herramientas predeterminada
 
 # -----------------------------------------------------------------------------
 # About dialog strings

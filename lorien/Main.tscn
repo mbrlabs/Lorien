@@ -103,6 +103,7 @@ presets_visible = false
 
 [node name="MainMenu" parent="." instance=ExtResource("5")]
 visible = false
+unfocusable = false
 submenu_popup_delay = 0.1
 file_dialog_path = NodePath("../FileDialog")
 
