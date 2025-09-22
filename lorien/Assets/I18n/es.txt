@@ -8,11 +8,11 @@ MENU_OPEN           Abrir...
 MENU_SAVE           Guardar
 MENU_SAVE_AS        Guardar como...
 MENU_SETTINGS       Configuración
-MENU_MANUAL         Manual
+MENU_MANUAL         Manual en línea
 MENU_BUG_TRACKER    Reportar un error
-MENU_ABOUT          Acerca de Lorien
+MENU_ABOUT          Acerca de
 MENU_EXPORT         Exportar...
-MENU_QUIT           Cerrar
+MENU_QUIT           Salir
 
 # -----------------------------------------------------------------------------
 # Toolbar
@@ -23,21 +23,23 @@ TOOLBAR_TOOLTIP_SAVE_FILE       Guardar Archivo
 TOOLBAR_TOOLTIP_UNDO            Deshacer Acción
 TOOLBAR_TOOLTIP_REDO            Rehacer Acción
 TOOLBAR_TOOLTIP_BRUSH_TOOL      Herramienta de Pincel
-TOOLBAR_TOOLTIP_RECTANGLE_TOOL  Rectángulo
+TOOLBAR_TOOLTIP_RECTANGLE_TOOL  Herramienta de Rectángulo
+TOOLBAR_TOOLTIP_CIRCLE_TOOL     Herramienta de Círculo
 TOOLBAR_TOOLTIP_LINE_TOOL       Herramienta de Línea
-TOOLBAR_TOOLTIP_ERASER_TOOL     Borrador
+TOOLBAR_TOOLTIP_ERASER_TOOL     Herramienta de Borrador
 TOOLBAR_TOOLTIP_SELECT_TOOL     Herramienta de Selección
 TOOLBAR_TOOLTIP_BRUSH_COLOR     Color de Pincel
 TOOLBAR_TOOLTIP_BRUSH_SIZE      Tamaño de Pincel
-TOOLBAR_TOOLTIP_CANVAS_COLOR    Color de Canvas
+TOOLBAR_TOOLTIP_CANVAS_COLOR    Color de Lienzo
+TOOLBAR_FULLSCREEN_TOGGLE       Alternar pantalla completa
 
 # -----------------------------------------------------------------------------
 # Color Palette Picker
 # -----------------------------------------------------------------------------
 COLOR_PALETTE_PICKER_HINT_NEW        Crear una nueva paleta de colores
-COLOR_PALETTE_PICKER_HINT_EDIT       Editar la paleta de colores
-COLOR_PALETTE_PICKER_HINT_DUPLICATE  Duplicar la paleta de colores
-COLOR_PALETTE_PICKER_HINT_DELETE     Borrar permanentemente la paleta de colores
+COLOR_PALETTE_PICKER_HINT_EDIT       Editar la paleta de colores actual
+COLOR_PALETTE_PICKER_HINT_DUPLICATE  Duplicar la paleta de colores actual
+COLOR_PALETTE_PICKER_HINT_DELETE     Eliminar permanentemente la paleta de colores actual
 
 # -----------------------------------------------------------------------------
 # Statusbar strings
@@ -47,7 +49,7 @@ STATUSBAR_POSITION              Posición
 STATUSBAR_ZOOM                  Zoom
 STATUSBAR_PRESSURE              Presión
 STATUSBAR_FPS                   FPS
-STATUSBAR_STROKES               Curvas
+STATUSBAR_STROKES               Trazos
 STATUSBAR_POINTS                Puntos
 
 # -----------------------------------------------------------------------------
@@ -58,60 +60,71 @@ SETTINGS_TITLE                  Configuración
 SETTINGS_GENERAL                General
 SETTINGS_APPEARANCE             Apariencia
 SETTINGS_RENDERING              Renderizado
-SETTINGS_PRESSURE_SENSITIVITY   Sensibilidad de Presión
+SETTINGS_KEYBINDINGS            Atajos de teclado
+SETTINGS_PRESSURE_SENSITIVITY   Sensibilidad de presión
+SETTINGS_CONSTANT_PRESSURE      Presión constante
+SETTINGS_STABILIZER_STRENGTH    Fuerza del estabilizador
 SETTINGS_BRUSH_SIZE             Tamaño de Pincel Predeterminado
-SETTINGS_CANVAS_COLOR           Color de Canvas
-SETTINGS_PROJECT_FOLDER         Carpeta de Proyectos Predeterminada
+SETTINGS_PROJECT_FOLDER         Carpeta de carga y guardado predeterminada
+SETTINGS_GRID_SIZE              Tamaño de Cuadrícula
 SETTINGS_LANGUAGE               Idioma
-SETTINGS_TABLET_DRIVER          Tablet Driver
+SETTINGS_TABLET_DRIVER          Driver de tableta
 SETTINGS_THEME                  Tema
-SETTINGS_FPS_FOREGROUND         Color de texto de FPS
-SETTINGS_FPS_BACKGROUND         Color de fondo de FPS
+SETTINGS_UI_SCALE               Escala de interfaz de usuario
+SETTINGS_UI_SCALE_AUTO          Automática
+SETTINGS_UI_SCALE_CUSTOM        Personalizada
+SETTINGS_GRID_SIZE              Tamaño de Cuadrícula
+SETTINGS_GRID_PATTERN           Patrón de Cuadrícula
+SETTINGS_CANVAS_COLOR           Color de Lienzo
+SETTINGS_FPS_FOREGROUND         FPS en primer plano
+SETTINGS_FPS_BACKGROUND         FPS en fondo
 SETTINGS_BRUSH_CAPS             Modo de Redondeado de Pincel
 SETTINGS_BRUSH_CAPS_FLAT        Plano
 SETTINGS_BRUSH_CAPS_ROUND       Redondo
-SETTINGS_RESTART_NOTICE         Se requiere reiniciar para aplicar las nuevas opciones
+SETTINGS_RESTART_NOTICE  		Se requiere de un reinicio para aplicar la nueva configuración
+SETTINGS_TOOL_PRESSURE          Presión de las herramientas predeterminadas
 
 # -----------------------------------------------------------------------------
 # About dialog strings
 # -----------------------------------------------------------------------------
 
-ABOUT_DIALOG_TITLE      Acerca de Lorien
-ABOUT_DIALOG_COPYRIGHT  © 2021-2024 Marcus Brummer & colaboradores 
-ABOUT_DIALOG_LICSENSE   Lorien está licenciado bajo:
-ABOUT_DIALOG_BASED_ON   Lorien está basado en:
-ABOUT_DIALOG_EASTEREGG  Personaje secreto: 
+ABOUT_DIALOG_TITLE              Acerca de
+ABOUT_DIALOG_COPYRIGHT          © 2021-2024 Marcus Brummer & colaboradores 
+ABOUT_DIALOG_LICSENSE           Lorien está licenciado bajo:
+ABOUT_DIALOG_BASED_ON           Lorien está basado en:
+ABOUT_DIALOG_EASTEREGG          Personaje secreto:
 
 # -----------------------------------------------------------------------------
 # Unsaved changes dialog
 # -----------------------------------------------------------------------------
 
-UNSAVED_CHANGES_DIALOG_TITLE    Warning # TODO
-UNSAVED_CHANGES_DIALOG_TEXT     ¿Guardar tus cambios antes de cerrar el archivo?
+UNSAVED_CHANGES_DIALOG_TITLE    Advertencia
+UNSAVED_CHANGES_DIALOG_TEXT     ¿Quieres guardar los cambios antes de cerrar el(los) archivo(s)?
 
 # -----------------------------------------------------------------------------
 # New palette dialog
 # -----------------------------------------------------------------------------
-NEW_PALETTE_DIALOG_CREATE_TITLE    Nueva Paleta
-NEW_PALETTE_DIALOG_DUPLICATE_TITLE Duplicar Paleta
-NEW_PALETTE_DIALOG_PLACEHOLDER     Nombre de Paleta
+NEW_PALETTE_DIALOG_CREATE_TITLE 		Nueva Paleta
+NEW_PALETTE_DIALOG_DUPLICATE_TITLE 		Duplicar Paleta
+NEW_PALETTE_DIALOG_PLACEHOLDER 			Nombre de Paleta
 
 # -----------------------------------------------------------------------------
 # Delete palette dialog
 # -----------------------------------------------------------------------------
-DELETE_PALETTE_DIALOG_TITLE     Borrar Paleta
-DELETE_PALETTE_DIALOG_TEXT      ¿Seguro que desea borrar esta paleta permanentemente?:    
+DELETE_PALETTE_DIALOG_TITLE 			Eliminar Paleta
+DELETE_PALETTE_DIALOG_TEXT 				¿Estás seguro de que deseas eliminar permanentemente?:
 
 # -----------------------------------------------------------------------------
 # Edit palette dialog
 # -----------------------------------------------------------------------------
-EDIT_PALETTE_DIALOG_TITLE       Editar paleta
+EDIT_PALETTE_DIALOG_TITLE       Editar Paleta
 
 # -----------------------------------------------------------------------------
 # Error/Alert messages
 # -----------------------------------------------------------------------------
-ALERT_EDITING_BUILTIN_PALETTE   No se pueden editar las paletas del sistema. Si deseas personalizarla, puedes duplicarla y editarla en su lugar.
-ALERT_DELETING_BUILTIN_PALETTE  No se pueden borrar las paletas del sistema.
+
+ALERT_EDITING_BUILTIN_PALETTE       No es posible editar las paletas incorporadas. Si deseas personalizar esta paleta, puedes copiarla y editarla. # TODO
+ALERT_DELETING_BUILTIN_PALETTE      No es posible eliminar las paletas incorporadas.
 
 # -----------------------------------------------------------------------------
 # Generic strings
@@ -120,4 +133,32 @@ ALERT_DELETING_BUILTIN_PALETTE  No se pueden borrar las paletas del sistema.
 SAVE            Guardar
 DISCARD         Descartar
 CANCEL          Cancelar
-DELETE          Borrar
+DELETE          Eliminar
+
+# -----------------------------------------------------------------------------
+# Action names
+# -----------------------------------------------------------------------------
+
+ACTION_shortcut_save_project        Guardar Archivo
+ACTION_shortcut_new_project         Nuevo Archivo
+ACTION_shortcut_open_project        Abrir Archivo
+ACTION_shortcut_close_project       Cerrar Archivo
+ACTION_shortcut_quit                Salir
+ACTION_shortcut_undo                Deshacer
+ACTION_shortcut_redo                Rehacer
+ACTION_shortcut_brush_tool          Herramienta de Pincel
+ACTION_shortcut_line_tool           Herramienta de Línea
+ACTION_shortcut_eraser_tool         Herramienta de Borrador
+ACTION_shortcut_select_tool         Herramienta de Selección
+ACTION_shortcut_rectangle_tool      Herramienta de Rectángulo
+ACTION_shortcut_circle_tool         Herramienta de Círculo
+ACTION_shortcut_export_project      Exportar Archivo
+ACTION_deselect_all_strokes         Deseleccionar todos los trazos
+ACTION_delete_selected_strokes      Eliminar los trazos seleccionados
+ACTION_copy_strokes                 Copiar
+ACTION_paste_strokes                Pegar
+ACTION_duplicate_strokes            Duplicar trazos
+ACTION_toggle_zen_mode              Alternar Modo Zen
+ACTION_toggle_player                Alternar Huevo de Pascua
+ACTION_toggle_fullscreen            Alternar Pantalla Completa
+ACTION_canvas_pan_key               Tecla panorámica
