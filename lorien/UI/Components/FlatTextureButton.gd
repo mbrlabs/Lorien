@@ -14,6 +14,7 @@ func _ready() -> void:
 	mouse_exited.connect(_on_mouse_exited)
 	toggled.connect(_on_toggled)
 	_update_tint()
+	Settings.changed_theme.connect(_on_theme_changed)
 
 # -------------------------------------------------------------------------------------------------
 func _exit_tree() -> void:
@@ -52,3 +53,10 @@ func _update_tint() -> void:
 		self_modulate = hover_tint
 	else:
 		self_modulate = _normal_tint
+		
+func _on_theme_changed(path : String) -> void:
+	if path == "dark":
+		_normal_tint = Color.WHITE
+	else:
+		_normal_tint = Color.BLACK
+	self_modulate = _normal_tint

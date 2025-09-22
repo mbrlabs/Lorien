@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://c41oe1lt7u6r8" path="res://UI/MainMenu.tscn" id="5"]
 [ext_resource type="PackedScene" uid="uid://c0ral10lvpo7f" path="res://UI/Toolbar.tscn" id="6"]
 [ext_resource type="PackedScene" uid="uid://ct2b6hxxjlc6h" path="res://UI/Dialogs/UnsavedChangesDialog.tscn" id="7"]
-[ext_resource type="Theme" uid="uid://u5qnpgxqykiv" path="res://UI/Themes/theme_dark.tres" id="8"]
+[ext_resource type="Theme" uid="uid://u5qnpgxqykiv" path="res://UI/Themes/dark/theme.tres" id="8"]
 [ext_resource type="PackedScene" uid="uid://dug4jmvhrb3t1" path="res://UI/Dialogs/AboutDialog.tscn" id="9"]
 [ext_resource type="PackedScene" uid="uid://cgs8d5y8yrwl0" path="res://UI/Dialogs/SettingsDialog.tscn" id="10"]
 [ext_resource type="PackedScene" uid="uid://jow4q8tm6qro" path="res://UI/Dialogs/NewPaletteDialog.tscn" id="12"]
