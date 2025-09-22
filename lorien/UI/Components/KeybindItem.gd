@@ -15,6 +15,8 @@ var _last_event: InputEventKey = null
 
 # -------------------------------------------------------------------------------------------------
 func _ready() -> void:
+	Settings.changed_theme.connect(_on_theme_changed)
+	
 	_button.pressed.connect(func() -> void:
 		_last_event = null
 		_rebinding = true
@@ -50,3 +52,12 @@ func _input(event: InputEvent) -> void:
 		if _pressed_key_counter == 0:
 			_rebinding = false
 			_do_rebind()
+			
+# -------------------------------------------------------------------------------------------------
+func _on_theme_changed(path : String) -> void:
+	var themePath : String = str("res://UI/Themes/", path, "/theme.tres")
+	var toolBarPath : String = str("res://UI/Themes/", path, "/toolbar.tres")
+	print(themePath)
+	var theme : Theme = load(themePath)
+	set_theme(theme)
+	queue_redraw()

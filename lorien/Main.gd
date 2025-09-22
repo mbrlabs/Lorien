@@ -28,6 +28,8 @@ var _exit_requested := false
 var _dirty_project_to_close: Project = null
 var _player_enabled := false
 
+signal file_dialog_finished
+
 # -------------------------------------------------------------------------------------------------
 func _ready() -> void:
 	# Init stuff
@@ -91,6 +93,8 @@ func _ready() -> void:
 	_settings_dialog.canvas_color_changed.connect(_on_canvas_color_changed)
 	_settings_dialog.constant_pressure_changed.connect(_on_constant_pressure_changed)
 	
+	Settings.changed_theme.connect(_on_theme_changed)
+	
 	# Initialize scale
 	_on_scale_changed()
 	
@@ -104,6 +108,11 @@ func _ready() -> void:
 	
 	# Apply state from previous session
 	_apply_state()
+	
+	# Set theme
+	var themeIndex = Settings.get_value(Settings.APPEARANCE_THEME, Config.DEFAULT_APPEARANCE_THEME)
+	var themeName : String = Types.UIThemeArray[themeIndex]
+	Settings.changed_theme.emit(themeName)
 
 # -------------------------------------------------------------------------------------------------
 func _notification(what: int) -> void:
@@ -407,7 +416,9 @@ func _on_save_project_as() -> void:
 	_file_dialog.current_file = active_project.filepath.get_file()
 	_file_dialog.file_selected.connect(_on_file_selected_to_save_project)
 	_file_dialog.close_requested.connect(_on_file_dialog_closed)
+	_file_dialog.canceled.connect(_on_file_dialog_canceled)
 	_file_dialog.popup_centered()
+	await file_dialog_finished
 
 # -------------------------------------------------------------------------------------------------
 func _on_save_project() -> void:
@@ -418,20 +429,26 @@ func _on_save_project() -> void:
 		_file_dialog.invalidate()
 		_file_dialog.file_selected.connect(_on_file_selected_to_save_project)
 		_file_dialog.close_requested.connect(_on_file_dialog_closed)
+		_file_dialog.canceled.connect(_on_file_dialog_canceled)
 		_file_dialog.popup_centered()
 	else:
 		_save_project(active_project)
+# -------------------------------------------------------------------------------------------------
+func _on_file_dialog_canceled() -> void:
+	file_dialog_finished.emit()
 
 # -------------------------------------------------------------------------------------------------
 func _on_file_dialog_closed() -> void:
 	_file_dialog.disfile_selected.connect(_on_file_selected_to_save_project)
 	_file_dialog.disclose_requested.connect(_on_file_dialog_closed)
+	file_dialog_finished.emit()
 
 # -------------------------------------------------------------------------------------------------
 func _on_file_selected_to_save_project(filepath: String) -> void:
 	var active_project: Project = ProjectManager.get_active_project()
 	active_project.filepath = filepath
-	_save_project(active_project)
+	await(_save_project(active_project))
+	file_dialog_finished.emit()
 
 # -------------------------------------------------------------------------------------------------
 func _on_canvas_background_changed(color: Color) -> void:
@@ -456,7 +473,12 @@ func _on_tool_changed(tool_type: int) -> void:
 # -------------------------------------------------------------------------------------------------
 func _on_save_unsaved_changes() -> void:
 	if _exit_requested:
-		ProjectManager.save_all_projects()
+		for project in ProjectManager.get_open_projects():
+			ProjectManager.make_project_active(project)
+			if project.filepath.is_empty() && project.loaded && project.dirty:
+				await(_on_save_project_as())
+			elif !project.filepath.is_empty() && project.loaded && project.dirty:
+				await(_on_save_project())
 		_save_state()
 		get_tree().quit()
 	else:
@@ -592,3 +614,25 @@ func _get_general_ui_scale() -> float:
 	elif smallest_dimension >= 1700:
 		return Config.DEFAULT_UI_SCALE * 1.5
 	return Config.DEFAULT_UI_SCALE
+
+# --------------------------------------------------------------------------------------------------
+func _on_theme_changed(path : String) -> void:
+	var themePath : String = str("res://UI/Themes/", path, "/theme.tres")
+	var toolBarPath : String = str("res://UI/Themes/", path, "/toolbar.tres")
+	print(themePath)
+	var theme : Theme = load(themePath)
+	var toolbarTheme : StyleBoxFlat = load(toolBarPath)
+	set_theme(theme)
+	_toolbar.set_theme(theme)
+	_toolbar.add_theme_stylebox_override("panel", toolbarTheme)
+	_toolbar.queue_redraw()
+	_statusbar.set_theme(theme)
+	_statusbar.queue_redraw()
+	_menubar.set_theme(theme)
+	_menubar.queue_redraw()
+	_main_menu.set_theme(theme)
+	print(_settings_dialog)
+	_settings_dialog.set_theme(theme)
+	_settings_dialog.queue_redraw()
+	queue_redraw()
+	print(theme)

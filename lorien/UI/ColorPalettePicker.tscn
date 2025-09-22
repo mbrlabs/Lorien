@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://dsxmmndtd4r2c"]
 
-[ext_resource type="Theme" uid="uid://u5qnpgxqykiv" path="res://UI/Themes/theme_dark.tres" id="1"]
+[ext_resource type="Theme" uid="uid://u5qnpgxqykiv" path="res://UI/Themes/dark/theme.tres" id="1"]
 [ext_resource type="Script" path="res://UI/ColorPalettePicker.gd" id="2"]
 [ext_resource type="Texture2D" uid="uid://bu10tixbxmwus" path="res://Assets/Icons/edit.png" id="3"]
 [ext_resource type="Texture2D" uid="uid://bmutnbt040e0b" path="res://Assets/Icons/plus.png" id="4"]

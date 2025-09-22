@@ -34,6 +34,9 @@ var _i18n := I18nParser.new()
 var locales: PackedStringArray
 var language_names: PackedStringArray
 
+#--------------------------------------------------------------------------------------------------
+signal changed_theme(path: String)
+
 # -------------------------------------------------------------------------------------------------
 func _ready() -> void:
 	_config_file = ConfigFile.new()
