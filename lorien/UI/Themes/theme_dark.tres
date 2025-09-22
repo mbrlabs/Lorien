@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=27 format=4 uid="uid://u5qnpgxqykiv"]
+[gd_resource type="Theme" load_steps=29 format=4 uid="uid://u5qnpgxqykiv"]
 
 [ext_resource type="Texture2D" uid="uid://bp1yka17gbjtu" path="res://Assets/Icons/close.png" id="1_qgxa7"]
 [ext_resource type="StyleBox" uid="uid://kdduww61cjw" path="res://UI/Themes/tab_inactive_dark.tres" id="2_n6mkw"]
@@ -62,6 +62,20 @@ content_margin_top = 6.0
 content_margin_right = 12.0
 content_margin_bottom = 6.0
 bg_color = Color(0.455564, 0.461034, 0.48827, 1)
+corner_radius_top_left = 64
+corner_radius_top_right = 64
+corner_radius_bottom_right = 64
+corner_radius_bottom_left = 64
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cvp1a"]
+bg_color = Color(0.266667, 0.270588, 0.290196, 1)
+corner_radius_top_left = 64
+corner_radius_top_right = 64
+corner_radius_bottom_right = 64
+corner_radius_bottom_left = 64
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xp38c"]
+bg_color = Color(0.207843, 0.211765, 0.227451, 1)
 corner_radius_top_left = 64
 corner_radius_top_right = 64
 corner_radius_bottom_right = 64
@@ -2452,6 +2466,8 @@ Button/styles/focus = SubResource("StyleBoxFlat_rb6ee")
 Button/styles/hover = SubResource("StyleBoxFlat_g5iyp")
 Button/styles/normal = SubResource("StyleBoxFlat_k6u2e")
 Button/styles/pressed = SubResource("StyleBoxFlat_4l7x4")
+CheckBox/styles/hover_pressed = SubResource("StyleBoxFlat_cvp1a")
+CheckBox/styles/pressed = SubResource("StyleBoxFlat_xp38c")
 CheckButton/colors/font_color = Color(0.88, 0.88, 0.88, 1)
 CheckButton/colors/font_color_disabled = Color(0.9, 0.9, 0.9, 0.2)
 CheckButton/colors/font_color_hover = Color(0.94, 0.94, 0.94, 1)
