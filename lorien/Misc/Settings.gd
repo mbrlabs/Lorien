@@ -20,6 +20,7 @@ const APPEARANCE_THEME 					:= "appearance_theme"
 const APPEARANCE_UI_SCALE_MODE  		:= "appearance_ui_scale_mode"
 const APPEARANCE_UI_SCALE				:= "appearance_ui_scale"
 const APPEARANCE_GRID_PATTERN			:= "appearance_grid_pattern"
+const APPEARANCE_STATIC_GRID			:= "appearance_static_grid"
 const APPEARANCE_GRID_SIZE				:= "appearance_grid_size"
 const APPEARANCE_CANVAS_COLOR 			:= "appearance_canvas_color"
 
