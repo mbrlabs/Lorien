@@ -46,7 +46,7 @@ func _ready() -> void:
 # -------------------------------------------------------------------------------------------------
 func reload_locales() -> void:
 	var parse_result := _i18n.reload_locales()
-	TranslationServer.set_locale(get_value(SETTINGS_SECTION, "en"))
+	TranslationServer.set_locale(get_value(GENERAL_LANGUAGE, "en"))
 	locales = parse_result.locales
 	language_names = parse_result.language_names
 
