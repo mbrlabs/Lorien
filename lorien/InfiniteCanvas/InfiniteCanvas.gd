@@ -12,6 +12,7 @@ const PLAYER = preload("res://Misc/Player/Player.tscn")
 @onready var _circle_tool: CircleTool = $CircleTool
 @onready var _eraser_tool: EraserTool = $EraserTool
 @onready var _selection_tool: SelectionTool = $SelectionTool
+@onready var _color_picker_tool: ColorPickerTool = $ColorPickerTool
 @onready var _active_tool: CanvasTool = _brush_tool
 @onready var _active_tool_type: int = Types.Tool.BRUSH
 @onready var _strokes_parent: Node2D = $SubViewport/Strokes
@@ -88,6 +89,16 @@ func _process_event(event: InputEvent) -> void:
 			else:
 				# restore tool from type
 				use_tool(_active_tool_type)
+	
+	if event is InputEventKey:
+		var keyEvent := event as InputEventKey
+		if keyEvent.keycode == KEY_CTRL:
+			if keyEvent.pressed:
+				var tool_type := _active_tool_type
+				use_tool(Types.Tool.COLOR_PICKER)
+				_active_tool_type = tool_type
+			else:
+				use_tool(_active_tool_type)
 
 	if event.is_action("deselect_all_strokes"):
 		if _active_tool == _selection_tool:
@@ -133,6 +144,10 @@ func use_tool(tool_type: int) -> void:
 		Types.Tool.SELECT:
 			_active_tool = _selection_tool
 			_use_optimizer = false
+		Types.Tool.COLOR_PICKER:
+			_active_tool = _color_picker_tool
+			_use_optimizer = false
+		
 
 	if prev_tool != _active_tool:
 		prev_tool.enabled = false
