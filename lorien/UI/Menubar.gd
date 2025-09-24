@@ -68,7 +68,10 @@ func update_tab_title(project: Project) -> void:
 		if project == p:
 			var new_title := project.get_scene_file_path()
 			if project.dirty:
-				new_title += " (*)"
+				if new_title == "PROJECT_NAME_UNTITLED":
+					new_title = "PROJECT_NAME_UNTITLED_UNSAVED"
+				else:
+					new_title += " (*)"
 			_tab_bar.set_tab_title(i, new_title)
 			_update_tabbar_size()
 			return

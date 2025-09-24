@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://cgs8d5y8yrwl0"]
 
-[ext_resource type="Theme" uid="uid://u5qnpgxqykiv" path="res://UI/Themes/theme_dark.tres" id="1_n5v21"]
+[ext_resource type="Theme" uid="uid://u5qnpgxqykiv" path="res://UI/Themes/dark/theme.tres" id="1_n5v21"]
 [ext_resource type="Script" path="res://UI/Dialogs/SettingsDialog.gd" id="2"]
 
 [sub_resource type="StyleBoxEmpty" id="1"]
@@ -242,8 +242,8 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 item_count = 2
-popup/item_0/text = "Dark Mode"
-popup/item_1/text = "Light Mode"
+popup/item_0/text = "SETTINGS_THEME_DARK"
+popup/item_1/text = "SETTINGS_THEME_LIGHT"
 popup/item_1/id = 1
 
 [node name="UIScale" type="HBoxContainer" parent="VBoxContainer/MarginContainer/VBoxContainer/AppearanceContainer/VBoxContainer"]
@@ -266,8 +266,8 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 item_count = 2
-popup/item_0/text = "Auto"
-popup/item_1/text = "Custom"
+popup/item_0/text = "SETTINGS_UI_SCALE_AUTO"
+popup/item_1/text = "SETTINGS_UI_SCALE_CUSTOM"
 popup/item_1/id = 1
 
 [node name="UIScale" type="SpinBox" parent="VBoxContainer/MarginContainer/VBoxContainer/AppearanceContainer/VBoxContainer/UIScale/HBoxContainer"]
@@ -296,10 +296,10 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 item_count = 3
-popup/item_0/text = "Dots"
-popup/item_1/text = "Lines"
+popup/item_0/text = "SETTINGS_GRID_PATTERN_DOTS"
+popup/item_1/text = "SETTINGS_GRID_PATTERN_LINES"
 popup/item_1/id = 1
-popup/item_2/text = "None"
+popup/item_2/text = "SETTINGS_GRID_PATTERN_NONE"
 popup/item_2/id = 2
 
 [node name="GridSize" type="HBoxContainer" parent="VBoxContainer/MarginContainer/VBoxContainer/AppearanceContainer/VBoxContainer"]
@@ -336,7 +336,7 @@ text = "SETTINGS_CANVAS_COLOR"
 unique_name_in_owner = true
 custom_minimum_size = Vector2(28, 28)
 layout_mode = 2
-size_flags_horizontal = 2
+size_flags_horizontal = 3
 theme_override_styles/focus = SubResource("2")
 theme_override_styles/disabled = SubResource("2")
 theme_override_styles/hover = SubResource("2")
@@ -377,8 +377,8 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 item_count = 2
-popup/item_0/text = "Flat"
-popup/item_1/text = "Round"
+popup/item_0/text = "SETTINGS_BRUSH_CAPS_FLAT"
+popup/item_1/text = "SETTINGS_BRUSH_CAPS_ROUND"
 popup/item_1/id = 1
 
 [node name="ForgroundFramerate" type="HBoxContainer" parent="VBoxContainer/MarginContainer/VBoxContainer/RenderingContainer/VBoxContainer"]

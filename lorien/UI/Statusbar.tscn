@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bwer12t6vfkg1"]
 
-[ext_resource type="Theme" uid="uid://u5qnpgxqykiv" path="res://UI/Themes/theme_dark.tres" id="1"]
+[ext_resource type="Theme" uid="uid://u5qnpgxqykiv" path="res://UI/Themes/dark/theme.tres" id="1"]
 [ext_resource type="Script" path="res://UI/Statusbar.gd" id="2"]
 
 [node name="Statusbar" type="Panel"]

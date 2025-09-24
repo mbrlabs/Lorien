@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://ct2b6hxxjlc6h"]
 
 [ext_resource type="Script" path="res://UI/Dialogs/UnsavedChangesDialog.gd" id="1"]
-[ext_resource type="Theme" uid="uid://u5qnpgxqykiv" path="res://UI/Themes/theme_dark.tres" id="3"]
+[ext_resource type="Theme" uid="uid://u5qnpgxqykiv" path="res://UI/Themes/dark/theme.tres" id="3"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ythkr"]
 

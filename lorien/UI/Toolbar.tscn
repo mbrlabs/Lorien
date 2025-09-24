@@ -2,7 +2,6 @@
 
 [ext_resource type="Texture2D" uid="uid://c4kv3i7fmom58" path="res://Assets/Icons/save_file.png" id="1"]
 [ext_resource type="Texture2D" uid="uid://dxi6gc6npiskq" path="res://Assets/Icons/open_file.png" id="2"]
-[ext_resource type="StyleBox" uid="uid://bv2204gysvy56" path="res://UI/Themes/toolbar_dark.tres" id="2_jgqev"]
 [ext_resource type="Script" path="res://UI/Toolbar.gd" id="3"]
 [ext_resource type="Texture2D" uid="uid://b14r0skgpftxj" path="res://Assets/Icons/new_file.png" id="4"]
 [ext_resource type="Texture2D" uid="uid://see51v4hg68f" path="res://Assets/Icons/redo.png" id="6"]
@@ -12,10 +11,13 @@
 [ext_resource type="Texture2D" uid="uid://7a3xk8n0q24k" path="res://Assets/Icons/rectangle_tool.png" id="10"]
 [ext_resource type="Texture2D" uid="uid://bn1qdw0v30np0" path="res://Assets/Icons/line_tool.png" id="11"]
 [ext_resource type="Script" path="res://UI/Components/FlatTextureButton.gd" id="13"]
-[ext_resource type="Theme" uid="uid://u5qnpgxqykiv" path="res://UI/Themes/theme_dark.tres" id="15"]
+[ext_resource type="Theme" uid="uid://u5qnpgxqykiv" path="res://UI/Themes/dark/theme.tres" id="15"]
 [ext_resource type="Texture2D" uid="uid://ddxis8f7tvg66" path="res://Assets/Icons/selection_tool.png" id="16"]
 [ext_resource type="Texture2D" uid="uid://desowbtf21cic" path="res://Assets/Icons/text-block.png" id="16_hx67p"]
 [ext_resource type="Texture2D" uid="uid://0qicbkag5jd3" path="res://Assets/Icons/circle_tool.png" id="19"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a5mfo"]
+bg_color = Color(0.207843, 0.211765, 0.227451, 1)
 
 [sub_resource type="StyleBoxEmpty" id="2"]
 
@@ -38,7 +40,7 @@ anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 40.0
 theme = ExtResource("15")
-theme_override_styles/panel = ExtResource("2_jgqev")
+theme_override_styles/panel = SubResource("StyleBoxFlat_a5mfo")
 script = ExtResource("3")
 
 [node name="Console" type="HBoxContainer" parent="."]
