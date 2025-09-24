@@ -6,12 +6,14 @@ class_name Serializer
 
 # -------------------------------------------------------------------------------------------------
 const BRUSH_STROKE = preload("res://BrushStroke/BrushStroke.tscn")
+const TEXT_BOX = preload("res://TextBox/TextBox.tscn")
 const COMPRESSION_METHOD = FileAccess.COMPRESSION_DEFLATE
 const POINT_ELEM_SIZE := 3
 
 const VERSION_NUMBER := 1
-const TYPE_BRUSH_STROKE := 0
-const TYPE_ERASER_STROKE_DEPRECATED := 1 # Deprecated since v0; will be ignored when read; structually the same as normal brush stroke
+const TYPE_BRUSH_STROKE : int = 0
+const TYPE_ERASER_STROKE_DEPRECATED : int = 1 # Deprecated since v0; will be ignored when read; structually the same as normal brush stroke
+const TYPE_TEXT_BOX : int = 2
 
 # -------------------------------------------------------------------------------------------------
 static func save_project(project: Project) -> void:
@@ -53,7 +55,18 @@ static func save_project(project: Project) -> void:
 			file.store_8(pressure)
 			p_idx += 1
 
-	# Done
+	# Text Box Data
+	for textBox : TextBox in project.textBoxes:
+		file.store_8(TYPE_TEXT_BOX)
+		file.store_float(textBox.global_position.x)
+		file.store_float(textBox.global_position.y)
+		file.store_pascal_string(textBox.text)
+		var textBoxColor : Color = textBox.get("theme_override_colors/font_color")
+		file.store_8(textBoxColor.r8)
+		file.store_8(textBoxColor.g8)
+		file.store_8(textBoxColor.b8)
+
+	# Done		
 	file.close()
 	print("Saved %s in %d ms" % [project.filepath, (Time.get_ticks_msec() - start_time)])
 
@@ -109,6 +122,20 @@ static func load_project(project: Project) -> void:
 					print("Skipped deprecated eraser stroke: %d points" % point_count)
 				else:
 					project.strokes.append(brush_stroke)
+			TYPE_TEXT_BOX:
+				var x = file.get_float()
+				var y = file.get_float()
+				var text = file.get_pascal_string()
+				var textBox : TextBox = TextBox.new()
+				textBox.set_global_position(Vector2(x,y))
+				textBox.text = text;
+				var r := file.get_8()
+				var g := file.get_8()
+				var b := file.get_8()
+				var textBoxColor : Color = Color(r/255.0, g/255.0, b/255.0, 1.0)
+				textBox.add_theme_color_override("font_color", textBoxColor)
+				
+				project.textBoxes.append(textBox)
 			_:
 				printerr("Invalid type")
 		

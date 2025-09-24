@@ -12,12 +12,15 @@ const PLAYER = preload("res://Misc/Player/Player.tscn")
 @onready var _circle_tool: CircleTool = $CircleTool
 @onready var _eraser_tool: EraserTool = $EraserTool
 @onready var _selection_tool: SelectionTool = $SelectionTool
+@onready var _textbox_tool: TextBoxTool = $TextBoxTool
 @onready var _active_tool: CanvasTool = _brush_tool
 @onready var _active_tool_type: int = Types.Tool.BRUSH
 @onready var _strokes_parent: Node2D = $SubViewport/Strokes
+@onready var _textboxes_parent: Control = $SubViewport/TextBoxes
 @onready var _camera: Camera2D = $SubViewport/Camera2D
 @onready var _viewport: SubViewport = $SubViewport
 @onready var _grid: InfiniteCanvasGrid = $SubViewport/Grid
+@onready var _text_box_editor : PanelContainer = $TextBoxEditor
 
 @onready var _constant_pressure_curve := load("res://InfiniteCanvas/constant_pressure_curve.tres")
 @onready var _default_pressure_curve := load("res://InfiniteCanvas/default_pressure_curve.tres")
@@ -92,10 +95,12 @@ func _process_event(event: InputEvent) -> void:
 	if event.is_action("deselect_all_strokes"):
 		if _active_tool == _selection_tool:
 			_selection_tool.deselect_all_strokes()
+			_selection_tool.deselect_all_text_boxes()
 
 	if event.is_action("delete_selected_strokes"):
 		if _active_tool == _selection_tool:
 			_delete_selected_strokes()
+			_delete_selected_text_boxes_strokes()
 	
 	if !get_tree().root.get_viewport().is_input_handled():
 		_camera.tool_event(event)
@@ -132,6 +137,9 @@ func use_tool(tool_type: int) -> void:
 			_use_optimizer = false
 		Types.Tool.SELECT:
 			_active_tool = _selection_tool
+			_use_optimizer = false
+		Types.Tool.TEXTBOX:
+			_active_tool = _textbox_tool
 			_use_optimizer = false
 
 	if prev_tool != _active_tool:
@@ -184,6 +192,9 @@ func get_strokes_in_camera_frustrum() -> Array:
 func get_all_strokes() -> Array[BrushStroke]:
 	return _current_project.strokes
 
+# -------------------------------------------------------------------------------------------------
+func get_all_text_boxes() -> Array[TextBox]:
+	return _current_project.textBoxes
 # -------------------------------------------------------------------------------------------------
 func enable() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
@@ -296,6 +307,8 @@ func use_project(project: Project) -> void:
 	# Cleanup old data
 	for stroke in _strokes_parent.get_children():
 		_strokes_parent.remove_child(stroke)
+	for textBox in _textboxes_parent.get_children():
+		_textboxes_parent.remove_child(textBox)
 	info.point_count = 0
 	info.stroke_count = 0
 	
@@ -309,6 +322,8 @@ func use_project(project: Project) -> void:
 		_strokes_parent.add_child(stroke)
 		info.stroke_count += 1
 		info.point_count += stroke.points.size()
+	for textBox in _current_project.textBoxes:
+		_textboxes_parent.add_child(textBox)
 	
 	_grid.queue_redraw()
 	
@@ -373,12 +388,31 @@ func _delete_selected_strokes() -> void:
 		_current_project.dirty = true
 
 # -------------------------------------------------------------------------------------------------
+func _delete_selected_text_boxes_strokes() -> void:
+	var text_boxes := _selection_tool.get_selected_text_boxes()
+	if !text_boxes.is_empty():
+		_current_project.undo_redo.create_action("Delete Selection")
+		for text_box: TextBox in text_boxes:
+			_current_project.undo_redo.add_do_method(_do_delete_text_box.bind(text_box))
+			_current_project.undo_redo.add_undo_reference(text_box)
+			_current_project.undo_redo.add_undo_method(_undo_delete_text_box.bind(text_box))
+		_selection_tool.deselect_all_text_boxes()
+		_current_project.undo_redo.commit_action()
+		_current_project.dirty = true
+
+# -------------------------------------------------------------------------------------------------
 func _do_delete_stroke(stroke: BrushStroke) -> void:
 	var index := _current_project.strokes.find(stroke)
 	_current_project.strokes.remove_at(index)
 	_strokes_parent.remove_child(stroke)
 	info.point_count -= stroke.points.size()
 	info.stroke_count -= 1
+
+# -------------------------------------------------------------------------------------------------
+func _do_delete_text_box(text_box: TextBox) -> void:
+	var index := _current_project.textBoxes.find(text_box)
+	_current_project.textBoxes.remove_at(index)
+	_textboxes_parent.remove_child(text_box)
 
 # FIXME: this adds strokes at the back and does not preserve stroke order; not sure how to do that except saving before
 # and after versions of the stroke arrays which is a nogo.
@@ -388,3 +422,44 @@ func _undo_delete_stroke(stroke: BrushStroke) -> void:
 	_strokes_parent.add_child(stroke)
 	info.point_count += stroke.points.size()
 	info.stroke_count += 1
+	
+# FIXME: this adds text boxes at the back and does not preserve text boxes order; not sure how to do that except saving before
+# and after versions of the text boxes arrays which is a nogo.
+# -------------------------------------------------------------------------------------------------
+func _undo_delete_text_box(text_box: TextBox) -> void:
+	_current_project.textBoxes.append(text_box)
+	_textboxes_parent.add_child(text_box)
+	
+# -------------------------------------------------------------------------------------------------
+func _create_textbox(textBox : TextBox) -> void:
+	_textboxes_parent.add_child(textBox)
+	_current_project.textBoxes.append(textBox)
+
+# -------------------------------------------------------------------------------------------------
+func _on_text_box_tool_show_text_box_dialog(dialogPosition : Vector2) -> void:
+	_text_box_editor.visible = true
+	_text_box_editor.label_position = dialogPosition
+
+# -------------------------------------------------------------------------------------------------
+func _on_text_box_editor_text_box_ok(value : String, labelPosition : Vector2) -> void:
+	var label : TextBox = TextBox.new()
+	label.text = value
+	label.set_position(labelPosition)
+	label.add_theme_color_override("font_color", _brush_color)
+	_create_textbox(label)
+	_textbox_tool._state = _textbox_tool.State.CREATING
+
+# -------------------------------------------------------------------------------------------------
+func _on_text_box_editor_text_box_cancel() -> void:
+	_textbox_tool._state = _textbox_tool.State.CREATING
+	
+# -------------------------------------------------------------------------------------------------
+func _on_text_box_tool_edit_existing_text_box(textBox : TextBox) -> void:
+	_text_box_editor.visible = true
+	_text_box_editor.textEdit.text = textBox.text
+	_text_box_editor.label_position = textBox.position
+	_text_box_editor.textBox = textBox
+
+# -------------------------------------------------------------------------------------------------
+func _on_text_box_editor_text_box_ok_update() -> void:
+	_textbox_tool._state = _textbox_tool.State.CREATING

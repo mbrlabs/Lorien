@@ -73,7 +73,8 @@ func _add_undoredo_action_for_erased_strokes() -> void:
 # ------------------------------------------------------------------------------------------------
 func _update_bounding_boxes() -> void:
 	var strokes := _canvas.get_all_strokes()
-	_bounding_box_cache = Utils.calculte_bounding_boxes(strokes, BOUNDING_BOX_MARGIN)
+	var text_boxes := _canvas.get_all_text_boxes()
+	_bounding_box_cache = Utils.calculte_bounding_boxes(strokes, text_boxes, BOUNDING_BOX_MARGIN)
 	#$"../Viewport/DebugDraw".set_bounding_boxes(_bounding_box_cache.values())
 
 # ------------------------------------------------------------------------------------------------

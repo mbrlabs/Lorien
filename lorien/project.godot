@@ -51,6 +51,7 @@ gdscript/warnings/unused_argument=false
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
+window/size/initial_position_type=3
 window/size/window_width_override=1440
 window/size/window_height_override=810
 window/subwindows/embed_subwindows=false
@@ -61,6 +62,10 @@ window/vsync/vsync_mode=false
 
 naming/scene_name_casing=1
 naming/script_name_casing=1
+
+[gui]
+
+theme/default_font_multichannel_signed_distance_field=true
 
 [input]
 

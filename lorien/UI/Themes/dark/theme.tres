@@ -67,20 +67,6 @@ corner_radius_top_right = 64
 corner_radius_bottom_right = 64
 corner_radius_bottom_left = 64
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cvp1a"]
-bg_color = Color(0.266667, 0.270588, 0.290196, 1)
-corner_radius_top_left = 64
-corner_radius_top_right = 64
-corner_radius_bottom_right = 64
-corner_radius_bottom_left = 64
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xp38c"]
-bg_color = Color(0.207843, 0.211765, 0.227451, 1)
-corner_radius_top_left = 64
-corner_radius_top_right = 64
-corner_radius_bottom_right = 64
-corner_radius_bottom_left = 64
-
 [sub_resource type="StyleBoxFlat" id="4"]
 corner_radius_top_left = 1
 corner_radius_top_right = 1
@@ -2466,8 +2452,6 @@ Button/styles/focus = SubResource("StyleBoxFlat_rb6ee")
 Button/styles/hover = SubResource("StyleBoxFlat_g5iyp")
 Button/styles/normal = SubResource("StyleBoxFlat_k6u2e")
 Button/styles/pressed = SubResource("StyleBoxFlat_4l7x4")
-CheckBox/styles/hover_pressed = SubResource("StyleBoxFlat_cvp1a")
-CheckBox/styles/pressed = SubResource("StyleBoxFlat_xp38c")
 CheckButton/colors/font_color = Color(0.88, 0.88, 0.88, 1)
 CheckButton/colors/font_color_disabled = Color(0.9, 0.9, 0.9, 0.2)
 CheckButton/colors/font_color_hover = Color(0.94, 0.94, 0.94, 1)
