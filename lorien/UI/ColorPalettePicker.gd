@@ -21,9 +21,11 @@ signal closed
 @onready var _new_button: TextureButton = $MarginContainer/VBoxContainer/Buttons/AddPaletteButton
 @onready var _duplicate_button: TextureButton = $MarginContainer/VBoxContainer/Buttons/DuplicatePaletteButton
 @onready var _delete_button: TextureButton = $MarginContainer/VBoxContainer/Buttons/DeletePaletteButton
+@onready var _pin_picker_button: TextureButton = $MarginContainer/VBoxContainer/Buttons/PinPickerButton
 
 var _active_palette_button: PaletteButton
 var _active_color_index := -1
+var _is_pinned := false
 
 # -------------------------------------------------------------------------------------------------
 func _ready() -> void:
@@ -34,6 +36,7 @@ func _ready() -> void:
 	_edit_button.pressed.connect(_on_EditColorButton_pressed)
 	_duplicate_button.pressed.connect(_on_DuplicatePaletteButton_pressed)
 	_delete_button.pressed.connect(_on_DeletePaletteButton_pressed)
+	_pin_picker_button.toggled.connect(_on_PinPickerButton_toggled)
 	
 # -------------------------------------------------------------------------------------------------
 func _input(event: InputEvent) -> void:
@@ -46,7 +49,7 @@ func _input(event: InputEvent) -> void:
 		should_hide = should_hide && !get_parent().is_dialog_open()
 		should_hide = should_hide && !_palette_selection_button.get_popup().visible
 		should_hide = should_hide && !AlertDialog.visible
-		if should_hide:
+		if should_hide && !_is_pinned:
 			_close()
 	elif event is InputEventKey && event.pressed && event.keycode == KEY_ESCAPE:
 		_close()
@@ -156,6 +159,10 @@ func _on_DeletePaletteButton_pressed() -> void:
 	else:
 		var dialog: DeletePaletteDialog = get_node(delete_palette_dialog)
 		dialog.get_parent().popup_centered()
+
+# -------------------------------------------------------------------------------------------------
+func _on_PinPickerButton_toggled(toggled_on: bool) -> void:
+	_is_pinned = toggled_on
 
 # -------------------------------------------------------------------------------------------------
 func toggle() -> void:

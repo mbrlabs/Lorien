@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dsxmmndtd4r2c"]
+[gd_scene load_steps=12 format=3 uid="uid://dsxmmndtd4r2c"]
 
 [ext_resource type="Theme" uid="uid://u5qnpgxqykiv" path="res://UI/Themes/dark/theme.tres" id="1"]
 [ext_resource type="Script" path="res://UI/ColorPalettePicker.gd" id="2"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://ci340bpx1hg78" path="res://Assets/Icons/copy.png" id="5"]
 [ext_resource type="Texture2D" uid="uid://c3maqrdnsjgiq" path="res://Assets/Icons/delete.png" id="6"]
 [ext_resource type="Script" path="res://UI/Components/FlatTextureButton.gd" id="7"]
+[ext_resource type="Texture2D" uid="uid://bkmd34tauwjar" path="res://Assets/Icons/pin.png" id="8_hbbx6"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eth5b"]
 bg_color = Color(0.12549, 0.129412, 0.141176, 1)
@@ -93,6 +94,16 @@ texture_normal = ExtResource("6")
 script = ExtResource("7")
 hover_tint = Color(1, 0.431373, 0.431373, 1)
 pressed_tint = Color(1, 0.266667, 0.266667, 1)
+
+[node name="PinPickerButton" type="TextureButton" parent="MarginContainer/VBoxContainer/Buttons"]
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
+toggle_mode = true
+texture_normal = ExtResource("8_hbbx6")
+script = ExtResource("7")
+hover_tint = Color(0.662745, 0.945098, 0.87451, 1)
+pressed_tint = Color(0.572549, 1, 0.894118, 1)
 
 [node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
